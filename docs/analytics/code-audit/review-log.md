@@ -1,5 +1,92 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.016
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `53f74994011383cb544cabac96285430f00cb38a`; рабочее дерево на старте чистое, отслеживаются 944 файла. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/componentData.js](../../../module/data/item/componentData.js) | 21 |
+| [module/data/item/diagramData.js](../../../module/data/item/diagramData.js) | 81 |
+| [module/data/item/templates/craftingComponentData.js](../../../module/data/item/templates/craftingComponentData.js) | 10 |
+| [module/data/item/templates/associatedDiagramData.js](../../../module/data/item/templates/associatedDiagramData.js) | 14 |
+| [module/item/sheets/WitcherComponentSheet.js](../../../module/item/sheets/WitcherComponentSheet.js) | 15 |
+| [module/item/sheets/WitcherDiagramSheet.js](../../../module/item/sheets/WitcherDiagramSheet.js) | 111 |
+| [module/item/sheets/mixins/associatedDiagramMixin.js](../../../module/item/sheets/mixins/associatedDiagramMixin.js) | 21 |
+| [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs) | 51 |
+| [templates/sheets/item/diagrams-sheet.hbs](../../../templates/sheets/item/diagrams-sheet.hbs) | 136 |
+| [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | 43 |
+| [templates/partials/associated-diagram.hbs](../../../templates/partials/associated-diagram.hbs) | 38 |
+| [templates/partials/associated-item.hbs](../../../templates/partials/associated-item.hbs) | 43 |
+
+Всего **12 файлов, 584 логические строки**; подготовлены 12 карточек. Все собственные методы, фабрики, поля и пять HBS прочитаны целиком. Сверены 5 прямых относительных импортов порции, пути partial/PARTS и обработчики. Уточнены 13 связанных карточек: CommonItemData, WitcherItem, WitcherActor, WeaponData, ArmorData, их листы, WitcherItemSheet, registerDataModels, registerSheets, config, handlebars, item-header.
+
+Изготовление, алхимия, поиск инвентаря, разборка, ремонт и обработчик цены просмотрены как потребители. Их частичное или полное чтение для проверки связи не увеличивает покрытие реестра. Следующая TASK-0003.017 по-прежнему включает полный разбор ремонта/costEditMixin.
+
+### Методика и подмены
+
+Один диагностический сценарий передан Node через stdin, без создания тестовых файлов. Использованы настоящие DataModel/TypeDataModel/DataFields/DocumentUUIDField и primitives Foundry; все модели системы подключены по registerDataModels. Для связанного материала создан настоящий common BaseItem с моделью ComponentData; документ мира и client WitcherItem не создавались. Это позволило проверить реальный enumerable spread: id документа не затёр id строки, name/img/system доступны.
+
+Исполнены настоящие модели, классы листов, associatedDiagramMixin/associatedDiagramData, craftingMixin и _calculateAdditionalCost. isAlchemicalCraft извлечён из исходника без изменения тела. Core ItemSheetV2/HandlebarsApplicationMixin и подготовка контекста работают с DocumentSheet/DOM-фасадом. UUID API заменён картой с BaseItem/null; Item.update не записывает данные и возвращает pending Promise. Очистка сформированных payload выполняется новой настоящей DiagramData.
+
+Handlebars и parse5 настоящие. Общий header и пять HBS использованы из исходников. editor представлен простым фасадом с target/content; selectOptions — ограниченный генератор. Системные getSetting/window/includes/has используются из исходного setup. Сначала component-sheet выполнен без select и дал Missing helper. Затем только для изучения остальных блоков временно зарегистрирован helper, возвращающий тело select без выбора options; после проверки он удалён из диагностического Handlebars. Успешность штатного рендера этим не утверждается.
+
+fromUuid/fromUuidSync сверены с /opt/foundryvtt/client/utils/helpers.mjs:161–210: синхронная версия может вернуть индекс и бросает на embedded Compendium при strict=true. Эти ветви ядра не запускались с реальным pack. Локализация en/ru проверена после настоящего utils.expandObject, как в загрузчике /opt/foundryvtt/client/helpers/localization.mjs; localize не обрезает пробел ключа.
+
+### Выполненные сценарии
+
+| Группа | Фактический результат |
+| --- | --- |
+| 1. Схемы и ID | ComponentData имеет 14 верхних полей, DiagramData — 20. craftingComponent содержит id/name/quantity/uuid. Новые строки получают разные 16-символьные ID, uuid по умолчанию null. |
+| 2. Обогащение | Для доступного Item имя обновилось в prepared-массиве, добавлены img/type; toObject() сохранил исходное имя, toObject(false) не сериализует внесхемные img/type. Недоступный/пустой UUID сохранил запись. undefined→undefined, []→[], quantity0 осталось0. |
+| 3. Контекст листа | Из трёх записей две known по наличию UUID и одна unknown. У доступного BaseItem ID строки сохранён; у недоступного UUID остались только id/quantity, сохранённое имя потерялось. |
+| 4. CRUD и повторный drop | Edit quantity '4' очистился в4; remove row1 сохранил row2; add quantity='' очистился в null и получил ID. Два drop одного UUID дали две строки с разными ID. |
+| 5. Drop результата | Область associatedItem записала associatedItemUuid; другая область добавила компонент. Нулевой offsetParent дал TypeError до update. Удаление результата записало пустой UUID. |
+| 6. Обратная ссылка | Примесь пропустила пустой item/чужую область, отклонила неправильный Item.type/категорию, приняла weapon; null offsetParent дал TypeError. Удаление записало ''. unwrap с пустой строкой не менял прежнее свойство, с доступным UUID присвоил объект, с недоступным — null. |
+| 7. Слушатели | Настоящий базовый _onRender вызвал activateListeners DiagramSheet: click/blur/click/click для add/edit/remove/remove-result. |
+| 8. Форма компонента | Без select — Missing helper. С временной подменой пять категорий дали 10/10/10/10/11 именованных полей; substances добавляет substanceType. Выбранный option подменой не проверен. |
+| 9. Форма рецепта | Со связанным результатом режимы isFormulae=false/true дали 12/20 именованных полей, editor.description учитывается отдельно. Списки craftingComponents есть в обоих режимах. |
+| 10. Связанные представления | С настоящим BaseItem имя/картинка присутствуют, system.description не выводится обоими partial из-за верхнего пути. resultQuantity видим только при имени результата. Подсказки add/remove рецепта переставлены. |
+| 11. Миграция | Старый associatedItem заменил современный UUID жёстким Compendium.TheWitcherTRPG.gear.Item.ID. alchemyDC12/craftingDC20 стали12/12 даже при isFormulae=false; контроль без старых данных сохранил современное значение. |
+| 12. Таблица и цена | showCost/canEditCost false/false,true/false,true/true дали 0/0/1 editable inputs при cost0/cost7; data-price15. Исходный costEditMixin с '2','3' дал additional5/total20; с пустым значением — NaN/NaN. |
+| 13. Поиск компонентов | findNeededComponent нашёл точное имя даже isStored=true; актуальное другое имя не нашёл. getSubstance и локализованное имя vitriol нашли субстанцию, findComponentByUuid — compendiumSource. |
+| 14. Режим изготовления | Настоящий isAlchemicalCraft: isFormulae=false/alchemyDC12→true, isFormulae=true/alchemyDC0→0. Выбор массивов/поиска realCraft установлен по исходнику, полный craft заново не запускался. |
+| 15. Локализация | Проверены 49 буквальных ключей в en/ru. Не найдены только два ключа с начальным пробелом AddComponent/RemoveComponent; без пробела переводы существуют. Тексты противоположных подсказок рецепта проверены отдельно. |
+
+Все группы завершены. Пустая числовая строка дала null, а не предполагавшийся 0: ожидание диагностического сценария исправлено по результату настоящей модели; ошибкой системы это не объявлено. Предупреждение Node о module type оставлено без изменения package.json.
+
+### Перекрёстная сверка связей
+
+| Цепочка | Сопоставление |
+| --- | --- |
+| Component Item → требование рецепта | ComponentData описывает Item; craftingComponent — отдельную строку id/name/quantity/uuid. ID нужен UI, UUID — обогащению/связанным документам; realCraft ищет по имени. |
+| Модель рецепта → лист → update → модель | Enrich сохраняет fallback имени; последующий known-map теряет его. CRUD адресует сохранённые ID; тип quantity и initial id формируются при очистке payload, не вручную листом. |
+| Результат → обратный рецепт | DiagramData.associatedItemUuid и Weapon/Armor.associatedDiagramUuid независимы. Изменение одной ссылки автоматически не создаёт другую. UI-drop ограничивает категорию обратного рецепта; resolver модели её не проверяет. |
+| Prepared данные → описание | Оба partial получают документ/индекс, но читают description вне system. Дополнительная загрузка индекса — отдельная граница, не объяснение неудачи с полным BaseItem. |
+| Рецепт → изготовление/разборка | realCraft использует положительные quantities, поиск имени и resultQuantity/UUID результата; dismantle разрешает UUID материалов и возвращает вычисленные количества. Полный сценарий разборки не запускался. |
+| Рецепт → ремонт → components-list | Repair получает рецепт через await fromUuid, ищет имя, затем UUID недостающего материала; передаёт required=1, цены и итог в partial. HBS не рассчитывает эти значения. Обработчик цены проверен отдельно, весь ремонт остаётся следующей задачей. |
+| Формула → фактический режим | isFormulae управляет UI, alchemyDC управляет isAlchemicalCraft. Миграция дополнительно переносит alchemyDC в craftingDC; эти два разрыва не объединены в одно исправление. |
+
+Область поиска потребителей — module/ и templates/, регистрации проверены отдельно. Для исключённых изображений указана справочная зависимость; карточки assets не создавались.
+
+### Issues и ограничения
+
+Зарегистрированы [issue-00094](../../issues/potential/issue-00094.md), [issue-00095](../../issues/potential/issue-00095.md), [issue-00096](../../issues/potential/issue-00096.md), [issue-00097](../../issues/potential/issue-00097.md), [issue-00098](../../issues/potential/issue-00098.md), [issue-00099](../../issues/potential/issue-00099.md), [issue-00100](../../issues/potential/issue-00100.md), [issue-00101](../../issues/potential/issue-00101.md). Дополнены issue-00037/00038/00041/00080. Всего **101 issue, все potential**; пользователь не подтверждал их и не согласовывал исправления.
+
+Старые проблемы изготовления не воспроизводились заново и не получили повторных ID. Новый разбор не меняет количество ресурсов, правила режима, миграции, права или систему. Не проверены браузерный submit, ProseMirror, серверная валидация документов, пакеты/сеть, реальные броски, полный процесс изготовления/ремонта/разборки, кошелёк и многопользовательские изменения. Ручной повтор resolver с пустым UUID не считается проверкой полного Foundry reset.
+
+### Контроль документов и исходников
+
+Проверки прошли: в реестре 621 уникальный исходник, 133 строки «Проверено» связаны с карточками, 488 остаются «Не начат». Все 12 новых карточек содержат обязательные разделы, методы/поля, дату и коммит; состав задачи совпадает с перечнем. Во второй серии разобран 61 файл, в четырёх следующих задачах остаются 35. Все 101 issue находятся в potential, нумерация последовательна.
+
+Проверены 216 прямых относительных импортов во всех 133 карточках и 6028 локальных ссылок/якорей в 286 Markdown-документах. Изменены 48 документов: 28 существующих и 20 новых. Реестры, статусы и навигация согласованы; git diff --check завершился без ошибок.
+
+Все 621 исходник побайтово совпали с HEAD и базовым срезом TASK-0001; фактическое дерево соответствует согласованным исключениям и реестру. Сохранены mode/uid/gid/inode всех 944 ранее отслеживаемых файлов. SHA256 исходников (путь + NUL + байты + NUL в порядке реестра) — `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`; SHA256 sorted JSON метаданных — `9782790e47267ff80ccad0e7499d81dafeff0dac4041ebdc93eee0e99891cbb3`. Историческая часть журнала с TASK-0003.015 сохранена дословно.
+
+Покрытие — **133 из 621 файла**, остаются **488**. Во второй серии разобран **61 файл из 96**, в очереди .017–.020 находятся **35**, ещё **453** требуют детализации. Следующая задача — [TASK-0003.017 — Ремонт предметов: расчёт, диалог и сообщения](../../tasks/task-0003.017.md).
+
 ## TASK-0003.015
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `7edb814aa870da75c7ad7633536e899a8d07e205`; на старте рабочее дерево чистое, отслеживаются 926 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

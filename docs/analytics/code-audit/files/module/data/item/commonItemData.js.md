@@ -134,3 +134,9 @@
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003015).
 
 Полностью разобраны три наследника: [module/data/item/alchemicalData.js](../../../../../../../module/data/item/alchemicalData.js), [module/data/item/mutagenData.js](../../../../../../../module/data/item/mutagenData.js), [module/data/item/valuableData.js](../../../../../../../module/data/item/valuableData.js). Все получают восемь общих полей и включают ещё два из [module/data/item/templates/consumableData.js](../../../../../../../module/data/item/templates/consumableData.js). AlchemicalData и ValuableData переопределяют canHaveTemporaryItemImprovement=true; MutagenData сохраняет false. quantity остаётся StringField: consume не изменяет его, а Actor.removeItem вычитает количество и вызывает update либо delete.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
+
+Полностью разобраны [module/data/item/componentData.js](../../../../../../../module/data/item/componentData.js) и [module/data/item/diagramData.js](../../../../../../../module/data/item/diagramData.js). Первая добавляет 6 строк к 8 общим полям (14 всего), вторая — 12 полей (20 всего). description в обоих случаях расположен в system, что сопоставлено с неверными верхними путями [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs) и [templates/partials/associated-item.hbs](../../../../../../../templates/partials/associated-item.hbs). Оба типа наследуют canBeRepaired=false и canHaveTemporaryItemImprovement=false.

@@ -95,3 +95,9 @@ JavaScript-функций нет. Шаблон вычисляет условия
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Полностью разобраны формы [templates/sheets/item/alchemical-sheet.hbs](../../../../../../templates/sheets/item/alchemical-sheet.hbs), [templates/sheets/item/mutagen-sheet.hbs](../../../../../../templates/sheets/item/mutagen-sheet.hbs), [templates/sheets/item/valuable-sheet.hbs](../../../../../../templates/sheets/item/valuable-sheet.hbs). Для mutagen ветка header заменяет cost на system.type и получает red/green/blue из WitcherMutagenSheet.getTypes. Настоящий HBS во всех трёх вариантах даёт один selector типа. Проблема мутагена относится к неподключённой configuration расходования, а не к выбору цвета. Стандартная clickableImageItemTypes добавляет checkbox мутагену и valuable; отсутствие поля модели остаётся в issue-00063.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
+
+Полностью описаны [templates/sheets/item/component-sheet.hbs](../../../../../../templates/sheets/item/component-sheet.hbs) и [templates/sheets/item/diagrams-sheet.hbs](../../../../../../templates/sheets/item/diagrams-sheet.hbs), включающие общую шапку. Стандартная clickableImageItemTypes не добавляет checkbox этим двум типам. В диагностике компонент с временным helper select имел 10 собственных+общих именованных полей, либо 11 для substances. Рецепт со связанным результатом — 12/20 в двух режимах; editor.description проверен отдельно как фасад. Это числа шаблонов, не успешный штатный рендер component.

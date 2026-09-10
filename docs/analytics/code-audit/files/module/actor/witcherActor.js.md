@@ -236,3 +236,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Полностью прослежен потребитель [module/item/mixins/consumeMixin.js](../../../../../../module/item/mixins/consumeMixin.js). useItem проверяет item.isConsumable, запускает consume() и removeItem(id,1) без ожидания обоих. Настоящий removeItem при quantity2 запросил update1; при quantity1 и контролируемой задержке calculateHealValue запросил delete до продолжения consume. Отсутствующий затем UUID источника попал в GM query helper. Это возможный порядок с фасадами, не проверка частоты в мире. applyStatus/removeStatus принимают массивы {statusEffect}, игнорируют percentage/varEffect и не ждут toggle; UI расходования использует именно такие массивы. Дефекты иммунитетов и раннего завершения описаны существующими issues, а разрыв коллекции брони не переносится на эту массивную схему.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
+
+Уточнены потребители полей [module/data/item/componentData.js](../../../../../../module/data/item/componentData.js) и [module/data/item/templates/craftingComponentData.js](../../../../../../module/data/item/templates/craftingComponentData.js). Примесь [module/actor/mixins/craftingMixin.js](../../../../../../module/actor/mixins/craftingMixin.js) предоставляет getSubstance/findNeededComponent/findComponentByUuid. Реальные методы с модельными компонентами показали: поиск имени включает isStored=true, getSubstance исключает сохранённую субстанцию, UUID-метод сравнивает _stats.compendiumSource. Изготовление использует поиск по имени; ремонт сначала ищет имя, затем разрешает UUID недостающего материала. Это разные критерии, не эквивалентные способы найти один Item; общий контракт инвентаря не менялся.

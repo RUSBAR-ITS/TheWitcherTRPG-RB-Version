@@ -108,3 +108,9 @@ repair посылает update родительскому документу, н
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003014).
 
 Полный разбор [module/data/item/armorData.js](../../../../../../../module/data/item/armorData.js) подтвердил общие с оружием отсутствие проверки владельца при непустых enhancementItemIds, добавление прежних ID без устранения повторов и раннее завершение repair. Дополнены issue-00077/00078/00081. Отличие брони: фильтр пустых ID и расчёт freeEnhancements, который может выбросить RangeError; оружие такого массива не создаёт. Миграция effects брони удаляет результат, а [module/data/item/enhancementData.js](../../../../../../../module/data/item/enhancementData.js) сохраняет конверсию. Это сравнение текущих типов, не перенос поведения брони на оружие.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
+
+Полностью разобраны импортируемые [module/data/item/templates/associatedDiagramData.js](../../../../../../../module/data/item/templates/associatedDiagramData.js) и [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js). associatedDiagramUuid — строка; unwrapAssociatedDiagram синхронно задаёт prepared объект/индекс/null и не проверяет тип. Допустимые категории weapon/elderfolk-weapon проверяет drop-примесь листа. Ремонт/разборка заново разрешают UUID асинхронно. Обратный associatedItemUuid рецепта автоматически не устанавливается; его отдельный редактор описан в [module/item/sheets/WitcherDiagramSheet.js](../../../../../../../module/item/sheets/WitcherDiagramSheet.js).

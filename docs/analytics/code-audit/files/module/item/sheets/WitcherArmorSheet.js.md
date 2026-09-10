@@ -85,3 +85,9 @@ Default export WitcherArmorSheet extends WitcherItemSheet; зарегистри�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.014 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
+
+Полностью описаны [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) и [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs). Допустимость armor/elderfolk-armor задаёт caller; модель раскрытия ссылки не проверяет категорию. Клик удаления вызывает update associatedDiagramUuid='', не удаляет рецепт. Подсказка этого клика в partial ошибочно использует actions.add; описание читает неверный путь. Ранее выявленный offsetParent остаётся issue-00080.

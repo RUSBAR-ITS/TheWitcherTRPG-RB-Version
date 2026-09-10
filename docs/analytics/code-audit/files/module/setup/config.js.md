@@ -427,3 +427,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Уточнены потребители [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js), [module/item/mixins/consumeMixin.js](../../../../../../module/item/mixins/consumeMixin.js) и три специализированных листа .015. config.statusEffects передаёт id/name в selector, а createConsumeMessage отдельно находит metadata по id и передаёт img/name в чат. Имя записи itemEffect и локализованное имя статуса — разные поля. Alchemical/Mutagen мутируют общий config.type и Availability.WITCHER; Valuable создаёт отдельный context.selects.type. Настоящий consume не читает процент записи, time или toxicity предмета.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
+
+Полный разбор [templates/sheets/item/component-sheet.hbs](../../../../../../templates/sheets/item/component-sheet.hbs) и [templates/sheets/item/diagrams-sheet.hbs](../../../../../../templates/sheets/item/diagrams-sheet.hbs) уточнил зависимости: config.substanceTypes — 9 субстанций, Availability — варианты rarity компонента, craftingLevels — 5 уровней рецепта. FormulaTypes (4) и diagramTypes (9) задаёт WitcherDiagramSheet.createSelects отдельным context.selects. Схемы строк не ограничены этими UI-словарями. Локализация 49 буквальных ключей порции проверена в en/ru; два ключа HBS имеют ошибочный пробел, ещё две существующие подсказки связанного рецепта переставлены.

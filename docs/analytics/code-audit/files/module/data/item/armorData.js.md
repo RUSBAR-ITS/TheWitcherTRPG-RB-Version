@@ -111,3 +111,9 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.014 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
+
+Полностью проверены [module/data/item/templates/associatedDiagramData.js](../../../../../../../module/data/item/templates/associatedDiagramData.js), [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) и [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs). Броня использует ту же строковую ссылку и resolver, что оружие; её caller передаёт armor/elderfolk-armor. Ссылка раскрывается после обработки улучшений. Partial обращается к description вне system, поэтому текст связанного рецепта не появляется даже с полным BaseItem (issue-00096); подсказки add/remove перепутаны (issue-00099). Нового поведения расчёта SP эта порция не вводит.

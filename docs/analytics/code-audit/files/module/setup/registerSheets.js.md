@@ -173,3 +173,9 @@
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Полностью разобраны регистрации трёх специализированных ItemSheet: [module/item/sheets/WitcherAlchemicalSheet.js](../../../../../../module/item/sheets/WitcherAlchemicalSheet.js), [module/item/sheets/WitcherMutagenSheet.js](../../../../../../module/item/sheets/WitcherMutagenSheet.js), [module/item/sheets/WitcherValuableSheet.js](../../../../../../module/item/sheets/WitcherValuableSheet.js). Выбор конкретной configuration задаёт экземпляр листа: у Alchemical/Valuable она расходуемая, у Mutagen базовая. В изолированных контекстах получены 3/2/3 вкладки. Пользовательские переопределения листов и сторонние модули не исследовались.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
+
+Полностью описаны [module/item/sheets/WitcherComponentSheet.js](../../../../../../module/item/sheets/WitcherComponentSheet.js) и [module/item/sheets/WitcherDiagramSheet.js](../../../../../../module/item/sheets/WitcherDiagramSheet.js), зарегистрированные через Items.registerSheet с makeDefault:true для component/diagrams. Оба наследуют базовую configuration, без отдельного класса редактора рецепта. Ошибка select принадлежит подключаемому component-sheet.hbs, а не отсутствующей регистрации класса.

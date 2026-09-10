@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.015 подготовлена и сверена 121 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.016 подготовлены и сверены 133 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -199,3 +199,20 @@
 | templates/sheets/item/valuable-sheet.hbs | [Описание](templates/sheets/item/valuable-sheet.hbs.md) |
 | templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md) |
 | templates/chat/item/consume.hbs | [Описание](templates/chat/item/consume.hbs.md) |
+
+## Компоненты и рецепты — TASK-0003.016
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/componentData.js | [Описание](module/data/item/componentData.js.md) |
+| module/data/item/diagramData.js | [Описание](module/data/item/diagramData.js.md) |
+| module/data/item/templates/craftingComponentData.js | [Описание](module/data/item/templates/craftingComponentData.js.md) |
+| module/data/item/templates/associatedDiagramData.js | [Описание](module/data/item/templates/associatedDiagramData.js.md) |
+| module/item/sheets/WitcherComponentSheet.js | [Описание](module/item/sheets/WitcherComponentSheet.js.md) |
+| module/item/sheets/WitcherDiagramSheet.js | [Описание](module/item/sheets/WitcherDiagramSheet.js.md) |
+| module/item/sheets/mixins/associatedDiagramMixin.js | [Описание](module/item/sheets/mixins/associatedDiagramMixin.js.md) |
+| templates/sheets/item/component-sheet.hbs | [Описание](templates/sheets/item/component-sheet.hbs.md) |
+| templates/sheets/item/diagrams-sheet.hbs | [Описание](templates/sheets/item/diagrams-sheet.hbs.md) |
+| templates/partials/components-list.hbs | [Описание](templates/partials/components-list.hbs.md) |
+| templates/partials/associated-diagram.hbs | [Описание](templates/partials/associated-diagram.hbs.md) |
+| templates/partials/associated-item.hbs | [Описание](templates/partials/associated-item.hbs.md) |

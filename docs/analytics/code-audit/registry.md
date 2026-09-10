@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.015 проверены описания **121 файлов**, для **500 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.016 проверены описания **133 файлов**, для **488 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.015](review-log.md#task-0003015) выполнена на `7edb814aa870da75c7ad7633536e899a8d07e205`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.016](review-log.md#task-0003016) выполнена на `53f74994011383cb544cabac96285430f00cb38a`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -127,10 +127,10 @@
 | [module/data/item/alchemicalData.js](../../../module/data/item/alchemicalData.js) | Модель алхимического Item с текстовыми свойствами и настройками расходования. | [Описание](files/module/data/item/alchemicalData.js.md) | Проверено |
 | [module/data/item/armorData.js](../../../module/data/item/armorData.js) | Модель брони и щитов: SP, сопротивления, улучшения, ремонт и миграции. | [Описание](files/module/data/item/armorData.js.md) | Проверено |
 | [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js) | Общая модель части типов Item: поля описания/количества/массы, calcWeight и признаки возможностей. | [Карточка](files/module/data/item/commonItemData.js.md) | Проверено |
-| [module/data/item/componentData.js](../../../module/data/item/componentData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/componentData.js](../../../module/data/item/componentData.js) | Модель Item-компонента: категория, субстанция и описательные сведения. | [Описание](files/module/data/item/componentData.js.md) | Проверено |
 | [module/data/item/containerData.js](../../../module/data/item/containerData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/diagramData.js](../../../module/data/item/diagramData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/diagramData.js](../../../module/data/item/diagramData.js) | Модель рецепта/формулы: требования, результат, обогащение и миграция. | [Описание](files/module/data/item/diagramData.js.md) | Проверено |
 | [module/data/item/enhancementData.js](../../../module/data/item/enhancementData.js) | Модель предмета улучшения: бонус SP, сопротивления, эффекты и миграция. | [Описание](files/module/data/item/enhancementData.js.md) | Проверено |
 | [module/data/item/hexData.js](../../../module/data/item/hexData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/homelandData.js](../../../module/data/item/homelandData.js) | Не установлено | Не подготовлено | Не начат |
@@ -145,7 +145,7 @@
 | [module/data/item/spellData.js](../../../module/data/item/spellData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/armor/resistanceData.js](../../../module/data/item/templates/armor/resistanceData.js) | Три сопротивления брони и их объединение с улучшениями. | [Описание](files/module/data/item/templates/armor/resistanceData.js.md) | Проверено |
 | [module/data/item/templates/armor/spData.js](../../../module/data/item/templates/armor/spData.js) | Исходные и вычисленные значения SP одной локации брони. | [Описание](files/module/data/item/templates/armor/spData.js.md) | Проверено |
-| [module/data/item/templates/associatedDiagramData.js](../../../module/data/item/templates/associatedDiagramData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/associatedDiagramData.js](../../../module/data/item/templates/associatedDiagramData.js) | Фабрика UUID рецепта и его синхронное раскрытие для оружия/брони. | [Описание](files/module/data/item/templates/associatedDiagramData.js.md) | Проверено |
 | [module/data/item/templates/combat/attackOptionsData.js](../../../module/data/item/templates/combat/attackOptionsData.js) | Общие поля вариантов атаки, навыков, бонусов урона и метательного свойства. | [Описание](files/module/data/item/templates/combat/attackOptionsData.js.md) | Проверено |
 | [module/data/item/templates/combat/damagePropertiesData.js](../../../module/data/item/templates/combat/damagePropertiesData.js) | Вложенные свойства урона: флаги, эффекты, объединение, представление и миграция. | [Описание](files/module/data/item/templates/combat/damagePropertiesData.js.md) | Проверено |
 | [module/data/item/templates/combat/defenseOptionsData.js](../../../module/data/item/templates/combat/defenseOptionsData.js) | Поле множества разрешённых способов защиты от атаки. | [Описание](files/module/data/item/templates/combat/defenseOptionsData.js.md) | Проверено |
@@ -155,7 +155,7 @@
 | [module/data/item/templates/componentData.js](../../../module/data/item/templates/componentData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/consumableData.js](../../../module/data/item/templates/consumableData.js) | Фабрика признака isConsumable и вложенных consumeProperties. | [Описание](files/module/data/item/templates/consumableData.js.md) | Проверено |
 | [module/data/item/templates/consumePropertiesData.js](../../../module/data/item/templates/consumePropertiesData.js) | Вложенная схема лечения и массивов добавляемых/снимаемых статусов. | [Описание](files/module/data/item/templates/consumePropertiesData.js.md) | Проверено |
-| [module/data/item/templates/craftingComponentData.js](../../../module/data/item/templates/craftingComponentData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/craftingComponentData.js](../../../module/data/item/templates/craftingComponentData.js) | Фабрика строки материала рецепта с ID, именем, количеством и UUID. | [Описание](files/module/data/item/templates/craftingComponentData.js.md) | Проверено |
 | [module/data/item/templates/effectDerivedStatData.js](../../../module/data/item/templates/effectDerivedStatData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/effectSkillData.js](../../../module/data/item/templates/effectSkillData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/effectStatData.js](../../../module/data/item/templates/effectStatData.js) | Не установлено | Не подготовлено | Не начат |
@@ -182,10 +182,10 @@
 | [module/item/mixins/repairMixin.js](../../../module/item/mixins/repairMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherAlchemicalSheet.js](../../../module/item/sheets/WitcherAlchemicalSheet.js) | Лист алхимии с категориями и конфигурацией расходования. | [Описание](files/module/item/sheets/WitcherAlchemicalSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherArmorSheet.js](../../../module/item/sheets/WitcherArmorSheet.js) | Лист брони: контекст, варианты ношения, конфигурация и рецепт. | [Описание](files/module/item/sheets/WitcherArmorSheet.js.md) | Проверено |
-| [module/item/sheets/WitcherComponentSheet.js](../../../module/item/sheets/WitcherComponentSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherComponentSheet.js](../../../module/item/sheets/WitcherComponentSheet.js) | Минимальный лист компонента с основной формой и шириной 600. | [Описание](files/module/item/sheets/WitcherComponentSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherContainerSheet.js](../../../module/item/sheets/WitcherContainerSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherCriticalWoundSheet.js](../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/WitcherDiagramSheet.js](../../../module/item/sheets/WitcherDiagramSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherDiagramSheet.js](../../../module/item/sheets/WitcherDiagramSheet.js) | Редактор рецепта: категории, строки материалов, drop и связь результата. | [Описание](files/module/item/sheets/WitcherDiagramSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherEnhancementSheet.js](../../../module/item/sheets/WitcherEnhancementSheet.js) | Лист улучшения с вариантами его категории. | [Описание](files/module/item/sheets/WitcherEnhancementSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherHexSheet.js](../../../module/item/sheets/WitcherHexSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherHomelandSheet.js](../../../module/item/sheets/WitcherHomelandSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -207,7 +207,7 @@
 | [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherSpellConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/mixins/associatedDiagramMixin.js](../../../module/item/sheets/mixins/associatedDiagramMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/mixins/associatedDiagramMixin.js](../../../module/item/sheets/mixins/associatedDiagramMixin.js) | Примесь привязки/удаления рецепта на листах оружия и брони. | [Описание](files/module/item/sheets/mixins/associatedDiagramMixin.js.md) | Проверено |
 | [module/item/systems/repair.js](../../../module/item/systems/repair.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/witcherItem.js](../../../module/item/witcherItem.js) | Документ Item: миграция магии, выбор атаки, изготовление, генерация добычи, улучшения и пять примесей. | [Карточка](files/module/item/witcherItem.js.md) | Проверено |
 | [module/scripts/chat.js](../../../module/scripts/chat.js) | Не установлено | Не подготовлено | Не начат |
@@ -535,8 +535,8 @@
 | [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/verbal-combat-defense.hbs](../../../templates/dialog/verbal-combat-defense.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/verbal-combat.hbs](../../../templates/dialog/verbal-combat.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/partials/associated-diagram.hbs](../../../templates/partials/associated-diagram.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/partials/associated-item.hbs](../../../templates/partials/associated-item.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/associated-diagram.hbs](../../../templates/partials/associated-diagram.hbs) | Представление связанного рецепта и область его drop/удаления. | [Описание](files/templates/partials/associated-diagram.hbs.md) | Проверено |
+| [templates/partials/associated-item.hbs](../../../templates/partials/associated-item.hbs) | Представление результата изготовления, его количества и связи. | [Описание](files/templates/partials/associated-item.hbs.md) | Проверено |
 | [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/custom-skill-display.hbs](../../../templates/partials/character/custom-skill-display.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/skill-display.hbs](../../../templates/partials/character/skill-display.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -546,7 +546,7 @@
 | [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-skills.hbs](../../../templates/partials/character/tab-skills.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-stats.hbs](../../../templates/partials/character/tab-stats.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | Таблица наличия, требований и стоимости компонентов для ремонта. | [Описание](files/templates/partials/components-list.hbs.md) | Проверено |
 | [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | Общий список эффектов с источниками, длительностью, описаниями и действиями. | [Описание](files/templates/partials/effect-part.hbs.md) | Проверено |
 | [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs) | Общая шапка предметных форм: имя, картинка, количество, вес, цена/тип и источник. | [Описание](files/templates/partials/item-header.hbs.md) | Проверено |
@@ -601,7 +601,7 @@
 | [templates/sheets/investigation/partials/obstacle-display.hbs](../../../templates/sheets/investigation/partials/obstacle-display.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/alchemical-sheet.hbs](../../../templates/sheets/item/alchemical-sheet.hbs) | Основная форма категории, доступности, времени и описания алхимии. | [Описание](files/templates/sheets/item/alchemical-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs) | Основная форма брони, щита, сопротивлений и предметных воздействий. | [Описание](files/templates/sheets/item/armor-sheet.hbs.md) | Проверено |
-| [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs) | Форма категории, субстанции, доступности и описательных полей компонента. | [Описание](files/templates/sheets/item/component-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs) | Общий фрагмент выбора вариантов атаки и соответствующих навыков. | [Описание](files/templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -617,7 +617,7 @@
 | [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/criticalWound-sheet.hbs](../../../templates/sheets/item/criticalWound-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/diagrams-sheet.hbs](../../../templates/sheets/item/diagrams-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/diagrams-sheet.hbs](../../../templates/sheets/item/diagrams-sheet.hbs) | Основная форма рецепта/формулы и редактор материалов. | [Описание](files/templates/sheets/item/diagrams-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/enhancement-sheet.hbs](../../../templates/sheets/item/enhancement-sheet.hbs) | Форма категории улучшения, его физических бонусов и воздействий. | [Описание](files/templates/sheets/item/enhancement-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/homeland-sheet.hbs](../../../templates/sheets/item/homeland-sheet.hbs) | Не установлено | Не подготовлено | Не начат |

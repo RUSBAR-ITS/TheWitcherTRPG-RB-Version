@@ -209,3 +209,9 @@
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Полностью разобран [module/item/mixins/consumeMixin.js](../../../../../../module/item/mixins/consumeMixin.js): Object.assign добавляет consume/createConsumeMessage. Getter isConsumable читает system.isConsumable ?? false; сам consume не проверяет flag. Actor.useItem и контекстное меню проверяют признак и отдельно списывают одну единицу через Actor.removeItem. consume ожидает только calculateHealValue; update HP, применение/снятие статусов, applySelf и создание чата запускаются без ожидания. Чат не подтверждает завершение записей. Реальные методы и модели проверены с подменой документов/БД; задержанное лечение допускает удаление последней единицы раньше UUID-поиска эффектов.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
+
+Полностью описана [module/data/item/diagramData.js](../../../../../../module/data/item/diagramData.js) и её редактор [module/item/sheets/WitcherDiagramSheet.js](../../../../../../module/item/sheets/WitcherDiagramSheet.js). realCraft читает prepared name/quantity компонентов, ищет инвентарь по имени, а результат получает через await fromUuid(associatedItemUuid) и resultQuantity. ID строки и UUID материала не используются этим маршрутом для списания. Миграция рецепта может заменить craftingDC/UUID (issue-00097); isAlchemicalCraft выбирает положительный alchemyDC независимо от isFormulae UI (issue-00101). Исходный метод проверен на двух граничных моделях: false/12→true, true/0→0. Прежние проверки полного realCraft/Promise не повторялись; issue-00037/00038/00041 сохранены.

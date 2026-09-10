@@ -213,3 +213,9 @@
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Полностью описаны и реально созданы [module/data/item/alchemicalData.js](../../../../../../module/data/item/alchemicalData.js), [module/data/item/mutagenData.js](../../../../../../module/data/item/mutagenData.js), [module/data/item/valuableData.js](../../../../../../module/data/item/valuableData.js). Три регистрации Item ведут к моделям с 15 верхними полями каждая; consumable() добавляет isConsumable и EmbeddedDataField(ConsumablePropertiesData). Исходные четыре поля вложенной модели не содержат addsTempHp, а записи массивов не содержат id. Сама регистрация не подключает редактор этих полей.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
+
+Полностью описаны регистрации ComponentData→component и DiagramData→diagrams: [module/data/item/componentData.js](../../../../../../module/data/item/componentData.js), [module/data/item/diagramData.js](../../../../../../module/data/item/diagramData.js). В реальных моделях 14/20 верхних полей. [module/data/item/templates/craftingComponentData.js](../../../../../../module/data/item/templates/craftingComponentData.js) даёт строке id/name/quantity/uuid с генерируемым ID, а [module/data/item/templates/associatedDiagramData.js](../../../../../../module/data/item/templates/associatedDiagramData.js) включается в Weapon/Armor независимо. Модели связанного Item и строки требования рецепта не смешиваются.

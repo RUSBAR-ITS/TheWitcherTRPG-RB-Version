@@ -136,3 +136,9 @@
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003015).
 
 Полностью проверены [module/item/sheets/WitcherAlchemicalSheet.js](../../../../../../../module/item/sheets/WitcherAlchemicalSheet.js), [module/item/sheets/WitcherMutagenSheet.js](../../../../../../../module/item/sheets/WitcherMutagenSheet.js), [module/item/sheets/WitcherValuableSheet.js](../../../../../../../module/item/sheets/WitcherValuableSheet.js). Первые и последние создают WitcherConsumableConfigurationSheet; Mutagen наследует обычную configuration. Наследуемый header показывает configureItem во всех трёх случаях, но состав окна различается: 3/2/3 вкладки. Собственных activateListeners у этих листов нет; ручные таблицы расходования слушает отдельный класс configuration. Цвет мутагена находится в header, поэтому отсутствие собственного selector в main не означает отсутствия настройки.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
+
+Полностью разобраны наследники [module/item/sheets/WitcherComponentSheet.js](../../../../../../../module/item/sheets/WitcherComponentSheet.js) и [module/item/sheets/WitcherDiagramSheet.js](../../../../../../../module/item/sheets/WitcherDiagramSheet.js). ComponentSheet задаёт лишь DEFAULT_OPTIONS.width/PARTS; DiagramSheet добавляет контекст и activateListeners. Настоящий базовый _onRender действительно вызвал override: зарегистрированы click/blur/click/click для добавления, редактирования, удаления компонента и удаления результата. В DiagramSheet реализован собственный _onDropItem, который пишет UUID результата либо массив материалов. Его null offsetParent даёт отклонение Promise; это другой caller того же небезопасного DOM-доступа, что issue-00080.

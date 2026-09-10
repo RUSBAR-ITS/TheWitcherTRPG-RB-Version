@@ -85,3 +85,9 @@ Drop рецепта меняет associatedDiagramUuid; соответствую
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.013 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.016
+
+2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
+
+Полный разбор [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) подтвердил контракт _onDropDiagram(event,item,'weapon','elderfolk-weapon') и удаления пустой строкой. Части [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs) не имеют собственного picker: добавление происходит через drop. Новый [module/item/sheets/WitcherDiagramSheet.js](../../../../../../../module/item/sheets/WitcherDiagramSheet.js) на стороне рецепта отдельно пишет UUID результата; это не создание двусторонней связи. Геометрия offsetParent в браузере по-прежнему не проверена.
