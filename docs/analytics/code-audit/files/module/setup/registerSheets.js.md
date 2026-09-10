@@ -147,3 +147,11 @@
 Полностью разобран зарегистрированный [module/activeEffect/WitcherActiveEffectSheet.js](../../../../../../module/activeEffect/WitcherActiveEffectSheet.js). Он наследует core ActiveEffectConfig, добавляет actions.wizard, PARTS.systemSpecific и TABS.sheet.systemSpecific; остальные части/submit остаются ядровыми. Присоединены baseMixin (8 методов) и temporaryItemImprovementMixin (2). Регистрация не ограничена отдельными types, поэтому шаблон системных полей должен учитывать разные схемы (issue-00053).
 
 [Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Уточнение TASK-0003.011
+
+2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
+
+Полностью разобраны [общий лист Item](../item/sheets/WitcherItemSheet.js.md) и [его базовая конфигурация](../item/sheets/configurations/WitcherConfigurationSheet.js.md). У общего листа 17 прямых наследников, у конфигурации — три прямых и два через Properties. Для note нет специализированной регистрации: после перехвата исходных регистраций подходящим остаётся WitcherItemSheet, а настоящий HandlebarsApplicationMixin рендерит ноль частей. Это [issue-00057](../../../../../issues/potential/issue-00057.md), отдельное наблюдение от отсутствующих типов issue-00005. Runtime-проверка не моделировала пользовательский выбор листа и БД.
+
+[TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).

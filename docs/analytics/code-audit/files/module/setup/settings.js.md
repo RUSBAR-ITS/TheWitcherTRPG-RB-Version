@@ -105,3 +105,11 @@
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. displayRollsDetails:46 считывается addActiveEffects. Он скрывает только имена источников персонального навыкового модификатора; подписи групповых модификаторов, атаки и защиты остаются. Проверены обе полученные строки; setter настройки и браузер не запускались.
 
 Карточки: [WitcherActor](../actor/witcherActor.js.md), [modifierMixin](../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.011
+
+2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
+
+Матрица [шапки Item](../../templates/partials/item-header.hbs.md) подтвердила правила видимости checkbox: тип в CSV и (GM либо ограничение GM выключено). Матрица [item-image](../../templates/partials/item-image.hbs.md) требует ещё clickableImage=true. Настройка GM ограничивает видимость checkbox, не создаёт отдельного ограничения записи поля. Поле clickableImage не объявлено в моделях; проверенные настоящие Valuable/Armor/Weapon/Mutagen отбрасывают его при подготовке. Текущие списки инвентаря partial не используют: [issue-00063](../../../../../issues/potential/issue-00063.md). Сохранение мира не проверялось.
+
+[TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).

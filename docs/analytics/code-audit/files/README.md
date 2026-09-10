@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.010 подготовлены и сверены 72 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.011 подготовлены и сверены 79 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -130,3 +130,10 @@
 | templates/sheets/activeEffect/system-specific.hbs | [Описание](templates/sheets/activeEffect/system-specific.hbs.md) |
 | templates/partials/effect-part.hbs | [Описание](templates/partials/effect-part.hbs.md) |
 | templates/sheets/actor/partials/character/tab-effects.hbs | [Описание](templates/sheets/actor/partials/character/tab-effects.hbs.md) |
+| module/item/sheets/WitcherItemSheet.js | [Описание](module/item/sheets/WitcherItemSheet.js.md) |
+| module/item/sheets/configurations/WitcherConfigurationSheet.js | [Описание](module/item/sheets/configurations/WitcherConfigurationSheet.js.md) |
+| templates/partials/item-header.hbs | [Описание](templates/partials/item-header.hbs.md) |
+| templates/partials/item-image.hbs | [Описание](templates/partials/item-image.hbs.md) |
+| templates/sheets/item/configuration/tabs/header.hbs | [Описание](templates/sheets/item/configuration/tabs/header.hbs.md) |
+| templates/sheets/item/configuration/tabs/general.hbs | [Описание](templates/sheets/item/configuration/tabs/general.hbs.md) |
+| templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md) |

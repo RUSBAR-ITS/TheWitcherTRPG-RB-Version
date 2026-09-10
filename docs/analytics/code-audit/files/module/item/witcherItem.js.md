@@ -183,3 +183,11 @@
 [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) предлагает system.damage, system.damageProperties.oilEffect/silverDamage; реальные пути WeaponData — StringField. [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) используется также конфигурацией Item: её собственные actions поддерживают create/toggle/edit/delete, а раскрывающего Actor-listener нет (issue-00056). Для обычного Item-эффекта с transfer=true автодополнение листа всё ещё выбирает Item-схему, хотя получатель — Actor (issue-00051).
 
 [Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Уточнение TASK-0003.011
+
+2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
+
+Полностью описан потребитель [WitcherItemSheet](sheets/WitcherItemSheet.js.md). Его контекст вызывает system.enrichedText?.() напрямую и редактирует system.effects через отдельные update; документы ActiveEffect обслуживает [WitcherConfigurationSheet](sheets/configurations/WitcherConfigurationSheet.js.md). Ручные add/edit/remove основного листа завершаются раньше ожидающего update; сохранение формы имеет отдельный путь ядра. getItemAttack дополнительно проверен на WeaponData с единственным itemUse: возвращает вариант без skill; потребитель останавливается на уведомлении. Причина отсутствующего выбора в редакторе описана в issue-00061; БД и полный бой не запускались.
+
+[TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).

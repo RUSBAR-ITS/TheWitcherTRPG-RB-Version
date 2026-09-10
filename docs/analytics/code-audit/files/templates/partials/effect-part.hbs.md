@@ -79,3 +79,11 @@ Drag/drop, фактическая очистка description, разрешени
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.010 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.011
+
+2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
+
+Полностью сверены [контекст и actions Item-конфигурации](../../module/item/sheets/configurations/WitcherConfigurationSheet.js.md) и [обёртка activeEffects](../sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md). Header li передаёт effectType для create, строка — effectId; Item-handler ищет ID только в this.document.effects и не использует parentUuid. disabled проверяется первым; suppressed-эффект может остаться в passive и виден, потому что @root.actor в этом контексте не задан. Раскрывающий listener не найден — issue-00056 сохраняется. Конфигурация наследует разрешённый dragstart ядра, тогда как основной WitcherItemSheet возвращает false; их контроллеры не следует смешивать.
+
+[TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.010 проверены описания **72 файлов**, для **549 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.011 проверены описания **79 файлов**, для **542 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.010](review-log.md#task-0003010) выполнена на `247d3d86e344238a1445377c686eb6455146693c`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.011](review-log.md#task-0003011) выполнена на `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -189,7 +189,7 @@
 | [module/item/sheets/WitcherEnhancementSheet.js](../../../module/item/sheets/WitcherEnhancementSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherHexSheet.js](../../../module/item/sheets/WitcherHexSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherHomelandSheet.js](../../../module/item/sheets/WitcherHomelandSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js) | Общий лист Item: контекст, форма, редактор предметных воздействий, конфигурация и Drop. | [Описание](files/module/item/sheets/WitcherItemSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherMountSheet.js](../../../module/item/sheets/WitcherMountSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherMutagenSheet.js](../../../module/item/sheets/WitcherMutagenSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherProfessionSheet.js](../../../module/item/sheets/WitcherProfessionSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -200,7 +200,7 @@
 | [module/item/sheets/WitcherValuableSheet.js](../../../module/item/sheets/WitcherValuableSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherWeaponSheet.js](../../../module/item/sheets/WitcherWeaponSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | Базовая конфигурация Item: вкладки, категории и действия над ActiveEffect. | [Описание](files/module/item/sheets/configurations/WitcherConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -549,8 +549,8 @@
 | [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | Общий список эффектов с источниками, длительностью, описаниями и действиями. | [Описание](files/templates/partials/effect-part.hbs.md) | Проверено |
-| [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/partials/item-image.hbs](../../../templates/partials/item-image.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs) | Общая шапка предметных форм: имя, картинка, количество, вес, цена/тип и источник. | [Описание](files/templates/partials/item-header.hbs.md) | Проверено |
+| [templates/partials/item-image.hbs](../../../templates/partials/item-image.hbs) | Картинка списка предметов с условной кнопкой увеличения; потребитель — прежний инвентарь монстра. | [Описание](files/templates/partials/item-image.hbs.md) | Проверено |
 | [templates/partials/monster/monster-custom-skill-display.hbs](../../../templates/partials/monster/monster-custom-skill-display.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/monster/monster-details-tab.hbs](../../../templates/partials/monster/monster-details-tab.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/monster/monster-inventory-tab.hbs](../../../templates/partials/monster/monster-inventory-tab.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -606,13 +606,13 @@
 | [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs) | Обёртка вкладки ActiveEffect Item с общим partial списка. | [Описание](files/templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/tabs/general.hbs](../../../templates/sheets/item/configuration/tabs/general.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/tabs/header.hbs](../../../templates/sheets/item/configuration/tabs/header.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/configuration/tabs/general.hbs](../../../templates/sheets/item/configuration/tabs/general.hbs) | Условные поля вариантов атаки, навыков, бонусов, типа урона и защиты. | [Описание](files/templates/sheets/item/configuration/tabs/general.hbs.md) | Проверено |
+| [templates/sheets/item/configuration/tabs/header.hbs](../../../templates/sheets/item/configuration/tabs/header.hbs) | Локализованный заголовок базовой конфигурации Item. | [Описание](files/templates/sheets/item/configuration/tabs/header.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs) | Не установлено | Не подготовлено | Не начат |

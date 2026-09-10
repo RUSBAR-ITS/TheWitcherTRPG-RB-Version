@@ -1,5 +1,75 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.011
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; на старте рабочее дерево чистое, отслеживались 858 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Локальное ядро Foundry 14.367.0, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js) | 171 |
+| [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | 143 |
+| [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs) | 71 |
+| [templates/partials/item-image.hbs](../../../templates/partials/item-image.hbs) | 8 |
+| [templates/sheets/item/configuration/tabs/header.hbs](../../../templates/sheets/item/configuration/tabs/header.hbs) | 3 |
+| [templates/sheets/item/configuration/tabs/general.hbs](../../../templates/sheets/item/configuration/tabs/general.hbs) | 45 |
+| [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs) | 4 |
+| **Всего** | **445** |
+
+Два JS-файла полностью прочитаны: 13 собственных методов/getter у WitcherItemSheet и три у WitcherConfigurationSheet. Описаны aliases, static-опции, части, вкладки, configuration и callbacks. Пять HBS разобраны целиком: контекст, поля, условия, helpers, действия, родительская разметка и потребители.
+
+### Перекрёстная сверка определений и обращений
+
+- Регистрация → классы: у WitcherItemSheet 17 прямых наследников, шесть замен configuration и шесть собственных _onDropItem. У базовой конфигурации три прямых наследника и два через Properties. У note в системных регистрациях остаётся общий класс с PARTS={}.
+- Основной лист → ядро: обычная форма сохраняется через DocumentSheetV2/FormDataExtended, картинка редактируется через editImage/FilePicker. Системный лист вручную редактирует system.effects; отдельная конфигурация создаёт/обновляет документы ActiveEffect. Она напрямую наследует ItemSheetV2 и не получает системный Drop-router.
+- Шаблоны → контекст: item-header имеет десять прямых предметных потребителей. item-image имеет один прямой вызов в прежнем monster-inventory-tab; текущий MonsterSheet использует новые PARTS инвентаря. Прежний шаблон предзагружается, но это не делает его текущим рендером.
+- General → схемы/потребители: на настоящих 22 моделях Item сверены условные поля. Weapon при включённых всех вариантах даёт 8 полей, Spell — 9, Hex/Ritual — по одному defenseOptions, остальные — ноль. Это диагностическая проверка схем; фактически Armor/Spell заменяют general собственными шаблонами.
+- ActiveEffects → действия: четыре категории согласованы с disabled/типом/длительностью; create читает type заголовка, другие actions — effectId строки. Parent UUID вложенного partial не используется Item-handler. Описание остаётся скрытым; listener раскрытия у Item-конфигурации не найден.
+
+Прямой ES import в двух исходниках один: WitcherItemSheet → WitcherConfigurationSheet. Наследование ядра, регистрации, динамические методы, HTML-атрибуты, схемы, стили и локализации описаны отдельными связями. Уточнены девять ранее созданных карточек: registerSheets, handlebars, settings, config, WitcherItem, CommonItemData, effect-part, ActiveEffectSheet и ActiveEffect.
+
+### Изолированные сценарии
+
+Команда исполнения: `node --input-type=module` с переданным через stdin сценарием, без создания файла стенда. Загружены настоящие common-модели/поля/утилиты Foundry, все зарегистрированные системные модели Item, полные системные классы этой порции, полные CoreItemSheetV2/DragDrop/HandlebarsApplicationMixin и исходный formGroup. DocumentSheetV2 и контекст Application представлены фасадом; DOM-элементы, fromDropData, Hook, запись документов, Dialog и рендер поля toFormGroup подменены явно.
+
+| Проверка | Фактический результат | Ограничения |
+| --- | --- | --- |
+| Drop Actor/Item/Folder | На общем листе три TypeError отсутствующего метода; Other→null, isEditable=false→undefined | Шесть специализированных Item-handler не исполнялись целиком |
+| Drop ActiveEffect | Core-handler дошёл до create с parent=item; тот же родитель и isOwner=false остановили вызов | create перехвачен, БД отсутствует |
+| Hook отмены Drop | Core _onDrop вызвал dropItemSheetData и остановился при false; override не вызвал hook и дошёл до создания | Это проверка стандартной точки расширения, не установленного внешнего модуля |
+| Повторный рендер | После двух _onRender вызовов drop выполнился один раз; draggable=false | Настоящий DragDrop заменяет свойства ondrop; слушатели наследников отдельно не моделировались |
+| Контекст | config/data остаются ссылками; два prepare добавляют две одинаковые строки options.classes | Видимое влияние повторного класса не устанавливалось |
+| Редактирование воздействия | Текст on передан как false, настоящая модель дала строку false; checkbox→true, percentage→строка25 в payload | Элемент/запись подменены; очистка типа проверена на реальной модели |
+| Удаление воздействия | Старый ключ -=fx преобразован в ForcedDeletion; запись удалена из EnhancementData | Только updateSource в памяти; compatibility warning перехвачен |
+| Завершение ручного action | _onAddEffect завершился, пока update оставался pending | Проверка Promise, не DB-сохранение |
+| Категории/управление FX | Проверены шесть комбинаций свойств, четыре create-payload и edit/toggle/delete | units/start/transfer/changes не заданы create-payload; фактическое сохранение defaults не исполнялось |
+| Шапка Item | 12 комбинаций GM/ограничения/трёх типов и отдельный showConfig=false; всегда один editImage, mutagen выводит type вместо cost | Helpers настоящие, полноценный FilePicker/submit не запускался |
+| Картинка инвентаря | Четыре комбинации допустимости типа/флага; .item-show только при true/true; _onItemShow сформировал Dialog картинки | Флаг передан вручную; не сохранялся в Item |
+| Поле clickableImage | В реальных Valuable/Armor/Weapon/Mutagen поле отсутствует; входной true не попал в prepared/toObject | Не моделировалось изменение схем сторонним модулем |
+| Заголовок настроек | Handlebars с ru.json дал h1 «Настройки» | Без окна браузера |
+| itemUse | getItemAttack на новом WeaponData дал itemUse без skill; начало weaponAttack выдало «Атакующий навык не настроен» | Проверена ранняя ветвь; бой/броски не запускались |
+| Заголовок spell | Три раздела дали «Ближний бой», «Дальний бой», «Дальний бой» | Сверены en/ru, остальные языки не проверялись |
+| Note | Перехват регистраций оставил WitcherItemSheet; настоящие HBM options.parts=[] и _renderHTML={} | Подмена Application/DocumentSheet; пользовательская регистрация листа не проверялась |
+
+Сценарий содержит assert-проверки значимых результатов, матриц, маршрутов и схем. Первые запуски потребовали исправить только изолированный сценарий: убрать JSON-сериализацию циклических схем, передать ui в vm и перехватить compatibility logger. Эти ошибки окружения не записаны как ошибки системы. Итоговый запуск завершился успешно. Код системы, зависимости и тестовые файлы не менялись.
+
+### Проблемы, границы и следующий шаг
+
+Зарегистрированы [issue-00057–00063](../../issues/README.md) в potential: note без содержимого листа; отсутствующие Drop-handler; обход Drop-hook; преобразование текста on; недоступный выбор навыка itemUse; подпись spell; разрывы настройки кликабельной картинки. Дополнены issue-00005 и issue-00056. Всего 63 проблемы, все остаются potential; исправления не выполнялись.
+
+Полностью описаны только семь файлов перечня. Определения и вызовы в соседних моделях, специализированных листах, Actor-mixin, стилях и локализациях прочитаны в пределах связи; их статусы полного разбора не менялись. Мир, реальный браузер/DOM, FormDataExtended и сетевые/DB-операции не запускались. Динамические сторонние регистрации/шаблоны и права записи в реальном клиенте не проверены.
+
+Покрытие — **79 из 621 файла**, не разобраны **542**. Вторая серия выполнена на 7 из 96 файлов; в TASK-0003.012–TASK-0003.020 остаются 89 файлов, ещё 453 требуют детализации. Следующая порция — [TASK-0003.012](../../tasks/task-0003.012.md). TASK-0003 остаётся in-progress.
+
+### Итоговая проверка документации и сохранности
+
+Python-проверка подтвердила: 621 исходник совпадает с базовым срезом и HEAD, набор файлов в Git/дереве/реестре одинаков; 79 карточек соответствуют статусам «Проверено», 542 строки — «Не начат». Проверены обязательные разделы семи новых карточек, имена всех собственных методов и 166 прямых относительных импортов всех описанных JS-файлов.
+
+Проверены 194 Markdown-файла и 4514 локальных ссылок, таблицы, 20 статусов подзадач, 89 файлов оставшейся очереди и 63 issues в potential. `git diff --check` прошёл. Изменены 36 Markdown-документов: семь новых карточек и семь новых issues, девять прежних карточек, две прежние issues и одиннадцать документов задач/реестров/навигации.
+
+SHA256 исходного набора: `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. SHA256 JSON-снимка mode/uid/gid/inode всех 858 ранее отслеживаемых файлов: `fea599dce3471f005a3a3dc9677253b84a80271d3ba8d9cbc315cbd6ce20faca`; оба значения совпали с замером перед работой. Ветка и HEAD не изменены. Исторический журнал, начиная с планирования второй серии, сохранён без редактирования.
+
 <a id="планирование-task-0003011task-0003020"></a>
 
 ## Планирование TASK-0003.011–TASK-0003.020

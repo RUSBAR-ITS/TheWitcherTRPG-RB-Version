@@ -221,3 +221,11 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 Полностью разобраны предзагружаемые [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) и [templates/sheets/actor/partials/character/tab-effects.hbs](../../../../../../templates/sheets/actor/partials/character/tab-effects.hbs). Первый используют Actor V2/V1 и Item-конфигурация с разными обработчиками; второй вместе с crit-wounds-table.hbs дважды выводит одну травму (issue-00054). and/eq определены этим файлом; not/localize/formGroup/selectOptions предоставляются ядром. Wizard и system-specific рендерятся по путям листа; им не приписана отсутствующая регистрация в preload.
 
 [Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Уточнение TASK-0003.011
+
+2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
+
+Сверены [item-header](../../templates/partials/item-header.hbs.md) (10 прямых предметных форм), [item-image](../../templates/partials/item-image.hbs.md) и три шаблона базовой Item-конфигурации. Исходные getSetting/includes/window/has исполнены в Handlebars-матрицах. item-image включается лишь в прежний monster-inventory-tab; текущий MonsterSheet использует другие PARTS. Предзагрузка старого monster-sheet и его partial не доказывает отображение текущим листом. Поля general сверены на 22 реальных схемах Item с фасадом toFormGroup; itemUseAttackSkill не выводится, заголовок spell использует ranged.
+
+[TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).

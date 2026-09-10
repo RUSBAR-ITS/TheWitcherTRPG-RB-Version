@@ -102,3 +102,11 @@
 [templates/dialog/activeEffects/wizard.hbs](../../../../../../templates/dialog/activeEffects/wizard.hbs) имеет два потребителя: chooseSkill при создании заменяет key одной записи, [module/activeEffect/WitcherActiveEffectSheet.js](../../../../../../module/activeEffect/WitcherActiveEffectSheet.js) при редактировании добавляет выбранные пути как новые changes. Шаблон содержит только select, без величины/режима/ограничения характеристики. Корневой update({changes}) мастера мигрируется ядром в system.changes до _preUpdate; исходный hook затем даёт initial при отсутствии applyAfterCalculations в payload (расширение issue-00043).
 
 [Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Уточнение TASK-0003.011
+
+2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
+
+Дополнительно сверены вызывающие участки [основного листа Item](../item/sheets/WitcherItemSheet.js.md) и [конфигурации](../item/sheets/configurations/WitcherConfigurationSheet.js.md). В конфигурации create явно задаёт base/temporaryItemImprovement, не задаёт changes/transfer/units и возвращает Promise создания. При Drop настоящий ItemSheetV2 передаёт effect.toObject() в ActiveEffect.create с parent=item, отказывает при том же родителе или isOwner=false. Эти проверки выполнены с перехватом записи, а не реальным созданием/переносом документов.
+
+[TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
