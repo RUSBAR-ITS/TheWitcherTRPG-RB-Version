@@ -235,3 +235,11 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. armorPartsInfo читает modifiedStoppingPower/modifiedMaxStoppingPower, определённые в [SpData](../../../../../../module/data/item/templates/armor/spData.js). У них persisted:false: после base→derived 7/10 с улучшением2 превращаются в9/12, а source сохраняет7/10. Шесть ключей ArmorData совпали с helper; shield использует fallback reliability. Подписи ног по-прежнему относятся к [issue-00007](../../../../../issues/potential/issue-00007.md).
 
 Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
+
+Полностью разобраны [templates/sheets/item/armor-sheet.hbs](../../../../../../templates/sheets/item/armor-sheet.hbs) и [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs). Пары schema/name/value и подписи leftLeg/rightLeg в этих формах верны; issue-00007 по-прежнему локализована в armorPartsInfo инвентаря. Исполнены шесть вариантов location и двенадцать schema-полей конфигурации. Старый тест самого armorPartsInfo не повторялся; ключи локализации проверены по JSON.
+
+Отдельно установлено отсутствие четырёх русских подсказок в armorGeneral.hbs: [issue-00090](../../../../../issues/potential/issue-00090.md). Это не меняет правильную привязку полей к сторонам.

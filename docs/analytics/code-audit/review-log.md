@@ -1,5 +1,85 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.014
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `0fa589bd300856ff309f362afcb66d6fa43401ab`; на старте рабочее дерево чистое, отслеживаются 908 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/armorData.js](../../../module/data/item/armorData.js) | 267 |
+| [module/data/item/enhancementData.js](../../../module/data/item/enhancementData.js) | 42 |
+| [module/data/item/templates/itemEffectData.js](../../../module/data/item/templates/itemEffectData.js) | 10 |
+| [module/item/sheets/WitcherArmorSheet.js](../../../module/item/sheets/WitcherArmorSheet.js) | 55 |
+| [module/item/sheets/WitcherEnhancementSheet.js](../../../module/item/sheets/WitcherEnhancementSheet.js) | 29 |
+| [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js) | 11 |
+| [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs) | 175 |
+| [templates/sheets/item/enhancement-sheet.hbs](../../../templates/sheets/item/enhancement-sheet.hbs) | 73 |
+| [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs) | 20 |
+| **Всего** | **682** |
+
+Полностью описаны ArmorData, EnhancementData, фабрика itemEffect, два листа, специализация конфигурации и три HBS. У Armor 27 верхних полей, у Enhancement 16, у itemEffect 4. Проверены все собственные методы, обе формы словаря/массива воздействий у потребителей, 13 прямых ES-import связей, все поля и ветви форм.
+
+### Перекрёстная сверка
+
+- ArmorData → CommonItemData, SpData ×6, ResistanceData, DefenseProperties, itemEffect, associatedDiagramUuid/unwrapAssociatedDiagram. Два определения location: последнее StringField заменяет ArrayField. Shield — значение location; getList('shield') не использует дополнительный контракт защиты.
+- prepareBaseData → разрешение ID улучшений → freeEnhancements → derived сопротивлений и SP → рецепт. Исходные ID могут отличаться от разрешённых Items; свободные ячейки считают исходную длину. Повторы не устраняются, system улучшения остаётся общей ссылкой.
+- EnhancementData → itemEffect и внешняя установка через _chooseEnhancement/removeEnhancement. applied, переименование и разделение quantity выполняются вне модели; настоящее системное улучшение Item не является temporaryItemImprovement ActiveEffect.
+- ArmorData.effectsWithEnhancements/enhancementsEffects объединяют словари по ID, последняя запись перекрывает предыдущую. Getter объединённых воздействий не найден среди прямых потребителей Actor. Его prepareDerivedData ожидает массив effects, а затем передаёт в applyStatus объекты CONFIG.armorEffects с несовместимым набором полей.
+- Поля defenseProperties доступны в ArmorConfig, но ArmorData не предоставляет вызываемые Actor/Item isApplicableDefense/createDefenseOption. Это не отменяет отдельный штатный путь щита через CONFIG.defenseOptions/getList.
+- applySpDamage проверяет modifiedStoppingPower, пишет исходный stoppingPower и полностью пропускает слишком большой урон. При бонусе улучшения исходный остаток может стать отрицательным; самостоятельное нарушение правил этим не объявлено. Внешние armorMixin/defenseMixin/RepairData прочитаны в пределах вызовов, не помечены полностью разобранными.
+- Миграции: старые ID добавляются к новым; Armor удаляет преобразованный непустой effects, Enhancement сохраняет; SP переносится при truthy старом максимуме, сопротивления — при truthy старом флаге. При смешанных данных новые значения не защищены от прежних.
+- ArmorSheet меняет общий CONFIG.WITCHER через context.config, EnhancementSheet добавляет отдельный context.selects. Броня наследует CRUD effects и подключает примесь рецепта; её конфигурация меняет только general PARTS.
+- armor-sheet.hbs показывает SP по location и надёжность для Shield. armorGeneral всегда выводит 12 SP-полей. Стороны leftLeg/rightLeg и поле максимума торса правильные; прежняя issue-00007 относится к helper инвентаря.
+- Форма сопротивлений получает вычисленные boolean вместо исходных; смоделированный submit закрепляет вклад улучшения в source. Для эффектов брони выведены name/statusEffect, для улучшений также percentage; varEffect в этих двух формах не редактируется.
+- Проверены 50 буквальных ключей девяти файлов и двух вложенных моделей: все найдены в en, 46 в ru. Четыре отсутствующих русских hint из armorGeneral оформлены issue-00090. В локальном Localization.localize есть английский fallback, поэтому ожидается английский текст при штатной загрузке, а не обязательно сырой ключ.
+
+Уточнены 12 прежних карточек: SpData, ResistanceData, WeaponData, DamageProperties, WitcherActor, WitcherItem, WitcherItemSheet, WitcherPropertiesConfigurationSheet, registerDataModels, registerSheets, config и handlebars. Уточнения не повышают статус соседних непрочитанных файлов.
+
+### Изолированные проверки
+
+Команда: `node --input-type=module`, код через stdin, файлов стенда нет. Использованы настоящие common DataModel/TypeDataModel, поля, utilities, модели системы, классы листов, локальные ItemSheetV2, DragDrop и HandlebarsApplicationMixin. DocumentSheetV2/окружение Application, DOM/jQuery, Item.update, fromUuidSync и действия Actor представлены фасадами. Для методов ArmorData родительский Item-контекст задан после создания модели; полноценный Foundry Item не конструировался.
+
+Исходные _prepareTabs/_getTabsConfig и _processFormData ядра исполнены отдельно. Handlebars/parse5 настоящие; formGroup из ядра, toFormGroup учитывает реальные пути/значения вместо создания браузерных widgets. selectOptions — ограниченный генератор с valueAttr/labelAttr и SafeString. Это не тест полного внешнего helper. Доступ к getter разрешён теми же опциями прототипа, которые использует renderTemplate Foundry.
+
+| Группа | Проверка и результат |
+| --- | --- |
+| 1. Схемы и улучшения | Armor 27 / Enhancement 16 / itemEffect 4; location StringField. Из ID e1/missing/пустой/e2 разрешены e1/e2, свободных 0. SP 4/10 +2/+1 →7/13; max 0 пропускает бонус. OR сопротивлений и перекрытие равного ID проверены, source.effects сохранён |
+| 2. Свободные ячейки | enhancements0 с одним ID, −1 и 1.5 дают RangeError; контроль 2 без ID даёт 2 |
+| 3. Владелец | Непустые ID без Actor дают TypeError чтения items |
+| 4. Урон SP | SP 5 с уроном 2/5/6 → запрос 3/0/нет; SP 1+2 с уроном 2/4 → исходный−1/нет |
+| 5. Ремонт | Проверена каждая из шести частей и надёжность; без UUID возвращается '', неповреждённая с UUID false. repair отправляет семь правильных максимумов, завершается раньше pending update |
+| 6. SP/сопротивления | Все шесть старых пар перенесены; конфликт 9/15 с прежними 2/4 даёт 2/4. Старый max 0 пропущен. Старое true перекрывает новый false во всех трёх сопротивлениях |
+| 7. Воздействия и проценты | Старый непустой effects у Armor исчезает, у Enhancement сохраняется с новым ID. Пустой массив Enhancement очищается в{}. Значения −1/25/101 очищаются до 0/25/100; строка 25 становится числом; varEffect сохраняется |
+| 8. Сбор воздействий Actor | Настоящая ArmorData с заполненным statusEffect передаёт []; контроль старого массива доходит до CONFIG.armorEffects |
+| 9. Дополнительная защита | Вложенная модель с melee применима, два метода на ArmorData отсутствуют, общий отбор даёт 0 |
+| 10. Контекст/слушатель | У Armor4 типа,5 локаций, shared CONFIG=true; настоящий _onRender подключает recipe-remove |
+| 11. Форма брони | '',Head,Torso,Leg,FullCover,Shield →15/17/21/19/27/17 именованных controls с header. Одно собственное воздействие даёт два editable-поля, две записи улучшения — четыре disabled |
+| 12. Форма улучшения | '',weapon,rune,armor,glyph →6/6/6/11/6 именованных controls; три editable-поля effects. Списки statusEffects/armorEffects выбраны по категории |
+| 13. Конфигурация | FullCover/Shield:12 SP-полей,3 вкладки,5 частей, правильные пары локаций |
+| 14. CRUD effects | Имя on передаёт false, add создаёт percentage0, remove формирует -= ключ; преобразование deletion ядром проверено в предыдущей порции и не объявлено новым браузерным тестом |
+| 15. Рецепт | armor/elderfolk-armor приняты, weapon отклонён; fromUuidSync разрешил подготовленный рецепт |
+| 16. Checkbox сопротивления | Исходный slashing=false, prepared=true от улучшения, checkbox отмечен |
+| 17. Модель сохранения формы | FormData.object собран из rendered resistance-checkbox и encumb; исходный _processFormData и ArmorData.updateSource сохранили true, новая модель без ID улучшения осталась true |
+| 18. Вход applyStatus | CONFIG.armorEffects с id/fire не вызвал toggleStatusEffect; контроль {statusEffect:fire} вызвал один раз. Это проверка формата, не предложение накладывать fire вместо сопротивления |
+
+Все 18 групп утверждений завершены. Ошибки настройки диагностического окружения (подходящий родитель модели, сериализация prepared значений через toObject(false), учёт clickableImage в header, ограниченный selectOptions) устранены в переданном через stdin сценарии и не отнесены к ошибкам системы. Стандартное предупреждение Node о module type не исправлялось.
+
+### Наблюдения и ограничения
+
+Добавлены [issue-00082–00090](../../issues/README.md): длина массива ячеек, пропуск повреждения SP, форма коллекции воздействий Actor, неподключённая защита, приоритет миграции SP и сопротивлений, сохранение prepared сопротивления, формат входа applyStatus и русские подсказки. Дополнены issue-00007/00042/00060/00068/00077/00078/00080/00081. Все 90 issues остаются potential; подтверждение, исправление и закрытие не выполнялись.
+
+Браузерный submit/FormDataExtended, validate/update реального документа, БД, мир, сеть, игровые броски, полный бой/ремонт и установка/снятие через интерфейс не запускались. Не утверждается, что одна поправка миграции либо воздействия исправит все звенья. Игровая трактовка исходного отрицательного SP, свойств сопротивления и дополнительных защит не выбрана.
+
+### Контроль документов и исходников
+
+Проверены 248 Markdown-документов и 5379 локальных ссылок с якорями. В реестре ровно 621 исходный файл после исключений; 106 строк «Проверено» соответствуют 106 карточкам, 515 файлов не разобраны. Для девяти новых карточек проверены обязательные разделы, собственные методы, поля и прямые импорты; всего в описанных JS проверены 196 относительных ES-import связей. Перечни девяти файлов/682 строк, статусы двадцати подзадач, очередь из 62 файлов и 90 potential issues согласованы.
+
+Все 621 исходник побайтово совпадают с HEAD и базовым срезом. SHA256 последовательности path + NUL + bytes + NUL в порядке реестра: `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. Для всех 908 ранее отслеживаемых файлов сохранены mode/uid/gid/inode; SHA256 отсортированного JSON метаданных: `343c64aa9fa4b850afe60b92c9934dc28c1616add628841cf57f926ad0ef7f0a`. История журнала от TASK-0003.013 сохранена побайтово. Изменены только 49 документов; `git diff --check` прошёл. Тестовые файлы, игровые документы и коммиты не создавались, права не менялись.
+
+Покрытие — 106 из 621 файла, не разобраны 515. Во второй серии выполнены 34 из 96, в очереди TASK-0003.015–TASK-0003.020 остаются 62 файла; ещё 453 требуют детализации. Следующая порция — [TASK-0003.015](../../tasks/task-0003.015.md).
+
 ## TASK-0003.013
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `8cca18e14b75ec53028ee6bc49a837597de4d9af`; рабочее дерево на старте чистое, отслеживались 892 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Проверенное ядро — Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

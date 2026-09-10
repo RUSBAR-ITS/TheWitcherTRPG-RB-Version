@@ -125,3 +125,9 @@ addEffects изменяет модель в памяти: toObject() остаё�
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003013).
 
 Полностью разобраны [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../../../../../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs) и его [обработчик](../../../../../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js). Проверены все 16 записей formGroup в исходнике и восемь сочетаний silverTrait/staminaIsVar/defenseDifferenceMultiplier. Собственные effects редактируются через target/id/field; enhancementEffects выводятся disabled. В настоящем renderTemplate Foundry разрешает доступ Handlebars к свойствам прототипа, поэтому getter enhancementEffects доступен при штатных опциях. В изолированном сценарии старый deletion-синтаксис удаляет запись после преобразования ядром; комментарий о v14 не доказывает поломку удаления. Строка имени on по-прежнему превращается в false: дополнена issue-00060.
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003014).
+
+Полностью описана фабрика [module/data/item/templates/itemEffectData.js](../../../../../../../../../module/data/item/templates/itemEffectData.js): четыре поля, ID во внешнем словаре, процент ограничивается 0–100 при очистке записи. [module/data/item/enhancementData.js](../../../../../../../../../module/data/item/enhancementData.js) поставляет словарь effects; getPreprocessedEffects группирует его записи и может складывать проценты уже после очистки. Текущая [module/data/item/armorData.js](../../../../../../../../../module/data/item/armorData.js) имеет отдельные effectsWithEnhancements/enhancementsEffects; это не методы DamageProperties и не документы ActiveEffect.

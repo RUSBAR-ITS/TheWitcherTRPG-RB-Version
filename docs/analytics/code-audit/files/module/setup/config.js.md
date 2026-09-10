@@ -415,3 +415,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003013).
 
 В [module/item/sheets/WitcherWeaponSheet.js](../../../../../../module/item/sheets/WitcherWeaponSheet.js) _prepareContext присваивает context.config.attackSkills массив, объединяющий meleeSkills/rangedSkills через skillMap и Set. Базовый context.config ссылается на CONFIG.WITCHER; присваивание затрагивает общий объект. Получены восемь навыков: brawling, melee, smallblades, staffspear, swordsmanship, athletics, archery, crossbow. Другой читатель именно attackSkills поиском не найден; полезность либо вред этого общего присваивания не объявлены доказанными. Шаблоны конфигурации используют специализированные списки и config.attackOptions.
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
+
+ArmorSheet._prepareContext дописывает Availability.WITCHER и config.type/armorLocations в общий CONFIG.WITCHER; EnhancementSheet формирует отдельный selects.enhancementTypes. Формы сверены с четырьмя категориями и списками statusEffects/armorEffects. armorEffects содержат id/name/refersStatusEffect/иногда addsResistance; передача этих объектов в Actor.applyStatus не соответствует его statusEffect-контракту ([issue-00089](../../../../../issues/potential/issue-00089.md)). Толкование addsResistance не подменено предложением наложить одноимённый вредоносный статус.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.013 подготовлены и сверены 97 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.014 подготовлены и сверены 106 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -165,3 +165,17 @@
 | templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs.md) |
 | templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs.md) |
 | templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs.md) |
+
+## Броня и улучшения предметов — TASK-0003.014
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/armorData.js | [Описание](module/data/item/armorData.js.md) |
+| module/data/item/enhancementData.js | [Описание](module/data/item/enhancementData.js.md) |
+| module/data/item/templates/itemEffectData.js | [Описание](module/data/item/templates/itemEffectData.js.md) |
+| module/item/sheets/WitcherArmorSheet.js | [Описание](module/item/sheets/WitcherArmorSheet.js.md) |
+| module/item/sheets/WitcherEnhancementSheet.js | [Описание](module/item/sheets/WitcherEnhancementSheet.js.md) |
+| module/item/sheets/configurations/WitcherArmorConfigurationSheet.js | [Описание](module/item/sheets/configurations/WitcherArmorConfigurationSheet.js.md) |
+| templates/sheets/item/armor-sheet.hbs | [Описание](templates/sheets/item/armor-sheet.hbs.md) |
+| templates/sheets/item/enhancement-sheet.hbs | [Описание](templates/sheets/item/enhancement-sheet.hbs.md) |
+| templates/sheets/item/configuration/tabs/armorGeneral.hbs | [Описание](templates/sheets/item/configuration/tabs/armorGeneral.hbs.md) |

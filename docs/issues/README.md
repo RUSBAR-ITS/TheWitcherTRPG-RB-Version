@@ -90,11 +90,20 @@
 | [issue-00074](potential/issue-00074.md) | Вкладка региональных свойств остаётся без содержимого из-за устаревшего пути createTemplate | `potential` |
 | [issue-00075](potential/issue-00075.md) | Региональный шаблон запрашивает отсутствующее поле createRegionFromTemplate | `potential` |
 | [issue-00076](potential/issue-00076.md) | Миграция региона перезаписывает актуальный макрос tokenMoveWithin | `potential` |
-| [issue-00077](potential/issue-00077.md) | Подготовка улучшений оружия требует Actor даже у отдельного Item | `potential` |
-| [issue-00078](potential/issue-00078.md) | Миграция оружия дублирует ID улучшения при наличии старого и нового представлений | `potential` |
+| [issue-00077](potential/issue-00077.md) | Подготовка улучшений оружия и брони требует Actor даже у отдельного Item | `potential` |
+| [issue-00078](potential/issue-00078.md) | Миграция оружия и брони дублирует ID улучшения при смешанных представлениях | `potential` |
 | [issue-00079](potential/issue-00079.md) | Выбор навыка защиты оружия останавливается на пустом meleeAttackSkill | `potential` |
 | [issue-00080](potential/issue-00080.md) | Обработчик связанного рецепта обращается к dataset отсутствующего offsetParent | `potential` |
-| [issue-00081](potential/issue-00081.md) | Promise ремонта оружия завершается до завершения обновления Item | `potential` |
+| [issue-00081](potential/issue-00081.md) | Promise ремонта оружия и брони завершается до обновления Item | `potential` |
+| [issue-00082](potential/issue-00082.md) | Расчёт свободных ячеек брони выбрасывает RangeError при недопустимой длине массива | `potential` |
+| [issue-00083](potential/issue-00083.md) | Повреждение брони пропускается, если урон SP превышает оставшийся modified SP | `potential` |
+| [issue-00084](potential/issue-00084.md) | Подготовка Actor не разворачивает словарь предметных воздействий брони | `potential` |
+| [issue-00085](potential/issue-00085.md) | Настройки дополнительной защиты брони не подключены к общему отбору защит | `potential` |
+| [issue-00086](potential/issue-00086.md) | Миграция SP брони перезаписывает заполненные новые поля старыми значениями | `potential` |
+| [issue-00087](potential/issue-00087.md) | Миграция сопротивлений брони заменяет актуальный false прежним true | `potential` |
+| [issue-00088](potential/issue-00088.md) | Форма брони может сохранить сопротивление улучшения как базовое | `potential` |
+| [issue-00089](potential/issue-00089.md) | Конфигурационные записи воздействий брони не соответствуют входу applyStatus | `potential` |
+| [issue-00090](potential/issue-00090.md) | В русской локализации отсутствуют четыре подсказки локаций общей формы брони | `potential` |
 
 Статус соответствует каталогу карточки. При перемещении обновляются этот реестр и все ссылки на документ. Номер новой карточки определяется по реестру и файлам во всех трёх каталогах.
 

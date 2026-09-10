@@ -161,3 +161,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003013).
 
 Полностью разобран зарегистрированный [module/item/sheets/WitcherWeaponSheet.js](../../../../../../module/item/sheets/WitcherWeaponSheet.js): MAIN-шаблон оружия, экземпляр общей конфигурации боевых свойств, контекст навыков, слушатели видов урона и примесь связанного рецепта. Регистрация не изменена. [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) является окном конфигурации, создаваемым листом, а не отдельным типом Item.
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
+
+Полностью описаны [module/item/sheets/WitcherArmorSheet.js](../../../../../../module/item/sheets/WitcherArmorSheet.js), [module/item/sheets/WitcherEnhancementSheet.js](../../../../../../module/item/sheets/WitcherEnhancementSheet.js) и конфигурация брони. Регистрации Item.armor/Item.enhancement не менялись. Armor открывает специализированную конфигурацию общих свойств, Enhancement сохраняет базовую. Все три новых HBS разобраны; сторонние листы и V1 инвентарь не получили статуса полного анализа.

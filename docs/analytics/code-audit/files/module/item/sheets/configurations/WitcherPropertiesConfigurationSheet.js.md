@@ -87,3 +87,9 @@ UI сохранения, цикл частичного рендера при с�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.013 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003014).
+
+Полностью разобрана [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js): она заменяет только PARTS.general, остальные настройки наследует. Для FullCover/Shield сохранены general/defenseProperties/activeEffects и пять частей; general всегда выводит 12 исходных SP-полей. Наличие defenseProperties в форме не компенсирует отсутствующие методы делегирования ArmorData ([issue-00085](../../../../../../../issues/potential/issue-00085.md)).

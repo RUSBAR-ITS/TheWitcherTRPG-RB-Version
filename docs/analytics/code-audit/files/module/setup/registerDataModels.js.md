@@ -201,3 +201,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003013).
 
 Полный разбор [module/data/item/weaponData.js](../../../../../../module/data/item/weaponData.js) подтвердил 36 верхних полей схемы с CommonItemData, attackOptions, defenseOptions, вложенными DamageProperties/DefenseProperties и associatedDiagramUuid. Изолированные вызовы выполнялись на настоящих зарегистрированных моделях. Региональные схемы Spell прочитаны точечно для путей полей и миграции, их статус полного разбора не повышен. Подготовка Weapon с enhancementItemIds без Actor дала исключение ([issue-00077](../../../../../issues/potential/issue-00077.md)).
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
+
+Полные [module/data/item/armorData.js](../../../../../../module/data/item/armorData.js) и [module/data/item/enhancementData.js](../../../../../../module/data/item/enhancementData.js) содержат 27 и 16 верхних полей соответственно; общая [module/data/item/templates/itemEffectData.js](../../../../../../module/data/item/templates/itemEffectData.js) содержит четыре. У Armor два определения location, фактически остаётся StringField; Shield не отдельный тип Item. Настоящие зарегистрированные модели использованы для проверки всех миграций и подготовленных значений, документы мира не создавались.

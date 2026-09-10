@@ -124,3 +124,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003013).
 
 Проверен полный дочерний [module/item/sheets/WitcherWeaponSheet.js](../../../../../../../module/item/sheets/WitcherWeaponSheet.js). Базовый _onRender вызывает this.activateListeners(this.element), поэтому override оружия действительно получает управление: изолированный вызов _onRender зарегистрировал change для .damage-type и click для .remove-associated-diagram. Затем исходный обработчик записал system.type с двумя включёнными флагами и text «Режущий, Колющий». Это закрывает вопрос о подключении legacy-слушателя в проверенной цепочке, но не заменяет браузерную проверку. Специализированный _onDropItem оружия делегирует [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) и не использует общий обработчик сброса Item для этой операции.
+
+## Уточнение TASK-0003.014
+
+2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003014).
+
+Полностью разобраны [module/item/sheets/WitcherArmorSheet.js](../../../../../../../module/item/sheets/WitcherArmorSheet.js) и [module/item/sheets/WitcherEnhancementSheet.js](../../../../../../../module/item/sheets/WitcherEnhancementSheet.js). Броня заменяет configuration, расширяет общий config и через activateListeners подключает recipe-remove; улучшение добавляет отдельный context.selects и наследует базовую configuration. Обе формы используют собственные словари system.effects и общие add/remove/edit методы. Исходный обработчик снова дал name=false для текста on; добавление percentage=0 и удаление -= адресуют тот же словарь. Полное браузерное сохранение не выполнялось.
