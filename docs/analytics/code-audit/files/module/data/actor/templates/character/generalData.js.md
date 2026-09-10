@@ -92,3 +92,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.004 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. CharacterData.general:16 включает девять полей. CharacterData добавляет рядом gender и lifeEventCounter, а enrichedText читает general.background.value. Схема CommonActorData не включает general: у монстра и loot этой биографии нет.
+
+Карточки сборки: [characterData](../../characterData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).

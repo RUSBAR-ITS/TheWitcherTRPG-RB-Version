@@ -87,3 +87,9 @@ currency():3–13 возвращает семь NumberField. Курсы, ком�
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Подробно описаны [currencyLogData](../character/currencyLogData.js.md) и [Log](../character/logData.js.md). Log.addCurrencyReward пишет историю и абсолютный остаток одной валюты в одном update, но не возвращает Promise. Настоящая модель с crown100 и amount5 сформировала 105; два вызова с ожиданием лишь результата Log до завершения update дали 102/103 для +2/+3. Это [issue-00028](../../../../../../../../issues/potential/issue-00028.md); серверный итог не проверялся.
 
 [Сверка TASK-0003.005](../../../../../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Повторно сопоставлены оба прямых включения currency: CommonActorData:20 и LootData:10. Персонаж/монстр получают первое по наследованию; LootData общую модель не наследует. По одной монете семи видов дали 0.007 в каждой из четырёх настоящих моделей; округление общего веса остаётся в Actor.getTotalWeight.
+
+Карточки сборки: [commonActorData](../../commonActorData.js.md), [lootData](../../lootData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).

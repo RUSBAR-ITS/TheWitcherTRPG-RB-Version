@@ -127,3 +127,9 @@
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Проверены конкретные последствия текущей регистрации WitcherCharacterSheet/WitcherMonsterSheet: оба используют общий tab-skills, но IP-секция обращается к девяти полям, отсутствующим в MonsterData ([issue-00030](../../../../../issues/potential/issue-00030.md)). [Карточка pannels](../data/actor/templates/character/pannelsData.js.md) отделяет текущие общие skills/magic-шаблоны от старых monster-* шаблонов с флагами раскрытия. Предзагрузка старого шаблона не доказывает его текущий выбор листом.
 
 [Сверка TASK-0003.005](../../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Типы character/monster/loot связаны с соответствующими моделями и листами; текущие PARTS специализированных листов точечно сверены. Общая IP-вкладка монстра всё ещё не соответствует его полям (issue-00030). Отображение полей старыми шаблонами не приравнивается к использованию текущим зарегистрированным листом.
+
+Карточки сборки: [characterData](../data/actor/characterData.js.md), [monsterData](../data/actor/monsterData.js.md), [lootData](../data/actor/lootData.js.md). [Сверка TASK-0003.006](../../../review-log.md#task-0003006).

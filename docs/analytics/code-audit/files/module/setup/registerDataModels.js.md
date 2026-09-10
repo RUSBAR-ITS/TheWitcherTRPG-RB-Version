@@ -169,3 +169,9 @@
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Уточнены вложенные структуры: CharacterData содержит [Log](../data/actor/templates/character/logData.js.md) через EmbeddedDataField и четыре [skillTraining](../data/actor/templates/character/skillTrainingData.js.md); CommonActorData содержит [pannels](../data/actor/templates/character/pannelsData.js.md) и [attackStats](../data/actor/templates/character/attackStatsData.js.md). Настоящие CharacterData/MonsterData подтвердили владельцев: у монстра нет logs, полей IP и обучения, но есть панели/атаки. Связанный общий шаблон разобран в [issue-00030](../../../../../issues/potential/issue-00030.md).
 
 [Сверка TASK-0003.005](../../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Сверены три регистрации Actor.character/monster/loot и их реальные схемы: 29/53/3 верхних поля. CommonActorData с 19 общими полями используется наследованием и отдельным типом не регистрируется. Все 37 ранее описанных файлов данных достижимы через импорты этих четырёх моделей. Actor.mystery и связанные части issue-00005 остаются вне этой порции.
+
+Карточки сборки: [commonActorData](../data/actor/commonActorData.js.md), [characterData](../data/actor/characterData.js.md), [monsterData](../data/actor/monsterData.js.md), [lootData](../data/actor/lootData.js.md). [Сверка TASK-0003.006](../../../review-log.md#task-0003006).

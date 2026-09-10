@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.005 проверены описания **48 файлов**, для **573 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.006 проверены описания **52 файлов**, для **569 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.005](review-log.md#task-0003005) выполнена на `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.006](review-log.md#task-0003006) выполнена на `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -71,10 +71,10 @@
 | [module/chatMessage/witcherChatMessage.js](../../../module/chatMessage/witcherChatMessage.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/activeEffects/witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/characterData.js](../../../module/data/actor/characterData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/lootData.js](../../../module/data/actor/lootData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/monsterData.js](../../../module/data/actor/monsterData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/characterData.js](../../../module/data/actor/characterData.js) | Модель персонажа: биография, опыт, обучение, журналы и обогащение текста. | [Описание](files/module/data/actor/characterData.js.md) | Проверено |
+| [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js) | Общая модель Actor: 19 полей, подготовка базовых максимумов, масса валют и миграции. | [Описание](files/module/data/actor/commonActorData.js.md) | Проверено |
+| [module/data/actor/lootData.js](../../../module/data/actor/lootData.js) | Модель хранилища добычи: вместимость, описание, валюты и масса монет. | [Описание](files/module/data/actor/lootData.js.md) | Проверено |
+| [module/data/actor/monsterData.js](../../../module/data/actor/monsterData.js) | Модель монстра: сведения, броня, сопротивления, настройки и три блока знаний. | [Описание](files/module/data/actor/monsterData.js.md) | Проверено |
 | [module/data/actor/templates/character/attackData.js](../../../module/data/actor/templates/character/attackData.js) | Строковая пара label/value для punch и kick | [Карточка](files/module/data/actor/templates/character/attackData.js.md) | Проверено |
 | [module/data/actor/templates/character/attackStatsData.js](../../../module/data/actor/templates/character/attackStatsData.js) | Общие данные ближнего боя и модификаторы критов | [Карточка](files/module/data/actor/templates/character/attackStatsData.js.md) | Проверено |
 | [module/data/actor/templates/character/currencyLogData.js](../../../module/data/actor/templates/character/currencyLogData.js) | Поля одной записи журнала валют | [Карточка](files/module/data/actor/templates/character/currencyLogData.js.md) | Проверено |

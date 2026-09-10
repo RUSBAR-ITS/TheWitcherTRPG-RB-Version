@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.005 подготовлены и сверены 48 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.006 подготовлены и сверены 52 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -81,3 +81,12 @@
 | module/data/actor/templates/character/pannelsData.js | [Описание](module/data/actor/templates/character/pannelsData.js.md) |
 | module/data/actor/templates/character/attackData.js | [Описание](module/data/actor/templates/character/attackData.js.md) |
 | module/data/actor/templates/character/attackStatsData.js | [Описание](module/data/actor/templates/character/attackStatsData.js.md) |
+
+## Сборка моделей Actor — TASK-0003.006
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/actor/commonActorData.js | [Описание](module/data/actor/commonActorData.js.md) |
+| module/data/actor/characterData.js | [Описание](module/data/actor/characterData.js.md) |
+| module/data/actor/monsterData.js | [Описание](module/data/actor/monsterData.js.md) |
+| module/data/actor/lootData.js | [Описание](module/data/actor/lootData.js.md) |

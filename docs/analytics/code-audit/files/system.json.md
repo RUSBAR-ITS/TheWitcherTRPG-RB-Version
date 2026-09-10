@@ -93,3 +93,9 @@
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 1 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Три типа Actor character/monster/loot присутствуют в documentTypes и registerDataModels. У monster три htmlFields совпали с тремя HTMLField и путями enrichedText. Отсутствие mystery в манифесте относится к ранее зарегистрированной issue-00005; модель mystery не включена в текущую четвёрку.
+
+Карточки сборки: [characterData](module/data/actor/characterData.js.md), [monsterData](module/data/actor/monsterData.js.md), [lootData](module/data/actor/lootData.js.md). [Сверка TASK-0003.006](../review-log.md#task-0003006).

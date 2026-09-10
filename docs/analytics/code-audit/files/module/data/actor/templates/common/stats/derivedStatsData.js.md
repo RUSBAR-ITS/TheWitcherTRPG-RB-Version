@@ -158,3 +158,9 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.001 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Полностью сверены базовые присваивания CommonActorData:79–90: stun/run/leap/enc/rec/woundTreshold/resolve/focus и vigor.max. База focus использует текущие value, resolve — unmodifiedMax. hp/sta/shield этим методом не рассчитываются; конечные max/value рассчитывает Actor. У MonsterData.customStat внешний calculateDerivedStat отключает автоматические ветки также для resolve/focus.
+
+Карточки сборки: [commonActorData](../../../commonActorData.js.md), [monsterData](../../../monsterData.js.md). [Сверка TASK-0003.006](../../../../../../../review-log.md#task-0003006).

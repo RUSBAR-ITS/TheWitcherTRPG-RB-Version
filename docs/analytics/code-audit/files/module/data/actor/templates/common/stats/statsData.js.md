@@ -184,3 +184,9 @@
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Дополнен потребитель stats.body.value: WitcherActor.calculateAttackStats:191–196 вычисляет B=ceil((BODY−6)/2)×2, прибавляет его к [attackStats.meleeBonus](../../character/attackStatsData.js.md) и строит две строки [punch/kick](../../character/attackData.js.md) из B. При BODY1/6/8 и уже находящейся в памяти добавке3 получены итоговые бонусы -1/3/5. Это проверка исходного метода с прямой установкой значений, не применения ActiveEffect или всего prepareDerivedData.
 
 [Сверка TASK-0003.005](../../../../../../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Подтверждён реальный путь подготовки: ClientDocument.prepareData ядра вызывает system.prepareBaseData, и CommonActorData:64–74 сам копирует десять unmodifiedMax в max. Вложенный Stats.prepareBaseData не вызывается этим кодом рекурсивно. Изолированная CharacterData с BODY.base7/value2 после подготовки имеет max7/value2, исходный снимок не изменён.
+
+Карточки сборки: [commonActorData](../../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../../review-log.md#task-0003006).

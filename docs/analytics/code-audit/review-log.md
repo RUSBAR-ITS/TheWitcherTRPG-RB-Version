@@ -1,5 +1,133 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.006
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Рабочее дерево на старте чистое, отслеживались 798 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+Полностью прочитаны четыре файла [TASK-0003.006](../../tasks/task-0003.006.md), 275 строк: commonActorData.js134, characterData.js41, monsterData.js75, lootData.js25. Созданы четыре карточки с полным составом верхних полей, всеми собственными методами, наследованием, подготовкой, миграциями, зависимостями и потребителями. Соседние Actor/листы/mixins прочитаны для проверки конкретных обращений, не получают статус «Проверено» за точечный просмотр. Mystery не входит в эту порцию.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Источник и результат |
+| --- | --- |
+| Схемы ↔ сборка | Common 19; Character 29=19+10; Monster 53=19+34; Loot 3. У обеих специализаций все общие поля сохранены; Loot наследует TypeDataModel самостоятельно. У монстра нет general/logs/magic/опыта/training. |
+| Поля ↔ определения | Все 19 общих, 10 собственных полей персонажа, 34 поля монстра и 3 поля loot связаны с локальным определением либо фабрикой/EmbeddedDataField. Три htmlFields манифеста monster совпали с HTMLField и enrichedText. |
+| Регистрация ↔ манифест/листы | Actor.character/monster/loot присутствуют в registerDataModels, system.json и registerSheets. Общий класс не регистрируется отдельным типом. Issue-00005 не относится к отсутствию декларации этих трёх типов. |
+| Подготовка ↔ ядро | ClientDocument.prepareData:313–319 вызывает system.prepareBaseData, Actor.prepareBaseData, prepareEmbeddedDocuments (начальные эффекты), system.prepareDerivedData, WitcherActor.prepareDerivedData. Actor.prepareData после super вызывает финальные эффекты. Полный runtime не запускался. |
+| Вложенные DataModel ↔ prepareBaseData | Stats/Reputation не получают рекурсивный вызов одноимённого метода через этот путь; копирование максимумов CommonActorData выполняет явно. Подготовка модели не равна миграции source и не пишет БД. |
+| Формулы ↔ память | BODY base7/value2, WILL5/3, INT9/4, SPD6/1: stun.base6, run18, leap3, enc70, rec6, woundTreshold6, resolve70, focus21. vigor.max4, reputation.max3. Обычные value не пересчитаны методом Common; исходный снимок модели сохранился; повторный вызов дал тот же результат. |
+| Ограничения ↔ назначение | При BODY/WILL0 и20 base stun1/10. Это ограничение одной производной базы; общая политика потолка характеристик этим файлом не вводится. |
+| Миграции ↔ условия | Vigor при отсутствующем base не переносится, при base0/value7 становится7, base4 сохраняется. Adrenaline: current3→3, value0/current3→3, value2/current3→2, value0 без current→свойство undefined до очистки. Обнуления meleeBonus/девяти totalModifiers сверены; toxicity/reputation этим методом не обнуляются. |
+| Масса ↔ общий потребитель | По одной монете каждого вида:0.007 во всех четырёх моделях. Actor.getTotalWeight прибавляет массу предметов и делает Math.ceil; метод модели не округляет. maxWeight loot по проверенному шаблону управляет индикацией. |
+| EnrichedText ↔ helper/формы | Один вызов у персонажа, три последовательных у монстра. Возврат содержит отдельные value/enriched/systemField, реальные пути system.general.background.value и system.common/academicKnowledge/monsterLore. Подменён только TextEditor для проверки передачи. Issue-00013 остаётся ошибкой аргумента формы, не отсутствием enrichment в модели. |
+| Поля монстра ↔ поведение | Сверены armorMixin, regen hook, диалог сопротивлений, oilEffect/category, skillMixin/dontAddAttr, bonus BODY/addMeleeBonus, customStat и 10 label en/ru. Текстовые описания отличены от структурированных модификаторов. |
+| Иммунитеты ↔ обработчик | Исходный applyStatus для пустого списка прошёл; при ['bleeding'] и ['unrelated'] после одного toggle возник ReferenceError statusEffectId is not defined. Зарегистрирована issue-00031; реальный toggle и БД не выполнялись. |
+| Хвост/крыло ↔ контекст | Оригинальный locationMixin вызывает статический метод на классе: при this экземпляра monster/hasTailWing=true получены 6 локаций без tailWing. Контрольный вызов того же static с явным this=actor дал 7. Issue-00032; потребитель applyDamageToAllLocations найден, полный урон не запускался. |
+| Двусторонние карточки | Дополнены 17 прямых зависимостей моделей, карточки registerDataModels/registerSheets/system.json; исходные реквизиты предыдущих проверок сохранены. В новых карточках указаны обратные ссылки и точные источники. |
+| Issues ↔ полнота наблюдений | Созданы issue-00031/00032; дополнены issue-00005/00011/00030. Сопоставлены остальные относящиеся к моделям существующие issues без дублей. Все 32 остаются potential. |
+
+### Сводная сверка первых шести порций
+
+| Порция | Файлов | Цепочки и результат |
+| --- | --- | --- |
+| TASK-0003.001 | 5 | dataUtils — Character/Monster.enrichedText; valueLabel — general/details; stat — Stats/DerivedStats/Reputation → Common. Порядок подготовки и владельцы подтвердились. |
+| TASK-0003.002 | 9 | skillsData → семь групп → Skill → Common.skills. Семь групп и52 навыка; поля modifiers отдельно от словаря skillGroupModifiers. |
+| TASK-0003.003 | 8 | currency — Common/Loot; adrenaline/focus/note/lifepath/reputation/combatEffects — Common; temporaryEffects — combatEffects. Контракты и области действия согласованы. |
+| TASK-0003.004 | 8 | general → background/details/homeland/lifeEvents → lifeEvent — Character; damageTypeModification → damageModification — Common. Две цепочки не объединены по расположению папок. |
+| TASK-0003.005 | 7 | Log → ipLog/currencyLog и training — Character; pannels и attackStats → attack — Common. Граница опыта монстра повторно проверена. |
+| TASK-0003.006 | 4 | Две специализированные модели с общим родителем, независимая LootData; три регистрации Actor. Точная совокупность первых шести порций: 41 файл. |
+
+Рекурсивный обход явных относительных импортов из четырёх моделей дал ровно 41 файл и 50 рёбер. После исключения четырёх корней получено в точности множество 37 файлов из таблиц TASK-0003.001–005. Для каждого ребра проверены существование исходника/карточки и ссылка на определение в карточке потребителя. Это сверка статических импортов, не готовый граф всех динамических связей системы. Рёбра ниже фиксируют точные имена импортов; символы, применение и динамические потребители описаны в карточках.
+
+| Файл-потребитель | Импорт | Файл определения |
+| --- | --- | --- |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | currency | [module/data/actor/templates/common/currencyData.js](files/module/data/actor/templates/common/currencyData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | adrenaline | [module/data/actor/templates/common/adrenalineData.js](files/module/data/actor/templates/common/adrenalineData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | skills | [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Body | [module/data/actor/templates/common/skills/bodyData.js](files/module/data/actor/templates/common/skills/bodyData.js.md) |
+| [module/data/actor/templates/common/skills/bodyData.js](files/module/data/actor/templates/common/skills/bodyData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Craft | [module/data/actor/templates/common/skills/craData.js](files/module/data/actor/templates/common/skills/craData.js.md) |
+| [module/data/actor/templates/common/skills/craData.js](files/module/data/actor/templates/common/skills/craData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Dexterity | [module/data/actor/templates/common/skills/dexData.js](files/module/data/actor/templates/common/skills/dexData.js.md) |
+| [module/data/actor/templates/common/skills/dexData.js](files/module/data/actor/templates/common/skills/dexData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Empathy | [module/data/actor/templates/common/skills/empData.js](files/module/data/actor/templates/common/skills/empData.js.md) |
+| [module/data/actor/templates/common/skills/empData.js](files/module/data/actor/templates/common/skills/empData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Intelligence | [module/data/actor/templates/common/skills/intData.js](files/module/data/actor/templates/common/skills/intData.js.md) |
+| [module/data/actor/templates/common/skills/intData.js](files/module/data/actor/templates/common/skills/intData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Reflex | [module/data/actor/templates/common/skills/refData.js](files/module/data/actor/templates/common/skills/refData.js.md) |
+| [module/data/actor/templates/common/skills/refData.js](files/module/data/actor/templates/common/skills/refData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md) | Will | [module/data/actor/templates/common/skills/willData.js](files/module/data/actor/templates/common/skills/willData.js.md) |
+| [module/data/actor/templates/common/skills/willData.js](files/module/data/actor/templates/common/skills/willData.js.md) | Skill | [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | focus | [module/data/actor/templates/common/focusData.js](files/module/data/actor/templates/common/focusData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | note | [module/data/actor/templates/common/noteData.js](files/module/data/actor/templates/common/noteData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | attackStats | [module/data/actor/templates/character/attackStatsData.js](files/module/data/actor/templates/character/attackStatsData.js.md) |
+| [module/data/actor/templates/character/attackStatsData.js](files/module/data/actor/templates/character/attackStatsData.js.md) | attack | [module/data/actor/templates/character/attackData.js](files/module/data/actor/templates/character/attackData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | pannels | [module/data/actor/templates/character/pannelsData.js](files/module/data/actor/templates/character/pannelsData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | lifepathData | [module/data/actor/templates/common/lifepathData.js](files/module/data/actor/templates/common/lifepathData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | damageTypeModification | [module/data/actor/templates/character/general/damage/damageTypeModificationData.js](files/module/data/actor/templates/character/general/damage/damageTypeModificationData.js.md) |
+| [module/data/actor/templates/character/general/damage/damageTypeModificationData.js](files/module/data/actor/templates/character/general/damage/damageTypeModificationData.js.md) | damageModification | [module/data/actor/templates/character/general/damage/damageModificationData.js](files/module/data/actor/templates/character/general/damage/damageModificationData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | combatEffects | [module/data/actor/templates/common/combatEffectsData.js](files/module/data/actor/templates/common/combatEffectsData.js.md) |
+| [module/data/actor/templates/common/combatEffectsData.js](files/module/data/actor/templates/common/combatEffectsData.js.md) | TemporaryEffects | [module/data/actor/templates/common/temporaryEffectsData.js](files/module/data/actor/templates/common/temporaryEffectsData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | DerivedStats | [module/data/actor/templates/common/stats/derivedStatsData.js](files/module/data/actor/templates/common/stats/derivedStatsData.js.md) |
+| [module/data/actor/templates/common/stats/derivedStatsData.js](files/module/data/actor/templates/common/stats/derivedStatsData.js.md) | stat | [module/data/actor/templates/common/stats/statData.js](files/module/data/actor/templates/common/stats/statData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | Stats | [module/data/actor/templates/common/stats/statsData.js](files/module/data/actor/templates/common/stats/statsData.js.md) |
+| [module/data/actor/templates/common/stats/statsData.js](files/module/data/actor/templates/common/stats/statsData.js.md) | stat | [module/data/actor/templates/common/stats/statData.js](files/module/data/actor/templates/common/stats/statData.js.md) |
+| [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) | Reputation | [module/data/actor/templates/common/reputationData.js](files/module/data/actor/templates/common/reputationData.js.md) |
+| [module/data/actor/templates/common/reputationData.js](files/module/data/actor/templates/common/reputationData.js.md) | stat | [module/data/actor/templates/common/stats/statData.js](files/module/data/actor/templates/common/stats/statData.js.md) |
+| [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md) | { createEnrichedText } | [module/data/dataUtils.js](files/module/data/dataUtils.js.md) |
+| [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md) | CommonActorData | [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) |
+| [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md) | general | [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md) |
+| [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md) | valueLabel | [module/data/actor/templates/valueLabelData.js](files/module/data/actor/templates/valueLabelData.js.md) |
+| [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md) | background | [module/data/actor/templates/character/general/backgroundData.js](files/module/data/actor/templates/character/general/backgroundData.js.md) |
+| [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md) | details | [module/data/actor/templates/character/general/detailsData.js](files/module/data/actor/templates/character/general/detailsData.js.md) |
+| [module/data/actor/templates/character/general/detailsData.js](files/module/data/actor/templates/character/general/detailsData.js.md) | valueLabel | [module/data/actor/templates/valueLabelData.js](files/module/data/actor/templates/valueLabelData.js.md) |
+| [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md) | homeland | [module/data/actor/templates/character/general/homelandData.js](files/module/data/actor/templates/character/general/homelandData.js.md) |
+| [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md) | lifeEvents | [module/data/actor/templates/character/general/lifeEventsData.js](files/module/data/actor/templates/character/general/lifeEventsData.js.md) |
+| [module/data/actor/templates/character/general/lifeEventsData.js](files/module/data/actor/templates/character/general/lifeEventsData.js.md) | lifeEvent | [module/data/actor/templates/character/general/lifeEventData.js](files/module/data/actor/templates/character/general/lifeEventData.js.md) |
+| [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md) | Log | [module/data/actor/templates/character/logData.js](files/module/data/actor/templates/character/logData.js.md) |
+| [module/data/actor/templates/character/logData.js](files/module/data/actor/templates/character/logData.js.md) | currencyLog | [module/data/actor/templates/character/currencyLogData.js](files/module/data/actor/templates/character/currencyLogData.js.md) |
+| [module/data/actor/templates/character/logData.js](files/module/data/actor/templates/character/logData.js.md) | ipLog | [module/data/actor/templates/character/ipLogData.js](files/module/data/actor/templates/character/ipLogData.js.md) |
+| [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md) | skillTraining | [module/data/actor/templates/character/skillTrainingData.js](files/module/data/actor/templates/character/skillTrainingData.js.md) |
+| [module/data/actor/monsterData.js](files/module/data/actor/monsterData.js.md) | CommonActorData | [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md) |
+| [module/data/actor/monsterData.js](files/module/data/actor/monsterData.js.md) | { createEnrichedText } | [module/data/dataUtils.js](files/module/data/dataUtils.js.md) |
+| [module/data/actor/lootData.js](files/module/data/actor/lootData.js.md) | currency | [module/data/actor/templates/common/currencyData.js](files/module/data/actor/templates/common/currencyData.js.md) |
+
+### Выполненные команды и изолированные сценарии
+
+На старте: git status --short, git rev-parse HEAD, git branch --show-current, git ls-files -z; Python-сверка 621 путей из registry.md с файловой системой, HEAD и базовым git show; снимок mode/uid/gid/inode всех 798 отслеживаемых файлов. Полное чтение 275 строк; rg по именам классов, методов и system-путям в module/, templates/, packsJson/; локальное чтение соответствующих участков ядра /opt/foundryvtt.
+
+Сценарий Node запускался через stdin (`node --input-type=module`), без файлов стенда. Импортированы настоящие primitives, fields.mjs, DataModel, TypeDataModel, utils/helpers.mjs Foundry 14.367.0; собран глобальный foundry для загрузки исходных четырёх моделей. Не создавались Actor-документы или коллекции мира. Модели и их методы оригинальные; TextEditor.enrichHTML заменён async преобразованием строки с меткой, toggleStatusEffect — записью вызовов; setTimeout — контролем недостижимости. Схемы, источники, равенство повторной подготовки, формулы, миграции, масса и возврат enrichedText проверены assert. Первое ожидание числа полей Monster в самом сценарии было ошибочно55; после сопоставления определений исправлено на53, окончательный сценарий прошёл.
+
+Для applyStatus тело исходного метода извлечено без изменений, выполнено в vm с реальной MonsterData и Set. Для getAllLocations в отдельном сценарии сохранено точное статическое тело, помещённое в минимальный класс; исходный locationMixin получил этот класс вместо импорта. Контроль с явным this подтвердил причину расхождения списка. Подмены не выполняли сетевые/серверные записи и не подтверждают состояние игрового эффекта.
+
+Фактические ключевые результаты:
+
+```text
+schemaCounts: Common=19, Character=29, Monster=53, Loot=3
+prepare: stun6 run18 leap3 enc70 rec6 woundTreshold6 resolve70 focus21 vigor.max4 reputation.max3
+sourceUnchanged=true; repeatIdentical=true; stun bounds=[1,10]
+currency: Common=Character=Monster=Loot=0.007
+labels: en10/10, ru10/10
+immunity []: toggle('bleeding'), resolved
+immunity ['bleeding'] / ['unrelated']: toggle('bleeding'), ReferenceError: statusEffectId is not defined
+locations through original mixin: 6; same static with actor this: 7 (tailWing included)
+import closure: 41 files, 50 edges, previous portions exactly37
+```
+
+Node выдал стандартное MODULE_TYPELESS_PACKAGE_JSON при загрузке ES modules; package.json не изменялся. Повторные исполнения уточняли ожидание количества полей и убирали избыточный вывод очищенного конструкторами входа; это не изменения исследуемой системы.
+
+### Итоговая проверка документов и сохранности
+
+Проверка Python и git diff --check прошла: 621 уникальный исходный путь, 52 карточки со статусом «Проверено», 569 строк «Не начат», четыре новые карточки строго по перечню порции и все обязательные разделы. Сверены 126 Markdown-документов и 3045 локальных ссылок/якорей, структура таблиц, отсутствие хвостовых пробелов и непрерывная нумерация 32 potential issues. TASK-0003.006 — done, TASK-0003 — in-progress, TASK-0003.007–010 — planned. Изменены только 40 документов: 34 существующих и 6 новых (4 карточки, 2 issues). Содержимое всех исходников, HEAD и метаданные всех 798 ранее отслеживаемых файлов сохранены.
+
+SHA256 621 исходника (путь+NUL+байты+NUL, порядок registry): `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. SHA256 сериализованных mode/uid/gid/inode 798 отслеживаемых файлов: `05ee1196f64deca4de0933de844ca64022ea70a36c3d9978a15b1b5596f976d9`. Исходный HEAD сохраняется; новые файлы — только Markdown в docs. Историческая часть журнала, начиная с TASK-0003.005, сохранена побайтно.
+
+### Итог и границы
+
+TASK-0003.006 завершена. Общее покрытие 52/621, не разобраны 569; первая серия 41/61, осталось 20, вне первой серии 549. Всего 32 issues, все potential. Следующая подзадача — [TASK-0003.007](../../tasks/task-0003.007.md).
+
+Полный Actor/ActiveEffect, формы в браузере, запись документов, запуск мира, миграция реальных старых данных, правила игры и внешние модули не проверялись. Найденные ошибки не исправлялись. На файлы системы, игровые данные и права доступа изменения не вносились.
+
 ## TASK-0003.005
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Рабочее дерево на старте чистое, отслеживались 788 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

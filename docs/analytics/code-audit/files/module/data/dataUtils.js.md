@@ -99,3 +99,9 @@
 2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Уточнена цепочка [backgroundData](actor/templates/character/general/backgroundData.js.md) → CharacterData.enrichedText:34–40 → createEnrichedText → WitcherCharacterSheet._prepareContext:139–142 → formGroup в tab-background:52. Исходные методы с подменой TextEditor передали HTML-строку как value, отдельный enriched и настоящий HTMLField с fieldPath system.general.background.value. Редактор и запись формы не запускались.
 
 [Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).
+
+## Уточнение TASK-0003.006
+
+2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Полностью разобраны оба Actor-потребителя: один вызов из CharacterData.enrichedText и три последовательных await из MonsterData.enrichedText. Настоящие поля имеют пути system.general.background.value и system.common/academicKnowledge/monsterLore; source после изолированного обогащения не изменён. MonsterData не проверяет show* перед вызовами; скрытие выполняет шаблон.
+
+Карточки сборки: [characterData](actor/characterData.js.md), [monsterData](actor/monsterData.js.md). [Сверка TASK-0003.006](../../../review-log.md#task-0003006).
