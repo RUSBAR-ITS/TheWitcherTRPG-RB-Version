@@ -139,3 +139,11 @@
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Отдельно от регистрации моделей и CONFIG.Item.documentClass функция регистрирует WitcherItemSheet и специализированные листы. Проверенный WitcherItemSheet._prepareContext:45–58 читает document.system/schema и вызывает system.enrichedText?.() напрямую; обёртка WitcherItem.enrichedText не является фактическим промежуточным вызовом этого листа.
 
 Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+Полностью разобран зарегистрированный [module/activeEffect/WitcherActiveEffectSheet.js](../../../../../../module/activeEffect/WitcherActiveEffectSheet.js). Он наследует core ActiveEffectConfig, добавляет actions.wizard, PARTS.systemSpecific и TABS.sheet.systemSpecific; остальные части/submit остаются ядровыми. Присоединены baseMixin (8 методов) и temporaryItemImprovementMixin (2). Регистрация не ограничена отдельными types, поэтому шаблон системных полей должен учитывать разные схемы (issue-00053).
+
+[Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

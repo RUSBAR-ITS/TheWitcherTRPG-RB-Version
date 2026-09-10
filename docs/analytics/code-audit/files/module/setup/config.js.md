@@ -387,3 +387,11 @@
 [module/activeEffect/witcherActiveEffect.js](../../../../../../module/activeEffect/witcherActiveEffect.js) превращает skillMap в 52 варианта выбора пути навыка; label служит ключом результирующего объекта. [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js) обращается к CONFIG.WITCHER.statusEffects как к DOM через querySelector, хотя это массив (issue-00003); ошибка возникает после toggle и до таймера снятия статуса по иммунитету. Определения turnStartEffects сверены с контекстом [templates/chat/combat/statusEffect.hbs](../../../../../../templates/chat/combat/statusEffect.hbs): renderer передаёт объект действия боя, шаблон только выводит img/name.
 
 [Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+Исполнен полный [module/activeEffect/mixins/baseMixin.js](../../../../../../module/activeEffect/mixins/baseMixin.js): statMap даёт 20 характеристик (9+11); toxicity добавлена отдельно, skillMap — 52 навыка; шесть групп имеют размеры 52/5/3/3/7/6. При семи типах урона каталог мастера содержит 109 вариантов и 179 вхождений путей после раскрытия групп. Два вхождения commonspeech не разрешаются в CharacterData — одиночное и allSkills, уточнение issue-00004. Наличие пути не подтверждает корректность арифметики его потребителей.
+
+[Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

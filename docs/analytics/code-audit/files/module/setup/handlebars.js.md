@@ -213,3 +213,11 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Helper подсчёта компонентов в строке 91 вызывает ownedComponent.sum('quantity'). Определение Array.prototype.sum найдено в module/actor/sheets/WitcherActorSheet.js:18–24: суммирует Number(this[i].system[prop] ?? 0). Это соответствует строковой quantity общей модели Item. Сам calcWeight не использует helper или sum.
 
 Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). Определение потребителя: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+Полностью разобраны предзагружаемые [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) и [templates/sheets/actor/partials/character/tab-effects.hbs](../../../../../../templates/sheets/actor/partials/character/tab-effects.hbs). Первый используют Actor V2/V1 и Item-конфигурация с разными обработчиками; второй вместе с crit-wounds-table.hbs дважды выводит одну травму (issue-00054). and/eq определены этим файлом; not/localize/formGroup/selectOptions предоставляются ядром. Wizard и system-specific рендерятся по путям листа; им не приписана отсутствующая регистрация в preload.
+
+[Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

@@ -84,3 +84,11 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.009 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+[templates/sheets/activeEffect/system-specific.hbs](../../../../../../../templates/sheets/activeEffect/system-specific.hbs) показывает applySelf/applyOnTarget, скрывает onHit/onDamage для этого типа, но безусловно запрашивает отсутствующий applyAfterCalculations. Исходный core formGroup пишет console.error и возвращает пустой фрагмент — issue-00053; срыв всей формы не утверждается. Три пути [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../../../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) разрешаются в StringField WeaponData; сам каталог не меняет схему эффекта.
+
+[Общая сверка первой серии](../../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

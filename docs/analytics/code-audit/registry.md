@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.009 проверены описания **64 файлов**, для **557 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.010 проверены описания **72 файлов**, для **549 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.009](review-log.md#task-0003009) выполнена на `a33bf33add228ae93f96a52046c8feb4ee992921`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.010](review-log.md#task-0003010) выполнена на `247d3d86e344238a1445377c686eb6455146693c`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -22,9 +22,9 @@
 | [lang/ptbr.json](../../../lang/ptbr.json) | Не установлено | Не подготовлено | Не начат |
 | [lang/ru.json](../../../lang/ru.json) | Не установлено | Не подготовлено | Не начат |
 | [module/TheWitcherTRPG.js](../../../module/TheWitcherTRPG.js) | Точка входа: жизненный цикл, реестры документов, API, чат и макросы | [Карточка](files/module/TheWitcherTRPG.js.md) | Проверено |
-| [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/activeEffect/mixins/baseMixin.js](../../../module/activeEffect/mixins/baseMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js) | Лист ActiveEffect: системная вкладка, мастер добавления изменений и автодополнение. | [Описание](files/module/activeEffect/WitcherActiveEffectSheet.js.md) | Проверено |
+| [module/activeEffect/mixins/baseMixin.js](../../../module/activeEffect/mixins/baseMixin.js) | Каталог путей характеристик, навыков, биографии, атак и изменений урона для мастера. | [Описание](files/module/activeEffect/mixins/baseMixin.js.md) | Проверено |
+| [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | Три подсказки путей урона для временного улучшения Item. | [Описание](files/module/activeEffect/mixins/temporaryItemImprovementMixin.js.md) | Проверено |
 | [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js) | Документ ActiveEffect: подавление, фазы изменений, выбор навыка и подготовка длительности. | [Описание](files/module/activeEffect/witcherActiveEffect.js.md) | Проверено |
 | [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -53,7 +53,7 @@
 | [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Категории эффектов Actor, управление документами и раскрытие описаний. | [Описание](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -523,7 +523,7 @@
 | [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/repair.hbs](../../../templates/chat/item/repair.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/dialog/activeEffects/wizard.hbs](../../../templates/dialog/activeEffects/wizard.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/dialog/activeEffects/wizard.hbs](../../../templates/dialog/activeEffects/wizard.hbs) | Выбор пути или группы путей в диалоге мастера/навыка. | [Описание](files/templates/dialog/activeEffects/wizard.hbs.md) | Проверено |
 | [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/combat/spell-attack.hbs](../../../templates/dialog/combat/spell-attack.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/combat/variableDamage.hbs](../../../templates/dialog/combat/variableDamage.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -548,7 +548,7 @@
 | [templates/partials/character/tab-stats.hbs](../../../templates/partials/character/tab-stats.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | Общий список эффектов с источниками, длительностью, описаниями и действиями. | [Описание](files/templates/partials/effect-part.hbs.md) | Проверено |
 | [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/item-image.hbs](../../../templates/partials/item-image.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/monster/monster-custom-skill-display.hbs](../../../templates/partials/monster/monster-custom-skill-display.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -558,7 +558,7 @@
 | [templates/partials/monster/monster-skill-tab.hbs](../../../templates/partials/monster/monster-skill-tab.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/monster/monster-spell-tab.hbs](../../../templates/partials/monster/monster-spell-tab.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/activeEffect/system-specific.hbs](../../../templates/sheets/activeEffect/system-specific.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/activeEffect/system-specific.hbs](../../../templates/sheets/activeEffect/system-specific.hbs) | Системные флаги фазы и условий применения ActiveEffect. | [Описание](files/templates/sheets/activeEffect/system-specific.hbs.md) | Проверено |
 | [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../templates/sheets/actor/configuration/app/edit-skills.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../templates/sheets/actor/configuration/app/edit-stats.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -579,7 +579,7 @@
 | [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../templates/sheets/actor/partials/character/spell-type-list.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/actor/partials/character/tab-effects.hbs](../../../templates/sheets/actor/partials/character/tab-effects.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/actor/partials/character/tab-effects.hbs](../../../templates/sheets/actor/partials/character/tab-effects.hbs) | Вкладка травм, лечения и активных эффектов персонажа/монстра. | [Описание](files/templates/sheets/actor/partials/character/tab-effects.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/partials/monster/header.hbs](../../../templates/sheets/actor/partials/monster/header.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/partials/monster/sidebar.hbs](../../../templates/sheets/actor/partials/monster/sidebar.hbs) | Не установлено | Не подготовлено | Не начат |

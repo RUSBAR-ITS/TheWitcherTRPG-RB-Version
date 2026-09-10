@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.009 подготовлены и сверены 64 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.010 подготовлены и сверены 72 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -117,3 +117,16 @@
 | module/scripts/statusEffects/applyStatusEffect.js | [Описание](module/scripts/statusEffects/applyStatusEffect.js.md) |
 | templates/chat/item/appliedTemporaryItemImprovements.hbs | [Описание](templates/chat/item/appliedTemporaryItemImprovements.hbs.md) |
 | templates/chat/combat/statusEffect.hbs | [Описание](templates/chat/combat/statusEffect.hbs.md) |
+
+## Интерфейс эффектов и мастер изменений — TASK-0003.010
+
+| Файл | Карточка |
+| --- | --- |
+| module/activeEffect/WitcherActiveEffectSheet.js | [Описание](module/activeEffect/WitcherActiveEffectSheet.js.md) |
+| module/activeEffect/mixins/baseMixin.js | [Описание](module/activeEffect/mixins/baseMixin.js.md) |
+| module/activeEffect/mixins/temporaryItemImprovementMixin.js | [Описание](module/activeEffect/mixins/temporaryItemImprovementMixin.js.md) |
+| module/actor/sheets/mixins/activeEffectMixin.js | [Описание](module/actor/sheets/mixins/activeEffectMixin.js.md) |
+| templates/dialog/activeEffects/wizard.hbs | [Описание](templates/dialog/activeEffects/wizard.hbs.md) |
+| templates/sheets/activeEffect/system-specific.hbs | [Описание](templates/sheets/activeEffect/system-specific.hbs.md) |
+| templates/partials/effect-part.hbs | [Описание](templates/partials/effect-part.hbs.md) |
+| templates/sheets/actor/partials/character/tab-effects.hbs | [Описание](templates/sheets/actor/partials/character/tab-effects.hbs.md) |

@@ -86,3 +86,11 @@ lifepathData():3–15 без аргументов создаёт пять пол
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. lifepathModifiers:59 включён в общую модель и доступен монстру без CharacterData.general. Вложенный словарь attacks остаётся схемой записей {value}; ранее отмеченная issue-00019 не устранена.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+Полный [module/activeEffect/mixins/baseMixin.js](../../../../../../../../../module/activeEffect/mixins/baseMixin.js) предлагает шесть полей биографии. shieldParryBonus/shieldParryThrownBonus/ignoredArmorEncumbrance/ignoredEvWhenCasting — численные поля; attacks.strong и attacks.joint разрешаются в SchemaField записи, а не её value. Подтверждение схемой дополнило issue-00019; новый дубликат проблемы не создавался.
+
+[Общая сверка первой серии](../../../../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

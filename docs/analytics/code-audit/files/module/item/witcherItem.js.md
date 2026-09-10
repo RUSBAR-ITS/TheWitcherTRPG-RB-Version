@@ -175,3 +175,11 @@
 [module/actor/mixins/temporaryEffectMixin.js](../../../../../../module/actor/mixins/temporaryEffectMixin.js) создаёт эффекты выбранного оружия, [module/activeEffect/witcherActiveEffect.js](../../../../../../module/activeEffect/witcherActiveEffect.js) задаёт isAppliedTemporaryItemImprovement через system.isTransferred, а [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) наследует changes от ядра. Эти связи подтверждают вход allApplicableEffects/applyActiveEffects Item. Нормализация фактического payload передачи настоящим BaseActiveEffect даёт changes=[] (issue-00042). Отдельно перенос start=null не включает эффект в isExpiryTrackable (issue-00050). Создание оружейных эффектов не ожидается перед рендером [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../../../../templates/chat/item/appliedTemporaryItemImprovements.hbs); сообщение использует подготовленные данные, не результат записи.
 
 [Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+[module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) предлагает system.damage, system.damageProperties.oilEffect/silverDamage; реальные пути WeaponData — StringField. [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) используется также конфигурацией Item: её собственные actions поддерживают create/toggle/edit/delete, а раскрывающего Actor-listener нет (issue-00056). Для обычного Item-эффекта с transfer=true автодополнение листа всё ещё выбирает Item-схему, хотя получатель — Actor (issue-00051).
+
+[Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

@@ -210,3 +210,11 @@ getList/addItem сравнивают тип/имя, не ID источника �
 Полностью разобрана примесь [module/actor/mixins/temporaryEffectMixin.js](../../../../../../module/actor/mixins/temporaryEffectMixin.js): один подключённый метод выбирает weapon и создаёт embedded ActiveEffect на Item; Actor.temporaryEffects лишь добавляет эффекты с isTransferred в возвращаемый список. Исходная передача теряет system.changes, что теперь проверено также настоящей моделью Foundry (issue-00042). Полный [module/activeEffect/witcherActiveEffect.js](../../../../../../module/activeEffect/witcherActiveEffect.js) уточнил фазу _preUpdate: Actor использует change.phase, а обработчик частичного обновления может назначить initial или упасть при отсутствии changes (issue-00043). Отдельный [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js) не тождественен собственному applyStatus: у него локальный statusEffectId определён, но есть другие ветви иммунитета/disabled (issues-00003/00049). Полный интерфейс остаётся TASK-0003.010.
 
 [Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.010
+
+2026-09-10, `247d3d86e344238a1445377c686eb6455146693c`; исходник прежнего среза не изменён.
+
+Уточнена цепочка отображения: Actor-листы готовят allApplicableEffects плюс переданные улучшения, [module/actor/sheets/mixins/activeEffectMixin.js](../../../../../../module/actor/sheets/mixins/activeEffectMixin.js) группирует их, а [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) скрывает suppressed-строки при наличии actor. Открытие/toggle Item-эффекта разрешаются по его parent.uuid, удаление из чужого родителя блокируется собственным обработчиком. Изменение состояния документа остаётся API ядра; шаблон не исполняет бонусы.
+
+[Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.

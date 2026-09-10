@@ -1,5 +1,116 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.010
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `247d3d86e344238a1445377c686eb6455146693c`. На старте рабочее дерево чистое, отслеживались 834 файла. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Ядро Foundry 14.367.0 проверено локально, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js) | 141 |
+| [module/activeEffect/mixins/baseMixin.js](../../../module/activeEffect/mixins/baseMixin.js) | 172 |
+| [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | 27 |
+| [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | 101 |
+| [templates/dialog/activeEffects/wizard.hbs](../../../templates/dialog/activeEffects/wizard.hbs) | 3 |
+| [templates/sheets/activeEffect/system-specific.hbs](../../../templates/sheets/activeEffect/system-specific.hbs) | 11 |
+| [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | 53 |
+| [templates/sheets/actor/partials/character/tab-effects.hbs](../../../templates/sheets/actor/partials/character/tab-effects.hbs) | 60 |
+| Всего | 568 |
+
+Разобраны четыре JS и четыре HBS. У WitcherActiveEffectConfig четыре собственных метода, три static-конфигурации и два Object.assign; baseMixin содержит восемь методов, temporaryItemImprovementMixin — два, activeEffectMixin — четыре. Класс и методы описаны без приписывания им наследуемого submit/вычисления бонусов. HBS не имеют собственных JS-функций. Tab-effects использует CRLF; исходники не перезаписывались.
+
+### Интерфейс, обработчики, схемы и применение
+
+| Связь | Установленный результат |
+| --- | --- |
+| registerSheets → ActiveEffectConfig | Системный класс зарегистрирован по умолчанию без ограничения types; наследует ядровые стандартные части формы, добавляет systemSpecific и wizard. |
+| Wizard → selects | base: 20 stat + 1 toxicity + 6 групп навыков + 52 навыка + 6 lifepath + 3 other + 21 damage = 109 вариантов. Без damageTypeModification у источника — 88. Temporary: 3 пути строковых полей WeaponData. |
+| Группы → пути | all/melee/ranged/magic/verbal/empathetic: 52/5/3/3/7/6. После раскрытия групп base-мастера 179 вхождений: commonspeech не разрешается дважды, strong/joint разрешаются в SchemaField; остальные пути — поля CharacterData. |
+| selectOptions → callback | Core selectOptions/prepareSelectOptionGroups преобразуют массив value в строку через запятую; wizardAction делит её и добавляет {key}. У шаблона только select#path: ни значения/операции, ни флага потолка. |
+| Wizard → update → phase | Мастер берёт подготовленную document.system.changes, не форму. update({changes}) мигрируется cleanData в system.changes; type/value/phase получают defaults. _preUpdate при отсутствии флага в payload выбирает initial (уточнение issue-00043). |
+| Автодополнение → реестр | schema.apply обходит 4 модели Actor либо 22 Item, исключая SchemaField; fieldPath уже содержит system. Выбор реестра по parent.documentName не учитывает transfer/type эффекта — issue-00051. |
+| Системная вкладка → модели | Base Item: пять флагов; Actor: applyAfterCalculations; temporary Item: два флага. Безусловный formGroup applyAfterCalculations у temporary получает undefined, пишет ошибку и возвращает пустой фрагмент. |
+| Контекст частей ядра | Core details устанавливает isItemEffect; HandlebarsApplicationMixin использует общий изменяемый контекст частей. Поэтому обычный полный рендер передаёт флаг в systemSpecific; отсутствие этого флага во всём UI не заявляется. |
+| Actor-лист → категории → partial | V2 и V1 подключают activeEffectMixin, вызывают prepareActiveEffectCategories и activeEffectListener(DOM). Приоритет групп: isDisabled → непереданное улучшение → isTemporary → passive. Suppression фильтруется позднее в partial при @root.actor. |
+| Действия → документы | create задаёт icon/origin/duration.value/disabled, без type; edit/toggle разрешают реального родителя по UUID, delete блокирует чужой parentUuid. Item-конфигурация использует собственные actions и задаёт type улучшения явно. |
+| Описание → listener | Actor listener раскрывает непустое .effect-description через invisible. Item-конфигурация использует тот же partial, но соответствующий обработчик в module/item/sheets не найден. |
+| Травмы → вкладка → обработчики | Оба V2-листа используют tab-effects; criticalWoundMixin обслуживает add/treat, itemMixin — daysHealed. Включён crit-wounds-table, затем повторён тот же цикл; одна травма выводится дважды. |
+| Шаблон → реальные потребители | wizard: лист + chooseSkill; system-specific: PARTS листа; effect-part: tab-effects, monster-sheet V1, Item activeEffectConfiguration; tab-effects: Character/Monster V2 и preload. |
+
+### Выполненные способы проверки и ограничения
+
+Применены `rg` по точным именам методов/полей/путей, полное чтение восьми файлов и связанных определений, `git ls-files -z`, сопоставление реестра с деревом и побайтовое сравнение исходников с HEAD/срезом TASK-0001. Прямые относительные imports проверены до существующего файла определения и его явного упоминания в карточке.
+
+Для спорных ветвей выполнен Node stdin-сценарий с assertions. Загружены настоящие common primitives, поля, DataModel/TypeDataModel, BaseActiveEffect, обе модели эффекта, все 4/22 зарегистрированные модели Actor/Item и исходные JS этой порции. Для ядрового ActiveEffectConfig использовано исходное тело с малым базовым классом; действия сохранения, prompt, DOM, jQuery и UI подменены. Проверка BaseActiveEffect.cleanData использует те же migrate/sanitize/partial параметры, что прочитанный ClientDatabaseBackend перед _preUpdate.
+
+Настоящие Handlebars, selectOptions, prepareSelectOptionGroups и formGroup использованы из установленного ядра; создание DOM select и toFormGroup существующих полей заменены фасадами. Отсутствующее поле обработано настоящим formGroup. HTML вкладки разобран установленным parse5. Полный браузер, мир, БД и реальный submit/сетевые запросы не запускались.
+
+Проверенные внешние участки:
+
+- /opt/foundryvtt/client/applications/sheets/active-effect-config.mjs: части формы, контекст, стандартные addChange/deleteChange, обработка value/phase/priority и submit.
+- /opt/foundryvtt/client/applications/api/handlebars-application.mjs: общий контекст частей, options.parts и рендер.
+- /opt/foundryvtt/client/applications/handlebars.mjs и /opt/foundryvtt/client/applications/forms/fields.mjs: formGroup, selectOptions и группы вариантов.
+- /opt/foundryvtt/templates/sheets/active-effect/changes.hbs и change.hbs: кнопка addChange, ключ/тип/значение/priority, скрытая phase.
+- /opt/foundryvtt/client/data/client-backend.mjs и /opt/foundryvtt/common/documents/active-effect.mjs: очистка/миграция частичного update.
+- /opt/foundryvtt/common/data/fields.mjs: fieldPath/schema.apply; /opt/foundryvtt/client/documents/active-effect.mjs: разрешение пути system.* и применение.
+
+| Выполненный сценарий | Фактический результат | Предел проверки |
+| --- | --- | --- |
+| Настоящие модели и все варианты мастера | 109/88 base-вариантов, 3 temporary; 179 вхождений путей, два отсутствующих commonspeech и два объектных attacks; три Item-пути — StringField | Проверка схемы не заменяет все игровые операции с полями |
+| Автодополнение Actor/Item | 718/701 уникальных ключей; все имеют system. Item base transfer=true предлагает system.damage, но не system.stats.ref.totalModifiers | DOM datalist подменён, schema.apply настоящий |
+| Мастер, исходный value=1, несохранённое значение9, выбор двух путей | Payload сохраняет1, добавляет два {key}; prepared длина1→3, _source остаётся1; callback не ждёт update | Форма/prompt/запись подменены; потеря текста на реальном экране не наблюдалась |
+| Очистка payload мастера и hook | Корневой changes стал system.changes; defaults add/пустая строка/initial; прежний applyAfterCalculations=true не учитывается _preUpdate | Настоящая очистка и исходный hook, без БД |
+| Два _onRender на сохранённом DOM | 2 wizard-кнопки и 2 datalist с одинаковым id | Сценарий повторного/частичного рендера; полного браузерного инициатора не устанавливали |
+| Форма base и temporary | 5 input без ошибок; 2 input и 1 console.error отсутствующего поля соответственно | Настоящий formGroup, facade для существующих input |
+| Рендер wizard | Строка массива путей с запятыми; группы поддерживаются ядровым helper, checkbox нет | Настоящий helper и Handlebars, DOM обёртка подменена |
+| Категории и четыре действия Actor | a inactive, b improvement, c temporary, d passive; create value1, edit render(true), toggle true→false, своё удаление, чужое уведомление | Документный API подменён |
+| Listeners/описание/suppression | Зарегистрированы .effect-control и .effect-display click; непустое описание переключает invisible; suppressed-строка скрыта при actor | DOM/jQuery doubles |
+| Одна травма в обоих исходных partial | parse5 нашёл 2 строки data-item-id и 2 кнопки лечения; enriched выведен новым циклом | Дублирование разметки, не документов/выполнения лечения |
+
+Итоговый сценарий завершился с exit 0 и пройденными assertions. Предварительное предположение об отсутствующем system. в автодополнении опровергнуто настоящими моделями; оно не зарегистрировано как проблема. Недостающие глобальные значения и DOM-контекст исправлялись только в изолированном окружении, исходные функции не менялись. Предупреждение Node о MODULE_TYPELESS_PACKAGE_JSON не устранялось изменением package.json.
+
+### Заключительная сверка первой серии с TASK-0002
+
+| Порция | Файлов | Прямых относительных imports | Проверенная граница связи |
+| --- | --- | --- | --- |
+| TASK-0002 | 11 | 84 | Манифест/точка входа → конфигурация, регистрации моделей/листов/hooks/helpers/Queries |
+| TASK-0003.001 | 5 | 2 | Общие поля/характеристики → вложенные модели и пути totalModifiers |
+| TASK-0003.002 | 9 | 14 | Навыки → группы/CharacterData → 52 пути мастера и issue-00004 |
+| TASK-0003.003 | 8 | 2 | Данные состояния → общая модель Actor и потребители, включая effects |
+| TASK-0003.004 | 8 | 8 | Биография/изменение урона → common Actor → подсказки и реальные типы полей |
+| TASK-0003.005 | 7 | 3 | Журналы/обучение/панели/атаки → специализированные модели и пути attackStats |
+| TASK-0003.006 | 4 | 21 | Сборка Actor-моделей → CONFIG.Actor.dataModels → schema.apply |
+| TASK-0003.007 | 2 | 19 | Документ Actor/примеси → перечисление эффектов, подготовка и применения фаз |
+| TASK-0003.008 | 2 | 8 | CommonItemData/Item → реестр 22 моделей, временные улучшения и список эффектов |
+| TASK-0003.009 | 8 | 2 | Документ/модели/маршруты ActiveEffect → поля формы и payload мастера |
+| TASK-0003.010 | 8 | 2 | Конфигурация/мастер/partials → поля, listeners и документные действия |
+| Всего | 72 | 165 | 61 уникальный файл первой серии + 11 файлов TASK-0002, без повторного учёта |
+
+Для всех 72 карточек проверены состав, наличие исходника, применимость версии и прямые импорты: 165 обращений разрешаются в существующие файлы, явно указанные в соответствующей карточке. Чтение зависимостей не присваивает им статус «Проверено». Уточнены десять ранее созданных карточек (регистрации листов/helpers/config, документ Actor/Item/ActiveEffect, две модели эффекта, statData и lifepathData).
+
+Эта заключительная сверка не является повторным исполнением всех поведенческих сценариев прежних порций и не закрывает TASK-0004/0005. Сохранены следующие точные границы дальнейшего исследования:
+
+| Непроверенная целиком связь | Файлы/способ продолжения |
+| --- | --- |
+| Полные листы Actor и Item, частичный рендер и права | WitcherActorSheet/V1, WitcherCharacterSheet, WitcherMonsterSheet, WitcherItemSheet и configurations/WitcherConfigurationSheet: полностью разобрать классы/наследование/actions, затем согласовать браузерные сценарии. |
+| Травмы/лечение/заживление | module/data/item/criticalWoundData.js, actor/sheets/mixins/criticalWoundMixin.js, itemMixin.js и templates/partials/crit-wounds-table.hbs: полностью проследить treat/heal/inline-edit и источники таблиц. |
+| Боевые формулы и изменения урона | actor/mixins/weaponAttackMixin.js, defenseMixin.js, damageMixin.js, castSpellMixin.js, armorMixin.js и scripts/combat: проверить полный путь от выбранного поля до формулы/документной записи. |
+| Специализированные модели Item | module/data/item/* и templates/combat/*: schema была исполнена для путей, но все методы/подготовка/потребители этих файлов не разобраны. |
+| Общий чат, Queries и реальные клиенты | scripts/chat.js, helper.js, chatMessage/* и отправители: после полного разбора отдельно согласовать проверки реальной доставки, UI и сохранения. |
+| Статусы/длительности в мире и statuscounter | Внешнее ядро и /var/lib/foundryvtt/Data/modules/statuscounter: в этой порции модуль не читался, прежнее ограничение доступа сохраняется; реальный scheduler не запускался. |
+| Оставшиеся ресурсы | Остальные строки реестра: шаблоны/CSS/локализации/компедиумы/инструменты/конфигурация сборки; 549 файлов ещё требуют порционного полного разбора. |
+
+### Проблемы и итоговая проверка документов
+
+Созданы [issue-00051–00056](../../issues/README.md): схема получателя автодополнения, несохранённая форма, отсутствующее поле temporary, двойной список травм, повторный рендер элементов и отсутствие раскрытия описания на Item. Дополнены issue-00004/00019/00043. Все 56 проблем остаются potential; исправления и пользовательское подтверждение не выполнялись.
+
+Проверка Python stdin и git diff --check прошла: реестр содержит 621 уникальный файл, 72 проверенные карточки и 549 статусов «Не начат». Для восьми новых карточек проверены 11 обязательных разделов, версия и определения; все 56 номеров issues уникальны и находятся в potential. Проверены 170 Markdown-документов и 3882 локальные ссылки с якорями, структура таблиц и указанные абсолютные пути файлов ядра.
+
+Все 621 исходник побайтово совпадают с HEAD и срезом TASK-0001. Сводная SHA256 содержимого исходников: 9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e. Mode/uid/gid/inode всех 834 ранее отслеживаемых файлов сохранены; SHA256 метаданных b3614d203db4414d8a569dceb6405361fefb5bcee51047e8fb9cab6b5692c55a. Изменения ограничены 38 Markdown-файлами в docs, включая 14 новых; ветка/HEAD не менялись, коммит не создавался. История журнала начиная с TASK-0003.009 сохранена побайтово.
+
+Первая серия TASK-0003.001–TASK-0003.010 завершена. Общее покрытие — 72 из 621 файла, 549 не разобраны; родительская TASK-0003 остаётся in-progress. Следующие задачи не создавались автоматически. Изменена только документация, исходники/настройки/мир не изменялись.
+
 ## TASK-0003.009
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `a33bf33add228ae93f96a52046c8feb4ee992921`. Рабочее дерево на старте чистое; отслеживались 818 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Локальное ядро Foundry 14.367.0 проверено по /opt/foundryvtt/package.json; Node 24.16.0.
