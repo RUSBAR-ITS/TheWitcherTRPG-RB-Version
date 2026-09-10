@@ -134,6 +134,16 @@
 
 2026-09-10, TASK-0003.001: [Stats](../data/actor/templates/common/stats/statsData.js.md) и [DerivedStats](../data/actor/templates/common/stats/derivedStatsData.js.md) разобраны полностью. Они включены в CommonActorData через EmbeddedDataField (строки 33–34) и наследуются зарегистрированными CharacterData/MonsterData; отдельными типами Actor здесь не регистрируются. Общие фабрики [stat](../data/actor/templates/common/stats/statData.js.md), [valueLabel](../data/actor/templates/valueLabelData.js.md) и [createEnrichedText](../data/dataUtils.js.md) также не являются регистрируемыми типами. Выводы сопоставлены с таблицами выше; полный разбор остальных моделей остаётся последующим подзадачам.
 
+## Дополнительная сверка навыков — TASK-0003.002
+
+2026-09-10, HEAD `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`; исходник не изменён.
+
+Дополнительно полностью разобраны [Skill](../data/actor/templates/common/skills/skillData.js.md), семь групп и [фабрика skills](../data/actor/templates/common/skills/skillsData.js.md). CommonActorData включает фабрику в SchemaField(:39), CharacterData и MonsterData наследуют эту структуру. Вложенный Skill не регистрируется отдельным типом документа и отличается от Item.skill → SkillItemData в таблице выше. Полный разбор моделей документов остаётся последующим порциям.
+
+Результаты и пределы проверок — в [журнале TASK-0003.002](../../../review-log.md#task-0003002).
+
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 3 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+2026-09-10 — TASK-0003.002: уточнены связи моделей навыков и их потребителей, добавлены взаимные ссылки и фактические ограничения проверки.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002 и TASK-0003.001 проверены описания **16 файлов**, для **605 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001 и TASK-0003.002 проверены описания **25 файлов**, для **596 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.001](review-log.md#task-0003001) выполнена на `7b7788bc614e5b7a57f8c596fb64ca75ecabd8b7`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.002](review-log.md#task-0003002) выполнена на `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -97,15 +97,15 @@
 | [module/data/actor/templates/common/lifepathData.js](../../../module/data/actor/templates/common/lifepathData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/common/noteData.js](../../../module/data/actor/templates/common/noteData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/common/reputationData.js](../../../module/data/actor/templates/common/reputationData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/bodyData.js](../../../module/data/actor/templates/common/skills/bodyData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/craData.js](../../../module/data/actor/templates/common/skills/craData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/dexData.js](../../../module/data/actor/templates/common/skills/dexData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/empData.js](../../../module/data/actor/templates/common/skills/empData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/intData.js](../../../module/data/actor/templates/common/skills/intData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/refData.js](../../../module/data/actor/templates/common/skills/refData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/skillData.js](../../../module/data/actor/templates/common/skills/skillData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/skillsData.js](../../../module/data/actor/templates/common/skills/skillsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/skills/willData.js](../../../module/data/actor/templates/common/skills/willData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/templates/common/skills/bodyData.js](../../../module/data/actor/templates/common/skills/bodyData.js) | Два навыка BODY и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/bodyData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/craData.js](../../../module/data/actor/templates/common/skills/craData.js) | Семь навыков CRA и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/craData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/dexData.js](../../../module/data/actor/templates/common/skills/dexData.js) | Пять навыков DEX и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/dexData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/empData.js](../../../module/data/actor/templates/common/skills/empData.js) | Десять навыков EMP и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/empData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/intData.js](../../../module/data/actor/templates/common/skills/intData.js) | Тринадцать навыков INT и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/intData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/refData.js](../../../module/data/actor/templates/common/skills/refData.js) | Восемь навыков REF и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/refData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/skillData.js](../../../module/data/actor/templates/common/skills/skillData.js) | Общая модель навыка: значение, модификаторы, флаги и modifiedValue | [Карточка](files/module/data/actor/templates/common/skills/skillData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/skillsData.js](../../../module/data/actor/templates/common/skills/skillsData.js) | Сборка семи групп навыков для общей схемы Actor | [Карточка](files/module/data/actor/templates/common/skills/skillsData.js.md) | Проверено |
+| [module/data/actor/templates/common/skills/willData.js](../../../module/data/actor/templates/common/skills/willData.js) | Семь навыков WILL и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/willData.js.md) | Проверено |
 | [module/data/actor/templates/common/stats/derivedStatsData.js](../../../module/data/actor/templates/common/stats/derivedStatsData.js) | Схема 12 производных параметров и миграция шести исходных значений | [Карточка](files/module/data/actor/templates/common/stats/derivedStatsData.js.md) | Проверено |
 | [module/data/actor/templates/common/stats/statData.js](../../../module/data/actor/templates/common/stats/statData.js) | Общая схема пяти полей характеристики, ресурса и репутации | [Карточка](files/module/data/actor/templates/common/stats/statData.js.md) | Проверено |
 | [module/data/actor/templates/common/stats/statsData.js](../../../module/data/actor/templates/common/stats/statsData.js) | Модель 10 показателей stats, копирование базовых максимумов и миграция | [Карточка](files/module/data/actor/templates/common/stats/statsData.js.md) | Проверено |

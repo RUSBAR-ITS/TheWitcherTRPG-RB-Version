@@ -1,5 +1,263 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.002
+
+Дата: 2026-09-10. Ветка `rusbar-main`, HEAD `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`. На старте рабочее дерево было чистым, отслеживались 750 файлов. Все 621 исходник исследования совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по `/opt/foundryvtt/package.json`; Node 24.16.0.
+
+Полностью прочитаны девять файлов и 262 строки из module/data/actor/templates/common/skills: skillData.js (19), skillsData.js (21), bodyData.js (23), craData.js (28), dexData.js (30), empData.js (35), intData.js (41), refData.js (31), willData.js (34). Карточки и статусы соседних файлов не менялись на «Проверено» из-за чтения отдельных обращений.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Доказательство и результат |
+| --- | --- |
+| Девять исходников ↔ карточки | Полные определения, импорт Skill в 7 группах, импорт всех групп в skills(); таблицы каждого поля, подписи, миграции и способы чтения/изменения сверены. |
+| Группы ↔ CommonActorData | Единственный прямой вызов skills() — CommonActorData.defineSchema:39; CharacterData и MonsterData наследуют общую модель. Семь групп содержат 13/8/5/2/10/7/7 навыков: всего 52. |
+| Схема ↔ skillMap | Все 52 пары attribute.name/name существуют; каждый схемный навык имеет запись. У commonsp ключ справочника commonspeech — единственное несовпадение имён. |
+| Skill ↔ поля и вычисление | 7 сохраняемых полей, getter modifiedValue=value+activeEffectModifiers; пять независимых числовых примеров, отсутствие getter в toObject. Ограничение диапазона/целочисленности в Skill не задано. |
+| Группы ↔ жизненный цикл Foundry | Реальный DataModelSchemaField вызывает Skill.defineSchema() без label. В свежей CommonActorData 52 label отсутствуют; после toObject/повторной загрузки 52 подписи заполнены миграциями. Метаданные isVisible.label остаются undefined. |
+| Миграции ↔ сохранность данных | Все 52 существующие записи проверены с произвольной подписью, value=3 и true-флагами: label заменяется, числовое значение и флаги сохраняются. Пустой source не получает навыков от migrateData. |
+| Подписи ↔ lang | Три внешних ключа CRA отсутствуют во всех 8 языках; в skillMap отсутствуют picklock.label и trapcraft.label/rollLabel. Все 52 label после повторного создания разрешаются в en. |
+| Формы ↔ поле видимости | Реальный DataField.toFormGroup с подставленным input выбирает label=isVisible. _getSkills возвращает undefined для int.commonspeech и поля для остальных 51 записи. |
+| Шаблоны ↔ текущий лист монстра | PARTS.skills выбирает character/tab-skills; он передаёт навык в character/skill-display без фильтра isVisible. Изолированный HTML одинаков при false/true. Отдельный monster-skill-display скрывает запись при false. |
+| Бросок ↔ модификаторы | Реальный rollSkillCheck берёт value, затем отдельно вызывает addActiveEffects. Для commonsp с value=3 и модификатором 2 сформировано 1d10 +0 +3; для awareness — 1d10 +0 +3 +2. |
+| Повышение ↔ update и журнал | У spellcast 2→3 при магических очках 10 журнал -4, но update сохраняет 10; при 1 — журнал -1 magic/-3 обычных, update сохраняет magic=1 и обычные=17. |
+| JSON ↔ реальные поля | Рекурсивно разобраны 226 JSON: 267 строковых ссылок в 37 файлах, 54 различных пути. 264 разрешаются в модель; 3 неверных commonspeech находятся в Torn Stomach и двух состояниях. Индекс файлов — в карточке skillsData.js. |
+| Прежние карточки ↔ новые | Уточнены config.js, registerDataModels.js и TheWitcherTRPG.js: полное покрытие skillMap, вложенный Skill отдельно от Item.skill, Polyglot и языковые поля. |
+
+Основные поиски: `rg -n 'system\.skills|skills\(\)|skillData.js|skillsData.js' module`; поиск isVisible/modifiedValue/data-action и ссылок на skill-display в templates и sheets; чтение девяти файлов целиком с номерами строк. Внешние определения прочитаны по фактически установленному ядру: `common/data/fields.mjs` (DataModelSchemaField и DataField.toFormGroup), `common/abstract/data.mjs`, `client/applications/handlebars.mjs` (renderTemplate/formGroup), `client/helpers/localization.mjs` (localize). Эти файлы не входят в реестр системы.
+
+### Изолированные проверки
+
+Команда выполняется из корня системы; отдельный файл сценария не добавлялся. Реальны DataModel/TypeDataModel, поля Foundry, код моделей, config.js, методы формирования путей, навыка и модификаторов, а также два шаблона. Подменены GUI-базовые классы, DOM input/createFormGroup, i18n/settings, ChatMessageData/RollConfig, пользовательский модификатор, социальные/броневые добавки, бросок, журнал и update. Формула перехватывается строкой; очки проверяются по аргументам update. В проверке повышения используется минимальный объект данных, в проверке схем и формул — настоящая CommonActorData.
+
+```bash
+node --input-type=module <<'JS'
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel}};
+const {default:Skill}=await import('./module/data/actor/templates/common/skills/skillData.js');
+const {default:Common}=await import('./module/data/actor/commonActorData.js');
+const {default:skills}=await import('./module/data/actor/templates/common/skills/skillsData.js');
+const {WITCHER}=await import('./module/setup/config.js');
+const get=(o,p)=>p?.split('.').reduce((v,k)=>v?.[k],o);
+const en=JSON.parse(fs.readFileSync('lang/en.json','utf8'));
+const game={i18n:{localize:k=>get(en,k)??k},settings:{get:()=>false}};
+const CONFIG={WITCHER};
+const models=Object.fromEntries(Object.entries(skills()).map(([g,f])=>[g,f.model]));
+const fresh=new Common({});
+const reload=new Common(fresh.toObject());
+const result={};
+const rows=Object.entries(models).flatMap(([g,M])=>Object.keys(M.schema.fields).map(k=>({g,k,field:M.schema.fields[k],fresh:fresh.skills[g][k],reload:reload.skills[g][k]})));
+assert.equal(rows.length,52);
+assert.deepEqual(Object.keys(Skill.schema.fields),['value','label','isVisible','activeEffectModifiers','isProfession','isPickup','isLearned']);
+assert.equal(rows.filter(r=>r.fresh.label===undefined).length,52);
+assert.equal(rows.filter(r=>r.reload.label&&get(en,r.reload.label)).length,52);
+assert.equal(rows.filter(r=>r.fresh.schema.fields.isVisible.label===undefined).length,52);
+result.schema={groups:Object.fromEntries(Object.entries(models).map(([g,M])=>[g,Object.keys(M.schema.fields).length])),skills:52,freshLabelsMissing:52,reloadedLabelsPresent:52,visibilityFieldLabelsMissing:52};
+result.modifiedValues=[];
+for(const [value,mod,expected] of [[0,0,0],[4,3,7],[1,-4,-3],[12,3,15],[2.5,0.5,3]]) {
+ const s=new Skill({value,activeEffectModifiers:mod});
+ assert.equal(s.modifiedValue,expected);assert(!Object.hasOwn(s.toObject(),'modifiedValue'));
+ result.modifiedValues.push({value,mod,result:s.modifiedValue});
+}
+for(const [g,M]of Object.entries(models)){
+ const keys=Object.keys(M.schema.fields), source=Object.fromEntries(keys.map(k=>[k,{label:'custom',value:3,isVisible:true,isProfession:true,isPickup:true,isLearned:true}]));
+ const migrated=M.migrateData(source);
+ assert.equal(migrated,source);
+ for(const k of keys){assert.equal(source[k].label,reload.skills[g][k].label);assert.equal(source[k].value,3);for(const flag of ['isVisible','isProfession','isPickup','isLearned'])assert.equal(source[k][flag],true);}
+ const empty={};M.migrateData(empty);assert.deepEqual(empty,{});
+}
+const langs=Object.fromEntries(fs.readdirSync('lang').filter(p=>p.endsWith('.json')).map(p=>[p,JSON.parse(fs.readFileSync('lang/'+p,'utf8'))]));
+const missingFor=key=>Object.entries(langs).filter(([,l])=>typeof get(l,key)!=='string').map(([n])=>n);
+result.missingOuterLabels=rows.filter(r=>missingFor(r.field.label).length===8).map(r=>({path:r.g+'.'+r.k,label:r.field.label,missingIn:missingFor(r.field.label)}));
+result.missingConfigLabels=Object.entries(WITCHER.skillMap).flatMap(([id,s])=>['label','rollLabel'].filter(f=>s[f]&&missingFor(s[f]).length===8).map(f=>({id,field:f,label:s[f]})));
+assert.equal(result.missingOuterLabels.length,3);
+assert.equal(result.missingConfigLabels.length,3);
+result.skillMap=Object.entries(WITCHER.skillMap).map(([id,s])=>({id,name:s.name,group:s.attribute.name,pathExists:!!fresh.skills[s.attribute.name]?.[s.name],sameKey:id===s.name}));
+assert.equal(result.skillMap.filter(s=>s.pathExists).length,52);
+assert.deepEqual(result.skillMap.filter(s=>!s.sameKey).map(s=>s.id),['commonspeech']);
+foundry.applications={fields:{createFormGroup:config=>config}};
+const visible=Skill.schema.fields.isVisible;
+const form=visible.toFormGroup({input:{outerHTML:'stub'}}, {});
+result.formLabel=form.label;
+assert.equal(form.label,'isVisible');
+const {baseMixin}=await import('./module/activeEffect/mixins/baseMixin.js');
+globalThis.CONFIG=CONFIG;globalThis.game=game;
+const suggestions=Object.values(baseMixin.getSkillSuggestions());
+result.invalidSuggestions=suggestions.filter(s=>!get({system:fresh},s.value.replace('.activeEffectModifiers',''))).map(s=>s.value);
+assert.deepEqual(result.invalidSuggestions,['system.skills.int.commonspeech.activeEffectModifiers']);
+foundry.applications.api={HandlebarsApplicationMixin:C=>C};foundry.applications.sheets={ActorSheetV2:class{}};
+foundry.utils={getProperty:get};
+const {default:MonsterConfig}=await import('./module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js');
+const visConfig=MonsterConfig.prototype._getSkills.call({actor:{system:fresh}});
+result.missingConfigFields=Object.entries(visConfig).flatMap(([g,ss])=>Object.entries(ss).filter(([,s])=>!s.isVisible).map(([k])=>g+'.'+k));
+assert.deepEqual(result.missingConfigFields,['int.commonspeech']);
+const {modifierMixin}=await import('./module/actor/mixins/modifierMixin.js');
+const context={CONFIG,game,ChatMessageData:class{},RollConfig:class{},getCustomModifier:async()=>'',extendedRoll:async formula=>formula};
+vm.runInNewContext(fs.readFileSync('module/actor/mixins/skillMixin.js','utf8').replace(/^import .*;\r?$/gm,'').replace('export let skillMixin','const skillMixin')+'\nglobalThis.result=skillMixin;',context);
+const actor={system:reload,appliedEffects:[],...modifierMixin,...context.result,addSocialStanding:()=>'',getArmorEcumbrance:()=>0};
+reload.skills.int.commonsp.value=3;reload.skills.int.commonsp.activeEffectModifiers=2;
+reload.skills.int.awareness.value=3;reload.skills.int.awareness.activeEffectModifiers=2;
+result.formulas={commonsp:await actor.rollSkill('commonspeech'),awareness:await actor.rollSkill('awareness')};
+assert(!result.formulas.commonsp.endsWith(' +2'));assert(result.formulas.awareness.endsWith(' +2'));
+await assert.rejects(()=>actor.rollSkillCheck(WITCHER.skillMap.commonsp),/Cannot read properties of undefined/);
+await assert.rejects(()=>actor.levelUpSkill('commonsp'),/Cannot read properties of undefined/);
+await assert.rejects(()=>actor.levelUpSkill('commonspeech'),/Cannot read properties of undefined/);
+result.commonspFailures=['rollSkillCheck(skillMap.commonsp)','levelUpSkill(commonsp)','levelUpSkill(commonspeech)'];
+result.levelUps=[];
+for(const magic of [10,1]){
+ const updates=[],logs=[];
+ const system={skills:{will:{spellcast:{value:2}}},magic:{magicImprovementPoints:magic},improvementPoints:20,logs:{addIpReward:(...a)=>logs.push(a)}};
+ await context.result.levelUpSkill.call({system,update:u=>updates.push(u)},'spellcast');
+ assert.equal(updates.length,1);assert.equal(updates[0]['system.skills.will.spellcast.value'],3);
+ assert.equal(updates[0]['system.magic.magicImprovementPoints'],magic);
+ assert.equal(updates[0]['system.improvementPoints'],magic===10?20:17);
+ result.levelUps.push({magicBefore:magic,update:updates[0],logs});
+}
+const require=createRequire(import.meta.url), H=require('/opt/foundryvtt/node_modules/handlebars').create();
+H.registerHelper('localize',game.i18n.localize);H.registerHelper('gte',(a,b)=>a>=b);H.registerHelper('or',(...a)=>a.slice(0,-1).some(Boolean));
+const current=H.compile(fs.readFileSync('templates/partials/character/skill-display.hbs','utf8'));
+const legacy=H.compile(fs.readFileSync('templates/partials/monster/monster-skill-display.hbs','utf8'));
+const opt={allowProtoMethodsByDefault:true,allowProtoPropertiesByDefault:true},data={skill:reload.skills.int.awareness,name:'awareness',stat:'int'};
+data.skill.isVisible=false;const hidden=current(data,opt),oldHidden=legacy(data,opt);
+data.skill.isVisible=true;const shown=current(data,opt),oldShown=legacy(data,opt);
+assert.equal(hidden,shown);assert(hidden.includes('data-skill="awareness"'));assert.equal(oldHidden.trim(),'');assert(oldShown.includes('awareness'));
+result.visibility={currentIdentical:true,legacyHidden:true,handlebars:H.VERSION};
+import path from 'node:path';
+const files=[];function list(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.posix.join(dir,e.name);if(e.isDirectory())list(p);else if(p.endsWith('.json'))files.push(p);}}list('packsJson');
+const refs=[];function walk(o,file,p=''){if(!o||typeof o!=='object')return;for(const[k,v]of Object.entries(o)){if(typeof v==='string'&&v.startsWith('system.skills.'))refs.push({file,path:p+'.'+k,key:v});walk(v,file,p+'.'+k);}}
+for(const f of files)walk(JSON.parse(fs.readFileSync(f,'utf8')),f);
+const invalid=refs.filter(r=>get({system:fresh},r.key)===undefined);
+assert.equal(files.length,226);assert.equal(refs.length,267);assert.equal(invalid.length,3);
+assert(invalid.every(r=>r.key==='system.skills.int.commonspeech.activeEffectModifiers'));
+result.packPaths={jsonFiles:files.length,refs:refs.length,sourceFiles:new Set(refs.map(r=>r.file)).size,uniquePaths:new Set(refs.map(r=>r.key)).size,valid:refs.length-invalid.length,invalid};
+result.skillMap={entries:result.skillMap.length,validPaths:result.skillMap.filter(s=>s.pathExists).length,mismatchedKeys:result.skillMap.filter(s=>!s.sameKey).map(s=>s.id)};
+console.log(JSON.stringify(result,null,2));
+JS
+```
+
+**Результат:** exit 0, все assert прошли. Фактические числа и строки записаны в таблице выше и карточках issues. Node выдал MODULE_TYPELESS_PACKAGE_JSON и автоматически распознал ES module; конфигурация пакета не изменялась.
+
+При подготовке проверки первый вызов toFormGroup дошёл до отсутствующего DOM createCheckboxInput. Сценарий уточнён: готовый input передаётся в groupConfig, поэтому проверяется выбор label без имитации рендеринга checkbox. Ошибки первого пробного запуска не объявляются ошибками системы.
+
+### Проверка документов и сохранности исходников
+
+Сценарий проверяет состав путей по реестру, Git и дереву, содержимое относительно HEAD/базового среза, метаданные ранее отслеживаемых файлов (mode/uid/gid/inode), девять новых карточек, их таблицы и статусы задач, issues и локальные Markdown-ссылки. Хеши зафиксированы на старте порции.
+
+```bash
+python3 - <<'PY'
+import hashlib, json, os, re, subprocess
+from pathlib import Path
+from urllib.parse import unquote
+base='15da5b225535e34af4e132c701b5353ef4eb667f'
+expected_head='52acddd5fb7d67e993eed1ad2c89b335aef6fd1d'
+registry=Path('docs/analytics/code-audit/registry.md').read_text()
+rows=[line for line in registry.splitlines() if re.match(r'^\| \[[^\]]+\]\(\.\./\.\./\.\./',line)]
+paths=[re.match(r'^\| \[([^\]]+)\]',r).group(1) for r in rows]
+assert len(paths)==len(set(paths))==621
+assert sum(r.endswith('| Проверено |') for r in rows)==25
+assert sum(r.endswith('| Не начат |') for r in rows)==596
+excluded={'README.md','AGENTS.md','LICENSE','.gitignore','.prettierrc','.prettierignore','jsconfig.json.default','package-lock.json','styles/fonts/thewitcher2.ttf'}
+def keep(p):
+ return p.split('/')[0] not in {'.git','docs','assets','.github'} and p not in excluded and not (p.startswith('packs/') and p.endswith('/LOCK'))
+tracked=[p for p in subprocess.check_output(['git','ls-files','-z'],text=True).split('\0') if p]
+assert set(filter(keep,tracked))==set(paths)
+actual=[]
+for d,dirs,files in os.walk('.'):
+ if d=='.':dirs[:]=[x for x in dirs if x not in {'.git','docs','assets','.github'}]
+ for f in files:
+  p=(Path(d)/f).as_posix()
+  if keep(p):actual.append(p)
+assert set(actual)==set(paths)
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==expected_head
+for p in paths:
+ b=Path(p).read_bytes()
+ assert b==subprocess.check_output(['git','show',base+':'+p]),p
+ assert b==subprocess.check_output(['git','show',expected_head+':'+p]),p
+digest=lambda b:hashlib.sha256(b).hexdigest()
+assert digest(b''.join(p.encode()+b'\0'+Path(p).read_bytes()+b'\0' for p in paths))=='9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e'
+meta={p:[Path(p).stat().st_mode,Path(p).stat().st_uid,Path(p).stat().st_gid,Path(p).stat().st_ino] for p in tracked if Path(p).is_file()}
+assert digest(json.dumps(meta,sort_keys=True).encode())=='3b4ce984634e9b72300e49903549c6834564986c0ed6a5662f8ff8a0b631e0a9'
+cards=[p for p in Path('docs/analytics/code-audit/files').rglob('*.md') if p.name!='README.md']
+assert len(cards)==25
+for row in rows:
+ p=re.match(r'^\| \[([^\]]+)\]',row).group(1)
+ c=Path('docs/analytics/code-audit/files')/(p+'.md')
+ assert c.is_file()==row.endswith('| Проверено |'),p
+titles=['Назначение файла','Условия использования','Введённые сущности и действия с ними','Основные функции и методы','Используемые сущности и зависимости','Известные потребители','Данные и изменения состояния','Проверки и доказательства','Непроверенные участки и открытые вопросы','Связанные проблемы','История актуализации']
+for p in ["module/data/actor/templates/common/skills/bodyData.js","module/data/actor/templates/common/skills/craData.js","module/data/actor/templates/common/skills/dexData.js","module/data/actor/templates/common/skills/empData.js","module/data/actor/templates/common/skills/intData.js","module/data/actor/templates/common/skills/refData.js","module/data/actor/templates/common/skills/skillData.js","module/data/actor/templates/common/skills/skillsData.js","module/data/actor/templates/common/skills/willData.js"]:
+ t=Path('docs/analytics/code-audit/files/'+p+'.md').read_text()
+ for title in titles:assert '## '+title in t,(p,title)
+ assert expected_head in t and '| Статус анализа | Проверено |' in t
+issues=list(Path('docs/issues').glob('*'+'/issue-*.md'))
+assert len(issues)==18
+assert {p.stem for p in issues}=={f'issue-{n:05}' for n in range(1,19)}
+assert all(p.parent.name=='potential' for p in issues)
+task=Path('docs/tasks/task-0003.002.md').read_text()
+assert '| Статус | `done` |' in task and '- [ ]' not in task
+assert '| Статус | `in-progress` |' in Path('docs/tasks/task-0003-remaining-files.md').read_text()
+for n in range(3,11):
+ assert '| Статус | `planned` |' in Path(f'docs/tasks/task-0003.{n:03}.md').read_text()
+# Содержательная сверка таблиц групп с определениями файлов.
+skill_dir=Path('module/data/actor/templates/common/skills')
+assert sum(len(p.read_text().splitlines()) for p in skill_dir.glob('*.js'))==262
+for p in skill_dir.glob('*Data.js'):
+ if p.name in {'skillData.js','skillsData.js'}:continue
+ fields=re.findall(r"(\w+): new fields\.EmbeddedDataField\(Skill, \{ label: '([^']+)'",p.read_text())
+ card=Path('docs/analytics/code-audit/files')/(str(p)+'.md')
+ table_rows=[l for l in card.read_text().splitlines() if l.startswith('| '+chr(96))]
+ assert len(fields)==len(table_rows),(p,len(fields),len(table_rows))
+ for key,label in fields:
+  assert any('| '+chr(96)+key+chr(96)+' | '+chr(96)+label+chr(96)+' |' in row for row in table_rows),(p,key)
+assert len(re.findall(r"import .* from './", (skill_dir/'skillsData.js').read_text()))==7
+assert '| Статус | '+chr(96)+'done'+chr(96)+' |' in Path('docs/tasks/task-0003.001.md').read_text()
+checked_links=0
+mdfiles=list(Path('docs').rglob('*.md'))
+def text_only(text):
+ return re.sub(r'^```[^\n]*\n.*?^```[ \t]*$', '',text,flags=re.M|re.S)
+def headings(text):
+ out=set()
+ for h in re.findall(r'^#{1,6}\s+(.+)$',text,flags=re.M):
+  h=re.sub(r'\[([^\]]+)\]\([^)]+\)',r'\1',h)
+  out.add(re.sub(r'[^\w\-\s]','',h.replace('`','').lower()).replace(' ','-'))
+ out.update(re.findall(r'\bid=["\']([^"\']+)',text))
+ return out
+for f in mdfiles:
+ text=re.sub(r'`+[^`]*`+', 'code', text_only(f.read_text()))
+ for label,url in re.findall(r'\[([^\]\n]+)\]\(([^)\n]+)\)',text):
+  if re.match(r'\w+://',url):continue
+  target,_,anchor=url.partition('#')
+  dest=(f.parent/unquote(target)).resolve() if target else f.resolve()
+  assert dest.exists(),(str(f),url)
+  if anchor:assert unquote(anchor) in headings(text_only(dest.read_text())),(str(f),url)
+  checked_links+=1
+changed=subprocess.check_output(['git','status','--porcelain','--untracked-files=all'],text=True).splitlines()
+for row in changed:
+ p=row[3:]
+ assert p.startswith('docs/'),p
+ raw=Path(p).read_text()
+ assert all(l==l.rstrip() for l in raw.splitlines()),p
+ for block in re.findall(r'(?:^\|.*\n)+',text_only(raw),flags=re.M):
+  assert len({len(l.split('|')) for l in block.strip().splitlines()})==1,p
+subprocess.run(['git','diff','--check'],check=True)
+print(json.dumps({'source_files':621,'cards':25,'not_started':596,'new_cards':9,'potential_issues':18,'tracked_metadata_preserved':len(meta),'markdown_files':len(mdfiles),'local_links':checked_links,'changed_docs':len(changed),'source_and_metadata_hashes':'unchanged','diff_check':'passed'},ensure_ascii=False))
+PY
+```
+
+**Фактический итог:** exit 0. Реестр содержит 621 исходник: 25 карточек проверены, 596 файлов не разобраны; добавлены девять карточек. Все 18 issues находятся в potential. Проверены 85 Markdown-документов и 2130 локальных ссылок; изменены или созданы 28 документов. Содержимое 621 исходника и mode/uid/gid/inode всех 750 ранее отслеживаемых файлов сохранены. `git diff --check` прошёл. TASK-0003.002 завершена, родительская TASK-0003 остаётся in-progress; следующая TASK-0003.003 сохраняет статус planned.
+
+### Наблюдения и пределы
+
+Зарегистрированы [issue-00015](../../issues/potential/issue-00015.md), [issue-00016](../../issues/potential/issue-00016.md), [issue-00017](../../issues/potential/issue-00017.md), [issue-00018](../../issues/potential/issue-00018.md); дополнена [issue-00004](../../issues/potential/issue-00004.md). Все остаются potential, подтверждение пользователем и исправления не выполнялись.
+
+Мир, браузерные клики, сохранение документов/компедиумов и полный процесс применения ActiveEffect не проверялись. Наблюдение new CommonActorData({}) не доказывает окончательное состояние Actor после клиентского/серверного цикла создания. Совпадение строковых JSON-путей не доказывает исполнение эффектов или корректность механик по рулбуку. Полный анализ соседних файлов остаётся следующим порциям.
+
 ## TASK-0003.001
 
 Дата: 2026-09-10. Ветка `rusbar-main`, HEAD `7b7788bc614e5b7a57f8c596fb64ca75ecabd8b7`. На старте рабочее дерево было чистым; 741 отслеживаемый файл. Все 621 исходник исследования совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Версия Foundry — 14.367.0 по `/opt/foundryvtt/package.json`.

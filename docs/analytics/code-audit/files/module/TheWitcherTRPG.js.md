@@ -77,7 +77,7 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 | LanguageProvider, game.polyglot.api | Внешний модуль Polyglot | Событие и наследование | polyglot.init, строки 94–134 | Условная интеграция; версия Polyglot и её выполнение не проверены |
 | document, Set, Array | DOM и JavaScript | Внешняя среда | CSS-классы и наборы языков | Использование видно в строках 77–130 |
 | WitcherActor.useItem | [module/actor/witcherActor.js](../../../../../module/actor/witcherActor.js) | Вызов из строки макроса | createMacro, строка 157 | Метод определён с 225-й строки |
-| Навыки языка commonsp/eldersp/dwarven | [module/data/actor/templates/common/skills/intData.js](../../../../../module/data/actor/templates/common/skills/intData.js) | Чтение Actor.system.skills.int | getUserLanguages | Поля модели сверены: стр. 12–14; полный разбор модели вне этапа |
+| Навыки языка commonsp/eldersp/dwarven | [module/data/actor/templates/common/skills/intData.js](../../../../../module/data/actor/templates/common/skills/intData.js) | Чтение Actor.system.skills.int | getUserLanguages | Поля модели сверены: стр. 12–14; полный разбор Intelligence/Skill добавлен в TASK-0003.002 ниже |
 
 ## Известные потребители
 
@@ -106,6 +106,16 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 
 [issue-00002](../../../../issues/potential/issue-00002.md) — отсутствие выбранного компедиума прерывает оставшуюся инициализацию ready.
 
+## Дополнительная сверка навыков — TASK-0003.002
+
+2026-09-10, HEAD `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`; исходник не изменён.
+
+Группа [Intelligence](data/actor/templates/common/skills/intData.js.md) и вложенный [Skill](data/actor/templates/common/skills/skillData.js.md) разобраны полностью. getUserLanguages:102–130 читает существующие commonsp/eldersp/dwarven, три независимых признака обучения и getter modifiedValue=value+activeEffectModifiers. Common добавляется безусловно, затем при условии повторно в тот же Set; literate_languages этим методом не заполняется. Базовое API Polyglot и работа модуля в мире не проверялись.
+
+Результаты и пределы проверок — в [журнале TASK-0003.002](../../review-log.md#task-0003002).
+
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 1 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+2026-09-10 — TASK-0003.002: уточнены связи моделей навыков и их потребителей, добавлены взаимные ссылки и фактические ограничения проверки.

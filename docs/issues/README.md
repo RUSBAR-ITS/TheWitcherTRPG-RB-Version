@@ -17,7 +17,7 @@
 | [issue-00001](potential/issue-00001.md) | Возможное несоответствие регистрации системы в Foundry | `potential` |
 | [issue-00002](potential/issue-00002.md) | Отсутствие выбранного компедиума прерывает обработчик ready | `potential` |
 | [issue-00003](potential/issue-00003.md) | Интеграция statuscounter вызывает querySelector у массива статусов | `potential` |
-| [issue-00004](potential/issue-00004.md) | Выбор общего языка формирует путь commonspeech вместо commonsp | `potential` |
+| [issue-00004](potential/issue-00004.md) | Несогласованные commonspeech/commonsp нарушают обращения к общему языку | `potential` |
 | [issue-00005](potential/issue-00005.md) | Модели и листы четырёх типов не согласованы с манифестом | `potential` |
 | [issue-00006](potential/issue-00006.md) | Эффекты начала хода выполняются при любом обновлении Combat | `potential` |
 | [issue-00007](potential/issue-00007.md) | В подсказках брони перепутаны левая и правая ноги | `potential` |
@@ -28,6 +28,10 @@
 | [issue-00012](potential/issue-00012.md) | Модификаторы luck.max и toxicity.max прибавляются дважды | `potential` |
 | [issue-00013](potential/issue-00013.md) | В знаниях монстра редактор получает исходный текст вместо enriched HTML | `potential` |
 | [issue-00014](potential/issue-00014.md) | Ключ подписи числовой репутации отсутствует в локализациях | `potential` |
+| [issue-00015](potential/issue-00015.md) | Подписи групп не передаются во вложенную модель Skill | `potential` |
+| [issue-00016](potential/issue-00016.md) | Ключи подписей трёх навыков CRA расходятся с локализациями | `potential` |
+| [issue-00017](potential/issue-00017.md) | Повышение магического навыка не списывает магические очки развития | `potential` |
+| [issue-00018](potential/issue-00018.md) | Текущий шаблон навыков монстра не учитывает isVisible | `potential` |
 
 Статус соответствует каталогу карточки. При перемещении обновляются этот реестр и все ссылки на документ. Номер новой карточки определяется по реестру и файлам во всех трёх каталогах.
 
