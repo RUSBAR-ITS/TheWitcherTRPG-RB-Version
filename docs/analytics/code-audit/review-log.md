@@ -1,5 +1,226 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.005
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Рабочее дерево на старте чистое, отслеживались 788 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+Полностью прочитаны семь файлов [TASK-0003.005](../../tasks/task-0003.005.md), всего 118 строк: currencyLogData.js (9), ipLogData.js (9), logData.js (38), skillTrainingData.js (9), pannelsData.js (31), attackData.js (9), attackStatsData.js (13). Результат — семь карточек с определениями, методами, изменениями состояния и таблицами зависимостей. Соседние файлы прочитаны в пределах установления связи и не получают завершённый статус за точечный просмотр.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Источник и фактический результат |
+| --- | --- |
+| Фабрики ↔ поля | Проверены все определения семи файлов, единственный класс Log, три его метода и default exports. Схемы не подменены описанием поведения UI. |
+| Журналы ↔ вложение | currencyLog/ipLog → SchemaField в ArrayField Log → EmbeddedDataField CharacterData.logs. Настоящая модель подтвердила Log.parent=CharacterData и Log.parent.parent=двойник Actor. У MonsterData блока logs нет. |
+| Log ↔ операции | push живого массива предшествует update. Обычные +2 от10→12; magic+3 от8→11; обычный расход -2 от10→8; crown+5 от100→105. Захвачены и записи истории, и остатки. |
+| Log ↔ асинхронность | Документ ядра возвращает Promise из async update; Log возвращает undefined. Два await вызова Log при отложенном сохранении сформировали остатки IP12/13 и crown102/103; два запроса оставались pending. Серверная потеря данных не утверждается. |
+| Обучение ↔ форма ↔ журнал | Четыре независимых name/value. _saveIpSpending читает DOM, не сам слот: ввод '3' даёт числовой остаток7, '-3' — строку '10-3'. Настоящий updateSource(dryRun) принял первый и отверг второй с ошибкой NumberField. |
+| MonsterData ↔ общий skills-шаблон | Текущий WitcherMonsterSheet включает skillTabs.ip и общий tab-skills.hbs. Девять путей ввода (IP и восемь training) найдены в CharacterData, отсутствуют в MonsterData. Рендер/сохранение не запускались. |
+| Навыки ↔ настоящий Log | levelUpSkill spellcast2, magic10 с настоящим Log сформировал сначала update magic6 из Log, затем update magic10 из levelUpSkill. Issue-00017 дополнена конфликтом запросов; предыдущая проверка со stub журнала сохранена как историческая. |
+| Панели ↔ модели и динамические ключи | 22 флага из CommonActorData у персонажа и монстра; 9 substance/6 spell/7 skill dataset-значений совпали с полями. Исходные обработчики для false/true дали 44 соответствующих update. |
+| Панели ↔ выбор шаблонов | 9 substance-флагов связаны с текущим inventory персонажа. 13 skill/spell-флагов читаются старыми monster-* шаблонами; текущие листы выбирают новые общие tab-skills/tab-magic. Наличие старого шаблона не признано текущим использованием. |
+| Атаки ↔ подготовка | BODY1/6/8 при предварительной добавке melee3 дали итог -1/3/5. punch строки 1d6+-4 / 1d6+0 / 1d6+2; kick 1d6+0 / 1d6+4 / 1d6+6. Входной source.meleeBonus=3 обнулён миграцией CommonActorData. |
+| Параметры атак ↔ потребители | meleeBonus используется условно в weaponAttack/doProfessionAttackRoll. crit-поля копируются в damage.crit и применяются для случайной локации и выбора травмы; точные условия описаны. Punch/kick за пределами определения/присваивания не имеют найденных явных читателей в исследованной области. |
+| Мастер/переводы/JSON ↔ схемы | Все три пути getOtherSuggestions найдены в CommonActorData; 11 ключей переводов en/ru после expandObject существуют. В 226 JSON нет строковых путей префиксов logs/skillTrainingN/pannels/attackStats. |
+| Двусторонние связи | Дополнены карточки currencyData, statsData, skillData, config, registerDataModels, registerSheets и TheWitcherTRPG.js; новые карточки ссылаются на проверенные определения. Версии предыдущих проверок сохранены. |
+| Issues ↔ наблюдения | Созданы issue-00028–issue-00030, уточнена issue-00017; все 30 карточек остаются potential. Поведение миграции meleeBonus, отсутствие читателей punch/kick и сохранение старых флагов не объявлены ошибками без дополнительного основания. |
+
+### Выполненные команды и изолированный сценарий
+
+Исходное состояние: git status --short, git rev-parse HEAD, git branch --show-current; сверка всех 621 файла с git show базового коммита и вычисление SHA256. Полный нумерованный вывод семи исходников. Поиск rg по currencyLog/ipLog/addIpReward/addCurrencyReward, skillTraining, pannels, attackStats, punch/kick, calculateAttackStats и crit-модификаторам в module/, templates/, packsJson/. При отдельных поисках были указаны несуществующий старый путь tab-inventory.hbs и нераскрывшийся glob module/item/mixins/weapon*: эти попытки вернули exit2. После этого проверены реальные пути из rg --files/найденных imports и нужные определения; выводы не основаны на отсутствующих файлах. Обрезанные соседние фрагменты дополнялись точечными чтениями.
+
+Из корня репозитория выполнено без создания файла скрипта:
+
+```sh
+node --input-type=module - <<'JS'
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+const utils=await import('/opt/foundryvtt/common/utils/helpers.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel},utils,applications:{api:{DialogV2:{}}}};
+const {default:Character}=await import('./module/data/actor/characterData.js');
+const {default:Monster}=await import('./module/data/actor/monsterData.js');
+const {default:Common}=await import('./module/data/actor/commonActorData.js');
+const {default:Log}=await import('./module/data/actor/templates/character/logData.js');
+const {WITCHER}=await import('./module/setup/config.js');
+const game={settings:{get:()=>false},i18n:{localize:k=>k}};
+const baseGlobals={foundry,game,CONFIG:{WITCHER}};
+const copy=o=>JSON.parse(JSON.stringify(o));
+function source(file,names,extra={}){
+ const code=fs.readFileSync(file,'utf8').replace(/^import .*;\r?$/gm,'').replace(/^export (?=(?:async )?(?:function|let|const|class))/gm,'');
+ const ctx={...baseGlobals,...extra};
+ vm.runInNewContext("'use strict';\n"+code+'\nthis.result={'+names.join(',')+'};',ctx,{filename:file});
+ return ctx.result;
+}
+const fresh=new Character({});
+assert(fresh.logs instanceof Log);assert.equal(fresh.logs.parent,fresh);
+assert.deepEqual(fresh.logs.toObject(),{ipLog:[],currencyLog:[]});
+const log=new Log({ipLog:[{}],currencyLog:[{}]});
+assert.deepEqual(log.toObject(),{ipLog:[{label:'',ip:0,isMagic:false}],currencyLog:[{label:'',amount:0,type:''}]});
+for(let i=1;i<=4;i++)assert.deepEqual(fresh['skillTraining'+i],{name:'',value:0});
+fresh.skillTraining1.value=3;assert.equal(fresh.skillTraining2.value,0);
+const pannels=Object.keys(fresh.pannels);
+assert.equal(pannels.length,22);assert(Object.values(fresh.pannels).every(v=>v===false));
+for(const Model of [Common,Character,Monster]){
+ const model=new Model({});assert.deepEqual(Object.keys(model.pannels),pannels);
+ assert.deepEqual(model.attackStats,{meleeBonus:0,punch:{label:'WITCHER.Actor.DerStat.Punch',value:''},kick:{label:'WITCHER.Actor.DerStat.Kick',value:''},critLocationModifier:0,critEffectModifier:0});
+}
+const monster=new Monster({});
+for(const key of ['logs','improvementPoints','magic','skillTraining1','skillTraining2','skillTraining3','skillTraining4'])assert.equal(monster[key],undefined);
+const r={defaults:{logs:log.toObject(),trainingSlots:4,pannels:pannels.length,attackStats:copy(fresh.attackStats)},monsterAbsent:['logs','improvementPoints','magic','skillTraining1','skillTraining2','skillTraining3','skillTraining4']};
+function actorWithQueue(){
+ const pending=[],updates=[];
+ const actor=new (class ActorDouble extends DataModel {static TYPES=[];static defineSchema(){return {}}})({});
+ actor.update=data=>{
+   updates.push(copy(data));
+   return new Promise(resolve=>pending.push(()=>resolve(actor)));
+ };
+ actor.system=new Character({improvementPoints:10,magic:{magicImprovementPoints:8},currency:{crown:100}},{parent:actor});
+ assert.equal(actor.system.logs.parent.parent,actor);
+ return {actor,updates,pending};
+}
+r.rewards=[];
+for(const [name,call,key,expected] of [
+ ['normal',log=>log.addIpReward('reward',2,false),'system.improvementPoints',12],
+ ['magic',log=>log.addIpReward('reward',3,true),'system.magic.magicImprovementPoints',11],
+ ['spend',log=>log.addIpReward('spend',-2),'system.improvementPoints',8],
+ ['currency',log=>log.addCurrencyReward('reward',5,'crown'),'system.currency.crown',105]
+]){
+ const c=actorWithQueue(),result=call(c.actor.system.logs);
+ assert.equal(result,undefined);assert.equal(c.pending.length,1);assert.equal(c.updates[0][key],expected);
+ r.rewards.push({name,result:'undefined',pending:1,update:c.updates[0]});c.pending.forEach(done=>done());
+}
+r.pendingRewards={};
+for(const kind of ['ip','currency']){
+ const c=actorWithQueue();
+ const log=c.actor.system.logs;
+ if(kind==='ip'){await log.addIpReward('a',2,false);await log.addIpReward('b',3,false)}
+ else{await log.addCurrencyReward('a',2,'crown');await log.addCurrencyReward('b',3,'crown')}
+ const key=kind==='ip'?'system.improvementPoints':'system.currency.crown';
+ r.pendingRewards[kind]={writes:c.updates.map(v=>v[key]),pending:c.pending.length};
+ assert.deepEqual(r.pendingRewards[kind].writes,kind==='ip'?[12,13]:[102,103]);
+ c.pending.forEach(done=>done());
+}
+const text=fs.readFileSync('module/actor/sheets/WitcherCharacterSheet.js','utf8');
+const method=text.slice(text.indexOf('    async _saveIpSpending(event) {'),text.indexOf('    async _renderRewards() {'));
+const context={};vm.runInNewContext('this.Sheet=class {\n'+method+'\n}',context);
+r.manual=[];
+for(const value of ['3','-3']){
+ const c=actorWithQueue();
+ await context.Sheet.prototype._saveIpSpending.call({actor:c.actor},{currentTarget:{parentElement:{children:{item:i=>({value:i===0?'training':value})}}}});
+ const write=c.updates[0],balance=write['system.improvementPoints'];
+ let valid=true,message='';
+ try{
+   const delta=Object.fromEntries(Object.entries(write).map(([k,v])=>[k.replace(/^system\./,''),v]));
+   c.actor.system.updateSource(delta,{dryRun:true});
+ }catch(e){valid=false;message=e.message}
+ r.manual.push({input:value,balance,balanceType:typeof balance,valid,message,log:write['system.logs.ipLog']});
+ assert.equal(balance,value==='3'?7:'10-3');assert.equal(valid,value==='3');
+ c.pending.forEach(done=>done());
+}
+const {skillMixin}=source('module/actor/mixins/skillMixin.js',['skillMixin']);
+const trained=actorWithQueue();trained.actor.system.skills.will.spellcast.value=2;trained.actor.system.magic.magicImprovementPoints=10;
+await skillMixin.levelUpSkill.call(trained.actor,'spellcast');
+assert.equal(trained.updates.length,2);
+assert.equal(trained.updates[0]['system.magic.magicImprovementPoints'],6);
+assert.equal(trained.updates[1]['system.magic.magicImprovementPoints'],10);
+r.levelUpWithRealLog=trained.updates;
+trained.pending.forEach(done=>done());
+const {itemMixin}=source('module/actor/sheets/mixins/itemMixin.js',['itemMixin'],{WITCHER});
+const {skillMixin:sheetSkills}=source('module/actor/sheets/mixins/skillMixin.js',['skillMixin']);
+const cases=[
+ ['templates/partials/character/substances.hbs','subtype',itemMixin._onSubstanceDisplay],
+ ['templates/partials/monster/monster-spell-tab.hbs','spelltype',itemMixin._onSpellDisplay],
+ ['templates/partials/monster/monster-skill-tab.hbs','skilltype',sheetSkills._onSkillDisplay]
+];
+const writes=[];
+for(const [file,attribute,fn] of cases){
+ const names=[...fs.readFileSync(file,'utf8').matchAll(new RegExp('data-'+attribute+'="([^"]+)"','g'))].map(m=>m[1]);
+ for(const name of names){
+  const key=name+'IsOpen';assert(Character.schema.getField('pannels.'+key));
+  const actor={system:new Character({}),update:data=>writes.push(copy(data))};
+  for(const old of [false,true]){
+   actor.system.pannels[key]=old;
+   fn.call({actor},{preventDefault(){},currentTarget:{closest:()=>({dataset:{[attribute]:name}})}});
+   assert.equal(writes.at(-1)['system.pannels.'+key],!old);
+  }
+ }
+}
+assert.equal(writes.length,44);r.panelToggle={fields:22,writes:44};
+const actorText=fs.readFileSync('module/actor/witcherActor.js','utf8');
+const calc=actorText.slice(actorText.indexOf('    calculateAttackStats() {'),actorText.indexOf('    async applyStatus('));
+const ctx={};vm.runInNewContext('this.Calculator=class {\n'+calc+'\n}',ctx);
+r.attack=[];
+for(const body of [1,6,8]){
+ const model=new Common({});model.stats.body.value=body;model.attackStats.meleeBonus=3;
+ ctx.Calculator.prototype.calculateAttackStats.call({system:model});
+ r.attack.push({body,...copy(model.attackStats)});
+}
+assert.deepEqual(r.attack.map(v=>v.meleeBonus),[-1,3,5]);
+assert.deepEqual(r.attack.map(v=>v.punch.value),['1d6+-4','1d6+0','1d6+2']);
+assert.equal(new Common({attackStats:{meleeBonus:3}}).attackStats.meleeBonus,0);
+r.savedMeleeMigration=0;
+const {baseMixin}=source('module/activeEffect/mixins/baseMixin.js',['baseMixin']);
+const suggestions=Object.values(baseMixin.getOtherSuggestions());
+assert.equal(suggestions.length,3);
+for(const s of suggestions)assert(Common.schema.getField(s.value.slice(7)));
+r.attackSuggestions=suggestions.map(v=>v.value);
+const missing=[];
+const trainingText=fs.readFileSync('templates/partials/character/tab-skills.hbs','utf8');
+for(const match of trainingText.matchAll(/name="(system\.(?:skillTraining\d\.(?:name|value)|improvementPoints))"/g)){
+ const path=match[1].slice(7);
+ assert(Character.schema.getField(path));
+ if(!Monster.schema.getField(path))missing.push(match[1]);
+}
+assert.equal(missing.length,9);r.monsterFormFieldsMissing=missing;
+const labels=['WITCHER.Actor.DerStat.Punch','WITCHER.Actor.DerStat.Kick',...suggestions.map(v=>v.label),'WITCHER.rewards.dialog.label','WITCHER.rewards.dialog.ip','WITCHER.rewards.dialog.magicIp','WITCHER.rewards.dialog.currency','WITCHER.rewards.dialog.currencyType','WITCHER.Actor.SkillName'];
+r.labels={};
+for(const lang of ['en','ru']){
+ const data=utils.expandObject(JSON.parse(fs.readFileSync('lang/'+lang+'.json')));
+ const absent=labels.filter(k=>utils.getProperty(data,k)===undefined);
+ assert.equal(absent.length,0);r.labels[lang]={checked:labels.length,absent};
+}
+const files=[],refs=[];
+function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())walk(p);else if(p.endsWith('.json'))files.push(p)}}
+walk('packsJson');
+function scan(value,file,path=''){
+ if(typeof value==='string'&&/^system\.(?:logs(?:\.|$)|skillTraining\d(?:\.|$)|pannels(?:\.|$)|attackStats(?:\.|$))/.test(value))refs.push({file,path,value});
+ else if(value&&typeof value==='object')for(const [k,v] of Object.entries(value))scan(v,file,path+'.'+k);
+}
+for(const file of files)scan(JSON.parse(fs.readFileSync(file)),file);
+for(const ref of refs)assert(Character.schema.getField(ref.value.slice(7)),ref.value);
+r.packs={files:files.length,refs};
+console.log(JSON.stringify(r));
+
+JS
+```
+
+Результат: exit 0. Вывод:
+
+```text
+{"defaults":{"logs":{"ipLog":[{"label":"","ip":0,"isMagic":false}],"currencyLog":[{"label":"","amount":0,"type":""}]},"trainingSlots":4,"pannels":22,"attackStats":{"meleeBonus":0,"punch":{"label":"WITCHER.Actor.DerStat.Punch","value":""},"kick":{"label":"WITCHER.Actor.DerStat.Kick","value":""},"critLocationModifier":0,"critEffectModifier":0}},"monsterAbsent":["logs","improvementPoints","magic","skillTraining1","skillTraining2","skillTraining3","skillTraining4"],"rewards":[{"name":"normal","result":"undefined","pending":1,"update":{"system.logs.ipLog":[{"label":"reward","ip":2,"isMagic":false}],"system.improvementPoints":12}},{"name":"magic","result":"undefined","pending":1,"update":{"system.logs.ipLog":[{"label":"reward","ip":3,"isMagic":true}],"system.magic.magicImprovementPoints":11}},{"name":"spend","result":"undefined","pending":1,"update":{"system.logs.ipLog":[{"label":"spend","ip":-2}],"system.improvementPoints":8}},{"name":"currency","result":"undefined","pending":1,"update":{"system.logs.currencyLog":[{"label":"reward","amount":5,"type":"crown"}],"system.currency.crown":105}}],"pendingRewards":{"ip":{"writes":[12,13],"pending":2},"currency":{"writes":[102,103],"pending":2}},"manual":[{"input":"3","balance":7,"balanceType":"number","valid":true,"message":"","log":[{"label":"training","ip":-3}]},{"input":"-3","balance":"10-3","balanceType":"string","valid":false,"message":"CharacterData validation errors: SchemaField#_updateDiff\n  improvementPoints: must be a number","log":[{"label":"training","ip":"-3"}]}],"levelUpWithRealLog":[{"system.logs.ipLog":[{"label":"WITCHER.skills.spellCasting.label 2 -> 3","ip":-4,"isMagic":true}],"system.magic.magicImprovementPoints":6},{"system.skills.will.spellcast.value":3,"system.magic.magicImprovementPoints":10,"system.improvementPoints":10}],"panelToggle":{"fields":22,"writes":44},"attack":[{"body":1,"meleeBonus":-1,"punch":{"label":"WITCHER.Actor.DerStat.Punch","value":"1d6+-4"},"kick":{"label":"WITCHER.Actor.DerStat.Kick","value":"1d6+0"},"critLocationModifier":0,"critEffectModifier":0},{"body":6,"meleeBonus":3,"punch":{"label":"WITCHER.Actor.DerStat.Punch","value":"1d6+0"},"kick":{"label":"WITCHER.Actor.DerStat.Kick","value":"1d6+4"},"critLocationModifier":0,"critEffectModifier":0},{"body":8,"meleeBonus":5,"punch":{"label":"WITCHER.Actor.DerStat.Punch","value":"1d6+2"},"kick":{"label":"WITCHER.Actor.DerStat.Kick","value":"1d6+6"},"critLocationModifier":0,"critEffectModifier":0}],"savedMeleeMigration":0,"attackSuggestions":["system.attackStats.meleeBonus","system.attackStats.critLocationModifier","system.attackStats.critEffectModifier"],"monsterFormFieldsMissing":["system.improvementPoints","system.skillTraining1.name","system.skillTraining1.value","system.skillTraining2.name","system.skillTraining2.value","system.skillTraining3.name","system.skillTraining3.value","system.skillTraining4.name","system.skillTraining4.value"],"labels":{"en":{"checked":11,"absent":[]},"ru":{"checked":11,"absent":[]}},"packs":{"files":226,"refs":[]}}
+(node:672219) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///var/lib/foundryvtt/Data/systems/TheWitcherTRPG-RB-Version/module/data/actor/characterData.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /var/lib/foundryvtt/Data/systems/TheWitcherTRPG-RB-Version/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+При настройке изолированного сценария первоначально передан простой объект parent; DataModel его отверг. Двойник заменён подклассом настоящего DataModel с defineSchema и TYPES=[], чтобы TypeDataModel не искал провайдера вымышленного типа документа. Это исправления окружения проверки по /opt/foundryvtt/common/abstract/data.mjs:46–51,159 и /opt/foundryvtt/common/data/fields.mjs:4234–4242, не ошибки системы. Предупреждение Node MODULE_TYPELESS_PACKAGE_JSON относится к загрузке ES modules; package.json не менялся.
+
+Подменены: Actor как минимальный DataModel-владелец, update как очередь записанных аргументов с управляемым Promise, DOM children/item/value и closest/dataset, game.settings/i18n. Настоящие: DataModel/TypeDataModel/fields/CharacterData/CommonActorData/MonsterData/Log и фабрики, три метода переключения флагов, levelUpSkill, _saveIpSpending, calculateAttackStats, getOtherSuggestions. Два метода классов извлечены из исходного текста без изменения тел. updateSource(...,{dryRun:true}) проверяет данные в памяти, без сохранения. Родительская цепочка проверена на настоящих моделях, но полного Document Actor нет.
+
+Не проверены: игровой мир, DOM/браузер, реальные формы/диалоги, права и HTTP-доступ Foundry, отказ/порядок обработки серверных обновлений, полный цикл подготовки Actor, настоящий ActiveEffect, броски и соответствие игровым правилам. Отложенные Promise сценария разрешены вручную после записи наблюдений.
+
+### Проверка документации и состава
+
+Проверки после оформления: соответствие 621 пути Git и фактическому дереву; байты каждого исходника против среза TASK-0001 и HEAD; SHA256 исходников; mode/uid/gid/inode всех 788 ранее отслеживаемых файлов; 48 карточек/строк реестра и семь новых исходников порции; обязательные разделы/поля; уникальные issues и состояния задач; локальные ссылки/якоря; таблицы Markdown; git diff --check. История журнала до этой порции сравнивается с HEAD без изменений.
+
+Итог проверки: exit 0. Реестр — 621 исходник, 48 проверенных карточек, 573 файла не разобраны; добавлены семь карточек. Все 30 issues находятся в potential. Проверены 120 Markdown-документов и 2712 локальных ссылок; изменены или созданы 29 документов. Содержимое исходников и mode/uid/gid/inode всех 788 ранее отслеживаемых файлов сохранены; git diff --check прошёл. Историческая часть журнала совпала с HEAD. TASK-0003.005 завершена, родительская TASK-0003 остаётся in-progress; следующая TASK-0003.006 — planned.
+
 ## TASK-0003.004
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. На старте рабочее дерево чистое, отслеживались 776 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

@@ -361,3 +361,9 @@
 Семь типов [damageTypeModification](../data/actor/templates/character/general/damage/damageTypeModificationData.js.md) сопоставлены с damageTypes:733–768 (в конфигурации есть дополнительный silver). Отсутствие silver в схеме оставлено вопросом, а не объявлено ошибкой. Проверен 51 связанный ключ переводов en/ru после foundry.utils.expandObject; в том числе составной JSON-ключ background.other. Это соответствует нормализации загрузчика Foundry /opt/foundryvtt/client/helpers/localization.mjs:365–368.
 
 [Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).
+
+## Уточнение TASK-0003.005
+
+2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Сверены семь ключей WITCHER.currency с использованием type в [журнале валют](../data/actor/templates/character/currencyLogData.js.md) и lookup шаблона. Три пути getOtherSuggestions подтверждены в [attackStats](../data/actor/templates/character/attackStatsData.js.md). Проверены 11 ключей en/ru: Punch/Kick, подписи трёх числовых модификаторов, пяти полей журналов и SkillName. Конфигурация и схемы не менялись.
+
+[Сверка TASK-0003.005](../../../review-log.md#task-0003005).

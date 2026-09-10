@@ -163,3 +163,9 @@
 2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Проверена вложенность зарегистрированных CharacterData и MonsterData: [generalData](../data/actor/templates/character/generalData.js.md) подключается только CharacterData:16, а [damageTypeModificationData](../data/actor/templates/character/general/damage/damageTypeModificationData.js.md) подключается CommonActorData:49 и наследуется обоими. Настоящие экземпляры подтвердили эти пути; у Monster нет general, у Loot нет damageTypeModification. Регистрация Item.HomelandData создаёт отдельную схему и не переиспользует фабрику родины Actor.
 
 [Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).
+
+## Уточнение TASK-0003.005
+
+2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Уточнены вложенные структуры: CharacterData содержит [Log](../data/actor/templates/character/logData.js.md) через EmbeddedDataField и четыре [skillTraining](../data/actor/templates/character/skillTrainingData.js.md); CommonActorData содержит [pannels](../data/actor/templates/character/pannelsData.js.md) и [attackStats](../data/actor/templates/character/attackStatsData.js.md). Настоящие CharacterData/MonsterData подтвердили владельцев: у монстра нет logs, полей IP и обучения, но есть панели/атаки. Связанный общий шаблон разобран в [issue-00030](../../../../../issues/potential/issue-00030.md).
+
+[Сверка TASK-0003.005](../../../review-log.md#task-0003005).

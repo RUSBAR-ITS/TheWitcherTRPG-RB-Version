@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.004 проверены описания **41 файла**, для **580 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.005 проверены описания **48 файлов**, для **573 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.004](review-log.md#task-0003004) выполнена на `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.005](review-log.md#task-0003005) выполнена на `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -75,9 +75,9 @@
 | [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/lootData.js](../../../module/data/actor/lootData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/monsterData.js](../../../module/data/actor/monsterData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/attackData.js](../../../module/data/actor/templates/character/attackData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/attackStatsData.js](../../../module/data/actor/templates/character/attackStatsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/currencyLogData.js](../../../module/data/actor/templates/character/currencyLogData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/templates/character/attackData.js](../../../module/data/actor/templates/character/attackData.js) | Строковая пара label/value для punch и kick | [Карточка](files/module/data/actor/templates/character/attackData.js.md) | Проверено |
+| [module/data/actor/templates/character/attackStatsData.js](../../../module/data/actor/templates/character/attackStatsData.js) | Общие данные ближнего боя и модификаторы критов | [Карточка](files/module/data/actor/templates/character/attackStatsData.js.md) | Проверено |
+| [module/data/actor/templates/character/currencyLogData.js](../../../module/data/actor/templates/character/currencyLogData.js) | Поля одной записи журнала валют | [Карточка](files/module/data/actor/templates/character/currencyLogData.js.md) | Проверено |
 | [module/data/actor/templates/character/general/backgroundData.js](../../../module/data/actor/templates/character/general/backgroundData.js) | HTML-поле биографии персонажа | [Карточка](files/module/data/actor/templates/character/general/backgroundData.js.md) | Проверено |
 | [module/data/actor/templates/character/general/damage/damageModificationData.js](../../../module/data/actor/templates/character/general/damage/damageModificationData.js) | Параметры flat, multiplication и applyAP для типа урона | [Карточка](files/module/data/actor/templates/character/general/damage/damageModificationData.js.md) | Проверено |
 | [module/data/actor/templates/character/general/damage/damageTypeModificationData.js](../../../module/data/actor/templates/character/general/damage/damageTypeModificationData.js) | Семь наборов изменений урона общей модели Actor | [Карточка](files/module/data/actor/templates/character/general/damage/damageTypeModificationData.js.md) | Проверено |
@@ -86,10 +86,10 @@
 | [module/data/actor/templates/character/general/lifeEventData.js](../../../module/data/actor/templates/character/general/lifeEventData.js) | Поля одной записи события жизни и состояние раскрытия | [Карточка](files/module/data/actor/templates/character/general/lifeEventData.js.md) | Проверено |
 | [module/data/actor/templates/character/general/lifeEventsData.js](../../../module/data/actor/templates/character/general/lifeEventsData.js) | Двадцать событий жизни с ключами 10–200 | [Карточка](files/module/data/actor/templates/character/general/lifeEventsData.js.md) | Проверено |
 | [module/data/actor/templates/character/generalData.js](../../../module/data/actor/templates/character/generalData.js) | Сборка общих сведений персонажа в system.general | [Карточка](files/module/data/actor/templates/character/generalData.js.md) | Проверено |
-| [module/data/actor/templates/character/ipLogData.js](../../../module/data/actor/templates/character/ipLogData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/logData.js](../../../module/data/actor/templates/character/logData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/pannelsData.js](../../../module/data/actor/templates/character/pannelsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/skillTrainingData.js](../../../module/data/actor/templates/character/skillTrainingData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/templates/character/ipLogData.js](../../../module/data/actor/templates/character/ipLogData.js) | Поля одной записи журнала очков развития | [Карточка](files/module/data/actor/templates/character/ipLogData.js.md) | Проверено |
+| [module/data/actor/templates/character/logData.js](../../../module/data/actor/templates/character/logData.js) | Модель журналов и операции наград/расходов | [Карточка](files/module/data/actor/templates/character/logData.js.md) | Проверено |
+| [module/data/actor/templates/character/pannelsData.js](../../../module/data/actor/templates/character/pannelsData.js) | 22 флага раскрытия разделов интерфейса Actor | [Карточка](files/module/data/actor/templates/character/pannelsData.js.md) | Проверено |
+| [module/data/actor/templates/character/skillTrainingData.js](../../../module/data/actor/templates/character/skillTrainingData.js) | Пара name/value ручного обучения персонажа | [Карточка](files/module/data/actor/templates/character/skillTrainingData.js.md) | Проверено |
 | [module/data/actor/templates/common/adrenalineData.js](../../../module/data/actor/templates/common/adrenalineData.js) | Поля количества адреналина и его подписи | [Карточка](files/module/data/actor/templates/common/adrenalineData.js.md) | Проверено |
 | [module/data/actor/templates/common/combatEffectsData.js](../../../module/data/actor/templates/common/combatEffectsData.js) | Модификаторы атаки/защиты, воздействия начала хода и временные HP | [Карточка](files/module/data/actor/templates/common/combatEffectsData.js.md) | Проверено |
 | [module/data/actor/templates/common/currencyData.js](../../../module/data/actor/templates/common/currencyData.js) | Семь числовых остатков валют Actor | [Карточка](files/module/data/actor/templates/common/currencyData.js.md) | Проверено |
