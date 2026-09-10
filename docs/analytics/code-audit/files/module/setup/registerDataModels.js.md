@@ -157,3 +157,9 @@
 2026-09-10 — TASK-0003.002: уточнены связи моделей навыков и их потребителей, добавлены взаимные ссылки и фактические ограничения проверки.
 
 2026-09-10 — TASK-0003.003: актуализированы связи с полностью разобранными структурами состояния Actor; ограничения полного клиента сохранены.
+
+## Уточнение TASK-0003.004
+
+2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Проверена вложенность зарегистрированных CharacterData и MonsterData: [generalData](../data/actor/templates/character/generalData.js.md) подключается только CharacterData:16, а [damageTypeModificationData](../data/actor/templates/character/general/damage/damageTypeModificationData.js.md) подключается CommonActorData:49 и наследуется обоими. Настоящие экземпляры подтвердили эти пути; у Monster нет general, у Loot нет damageTypeModification. Регистрация Item.HomelandData создаёт отдельную схему и не переиспользует фабрику родины Actor.
+
+[Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).

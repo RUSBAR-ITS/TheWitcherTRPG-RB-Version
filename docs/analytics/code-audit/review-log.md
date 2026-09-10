@@ -1,5 +1,218 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.004
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. На старте рабочее дерево чистое, отслеживались 776 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+Полностью прочитаны восемь файлов [TASK-0003.004](../../tasks/task-0003.004.md), всего 116 строк: backgroundData.js (7), detailsData.js (16), homelandData.js (9), lifeEventData.js (10), lifeEventsData.js (29), generalData.js (21), damageModificationData.js (9), damageTypeModificationData.js (15). Соседние модели, обработчики и шаблоны проверены до определений используемых сущностей; отдельными завершёнными карточками они не считаются.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Источники и фактический результат |
+| --- | --- |
+| Схемы ↔ включение | background/details/homeland/lifeEvents → general → CharacterData; damageModification → damageTypeModification → CommonActorData → CharacterData/MonsterData. Восьми карточкам соответствуют восемь строк реестра. |
+| Биография ↔ enrichedText ↔ форма | CharacterData:34–40 и createEnrichedText передают исходную строку, отдельный enriched и HTMLField в formGroup tab-background:52. TextEditor подменён сборщиком аргументов; редактор не запускался. |
+| Подробности ↔ valueLabel | Семь пар value/label, динамические inputs tab-background:27–33; текстовая general.reputation отличается от числовой system.reputation. Карточка valueLabel дополнена. |
+| Родина ↔ Item ↔ шаблоны | В отсутствие Item.homeland используются general.homeland.value/otherValue; при наличии Item оба шаблона выбирают его данные. WITCHER.homelands содержит 26 вариантов, schema choices не ограничены. |
+| Социальное положение ↔ формула | Шесть вариантов CONFIG, строковый socialStanding. Исходный addSocialStanding: tolerated/emp/charisma → -1, hatedFeared → -2-1, feared/will/intimidation → +1, equal → пусто. Это код, не проверка рулбука. |
+| События ↔ контекст ↔ схема | Двадцать ключей 10–200 и decade=1–20. Подготовка контекста заменяет объект живой модели массивом; toObject(false) читает ключ 10 как исходную запись 110, ключ 20=undefined. _source/toObject() сохранены; toggle формирует update для ключа 10. |
+| Счётчик ↔ eachLimit | Реальная модель принимает 21; HTML-ввод ограничен 1–20. Исходный helper при 2 выдаёт записи key10/20, при 21 — один undefined. Достижимость обхода ограничений обычной формы не установлена. |
+| Типы урона ↔ мастер эффектов | Семь типов × три поля =21 путь; исходный getDamageModifcators выдаёт их для Actor и принадлежащего ему Item, 0 для самостоятельного Item. Все 21 пути найдены в схеме. В CONFIG есть дополнительный silver; отсутствие его в схеме оставлено вопросом. |
+| Параметры ↔ обработчики | applyAP=true без AP вызывает TypeError из-за damageProperties вместо properties; AP даёт ранний выход. multiplication=0.5 для damage10 даёт 10/2/2/0 без брони/с надетой/с естественной/с обеими. flat=-3/0/+3 даёт [10]/[10]/[10,3]. |
+| Переводы ↔ реальные правила чтения | 51 ключ en/ru найден после foundry.utils.expandObject; составной background.other также найден. Источник нормализации: /opt/foundryvtt/client/helpers/localization.mjs:365–368. |
+| JSON-компедиумы ↔ пути | Рекурсивно просмотрены строковые значения 226 packsJson/*.json: путей с префиксами system.general или system.damageTypeModification нет. Бинарные packs/БД не исследовались. |
+| Уже описанные зависимости ↔ новые карточки | Дополнены valueLabelData, dataUtils, config, handlebars, registerDataModels; сохранены версии и предыдущие записи. Issue-00021 дополнена связью потерянного damage.type с fallback getters. |
+| Наблюдения ↔ issues | Зарегистрированы issue-00024–issue-00027; 27 карточек остаются potential. Отдельные issues для серебра, произвольных строк, счётчика вне HTML-диапазона и отсутствия прямых потребителей name/race/reputation не создавались без достаточного основания. |
+
+### Фактически выполненные проверки
+
+Чтение: git status --short; git rev-parse HEAD; git branch --show-current; полный вывод восьми исходников с номерами строк. Поиск rg по именам фабрик, general.*, lifeEvents, lifeEventCounter, getDamageModifcators, getFlatDamageMod/getMultiDamageMod, calculateArmorResistances, applyAP и consumers в module/, templates/, packsJson/. Первичный поиск включал несуществующий корневой scripts/ и вернул exit 2; далее использовался реальный каталог module/, включающий module/scripts/. Вывод с обрезанными соседними фрагментами дополнен точечными чтениями нужных определений.
+
+Изолированный запуск выполнен из корня репозитория, без создания стенда и файлов скрипта:
+
+```sh
+node --input-type=module - <<'JS'
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+const utils=await import('/opt/foundryvtt/common/utils/helpers.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel},utils,applications:{api:{DialogV2:{}}}};
+const {default:Character}=await import('./module/data/actor/characterData.js');
+const {default:Monster}=await import('./module/data/actor/monsterData.js');
+const {default:Common}=await import('./module/data/actor/commonActorData.js');
+const {default:Loot}=await import('./module/data/actor/lootData.js');
+const {WITCHER}=await import('./module/setup/config.js');
+const {DamageInstance}=await import('./module/scripts/damageInstance.js');
+const game={settings:{get:()=>false},i18n:{localize:k=>k}};
+const baseGlobals={foundry,game,CONFIG:{WITCHER},DamageInstance};
+function source(file,names,extra={}){
+ const code=fs.readFileSync(file,'utf8').replace(/^import .*;\r?$/gm,'').replace(/^export (?=(?:async )?(?:function|let|const|class))/gm,'');
+ const ctx={...baseGlobals,...extra};
+ vm.runInNewContext("'use strict';\n"+code+'\nthis.result={'+names.join(',')+'};',ctx,{filename:file});
+ return ctx.result;
+}
+const char=new Character({});
+const obj=char.toObject();
+assert.equal(char.general.background.value,'');
+assert.equal(Character.schema.getField('general.background.value').constructor.name,'HTMLField');
+assert.equal(Object.keys(char.general.details).length,7);
+for(const detail of Object.values(char.general.details)){assert.equal(detail.value,'');assert(detail.label.startsWith('WITCHER.'))}
+assert.deepEqual(char.general.homeland,{value:'',otherValue:''});
+assert.deepEqual(char.general.reputation,{value:'',label:'WITCHER.Reputation'});
+assert.equal(char.general.age,0);
+for(const k of ['name','race','socialStanding'])assert.equal(char.general[k],'');
+const lifeKeys=Array.from({length:20},(_,i)=>String((i+1)*10));
+assert.deepEqual(Object.keys(char.general.lifeEvents),lifeKeys);
+lifeKeys.forEach((key,i)=>assert.deepEqual(char.general.lifeEvents[key],{decade:i+1,value:'',details:'',isOpened:false}));
+const damageKeys=['slashing','piercing','bludgeoning','elemental','electricity','fire','ice'];
+for(const Model of [Common,Character,Monster]){
+ const model=new Model({});
+ assert.deepEqual(Object.keys(model.damageTypeModification),damageKeys);
+ for(const v of Object.values(model.damageTypeModification))assert.deepEqual(v,{flat:0,multiplication:1,applyAP:false});
+}
+assert.equal(new Monster({}).general,undefined);
+assert.equal(new Loot({}).damageTypeModification,undefined);
+const odd=new Character({general:{age:-1.5,homeland:{value:'custom'},lifeEvents:{10:{decade:1.5}}},lifeEventCounter:21,damageTypeModification:{fire:{flat:-3.5,multiplication:-0.5,applyAP:true}}});
+assert.equal(odd.general.age,-1.5);assert.equal(odd.general.homeland.value,'custom');
+assert.equal(odd.general.lifeEvents[10].decade,1.5);assert.equal(odd.lifeEventCounter,21);
+assert.equal(odd.damageTypeModification.fire.flat,-3.5);assert.equal(odd.damageTypeModification.fire.multiplication,-0.5);
+const r={defaults:{generalKeys:Object.keys(char.general),detailsKeys:Object.keys(char.general.details),lifeKeys,decades:lifeKeys.map(k=>char.general.lifeEvents[k].decade),damageKeys},numberAndStringConstraints:'negative/fractional age, decade and damage values; arbitrary homeland; counter=21 accepted'};
+const {baseMixin}=source('module/activeEffect/mixins/baseMixin.js',['baseMixin']);
+const paths=baseMixin.getDamageModifcators.call({document:{parent:{system:char}}}).map(v=>v.value);
+assert.equal(paths.length,21);
+for(const p of paths)assert(Character.schema.getField(p.slice(7)),p);
+const nested=baseMixin.getDamageModifcators.call({document:{parent:{system:{},parent:{system:char}}}});
+assert.equal(nested.length,21);
+assert.equal(baseMixin.getDamageModifcators.call({document:{parent:{system:{},parent:null}}}).length,0);
+r.wizard={actor:21,ownedItem:21,unownedItem:0};
+const get=(o,p)=>p.split('.').reduce((v,k)=>v?.[k],o);
+const labelKeys=[...Object.values(char.general.details).map(d=>d.label),char.general.reputation.label,...Object.values(WITCHER.homelands),...Object.values(WITCHER.socialStanding),...damageKeys.map(k=>'WITCHER.DamageType.'+k),'WITCHER.Effect.wizard.flat','WITCHER.Effect.wizard.multi','WITCHER.Effect.wizard.applyAP','WITCHER.Effect.wizard.resistances'];
+r.localizations={};
+for(const lang of ['en','ru']){
+ const content=utils.expandObject(JSON.parse(fs.readFileSync('lang/'+lang+'.json')));
+ const missing=labelKeys.filter(k=>get(content,k)===undefined);assert.equal(missing.length,0);
+ r.localizations[lang]={checked:labelKeys.length,missing};
+}
+let enrichArgs;
+foundry.applications.ux={TextEditor:{implementation:{enrichHTML:async field=>{enrichArgs=field;return '<processed>'+field+'</processed>'}}}};
+char.general.background.value='<p>History</p>';
+const enriched=(await char.enrichedText()).general.background;
+assert.equal(enrichArgs,'<p>History</p>');
+assert.equal(enriched.value,enrichArgs);
+assert.equal(enriched.systemField,Character.schema.getField('general.background.value'));
+r.enrichment={value:enriched.value,enriched:enriched.enriched,field:enriched.systemField.fieldPath};
+const lifeModel=new Character({general:{lifeEvents:{10:{value:'first'},110:{value:'eleventh'}}}});
+const before=lifeModel.toObject();
+const updates=[];
+const actor={system:lifeModel,update:data=>{updates.push(data);return Promise.resolve(data)}};
+class FakeBase {async _prepareContext(){return {actor,system:actor.system}}}
+const sheetText=fs.readFileSync('module/actor/sheets/WitcherCharacterSheet.js','utf8');
+const method=sheetText.slice(sheetText.indexOf('    async _prepareContext(options) {'),sheetText.indexOf('    async _prepareCharacterData(context) {'));
+const context={...baseGlobals,FakeBase};
+vm.runInNewContext('this.Sheet=class extends FakeBase {\n'+method+'\n};',context);
+const sheet=new context.Sheet();
+for(const name of ['_prepareCharacterData','_prepareDiagramFormulas','_prepareCrafting','_prepareSubstances','_prepareAlchemy','_prepareValuables'])sheet[name]=()=>{};
+sheet._prepareAlchemyComponentsList=()=>[];sheet._prepareTabs=()=>({});
+sheet.document={system:lifeModel};
+const prepared=await sheet._prepareContext({});
+assert.equal(prepared.system,lifeModel);
+assert(Array.isArray(lifeModel.general.lifeEvents));
+assert.equal(lifeModel.toObject(false).general.lifeEvents['10'].value,'eleventh');
+assert.equal(lifeModel.toObject(false).general.lifeEvents['20'],undefined);
+assert.deepEqual(lifeModel.toObject(),before);
+const parentText=fs.readFileSync('module/actor/sheets/WitcherActorSheet.js','utf8');
+const toggle=parentText.slice(parentText.indexOf('    _onLifeEventDisplay(event) {'),parentText.indexOf('\n}\n',parentText.indexOf('    _onLifeEventDisplay(event) {')));
+vm.runInNewContext('this.Toggle=class {\n'+toggle+'\n};',context);
+context.Toggle.prototype._onLifeEventDisplay.call({actor},{preventDefault(){},currentTarget:{closest:()=>({dataset:{event:'10'}})}});
+assert.equal(updates[0]['system.general.lifeEvents.10.isOpened'],true);
+r.lifeEvents={preparedIsArray:true,derivedKey10:lifeModel.toObject(false).general.lifeEvents['10'].value,derivedKey20:String(lifeModel.toObject(false).general.lifeEvents['20']),sourceUnchanged:true,toggleUpdate:updates[0]};
+const {damageUtilMixin}=source('module/actor/mixins/damageUtilMixin.js',['damageUtilMixin']);
+const {armorMixin}=source('module/actor/mixins/armorMixin.js',['armorMixin']);
+const {damageMixin}=source('module/actor/mixins/damageMixin.js',['damageMixin']);
+const damageActor={system:new Common({}),...damageUtilMixin,...armorMixin,...damageMixin};
+const properties={armorPiercing:false,improvedArmorPiercing:false,bypassesWornArmor:false,bypassesNaturalArmor:false};
+const damage={type:'fire',properties,location:{name:'torso',formula:1}};
+const armor={system:{resistance:{fire:true}}};
+damageActor.system.damageTypeModification.fire={flat:0,multiplication:0.5,applyAP:true};
+let error;
+try{damageActor.calculateArmorResistances(DamageInstance.create(10).setType('fire'),damage,{})}catch(e){error={name:e.name,message:e.message}}
+assert.equal(error?.name,'TypeError');
+assert.equal(damageActor.calculateArmorResistances(DamageInstance.create(10).setType('fire'),{...damage,properties:{...properties,armorPiercing:true}},{}).damage,10);
+r.applyAP={nonPiercing:error,piercingDamage:10};
+damageActor.system.damageTypeModification.fire.applyAP=false;
+r.multiplication={};
+for(const [name,armorSet] of Object.entries({none:{},worn:{lightArmor:armor},natural:{naturalArmor:armor},both:{lightArmor:armor,naturalArmor:armor}})){
+ r.multiplication[name]=damageActor.calculateArmorResistances(DamageInstance.create(10).setType('fire'),damage,armorSet).damage;
+}
+assert.deepEqual(r.multiplication,{none:10,worn:2,natural:2,both:0});
+damageActor.getLocationArmor=()=>({armorSet:{},totalSP:0,displaySP:0});
+damageActor.applyAlwaysSpDamage=async()=>0;damageActor.applySpDamage=async()=>0;
+r.flat=[];
+damageActor.system.damageTypeModification.fire.multiplication=1;
+for(const flat of [-3,0,3]){
+ damageActor.system.damageTypeModification.fire.flat=flat;
+ const result=await damageActor.calculateDamageWithLocation({},damage,[DamageInstance.create(10).setType('fire')]);
+ r.flat.push({flat,result:result.damageInstances.map(i=>i.damage),types:result.damageInstances.map(i=>i.type)});
+}
+assert.deepEqual(r.flat.map(v=>v.result),[[10],[10],[10,3]]);
+const {skillMixin}=source('module/actor/mixins/skillMixin.js',['skillMixin'],{});
+r.social=[];
+for(const [standing,attribute,skill,expected] of [['tolerated','emp','charisma','-1'],['hatedFeared','emp','charisma','-2-1'],['feared','will','intimidation','+1'],['equal','emp','charisma','']]){
+ const value=skillMixin.addSocialStanding.call({type:'character',system:{general:{socialStanding:standing}}},{name:attribute},skill);
+ assert.equal(value,expected);r.social.push({standing,attribute,skill,value});
+}
+
+const helpers={};
+const Handlebars={registerHelper:(name,fn)=>{if(typeof name==='object')Object.assign(helpers,name);else helpers[name]=fn},createFrame:d=>({...d})};
+const {registerHandelbarHelpers}=source('module/setup/handlebars.js',['registerHandelbarHelpers'],{Handlebars});
+await registerHandelbarHelpers();
+const emitted=[];
+helpers.eachLimit(prepared.system.general.lifeEvents,2,{fn:v=>{emitted.push(v.lifeEvent.key);return ''}});
+assert.deepEqual(emitted,['10','20']);
+let overflow=0;
+helpers.eachLimit(prepared.system.general.lifeEvents,21,{fn:v=>{if(v.lifeEvent===undefined)overflow++;return ''}});
+assert.equal(overflow,1);
+r.eachLimit={firstTwo:emitted,undefinedAt21:overflow};
+const jsonFiles=[];
+function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=dir+'/'+e.name;if(e.isDirectory())walk(p);else if(p.endsWith('.json'))jsonFiles.push(p)}}
+walk('packsJson');
+const refs=[];
+function scan(value,file,path=''){
+ if(typeof value==='string'&&/^system\.(?:general(?:\.|$)|damageTypeModification(?:\.|$))/.test(value))refs.push({file,path,value});
+ else if(value&&typeof value==='object')for(const [k,v] of Object.entries(value))scan(v,file,path+'.'+k);
+}
+for(const file of jsonFiles)scan(JSON.parse(fs.readFileSync(file)),file);
+assert.equal(refs.length,0);r.packs={files:jsonFiles.length,refs};
+
+console.log(JSON.stringify(r));
+
+JS
+```
+
+Результат: exit 0. Вывод:
+
+```text
+{"defaults":{"generalKeys":["background","details","homeland","reputation","socialStanding","name","race","age","lifeEvents"],"detailsKeys":["clothing","personality","hairStyle","affectations","valuedPerson","value","feelingsOnPeople"],"lifeKeys":["10","20","30","40","50","60","70","80","90","100","110","120","130","140","150","160","170","180","190","200"],"decades":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"damageKeys":["slashing","piercing","bludgeoning","elemental","electricity","fire","ice"]},"numberAndStringConstraints":"negative/fractional age, decade and damage values; arbitrary homeland; counter=21 accepted","wizard":{"actor":21,"ownedItem":21,"unownedItem":0},"localizations":{"en":{"checked":51,"missing":[]},"ru":{"checked":51,"missing":[]}},"enrichment":{"value":"<p>History</p>","enriched":"<processed><p>History</p></processed>","field":"system.general.background.value"},"lifeEvents":{"preparedIsArray":true,"derivedKey10":"eleventh","derivedKey20":"undefined","sourceUnchanged":true,"toggleUpdate":{"system.general.lifeEvents.10.isOpened":true}},"applyAP":{"nonPiercing":{"name":"TypeError","message":"Cannot read properties of undefined (reading 'armorPiercing')"},"piercingDamage":10},"multiplication":{"none":10,"worn":2,"natural":2,"both":0},"flat":[{"flat":-3,"result":[10],"types":["fire"]},{"flat":0,"result":[10],"types":["fire"]},{"flat":3,"result":[10,3],"types":["fire",null]}],"social":[{"standing":"tolerated","attribute":"emp","skill":"charisma","value":"-1"},{"standing":"hatedFeared","attribute":"emp","skill":"charisma","value":"-2-1"},{"standing":"feared","attribute":"will","skill":"intimidation","value":"+1"},{"standing":"equal","attribute":"emp","skill":"charisma","value":""}],"eachLimit":{"firstTwo":["10","20"],"undefinedAt21":1},"packs":{"files":226,"refs":[]}}
+(node:654963) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///var/lib/foundryvtt/Data/systems/TheWitcherTRPG-RB-Version/module/data/actor/characterData.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /var/lib/foundryvtt/Data/systems/TheWitcherTRPG-RB-Version/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+
+При первом запуске проверки переводов использовался поиск по необработанному JSON: составной background.other оказался ложно отмечен как отсутствующий. Проверен загрузчик Foundry, сценарий исправлен на настоящий foundry.utils.expandObject и повторён успешно. Проблема локализации не регистрировалась. Предупреждение Node MODULE_TYPELESS_PACKAGE_JSON относится к загрузке ES modules в изолированном сценарии; package.json не менялся.
+
+Подмены: game.settings/i18n; базовый контекст листа и соседние подготовки; Actor.update как запись аргументов в массив; TextEditor; регистрация Handlebars/createFrame; данные брони и операции SP. Импортированы настоящие DataModel/TypeDataModel/fields и фабрики системы, методы вычислений и DamageInstance. _prepareContext и _onLifeEventDisplay взяты из исходного текста без изменения тел. Сохранение, HTTP/DOM, полный лист, бой, правила игры, длительность эффектов и весь цикл подготовки Actor не проверены.
+
+### Проверка документации и состава
+
+После оформления выполнены сверка 621 пути с Git/фактическим деревом и байтов с базовым срезом/HEAD; контроль SHA256 исходников; сравнение mode/uid/gid/inode всех ранее отслеживаемых файлов; соответствие карточек строкам реестра; обязательные разделы и поля всех восьми карточек; уникальные issues/status potential; состояния задач; существование локальных Markdown-ссылок и якорей; структура таблиц и git diff --check. Существующие записи журнала сверены с HEAD без изменений.
+
+Итог проверки: exit 0. Реестр — 621 исходник, 41 проверенная карточка, 580 файлов не разобраны; добавлены восемь карточек. Все 27 issues находятся в potential. Проверены 110 Markdown-документов и 2547 локальных ссылок; изменены или созданы 29 документов. Содержимое исходников и mode/uid/gid/inode всех 776 ранее отслеживаемых файлов сохранены; git diff --check прошёл. Историческая часть журнала совпала с HEAD. TASK-0003.004 завершена, родительская TASK-0003 остаётся in-progress; следующая TASK-0003.005 — planned.
+
 ## TASK-0003.003
 
 Дата: 2026-09-10. Ветка `rusbar-main`, HEAD `c34b790379fd98cd7e33ccbeeca085e49297a40f`. Рабочее дерево на старте чистое; отслеживались 763 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

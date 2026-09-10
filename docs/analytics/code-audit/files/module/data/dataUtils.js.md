@@ -93,3 +93,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.001 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.004
+
+2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Уточнена цепочка [backgroundData](actor/templates/character/general/backgroundData.js.md) → CharacterData.enrichedText:34–40 → createEnrichedText → WitcherCharacterSheet._prepareContext:139–142 → formGroup в tab-background:52. Исходные методы с подменой TextEditor передали HTML-строку как value, отдельный enriched и настоящий HTMLField с fieldPath system.general.background.value. Редактор и запись формы не запускались.
+
+[Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).

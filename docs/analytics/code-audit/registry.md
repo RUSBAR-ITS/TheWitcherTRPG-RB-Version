@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.003 проверены описания **33 файлов**, для **588 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.004 проверены описания **41 файла**, для **580 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.003](review-log.md#task-0003003) выполнена на `c34b790379fd98cd7e33ccbeeca085e49297a40f`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.004](review-log.md#task-0003004) выполнена на `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -78,14 +78,14 @@
 | [module/data/actor/templates/character/attackData.js](../../../module/data/actor/templates/character/attackData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/character/attackStatsData.js](../../../module/data/actor/templates/character/attackStatsData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/character/currencyLogData.js](../../../module/data/actor/templates/character/currencyLogData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/backgroundData.js](../../../module/data/actor/templates/character/general/backgroundData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/damage/damageModificationData.js](../../../module/data/actor/templates/character/general/damage/damageModificationData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/damage/damageTypeModificationData.js](../../../module/data/actor/templates/character/general/damage/damageTypeModificationData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/detailsData.js](../../../module/data/actor/templates/character/general/detailsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/homelandData.js](../../../module/data/actor/templates/character/general/homelandData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/lifeEventData.js](../../../module/data/actor/templates/character/general/lifeEventData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/general/lifeEventsData.js](../../../module/data/actor/templates/character/general/lifeEventsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/character/generalData.js](../../../module/data/actor/templates/character/generalData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/templates/character/general/backgroundData.js](../../../module/data/actor/templates/character/general/backgroundData.js) | HTML-поле биографии персонажа | [Карточка](files/module/data/actor/templates/character/general/backgroundData.js.md) | Проверено |
+| [module/data/actor/templates/character/general/damage/damageModificationData.js](../../../module/data/actor/templates/character/general/damage/damageModificationData.js) | Параметры flat, multiplication и applyAP для типа урона | [Карточка](files/module/data/actor/templates/character/general/damage/damageModificationData.js.md) | Проверено |
+| [module/data/actor/templates/character/general/damage/damageTypeModificationData.js](../../../module/data/actor/templates/character/general/damage/damageTypeModificationData.js) | Семь наборов изменений урона общей модели Actor | [Карточка](files/module/data/actor/templates/character/general/damage/damageTypeModificationData.js.md) | Проверено |
+| [module/data/actor/templates/character/general/detailsData.js](../../../module/data/actor/templates/character/general/detailsData.js) | Семь текстовых подробностей персонажа с подписями | [Карточка](files/module/data/actor/templates/character/general/detailsData.js.md) | Проверено |
+| [module/data/actor/templates/character/general/homelandData.js](../../../module/data/actor/templates/character/general/homelandData.js) | Ключ родины и свободный текст в биографии Actor | [Карточка](files/module/data/actor/templates/character/general/homelandData.js.md) | Проверено |
+| [module/data/actor/templates/character/general/lifeEventData.js](../../../module/data/actor/templates/character/general/lifeEventData.js) | Поля одной записи события жизни и состояние раскрытия | [Карточка](files/module/data/actor/templates/character/general/lifeEventData.js.md) | Проверено |
+| [module/data/actor/templates/character/general/lifeEventsData.js](../../../module/data/actor/templates/character/general/lifeEventsData.js) | Двадцать событий жизни с ключами 10–200 | [Карточка](files/module/data/actor/templates/character/general/lifeEventsData.js.md) | Проверено |
+| [module/data/actor/templates/character/generalData.js](../../../module/data/actor/templates/character/generalData.js) | Сборка общих сведений персонажа в system.general | [Карточка](files/module/data/actor/templates/character/generalData.js.md) | Проверено |
 | [module/data/actor/templates/character/ipLogData.js](../../../module/data/actor/templates/character/ipLogData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/character/logData.js](../../../module/data/actor/templates/character/logData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/character/pannelsData.js](../../../module/data/actor/templates/character/pannelsData.js) | Не установлено | Не подготовлено | Не начат |

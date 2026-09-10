@@ -201,3 +201,9 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 4 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+## Уточнение TASK-0003.004
+
+2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Установлен источник данных eachLimit: [lifeEventsData](../data/actor/templates/character/general/lifeEventsData.js.md) задаёт 20 ключей, WitcherCharacterSheet._prepareContext:133–137 преобразует объект в массив с key. Исходный helper при limit=2 передал записи с key 10/20. CharacterData допускает счётчик 21 без диапазона, eachLimit передаёт для него один undefined; HTML-ввод min=1,max=20 прочитан, обход его в обычном UI не проверялся. [issue-00024](../../../../../issues/potential/issue-00024.md) относится к изменению модели подготовкой листа, не к определению helper.
+
+[Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).

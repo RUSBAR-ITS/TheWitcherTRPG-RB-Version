@@ -353,3 +353,11 @@
 2026-09-10 — TASK-0003.002: уточнены связи моделей навыков и их потребителей, добавлены взаимные ссылки и фактические ограничения проверки.
 
 2026-09-10 — TASK-0003.003: актуализированы связи с полностью разобранными структурами состояния Actor; ограничения полного клиента сохранены.
+
+## Уточнение TASK-0003.004
+
+2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Сопоставлены homelands:585–612 (26 вариантов) с [homelandData](../data/actor/templates/character/general/homelandData.js.md) и двумя ветками Actor/Item в шаблонах; socialStanding:614–621 (6 вариантов) — с [generalData](../data/actor/templates/character/generalData.js.md) и addSocialStanding:85–132. Эти словари ограничивают варианты формы, но не StringField choices.
+
+Семь типов [damageTypeModification](../data/actor/templates/character/general/damage/damageTypeModificationData.js.md) сопоставлены с damageTypes:733–768 (в конфигурации есть дополнительный silver). Отсутствие silver в схеме оставлено вопросом, а не объявлено ошибкой. Проверен 51 связанный ключ переводов en/ru после foundry.utils.expandObject; в том числе составной JSON-ключ background.other. Это соответствует нормализации загрузчика Foundry /opt/foundryvtt/client/helpers/localization.mjs:365–368.
+
+[Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).
