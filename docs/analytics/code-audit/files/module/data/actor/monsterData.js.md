@@ -139,3 +139,9 @@ prepareBaseData, calcCurrencyWeight и три метода миграции на
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.006 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Разобран WitcherActor: одинаковый основной расчёт у character/monster, исключены только loot/mystery. Флаг customStat меняет hp/sta/resolve/focus; фиксированные производные параметры рассчитываются независимо от него. Ранее описанные issues-00031/00032 сохраняются; тело static getLocationObject не читает hasTailWing в случайной ветке randomMonster.
+
+Карточки: [WitcherActor](../../actor/witcherActor.js.md), [modifierMixin](../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../review-log.md#task-0003007).

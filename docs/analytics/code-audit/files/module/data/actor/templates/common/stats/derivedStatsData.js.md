@@ -164,3 +164,9 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Полностью сверены базовые присваивания CommonActorData:79–90: stun/run/leap/enc/rec/woundTreshold/resolve/focus и vigor.max. База focus использует текущие value, resolve — unmodifiedMax. hp/sta/shield этим методом не рассчитываются; конечные max/value рассчитывает Actor. У MonsterData.customStat внешний calculateDerivedStat отключает автоматические ветки также для resolve/focus.
 
 Карточки сборки: [commonActorData](../../../commonActorData.js.md), [monsterData](../../../monsterData.js.md). [Сверка TASK-0003.006](../../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Полностью сверены calculateFixedDerivedStats и calculateDerivedStat. У run/enc.max используются текущие SPD/BODY.value; у leap/rec/woundTreshold.max — соответствующие максимумы. Stun.value прибавляет modifier после clamp. Сценарий initial STA.max×0.25:40→10; последующий calculateDerivedStat восстановил40 (issue-00036).
+
+Карточки: [WitcherActor](../../../../../actor/witcherActor.js.md), [modifierMixin](../../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../../review-log.md#task-0003007).

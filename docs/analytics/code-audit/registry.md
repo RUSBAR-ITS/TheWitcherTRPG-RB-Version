@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.006 проверены описания **52 файлов**, для **569 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.007 проверены описания **54 файлов**, для **567 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.006](review-log.md#task-0003006) выполнена на `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.007](review-log.md#task-0003007) выполнена на `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -36,7 +36,7 @@
 | [module/actor/mixins/defenseMixin.js](../../../module/actor/mixins/defenseMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/healMixin.js](../../../module/actor/mixins/healMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/locationMixin.js](../../../module/actor/mixins/locationMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) | Фрагменты формул из модификаторов навыков, групп, атаки и защиты. | [Описание](files/module/actor/mixins/modifierMixin.js.md) | Проверено |
 | [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/skillMixin.js](../../../module/actor/mixins/skillMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -64,7 +64,7 @@
 | [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/witcherActor.js](../../../module/actor/witcherActor.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/witcherActor.js](../../../module/actor/witcherActor.js) | Документ Actor: подготовка характеристик, статусы, предметы, локации и подключение 17 примесей. | [Описание](files/module/actor/witcherActor.js.md) | Проверено |
 | [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | Не установлено | Не подготовлено | Не начат |
 | [module/app/reward/reward.js](../../../module/app/reward/reward.js) | Не установлено | Не подготовлено | Не начат |
 | [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js) | Не установлено | Не подготовлено | Не начат |

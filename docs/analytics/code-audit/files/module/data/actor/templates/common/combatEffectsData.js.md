@@ -125,3 +125,9 @@ applyGeneralCombatHooks вызывает асинхронные регенера
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Общая модель включает combatEffects:48; транзитивное включение TemporaryEffects через EmbeddedDataField сверено. Собственный CommonActorData.prepareBaseData не запускает эффекты начала хода и не изменяет запас временных HP.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Потребители attackModifier/defenseModifier полностью разобраны. Оба метода добавляют положительное число без '+'; настоящая грамматика Foundry отвергла '8+0 2[L:bonus]' (issue-00033). Метод защиты в итоговом Actor происходит из defenseMixin, заменяющего одинаковое определение modifierMixin.
+
+Карточки: [WitcherActor](../../../../actor/witcherActor.js.md), [modifierMixin](../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../review-log.md#task-0003007).

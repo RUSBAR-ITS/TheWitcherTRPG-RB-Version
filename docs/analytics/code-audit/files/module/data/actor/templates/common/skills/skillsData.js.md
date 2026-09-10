@@ -129,3 +129,9 @@ skills():11–21 без аргументов возвращает поля гр�
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Подтверждено общее включение skills:39 и семи групп/52 моделей Skill у персонажа и монстра. skillGroupModifiers определён отдельно в CommonActorData:40–46; modifierMixin.addActiveEffects добавляет его значения в строку броска, не записывает их в Skill.value.
 
 Карточки сборки: [commonActorData](../../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Подтверждён доступ modifierMixin через skill.attribute.name/skill.name. Указанный в конфигурации путь должен существовать в общей модели; groups allSkills не обходят ранний выход для неизвестного имени. Перечень вызовов навыкового модификатора отражён в новой карточке.
+
+Карточки: [WitcherActor](../../../../../actor/witcherActor.js.md), [modifierMixin](../../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../../review-log.md#task-0003007).

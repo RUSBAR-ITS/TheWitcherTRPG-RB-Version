@@ -88,3 +88,9 @@ stats, derivedStats, healthState, attackStats, notes, logs и другие по�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.006 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. WitcherActor.prepareDerivedData возвращается после super для type=loot, не обращаясь к stats/derivedStats. getTotalWeight суммирует calcWeight всех items и calcCurrencyWeight модели с Math.ceil; getList фильтрует stored для обычных типов, но не в специальной ветке shield.
+
+Карточки: [WitcherActor](../../actor/witcherActor.js.md), [modifierMixin](../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../review-log.md#task-0003007).

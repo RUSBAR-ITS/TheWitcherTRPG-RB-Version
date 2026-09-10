@@ -1,5 +1,76 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.007
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Рабочее дерево на старте чистое; отслеживались 804 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Локальное ядро Foundry 14.367.0, Node 24.16.0.
+
+Полностью прочитаны [witcherActor.js](../../../module/actor/witcherActor.js) (454 строки) и [modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) (53 строки), всего 507. Созданы две карточки. Полный анализ остальных примесей не заявлен: проверены определения подключаемых имён и тела конкретных потребителей для установления связи.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Фактический результат |
+| --- | --- |
+| Класс ↔ определения | 19 собственных определений: getter temporaryEffects, 16 методов экземпляра, два static. 19 импортов; 17 Object.assign после класса. Все перечислены с входами, возвратами и изменениями состояния. |
+| Примеси ↔ прототип | Оригинальные 17 объектов содержат 76 свойств/75 разных имён. Единственный повтор — addDefenseModifiers; defenseMixin перезаписывает modifierMixin. Тела совпали; итоговый метод принадлежит defenseMixin. Статические/экземплярные getLocationObject/getAllLocations — разные уровни. |
+| Модели ↔ подготовка | 19 общих полей сопоставлены с чтениями/записями Actor; схема не определяется документом повторно. Loot/mystery выходят после super.prepareDerivedData. CommonActorData базовые значения и производные расчёты Actor различены. |
+| Ядро ↔ этапы | system.prepareBaseData → Actor.prepareBaseData → вложения/initial эффекты → system.prepareDerivedData → WitcherActor.prepareDerivedData → final эффекты. Собственный порядок stats→fixed→stats→derived→attacks; applyStatus запускается перед ним без await. |
+| Характеристики ↔ ограничения | Восемь значений берутся из unmodifiedMax+модификаторы и floor/делитель. При HP40/7/0, пороге8 и базах8: INT8/4/2, BODY8/8/2. Общего min1/max10 в calculateStat нет. Stun clamp применяется до добавки. |
+| Перегруз ↔ расчёт | Оригинальные getTotalWeight/calculateWeigthEncumbrance: масса81, вместимость80→штраф1; REF/DEX из8→6, SPD→7 при нулевой броне. Зарегистрирована potential issue-00035 без заключения о рулбуке. |
+| Два прохода ↔ max | Настоящая CharacterData и оригинальный Actor: luck.max10+modifier2→14; toxicity100+5→110. Уточнена issue-00012. |
+| Эффекты ↔ фильтрация | Прочитаны исходные allApplicableEffects, active, системный isSuppressed: собственные плюс transfer Item, затем active. В проверке disabled/isActive=false/equipped=false/applySelf/applyOnTarget/applyOnHit/applyOnDamage исключали эффект. |
+| Фазы ↔ приоритеты | Числовой пример BODY.max8: multiply0.5/priority10 → add2/20 → переносимый add3/20 =9 в initial; final add1 дал10. Непереносимый Item и disabled/suppressed не внесли добавку. Приоритеты ядра multiply10/add20 прочитаны из constants.mjs. |
+| Max ↔ следующий расчёт | Initial multiply0.25 по SPD.max/BODY.max/STA.max:2/2/10; следующий Actor.prepareDerivedData оставил SPD/BODY.value8 и восстановил STA.max40. Такие три пути найдены в JSON Heart Damage. Issue-00036; реальная миграция JSON и игровой packs не запускались. |
+| Подписи ↔ формулы | addActiveEffects с +2 и A/B даёт ' +2[A & B]' при details; allSkills=-2 добавляет ' +-2[L:disease]' при обоих значениях настройки. Неизвестный skill→'', неизвестный group→TypeError. Методы читают готовое число, не вычисляют эффекты. |
+| Атака/защита ↔ грамматика | Оригинальные modifierMixin/weaponAttackMixin: -2 и0 создают допустимые строки, +2 даёт '8+0 2[L:bonus]' и SyntaxError в оригинальной грамматике/Parser Foundry. Issue-00033. Итоговая защита использует совпадающий метод defenseMixin. |
+| Предметы ↔ Promise | AddItem ожидает update/create. RemoveItemsOfType возвращается при pending delete; следующий addItem той же расы обновляет старый предмет quantity2, после завершения удаления остаётся0. UseItem consumable вызывает consume/remove и возвращается при обеих pending операциях. Issue-00034. |
+| Списки ↔ поля | Обычный getList исключает stored, shield — нет; масса берётся со всех items через их calcWeight плюс монеты; maxWeight не ограничивает добавление в самом Actor. Особенности описаны, не все объявлены отдельными проблемами. |
+| Локации ↔ источники | Проверены восемь фиксированных/неизвестных входов и 20 контрольных случайных исходов. Unknown name сохраняется с параметрами торса. getAllLocations теряет this через обёртку — ранее issue-00032; случайная таблица monster отдельно содержит tailWing. |
+| Динамические маршруты | CONFIG.Actor.documentClass, макрос fromUuidSync(...).useItem, query whitelist addItem/две примеси, специальный query улучшений. game.TheWitcherTRPG не найден в module/; есть game.api. AddItem ждёт свою запись, query её не ждёт (issue-00008). |
+| Двусторонние карточки | Дополнены 15 связанных карточек (точка входа, queries/config/settings, четыре модели, stat/derived/reputation/attackStats/skill/skills/combatEffects). Данные прошлых проверок сохранены; уточнения имеют текущую версию и обратные ссылки. |
+| Issues ↔ результат | Новые issue-00033–00036; дополнены issue-00008/00012/00031/00032. Всего 36, все potential. Исходники и правила не изменены. |
+
+### Команды и изолированные сценарии
+
+Исходный срез: git status --short, git rev-parse HEAD, git branch --show-current, git ls-files -z; Python сверил пути registry с Git/деревом, байты 621 исходника с базовым git show, сохранил hash mode/uid/gid/inode 804 отслеживаемых файлов. Полное чтение 507 строк, rg по всем собственным именам/импортам/потребителям и объявлениям примесей; отдельно проверены system-пути, Queries, игровые макросы, grammar.pegjs и конкретные методы ядра.
+
+Первый сценарий (`node --input-type=module` через stdin, без файла стенда): реальные primitives, DataModel, TypeDataModel, fields, utils из установленного Foundry; настоящие CharacterData/MonsterData и WITCHER. С исходных 17 примесей сняты import/export-обёртки для выполнения в vm, сами тела сохранены. Оригинальный класс WitcherActor выполнен с минимальным родителем ActorBase (пустой prepareDerivedData и контролируемый getter temporaryEffects); Object.assign сохранены. Внешние game.settings/i18n, RNG, документы Item/update/create/delete и сетевые действия подменены. Исполнялись только перечисленные в таблице методы; загрузка определений примеси не считается проверкой всей её логики.
+
+Проверены полная собственная последовательность подготовки, здоровый/раненый/умирающий вход, повтор luck/toxicity, перегруз, getList, строки, локации, ожидание addItem и раннее завершение removeItemsOfType/useItem. Для проверки изменений max используются явные современные числовые changes; это не запуск миграции старого JSON. Для примерной записи первоначально выполнена подготовка CharacterData/Actor до STA.max40, затем применены три изменения и повторно выполнен исходный этап Actor; полный reset/подготовка документа Foundry не имитировались.
+
+Грамматика: peggy из /opt/foundryvtt/node_modules/peggy сгенерировала в памяти parser из исходной /opt/foundryvtt/client/dice/grammar.pegjs. Использован оригинальный /opt/foundryvtt/client/dice/parser.mjs; Node registerHooks разрешал только локальный alias @common. CONFIG.debug.rollParsing=false добавлен в окружение сценария. Не вызывались Roll.evaluate, RNG кубов, ChatMessage и браузер.
+
+Второй сценарий выполнил исходные core Actor.applyActiveEffects/allApplicableEffects, ActiveEffect.shouldApplyChange/active/applyChangeField и системный WitcherActiveEffect.isSuppressed с настоящими полями. Static applyChange подменён небольшим адаптером к оригинальному applyChangeField; _shimChanges — пустым обработчиком для заранее современных type/phase/priority. Замена field.applyChange или арифметики не делалась. Эффекты — управляемые объекты с перечисленными флагами; отдельной модели/коллекции ActiveEffect Document и записей нет. Так проверены выбор фаз, priority, transfer и suppression, а не полный клиент.
+
+Первые прогоны уточняли bootstrap (CONFIG.debug, сравнение объектов разных vm-контекстов, расположение core-методов в одном контексте с helpers); итоговые сценарии завершились успешно. Node выдал MODULE_TYPELESS_PACKAGE_JSON для ES modules системы; package.json не изменялся. Незавершённые Promise двойников не запускали фоновые записи и не держали Node-процесс.
+
+```text
+Own definitions:19; mixins:17; mixed properties:76; distinct names:75
+Collision: Actor.addDefenseModifiers === defenseMixin.addDefenseModifiers
+Preparation: applyStatus, calculateStats, calculateFixedDerivedStats, calculateStats, calculateDerivedStats, calculateAttackStats
+HP40/7/0: INT8/4/2, BODY8/8/2
+Weight81, capacity80, penalty1: REF6, DEX6, SPD7 (base8)
+Luck10+2=>14; toxicity100+5=>110
+Skill false:' +2 +-2[L:disease]'; true:' +2[A & B] +-2[L:disease]'
+Attack suffix -2:' -2[L:bonus]'; 0:''; +2:' 2[L:bonus]'
+Grammar:'8+0 -2[L:bonus]' valid; '8+0' valid; '8+0 2[L:bonus]' SyntaxError
+Delete sequence:deleteStarted,awaitReturned,updateOld(quantity2),deleteDone; remaining0
+UseItem:consume,remove,returned while operations pending
+Initial effect order:multiply0.5,add2,transferred add3 =>9; final add1=>10
+Initial max quarter:SPD2/BODY2/STA10; after Actor:SPD.value8/BODY.value8/STA.max40
+```
+
+### Итоговая проверка документов и сохранности
+
+Итоговая сверка пройдена: реестр содержит 621 файл, подробные карточки проверены для 54 файлов, анализ 567 файлов ещё не начат. Состав этой порции — два исходника, 507 строк; в карточках сверены все 19 собственных определений Actor, три метода modifierMixin и 17 подключаемых примесей с 76 именами методов (75 уникальных).
+
+Проверены 132 Markdown-документа и 3226 локальных ссылок, структура таблиц, обязательные разделы карточек, статусы задач и соответствие индекса всем 36 потенциальным проблемам. Изменены только 36 документов: 30 существующих и шесть новых. Проверка `git diff --check` пройдена. Содержимое всех 621 исходников совпадает с исходной базой аудита и HEAD; права, владельцы, группы и inode всех 804 отслеживаемых файлов сохранены.
+
+SHA256 621 исходников по порядку registry (path+NUL+bytes+NUL): `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. SHA256 mode/uid/gid/inode 804 отслеживаемых файлов: `16d99050a898917af2c63175082868d108a724ce96c176da0b4674b8c16cf523`. Предыдущая часть журнала, начиная с TASK-0003.006, сохраняется побайтно. Новые файлы — только Markdown в docs; исходный HEAD не менялся.
+
+### Итог и границы
+
+TASK-0003.007 завершена: 54/621 файла, не разобраны 567; в первой серии 43/61, осталось 18, за её пределами 549. Следующая порция — [TASK-0003.008](../../tasks/task-0003.008.md). Мир, браузер, реальные документы/БД, сетевые Query, полный reset/prepareData и полные боевые примеси не проверялись. Воспроизведения описывают текущий код; ни порядок эффектов, ни правила перегруза, ни компедиумы не исправлялись.
+
 ## TASK-0003.006
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Рабочее дерево на старте чистое, отслеживались 798 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

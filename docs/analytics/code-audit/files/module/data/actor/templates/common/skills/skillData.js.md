@@ -115,3 +115,9 @@ NumberField не задаёт ограничения диапазона и це�
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Полностью описан [Log](../../character/logData.js.md) — потребитель levelUpSkill. Повторная проверка с настоящим Log показала два payloads для magic: 6 из журнала и 10 из levelUpSkill; дополнена [issue-00017](../../../../../../../../../issues/potential/issue-00017.md). [skillTrainingData](../../character/skillTrainingData.js.md) задаёт отдельные ручные слоты name/value, не экземпляры Skill; их кнопка списывает обычные IP и не повышает system.skills.
 
 [Сверка TASK-0003.005](../../../../../../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. modifierMixin.addActiveEffects читает activeEffectModifiers напрямую и собирает имена подходящих appliedEffects, но не пересчитывает число из changes. Skill.modifiedValue не используется этим методом; неизвестный ключ skillMap даёт пустую строку до обработки групп.
+
+Карточки: [WitcherActor](../../../../../actor/witcherActor.js.md), [modifierMixin](../../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../../review-log.md#task-0003007).

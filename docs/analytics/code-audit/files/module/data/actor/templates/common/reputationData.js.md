@@ -88,3 +88,9 @@ min/max диапазона фабрика stat не задаёт. Наличие
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. EmbeddedDataField(Reputation):36 и явное копирование reputation.max=unmodifiedMax:75 сверены с жизненным циклом ядра. Прямого рекурсивного вызова prepareBaseData вложенных DataModel нет; фактическое копирование выполняет CommonActorData. В проверке base3→max3, исходный снимок сохранился.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. calculateStats:68 присваивает reputation.value=reputation.max при каждом из двух проходов; собственный модификатор reputation здесь не прибавляется. CommonActorData готовит max из unmodifiedMax; дальнейшее влияние эффекта зависит от его целевого поля/phase. Повторно описана граница вычислений без изменения правил.
+
+Карточки: [WitcherActor](../../../../actor/witcherActor.js.md), [modifierMixin](../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../review-log.md#task-0003007).

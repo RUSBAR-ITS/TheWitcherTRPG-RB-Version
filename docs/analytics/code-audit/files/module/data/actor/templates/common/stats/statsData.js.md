@@ -190,3 +190,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Подтверждён реальный путь подготовки: ClientDocument.prepareData ядра вызывает system.prepareBaseData, и CommonActorData:64–74 сам копирует десять unmodifiedMax в max. Вложенный Stats.prepareBaseData не вызывается этим кодом рекурсивно. Изолированная CharacterData с BODY.base7/value2 после подготовки имеет max7/value2, исходный снимок не изменён.
 
 Карточки сборки: [commonActorData](../../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. calculateStat:71–107 полностью разобран: U+модификаторы, деление3 при death state либо2 у REF/DEX/INT/WILL ниже порога, floor без общего ограничения1–10. В здоровом сценарии базы8/масса81/броня0 дают P1 и REF6/DEX6/SPD7 (issue-00035). Изменение stats.max само по себе не изменяет базу формулы value (issue-00036).
+
+Карточки: [WitcherActor](../../../../../actor/witcherActor.js.md), [modifierMixin](../../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../../review-log.md#task-0003007).

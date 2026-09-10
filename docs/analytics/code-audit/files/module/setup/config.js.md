@@ -367,3 +367,9 @@
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Сверены семь ключей WITCHER.currency с использованием type в [журнале валют](../data/actor/templates/character/currencyLogData.js.md) и lookup шаблона. Три пути getOtherSuggestions подтверждены в [attackStats](../data/actor/templates/character/attackStatsData.js.md). Проверены 11 ключей en/ru: Punch/Kick, подписи трёх числовых модификаторов, пяти полей журналов и SkillName. Конфигурация и схемы не менялись.
 
 [Сверка TASK-0003.005](../../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. WitcherActor.prepareDerivedData читает WITCHER.armorEffects по id; modifierMixin читает skillMap и массивы групп. Положительный combatEffects.attackModifier/defenseModifier даёт строку без '+' (issue-00033). Среди 17 примесей addDefenseModifiers перезаписывается defenseMixin; другие повторяющиеся имена примесей не найдены.
+
+Карточки: [WitcherActor](../actor/witcherActor.js.md), [modifierMixin](../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../review-log.md#task-0003007).

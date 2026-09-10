@@ -95,3 +95,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Подтверждено attackStats:47 у персонажа и монстра; расположение фабрики в character не ограничивает тип владельца. CommonActorData.migrateCalculatedStats:118 обнуляет truthy meleeBonus до последующих расчётов Actor.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. WitcherActor.calculateAttackStats:191–196 завершает собственную подготовку: C=ceil((BODY.value−6)/2)×2, meleeBonus+=C, punch/kick строятся из C. Это отдельный расчёт от modifierMixin.addAttackModifiers: последний только превращает combatEffects.attackModifier в строку и имеет issue-00033.
+
+Карточки: [WitcherActor](../../../../actor/witcherActor.js.md), [modifierMixin](../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../review-log.md#task-0003007).

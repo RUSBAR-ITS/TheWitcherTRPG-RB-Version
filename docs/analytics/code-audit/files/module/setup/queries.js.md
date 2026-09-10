@@ -86,3 +86,9 @@
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 4 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Прослежены цели Actor whitelist: собственный addItem, temporaryEffectMixin.applyTemporaryItemImprovements и adrenalineMixin.addAdrenaline. AddItem в изолированном выполнении действительно ждёт update/create; query не связывает свой ответ с этим Promise (issue-00008). Полный сетевой маршрут не запускался.
+
+Карточки: [WitcherActor](../actor/witcherActor.js.md), [modifierMixin](../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../review-log.md#task-0003007).

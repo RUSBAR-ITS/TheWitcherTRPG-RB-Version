@@ -125,3 +125,9 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Для game.api.rewards.ip/currency прослежено продолжение вызова: Rewards.handoutIpRewards:69/handoutCurrencyRewards:157 → [Log.addIpReward/addCurrencyReward](data/actor/templates/character/logData.js.md) → Actor.update. В Log хранение истории и изменение баланса не разделены; Promise update не возвращается ([issue-00028](../../../../issues/potential/issue-00028.md)). Регистрация API в файле не означает, что вызывающий её код ожидает завершение сохранения.
 
 [Сверка TASK-0003.005](../../review-log.md#task-0003005).
+
+## Уточнение TASK-0003.007
+
+2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. CONFIG.Actor.documentClass:33 указывает на полностью разобранный WitcherActor. createMacro:157 формирует actor.useItem по UUID владельца и ID предмета; ветки диспетчеризации описаны в карточке Actor. В module/ не найден game.TheWitcherTRPG: используется game.api и CONFIG.
+
+Карточки: [WitcherActor](actor/witcherActor.js.md), [modifierMixin](actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../review-log.md#task-0003007).
