@@ -1,5 +1,95 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.009
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `a33bf33add228ae93f96a52046c8feb4ee992921`. Рабочее дерево на старте чистое; отслеживались 818 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Локальное ядро Foundry 14.367.0 проверено по /opt/foundryvtt/package.json; Node 24.16.0.
+
+### Порция и содержательная сверка
+
+| Полностью прочитанный файл | Логических строк | Проверенный состав |
+| --- | --- | --- |
+| [witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js) | 120 | Класс: четыре геттера, три async-метода; ссылка DialogV2 |
+| [witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js) | 29 | defineSchema, пять BooleanField и унаследованные changes |
+| [witcherTemporaryItemImprovementData.js](../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) | 22 | metadata.type, defineSchema, три BooleanField и унаследованные changes |
+| [temporaryEffectMixin.js](../../../module/actor/mixins/temporaryEffectMixin.js) | 62 | Объект примеси, один async-метод выбора оружия/передачи |
+| [applyActiveEffect.js](../../../module/scripts/temporaryEffects/applyActiveEffect.js) | 80 | Три export async, одна локальная async-функция; импорт getActorOwner |
+| [applyStatusEffect.js](../../../module/scripts/statusEffects/applyStatusEffect.js) | 84 | Пять export и одна локальная функция; импорты getActorOwner/getCurrentCharacter |
+| [appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs) | 15 | Контекст item/temporaryItemImprovements, each, img/name, localize |
+| [statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs) | 3 | Контекст status из turnStartEffects; img/name/localize без событий |
+| Всего | 415 | Восемь карточек; HBS без завершающего перевода строки, поэтому сумма wc -l отличается на два |
+
+Внешние определения прочитаны в пределах установления связи. Helper, боевые mixin-файлы, листы, generalCombatHook, ядро и локализации от этого не получили статус полного пофайлового анализа.
+
+| Связь | Фактический результат |
+| --- | --- |
+| Регистрация ↔ модели | CONFIG.ActiveEffect.dataModels.base / temporaryItemImprovement — два прямых наследника ActiveEffectTypeDataModel. Вторая модель не наследуется от первой. fields changes ядра: key/type/value/phase/priority; начальные add/initial/пустая строка, priority undefined до prepareBaseData. |
+| Регистрация ↔ документ | TheWitcherTRPG.js назначает documentClass, публикует ViaId и вызывает отдельный chatMessageListeners. isDisabled служит категориям листа; core active читает disabled и isSuppressed. |
+| Флаги ↔ применение | applySelf/OnTarget/OnHit/OnDamage подавляют исходный эффект; вызывающие mixin-файлы отбирают их для копирования. isTransferred определяет улучшения в Actor/Item и не тождественен корневому transfer. applyAfterCalculations преобразуется _preUpdate в phase, которую читает ядро. |
+| Item ↔ улучшения | Actor-примесь выбирает Item weapon, задаёт origin=Actor.uuid и три system-флага; создаёт его embedded ActiveEffect. Item читает changes у isTransferred. Замена system теряет changes; источник start=null также остаётся без начала отсчёта. |
+| Отправители ↔ Queries | getActorOwner выбирает активного владельца/GM; обычный и отдельный запросы улучшений идут разными путями. Generic data обычного эффекта не содержит отдельного duration. Query и обёртки не ждут завершения вложенных операций. |
+| Статусы ↔ иммунитеты | applyStatusEffectToActor — отдельная функция от WitcherActor.applyStatus. statusEffectImmunities определены у MonsterData; counter вызывается после toggle и до таймера иммунитета. |
+| Шаблон улучшений ↔ renderer | Единственный найденный renderTemplate в temporaryEffectMixin; передаёт подготовленный temps, не созданные документы. Запись оружия не ожидается перед сообщением. |
+| Шаблон статуса ↔ renderer | Единственный найденный renderTemplate в generalCombatHook.applyCombatEffect; контекст — status из turnStartEffects с heal/damage. Шаблон ничего не применяет; a.apply-status отсутствует в обоих шаблонах. |
+| Слушатели ↔ HTML | Рабочий hook отдельного сообщения ищет a.apply-status. Производители: spellItem.hbs (status/duration) и damageUtilMixin.js (status). Внутренних вызовов addStatusEffectChatListeners в module/templates/packsJson не найдено. |
+
+### Источники и выполненные способы проверки
+
+Использованы `git status --short`, `git rev-parse HEAD`, `git ls-files -z`, `rg -n` по именам функций/полей/шаблонов, полное чтение восьми исходников и связанных тел. Состав реестра сопоставлен с Git и фактическим деревом с согласованными исключениями; каждый включённый файл побайтово сравнен с HEAD и срезом TASK-0001.
+
+Для существенных ветвей выполнен Node stdin-сценарий с assertions. Исходный applyActiveEffect.js импортирован как ES-модуль. Для отдельных hooks/методов тела извлечены без изменения алгоритма; parent/super и глобальные зависимости заданы явно. Загружены настоящие primitives, fields, DataModel, TypeDataModel, ActiveEffectTypeDataModel, BaseActiveEffect и Document ядра, обе системные модели и WITCHER. Common-модули разрешались через Node registerHooks. Вместо полного Actor использован малый объект с прототипом BaseActor и явно заданными свойствами; создание документов, query, выбор, чат и таймеры перехватывались. Это не запуск клиента Foundry.
+
+Проверенные внешние определения:
+
+- /opt/foundryvtt/common/data/active-effect.mjs — схема changes; /opt/foundryvtt/common/data/fields.mjs — поля и нормализация.
+- /opt/foundryvtt/common/documents/active-effect.mjs — schema, common _preCreate, legacy migration/shimData; /opt/foundryvtt/common/abstract/document.mjs — clone и toObject.
+- /opt/foundryvtt/client/documents/active-effect.mjs — active/isSuppressed/isTemporary/isExpiryTrackable, подготовка changes, getEffectStart и hooks.
+- /opt/foundryvtt/client/documents/actor.mjs — применимые эффекты/фазы и toggleStatusEffect; /opt/foundryvtt/client/documents/combat.mjs — getCombatantsByActor.
+- /opt/foundryvtt/client/helpers/active-effect-registry.mjs — допуск к отслеживанию и обработка expiryAction; /opt/foundryvtt/client/documents/abstract/client-document.mjs — порядок подготовки.
+- /opt/foundryvtt/node_modules/handlebars/lib/index.js — настоящий компилятор двух шаблонов; localize подменён функцией, возвращающей L:ключ либо пустую строку.
+
+### Изолированные сценарии и результаты
+
+| Сценарий и вход | Фактический результат | Предел проверки |
+| --- | --- | --- |
+| Начальные system двух моделей, запись changes с key | Base: changes=[] и 5 false; temporary: changes=[] и 3 false. Новая change: type=add, phase=initial, value='', priority не сериализуется | Настоящие модели и схема; без серверного сохранения |
+| Обычный эффект value=5, units=rounds; запрошены undefined/0/2 | source и clone остаются value=5. Подготовленный duration.rounds получил 0/2, но source не изменился | Настоящие BaseActiveEffect/clone; Actor.createEmbeddedDocuments подменён |
+| Вход effect.toObject и JSON-roundtrip | Прямой toObject даёт TypeError при записи getter-only rounds; JSON-данные с modern value=5 тоже дают копию value=5 при запросе 2 | Различены формы аргумента; реальная сеть не моделируется сериализатором |
+| Контролируемый pending create; ToTargets/ViaId/прямой owned | Обёртки возвращаются при одной pending записи; прямой owned ждёт обычную запись; улучшения не ожидает | Управляемые Promise, без сетевых задержек |
+| !actor.isOwner | Записаны два query: отдельный со всем списком и общий с UUID/обычными эффектами без третьего duration | Получатели/query подменены |
+| Отсутствующий Item, три ручных приёма ViaId | Три одинаковых повторных запроса GM | Не автоматический и не реальный бесконечный цикл |
+| Матрица active/isDisabled | Обычный true/false; disabled false/true; equipped=false false/true; isActive=false false/false; каждый apply-флаг true даёт false/false; expired=true сам по себе true/false | Исходные геттеры + core active; registry может удалять отслеживаемые эффекты отдельно |
+| Частичный _preUpdate | name-only проходит; system без changes → TypeError forEach; changes-only при прежнем applyAfterCalculations=true → initial; changes+true → final; super=false прекращает обработку | Метод с малым super-контекстом; полная форма UI не запускалась |
+| _preCreate: текущий ход1, turnNumber0/1/2, expiryStart/End, value2 | Длительности 2/2/2/1/1/1; найденному Actor-combatant назначается start.combatant | Исходный метод; Combat API и контекст заданы явно |
+| _preCreate Item и начало отсчёта | С start.combat и Item-родителем getCombatantsByActor не находит Actor-комбатанта; updateSource получает {}. При start=null он не инициализируется | Тело getCombatantsByActor — из ядра; не полный lifecycle |
+| @skill и выбор swordsmanship | 52 варианта; ключ стал system.skills.ref.swordsmanship.activeEffectModifiers; прочие поля/ключи сохранены; отмена отклоняет Promise | Исходный chooseSkill, WITCHER, подмены render/prompt |
+| Исходный документ улучшения: одна changes, start=null, duration3rounds | Передатчик создаёт system только с тремя флагами; настоящая модель нормализует changes=[]; start остаётся null. Чат запущен, запись оружия ещё pending | Источник и нормализация — настоящие; UI/запись/чат подменены |
+| Цепочка common/client/system preCreate Item-улучшения, persisted=true | start=null, active=true, temporary=true, isExpiryTrackable=false | Исходные hooks/getters в малой цепочке наследования; полный scheduler не выполнялся |
+| Улучшение без weapon; отдельно отмена выбора | Принятый пустой выбор → TypeError чтения name; отмена → rejection | Prompt-подмена; реальный диалог не запускался |
+| Статус отсутствует / уже активен / Actor или ID отсутствует | Один toggle / ноль / ноль; активному статусу срок не обновляется | Коллекции Actor заданы явно |
+| Статус fire disabled в effects, appliedEffects пуст | Оригинальный core toggle вызывает deleteEmbeddedDocuments с disabled-fire | Исходное ядро; запись перехвачена |
+| Иммунитет, statuscounter выключен | Один toggle, таймер 1000 ms; при ручном запуске callback второй toggle | Таймер перехвачен |
+| Иммунитет, statuscounter включён, duration='2' | Один toggle, TypeError CONFIG.WITCHER.statusEffects.querySelector is not a function, таймеров 0 | Сам API модуля не достигнут |
+| Чат: отдельный listener, нет текущего Actor, пакетный listener | click зарегистрирован; onApplyStatus читает uuid у undefined; пакетный export падает на .each | Минимальные DOM doubles; не браузер |
+| Компиляция двух HBS с фактическими полями | Выведены имена и img; у improvement effect.statusEffect.name отсутствует, mock localize даёт пустой span. Ссылок a.apply-status нет | Настоящий Handlebars, подмена localize; не проверка оформления |
+
+Итоговый Node-сценарий завершился с exit 0 и пройденными assertions. Предупреждение MODULE_TYPELESS_PACKAGE_JSON относится к способу импорта в Node; package.json не изменялся. Во время подготовки минимального окружения корректировались только подмены и ожидания тестового сценария, не исходные функции.
+
+### Проблемы и границы
+
+Зарегистрированы восемь карточек [issue-00043–00050](../../issues/README.md): частичный update/phase, длительность копии, повторная пересылка отсутствующего Item, отсутствие оружия, отсутствие Actor при клике, DOM/jQuery пакетного слушателя, переключение disabled-статуса и start улучшения. Дополнены issue-00003 (ошибка до таймера иммунитета), issue-00008 (ожидание маршрутов) и issue-00042 (настоящая нормализация потери changes). Все 50 проблем остаются potential; исправления и пользовательское подтверждение не получены.
+
+Чтение /var/lib/foundryvtt/Data/modules/statuscounter завершилось Permission denied. Права не менялись; версия и API самого модуля остаются неизвестными. Это не препятствует проверке ошибочного querySelector у массива самой системы. Не выполнялись запуск мира/браузера, запись в БД, реальные Queries, настоящие таймеры боя и полное истечение эффектов. expiryAction=delete и реестр ядра существуют; вывод о бессрочности всех эффектов не делался.
+
+Уточнены девять ранее созданных карточек: TheWitcherTRPG.js, registerDataModels.js, queries.js, config.js, hooks.js, WitcherActor, WitcherItem, combatEffectsData и MonsterData. Новые карточки сохраняют точные источники, потребителей, используемые поля и ограничения; интерфейс/wizard остаётся TASK-0003.010.
+
+### Итоговая техническая сверка
+
+Проверка Python stdin + git diff --check прошла: 621 строка реестра без повторов, 64 карточки и 557 статусов «Не начат»; точный состав порции — восемь файлов и 415 логических строк. У восьми карточек проверены все 11 обязательных разделов, собственные определения класса и поля схем. Реестр issues содержит 50 уникальных номеров, все в potential. Проверены 156 Markdown-документов и 3663 локальные ссылки, включая якоря; таблицы и существование указанных файлов ядра проверены.
+
+Все 621 исходник побайтово совпадают с HEAD и срезом TASK-0001. Контрольная сумма содержимого реестра исходников: 9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e. Mode/uid/gid/inode всех 818 ранее отслеживаемых файлов сохранились (сводная SHA256 cb2f382166a97e7554c6ea3772b57a10267a94b4e1b6f0f4c5efd589fd4ac2a0). Изменения ограничены 39 Markdown-файлами в docs, включая 16 новых. История журнала начиная с TASK-0003.008 сохранена побайтово; ветка и HEAD не изменились.
+
+Покрытие: 64 карточки проверены, 557 файлов не разобраны. В первой серии TASK-0003 выполнены 53 из 61 файла; осталось 8 в TASK-0003.010, за пределами серии — 549. Родительская TASK-0003 остаётся in-progress, TASK-0003.009 — done. Исходники, мир и настройки системы не изменялись.
+
 ## TASK-0003.008
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `c5edcbadd05ff4038a174bd2e2a49785e40ea878`. Рабочее дерево на старте чистое, отслеживались 810 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Проверено локальное ядро Foundry 14.367.0 (/opt/foundryvtt/package.json), Node 24.16.0.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.008 подготовлены и сверены 56 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.009 подготовлены и сверены 64 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -104,3 +104,16 @@
 | --- | --- |
 | module/data/item/commonItemData.js | [Описание](module/data/item/commonItemData.js.md) |
 | module/item/witcherItem.js | [Описание](module/item/witcherItem.js.md) |
+
+## Документ ActiveEffect и применение воздействий — TASK-0003.009
+
+| Файл | Карточка |
+| --- | --- |
+| module/activeEffect/witcherActiveEffect.js | [Описание](module/activeEffect/witcherActiveEffect.js.md) |
+| module/data/activeEffects/witcherActiveEffectData.js | [Описание](module/data/activeEffects/witcherActiveEffectData.js.md) |
+| module/data/activeEffects/witcherTemporaryItemImprovementData.js | [Описание](module/data/activeEffects/witcherTemporaryItemImprovementData.js.md) |
+| module/actor/mixins/temporaryEffectMixin.js | [Описание](module/actor/mixins/temporaryEffectMixin.js.md) |
+| module/scripts/temporaryEffects/applyActiveEffect.js | [Описание](module/scripts/temporaryEffects/applyActiveEffect.js.md) |
+| module/scripts/statusEffects/applyStatusEffect.js | [Описание](module/scripts/statusEffects/applyStatusEffect.js.md) |
+| templates/chat/item/appliedTemporaryItemImprovements.hbs | [Описание](templates/chat/item/appliedTemporaryItemImprovements.hbs.md) |
+| templates/chat/combat/statusEffect.hbs | [Описание](templates/chat/combat/statusEffect.hbs.md) |

@@ -77,3 +77,11 @@
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 4 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
 
 2026-09-10 — TASK-0003.003: актуализированы связи с полностью разобранными структурами состояния Actor; ограничения полного клиента сохранены.
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+Прослежена ветвь updateCombat → applyGeneralCombatHooks → applyCombatEffects → applyCombatEffect → [templates/chat/combat/statusEffect.hbs](../../../../../../templates/chat/combat/statusEffect.hbs). Контекст — элемент system.combatEffects.turnStartEffects; до рендера проверяются heal.amount/damage.amount, затем сообщение и сами воздействия выполняет generalCombatHook.js. Шаблон не содержит a.apply-status и не вызывает [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js); интерактивные ссылки чата создают другие файлы. Ранее выявленные условия updateCombat не менялись.
+
+[Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.

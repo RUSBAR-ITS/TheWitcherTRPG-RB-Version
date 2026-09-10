@@ -167,3 +167,11 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.008 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+[module/actor/mixins/temporaryEffectMixin.js](../../../../../../module/actor/mixins/temporaryEffectMixin.js) создаёт эффекты выбранного оружия, [module/activeEffect/witcherActiveEffect.js](../../../../../../module/activeEffect/witcherActiveEffect.js) задаёт isAppliedTemporaryItemImprovement через system.isTransferred, а [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) наследует changes от ядра. Эти связи подтверждают вход allApplicableEffects/applyActiveEffects Item. Нормализация фактического payload передачи настоящим BaseActiveEffect даёт changes=[] (issue-00042). Отдельно перенос start=null не включает эффект в isExpiryTrackable (issue-00050). Создание оружейных эффектов не ожидается перед рендером [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../../../../templates/chat/item/appliedTemporaryItemImprovements.hbs); сообщение использует подготовленные данные, не результат записи.
+
+[Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.

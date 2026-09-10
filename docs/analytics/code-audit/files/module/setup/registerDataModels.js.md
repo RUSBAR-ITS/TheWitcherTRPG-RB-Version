@@ -181,3 +181,11 @@
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. CommonItemData непосредственно зарегистрирована как base; ещё 16 из 22 типов Item используют её прямых наследников. CriticalWoundData, HomelandData, SkillItemData, ClueData и ObstacleData — отдельные TypeDataModel. canHaveTemporaryItemImprovement и canBeRepaired не задаются реестром: базовые геттеры false переопределяются конкретными моделями.
 
 Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+Сверены две отдельные модели: [module/data/activeEffects/witcherActiveEffectData.js](../../../../../../module/data/activeEffects/witcherActiveEffectData.js) (changes ядра + пять BooleanField) и [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) (changes + три BooleanField, metadata.type). Temporary-модель прямо наследует ActiveEffectTypeDataModel, не WitcherActiveEffectData. changes в 14.367 имеет key/type/value/phase/priority; начальные type=add, phase=initial, value='', priority=undefined до клиентской подготовки. Настоящие модели выполнены изолированно; источник схемы проверен в common/data/active-effect.mjs.
+
+[Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.

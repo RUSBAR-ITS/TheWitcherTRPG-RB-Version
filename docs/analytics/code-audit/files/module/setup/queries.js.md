@@ -98,3 +98,11 @@
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Whitelist restoreReliability разрешает вызов метода, присоединённого WitcherItem через repairMixin. Он делегирует RepairSystem.restoreReliability(this). Маршрутизатор пробует entity[function] и entity.system[function] отдельно и не ожидает их; realCraft/checkIfItemHasRollTable в whitelist отсутствуют. Результаты текущего разбора дополняют issue-00008, но не означают выполнения сетевого запроса.
 
 Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+Полный разбор отправителей [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) и [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js) уточнил контракт: обычный owned-маршрут ждёт createEmbeddedDocuments, но ViaId, ToTargets, обработчик временных улучшений и принимающие Queries не связывают свой результат с завершением вложенной операции (issue-00008). Не-владелец посылает отдельный query улучшений со всем списком и общий query обычных эффектов без отдельного duration. При Item, недоступном даже GM, ViaId повторяет тот же запрос без конечной ветви (issue-00045). Три ручных исполнения и наблюдаемые payload не являются запуском сетевого цикла.
+
+[Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.

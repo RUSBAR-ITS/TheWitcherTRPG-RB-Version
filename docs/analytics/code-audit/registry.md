@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.008 проверены описания **56 файлов**, для **565 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.009 проверены описания **64 файлов**, для **557 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.008](review-log.md#task-0003008) выполнена на `c5edcbadd05ff4038a174bd2e2a49785e40ea878`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.009](review-log.md#task-0003009) выполнена на `a33bf33add228ae93f96a52046c8feb4ee992921`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -25,7 +25,7 @@
 | [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/activeEffect/mixins/baseMixin.js](../../../module/activeEffect/mixins/baseMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js) | Не установлено | Не подготовлено | Не начат |
+| [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js) | Документ ActiveEffect: подавление, фазы изменений, выбор навыка и подготовка длительности. | [Описание](files/module/activeEffect/witcherActiveEffect.js.md) | Проверено |
 | [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -40,7 +40,7 @@
 | [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/skillMixin.js](../../../module/actor/mixins/skillMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/temporaryEffectMixin.js](../../../module/actor/mixins/temporaryEffectMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/temporaryEffectMixin.js](../../../module/actor/mixins/temporaryEffectMixin.js) | Выбор оружия, передача временных улучшений и сообщение в чат. | [Описание](files/module/actor/mixins/temporaryEffectMixin.js.md) | Проверено |
 | [module/actor/mixins/verbalCombatMixin.js](../../../module/actor/mixins/verbalCombatMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/weaponAttackMixin.js](../../../module/actor/mixins/weaponAttackMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -69,8 +69,8 @@
 | [module/app/reward/reward.js](../../../module/app/reward/reward.js) | Не установлено | Не подготовлено | Не начат |
 | [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/chatMessage/witcherChatMessage.js](../../../module/chatMessage/witcherChatMessage.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/activeEffects/witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/activeEffects/witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js) | Системная модель обычного эффекта: changes ядра и пять флагов применения. | [Описание](files/module/data/activeEffects/witcherActiveEffectData.js.md) | Проверено |
+| [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) | Модель временного улучшения: changes, флаги применения и передачи. | [Описание](files/module/data/activeEffects/witcherTemporaryItemImprovementData.js.md) | Проверено |
 | [module/data/actor/characterData.js](../../../module/data/actor/characterData.js) | Модель персонажа: биография, опыт, обучение, журналы и обогащение текста. | [Описание](files/module/data/actor/characterData.js.md) | Проверено |
 | [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js) | Общая модель Actor: 19 полей, подготовка базовых максимумов, масса валют и миграции. | [Описание](files/module/data/actor/commonActorData.js.md) | Проверено |
 | [module/data/actor/lootData.js](../../../module/data/actor/lootData.js) | Модель хранилища добычи: вместимость, описание, валюты и масса монет. | [Описание](files/module/data/actor/lootData.js.md) | Проверено |
@@ -222,8 +222,8 @@
 | [module/scripts/rolls/extendedRoll.js](../../../module/scripts/rolls/extendedRoll.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/rolls/fumble.js](../../../module/scripts/rolls/fumble.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/socket/socketMessage.js](../../../module/scripts/socket/socketMessage.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/statusEffects/applyStatusEffect.js](../../../module/scripts/statusEffects/applyStatusEffect.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/temporaryEffects/applyActiveEffect.js](../../../module/scripts/temporaryEffects/applyActiveEffect.js) | Не установлено | Не подготовлено | Не начат |
+| [module/scripts/statusEffects/applyStatusEffect.js](../../../module/scripts/statusEffects/applyStatusEffect.js) | Применение статусов, ссылки чата, иммунитеты и интеграция statuscounter. | [Описание](files/module/scripts/statusEffects/applyStatusEffect.js.md) | Проверено |
+| [module/scripts/temporaryEffects/applyActiveEffect.js](../../../module/scripts/temporaryEffects/applyActiveEffect.js) | Применение и копирование ActiveEffect в Actor, маршруты целей и Queries. | [Описание](files/module/scripts/temporaryEffects/applyActiveEffect.js.md) | Проверено |
 | [module/scripts/verbalCombat/verbalCombat.js](../../../module/scripts/verbalCombat/verbalCombat.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/verbalCombat/verbalCombatDefense.js](../../../module/scripts/verbalCombat/verbalCombatDefense.js) | Не установлено | Не подготовлено | Не начат |
 | [module/setup/config.js](../../../module/setup/config.js) | Объект WITCHER: справочники, варианты действий, травмы и заготовки статусов | [Карточка](files/module/setup/config.js.md) | Проверено |
@@ -505,14 +505,14 @@
 | [templates/chat/combat/heal.hbs](../../../templates/chat/combat/heal.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/regeneration.hbs](../../../templates/chat/combat/regeneration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/spellItem.hbs](../../../templates/chat/combat/spellItem.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/combat/statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/combat/statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs) | Уведомление об обработке воздействия из turnStartEffects. | [Описание](files/templates/chat/combat/statusEffect.hbs.md) | Проверено |
 | [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/damageToAllLocations.hbs](../../../templates/chat/damage/damageToAllLocations.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/damageToLocation.hbs](../../../templates/chat/damage/damageToLocation.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/shieldAbsorbs.hbs](../../../templates/chat/damage/shieldAbsorbs.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/spAbsorbs.hbs](../../../templates/chat/damage/spAbsorbs.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/heal/resting-status.hbs](../../../templates/chat/heal/resting-status.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs) | Сообщение со списком временных улучшений выбранного оружия. | [Описание](files/templates/chat/item/appliedTemporaryItemImprovements.hbs.md) | Проверено |
 | [templates/chat/item/consume.hbs](../../../templates/chat/item/consume.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/dismantle.hbs](../../../templates/chat/item/dismantle.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/item-description.hbs](../../../templates/chat/item/item-description.hbs) | Не установлено | Не подготовлено | Не начат |

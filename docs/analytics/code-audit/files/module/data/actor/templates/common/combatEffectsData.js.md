@@ -131,3 +131,11 @@ applyGeneralCombatHooks вызывает асинхронные регенера
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Потребители attackModifier/defenseModifier полностью разобраны. Оба метода добавляют положительное число без '+'; настоящая грамматика Foundry отвергла '8+0 2[L:bonus]' (issue-00033). Метод защиты в итоговом Actor происходит из defenseMixin, заменяющего одинаковое определение modifierMixin.
 
 Карточки: [WitcherActor](../../../../actor/witcherActor.js.md), [modifierMixin](../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+Уточнён потребитель turnStartEffects: generalCombatHook.js перебирает значения и передаёт каждый status напрямую в [templates/chat/combat/statusEffect.hbs](../../../../../../../../../templates/chat/combat/statusEffect.hbs). Шаблон читает только img/name и локализованную подпись; amount/modifier обрабатывает вызывающий код. Это не документ ActiveEffect и не интерактивная ссылка на применение статуса. Собственные statusEffectImmunities здесь не определены: этот массив принадлежит MonsterData.
+
+[Журнал сверки](../../../../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.

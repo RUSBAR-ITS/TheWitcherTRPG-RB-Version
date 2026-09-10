@@ -137,3 +137,11 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Импорт WitcherItem в строке 11 и CONFIG.Item.documentClass в init:32 связывают весь жизненный цикл Item с системным классом. По полному разбору Item установлены 12 собственных определений, пять примесей/11 методов и отдельный обработчик улучшений. Регистрация класса не означает регистрацию общей модели для каждого типа.
 
 Связанные карточки: [CommonItemData](data/item/commonItemData.js.md) и [WitcherItem](item/witcherItem.js.md). [Перекрёстная сверка](../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+Полностью разобраны зарегистрированный [module/activeEffect/witcherActiveEffect.js](../../../../../module/activeEffect/witcherActiveEffect.js) и маршруты [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) / [module/scripts/statusEffects/applyStatusEffect.js](../../../../../module/scripts/statusEffects/applyStatusEffect.js). documentClass определяет suppression и hooks; game.api публикует ViaId, а renderChatMessageHTML вызывает chatMessageListeners отдельного сообщения. Пакетный addStatusEffectChatListeners в этой точке не используется (issue-00048). expiryAction=delete обслуживается реестром ядра; отсутствие проверки duration.expired в системном isSuppressed не доказывает отсутствия автоматического удаления всех эффектов.
+
+[Журнал сверки](../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.

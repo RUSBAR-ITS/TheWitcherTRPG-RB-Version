@@ -379,3 +379,11 @@
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. WitcherItem.getItemAttack:67 читает WITCHER.skillMap[attackSkill]?.label и возвращает ключ, не локализованный текст. Выбор варианта зависит от порядка Set attackOptions и ctrl/alt/shift, а не от порядка skillMap. При неизвестном skill отсутствует alias; методы Item не создают карту навыков.
 
 Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.009
+
+2026-09-10, `a33bf33add228ae93f96a52046c8feb4ee992921`. Исходник не изменился относительно указанного ранее среза.
+
+[module/activeEffect/witcherActiveEffect.js](../../../../../../module/activeEffect/witcherActiveEffect.js) превращает skillMap в 52 варианта выбора пути навыка; label служит ключом результирующего объекта. [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js) обращается к CONFIG.WITCHER.statusEffects как к DOM через querySelector, хотя это массив (issue-00003); ошибка возникает после toggle и до таймера снятия статуса по иммунитету. Определения turnStartEffects сверены с контекстом [templates/chat/combat/statusEffect.hbs](../../../../../../templates/chat/combat/statusEffect.hbs): renderer передаёт объект действия боя, шаблон только выводит img/name.
+
+[Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
