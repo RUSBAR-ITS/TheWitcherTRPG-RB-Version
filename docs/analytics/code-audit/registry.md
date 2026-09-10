@@ -4,7 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0001 у всех файлов статус «Не начат». Назначение и подробные карточки заполняются при последующем пофайловом разборе, а не выводятся из имени файла. «Не подготовлено» означает отсутствие карточки; ссылок на ещё не созданные документы нет.
+После TASK-0002 проверены описания **11 файлов**, для **610 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+
+Проверка TASK-0002 выполнена на `3252300787c348e11f95098c345a6af7704b690c`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -19,7 +21,7 @@
 | [lang/pl.json](../../../lang/pl.json) | Не установлено | Не подготовлено | Не начат |
 | [lang/ptbr.json](../../../lang/ptbr.json) | Не установлено | Не подготовлено | Не начат |
 | [lang/ru.json](../../../lang/ru.json) | Не установлено | Не подготовлено | Не начат |
-| [module/TheWitcherTRPG.js](../../../module/TheWitcherTRPG.js) | Не установлено | Не подготовлено | Не начат |
+| [module/TheWitcherTRPG.js](../../../module/TheWitcherTRPG.js) | Точка входа: жизненный цикл, реестры документов, API, чат и макросы | [Карточка](files/module/TheWitcherTRPG.js.md) | Проверено |
 | [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/activeEffect/mixins/baseMixin.js](../../../module/activeEffect/mixins/baseMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -224,15 +226,15 @@
 | [module/scripts/temporaryEffects/applyActiveEffect.js](../../../module/scripts/temporaryEffects/applyActiveEffect.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/verbalCombat/verbalCombat.js](../../../module/scripts/verbalCombat/verbalCombat.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/verbalCombat/verbalCombatDefense.js](../../../module/scripts/verbalCombat/verbalCombatDefense.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/config.js](../../../module/setup/config.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/deprecations.js](../../../module/setup/deprecations.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/handlebars.js](../../../module/setup/handlebars.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/hooks.js](../../../module/setup/hooks.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/queries.js](../../../module/setup/queries.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/registerDataModels.js](../../../module/setup/registerDataModels.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/registerSheets.js](../../../module/setup/registerSheets.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/settings.js](../../../module/setup/settings.js) | Не установлено | Не подготовлено | Не начат |
-| [module/setup/socketHook.js](../../../module/setup/socketHook.js) | Не установлено | Не подготовлено | Не начат |
+| [module/setup/config.js](../../../module/setup/config.js) | Объект WITCHER: справочники, варианты действий, травмы и заготовки статусов | [Карточка](files/module/setup/config.js.md) | Проверено |
+| [module/setup/deprecations.js](../../../module/setup/deprecations.js) | Экспортирует пустую функцию уведомлений deprecationWarnings; проверки устаревания не выполняет. | [Карточка](files/module/setup/deprecations.js.md) | Проверено |
+| [module/setup/handlebars.js](../../../module/setup/handlebars.js) | Предзагружает 59 шаблонов и регистрирует 17 Handlebars helpers для листов и сообщений. | [Карточка](files/module/setup/handlebars.js.md) | Проверено |
+| [module/setup/hooks.js](../../../module/setup/hooks.js) | Подключает updateCombat к обработке эффектов боя и отсчёту длительности регионов. | [Карточка](files/module/setup/hooks.js.md) | Проверено |
+| [module/setup/queries.js](../../../module/setup/queries.js) | Регистрирует два запроса Foundry User.query для эффектов и разрешённых методов документов. | [Карточка](files/module/setup/queries.js.md) | Проверено |
+| [module/setup/registerDataModels.js](../../../module/setup/registerDataModels.js) | Регистрирует модели данных Actor, Item, ActiveEffect и ChatMessage и класс документа сообщения чата. | [Карточка](files/module/setup/registerDataModels.js.md) | Проверено |
+| [module/setup/registerSheets.js](../../../module/setup/registerSheets.js) | Регистрирует общие и специализированные листы Actor/Item и заменяет стандартный редактор ActiveEffect. | [Карточка](files/module/setup/registerSheets.js.md) | Проверено |
+| [module/setup/settings.js](../../../module/setup/settings.js) | Регистрирует девять мировых настроек и формирует варианты выбора Item-компедиума травм. | [Карточка](files/module/setup/settings.js.md) | Проверено |
+| [module/setup/socketHook.js](../../../module/setup/socketHook.js) | Принимает сообщения системного сокета на активном GM и вызывает addItem или restoreReliability по UUID. | [Карточка](files/module/setup/socketHook.js.md) | Проверено |
 | [package.json](../../../package.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json](../../../packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json](../../../packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json) | Не установлено | Не подготовлено | Не начат |
@@ -496,7 +498,7 @@
 | [styles/tab-skills.css](../../../styles/tab-skills.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/weapon-roll.css](../../../styles/weapon-roll.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/witcher-styles.css](../../../styles/witcher-styles.css) | Не установлено | Не подготовлено | Не начат |
-| [system.json](../../../system.json) | Не установлено | Не подготовлено | Не начат |
+| [system.json](../../../system.json) | Манифест пакета: ресурсы, компедиумы, локализации и подтипы документов | [Карточка](files/system.json.md) | Проверено |
 | [templates/chat/combat/defense/defense.hbs](../../../templates/chat/combat/defense/defense.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/defense/defenseCrit.hbs](../../../templates/chat/combat/defense/defenseCrit.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/defense/defenseStun.hbs](../../../templates/chat/combat/defense/defenseStun.hbs) | Не установлено | Не подготовлено | Не начат |
