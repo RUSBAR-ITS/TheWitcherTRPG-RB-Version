@@ -248,3 +248,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 [RepairSystem](../../../../../../module/item/systems/repair.js) вызывает findNeededComponent из [craftingMixin](../../../../../../module/actor/mixins/craftingMixin.js) и выбирает первый Item, затем _doRepair вызывает removeItem(_id,1) для каждой owned-записи. removeItem:275–283 действительно ждёт delete/update; потеря ожидания находится у caller ремонта, а не в этом методе. При artisan списывается его инвентарь, предмет принадлежит owner. Подбор включает quantity0/isStoredtrue; нулевое количество UI показывает как нехватку, но guard не проверяет ([issue-00104](../../../../../issues/potential/issue-00104.md)). Списания кошелька в пяти ремонтных файлах нет.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. getList('race')/getList('homeland') фильтрует !item.system.isStored и сортирует по sort; CharacterSheet берёт первый элемент. В памяти stored race исключена, следующая race выбрана. HomelandData не задаёт isStored. Листы включают оба типа в uniqueTypes и вызывают removeItemsOfType перед addItem через itemMixin; существующее неожидание удаления остаётся предметом [issue-00034](../../../../../issues/potential/issue-00034.md), без нового воспроизведения гонки. Показ Item-родины не копирует её поля в general.homeland; socialStanding берётся для бросков из general.socialStanding. Наследуемый core Actor.allApplicableEffects отдельно собирает transfer-эффекты обоих типов; описательные поля не превращаются в бонусы.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

@@ -219,3 +219,9 @@
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Полностью описаны регистрации ComponentData→component и DiagramData→diagrams: [module/data/item/componentData.js](../../../../../../module/data/item/componentData.js), [module/data/item/diagramData.js](../../../../../../module/data/item/diagramData.js). В реальных моделях 14/20 верхних полей. [module/data/item/templates/craftingComponentData.js](../../../../../../module/data/item/templates/craftingComponentData.js) даёт строке id/name/quantity/uuid с генерируемым ID, а [module/data/item/templates/associatedDiagramData.js](../../../../../../module/data/item/templates/associatedDiagramData.js) включается в Weapon/Armor независимо. Модели связанного Item и строки требования рецепта не смешиваются.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Импорты RaceData и HomelandData разрешаются в [module/data/item/raceData.js](../../../../../../module/data/item/raceData.js) и [module/data/item/homelandData.js](../../../../../../module/data/item/homelandData.js); обе модели зарегистрированы для соответствующих Item-типов. Настоящие модели Foundry 14 в памяти дали 13 и 2 верхнеуровневых поля. RaceData наследует CommonItemData и переопределяет description как HTMLField; HomelandData напрямую наследует TypeDataModel, не получает общую схему предмета.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

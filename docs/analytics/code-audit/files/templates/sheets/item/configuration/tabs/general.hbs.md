@@ -90,3 +90,9 @@ JavaScript-функций нет. Шаблон вычисляет условия
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003015).
 
 Сопоставлены полные [module/data/item/alchemicalData.js](../../../../../../../../../module/data/item/alchemicalData.js), [module/data/item/mutagenData.js](../../../../../../../../../module/data/item/mutagenData.js), [module/data/item/valuableData.js](../../../../../../../../../module/data/item/valuableData.js). Их схемы не имеют attackOptions/damageType/defenseOptions, поэтому эта general не показывает поля расходования. Alchemical/Valuable получают их из [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../../../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs), а Mutagen не подключает специализированную configuration. Наличие вкладки general само по себе не покрывает consumeProperties.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Рендер с настоящими схемами [RaceData](../../../../../../../../../module/data/item/raceData.js) и [HomelandData](../../../../../../../../../module/data/item/homelandData.js) не вывел именованных полей: attack/damage/defense в обеих отсутствуют. Это не отсутствие всей конфигурации: отдельная вкладка effects остаётся доступна через WitcherConfigurationSheet и содержит четыре категории. Оба листа выводят configureItem при showConfig.
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

@@ -98,3 +98,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. CharacterData.general:16 включает девять полей. CharacterData добавляет рядом gender и lifeEventCounter, а enrichedText читает general.background.value. Схема CommonActorData не включает general: у монстра и loot этой биографии нет.
 
 Карточки сборки: [characterData](../../characterData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. general.race (строка), general.socialStanding (строка) и general.homeland (вложенная модель Actor) независимы от [race Item](../../../../../../../../../module/data/item/raceData.js) и [homeland Item](../../../../../../../../../module/data/item/homelandData.js). CharacterSheet выводит выбранные Item; подстановка названия расы и родины не переписывает Actor.general. skillMixin.addSocialStanding читает именно general.socialStanding: таблица пяти регионов race и homeland не выбирают его автоматически. Изолированное изменение socialStanding.north у Item не изменило Actor.general.socialStanding.
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

@@ -103,3 +103,9 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003015).
 
 Полностью разобран прямой наследник [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js). Он расширяет PARTS и TABS вкладкой consumableProperties и добавляет собственные actions/listeners. Базовая configuration продолжает обслуживать документы Item.effects, в то время как consumableProperties содержит обычные массивы записей статусов. [module/item/sheets/WitcherMutagenSheet.js](../../../../../../../../module/item/sheets/WitcherMutagenSheet.js) оставляет этот базовый класс без новой вкладки; общая general не выводит isConsumable/consumeProperties.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Для [race](../../../../../../../../module/data/item/raceData.js) и [homeland](../../../../../../../../module/data/item/homelandData.js) общий шаблон general не вывел именованных полей, поскольку в схемах нет attack/damage/defense. При этом конфигурация содержит четыре категории ActiveEffect. Прямой вызов настоящего onManageActiveEffect для passive обеих моделей передал запрос createEmbeddedDocuments с name/icon/origin/duration/disabled; явные transfer и changes в этом payload отсутствуют. Запросы перехвачены, документы в БД не создавались. Доступность редактора эффекта не означает наличия настроенного воздействия.
+
+[Перекрёстная сверка](../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

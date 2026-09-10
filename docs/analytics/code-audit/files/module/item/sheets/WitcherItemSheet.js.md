@@ -142,3 +142,9 @@
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
 
 Полностью разобраны наследники [module/item/sheets/WitcherComponentSheet.js](../../../../../../../module/item/sheets/WitcherComponentSheet.js) и [module/item/sheets/WitcherDiagramSheet.js](../../../../../../../module/item/sheets/WitcherDiagramSheet.js). ComponentSheet задаёт лишь DEFAULT_OPTIONS.width/PARTS; DiagramSheet добавляет контекст и activateListeners. Настоящий базовый _onRender действительно вызвал override: зарегистрированы click/blur/click/click для добавления, редактирования, удаления компонента и удаления результата. В DiagramSheet реализован собственный _onDropItem, который пишет UUID результата либо массив материалов. Его null offsetParent даёт отклонение Promise; это другой caller того же небезопасного DOM-доступа, что issue-00080.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [Лист расы](../../../../../../../module/item/sheets/WitcherRaceSheet.js) и [лист родины](../../../../../../../module/item/sheets/WitcherHomelandSheet.js) используют общие _prepareContext и configuration без переопределения. С настоящими моделями контекст race получил 4 записи enrichedText, homeland — undefined через необязательный вызов; оба получили CONFIG.WITCHER, systemFields, data и showConfig. Наследуемый configureItem открыл конфигурацию-фасад по одному разу. Сохранение UI и браузерное слияние параметров окна не выполнялись.
+
+[Перекрёстная сверка](../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

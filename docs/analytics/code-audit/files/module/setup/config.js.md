@@ -433,3 +433,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Полный разбор [templates/sheets/item/component-sheet.hbs](../../../../../../templates/sheets/item/component-sheet.hbs) и [templates/sheets/item/diagrams-sheet.hbs](../../../../../../templates/sheets/item/diagrams-sheet.hbs) уточнил зависимости: config.substanceTypes — 9 субстанций, Availability — варианты rarity компонента, craftingLevels — 5 уровней рецепта. FormulaTypes (4) и diagramTypes (9) задаёт WitcherDiagramSheet.createSelects отдельным context.selects. Схемы строк не ограничены этими UI-словарями. Локализация 49 буквальных ключей порции проверена в en/ru; два ключа HBS имеют ошибочный пробел, ещё две существующие подсказки связанного рецепта переставлены.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Для [формы родины](../../../../../../templates/sheets/item/homeland-sheet.hbs) homelands содержит 26 вариантов, включая other. Для [формы расы](../../../../../../templates/sheets/item/race-sheet.hbs) socialStanding содержит 6 вариантов. Все 32 ключа этих вариантов и 7 буквальных ключей порции найдены в en/ru. Это варианты UI: StringField в моделях не задают choices, и произвольные значения приняты настоящими моделями. Регион socialStanding.dolBlathanna и код родины dolblathanna имеют разный регистр; преобразователь между ними не найден.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

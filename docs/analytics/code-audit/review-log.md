@@ -1,5 +1,104 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.018
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`; рабочее дерево на старте чистое, отслеживаются 976 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/raceData.js](../../../module/data/item/raceData.js) | 31 |
+| [module/data/item/homelandData.js](../../../module/data/item/homelandData.js) | 14 |
+| [module/data/item/templates/perkData.js](../../../module/data/item/templates/perkData.js) | 8 |
+| [module/data/item/templates/socialStandingData.js](../../../module/data/item/templates/socialStandingData.js) | 11 |
+| [module/item/sheets/WitcherRaceSheet.js](../../../module/item/sheets/WitcherRaceSheet.js) | 15 |
+| [module/item/sheets/WitcherHomelandSheet.js](../../../module/item/sheets/WitcherHomelandSheet.js) | 15 |
+| [templates/sheets/item/race-sheet.hbs](../../../templates/sheets/item/race-sheet.hbs) | 84 |
+| [templates/sheets/item/homeland-sheet.hbs](../../../templates/sheets/item/homeland-sheet.hbs) | 16 |
+
+Всего **8 файлов, 194 логические строки**. Описаны обе модели, две фабрики вложенных полей, два класса листов и оба шаблона целиком. Сверены все 6 прямых относительных импортов, регистрация, контекст, именованные поля, методы и внешние потребители. Подготовлены 8 новых карточек; уточнены 14 связанных: system.json, registerDataModels, registerSheets, config, CommonItemData, dataUtils, WitcherItemSheet, WitcherConfigurationSheet, WitcherItem, WitcherActor, generalData, фабрика родины Actor, WitcherActiveEffect и общий шаблон конфигурации general.
+
+Лист персонажа, его itemMixin, skillMixin, header/tab-background/tab-profession, внешние классы Foundry и CSS прочитаны для проверки конкретных связей. Их чтение не заявлено полным пофайловым разбором. При проверке верхнеуровневого type в 226 JSON-файлах packsJson не обнаружены race/homeland Item; это просмотр метаданных типов, без анализа содержимого всех компедиумов. Базы packs и миров не открывались.
+
+### Методика и подмены
+
+Диагностический JavaScript передан Node через stdin, без создания файлов стенда. Использованы настоящие DataModel/TypeDataModel/поля/common BaseItem Foundry и системные модели, подключённые registerDataModels. Настоящий WitcherItem выполнен поверх common BaseItem, не client Item. Проверены экземпляры race/homeland, фабрики полей, enrichedText и dataUtils; TextEditor.enrichHTML заменён функцией, возвращающей отличимый HTML-маркер. Источник документов до и после сравнен через toObject; обогащение не записывало данные.
+
+Настоящие ItemSheetV2, HandlebarsApplicationMixin и DragDrop загружены поверх фасада DocumentSheetV2; классы WitcherItemSheet, обоих специализированных листов и WitcherConfigurationSheet настоящие. Общий lifecycle Application, слияние всех опций, события браузера и сохранение формы не исполнялись. Вызовы render, update и createEmbeddedDocuments перехватывались; ни одного документа БД не создано.
+
+Handlebars 4.7.9 и parse5 настоящие. Вызваны исходные formGroup, HTMLField.toFormGroup/toInput, selectOptions и prepareSelectOptionGroups; ProseMirror.create и окончательные DOM-обёртки заменены регистраторами. Для Actor-описаний отдельно исполнены настоящие editor и createEditorInput с минимальным document.createElement и пустым CONFIG.TextEditor.engines, как в стандартном config ядра. Helper eq представлен эквивалентным a===b; его источник установлен в /opt/foundryvtt/client/applications/handlebars.mjs:140. localize читает настоящие en/ru после expandObject. Отсутствие явно selected option не объявлено проверкой автоматического выбора браузером.
+
+Настоящие тела WitcherCharacterSheet._prepareCharacterData и WitcherActor.getList исполнены на фасадах контекста/коллекции; расчёт totals/statTotal заменён нулевыми заглушками. Вызваны настоящие itemMixin._onDropItem/_onItemInlineEdit и skillMixin.addSocialStanding. Операции Actor удаления/добавления и запись Item представлены журналом вызовов; прежняя гонка удаления не воспроизводилась заново.
+
+Для эффектов исполнены настоящий generator core Actor.allApplicableEffects на фасаде коллекций и getter WitcherActiveEffect.isSuppressed на фасадах родителей. Числовой pipeline applyActiveEffects, active/shouldApplyChange и сохранение созданного эффекта не запускались; соответствующие исходники ядра прочитаны для определения границы.
+
+### Выполненные сценарии
+
+| Группа | Фактический результат |
+| --- | --- |
+| 1. Схемы и регистрация | RaceData: 13 верхнеуровневых полей, description HTMLField вместо StringField базы; HomelandData: 2 StringField, metadata.type=homeland и Object.isFrozen=true. Обе модели/листа согласованы с system.json. |
+| 2. Вложенные фабрики | Четыре независимые пары name/description; пять регионов north/nilfgaard/skellige/dolBlathanna/mahakam. Начальные строки пусты, общие значения Race соответствуют CommonItemData. |
+| 3. Обогащение | Четыре последовательных вызова: UUID-текст и 3 пустых описания. Получены свои value/enriched/systemField с system.perkN.description; общего description в результате нет, source не изменён. |
+| 4. Значения модели | customStanding/customPlace приняты без choices. otherValue сохраняется при другом value. Лишняя quantity родины отсутствует в подготовленных данных и toObject. |
+| 5. Форма расы | 15 именованных элементов, 4 HTML-входа передали верные value/enriched/path; socialStanding.north=hated/nilfgaard=equal явно selected. Общего description нет. configureItem/editImage присутствуют. |
+| 6. Форма родины | Для other два именованных поля; для пустого/nilfgaard/customPlace одно. Всегда 26 вариантов. Явное selected только у other/nilfgaard; showConfig включает действие конфигурации. |
+| 7. Конфигурация и создание AE | Оба configureItem открыли render-фасад. General даёт 0 именованных полей; 4 категории эффектов доступны. Passive-create передал 2 запроса с type=base/name/icon/origin/duration/disabled; явных transfer/changes в запросах нет. |
+| 8. Контекст Actor и заголовок | Первый race/homeland Item выбран, enrichedText.race содержит 4 результата. Item-родина other/AuditPlace показана при неизменном Actor.homeland=aedirn; без Item показано значение Actor. general.race не переписана. |
+| 9. Описания на Actor | Все четыре editor получили исходный race.system.perkN.description. HTML-маркер отсутствует, @UUID осталась в результате. Контрольная Item-форма передавала enriched правильно: issue-00109. |
+| 10. Социальные модификаторы | addSocialStanding читает Actor.general.socialStanding. Для tolerated/hated/feared/toleratedFeared/hatedFeared charisma дала -1/-2/-1/-1-1/-2-1; leadership -1/-2/пусто/-1/-2; intimidation пусто/пусто/+1/+1/+1. Пусто/equal не добавляют строк. |
+| 11. Inline-редактирование | Изменение региона north передало Item.update({'system.socialStanding.north':'feared'}); Actor.general.socialStanding осталась equal. |
+| 12. Drop | Настоящие _onDropItem с race и homeland вызвали последовательно remove(type), add(item) на фасаде. Это проверка маршрута, не завершения настоящего удаления. |
+| 13. Выбор Item и эффекты | getList исключил stored race и вернул Empty Race. Core generator собрал Actor/race/homeland effects с transfer; transfer=false исключён. isSuppressed для обоих типов false, при applySelf=true — true. |
+| 14. Локализация | 26 значений homelands, 6 socialStanding и 7 буквальных ключей: 39 ключей найдены в en и ru, отсутствующих нет. |
+
+Все 14 групп завершены. Первоначальные ошибки диагностического окружения (неопределённый global Actor и невалидный ID входного документа) исправлены в коде проверки; итоговый прогон прошёл. Это ошибки стенда в памяти, не новые проблемы системы. Предупреждение Node о типе модуля не устранялось изменением package.json.
+
+### Перекрёстная сверка связей
+
+| Цепочка | Сопоставление |
+| --- | --- |
+| Тип → схема → лист | system.json → registerDataModels/registerSheets → RaceData/HomelandData → общий WitcherItemSheet. Объявления race/homeland полны; Home не наследует CommonItemData. |
+| Особенность → HTML → показ | perk() → RaceData.enrichedText → createEnrichedText → ItemSheet.enrichedText → четыре formGroup. Другой consumer CharacterSheet готовит enrichedText.race, но tab-profession.editor берёт исходный description. |
+| Регионы → выбор → бросок | socialStanding() определяет 5 строк, config — 6 UI-вариантов. Race-форма/inline меняют Item. Биография отдельно выбирает general.socialStanding; skillMixin читает это значение, не таблицу расы. |
+| Родина → представление | Item.value/otherValue и Actor.general.homeland — разные схемы. getList('homeland')[0] переключает ветку показа; копирования в Actor не найдено. other определяет наличие текстового поля. |
+| Drop → хранение → выбор | uniqueTypes на листах → itemMixin._onDropItem → removeItemsOfType/addItem. getList сортирует по sort и исключает isStored; CharacterSheet берёт первый. Прежняя async-граница отражена в issue-00034. |
+| Конфигурация → ActiveEffect → Actor | Общие WitcherConfigurationSheet/ActiveEffect CRUD доступны обоим типам. Сбор transfer-эффектов выполняет core Actor, подавление — WitcherActiveEffect/ядро. Тексты perk сами effects/changes не создают. |
+| Поля → словари → локализация | Все именованные поля согласованы со схемами; варианты существуют в config и en/ru. choices в строковых моделях отсутствуют. Регистр dolBlathanna таблицы расы отличается от dolblathanna родины; автоматического соответствия не найдено. |
+| Шаблоны → стиль/ресурсы | PARTS.main ведёт к прочитанным HBS. .perk/.editor-content и классы родины сопоставлены с CSS только как селекторы; работу визуального редактора и загрузку изображений проверка не подтверждает. |
+
+### Проблемы и границы вывода
+
+Зарегистрирована одна новая [issue-00109](../../issues/potential/issue-00109.md) в potential: лист персонажа не использует приготовленный HTML расовых особенностей. Исполненный стандартный editor-helper не обогащает его сам; реальные UUID не разрешались. Сохранение target=race.system.perkN.description отдельно не проверялось и не объявлено сломанным.
+
+Дополнены [issue-00005](../../issues/potential/issue-00005.md) (оба типа согласованы), [issue-00013](../../issues/potential/issue-00013.md) (другой consumer HTML) и [issue-00034](../../issues/potential/issue-00034.md) (уточнён Drop расы/родины). Унаследованные ограничения листа из issue-00058/00059 обозначены в карточках без нового воспроизведения или дублей.
+
+Фиксированные четыре perk, отсутствие общего description в рассмотренной форме, произвольные значения без choices и отсутствие автопереноса социального положения записаны как фактические границы, без навязывания новой механики. Игровые правила и числовые расовые бонусы не проектировались. Потенциальные проблемы не подтверждены пользователем и не исправлены.
+
+### Структурная проверка и сохранность
+
+Проверка Python через stdin сопоставила Git, фактическое дерево, реестр и документы:
+
+| Проверка | Результат |
+| --- | --- |
+| Состав и статусы реестра | 621 уникальный исходник; 146 карточек со статусом «Проверено», 475 строк «Не начат» |
+| Новая порция | Ровно 8 файлов из TASK-0003.018, 194 логические строки; все 11 разделов карточки, поля/методы и версия присутствуют |
+| Связи | 227 прямых относительных импортов всех описанных JS разрешены в существующие файлы и представлены в карточках; 6 относятся к новой порции |
+| Markdown | 307 документов, 6459 локальных ссылок; цели и якоря существуют, таблицы согласованы, нет завершающих пробелов |
+| Задачи | .001–.018 done, .019–.020 planned; в очереди 22 различных файла, все ещё «Не начат»; TASK-0003 in-progress |
+| Проблемы | 109 последовательных ID, все в potential; issue-00109 имеет обязательные разделы и текущую версию |
+| Сохранность исходников | Все 621 файл побайтно совпадают и с HEAD, и со срезом TASK-0001; сводный SHA256 9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e |
+| Доступ существующих файлов | Для 976 отслеживаемых файлов сохранены mode, uid, gid и inode; SHA256 снимка edfd1bbcddee92a21f6c26b6d6bdfdac0fc5efc9aa03c9c2eed35c6460dc9c72 |
+| Состав изменений | 37 документов: 8 новых карточек, 14 уточнённых, 1 новая issue, 3 дополненных issue и 11 указателей/задач/журналов; git diff --check прошёл |
+
+Исходная часть журнала начиная с TASK-0003.017 сохранена без изменений; хеш всего журнала на старте 733281e292433688e9b723313ca85c83bf46ca01a72f3a7ea55e2b34f6ecbf49. Указатели, текущие итоги и восемь строк реестра дополнительно прочитаны после обновления; исторические результаты порций сохранены. Эти структурные проверки дополняют содержательное сопоставление выше, не заменяют его.
+
+### Результат и ограничения
+
+[TASK-0003.018](../../tasks/task-0003.018.md) завершена в согласованном объёме. Покрытие — **146 из 621 файла**, не разобраны **475**. Во второй серии разобраны **74 из 96**, в очереди **22**; следующие [TASK-0003.019](../../tasks/task-0003.019.md) и [TASK-0003.020](../../tasks/task-0003.020.md) остаются planned. Остальные 453 файла требуют дальнейшей детализации.
+
+Изменена только документация. Мир, браузер, сервис, БД, реальные клиентские документы/UUID, сохранение форм и эффекты в игре не запускались. Права/владельцы/группы/содержимое исходников сохранены; код не исправлялся, коммит не создавался.
+
 ## TASK-0003.017
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; рабочее дерево на старте чистое, отслеживаются 964 файла. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

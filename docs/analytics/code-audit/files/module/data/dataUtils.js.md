@@ -111,3 +111,9 @@
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. CommonItemData не определяет enrichedText. Соответствующие методы RaceData, ProfessionData и отдельной CriticalWoundData используют createEnrichedText; WitcherItem.enrichedText лишь условно делегирует system.enrichedText. Лист Item обращается к модели напрямую. Связи точечно проверены, без полного разбора этих специализированных моделей.
 
 Связанные карточки: [CommonItemData](item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [RaceData.enrichedText](../../../../../../module/data/item/raceData.js) последовательно вызывает createEnrichedText для perk1–perk4, в том числе с пустым описанием. Возвращаются исходный value, отдельно enriched и реальные поля schema с путями system.perkN.description; source не изменяется. [Форма Item](../../../../../../templates/sheets/item/race-sheet.hbs) передаёт все три части правильно. WitcherCharacterSheet также готовит enrichedText.race, но tab-profession.hbs читает raw description через editor: [issue-00109](../../../../../issues/potential/issue-00109.md).
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

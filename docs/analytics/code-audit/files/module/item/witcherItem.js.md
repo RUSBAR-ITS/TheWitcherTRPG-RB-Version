@@ -221,3 +221,9 @@
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 Полностью разобраны [repairMixin](../../../../../../module/item/mixins/repairMixin.js) и [RepairSystem](../../../../../../module/item/systems/repair.js). Object.assign:373 даёт документу repair/restoreReliability: первый ждёт process(this.actor,this), второй сразу делегирует system.repair. Это методы Item, отличные от методов его модели. Штатный обычный процесс блокируют [issue-00102](../../../../../issues/potential/issue-00102.md) и [issue-00103](../../../../../issues/potential/issue-00103.md). Прямой GM/socket путь восстанавливает через модели. Ожидание update теряется на нескольких уровнях ([issue-00081](../../../../../issues/potential/issue-00081.md)). Настоящая примесь проверена с Item-фасадом/моделями, client WitcherItem не создавался.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [RaceData](../../../../../../module/data/item/raceData.js) и [HomelandData](../../../../../../module/data/item/homelandData.js) отвечают за system; имя, изображение и коллекция effects принадлежат Item. Изолированные экземпляры настоящего WitcherItem поверх common BaseItem подтвердили обе модели и их формы; client Item/мир не запускались. Тексты perk не создают effects/changes. Конфигурация обоих типов использует общий ActiveEffect CRUD, а перенос на Actor определяется transfer в отдельном Actor.allApplicableEffects ядра.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

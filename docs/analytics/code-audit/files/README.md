@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.017 подготовлены и сверены 138 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.018 подготовлены и сверены 146 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -226,3 +226,16 @@
 | module/item/mixins/costEditMixin.js | [Описание](module/item/mixins/costEditMixin.js.md) |
 | templates/dialog/repair-dialog.hbs | [Описание](templates/dialog/repair-dialog.hbs.md) |
 | templates/chat/item/repair.hbs | [Описание](templates/chat/item/repair.hbs.md) |
+
+## Раса и родина — TASK-0003.018
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/raceData.js | [Модель расы: четыре текстовые особенности, региональное социальное положение и подготовка HTML.](module/data/item/raceData.js.md) |
+| module/data/item/homelandData.js | [Модель предмета родины: ключ выбора и дополнительное название.](module/data/item/homelandData.js.md) |
+| module/data/item/templates/perkData.js | [Фабрика имени и HTML-описания расовой особенности.](module/data/item/templates/perkData.js.md) |
+| module/data/item/templates/socialStandingData.js | [Фабрика пяти региональных строк социального положения расы.](module/data/item/templates/socialStandingData.js.md) |
+| module/item/sheets/WitcherRaceSheet.js | [Лист расы: основной шаблон и наследование общих действий Item.](module/item/sheets/WitcherRaceSheet.js.md) |
+| module/item/sheets/WitcherHomelandSheet.js | [Лист родины: основной шаблон и наследование общих действий Item.](module/item/sheets/WitcherHomelandSheet.js.md) |
+| templates/sheets/item/race-sheet.hbs | [Форма расы: особенности, источник, пять регионов и доступ к конфигурации.](templates/sheets/item/race-sheet.hbs.md) |
+| templates/sheets/item/homeland-sheet.hbs | [Форма родины: выбор страны, условное название и доступ к конфигурации.](templates/sheets/item/homeland-sheet.hbs.md) |

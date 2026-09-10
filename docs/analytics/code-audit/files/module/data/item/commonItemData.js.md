@@ -140,3 +140,9 @@
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
 
 Полностью разобраны [module/data/item/componentData.js](../../../../../../../module/data/item/componentData.js) и [module/data/item/diagramData.js](../../../../../../../module/data/item/diagramData.js). Первая добавляет 6 строк к 8 общим полям (14 всего), вторая — 12 полей (20 всего). description в обоих случаях расположен в system, что сопоставлено с неверными верхними путями [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs) и [templates/partials/associated-item.hbs](../../../../../../../templates/partials/associated-item.hbs). Оба типа наследуют canBeRepaired=false и canHaveTemporaryItemImprovement=false.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [RaceData](../../../../../../../module/data/item/raceData.js) расширяет 8 общих полей четырьмя SchemaField особенностей и одной SchemaField социального положения, переопределяя description в HTMLField (13 полей). calcWeight и общие getters наследуются. [HomelandData](../../../../../../../module/data/item/homelandData.js) не наследует этот класс: в настоящей модели quantity, переданное во входе, отсутствует и в подготовленных данных, и в toObject(). name/img/effects принадлежат документу Item, а не этой общей схеме.
+
+[Перекрёстная сверка](../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.017 проверены описания **138 файлов**, для **483 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.018 проверены описания **146 файлов**, для **475 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.017](review-log.md#task-0003017) выполнена на `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.018](review-log.md#task-0003018) выполнена на `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -133,13 +133,13 @@
 | [module/data/item/diagramData.js](../../../module/data/item/diagramData.js) | Модель рецепта/формулы: требования, результат, обогащение и миграция. | [Описание](files/module/data/item/diagramData.js.md) | Проверено |
 | [module/data/item/enhancementData.js](../../../module/data/item/enhancementData.js) | Модель предмета улучшения: бонус SP, сопротивления, эффекты и миграция. | [Описание](files/module/data/item/enhancementData.js.md) | Проверено |
 | [module/data/item/hexData.js](../../../module/data/item/hexData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/homelandData.js](../../../module/data/item/homelandData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/homelandData.js](../../../module/data/item/homelandData.js) | Модель предмета родины: ключ выбора и дополнительное название. | [Описание](files/module/data/item/homelandData.js.md) | Проверено |
 | [module/data/item/mixin/spellRegionMixin.js](../../../module/data/item/mixin/spellRegionMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/mountData.js](../../../module/data/item/mountData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/mutagenData.js](../../../module/data/item/mutagenData.js) | Модель мутагена: категория, источник, мутация и настройки расходования. | [Описание](files/module/data/item/mutagenData.js.md) | Проверено |
 | [module/data/item/noteData.js](../../../module/data/item/noteData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/professionData.js](../../../module/data/item/professionData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/raceData.js](../../../module/data/item/raceData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/raceData.js](../../../module/data/item/raceData.js) | Модель расы: четыре текстовые особенности, региональное социальное положение и подготовка HTML. | [Описание](files/module/data/item/raceData.js.md) | Проверено |
 | [module/data/item/ritualData.js](../../../module/data/item/ritualData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/skillItemData.js](../../../module/data/item/skillItemData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/spellData.js](../../../module/data/item/spellData.js) | Не установлено | Не подготовлено | Не начат |
@@ -160,7 +160,7 @@
 | [module/data/item/templates/effectSkillData.js](../../../module/data/item/templates/effectSkillData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/effectStatData.js](../../../module/data/item/templates/effectStatData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/itemEffectData.js](../../../module/data/item/templates/itemEffectData.js) | Фабрика четырёх полей одной записи предметного воздействия. | [Описание](files/module/data/item/templates/itemEffectData.js.md) | Проверено |
-| [module/data/item/templates/perkData.js](../../../module/data/item/templates/perkData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/perkData.js](../../../module/data/item/templates/perkData.js) | Фабрика имени и HTML-описания расовой особенности. | [Описание](files/module/data/item/templates/perkData.js.md) | Проверено |
 | [module/data/item/templates/profession/skillUsageData.js](../../../module/data/item/templates/profession/skillUsageData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/profession/temporaryHealthData.js](../../../module/data/item/templates/profession/temporaryHealthData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/profession/thresholdData.js](../../../module/data/item/templates/profession/thresholdData.js) | Не установлено | Не подготовлено | Не начат |
@@ -169,7 +169,7 @@
 | [module/data/item/templates/regions/regionBehavioursData.js](../../../module/data/item/templates/regions/regionBehavioursData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/regions/regionPropertiesData.js](../../../module/data/item/templates/regions/regionPropertiesData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/socialStandingData.js](../../../module/data/item/templates/socialStandingData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/socialStandingData.js](../../../module/data/item/templates/socialStandingData.js) | Фабрика пяти региональных строк социального положения расы. | [Описание](files/module/data/item/templates/socialStandingData.js.md) | Проверено |
 | [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js) | Пять полей описания типа оружия и четырёх видов урона. | [Описание](files/module/data/item/templates/weaponTypeData.js.md) | Проверено |
 | [module/data/item/valuableData.js](../../../module/data/item/valuableData.js) | Модель прочего предмета с категорией, скрытностью и расходованием. | [Описание](files/module/data/item/valuableData.js.md) | Проверено |
 | [module/data/item/weaponData.js](../../../module/data/item/weaponData.js) | Модель оружия: боевые свойства, улучшения, защита, ремонт и миграция. | [Описание](files/module/data/item/weaponData.js.md) | Проверено |
@@ -188,12 +188,12 @@
 | [module/item/sheets/WitcherDiagramSheet.js](../../../module/item/sheets/WitcherDiagramSheet.js) | Редактор рецепта: категории, строки материалов, drop и связь результата. | [Описание](files/module/item/sheets/WitcherDiagramSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherEnhancementSheet.js](../../../module/item/sheets/WitcherEnhancementSheet.js) | Лист улучшения с вариантами его категории. | [Описание](files/module/item/sheets/WitcherEnhancementSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherHexSheet.js](../../../module/item/sheets/WitcherHexSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/WitcherHomelandSheet.js](../../../module/item/sheets/WitcherHomelandSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherHomelandSheet.js](../../../module/item/sheets/WitcherHomelandSheet.js) | Лист родины: основной шаблон и наследование общих действий Item. | [Описание](files/module/item/sheets/WitcherHomelandSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js) | Общий лист Item: контекст, форма, редактор предметных воздействий, конфигурация и Drop. | [Описание](files/module/item/sheets/WitcherItemSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherMountSheet.js](../../../module/item/sheets/WitcherMountSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherMutagenSheet.js](../../../module/item/sheets/WitcherMutagenSheet.js) | Лист мутагена: категории цветов и унаследованная конфигурация. | [Описание](files/module/item/sheets/WitcherMutagenSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherProfessionSheet.js](../../../module/item/sheets/WitcherProfessionSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/WitcherRaceSheet.js](../../../module/item/sheets/WitcherRaceSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherRaceSheet.js](../../../module/item/sheets/WitcherRaceSheet.js) | Лист расы: основной шаблон и наследование общих действий Item. | [Описание](files/module/item/sheets/WitcherRaceSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherRitualSheet.js](../../../module/item/sheets/WitcherRitualSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherSkillItemSheet.js](../../../module/item/sheets/WitcherSkillItemSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherSpellSheet.js](../../../module/item/sheets/WitcherSpellSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -620,12 +620,12 @@
 | [templates/sheets/item/diagrams-sheet.hbs](../../../templates/sheets/item/diagrams-sheet.hbs) | Основная форма рецепта/формулы и редактор материалов. | [Описание](files/templates/sheets/item/diagrams-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/enhancement-sheet.hbs](../../../templates/sheets/item/enhancement-sheet.hbs) | Форма категории улучшения, его физических бонусов и воздействий. | [Описание](files/templates/sheets/item/enhancement-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/homeland-sheet.hbs](../../../templates/sheets/item/homeland-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/homeland-sheet.hbs](../../../templates/sheets/item/homeland-sheet.hbs) | Форма родины: выбор страны, условное название и доступ к конфигурации. | [Описание](files/templates/sheets/item/homeland-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/mutagen-sheet.hbs](../../../templates/sheets/item/mutagen-sheet.hbs) | Основная форма источника, воздействия и малой мутации; общая шапка. | [Описание](files/templates/sheets/item/mutagen-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/profession-sheet.hbs](../../../templates/sheets/item/profession-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/race-sheet.hbs](../../../templates/sheets/item/race-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/race-sheet.hbs](../../../templates/sheets/item/race-sheet.hbs) | Форма расы: особенности, источник, пять регионов и доступ к конфигурации. | [Описание](files/templates/sheets/item/race-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/skill-item-sheet.hbs](../../../templates/sheets/item/skill-item-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs) | Не установлено | Не подготовлено | Не начат |

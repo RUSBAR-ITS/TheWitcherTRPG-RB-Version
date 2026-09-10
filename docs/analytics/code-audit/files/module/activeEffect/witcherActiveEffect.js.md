@@ -110,3 +110,9 @@
 Дополнительно сверены вызывающие участки [основного листа Item](../item/sheets/WitcherItemSheet.js.md) и [конфигурации](../item/sheets/configurations/WitcherConfigurationSheet.js.md). В конфигурации create явно задаёт base/temporaryItemImprovement, не задаёт changes/transfer/units и возвращает Promise создания. При Drop настоящий ItemSheetV2 передаёт effect.toObject() в ActiveEffect.create с parent=item, отказывает при том же родителе или isOwner=false. Эти проверки выполнены с перехватом записи, а не реальным созданием/переносом документов.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. isSuppressed не содержит отдельной ветви для [race](../../../../../../module/data/item/raceData.js) или [homeland](../../../../../../module/data/item/homelandData.js). Настоящий getter на фасадах родителей обоих типов вернул false без запрещающих полей/флагов и true при applySelf=true. Внешний core Actor.allApplicableEffects собирает Actor.effects и Item.effects с transfer без ограничения по этим типам; actual generator проверен в памяти. active/shouldApplyChange/фазы и числовое применение отдельно прочитаны, но весь pipeline здесь не запускался. Текст особенности расы сам эффектов не порождает.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.

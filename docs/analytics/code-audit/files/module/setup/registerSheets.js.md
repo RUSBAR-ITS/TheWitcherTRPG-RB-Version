@@ -179,3 +179,9 @@
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Полностью описаны [module/item/sheets/WitcherComponentSheet.js](../../../../../../module/item/sheets/WitcherComponentSheet.js) и [module/item/sheets/WitcherDiagramSheet.js](../../../../../../module/item/sheets/WitcherDiagramSheet.js), зарегистрированные через Items.registerSheet с makeDefault:true для component/diagrams. Оба наследуют базовую configuration, без отдельного класса редактора рецепта. Ошибка select принадлежит подключаемому component-sheet.hbs, а не отсутствующей регистрации класса.
+
+## Уточнение TASK-0003.018
+
+2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [WitcherRaceSheet](../../../../../../module/item/sheets/WitcherRaceSheet.js) и [WitcherHomelandSheet](../../../../../../module/item/sheets/WitcherHomelandSheet.js) зарегистрированы по types race/homeland с makeDefault=true. Каждый лист задаёт собственную ширину 600 и main-шаблон; контекст, конфигурация и обработка формы наследуются от WitcherItemSheet. Собственные схемы этих типов согласованы с манифестом.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
