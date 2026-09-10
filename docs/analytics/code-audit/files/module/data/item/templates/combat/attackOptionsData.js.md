@@ -86,3 +86,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.012 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.013
+
+2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003013).
+
+Полностью проверен [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../../../../../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs): семь formGroup, три условные секции melee/ranged/spell, отсутствует редактор itemUseAttackSkill ([issue-00061](../../../../../../../../issues/potential/issue-00061.md)). Прямое включение найдено в spellGeneral.hbs; оружие использует отдельную разметку general.hbs. [module/item/sheets/WitcherWeaponSheet.js](../../../../../../../../../module/item/sheets/WitcherWeaponSheet.js) формирует общий context.config.attackSkills из восьми навыков ближнего/дальнего боя, но читатель этого нового списка поиском не найден. Выбор skills в WeaponData.createDefenseOption использует ?? и может остановиться на пустой строке: [issue-00079](../../../../../../../../issues/potential/issue-00079.md).

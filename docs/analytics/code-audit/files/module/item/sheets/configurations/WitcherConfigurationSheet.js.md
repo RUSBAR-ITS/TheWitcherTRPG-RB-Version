@@ -91,3 +91,9 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.011 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.013
+
+2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003013).
+
+Полностью разобран [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js): добавлены три описателя PARTS, пять записей TABS.primary до фильтрации и настройка silverTrait в context. Его addEffect/removeEffect и change/editEffect изменяют TypedObjectField system.damageProperties.effects. Управление документами ActiveEffect остаётся у базовой конфигурации и относится к другой структуре данных. Сверка фильтрации выявила расхождение региональной навигации и PARTS ([issue-00074](../../../../../../../issues/potential/issue-00074.md)); отсутствие поля внутри шаблона описано отдельно.

@@ -195,3 +195,9 @@
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Десять файлов [TASK-0003.012](../../../../../tasks/task-0003.012.md) не добавляют новых document types. [DamageProperties](../../../../../../module/data/item/templates/combat/damagePropertiesData.js), [DefenseProperties](../../../../../../module/data/item/templates/combat/defensePropertiesData.js), [ResistanceData](../../../../../../module/data/item/templates/armor/resistanceData.js) и [SpData](../../../../../../module/data/item/templates/armor/spData.js) — вложенные DataModel; остальные фабрики создают поля. AttackMessageData/DefenseMessageData используют экземпляры DamageProperties, а DamageMessageData включает defineSchema с заменой effects на ArrayField/applied. Регистрация ChatMessage type не означает одинаковую runtime-структуру properties.
 
 Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).
+
+## Уточнение TASK-0003.013
+
+2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003013).
+
+Полный разбор [module/data/item/weaponData.js](../../../../../../module/data/item/weaponData.js) подтвердил 36 верхних полей схемы с CommonItemData, attackOptions, defenseOptions, вложенными DamageProperties/DefenseProperties и associatedDiagramUuid. Изолированные вызовы выполнялись на настоящих зарегистрированных моделях. Региональные схемы Spell прочитаны точечно для путей полей и миграции, их статус полного разбора не повышен. Подготовка Weapon с enhancementItemIds без Actor дала исключение ([issue-00077](../../../../../issues/potential/issue-00077.md)).

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.012 подготовлены и сверены 89 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.013 подготовлены и сверены 97 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -152,3 +152,16 @@
 | module/data/item/templates/armor/resistanceData.js | [Описание](module/data/item/templates/armor/resistanceData.js.md) |
 | module/data/item/templates/armor/spData.js | [Описание](module/data/item/templates/armor/spData.js.md) |
 | module/data/migrations/damagePropertiesMigration.js | [Описание](module/data/migrations/damagePropertiesMigration.js.md) |
+
+## Оружие и конфигурация боевых свойств — TASK-0003.013
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/weaponData.js | [Описание](module/data/item/weaponData.js.md) |
+| module/item/sheets/WitcherWeaponSheet.js | [Описание](module/item/sheets/WitcherWeaponSheet.js.md) |
+| module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js | [Описание](module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md) |
+| templates/sheets/item/weapon-sheet.hbs | [Описание](templates/sheets/item/weapon-sheet.hbs.md) |
+| templates/sheets/item/configuration/partials/attackOptionsPart.hbs | [Описание](templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md) |
+| templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs.md) |
+| templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs.md) |
+| templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs.md) |

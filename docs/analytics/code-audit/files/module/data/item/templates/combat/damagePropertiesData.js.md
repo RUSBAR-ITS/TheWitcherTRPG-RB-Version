@@ -119,3 +119,9 @@ addEffects изменяет модель в памяти: toObject() остаё�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.012 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.013
+
+2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003013).
+
+Полностью разобраны [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../../../../../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs) и его [обработчик](../../../../../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js). Проверены все 16 записей formGroup в исходнике и восемь сочетаний silverTrait/staminaIsVar/defenseDifferenceMultiplier. Собственные effects редактируются через target/id/field; enhancementEffects выводятся disabled. В настоящем renderTemplate Foundry разрешает доступ Handlebars к свойствам прототипа, поэтому getter enhancementEffects доступен при штатных опциях. В изолированном сценарии старый deletion-синтаксис удаляет запись после преобразования ядром; комментарий о v14 не доказывает поломку удаления. Строка имени on по-прежнему превращается в false: дополнена issue-00060.

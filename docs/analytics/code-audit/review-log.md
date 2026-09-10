@@ -1,5 +1,76 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.013
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `8cca18e14b75ec53028ee6bc49a837597de4d9af`; рабочее дерево на старте чистое, отслеживались 892 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Проверенное ядро — Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/weaponData.js](../../../module/data/item/weaponData.js) | 115 |
+| [module/item/sheets/WitcherWeaponSheet.js](../../../module/item/sheets/WitcherWeaponSheet.js) | 57 |
+| [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) | 116 |
+| [templates/sheets/item/weapon-sheet.hbs](../../../templates/sheets/item/weapon-sheet.hbs) | 113 |
+| [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs) | 33 |
+| [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs) | 93 |
+| [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs) | 19 |
+| [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs) | 28 |
+| **Всего** | **574** |
+
+Полностью разобраны модель WeaponData, два класса листов и пять HBS. Описаны 36 верхних полей модели со всеми подключёнными фабриками, собственные методы, данные и действия, зависимости и потребители. Проверены 12 прямых относительных ES-import связей этих трёх JS. У HBS перечислены все поля, условия, partials, helpers и data-action.
+
+### Перекрёстная сверка
+
+- WeaponData → CommonItemData, weaponType, attackOptions/defenseOptions, DamageProperties/DefenseProperties, associatedDiagramUuid. Количество наследуется как StringField; NumberField надёжности и вместимости улучшений не задают минимум/максимум. canBeRepaired возвращает пустую строку либо boolean, не проверяет разрешение UUID.
+- WeaponData.prepareDerivedData → коллекция Items владельца → enhancementItems → потребители улучшений и RepairData. Отсутствующие ID пропускаются, повторы сохраняются, system передаётся по ссылке. Миграция прежнего enhancementItems дополняет существующий enhancementItemIds без устранения повторов. Сопоставление с подсчётом enchantsCount/enchantsDC выполнено статически; полный ремонт оставлен TASK-0003.017.
+- WeaponData.createDefenseOption → вложенная DefenseProperties → навыки → Item/Actor защиты. Проверена передача modifier и применимости; выбор навыка с пустой строкой и initial spellcasting описан отдельно. Полный бросок не запускался.
+- WitcherWeaponSheet → WitcherItemSheet._onRender → activateListeners → обработчик четырёх checkbox типа урона. Их id используются как ключи, name отсутствует; инвертируется значение модели, формируется локализованный text. Предыдущий открытый вопрос карточки weaponType о подключении слушателя уточнён.
+- Связанный рецепт: main → associated-diagram.hbs → associatedDiagramMixin → system.associatedDiagramUuid → unwrapAssociatedDiagram. Сверены weapon/elderfolk-weapon, отказ для неподходящего типа и удаление ссылки. DOM-проверка offsetParent исследована отдельно от разрешения UUID.
+- Конфигурация свойств наследует WitcherConfigurationSheet, а не системный WitcherItemSheet. PARTS и TABS проверены раздельно для Weapon/Armor/Spell. Старый system.createTemplate в фильтре не совпадает с текущим system.templateProperties.createTemplate; отсутствующее createRegionFromTemplate в самом HBS — второй разрыв.
+- Все schema/value пути пяти форм сопоставлены с настоящими моделями. attackOptionsPart содержит семь formGroup и включается spellGeneral; weapon использует общую general-разметку. Вариант itemUse доступен, но поля его навыка нет — дополнена issue-00061. Заголовок spell в partial корректный, прежняя issue-00062 относится к другому шаблону.
+- Редактор damageProperties: собственные записи effects используют target/id/field и действия общего конфигуратора; enhancementEffects выводятся disabled. Это объекты предметных воздействий, а не документы ActiveEffect. Пять полей регионального HBS включают один отсутствующий флаг и четыре действительных DocumentUUIDField типа Macro.
+- Локализация и конфигурационные списки сопоставлены по используемым ключам с config/settings и en/ru. Новая context.config.attackSkills содержит восемь навыков и изменяет общий CONFIG.WITCHER; отдельный потребитель этого списка не найден. Это наблюдение само по себе не объявлено проблемой.
+
+Уточнены десять прежних карточек: WitcherItemSheet, WitcherConfigurationSheet, attackOptionsData, damagePropertiesData, defensePropertiesData, weaponTypeData, damagePropertiesMigration, registerSheets, registerDataModels и config. Региональные модели, примесь рецепта, полный ремонт и боевые процессы прочитаны в пределах связей и не получили полного статуса анализа.
+
+### Изолированное выполнение
+
+Команда: `node --input-type=module`, сценарий передан через stdin, файлов стенда не создавалось. Загружены настоящие common DataModel/TypeDataModel, поля, utilities, зарегистрированные системные модели и классы листов. Использованы локальные ItemSheetV2, DragDrop и HandlebarsApplicationMixin; DocumentSheetV2 и окружение Application представлены фасадом. Исходные _prepareTabs/_getTabsConfig ApplicationV2 исполнялись отдельно. Это проверяет тела методов и согласованность данных, но не полный жизненный цикл окна.
+
+Handlebars и parse5 настоящие. formGroup взят из ядра; field.toFormGroup заменён учётом путей и значений, selectOptions — ограниченным генератором options. DOM/jQuery, game.settings, fromUuidSync, Item-контекст и update подменены. Рендер использовал разрешения доступа к свойствам прототипа, которые настоящее renderTemplate задаёт в /opt/foundryvtt/client/applications/handlebars.mjs; getter enhancementEffects при них доступен.
+
+| Сценарий | Результат | Предел |
+| --- | --- | --- |
+| _onRender → listeners → _onDamageTypeEdit | Зарегистрированы .damage-type/change и .remove-associated-diagram/click; payload содержит slashing=true, piercing=true, text «Режущий, Колющий» | DOM и запись представлены фасадом |
+| Рецепт: принять, отклонить, убрать, offsetParent=null | Сохранён UUID weapon-рецепта; armor-рецепт дал уведомление без update; удаление записало ''; null вызвал перехваченный unhandledRejection | Геометрия реальных целей сброса не проверена |
+| TABS/PARTS для Weapon, Armor и Spell с createTemplate=false/true | У Weapon 4 вкладки/6 частей, у Armor 3/5; у обоих Spell 5/6, региональная вкладка есть, части нет | Сравниваются структуры, не экран браузера |
+| Региональный HBS | Один console.error от formGroup, отсутствующее поле пропущено, остальные четыре UUID-поля сформированы | Прямой диагностический рендер в обход фильтра PARTS |
+| Миграция макроса движения | Только новый ключ → null; только старый → перенесён; оба → старое значение побеждает | Модели в памяти, без Macro/Region в мире |
+| Подготовка улучшений | С владельцем существующий ID разрешается; отсутствующий пропускается; повторы остаются; без владельца TypeError чтения items | Родитель Item — фасад |
+| Миграция улучшений | Смешанные старые/новые данные дали два одинаковых ID; второй вызов на том же сыром объекте — три; новая модель из смешанного входа — два | Наличие таких записей в БД неизвестно |
+| Завершение repair | Promise метода завершился, пока parent.update оставался pending; payload надёжности корректный, prepared reliable ещё 2 | Управляемый update, без записи |
+| Выбор защиты и количество | Пустой melee блокирует archery; без melee выбирается archery; itemUse при начальном spellcasting даёт spellcasting. Throwable: 1 → true; 0/-1/abc/выключенный флаг → false | Без броска и расходования предметов |
+| Форма оружия / боеприпаса | С общим header 19/13 именованных controls; четыре checkbox типа и область рецепта сохранены в обоих вариантах | Настройка clickableImageItemTypes задана штатной строкой |
+| attackOptionsPart и действия effects | Семь schema-полей; itemUseAttackSkill отсутствует. Add создаёт запись percentage=0; имя on превращается в false; процент передаётся строкой до очистки; -= удаляет запись | Настоящая модель дала name='false'; legacy deletion преобразован ядром с compatibility warning |
+| Матрица silverTrait × staminaIsVar × defenseDifferenceMultiplier | Проверены все 8 сочетаний: silverTrait либо silverDamage, условный cap, условный varEffect, 3/4 disabled-поля одного улучшения | 16 formGroup в исходнике, 14/15 реально выведенных schema-полей; не полный DOM-виджет |
+
+Успешно завершены 12 групп утверждений. Ошибки первоначальных диагностических фасадов (тип настройки, межконтекстный Array.filterJoin, опции доступа Handlebars к прототипу и подсчёт ammo-полей) исправлены только в передаваемом через stdin сценарии и не зарегистрированы как проблемы системы.
+
+### Наблюдения и границы выводов
+
+Добавлены [issue-00074–00081](../../issues/README.md): два разрыва региональной формы, перезапись макроса миграцией, подготовка улучшений без Actor, повтор ID при миграции, пустой навык защиты, зависимость drop от offsetParent и преждевременное завершение Promise ремонта. Дополнены [issue-00060](../../issues/potential/issue-00060.md) и [issue-00061](../../issues/potential/issue-00061.md). Все 81 карточка остаются potential; ни подтверждения, ни исправления этим этапом не оформляются.
+
+Не доказано удвоение боевого эффекта повторным ID. Повторный ручной вызов prepareDerivedData без обычного reset не доказывает сохранение «призрачного» улучшения в клиенте. Отсутствие createRegionFromTemplate не прерывает весь рендер: helper пишет ошибку и возвращает пустой SafeString. Старый синтаксис удаления effects в этом ядре работает. Полный браузер, мир, база данных, реальные компедиумы, сеть, боевые броски и ремонт не запускались.
+
+### Контроль документов и исходников
+
+Проверены 230 Markdown-документов и 5074 локальные ссылки с якорями. Реестр содержит ровно 621 исходный файл после исключений; 97 карточек соответствуют 97 строкам «Проверено», оставшиеся 524 имеют статус «Не начат». Перечни текущей порции (8 файлов / 574 строки), всех двадцати подзадач, очереди из 71 файла и 81 potential issue согласованы; для новых карточек проверены все обязательные разделы, собственные методы и поля. В 97 карточках проверены 183 прямых относительных ES-import связи до файлов определений. Все 77 буквальных ключей локализации восьми исходников и четырёх подключённых схем найдены в en/ru.
+
+Все 621 исходник побайтово совпадают с HEAD и базовым срезом. SHA256 последовательности path + NUL + bytes + NUL в порядке реестра: `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. Для всех 892 ранее отслеживаемых файлов сохранены mode/uid/gid/inode; SHA256 отсортированного JSON этих метаданных: `ba2bf09fb49eb2f7e8192aa807bc23d07faaa81eb4e174f861797d97cfa2f2a9`. Исходная история журнала от TASK-0003.012 сохранена побайтово. Изменены только 39 документов; `git diff --check` прошёл. Тестовые файлы, игровые документы и коммиты не создавались, права не менялись.
+
+Покрытие — 97 из 621 файла, не разобраны 524. Во второй серии выполнены 25 из 96 файлов; 71 ожидает TASK-0003.014–TASK-0003.020, ещё 453 требуют детализации. Следующая согласованная порция — [TASK-0003.014](../../tasks/task-0003.014.md), броня и улучшения предметов.
+
 ## TASK-0003.012
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; рабочее дерево на старте чистое, отслеживались 872 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Проверенное ядро — Foundry 14.367.0 из /opt/foundryvtt/package.json, Node 24.16.0.

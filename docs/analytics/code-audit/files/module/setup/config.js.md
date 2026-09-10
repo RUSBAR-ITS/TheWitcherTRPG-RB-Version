@@ -409,3 +409,9 @@
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Фабрики [attackOptions](../../../../../../module/data/item/templates/combat/attackOptionsData.js) и [defenseOptions](../../../../../../module/data/item/templates/combat/defenseOptionsData.js) используют справочники при initial: четыре варианта атаки и шесть защит. choices в SetField не задаются; список UI и ограничение модели — разные вещи. Default spellAttackSkill='spellcasting' не совпадает с skillMap.spellcast ([issue-00064](../../../../../issues/potential/issue-00064.md)). Восьми damageTypes соответствуют четыре флага [weaponType](../../../../../../module/data/item/templates/weaponTypeData.js) и три [ResistanceData](../../../../../../module/data/item/templates/armor/resistanceData.js); это разные схемы, не единый enum.
 
 Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).
+
+## Уточнение TASK-0003.013
+
+2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003013).
+
+В [module/item/sheets/WitcherWeaponSheet.js](../../../../../../module/item/sheets/WitcherWeaponSheet.js) _prepareContext присваивает context.config.attackSkills массив, объединяющий meleeSkills/rangedSkills через skillMap и Set. Базовый context.config ссылается на CONFIG.WITCHER; присваивание затрагивает общий объект. Получены восемь навыков: brawling, melee, smallblades, staffspear, swordsmanship, athletics, archery, crossbow. Другой читатель именно attackSkills поиском не найден; полезность либо вред этого общего присваивания не объявлены доказанными. Шаблоны конфигурации используют специализированные списки и config.attackOptions.

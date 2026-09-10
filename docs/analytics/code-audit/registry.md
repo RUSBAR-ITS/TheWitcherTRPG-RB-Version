@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.012 проверены описания **89 файлов**, для **532 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.013 проверены описания **97 файлов**, для **524 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.012](review-log.md#task-0003012) выполнена на `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.013](review-log.md#task-0003013) выполнена на `8cca18e14b75ec53028ee6bc49a837597de4d9af`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -172,7 +172,7 @@
 | [module/data/item/templates/socialStandingData.js](../../../module/data/item/templates/socialStandingData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js) | Пять полей описания типа оружия и четырёх видов урона. | [Описание](files/module/data/item/templates/weaponTypeData.js.md) | Проверено |
 | [module/data/item/valuableData.js](../../../module/data/item/valuableData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/weaponData.js](../../../module/data/item/weaponData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/weaponData.js](../../../module/data/item/weaponData.js) | Модель оружия: боевые свойства, улучшения, защита, ремонт и миграция. | [Описание](files/module/data/item/weaponData.js.md) | Проверено |
 | [module/data/migrations/damagePropertiesMigration.js](../../../module/data/migrations/damagePropertiesMigration.js) | Перенос пяти прежних полей Weapon/Spell внутрь damageProperties. | [Описание](files/module/data/migrations/damagePropertiesMigration.js.md) | Проверено |
 | [module/item/mixins/consumeMixin.js](../../../module/item/mixins/consumeMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -198,12 +198,12 @@
 | [module/item/sheets/WitcherSkillItemSheet.js](../../../module/item/sheets/WitcherSkillItemSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherSpellSheet.js](../../../module/item/sheets/WitcherSpellSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherValuableSheet.js](../../../module/item/sheets/WitcherValuableSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/WitcherWeaponSheet.js](../../../module/item/sheets/WitcherWeaponSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherWeaponSheet.js](../../../module/item/sheets/WitcherWeaponSheet.js) | Лист оружия: контекст, флаги типа урона и связанный рецепт. | [Описание](files/module/item/sheets/WitcherWeaponSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | Базовая конфигурация Item: вкладки, категории и действия над ActiveEffect. | [Описание](files/module/item/sheets/configurations/WitcherConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) | Общая конфигурация урона, защиты, регионов и предметных воздействий. | [Описание](files/module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherSpellConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -602,18 +602,18 @@
 | [templates/sheets/item/alchemical-sheet.hbs](../../../templates/sheets/item/alchemical-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs) | Общий фрагмент выбора вариантов атаки и соответствующих навыков. | [Описание](files/templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs) | Обёртка вкладки ActiveEffect Item с общим partial списка. | [Описание](files/templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs) | Форма свойств урона, собственных воздействий и воздействий улучшений. | [Описание](files/templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs.md) | Проверено |
+| [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs) | Форма применимости защиты, парирования и модификатора. | [Описание](files/templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/general.hbs](../../../templates/sheets/item/configuration/tabs/general.hbs) | Условные поля вариантов атаки, навыков, бонусов, типа урона и защиты. | [Описание](files/templates/sheets/item/configuration/tabs/general.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/header.hbs](../../../templates/sheets/item/configuration/tabs/header.hbs) | Локализованный заголовок базовой конфигурации Item. | [Описание](files/templates/sheets/item/configuration/tabs/header.hbs.md) | Проверено |
-| [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs) | Региональная форма: запрошенный флаг и четыре ссылки на макросы. | [Описание](files/templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/criticalWound-sheet.hbs](../../../templates/sheets/item/criticalWound-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -630,6 +630,6 @@
 | [templates/sheets/item/skill-item-sheet.hbs](../../../templates/sheets/item/skill-item-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/valuable-sheet.hbs](../../../templates/sheets/item/valuable-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/weapon-sheet.hbs](../../../templates/sheets/item/weapon-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/weapon-sheet.hbs](../../../templates/sheets/item/weapon-sheet.hbs) | Основная форма оружия и боеприпасов с областью рецепта. | [Описание](files/templates/sheets/item/weapon-sheet.hbs.md) | Проверено |
 | [utils/extract.mjs](../../../utils/extract.mjs) | Не установлено | Не подготовлено | Не начат |
 | [utils/packs.mjs](../../../utils/packs.mjs) | Не установлено | Не подготовлено | Не начат |

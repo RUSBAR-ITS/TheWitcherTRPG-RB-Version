@@ -155,3 +155,9 @@
 Полностью разобраны [общий лист Item](../item/sheets/WitcherItemSheet.js.md) и [его базовая конфигурация](../item/sheets/configurations/WitcherConfigurationSheet.js.md). У общего листа 17 прямых наследников, у конфигурации — три прямых и два через Properties. Для note нет специализированной регистрации: после перехвата исходных регистраций подходящим остаётся WitcherItemSheet, а настоящий HandlebarsApplicationMixin рендерит ноль частей. Это [issue-00057](../../../../../issues/potential/issue-00057.md), отдельное наблюдение от отсутствующих типов issue-00005. Runtime-проверка не моделировала пользовательский выбор листа и БД.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.013
+
+2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003013).
+
+Полностью разобран зарегистрированный [module/item/sheets/WitcherWeaponSheet.js](../../../../../../module/item/sheets/WitcherWeaponSheet.js): MAIN-шаблон оружия, экземпляр общей конфигурации боевых свойств, контекст навыков, слушатели видов урона и примесь связанного рецепта. Регистрация не изменена. [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) является окном конфигурации, создаваемым листом, а не отдельным типом Item.

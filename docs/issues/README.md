@@ -87,6 +87,14 @@
 | [issue-00071](potential/issue-00071.md) | Отбор защит профессии игнорирует выключенный isDefense | `potential` |
 | [issue-00072](potential/issue-00072.md) | Защита определяющего навыка профессии отсутствует в переборе доступных защит | `potential` |
 | [issue-00073](potential/issue-00073.md) | Свойство silverTrait заменяет метод setType вместо изменения типа урона | `potential` |
+| [issue-00074](potential/issue-00074.md) | Вкладка региональных свойств остаётся без содержимого из-за устаревшего пути createTemplate | `potential` |
+| [issue-00075](potential/issue-00075.md) | Региональный шаблон запрашивает отсутствующее поле createRegionFromTemplate | `potential` |
+| [issue-00076](potential/issue-00076.md) | Миграция региона перезаписывает актуальный макрос tokenMoveWithin | `potential` |
+| [issue-00077](potential/issue-00077.md) | Подготовка улучшений оружия требует Actor даже у отдельного Item | `potential` |
+| [issue-00078](potential/issue-00078.md) | Миграция оружия дублирует ID улучшения при наличии старого и нового представлений | `potential` |
+| [issue-00079](potential/issue-00079.md) | Выбор навыка защиты оружия останавливается на пустом meleeAttackSkill | `potential` |
+| [issue-00080](potential/issue-00080.md) | Обработчик связанного рецепта обращается к dataset отсутствующего offsetParent | `potential` |
+| [issue-00081](potential/issue-00081.md) | Promise ремонта оружия завершается до завершения обновления Item | `potential` |
 
 Статус соответствует каталогу карточки. При перемещении обновляются этот реестр и все ссылки на документ. Номер новой карточки определяется по реестру и файлам во всех трёх каталогах.
 
