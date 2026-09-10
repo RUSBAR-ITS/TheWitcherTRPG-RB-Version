@@ -1,5 +1,315 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.001
+
+Дата: 2026-09-10. Ветка `rusbar-main`, HEAD `7b7788bc614e5b7a57f8c596fb64ca75ecabd8b7`. На старте рабочее дерево было чистым; 741 отслеживаемый файл. Все 621 исходник исследования совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Версия Foundry — 14.367.0 по `/opt/foundryvtt/package.json`.
+
+Полностью прочитаны пять файлов, 143 строки: dataUtils.js (7), valueLabelData.js (8), statData.js (11), statsData.js (70), derivedStatsData.js (47). Соседние определения и потребители проверялись в пределах связей и не получили статуса завершённого пофайлового анализа.
+
+### Содержательная и перекрёстная сверка
+
+| Проверка | Результат | Пределы |
+| --- | --- | --- |
+| Определения и импорты | createEnrichedText: 5 импортирующих моделей и 20 вызовов; valueLabel: 2 импортирующие фабрики и 8 вызовов; stat: 3 модели и 23 вызова; Stats/DerivedStats импортируются CommonActorData | Поиск по module и чтение определений/обращений; не анализ внешних модулей и макросов миров |
+| Поля | Stats содержит 10 записей, DerivedStats — 12; stat создаёт 5 полей каждой записи; valueLabel — 2 | Наличие поля не подтверждает правильность всех потребителей |
+| Пределы чисел | Фабрика stat не задаёт min/max; настоящие NumberField сохраняют -3, 0 и 15; integer округляет 2.6 до 3, value=2.5 сохраняется | Это поведение модели, не вывод о правилах игры |
+| Подготовка | Stats.prepareBaseData только копирует unmodifiedMax в max, не меняет value/totalModifiers и идемпотентен; основной путь Actor выполняет копирование в CommonActorData | Прямой вызов Stats в проверке не означает автоматический вызов вложенной модели ядром |
+| Миграция | Все 10 статов и ровно 6 производных записей имеют перенос при ==0; отсутствующее поле его не вызывает | Установлено на реальных моделях; реальные старые документы мира не исследовались |
+| statMap | 9 stats + 11 derivedStats с непустым origin имеют корректные пути totalModifiers; reputation имеет пустой origin; toxicity и shield отсутствуют в справочнике | Для toxicity проверен отдельный getToxSuggestions; различия не объявлены ошибкой |
+| Чтение и запись | Разделены построение схем, вычисления подготовленных значений, source-миграция и update ресурсов у потребителей | Полный Actor/Item, бой, формы и эффекты остаются будущим порциям |
+| Контракт текста | createEnrichedText ожидает enrichHTML, затем получает поле схемы; исходное value сохранено; исключение распространяется; неизвестный путь даёт undefined | TextEditor подменён, схема и getField настоящие |
+| Шаблоны | Прослежены результаты моделей через листы в формы; исходный HBS знаний монстра передаёт value вместо enriched в 3 полях | Handlebars 4.7.9 настоящий; formGroup/localize/TextEditor подменены |
+| Локализация | Из 31 проверенного ключа фабрик 30 есть в en/ru; отсутствующий WITCHER.Actor.DerStat.Rep не найден во всех 8 языках | Переводы остальных ключей в других языках и UI локализации не проверялись |
+| Компедиумы | В 48 JSON найдены точные key-пути к исследуемым данным: 45 файлов с system.stats и 8 с system.derivedStats, с пересечением | Документы и effects целиком не разобраны; пути перечислены в карточках моделей |
+| Взаимная согласованность | Карточка config дополнена соответствием statMap схемам; карточка registerDataModels — вложением Stats/DerivedStats и отсутствием отдельной регистрации этих классов/фабрик | Не расширяет завершённый разбор на CommonActorData или другие соседние файлы |
+
+### Наблюдения
+
+Зарегистрированы только в `potential`:
+
+- [issue-00011](../../issues/potential/issue-00011.md): отсутствие unmodifiedMax не обрабатывается переносом max; в реальной CommonActorData входные int.max=7 и vigor.max=7 без базы после подготовки дали 0.
+- [issue-00012](../../issues/potential/issue-00012.md): два прохода calculateStats дали luck.max=14 при базе 10/+2 и toxicity.max=110 при базе 100/+5. Проверены исходные prepareDerivedData/calculateStats, соседние методы подменены.
+- [issue-00013](../../issues/potential/issue-00013.md): в аргумент enriched формы знаний монстра попал исходный текст, несмотря на подготовленный результат модели.
+- [issue-00014](../../issues/potential/issue-00014.md): отсутствующий ключ подписи числовой репутации передаётся в метаданные поля, которые использует автодополнение ActiveEffect.
+
+С существующими issue-00001–issue-00010 совпадений по установленной локализации не обнаружено. Подтверждение проблем, исправления, смена статусов и новые задачи на исправление не выполнялись.
+
+### Результат и пределы
+
+Подготовлены пять [карточек](files/README.md); в реестре теперь **16 проверенных файлов и 605 неразобранных**. TASK-0003.001 завершена; родительская TASK-0003 остаётся in-progress, следующие девять подзадач первой серии — planned.
+
+Проверены состав и содержимое исходников, локальные ссылки, обязательные разделы карточек, таблицы, статусы и отсутствие изменений вне docs. Для всех 741 существовавших отслеживаемых файлов сохранены mode, uid, gid и inode. Соседние файлы не получили новых карточек. Успешные проверки не подтверждают загрузку мира, доступ службы по HTTP, работу полного жизненного цикла документов, редактора в браузере или обмен между клиентами.
+
+Первый пробный импорт моделей в Node выявил недостающие расширения Array.filterJoin; после подключения штатного `common/primitives/_module.mjs` модели работали без подмен полей или миграции. Предупреждение Node MODULE_TYPELESS_PACKAGE_JSON относится к этому способу локального запуска; package.json не менялся. Результаты реальных моделей и проверки с подменами разделены ниже.
+
+### Проверка схем, миграции и потребителей
+
+Команда выполнялась из корня системы. Импортирует только классы/примитивы ядра и код моделей; не запускает сервер и не записывает документы. В блоке Actor исполняются исходные prepareDerivedData/calculateStats, но родительский метод и соседние расчёты подменены, как указано в коде.
+
+```bash
+node --input-type=module <<'JS'
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel}};
+const {default:stat}=await import('./module/data/actor/templates/common/stats/statData.js');
+const {default:valueLabel}=await import('./module/data/actor/templates/valueLabelData.js');
+const {default:Stats}=await import('./module/data/actor/templates/common/stats/statsData.js');
+const {default:DerivedStats}=await import('./module/data/actor/templates/common/stats/derivedStatsData.js');
+const {default:CommonActorData}=await import('./module/data/actor/commonActorData.js');
+const {createEnrichedText}=await import('./module/data/dataUtils.js');
+const result={};
+assert.deepEqual(Object.keys(stat('test')),['max','unmodifiedMax','value','label','totalModifiers']);
+assert.deepEqual(Object.keys(valueLabel('test')),['value','label']);
+const single=stat('test',100);
+assert.equal(single.unmodifiedMax.initial,100);
+assert.equal(single.unmodifiedMax.label,'test');
+for(const key of ['max','unmodifiedMax','value','totalModifiers']){
+ assert.equal(single[key].min,undefined);assert.equal(single[key].max,undefined);
+}
+assert.equal(single.value.integer,false);assert.equal(single.max.integer,true);
+const defaults=new Stats({});
+assert.equal(defaults.toxicity.unmodifiedMax,100);
+defaults.prepareBaseData();
+assert.equal(defaults.toxicity.max,100);
+result.schema={stats:Object.keys(Stats.schema.fields),derived:Object.keys(DerivedStats.schema.fields),numberLimits:'not defined'};
+const inputs=[-3,0,7,15,2.6];
+result.preparation=inputs.map(n=>{
+ const s=new Stats({int:{unmodifiedMax:n,value:2.5,totalModifiers:4}});
+ s.prepareBaseData();
+ const once=JSON.stringify(s.toObject(false));
+ s.prepareBaseData();
+ assert.equal(JSON.stringify(s.toObject(false)),once);
+ assert.equal(s.int.max,Math.round(n));
+ assert.equal(s.int.value,2.5);assert.equal(s.int.totalModifiers,4);
+ return {input:n,max:s.int.max,value:s.int.value};
+});
+result.migration=[];
+for(const old of [{max:7},{max:7,unmodifiedMax:0},{max:7,unmodifiedMax:4}]){
+ const s=new Stats({int:structuredClone(old)});
+ const before={...s.int};
+ s.prepareBaseData();
+ result.migration.push({input:old,afterConstruction:before,afterPreparation:{...s.int}});
+}
+assert.equal(result.migration[0].afterPreparation.max,0);
+assert.equal(result.migration[1].afterPreparation.max,7);
+assert.equal(result.migration[2].afterPreparation.max,4);
+for(const key of result.schema.stats){
+ const source={[key]:{max:7,unmodifiedMax:0}};
+ assert.equal(Stats.migrateData(source),source); assert.equal(source[key].unmodifiedMax,7);
+}
+const migrated=['stun','run','leap','enc','woundTreshold','vigor'];
+for(const key of result.schema.derived){
+ const s=new DerivedStats({[key]:{max:7,unmodifiedMax:0}});
+ assert.equal(s[key].unmodifiedMax,migrated.includes(key)?7:0);
+}
+const oldVigor=new DerivedStats({vigor:{max:7}});
+assert.equal(oldVigor.vigor.unmodifiedMax,0);
+assert.equal(typeof oldVigor.prepareBaseData,'undefined');
+result.derivedMigration={migrated,missingVigorBase:oldVigor.vigor.unmodifiedMax};
+const legacyActorData=new CommonActorData({stats:{int:{max:7}},derivedStats:{vigor:{max:7}}});
+legacyActorData.prepareBaseData();
+assert.equal(legacyActorData.stats.int.max,0);
+assert.equal(legacyActorData.derivedStats.vigor.max,0);
+result.legacyActorData={intMax:legacyActorData.stats.int.max,vigorMax:legacyActorData.derivedStats.vigor.max};
+const common=new CommonActorData({stats:{body:{unmodifiedMax:6},will:{unmodifiedMax:4},spd:{unmodifiedMax:5},int:{unmodifiedMax:7,value:3}}});
+common.prepareBaseData();
+assert.equal(common.derivedStats.stun.unmodifiedMax,5);
+assert.equal(common.derivedStats.run.unmodifiedMax,15);
+assert.equal(common.derivedStats.leap.unmodifiedMax,3);
+assert.equal(common.derivedStats.enc.unmodifiedMax,60);
+assert.equal(common.derivedStats.rec.unmodifiedMax,5);
+assert.equal(common.derivedStats.resolve.unmodifiedMax,55);
+assert.equal(common.derivedStats.focus.unmodifiedMax,9);
+result.commonPreparation=Object.fromEntries(Object.entries(common.derivedStats).map(([k,v])=>[k,v.unmodifiedMax]));
+const configSource=fs.readFileSync('module/setup/config.js','utf8');
+const block=configSource.slice(configSource.indexOf('WITCHER.statMap ='),configSource.indexOf('//Skills'));
+const ctx={WITCHER:{}};vm.runInNewContext(block,ctx);
+const missing=[];const seen={stats:[],derivedStats:[]};
+for(const [key,entry] of Object.entries(ctx.WITCHER.statMap)){
+ if(!entry.origin)continue;
+ const model=entry.origin==='stats'?Stats:DerivedStats;
+ if(!model.schema.getField(key+'.totalModifiers'))missing.push(key);
+ seen[entry.origin].push(key);
+}
+assert.deepEqual(missing,[]);
+result.statMap={entries:Object.keys(ctx.WITCHER.statMap).length,missing,
+ uncoveredStats:result.schema.stats.filter(k=>!seen.stats.includes(k)),
+ uncoveredDerived:result.schema.derived.filter(k=>!seen.derivedStats.includes(k)),
+ reputation:ctx.WITCHER.statMap.reputation};
+assert.deepEqual(result.statMap.uncoveredStats,['toxicity']);
+assert.deepEqual(result.statMap.uncoveredDerived,['shield']);
+let calls=[];let complete;
+foundry.applications={ux:{TextEditor:{implementation:{enrichHTML:async raw=>{
+ calls.push(['enrich',raw]); await new Promise(resolve=>complete=resolve);return '<b>enriched</b>';
+}}}}};
+const model={schema:{getField:path=>{calls.push(['getField',path]);return Stats.schema.getField('int.value');}}};
+const original='@UUID[Actor.example]';
+const promise=createEnrichedText(model,original,'int.value');
+assert.deepEqual(calls,[['enrich',original]]);
+complete();
+const enriched=await promise;
+assert.equal(enriched.value,original);
+assert.equal(enriched.enriched,'<b>enriched</b>');
+assert.equal(enriched.systemField,Stats.schema.getField('int.value'));
+assert.deepEqual(calls,[['enrich',original],['getField','int.value']]);
+foundry.applications.ux.TextEditor.implementation.enrichHTML=async ()=>{throw Error('enrich failed');};
+await assert.rejects(createEnrichedText(model,'text','int.value'),/enrich failed/);
+assert.equal(calls.length,2);
+foundry.applications.ux.TextEditor.implementation.enrichHTML=async ()=>'<p>result</p>';
+const unknown=await createEnrichedText(new Stats({}),'text','unknown');
+assert.equal(unknown.systemField,undefined);
+result.enrichedText={order:['enrich awaited','getField'],originalPreserved:true,fieldIdentity:true,rejectionPropagates:true,unknownPath:unknown.systemField??null};
+const actorSource=fs.readFileSync('module/actor/witcherActor.js','utf8');
+let actorClass=actorSource.slice(actorSource.indexOf('export default class'),actorSource.indexOf('Object.assign(')).replace('export default class','class');
+const actorContext={Actor:class{prepareDerivedData(){}},Math,WITCHER:{armorEffects:[]}};
+vm.createContext(actorContext);
+vm.runInContext(actorClass+'\nglobalThis.Subject=WitcherActor;',actorContext);
+const a=new actorContext.Subject();
+a.type='character';a.system=common;a.getList=()=>[];a.applyStatus=()=>{};
+a.calculateStat=()=>{};a.calculateFixedDerivedStats=()=>{};a.calculateDerivedStats=()=>{};a.calculateAttackStats=()=>{};
+common.stats.luck.max=10;common.stats.luck.totalModifiers=2;
+common.stats.toxicity.max=100;common.stats.toxicity.totalModifiers=5;
+a.prepareDerivedData();
+assert.equal(common.stats.luck.max,14);assert.equal(common.stats.toxicity.max,110);
+result.actorDoublePass={luck:{base:10,modifier:2,actual:14},toxicity:{base:100,modifier:5,actual:110},scope:'actual prepareDerivedData and calculateStats; other methods stubbed'};
+console.log(JSON.stringify(result));
+
+JS
+```
+
+Результат: все assert прошли. В частности, при входах Stats `{max:7}`, `{max:7,unmodifiedMax:0}`, `{max:7,unmodifiedMax:4}` после подготовки max равен 0, 7, 4. CommonActorData с отсутствующей базой int/vigor также дала 0. Для BODY=6, WILL=4, SPD=5, INT=7 (исходные), INT.value=3 и WILL.value=0 базовая подготовка дала stun=5, run=15, leap=3, enc=60, rec=5, woundTreshold=5, resolve=55, focus=9 в unmodifiedMax.
+
+### Проверка передачи данных в шаблон
+
+```bash
+node --input-type=module <<'JS'
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createRequire} from 'node:module';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel},applications:{ux:{TextEditor:{implementation:{enrichHTML:async raw=>'<b>PROCESSED</b>'+raw}}}}};
+const {default:MonsterData}=await import('./module/data/actor/monsterData.js');
+const raw='<p>@UUID[Actor.example]</p>';
+const monster=new MonsterData({common:raw,academicKnowledge:raw,monsterLore:raw});
+const enrichedText=await monster.enrichedText();
+const require=createRequire(import.meta.url), H=require('/opt/foundryvtt/node_modules/handlebars').create();
+H.registerHelper('localize',key=>key);
+const captures=[];
+H.registerHelper('formGroup',(_field,options)=>{captures.push(options.hash);return '';});
+const tpl=fs.readFileSync('templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs','utf8');
+const system=monster.toObject(false);
+H.compile(tpl)({system,document:{system},systemFields:monster.schema.fields,enrichedText});
+assert.equal(captures.length,3);
+for(const c of captures){assert.equal(c.value,raw);assert.equal(c.enriched,raw);}
+assert.notEqual(enrichedText.lore.common.enriched,captures[0].enriched);
+console.log(JSON.stringify({modelCreatesProcessedHtml:true,templatePassesOriginalInstead:true,fields:captures.length,handlebars:require('/opt/foundryvtt/node_modules/handlebars/package.json').version,stubs:['TextEditor.enrichHTML','formGroup','localize'],browser:false}));
+
+JS
+```
+
+Результат: все assert прошли; 3 вызова formGroup получили исходный текст вместо обработанного. Подмены: TextEditor.enrichHTML, formGroup и localize. Настоящие: MonsterData и вложенные модели, Handlebars 4.7.9, исходный шаблон. Это не рендер настоящего редактора Foundry.
+
+### Повторная проверка состава и документации
+
+Этот контроль относится к зафиксированному HEAD и метаданным текущего checkout до последующих коммитов. При дальнейшем развитии исследования изменение ожидаемых количеств, HEAD или inode требует осознанного пересмотра проверки; исторические результаты TASK-0001/TASK-0002 ниже сохраняются.
+
+```bash
+python3 - <<'PY'
+import hashlib, json, os, re, subprocess
+from pathlib import Path
+from urllib.parse import unquote
+base='15da5b225535e34af4e132c701b5353ef4eb667f'
+expected_head='7b7788bc614e5b7a57f8c596fb64ca75ecabd8b7'
+registry=Path('docs/analytics/code-audit/registry.md').read_text()
+rows=[line for line in registry.splitlines() if re.match(r'^\| \[[^\]]+\]\(\.\./\.\./\.\./',line)]
+paths=[re.match(r'^\| \[([^\]]+)\]',r).group(1) for r in rows]
+assert len(paths)==len(set(paths))==621
+assert sum(r.endswith('| Проверено |') for r in rows)==16
+assert sum(r.endswith('| Не начат |') for r in rows)==605
+excluded={'README.md','AGENTS.md','LICENSE','.gitignore','.prettierrc','.prettierignore','jsconfig.json.default','package-lock.json','styles/fonts/thewitcher2.ttf'}
+def keep(p):
+ return p.split('/')[0] not in {'.git','docs','assets','.github'} and p not in excluded and not (p.startswith('packs/') and p.endswith('/LOCK'))
+tracked=[p for p in subprocess.check_output(['git','ls-files','-z'],text=True).split('\0') if p]
+assert set(filter(keep,tracked))==set(paths)
+actual=[]
+for d,dirs,files in os.walk('.'):
+ if d=='.':dirs[:]=[x for x in dirs if x not in {'.git','docs','assets','.github'}]
+ for f in files:
+  p=(Path(d)/f).as_posix()
+  if keep(p):actual.append(p)
+assert set(actual)==set(paths)
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==expected_head
+for p in paths:
+ b=Path(p).read_bytes()
+ assert b==subprocess.check_output(['git','show',base+':'+p]),p
+ assert b==subprocess.check_output(['git','show',expected_head+':'+p]),p
+digest=lambda b:hashlib.sha256(b).hexdigest()
+assert digest(b''.join(p.encode()+b'\0'+Path(p).read_bytes()+b'\0' for p in paths))=='9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e'
+meta={p:[Path(p).stat().st_mode,Path(p).stat().st_uid,Path(p).stat().st_gid,Path(p).stat().st_ino] for p in tracked if Path(p).is_file()}
+assert digest(json.dumps(meta,sort_keys=True).encode())=='4f60b7857ee562cacd2e8973e002e71c26ac63cd57a9a750903adf5c442d40f9'
+cards=[p for p in Path('docs/analytics/code-audit/files').rglob('*.md') if p.name!='README.md']
+assert len(cards)==16
+for row in rows:
+ p=re.match(r'^\| \[([^\]]+)\]',row).group(1)
+ c=Path('docs/analytics/code-audit/files')/(p+'.md')
+ assert c.is_file()==row.endswith('| Проверено |'),p
+titles=['Назначение файла','Условия использования','Введённые сущности и действия с ними','Основные функции и методы','Используемые сущности и зависимости','Известные потребители','Данные и изменения состояния','Проверки и доказательства','Непроверенные участки и открытые вопросы','Связанные проблемы','История актуализации']
+for p in ["module/data/dataUtils.js","module/data/actor/templates/valueLabelData.js","module/data/actor/templates/common/stats/statData.js","module/data/actor/templates/common/stats/statsData.js","module/data/actor/templates/common/stats/derivedStatsData.js"]:
+ t=Path('docs/analytics/code-audit/files/'+p+'.md').read_text()
+ for title in titles:assert '## '+title in t,(p,title)
+ assert expected_head in t and '| Статус анализа | Проверено |' in t
+issues=list(Path('docs/issues').glob('*'+'/issue-*.md'))
+assert len(issues)==14
+assert {p.stem for p in issues}=={f'issue-{n:05}' for n in range(1,15)}
+assert all(p.parent.name=='potential' for p in issues)
+task=Path('docs/tasks/task-0003.001.md').read_text()
+assert '| Статус | `done` |' in task and '- [ ]' not in task
+assert '| Статус | `in-progress` |' in Path('docs/tasks/task-0003-remaining-files.md').read_text()
+for n in range(2,11):
+ assert '| Статус | `planned` |' in Path(f'docs/tasks/task-0003.{n:03}.md').read_text()
+checked_links=0
+mdfiles=list(Path('docs').rglob('*.md'))
+def text_only(text):
+ return re.sub(r'^```[^\n]*\n.*?^```[ \t]*$', '',text,flags=re.M|re.S)
+def headings(text):
+ out=set()
+ for h in re.findall(r'^#{1,6}\s+(.+)$',text,flags=re.M):
+  h=re.sub(r'\[([^\]]+)\]\([^)]+\)',r'\1',h)
+  out.add(re.sub(r'[^\w\-\s]','',h.replace('`','').lower()).replace(' ','-'))
+ out.update(re.findall(r'\bid=["\']([^"\']+)',text))
+ return out
+for f in mdfiles:
+ text=re.sub(r'`+[^`]*`+', 'code', text_only(f.read_text()))
+ for label,url in re.findall(r'\[([^\]\n]+)\]\(([^)\n]+)\)',text):
+  if re.match(r'\w+://',url):continue
+  target,_,anchor=url.partition('#')
+  dest=(f.parent/unquote(target)).resolve() if target else f.resolve()
+  assert dest.exists(),(str(f),url)
+  if anchor:assert unquote(anchor) in headings(text_only(dest.read_text())),(str(f),url)
+  checked_links+=1
+changed=subprocess.check_output(['git','status','--porcelain','--untracked-files=all'],text=True).splitlines()
+for row in changed:
+ p=row[3:]
+ assert p.startswith('docs/'),p
+ raw=Path(p).read_text()
+ assert all(l==l.rstrip() for l in raw.splitlines()),p
+ for block in re.findall(r'(?:^\|.*\n)+',text_only(raw),flags=re.M):
+  assert len({len(l.split('|')) for l in block.strip().splitlines()})==1,p
+subprocess.run(['git','diff','--check'],check=True)
+print(json.dumps({'source_files':621,'cards':16,'not_started':605,'new_cards':5,'potential_issues':14,'tracked_metadata_preserved':len(meta),'markdown_files':len(mdfiles),'local_links':checked_links,'changed_docs':len(changed),'source_and_metadata_hashes':'unchanged','diff_check':'passed'},ensure_ascii=False))
+PY
+```
+
+Результат контрольной команды: 621 исходник, 16 карточек, 605 файлов со статусом «Не начат», 14 potential issues. Проверены 72 Markdown-документа и 1799 локальных ссылок. Изменены/созданы 22 документа; исходники и метаданные 741 отслеживаемого файла не изменились. `git diff --check` прошёл. При проверке ссылок учитываются ссылки на существующие каталоги, а примеры JavaScript в строковом коде не трактуются как Markdown-навигация.
+
 ## TASK-0002 — итоговая перекрёстная сверка
 
 Дата: 2026-09-10. Ветка rusbar-main; HEAD проверки `3252300787c348e11f95098c345a6af7704b690c`. Все исследуемые исходники совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Установленное ядро — 14.367.0; это отдельно прочитанная версия, не вывод из compatibility манифеста.

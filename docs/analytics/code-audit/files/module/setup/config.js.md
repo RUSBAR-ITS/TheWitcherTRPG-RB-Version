@@ -64,7 +64,7 @@
 
 ### Ключи характеристик и навыков
 
-Ниже перечислены все 21 ключ statMap и 52 ключа skillMap. Это определения справочника; совпадение с моделью каждого поля отдельно не объявляется проверенным. Для общего языка сопоставление с intData и построителем changes выполнено (issue-00004).
+Ниже перечислены все 21 ключ statMap и 52 ключа skillMap. В TASK-0002 они описаны как определения справочника. В TASK-0003.001 дополнительно сопоставлены все 20 записей statMap с непустым origin со схемами [Stats](../data/actor/templates/common/stats/statsData.js.md) и [DerivedStats](../data/actor/templates/common/stats/derivedStatsData.js.md): все пути totalModifiers существуют. В схемах дополнительно есть toxicity (отдельный getToxSuggestions) и shield; reputation в statMap имеет пустой origin. Это проверка путей, не полного применения эффектов. Для общего языка сопоставление с intData и построителем changes выполнено ранее (issue-00004).
 
 | Ключ statMap | origin / name | label / labelShort |
 | --- | --- | --- |

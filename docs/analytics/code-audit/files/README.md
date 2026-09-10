@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 подготовлены и сверены 11 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001 подготовлены и сверены 16 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -19,3 +19,13 @@
 | module/setup/queries.js | [Запросы](module/setup/queries.js.md) |
 | module/setup/socketHook.js | [Сокет](module/setup/socketHook.js.md) |
 | module/setup/deprecations.js | [Обработчик уведомлений](module/setup/deprecations.js.md) |
+
+## Общие поля и характеристики — TASK-0003.001
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/dataUtils.js | [Описание](module/data/dataUtils.js.md) |
+| module/data/actor/templates/valueLabelData.js | [Описание](module/data/actor/templates/valueLabelData.js.md) |
+| module/data/actor/templates/common/stats/statData.js | [Описание](module/data/actor/templates/common/stats/statData.js.md) |
+| module/data/actor/templates/common/stats/statsData.js | [Описание](module/data/actor/templates/common/stats/statsData.js.md) |
+| module/data/actor/templates/common/stats/derivedStatsData.js | [Описание](module/data/actor/templates/common/stats/derivedStatsData.js.md) |

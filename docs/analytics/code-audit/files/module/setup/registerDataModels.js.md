@@ -130,6 +130,10 @@
 
 [issue-00005](../../../../../issues/potential/issue-00005.md) — четыре типа зарегистрированы в коде, но отсутствуют в манифесте.
 
+## Дополнительная сверка вложенных моделей
+
+2026-09-10, TASK-0003.001: [Stats](../data/actor/templates/common/stats/statsData.js.md) и [DerivedStats](../data/actor/templates/common/stats/derivedStatsData.js.md) разобраны полностью. Они включены в CommonActorData через EmbeddedDataField (строки 33–34) и наследуются зарегистрированными CharacterData/MonsterData; отдельными типами Actor здесь не регистрируются. Общие фабрики [stat](../data/actor/templates/common/stats/statData.js.md), [valueLabel](../data/actor/templates/valueLabelData.js.md) и [createEnrichedText](../data/dataUtils.js.md) также не являются регистрируемыми типами. Выводы сопоставлены с таблицами выше; полный разбор остальных моделей остаётся последующим подзадачам.
+
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 3 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
