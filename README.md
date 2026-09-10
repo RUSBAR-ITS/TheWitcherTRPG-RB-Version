@@ -1,5 +1,11 @@
-# Foundry VTT - The Witcher TRPG #
+# The Witcher TRPG — RB-Version
 
-The system is in maintenance mode.
+Форк системы The Witcher TRPG для Foundry VTT.
 
-If someone else wants to take over the development open an issue :) 
+**[Актуальный README проекта находится в docs/README.md](docs/README.md).**
+
+- [История изменений](docs/CHANGELOG.md)
+- [Правила работы с репозиторием](docs/rules/README.md)
+- [Задачи и технические задания](docs/tasks/README.md)
+
+Основная ветка — `rusbar-main`. Ветка `original` сохраняет исходную версию для сравнения и восстановления.
