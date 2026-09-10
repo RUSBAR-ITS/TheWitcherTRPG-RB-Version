@@ -119,3 +119,9 @@
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Настройка silverTrait переключает потребление [DamageProperties.silverTrait/silverDamage](../../../../../../module/data/item/templates/combat/damagePropertiesData.js). Точечно проверенная ветвь calculateDamageWithLocation присваивает строку instance.setType вместо вызова метода: [issue-00073](../../../../../issues/potential/issue-00073.md). Проверена связь настройки с обработчиком, не вся механика серебряного урона.
 
 Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
+
+Повторно исполнен настоящий registerSettings с настоящим ClientSettings Foundry 14.367 и storage/Setting-фасадами: зарегистрированы 9 прежних ключей, displayRollsDetails по умолчанию false. [RepairSystem](../../../../../../module/item/systems/repair.js) обращается к отсутствующей woundsAffectSkillBase; реальный get выбросил ошибку неизвестной настройки. Это [issue-00103](../../../../../issues/potential/issue-00103.md), а не молчаливое значение false. Проверка дополнительной регистрации внешними модулями не выполнялась.

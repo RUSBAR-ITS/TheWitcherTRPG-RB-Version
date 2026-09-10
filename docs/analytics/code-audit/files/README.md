@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.016 подготовлены и сверены 133 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.017 подготовлены и сверены 138 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -216,3 +216,13 @@
 | templates/partials/components-list.hbs | [Описание](templates/partials/components-list.hbs.md) |
 | templates/partials/associated-diagram.hbs | [Описание](templates/partials/associated-diagram.hbs.md) |
 | templates/partials/associated-item.hbs | [Описание](templates/partials/associated-item.hbs.md) |
+
+## Ремонт предметов — TASK-0003.017
+
+| Файл | Карточка |
+| --- | --- |
+| module/item/systems/repair.js | [Описание](module/item/systems/repair.js.md) |
+| module/item/mixins/repairMixin.js | [Описание](module/item/mixins/repairMixin.js.md) |
+| module/item/mixins/costEditMixin.js | [Описание](module/item/mixins/costEditMixin.js.md) |
+| templates/dialog/repair-dialog.hbs | [Описание](templates/dialog/repair-dialog.hbs.md) |
+| templates/chat/item/repair.hbs | [Описание](templates/chat/item/repair.hbs.md) |

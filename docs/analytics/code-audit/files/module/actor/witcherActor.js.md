@@ -242,3 +242,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Уточнены потребители полей [module/data/item/componentData.js](../../../../../../module/data/item/componentData.js) и [module/data/item/templates/craftingComponentData.js](../../../../../../module/data/item/templates/craftingComponentData.js). Примесь [module/actor/mixins/craftingMixin.js](../../../../../../module/actor/mixins/craftingMixin.js) предоставляет getSubstance/findNeededComponent/findComponentByUuid. Реальные методы с модельными компонентами показали: поиск имени включает isStored=true, getSubstance исключает сохранённую субстанцию, UUID-метод сравнивает _stats.compendiumSource. Изготовление использует поиск по имени; ремонт сначала ищет имя, затем разрешает UUID недостающего материала. Это разные критерии, не эквивалентные способы найти один Item; общий контракт инвентаря не менялся.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
+
+[RepairSystem](../../../../../../module/item/systems/repair.js) вызывает findNeededComponent из [craftingMixin](../../../../../../module/actor/mixins/craftingMixin.js) и выбирает первый Item, затем _doRepair вызывает removeItem(_id,1) для каждой owned-записи. removeItem:275–283 действительно ждёт delete/update; потеря ожидания находится у caller ремонта, а не в этом методе. При artisan списывается его инвентарь, предмет принадлежит owner. Подбор включает quantity0/isStoredtrue; нулевое количество UI показывает как нехватку, но guard не проверяет ([issue-00104](../../../../../issues/potential/issue-00104.md)). Списания кошелька в пяти ремонтных файлах нет.

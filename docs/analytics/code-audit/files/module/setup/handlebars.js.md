@@ -255,3 +255,9 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Полностью разобраны предзагружаемые [templates/partials/components-list.hbs](../../../../../../templates/partials/components-list.hbs), [templates/partials/associated-diagram.hbs](../../../../../../templates/partials/associated-diagram.hbs), [templates/partials/associated-item.hbs](../../../../../../templates/partials/associated-item.hbs). components-list включается только repair-dialog; другие два — листами оружия/брони и рецепта. В [templates/sheets/item/component-sheet.hbs](../../../../../../templates/sheets/item/component-sheet.hbs) вызван устаревший #select: ни этот файл, ни initialize helpers Foundry14.367 его не регистрируют. Реальный рендер остановился на Missing helper: select; временный диагностический helper для изучения оставшихся полей не записан в систему.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
+
+Полностью прочитаны предзагружаемые [repair-dialog](../../../../../../templates/dialog/repair-dialog.hbs) и [repair chat](../../../../../../templates/chat/item/repair.hbs). Первый получает data/components/isRequest/canEditCost и включает [components-list](../../../../../../templates/partials/components-list.hbs); второй — data/isRequest/isOrder/showComponents. Пути preload/render совпадают. Отсутствующий damagedLocations не вызывает ошибки HBS, но не рисует строки. showComponents исключает случай только unknown; это [issue-00107](../../../../../issues/potential/issue-00107.md). Рендер изолированный, настоящего HTTP-клиента не было.

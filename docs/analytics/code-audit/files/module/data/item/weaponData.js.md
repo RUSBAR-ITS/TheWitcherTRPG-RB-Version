@@ -114,3 +114,9 @@ repair посылает update родительскому документу, н
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
 
 Полностью разобраны импортируемые [module/data/item/templates/associatedDiagramData.js](../../../../../../../module/data/item/templates/associatedDiagramData.js) и [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js). associatedDiagramUuid — строка; unwrapAssociatedDiagram синхронно задаёт prepared объект/индекс/null и не проверяет тип. Допустимые категории weapon/elderfolk-weapon проверяет drop-примесь листа. Ремонт/разборка заново разрешают UUID асинхронно. Обратный associatedItemUuid рецепта автоматически не устанавливается; его отдельный редактор описан в [module/item/sheets/WitcherDiagramSheet.js](../../../../../../../module/item/sheets/WitcherDiagramSheet.js).
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
+
+Полностью разобран [ремонт](../../../../../../../module/item/systems/repair.js). RepairData.enchantsCount считает все truthy enhancementItemIds, включая повтор одного ID: [a,'',a] дал 2 и добавил 4 к DC. Рецепт DC20 дал итог 19. Прямые gmRepair/restoreReliability вызывают WeaponData.repair→parent.update({'system.reliable':10}); update в опыте оставался pending. Обычный путь не использует этот метод в ветке update: там отсутствуют damagedLocations/getRestoreReliabilityData ([issue-00102](../../../../../../issues/potential/issue-00102.md)). Прежняя [issue-00081](../../../../../../issues/potential/issue-00081.md) дополнена всеми уровнями ожидания.

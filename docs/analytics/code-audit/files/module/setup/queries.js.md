@@ -106,3 +106,9 @@
 Полный разбор отправителей [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) и [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js) уточнил контракт: обычный owned-маршрут ждёт createEmbeddedDocuments, но ViaId, ToTargets, обработчик временных улучшений и принимающие Queries не связывают свой результат с завершением вложенной операции (issue-00008). Не-владелец посылает отдельный query улучшений со всем списком и общий query обычных эффектов без отдельного duration. При Item, недоступном даже GM, ViaId повторяет тот же запрос без конечной ветви (issue-00045). Три ручных исполнения и наблюдаемые payload не являются запуском сетевого цикла.
 
 [Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
+
+Уточнён разрешённый restoreReliability: [примесь Item](../../../../../../module/item/mixins/repairMixin.js) делегирует [RepairSystem.restoreReliability](../../../../../../module/item/systems/repair.js) и system.repair без ожидания. Однако штатный _doRepair использует emitForGM/socket, не User.query; проверка receiver этой порции не является новым воспроизведением раннего true из [issue-00008](../../../../../issues/potential/issue-00008.md). Контракты двух протоколов остаются раздельными.

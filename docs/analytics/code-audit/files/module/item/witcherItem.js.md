@@ -215,3 +215,9 @@
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Полностью описана [module/data/item/diagramData.js](../../../../../../module/data/item/diagramData.js) и её редактор [module/item/sheets/WitcherDiagramSheet.js](../../../../../../module/item/sheets/WitcherDiagramSheet.js). realCraft читает prepared name/quantity компонентов, ищет инвентарь по имени, а результат получает через await fromUuid(associatedItemUuid) и resultQuantity. ID строки и UUID материала не используются этим маршрутом для списания. Миграция рецепта может заменить craftingDC/UUID (issue-00097); isAlchemicalCraft выбирает положительный alchemyDC независимо от isFormulae UI (issue-00101). Исходный метод проверен на двух граничных моделях: false/12→true, true/0→0. Прежние проверки полного realCraft/Promise не повторялись; issue-00037/00038/00041 сохранены.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
+
+Полностью разобраны [repairMixin](../../../../../../module/item/mixins/repairMixin.js) и [RepairSystem](../../../../../../module/item/systems/repair.js). Object.assign:373 даёт документу repair/restoreReliability: первый ждёт process(this.actor,this), второй сразу делегирует system.repair. Это методы Item, отличные от методов его модели. Штатный обычный процесс блокируют [issue-00102](../../../../../issues/potential/issue-00102.md) и [issue-00103](../../../../../issues/potential/issue-00103.md). Прямой GM/socket путь восстанавливает через модели. Ожидание update теряется на нескольких уровнях ([issue-00081](../../../../../issues/potential/issue-00081.md)). Настоящая примесь проверена с Item-фасадом/моделями, client WitcherItem не создавался.

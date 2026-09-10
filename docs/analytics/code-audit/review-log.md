@@ -1,5 +1,87 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.017
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; рабочее дерево на старте чистое, отслеживаются 964 файла. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/item/systems/repair.js](../../../module/item/systems/repair.js) | 347 |
+| [module/item/mixins/repairMixin.js](../../../module/item/mixins/repairMixin.js) | 12 |
+| [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | 20 |
+| [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | 33 |
+| [templates/chat/item/repair.hbs](../../../templates/chat/item/repair.hbs) | 73 |
+
+Всего **5 файлов, 485 логических строк**. Полностью описаны Repair (15 собственных методов), RepairData (конструктор/8 полей/7 getters), 2 метода repairMixin, 2 метода costEditMixin и оба HBS. Сверены все 5 прямых относительных импортов, регистрации, шаблоны, вызовы и поля контекста. Подготовлены 5 новых карточек и уточнены 12 связанных: WitcherItem, WitcherActor, modifierMixin, WeaponData, ArmorData, DiagramData, settings, handlebars, socketHook, queries, TheWitcherTRPG, components-list.
+
+Чат, helper выбора Actor, поиск/списание ресурсов, extendedRoll, RollConfig, socketMessage и границы CSS прочитаны для проверки связей. Их полный пофайловый разбор не заявлен, статус реестра от такого чтения не повышен.
+
+### Методика и подмены
+
+Диагностический JavaScript передан Node через stdin, без создания файлов тестового стенда. Импортированы настоящий RepairSystem, обе примеси, extendedRoll/RollConfig, sender/receiver сокета, chatMessageListeners и их прямые зависимости. Использованы DataModel/TypeDataModel/fields/common BaseItem Foundry и реальные модели Component/Diagram/Weapon/Armor. Это документы и модели в памяти, не client WitcherItem и не документы игрового мира.
+
+Actor, инвентарь, canvas, UUID, права, DOM, DialogV2.wait, ChatMessage и запись update/removeItem представлены фасадами. Изменения сохранялись только в журнале вызовов и возвращали контролируемые pending Promise; в конце все они разрешены. DialogV2.wait фиксировал конфигурацию, вызывал render callback и возвращал null: исследовались состав/отмена и callbacks по исходнику, не браузерные окна. Core wait:405–425 в /opt/foundryvtt/client/applications/api/dialog.mjs отдельно подтверждает null при закрытии без rejectClose.
+
+Для настройки выполнены настоящие registerSettings и ClientSettings из /opt/foundryvtt/client/helpers/client-settings.mjs; world/client storage и Setting-документ заменены. После доказательства незарегистрированного ключа get временно подменён только для исследования дальнейших ветвей. Две формулы с подписями/без проверены настоящими RollParser и grammar.pegjs, скомпилированной Peggy в памяти. Roll для extendedRoll был фасадом с заданным total и некритическим результатом d10=5; реальные случайные броски/crit/fumble не запускались.
+
+Handlebars 4.7.9 и parse5 настоящие; использованы оба HBS и исходный components-list. localize читает настоящие en/ru после utils.expandObject; and/eq представлены простыми эквивалентными helpers для этих проверок. Socket.IO заменён перехватом сообщения и прямым вызовом зарегистрированного callback активного GM, без сети.
+
+### Выполненные сценарии
+
+| Группа | Фактический результат |
+| --- | --- |
+| 1. Рецепт/исполнитель | Пустой/неразрешённый рецепт дал уведомление noDiagram и undefined. Owned Leather quantity='0'/isStored=true; отсутствующий Steel разрешён по UUID; Unknown без UUID попал в unknown. Artisan использует свой инвентарь. |
+| 2. Вычисления | craftingDC20 и enhancementItemIds[a,'',a] дали enchantsCount2, enchantsDC4, repairDC19; cost3+5+additional4 дали 12. Конструктор содержит 8 полей и не содержит damagedLocations. |
+| 3. Диалог/отмена | Четыре сочетания GM/artisan: собственный ремонт всегда repair/sim-repair/request-repair; artisan без GM repair/sim-repair; artisan с GM добавляет gm-repair. modal=true; отмена-фасад не вызвала записей. В HTML только строка DC, без повреждений. |
+| 4. Guard обычного ремонта | На подготовленном data без missing/unknown получен TypeError чтения damagedLocations.length. Missing/unknown отклоняются раньше. В отдельном опыте вручную добавленный [] дал alreadyRepaired; [{}] с owned0 допустил вызов commonRepair-регистратора. |
+| 5. Нижнее восстановление | Прямой _doRepair(true) при праве update вызвал removeItem и затем TypeError getRestoreReliabilityData is not a function. Метод отсутствует в системе. Это не доказательство достижения этой точки штатной кнопкой. |
+| 6. Настройки | Настоящий registerSettings создал 9 ключей; displayRollsDetails прочитан как false. prepareRollFormula с реальным ClientSettings дал Error неизвестной TheWitcherTRPG.woundsAffectSkillBase. |
+| 7. Строка броска | С временным get=false обе формы 1d10+6+5+2[bonus] с подписями/без прошли реальный парсер. С true добавлена только открывающая скобка, обе формы дали SyntaxError; исходный addActiveEffects скобку не закрывает. |
+| 8. Симуляция/порог | Настоящие commonRepair/extendedRoll, total18/19/20 против DC19: success=false/false/true. Каждый сценарий создал только Roll.toMessage, не списывал и не восстанавливал; сообщение оставалось pending после возврата. |
+| 9. GM/модели/примесь | gmRepair: ChatMessage.create→WeaponData.repair→update reliable10, без remove/броска. Возврат при pending create/update. Прямые restoreReliability RepairSystem/repairMixin вызвали тот же метод. ArmorData передала reliability8 и 6 SP максимумов (head6/torso7/прочие 0). |
+| 10. Неразрешённый материал | Реальный рецепт с валидным Item.unknowncomponent при fromUuid=null дал missing=[null]; prepareDialogTemplate упал на oc.img. |
+| 11. Чат и списки | При owned/missing=[] и только unknown UNIQUE_UNKNOWN таблица/название/цена скрыты, кнопка запроса присутствует. Контроль со смешанным списком отобразил unknown и цену заказа. |
+| 12. Пустая цена | Настоящий costEditMixin: поля 2/3, база 15→additional5,total20; одно пустое поле→NaN. Это дополнение issue-00100, не новый ID. |
+| 13. Глобальный DOM | После подписки A с полем 2 добавлено поле B3 и подписка B. Change A вызвал оба callback с суммой 5; listeners[2,1], первый total20, второй остался 40. Два реальных модальных окна не открывались. |
+| 14. Сокет | _doRepair(true) без права update передал type restoreReliability/data[uuid] на system.TheWitcherTRPG. Настоящий receiver активного GM сделал shift и вызвал Item.restoreReliability→weapon.update; запись осталась pending. Generic query не запускался. |
+| 15. Кнопка/Item-вход | Настоящие chatMessageListeners/onRepairRequest с world-owner/item открыли processRequest для artisan. Пустая game.actors дала TypeError owner.items. Настоящий repairMixin.repair отдельно дождался отмены новой конфигурации диалога. |
+| 16. Локализация | 18 буквальных ключей порции и 2 значения из statMap/skillMap найдены в en/ru (20 в каждом языке). Подписи формулы получены из настоящей CONFIG.WITCHER. |
+
+Все 16 групп завершены. В первом диагностическом входе один UUID имел 15 символов и очищался моделью в null; сценарий исправлен на валидный 16-символьный ID и выполнен заново. Это ошибка входа проверки, не проблема системы. Предупреждение Node о module type не устранялось изменением package.json.
+
+### Перекрёстная сверка связей
+
+| Цепочка | Сопоставление |
+| --- | --- |
+| Инвентарь → Item → RepairSystem | canBeRepaired моделей управляет видимостью .item-repair; CharacterSheet._repairItem442–446 вызывает item.repair; примесь передаёт actor/item. UI-видимость не добавляет проверок в прямые методы. |
+| Рецепт/Actor → требования | craftingComponents(name/uuid)→findNeededComponent(name)[0] либо fromUuid; quantity требования игнорируется, required всегда 1. quantity0 отображён как нехватка, guard это не учитывает. |
+| RepairData → HBS → обычный ремонт | Ни конструктор/7 getters, ни примесь не задают damagedLocations. HBS просто пропускает each, guard бросает. getRestoreReliabilityData нигде не определён; модели имеют отдельный system.repair. |
+| Настройка → формула → extendedRoll | Регистрация не содержит старого ключа. modifierMixin добавляет слагаемые; CONFIG связывает CRA/crafting. prepareRollConfig выставляет DC/флаги, extendedRoll считает успех по > при defense=false; commonRepair также использует >. |
+| Диалог → цена → чат | components-list даёт поля/базу, глобальный costEditMixin возвращает сумму, render присваивает additionalCost; repairPrice прибавляет owned/missing. Платежей/изменений валюты в пяти файлах нет. |
+| Сообщение → исполнитель → предмет | RepairSystem создаёт content либо flavor; HBS хранит owner/item ID; hook→chat listener→getInteractActor→processRequest. Чтение owner.items предшествует guard; неизвестные-only материалы выключены верхним showComponents. |
+| Списание/восстановление → завершение | Actor.removeItem ждёт delete/update, но _doRepair не ждёт его. Модельные repair не ждут parent.update; примесь/GM/socket обёртки не восстанавливают ожидание. Сообщения также запускаются без ожидания записи. |
+| Socket и query | _doRepair использует emitForGM, активный GM разрешает UUID и вызывает документный метод. queries.js отдельно разрешает restoreReliability; подтверждение true от query и отсутствие прикладного ответа сокета — разные контракты. |
+
+Все описания нового блока сверены с текущими определениями и 12 обновлёнными карточками. Прямой фрагмент определения не считается полным анализом файла. Поиск потребителей охватывает module/ и templates/; внешние модули не исследованы.
+
+### Issues и ограничения
+
+Зарегистрированы [issue-00102](../../issues/potential/issue-00102.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00104](../../issues/potential/issue-00104.md), [issue-00105](../../issues/potential/issue-00105.md), [issue-00106](../../issues/potential/issue-00106.md), [issue-00107](../../issues/potential/issue-00107.md), [issue-00108](../../issues/potential/issue-00108.md). Дополнены issue-00008/00010/00081/00100; issue-00034 сопоставлена без нового воспроизведения её собственных ветвей. Всего **108 issue, все potential**. Воспроизведение агентом не заменяет подтверждения пользователя; исправления не выполнялись.
+
+Ремонт не объявлен работающим по итогам изолированных ветвей: штатный путь содержит issue-00102/00103. Ветвь zero-quantity проверена с вручную добавленным damagedLocations; симуляция — после подмены отсутствующей настройки; _doRepair — отдельным вызовом. Эти условия явно записаны в карточках. Для issue-00106 установлена глобальная область DOM, но достижимость нескольких modal окон в обычном UI не проверялась.
+
+Не запускались мир, реальный браузер/клиент, сеть, БД, кошелёк, полные случайные броски, конкурирующие изменения и права сервера. Synthetic Actor/удаление Actor в мире, реальный compendium resolver и полный жизненный цикл диалогов не проверены. Соответствие количества материалов/DC рулбуку не исследовалось и игровые правила не менялись.
+
+### Контроль документов и исходников
+
+Проверки прошли: 621 уникальный исходник в реестре, 138 строк «Проверено» соответствуют 138 карточкам, 483 остаются «Не начат». Все 5 новых карточек содержат обязательные разделы, собственные методы/поля, дату и коммит; перечень совпадает с задачей. Проверены 221 прямой относительный импорт всех описанных JS-файлов и 6269 локальных ссылок/якорей в 298 Markdown-документах. Все 108 issue находятся в potential, ID последовательны и представлены в реестре.
+
+Все 621 исходник побайтно совпали с текущим HEAD и срезом TASK-0001. Сумма SHA256 по путям/байтам осталась `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. У 964 отслеживаемых до порции файлов сохранены mode/uid/gid/inode; итоговая проверка метаданных совпала со стартовой. `git diff --check`, структура таблиц и согласованность указателей прошли. Изменены 39 документов (27 существующих и 12 новых); вне docs изменений нет. Предыдущие записи журнала, начиная с TASK-0003.016, сохранены побайтно. Коммит не создавался.
+
+Следующая порция — [TASK-0003.018](../../tasks/task-0003.018.md): раса и родина. Во второй серии проверены 66 из 96 файлов, в трёх следующих задачах остаются 30; ещё 453 требуют детализации. TASK-0004/0005 остаются заготовками.
+
 ## TASK-0003.016
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `53f74994011383cb544cabac96285430f00cb38a`; рабочее дерево на старте чистое, отслеживаются 944 файла. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

@@ -145,3 +145,9 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 Полностью разобраны зарегистрированный [module/activeEffect/witcherActiveEffect.js](../../../../../module/activeEffect/witcherActiveEffect.js) и маршруты [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) / [module/scripts/statusEffects/applyStatusEffect.js](../../../../../module/scripts/statusEffects/applyStatusEffect.js). documentClass определяет suppression и hooks; game.api публикует ViaId, а renderChatMessageHTML вызывает chatMessageListeners отдельного сообщения. Пакетный addStatusEffectChatListeners в этой точке не используется (issue-00048). expiryAction=delete обслуживается реестром ядра; отсутствие проверки duration.expired в системном isSuppressed не доказывает отсутствия автоматического удаления всех эффектов.
 
 [Журнал сверки](../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../review-log.md#task-0003017).
+
+Уточнена связь renderChatMessageHTML→Chat.chatMessageListeners: [ремонтный HBS](../../../../../templates/chat/item/repair.hbs) выводит кнопку с data-owner/item; [onRepairRequest](../../../../../module/scripts/chat.js) выбирает artisan и вызывает [processRequest](../../../../../module/item/systems/repair.js). Настоящий listener на фасадах открыл диалог с существующими ID; отсутствие owner дало TypeError до guard ([issue-00108](../../../../issues/potential/issue-00108.md)). Это проверка callback, без запуска Hooks всего клиента.

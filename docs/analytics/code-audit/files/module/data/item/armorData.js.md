@@ -117,3 +117,9 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
 
 Полностью проверены [module/data/item/templates/associatedDiagramData.js](../../../../../../../module/data/item/templates/associatedDiagramData.js), [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) и [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs). Броня использует ту же строковую ссылку и resolver, что оружие; её caller передаёт armor/elderfolk-armor. Ссылка раскрывается после обработки улучшений. Partial обращается к description вне system, поэтому текст связанного рецепта не появляется даже с полным BaseItem (issue-00096); подсказки add/remove перепутаны (issue-00099). Нового поведения расчёта SP эта порция не вводит.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
+
+Уточнён [RepairSystem](../../../../../../../module/item/systems/repair.js) как потребитель system.repair. Прямой вызов настоящей модели через restoreReliability дал payload reliability8 и stoppingPower шести зон: head6,torso7,остальные 0; ожидание update не передаётся наружу. _doRepair при праве update ссылается на отсутствующий собственный getRestoreReliabilityData, а не на ArmorData.repair. Структура текущей модели не создаёт data.damagedLocations автоматически ([issue-00102](../../../../../../issues/potential/issue-00102.md)). Числа — входы диагностического сценария, не изменения правил.

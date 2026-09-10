@@ -77,3 +77,9 @@
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 4 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+## Уточнение TASK-0003.017
+
+2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
+
+Проверен штатный отправитель [RepairSystem._doRepair](../../../../../../module/item/systems/repair.js): при success и отсутствии права update посылает через [emitForGM](../../../../../../module/scripts/socket/socketMessage.js) type='restoreReliability',data=[item.uuid]. Реальные sender/receiver исполнены с объектом в памяти: активный GM сделал shift (data стало[]), вызвал [метод Item](../../../../../../module/item/mixins/repairMixin.js), затем WeaponData.repair инициировал update. При возврате callback update оставался pending. Это не generic query; сеть/серверная запись не проверены. Произвольные типы из [issue-00010](../../../../../issues/potential/issue-00010.md) заново не подавались.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.016 проверены описания **133 файлов**, для **488 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.017 проверены описания **138 файлов**, для **483 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.016](review-log.md#task-0003016) выполнена на `53f74994011383cb544cabac96285430f00cb38a`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.017](review-log.md#task-0003017) выполнена на `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -175,11 +175,11 @@
 | [module/data/item/weaponData.js](../../../module/data/item/weaponData.js) | Модель оружия: боевые свойства, улучшения, защита, ремонт и миграция. | [Описание](files/module/data/item/weaponData.js.md) | Проверено |
 | [module/data/migrations/damagePropertiesMigration.js](../../../module/data/migrations/damagePropertiesMigration.js) | Перенос пяти прежних полей Weapon/Spell внутрь damageProperties. | [Описание](files/module/data/migrations/damagePropertiesMigration.js.md) | Проверено |
 | [module/item/mixins/consumeMixin.js](../../../module/item/mixins/consumeMixin.js) | Применение Item: лечение Actor, статусы, applySelf ActiveEffect и чат. | [Описание](files/module/item/mixins/consumeMixin.js.md) | Проверено |
-| [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | Слушатели цен компонентов и пересчёт дополнительной стоимости через глобальный DOM. | [Описание](files/module/item/mixins/costEditMixin.js.md) | Проверено |
 | [module/item/mixins/damageUtilMixin.js](../../../module/item/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/mixins/defenseOptionMixin.js](../../../module/item/mixins/defenseOptionMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/mixins/dismantlingMixin.js](../../../module/item/mixins/dismantlingMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/mixins/repairMixin.js](../../../module/item/mixins/repairMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/mixins/repairMixin.js](../../../module/item/mixins/repairMixin.js) | Два входа Item: открытие процесса ремонта и делегирование восстановления модели. | [Описание](files/module/item/mixins/repairMixin.js.md) | Проверено |
 | [module/item/sheets/WitcherAlchemicalSheet.js](../../../module/item/sheets/WitcherAlchemicalSheet.js) | Лист алхимии с категориями и конфигурацией расходования. | [Описание](files/module/item/sheets/WitcherAlchemicalSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherArmorSheet.js](../../../module/item/sheets/WitcherArmorSheet.js) | Лист брони: контекст, варианты ношения, конфигурация и рецепт. | [Описание](files/module/item/sheets/WitcherArmorSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherComponentSheet.js](../../../module/item/sheets/WitcherComponentSheet.js) | Минимальный лист компонента с основной формой и шириной 600. | [Описание](files/module/item/sheets/WitcherComponentSheet.js.md) | Проверено |
@@ -208,7 +208,7 @@
 | [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/mixins/associatedDiagramMixin.js](../../../module/item/sheets/mixins/associatedDiagramMixin.js) | Примесь привязки/удаления рецепта на листах оружия и брони. | [Описание](files/module/item/sheets/mixins/associatedDiagramMixin.js.md) | Проверено |
-| [module/item/systems/repair.js](../../../module/item/systems/repair.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/systems/repair.js](../../../module/item/systems/repair.js) | Ремонт Item: рецепт и материалы, исполнитель, DC/формула, диалог, сообщения и восстановление. | [Описание](files/module/item/systems/repair.js.md) | Проверено |
 | [module/item/witcherItem.js](../../../module/item/witcherItem.js) | Документ Item: миграция магии, выбор атаки, изготовление, генерация добычи, улучшения и пять примесей. | [Карточка](files/module/item/witcherItem.js.md) | Проверено |
 | [module/scripts/chat.js](../../../module/scripts/chat.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/combat/applyDamage.js](../../../module/scripts/combat/applyDamage.js) | Не установлено | Не подготовлено | Не начат |
@@ -521,7 +521,7 @@
 | [templates/chat/item/partials/item-description/description.hbs](../../../templates/chat/item/partials/item-description/description.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/partials/item-description/spell-description.hbs](../../../templates/chat/item/partials/item-description/spell-description.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/repair.hbs](../../../templates/chat/item/repair.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/item/repair.hbs](../../../templates/chat/item/repair.hbs) | Запрос и информация ремонта в чате: DC, материалы, цена и кнопка исполнителя. | [Описание](files/templates/chat/item/repair.hbs.md) | Проверено |
 | [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/activeEffects/wizard.hbs](../../../templates/dialog/activeEffects/wizard.hbs) | Выбор пути или группы путей в диалоге мастера/навыка. | [Описание](files/templates/dialog/activeEffects/wizard.hbs.md) | Проверено |
 | [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -532,7 +532,7 @@
 | [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | Содержимое диалога ремонта: предмет, сложность, повреждения и таблица компонентов. | [Описание](files/templates/dialog/repair-dialog.hbs.md) | Проверено |
 | [templates/dialog/verbal-combat-defense.hbs](../../../templates/dialog/verbal-combat-defense.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/verbal-combat.hbs](../../../templates/dialog/verbal-combat.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/associated-diagram.hbs](../../../templates/partials/associated-diagram.hbs) | Представление связанного рецепта и область его drop/удаления. | [Описание](files/templates/partials/associated-diagram.hbs.md) | Проверено |
