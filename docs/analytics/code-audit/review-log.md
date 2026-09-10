@@ -1,5 +1,307 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.003
+
+Дата: 2026-09-10. Ветка `rusbar-main`, HEAD `c34b790379fd98cd7e33ccbeeca085e49297a40f`. Рабочее дерево на старте чистое; отслеживались 763 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+Прочитаны полностью восемь файлов из module/data/actor/templates/common, всего 129 строк: adrenalineData.js (8), currencyData.js (13), focusData.js (9), lifepathData.js (15), noteData.js (9), reputationData.js (20), temporaryEffectsData.js (14), combatEffectsData.js (41). Полное покрытие соседних моделей, листов и обработчиков из этих точечных чтений не выводится.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Источники и фактический результат |
+| --- | --- |
+| Файлы ↔ карточки | Сверены все поля восьми файлов, default exports, методы Reputation, наследование DataModel, прямые импорты и внешние вызовы фабрик. |
+| Вложение ↔ владельцы | CommonActorData содержит семь непосредственно подключаемых структур порции; TemporaryEffects вложена через combatEffects. Currency дополнительно используется LootData; focus() вызывается четыре раза; notes — ArrayField. |
+| Адреналин ↔ потребители | value/label, миграция current→value, настройка useOptionalAdrenaline, кнопки +/- и query из ветки crit. addAdrenaline при разрешении сформировал update value=1; при запрете записи нет. |
+| Валюты ↔ модель, курсы и операции | Семь ключей совпали с WITCHER.currency; шесть курсов, falsecoin исключён. Сумма 28 монет даёт вес 0.028 в Common/Loot. Нормальный обмен crown100, amount10→oren дал 90/10; crown→crown дал 110. |
+| Focus ↔ форма и castSpell | Четыре независимых слота name/value, чтение положительных значений в focusOptions, два выбора, вычитание из стоимости STA, минимум итоговой стоимости 1. Полный castSpell не запускался. |
+| Notes ↔ формы и обработчики | Пустой ArrayField, push/splice и запись массива проверены исходными методами. Шаблоны показывают отдельно Item.note (oldNotes) и массивные записи. Кнопки создания текущих шаблонов — add-item, .add-note вне listener не найдена. |
+| Lifepath ↔ schema/подсказки/формула | Четыре скалярных поля и attacks.<ключ>.value. Схемное strong={value:2} дало ` -3+[object Object]`; подсказки strong/joint не содержат .value. |
+| Reputation ↔ stat/подготовка/бросок | Пять полей stat; миграция и подготовка на трёх входах дали max 0/7/4. Common.prepareBaseData сам копирует базу, Actor.calculateStats — max в value; два режима броска прочитаны. |
+| Локализация ↔ label | WITCHER.Actor.DerStat.Rep отсутствует в восьми языках. WITCHER.Actor.Adrenaline есть в семи, отсутствует в it; en/ru содержат перевод. Fallback клиента не запускался. |
+| Боевые записи ↔ config/JSON | 11 changes statusEffects под combatEffects: 5 записей начала хода, 6 модификаторов. 17 строковых путей из 226 JSON, в 17 файлах, все соответствуют схемам; 16 целых записей и один damage.modifier. |
+| attack/defenseModifier ↔ формулы | Записи -2/-3 дают строки ` -2[a]` / ` -3[d]`, ноль пропускается. defenseMixin повторно определяет addDefenseModifiers после modifierMixin. |
+| turnStartEffects ↔ обработчик | Урон 5+2=7, флаги повреждения переданы, но тип fire потерян до DamageInstance. nonLethal выбирает sta. При heal.amount3/modifier2, HP5/20 записывается 8. |
+| TemporaryEffects ↔ лист/расход | Только словарь temporaryHp; temporaryHpSum добавляет лист, не схема. Два значения 3/4 дают сумму 7. При расходе составного эффекта (tempHP3 + attack5) урон6 меняет attack до2 и сохраняет HP10. |
+| Ранее описанные зависимости ↔ новые карточки | Уточнены config, registerDataModels, settings, hooks и statData. Дополнены issue-00006/00011/00014 без дубликатов. |
+
+Основные поиски выполнялись через rg по именам фабрик/классов и полям adrenaline, currency, focus1–4, lifepathModifiers, notes, reputation, combatEffects, turnStartEffects, temporaryHp в module/templates. Каждый найденный существенный потребитель прочитан до конкретного обращения; индексы JSON приведены в карточке combatEffectsData.js. Отсутствие прямого пути в JSON не исключает динамическое построение.
+
+В ядре прочитаны DataModel/TypedObjectField/SchemaField и Actor.applyActiveEffects: активные документы собираются через allApplicableEffects, изменения применяются к подготовленным данным в фазах initial/final. Управление документом-источником в системе сверено с onManageActiveEffect delete/toggle. Автоматическое истечение и полный пересчёт после удаления в клиенте не воспроизводились.
+
+### Изолированные проверки
+
+Следующая команда выполнена из корня репозитория. Реальны классы данных/поля и utils Foundry, модели системы, config.js, DamageInstance и указанные исходные методы. Код методов загружается в vm со строгим режимом. Подменены GUI, i18n/settings, ChatMessage и запись Actor/ActiveEffect. В цепочке урона настоящий applyDamageFromStatus доходит до перехваченного Actor.applyDamage; итоговые сопротивления/HP не вычисляются. В проверке смешанного временного эффекта настоящим является updateDerivedStat, документы заменены минимальными объектами.
+
+```bash
+node --input-type=module <<'JS'
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+const utils=await import('/opt/foundryvtt/common/utils/helpers.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel},utils,applications:{api:{DialogV2:{}}}};
+const {default:Common}=await import('./module/data/actor/commonActorData.js');
+const {default:Loot}=await import('./module/data/actor/lootData.js');
+const {default:Reputation}=await import('./module/data/actor/templates/common/reputationData.js');
+const {default:TemporaryEffects}=await import('./module/data/actor/templates/common/temporaryEffectsData.js');
+const {WITCHER}=await import('./module/setup/config.js');
+const CONFIG={WITCHER};
+const get=(o,p)=>p.split('.').reduce((v,k)=>v?.[k],o);
+const copy=o=>JSON.parse(JSON.stringify(o));
+const fresh=new Common({});
+const r={defaults:Object.fromEntries(['adrenaline','currency','focus1','focus2','focus3','focus4','lifepathModifiers','notes','reputation','combatEffects'].map(k=>[k,copy(fresh[k])]))};
+assert.equal(fresh.notes.length,0);
+assert.equal(fresh.currency.crown,0);
+assert.equal(fresh.combatEffects.temporaryEffects.temporaryHpSum,undefined);
+assert.equal(fresh.focus1.name,'');assert.equal(fresh.focus1.value,0);
+fresh.focus1.value=3;assert.equal(fresh.focus2.value,0);
+assert.deepEqual(Object.keys(fresh.currency),Object.keys(WITCHER.currency));
+assert.deepEqual(Object.keys(WITCHER.currencyRates),Object.keys(fresh.currency).filter(k=>k!=='falsecoin'));
+const wallet={bizant:1,ducat:2,lintar:3,floren:4,crown:5,oren:6,falsecoin:7};
+assert.equal(new Common({currency:wallet}).calcCurrencyWeight(),0.028);
+assert.equal(new Loot({currency:wallet}).calcCurrencyWeight(),0.028);
+r.currencyWeight=0.028;
+r.reputation=[];
+for(const input of [{max:7},{max:7,unmodifiedMax:0},{max:7,unmodifiedMax:4}]){
+ const model=new Reputation({...input});model.prepareBaseData();
+ const common=new Common({reputation:{...input}});common.prepareBaseData();
+ assert.equal(model.max,common.reputation.max);
+ r.reputation.push({input,max:model.max,unmodifiedMax:model.unmodifiedMax});
+}
+assert.deepEqual(r.reputation.map(v=>v.max),[0,7,4]);
+assert.equal(new Common({adrenaline:{current:3}}).adrenaline.value,3);
+assert.equal(new Common({adrenaline:{value:2,current:3}}).adrenaline.value,2);
+assert.equal(new Common({adrenaline:{value:0,current:3}}).adrenaline.value,3);
+r.adrenalineMigration=[3,2,3];
+let settings={useOptionalAdrenaline:true};
+const game={settings:{get:(s,k)=>settings[k]??false},i18n:{localize:k=>k,format:k=>k},user:{isActiveGM:true,id:'test'}};
+const baseGlobals={foundry,CONFIG,game,CONST:{CHAT_MESSAGE_STYLES:{OTHER:0}},ChatMessage:{create:()=>{},getSpeaker:()=>({}),applyMode:()=>{}}};
+function source(file,names,extra={}){
+ const code=fs.readFileSync(file,'utf8').replace(/^import .*;\r?$/gm,'').replace(/^export \{[^\n]*\};?\r?$/gm,'').replace(/^export (?=(?:async )?(?:function|let|const|class))/gm,'');
+ const ctx={...baseGlobals,...extra};vm.runInNewContext("'use strict';\n"+code+'\nglobalThis.result={'+names.join(',')+'};',ctx);return ctx.result;
+}
+const {adrenalineMixin}=source('module/actor/mixins/adrenalineMixin.js',['adrenalineMixin']);
+const adrenalineUpdates=[];
+const adrenalineActor={system:fresh,update:u=>adrenalineUpdates.push(u)};
+await adrenalineMixin.addAdrenaline.call(adrenalineActor);
+settings.useOptionalAdrenaline=false;await adrenalineMixin.addAdrenaline.call(adrenalineActor);
+assert.equal(adrenalineUpdates.length,1);assert.equal(adrenalineUpdates[0]['system.adrenaline.value'],1);
+const {noteMixin}=source('module/actor/sheets/mixins/noteMixin.js',['noteMixin']);
+const noteWrites=[],noteActor={system:fresh,update:u=>noteWrites.push(copy(u))};
+await noteMixin._onNoteAdd.call({actor:noteActor});
+assert.deepEqual(copy(fresh.notes),[{title:'',details:''}]);
+await noteMixin._onNoteDelete.call({actor:noteActor},{currentTarget:{dataset:{noteIndex:'0'}}});
+assert.equal(fresh.notes.length,0);r.noteWrites=noteWrites;
+const {baseMixin}=source('module/activeEffect/mixins/baseMixin.js',['baseMixin']);
+r.lifepathSuggestions=baseMixin.getLifepathSuggestions();
+const attackData=new Common({lifepathModifiers:{attacks:{strong:{value:2}}}});
+const {weaponAttackMixin}=source('module/actor/mixins/weaponAttackMixin.js',['weaponAttackMixin']);
+r.strikeFormula=weaponAttackMixin.handleStrikeType.call({system:attackData},'strong',false);
+assert(r.strikeFormula.includes('[object Object]'));
+r.strikeFieldClasses={outer:attackData.schema.getField('lifepathModifiers.attacks').constructor.name,element:attackData.schema.getField('lifepathModifiers.attacks').element.constructor.name};
+assert(attackData.schema.getField('lifepathModifiers.attacks').element instanceof fields.SchemaField);
+assert(attackData.schema.getField('lifepathModifiers.attacks').element.fields.value instanceof fields.NumberField);
+const {modifierMixin}=source('module/actor/mixins/modifierMixin.js',['modifierMixin']);
+const mods=new Common({combatEffects:{attackModifier:{a:{name:'a',value:-2},zero:{name:'zero',value:0}},defenseModifier:{d:{name:'d',value:-3}}}});
+r.modifierStrings={attack:modifierMixin.addAttackModifiers.call({system:mods}),defense:modifierMixin.addDefenseModifiers.call({system:mods})};
+assert.equal(r.modifierStrings.attack,' -2[a]');assert.equal(r.modifierStrings.defense,' -3[d]');
+let dialogResult;
+foundry.applications={api:{DialogV2:{input:async()=>dialogResult}},handlebars:{renderTemplate:async()=>''}};
+const {currencyConverterMixin}=source('module/actor/mixins/currencyConverterMixin.js',['currencyConverterMixin']);
+r.conversions=[];
+for(const to of ['oren','crown']){
+ const updates=[],data=new Common({currency:{crown:100}});
+ dialogResult={amount:10,from:'crown',to,fee:0};
+ await currencyConverterMixin.openCurrencyConverter.call({system:data,name:'test',getCurrencyRates:currencyConverterMixin.getCurrencyRates,update:async u=>updates.push(copy(u))});
+ r.conversions.push({to,updates});
+ assert.equal(updates[0]['system.currency.crown'],to==='oren'?90:110);
+}
+const {DamageInstance}=await import('./module/scripts/damageInstance.js');
+const {applyDamageFromStatus}=source('module/scripts/combat/applyDamage.js',['applyDamageFromStatus'],{DamageInstance});
+const {applyCombatEffect,applyCombatEffects,applyGeneralCombatHooks}=source('module/scripts/combat/generalCombatHook.js',['applyCombatEffect','applyCombatEffects','applyGeneralCombatHooks'],{applyDamageFromStatus});
+const {healMixin}=source('module/actor/mixins/healMixin.js',['healMixin']);
+const statusData=new Common({derivedStats:{hp:{value:5,max:20}},combatEffects:{turnStartEffects:{
+ fire:{name:'fire',damage:{amount:5,modifier:2,type:'fire',allLocations:true,ignoreArmor:true,bypassesShield:true,spDamage:1}},
+ heal:{name:'heal',heal:{amount:3,modifier:2}}
+}}});
+const damageCalls=[],healUpdates=[];
+const statusActor={system:statusData,type:'character',getLocationObject:()=>({name:'torso'}),applyDamage:(dialog,instances,props,stat)=>damageCalls.push({instances:instances.map(i=>({damage:i.damage,type:i.type??null})),props,stat}),update:async u=>healUpdates.push(copy(u)),calculateHealValue:healMixin.calculateHealValue,createHealMessage:async()=>{}};
+await applyCombatEffect(statusActor,statusData.combatEffects.turnStartEffects.fire);
+await applyCombatEffect(statusActor,statusData.combatEffects.turnStartEffects.heal);
+assert.equal(damageCalls[0].instances[0].damage,7);assert.equal(damageCalls[0].instances[0].type,null);
+assert.equal(healUpdates[0]['system.derivedStats.hp.value'],8);
+const nonlethal=new Common({combatEffects:{turnStartEffects:{test:{damage:{amount:1,modifier:2,nonLethal:true}}}}});
+await applyCombatEffect(statusActor,nonlethal.combatEffects.turnStartEffects.test);
+assert.equal(damageCalls[1].stat,'sta');
+r.statusDamage=damageCalls;r.statusHeal=healUpdates;
+const tempData=new TemporaryEffects({temporaryHp:{one:{name:'one',value:3},two:{name:'two',value:4}}});
+assert.equal(Object.values(tempData.temporaryHp).reduce((s,t)=>s+t.value,0),7);
+const {damageMixin}=source('module/actor/mixins/damageMixin.js',['damageMixin']);
+const effectWrites=[],hpWrites=[];
+const effect={system:{changes:[
+ {key:'system.combatEffects.temporaryEffects.temporaryHp.test',value:'{"name":"temp","value":3}'},
+ {key:'system.combatEffects.attackModifier.test',value:'{"name":"attack","value":5}'}
+]},update:async u=>effectWrites.push(copy(u))};
+await damageMixin.updateDerivedStat.call({system:{derivedStats:{hp:{value:10}}},temporaryEffects:[effect],update:async u=>hpWrites.push(copy(u))},6,'hp');
+assert.equal(JSON.parse(effect.system.changes[1].value).value,2);
+assert.equal(hpWrites[0]['system.derivedStats.hp.value'],10);
+r.mixedTemporaryEffect={changes:effect.system.changes,updates:effectWrites,hpWrites};
+r.statusDefinitions=WITCHER.statusEffects.flatMap(s=>(s.changes??[]).filter(c=>c.key.startsWith('system.combatEffects.')).map(c=>({status:s.id,key:c.key,value:JSON.parse(c.value)})));
+import path from 'node:path';
+const files=[];function list(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.posix.join(dir,e.name);if(e.isDirectory())list(p);else if(p.endsWith('.json'))files.push(p);}}list('packsJson');
+const prefixes=['system.adrenaline','system.currency','system.focus','system.lifepathModifiers','system.notes','system.reputation','system.combatEffects'];
+const refs=[];function walk(o,file,p=''){if(!o||typeof o!=='object')return;for(const[k,v]of Object.entries(o)){if(typeof v==='string'&&prefixes.some(x=>v.startsWith(x)))refs.push({file,path:p+'.'+k,key:v,change:o});walk(v,file,p+'.'+k);}}
+for(const f of files)walk(JSON.parse(fs.readFileSync(f,'utf8')),f);
+assert.equal(files.length,226);assert.equal(refs.length,17);
+const errors=[];
+for(const ref of refs){
+ const relative=ref.key.slice('system.'.length);
+ const field=fresh.schema.getField(relative,{source:fresh.toObject()});
+ if(!field)errors.push(ref.key);
+ if(relative.endsWith('.modifier')){assert(field instanceof fields.NumberField);continue;}
+ const id=relative.split('.').at(-1);
+ const data=new Common({combatEffects:{turnStartEffects:{[id]:JSON.parse(ref.change.value)}}});
+ assert.equal(typeof data.combatEffects.turnStartEffects[id].damage.amount,'number');
+}
+assert.deepEqual(errors,[]);
+r.packRefs={files:files.length,references:refs.length,sourceFiles:new Set(refs.map(x=>x.file)).size,paths:[...new Set(refs.map(x=>x.key))],invalid:errors};
+const samples=new Common({combatEffects:{attackModifier:{test:{}},turnStartEffects:{test:{}}}});
+r.emptyEntries={modifier:copy(samples.combatEffects.attackModifier.test),turn:copy(samples.combatEffects.turnStartEffects.test)};
+const langKeys=['WITCHER.Actor.Adrenaline','WITCHER.Actor.DerStat.Rep'];
+const langs=fs.readdirSync('lang').filter(f=>f.endsWith('.json'));
+r.localizations=Object.fromEntries(langKeys.map(key=>[key,langs.filter(file=>get(JSON.parse(fs.readFileSync('lang/'+file,'utf8')),key)===undefined)]));
+assert.equal(r.localizations['WITCHER.Actor.DerStat.Rep'].length,8);
+
+for(const d of r.statusDefinitions){
+ const data=utils.expandObject({[d.key.slice(7)]:d.value});
+ const model=new Common(data);
+ const value=get(model,d.key.slice(7));
+ assert(value && typeof value==='object');
+}
+assert.equal(r.statusDefinitions.length,11);
+console.log(JSON.stringify(r,null,2));
+JS
+```
+
+Результат: **exit 0**, все assert прошли. Основные результаты записаны в таблице выше и карточках issues. Для сериализации перехваченного типа урона undefined заменён null; это не утверждение, что исходный DamageInstance.type равен null.
+
+На этапе настройки сценария непустой TypedObjectField потребовал foundry.utils.isDeletionKey: после чтения определения подключён настоящий common/utils/helpers.mjs. Проверка getField по динамическому ключу без source также потребовала уточнения API: схема записи проверяется через element либо getField с source. Эти промежуточные ограничения запуска не зарегистрированы как проблемы системы. Node сообщает MODULE_TYPELESS_PACKAGE_JSON и автоматически распознаёт ES module; package.json не менялся.
+
+### Проверка документов и сохранности
+
+Проверяются состав реестра по Git/дереву, совпадение всех исходников с HEAD и базовым срезом, начальные хеши содержимого/метаданных, карточки, связи, статусы и Markdown. Применяются прежние исключения; ни docs, ни assets/.github не включаются в покрытие исходников.
+
+```bash
+python3 - <<'PY'
+import hashlib, json, os, re, subprocess
+from pathlib import Path
+from urllib.parse import unquote
+base='15da5b225535e34af4e132c701b5353ef4eb667f'
+expected_head='c34b790379fd98cd7e33ccbeeca085e49297a40f'
+registry=Path('docs/analytics/code-audit/registry.md').read_text()
+rows=[line for line in registry.splitlines() if re.match(r'^\| \[[^\]]+\]\(\.\./\.\./\.\./',line)]
+paths=[re.match(r'^\| \[([^\]]+)\]',r).group(1) for r in rows]
+assert len(paths)==len(set(paths))==621
+assert sum(r.endswith('| Проверено |') for r in rows)==33
+assert sum(r.endswith('| Не начат |') for r in rows)==588
+excluded={'README.md','AGENTS.md','LICENSE','.gitignore','.prettierrc','.prettierignore','jsconfig.json.default','package-lock.json','styles/fonts/thewitcher2.ttf'}
+def keep(p):
+ return p.split('/')[0] not in {'.git','docs','assets','.github'} and p not in excluded and not (p.startswith('packs/') and p.endswith('/LOCK'))
+tracked=[p for p in subprocess.check_output(['git','ls-files','-z'],text=True).split('\0') if p]
+assert set(filter(keep,tracked))==set(paths)
+actual=[]
+for d,dirs,files in os.walk('.'):
+ if d=='.':dirs[:]=[x for x in dirs if x not in {'.git','docs','assets','.github'}]
+ for f in files:
+  p=(Path(d)/f).as_posix()
+  if keep(p):actual.append(p)
+assert set(actual)==set(paths)
+assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==expected_head
+for p in paths:
+ b=Path(p).read_bytes()
+ assert b==subprocess.check_output(['git','show',base+':'+p]),p
+ assert b==subprocess.check_output(['git','show',expected_head+':'+p]),p
+digest=lambda b:hashlib.sha256(b).hexdigest()
+assert digest(b''.join(p.encode()+b'\0'+Path(p).read_bytes()+b'\0' for p in paths))=='9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e'
+meta={p:[Path(p).stat().st_mode,Path(p).stat().st_uid,Path(p).stat().st_gid,Path(p).stat().st_ino] for p in tracked if Path(p).is_file()}
+assert digest(json.dumps(meta,sort_keys=True).encode())=='599982e66c22b2595e038ca2d56a439cb28eb6946a1f5cd9fd522e777d2abb2d'
+cards=[p for p in Path('docs/analytics/code-audit/files').rglob('*.md') if p.name!='README.md']
+assert len(cards)==33
+for row in rows:
+ p=re.match(r'^\| \[([^\]]+)\]',row).group(1)
+ c=Path('docs/analytics/code-audit/files')/(p+'.md')
+ assert c.is_file()==row.endswith('| Проверено |'),p
+titles=['Назначение файла','Условия использования','Введённые сущности и действия с ними','Основные функции и методы','Используемые сущности и зависимости','Известные потребители','Данные и изменения состояния','Проверки и доказательства','Непроверенные участки и открытые вопросы','Связанные проблемы','История актуализации']
+for p in ["module/data/actor/templates/common/adrenalineData.js","module/data/actor/templates/common/currencyData.js","module/data/actor/templates/common/focusData.js","module/data/actor/templates/common/lifepathData.js","module/data/actor/templates/common/noteData.js","module/data/actor/templates/common/reputationData.js","module/data/actor/templates/common/temporaryEffectsData.js","module/data/actor/templates/common/combatEffectsData.js"]:
+ t=Path('docs/analytics/code-audit/files/'+p+'.md').read_text()
+ for title in titles:assert '## '+title in t,(p,title)
+ assert expected_head in t and '| Статус анализа | Проверено |' in t
+issues=list(Path('docs/issues').glob('*'+'/issue-*.md'))
+assert len(issues)==23
+assert {p.stem for p in issues}=={f'issue-{n:05}' for n in range(1,24)}
+assert all(p.parent.name=='potential' for p in issues)
+task=Path('docs/tasks/task-0003.003.md').read_text()
+assert '| Статус | `done` |' in task and '- [ ]' not in task
+assert '| Статус | `in-progress` |' in Path('docs/tasks/task-0003-remaining-files.md').read_text()
+for n in range(4,11):
+ assert '| Статус | `planned` |' in Path(f'docs/tasks/task-0003.{n:03}.md').read_text()
+# Сверка точного состава порции и методов.
+task_paths=re.findall(r'\[module/[^]]+\]\(\.\./\.\./(module/[^)]+)\)',task)
+portion=[p for p in task_paths if '/templates/common/' in p]
+assert len(portion)==len(set(portion))==8
+assert sum(len(Path(p).read_text().splitlines()) for p in portion)==129
+for p in portion:
+ raw=Path(p).read_text()
+ card=Path('docs/analytics/code-audit/files/'+p+'.md').read_text()
+ for field in re.findall(r'(\w+): new fields\.',raw):
+  assert field in card,(p,field)
+for n in [1,2]:
+ assert '| Статус | '+chr(96)+'done'+chr(96)+' |' in Path(f'docs/tasks/task-0003.{n:03}.md').read_text()
+checked_links=0
+mdfiles=list(Path('docs').rglob('*.md'))
+def text_only(text):
+ return re.sub(r'^```[^\n]*\n.*?^```[ \t]*$', '',text,flags=re.M|re.S)
+def headings(text):
+ out=set()
+ for h in re.findall(r'^#{1,6}\s+(.+)$',text,flags=re.M):
+  h=re.sub(r'\[([^\]]+)\]\([^)]+\)',r'\1',h)
+  out.add(re.sub(r'[^\w\-\s]','',h.replace('`','').lower()).replace(' ','-'))
+ out.update(re.findall(r'\bid=["\']([^"\']+)',text))
+ return out
+for f in mdfiles:
+ text=re.sub(r'`+[^`]*`+', 'code', text_only(f.read_text()))
+ for label,url in re.findall(r'\[([^\]\n]+)\]\(([^)\n]+)\)',text):
+  if re.match(r'\w+://',url):continue
+  target,_,anchor=url.partition('#')
+  dest=(f.parent/unquote(target)).resolve() if target else f.resolve()
+  assert dest.exists(),(str(f),url)
+  if anchor:assert unquote(anchor) in headings(text_only(dest.read_text())),(str(f),url)
+  checked_links+=1
+changed=subprocess.check_output(['git','status','--porcelain','--untracked-files=all'],text=True).splitlines()
+for row in changed:
+ p=row[3:]
+ assert p.startswith('docs/'),p
+ raw=Path(p).read_text()
+ assert all(l==l.rstrip() for l in raw.splitlines()),p
+ for block in re.findall(r'(?:^\|.*\n)+',text_only(raw),flags=re.M):
+  assert len({len(l.split('|')) for l in block.strip().splitlines()})==1,p
+subprocess.run(['git','diff','--check'],check=True)
+print(json.dumps({'source_files':621,'cards':33,'not_started':588,'new_cards':8,'potential_issues':23,'tracked_metadata_preserved':len(meta),'markdown_files':len(mdfiles),'local_links':checked_links,'changed_docs':len(changed),'source_and_metadata_hashes':'unchanged','diff_check':'passed'},ensure_ascii=False))
+PY
+```
+
+Итог проверки: exit 0. Реестр — 621 исходник, 33 проверенные карточки, 588 файлов не разобраны; добавлены восемь карточек. Все 23 issues находятся в potential. Проверены 98 Markdown-документов и 2372 локальные ссылки; изменены или созданы 32 документа. Содержимое исходников и mode/uid/gid/inode всех 763 ранее отслеживаемых файлов сохранены; git diff --check прошёл. TASK-0003.003 завершена, родительская TASK-0003 остаётся in-progress; следующая TASK-0003.004 — planned.
+
+### Наблюдения и пределы
+
+Новые [issue-00019](../../issues/potential/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/potential/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/potential/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/potential/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/potential/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
+
+Проверки не включают запуск мира/браузера, запись документов, сетевые запросы, импорт компедиумов, полный боевой цикл, экономику и соответствие рулбуку. Исходники и игровые данные не изменялись. Карточки фиксируют реальные обращения и пределы их изучения; это основание для дальнейших порций, а не доказательство исправности всей системы.
+
 ## TASK-0003.002
 
 Дата: 2026-09-10. Ветка `rusbar-main`, HEAD `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`. На старте рабочее дерево было чистым, отслеживались 750 файлов. Все 621 исходник исследования совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по `/opt/foundryvtt/package.json`; Node 24.16.0.

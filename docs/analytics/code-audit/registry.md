@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001 и TASK-0003.002 проверены описания **25 файлов**, для **596 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.003 проверены описания **33 файлов**, для **588 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.002](review-log.md#task-0003002) выполнена на `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.003](review-log.md#task-0003003) выполнена на `c34b790379fd98cd7e33ccbeeca085e49297a40f`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -90,13 +90,13 @@
 | [module/data/actor/templates/character/logData.js](../../../module/data/actor/templates/character/logData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/character/pannelsData.js](../../../module/data/actor/templates/character/pannelsData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/actor/templates/character/skillTrainingData.js](../../../module/data/actor/templates/character/skillTrainingData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/adrenalineData.js](../../../module/data/actor/templates/common/adrenalineData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/combatEffectsData.js](../../../module/data/actor/templates/common/combatEffectsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/currencyData.js](../../../module/data/actor/templates/common/currencyData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/focusData.js](../../../module/data/actor/templates/common/focusData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/lifepathData.js](../../../module/data/actor/templates/common/lifepathData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/noteData.js](../../../module/data/actor/templates/common/noteData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/actor/templates/common/reputationData.js](../../../module/data/actor/templates/common/reputationData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/templates/common/adrenalineData.js](../../../module/data/actor/templates/common/adrenalineData.js) | Поля количества адреналина и его подписи | [Карточка](files/module/data/actor/templates/common/adrenalineData.js.md) | Проверено |
+| [module/data/actor/templates/common/combatEffectsData.js](../../../module/data/actor/templates/common/combatEffectsData.js) | Модификаторы атаки/защиты, воздействия начала хода и временные HP | [Карточка](files/module/data/actor/templates/common/combatEffectsData.js.md) | Проверено |
+| [module/data/actor/templates/common/currencyData.js](../../../module/data/actor/templates/common/currencyData.js) | Семь числовых остатков валют Actor | [Карточка](files/module/data/actor/templates/common/currencyData.js.md) | Проверено |
+| [module/data/actor/templates/common/focusData.js](../../../module/data/actor/templates/common/focusData.js) | Имя и значение одного слота фокусировки | [Карточка](files/module/data/actor/templates/common/focusData.js.md) | Проверено |
+| [module/data/actor/templates/common/lifepathData.js](../../../module/data/actor/templates/common/lifepathData.js) | Модификаторы защиты, нагрузки брони, магии и типов удара | [Карточка](files/module/data/actor/templates/common/lifepathData.js.md) | Проверено |
+| [module/data/actor/templates/common/noteData.js](../../../module/data/actor/templates/common/noteData.js) | Заголовок и текст записи массива заметок | [Карточка](files/module/data/actor/templates/common/noteData.js.md) | Проверено |
+| [module/data/actor/templates/common/reputationData.js](../../../module/data/actor/templates/common/reputationData.js) | Числовая репутация: схема stat, подготовка max и миграция | [Карточка](files/module/data/actor/templates/common/reputationData.js.md) | Проверено |
 | [module/data/actor/templates/common/skills/bodyData.js](../../../module/data/actor/templates/common/skills/bodyData.js) | Два навыка BODY и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/bodyData.js.md) | Проверено |
 | [module/data/actor/templates/common/skills/craData.js](../../../module/data/actor/templates/common/skills/craData.js) | Семь навыков CRA и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/craData.js.md) | Проверено |
 | [module/data/actor/templates/common/skills/dexData.js](../../../module/data/actor/templates/common/skills/dexData.js) | Пять навыков DEX и миграция подписей | [Карточка](files/module/data/actor/templates/common/skills/dexData.js.md) | Проверено |
@@ -109,7 +109,7 @@
 | [module/data/actor/templates/common/stats/derivedStatsData.js](../../../module/data/actor/templates/common/stats/derivedStatsData.js) | Схема 12 производных параметров и миграция шести исходных значений | [Карточка](files/module/data/actor/templates/common/stats/derivedStatsData.js.md) | Проверено |
 | [module/data/actor/templates/common/stats/statData.js](../../../module/data/actor/templates/common/stats/statData.js) | Общая схема пяти полей характеристики, ресурса и репутации | [Карточка](files/module/data/actor/templates/common/stats/statData.js.md) | Проверено |
 | [module/data/actor/templates/common/stats/statsData.js](../../../module/data/actor/templates/common/stats/statsData.js) | Модель 10 показателей stats, копирование базовых максимумов и миграция | [Карточка](files/module/data/actor/templates/common/stats/statsData.js.md) | Проверено |
-| [module/data/actor/templates/common/temporaryEffectsData.js](../../../module/data/actor/templates/common/temporaryEffectsData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/actor/templates/common/temporaryEffectsData.js](../../../module/data/actor/templates/common/temporaryEffectsData.js) | Словарь временных HP с записями name/value | [Карточка](files/module/data/actor/templates/common/temporaryEffectsData.js.md) | Проверено |
 | [module/data/actor/templates/valueLabelData.js](../../../module/data/actor/templates/valueLabelData.js) | Фабрика строкового значения и ключа его подписи | [Карточка](files/module/data/actor/templates/valueLabelData.js.md) | Проверено |
 | [module/data/chatMessage/attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/chatMessage/baseMessageData.js](../../../module/data/chatMessage/baseMessageData.js) | Не установлено | Не подготовлено | Не начат |
