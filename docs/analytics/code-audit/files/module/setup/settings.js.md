@@ -113,3 +113,9 @@
 Матрица [шапки Item](../../templates/partials/item-header.hbs.md) подтвердила правила видимости checkbox: тип в CSV и (GM либо ограничение GM выключено). Матрица [item-image](../../templates/partials/item-image.hbs.md) требует ещё clickableImage=true. Настройка GM ограничивает видимость checkbox, не создаёт отдельного ограничения записи поля. Поле clickableImage не объявлено в моделях; проверенные настоящие Valuable/Armor/Weapon/Mutagen отбрасывают его при подготовке. Текущие списки инвентаря partial не используют: [issue-00063](../../../../../issues/potential/issue-00063.md). Сохранение мира не проверялось.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Настройка silverTrait переключает потребление [DamageProperties.silverTrait/silverDamage](../../../../../../module/data/item/templates/combat/damagePropertiesData.js). Точечно проверенная ветвь calculateDamageWithLocation присваивает строку instance.setType вместо вызова метода: [issue-00073](../../../../../issues/potential/issue-00073.md). Проверена связь настройки с обработчиком, не вся механика серебряного урона.
+
+Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).

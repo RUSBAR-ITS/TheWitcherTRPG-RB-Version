@@ -103,3 +103,9 @@ Getter flat вызывается для общего damage.type, а не каж
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Подтверждено самостоятельное верхнее поле damageTypeModification:49. Оно наследуется монстром вместе с CommonActorData; строки MonsterData.resistances/immunities и два resistantNon* флага — другие поля и другие потребители.
 
 Карточки сборки: [commonActorData](../../../../commonActorData.js.md), [monsterData](../../../../monsterData.js.md). [Сверка TASK-0003.006](../../../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Схема свойств источника разобрана в [DamageProperties](../../../../../../../../../../../module/data/item/templates/combat/damagePropertiesData.js). Тип конкретного повреждения находится в damage.type, а свойства — в damage.properties; поле Item.system.damageProperties имеет другое положение. Наличие одного общего класса не исправляет ошибочный путь getMultiDamageMod при applyAP: уточнена [issue-00025](../../../../../../../../../../issues/potential/issue-00025.md). Флаги AP по-прежнему вызывают ранний выход calculateArmorResistances.
+
+Результат и границы — [сверка TASK-0003.012](../../../../../../../../review-log.md#task-0003012).

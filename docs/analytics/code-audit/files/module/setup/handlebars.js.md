@@ -229,3 +229,9 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 Сверены [item-header](../../templates/partials/item-header.hbs.md) (10 прямых предметных форм), [item-image](../../templates/partials/item-image.hbs.md) и три шаблона базовой Item-конфигурации. Исходные getSetting/includes/window/has исполнены в Handlebars-матрицах. item-image включается лишь в прежний monster-inventory-tab; текущий MonsterSheet использует другие PARTS. Предзагрузка старого monster-sheet и его partial не доказывает отображение текущим листом. Поля general сверены на 22 реальных схемах Item с фасадом toFormGroup; itemUseAttackSkill не выводится, заголовок spell использует ranged.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. armorPartsInfo читает modifiedStoppingPower/modifiedMaxStoppingPower, определённые в [SpData](../../../../../../module/data/item/templates/armor/spData.js). У них persisted:false: после base→derived 7/10 с улучшением2 превращаются в9/12, а source сохраняет7/10. Шесть ключей ArmorData совпали с helper; shield использует fallback reliability. Подписи ног по-прежнему относятся к [issue-00007](../../../../../issues/potential/issue-00007.md).
+
+Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).

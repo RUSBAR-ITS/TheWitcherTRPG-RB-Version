@@ -218,3 +218,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 Уточнена цепочка отображения: Actor-листы готовят allApplicableEffects плюс переданные улучшения, [module/actor/sheets/mixins/activeEffectMixin.js](../../../../../../module/actor/sheets/mixins/activeEffectMixin.js) группирует их, а [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) скрывает suppressed-строки при наличии actor. Открытие/toggle Item-эффекта разрешаются по его parent.uuid, удаление из чужого родителя блокируется собственным обработчиком. Изменение состояния документа остаётся API ядра; шаблон не исполняет бонусы.
 
 [Общая сверка первой серии](../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Связи импортированных mixin уточнены по [DamageProperties](../../../../../../module/data/item/templates/combat/damagePropertiesData.js), [DefenseProperties](../../../../../../module/data/item/templates/combat/defensePropertiesData.js) и [SpData](../../../../../../module/data/item/templates/armor/spData.js). defenseMixin отбирает предметы через system.isApplicableDefense(attack.attackOption), затем Item.createDefenseOption; модель защит сама возвращает только modifier и пустые skills/itemTypes. weaponAttackMixin добавляет контекстные effects в подготовленную модель предмета. Сопоставление с моделями выявило [issue-00066](../../../../../issues/potential/issue-00066.md), [issue-00069](../../../../../issues/potential/issue-00069.md), [issue-00070](../../../../../issues/potential/issue-00070.md) и [issue-00073](../../../../../issues/potential/issue-00073.md). Это точечная сверка функций-потребителей, не их полный пофайловый разбор.
+
+Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).

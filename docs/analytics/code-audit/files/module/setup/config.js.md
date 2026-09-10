@@ -403,3 +403,9 @@
 Для [общей Item-конфигурации](../../templates/sheets/item/configuration/tabs/general.hbs.md) сопоставлены attackOptions и списки навыков. Вариант itemUse присутствует в WITCHER.attackOptions со skills=['trapcraft']; схема содержит itemUseAttackSkill, но шаблон его не выводит. Исходные getItemAttack/начало weaponAttack на новой модели воспроизвели отсутствие навыка и уведомление до броска: [issue-00061](../../../../../issues/potential/issue-00061.md). Подпись spell отдельно существует в en/ru, однако заголовок третьей секции берёт ranged: [issue-00062](../../../../../issues/potential/issue-00062.md). Значения конфигурации не менялись.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Фабрики [attackOptions](../../../../../../module/data/item/templates/combat/attackOptionsData.js) и [defenseOptions](../../../../../../module/data/item/templates/combat/defenseOptionsData.js) используют справочники при initial: четыре варианта атаки и шесть защит. choices в SetField не задаются; список UI и ограничение модели — разные вещи. Default spellAttackSkill='spellcasting' не совпадает с skillMap.spellcast ([issue-00064](../../../../../issues/potential/issue-00064.md)). Восьми damageTypes соответствуют четыре флага [weaponType](../../../../../../module/data/item/templates/weaponTypeData.js) и три [ResistanceData](../../../../../../module/data/item/templates/armor/resistanceData.js); это разные схемы, не единый enum.
+
+Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).

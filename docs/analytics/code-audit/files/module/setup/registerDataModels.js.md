@@ -189,3 +189,9 @@
 Сверены две отдельные модели: [module/data/activeEffects/witcherActiveEffectData.js](../../../../../../module/data/activeEffects/witcherActiveEffectData.js) (changes ядра + пять BooleanField) и [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) (changes + три BooleanField, metadata.type). Temporary-модель прямо наследует ActiveEffectTypeDataModel, не WitcherActiveEffectData. changes в 14.367 имеет key/type/value/phase/priority; начальные type=add, phase=initial, value='', priority=undefined до клиентской подготовки. Настоящие модели выполнены изолированно; источник схемы проверен в common/data/active-effect.mjs.
 
 [Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Десять файлов [TASK-0003.012](../../../../../tasks/task-0003.012.md) не добавляют новых document types. [DamageProperties](../../../../../../module/data/item/templates/combat/damagePropertiesData.js), [DefenseProperties](../../../../../../module/data/item/templates/combat/defensePropertiesData.js), [ResistanceData](../../../../../../module/data/item/templates/armor/resistanceData.js) и [SpData](../../../../../../module/data/item/templates/armor/spData.js) — вложенные DataModel; остальные фабрики создают поля. AttackMessageData/DefenseMessageData используют экземпляры DamageProperties, а DamageMessageData включает defineSchema с заменой effects на ArrayField/applied. Регистрация ChatMessage type не означает одинаковую runtime-структуру properties.
+
+Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).

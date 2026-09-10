@@ -1,5 +1,86 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.012
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; рабочее дерево на старте чистое, отслеживались 872 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Проверенное ядро — Foundry 14.367.0 из /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/templates/combat/attackOptionsData.js](../../../module/data/item/templates/combat/attackOptionsData.js) | 49 |
+| [module/data/item/templates/combat/damagePropertiesData.js](../../../module/data/item/templates/combat/damagePropertiesData.js) | 116 |
+| [module/data/item/templates/combat/defenseOptionsData.js](../../../module/data/item/templates/combat/defenseOptionsData.js) | 11 |
+| [module/data/item/templates/combat/defensePropertiesData.js](../../../module/data/item/templates/combat/defensePropertiesData.js) | 26 |
+| [module/data/item/templates/combat/skillAttackData.js](../../../module/data/item/templates/combat/skillAttackData.js) | 25 |
+| [module/data/item/templates/combat/skillDefenseData.js](../../../module/data/item/templates/combat/skillDefenseData.js) | 13 |
+| [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js) | 11 |
+| [module/data/item/templates/armor/resistanceData.js](../../../module/data/item/templates/armor/resistanceData.js) | 23 |
+| [module/data/item/templates/armor/spData.js](../../../module/data/item/templates/armor/spData.js) | 41 |
+| [module/data/migrations/damagePropertiesMigration.js](../../../module/data/migrations/damagePropertiesMigration.js) | 25 |
+| **Всего** | **340** |
+
+Полностью описаны четыре класса DataModel, пять фабрик схем и одна миграционная функция. Указаны все поля, defaults, ограничения, callbacks, методы, импорты, потребители и места изменения состояния. Пять прямых относительных ES-import связей десяти файлов проверены до определений; это не заменяет регистрации и динамических связей.
+
+### Перекрёстная сверка
+
+- Weapon/Spell → attackOptions, defenseOptions, DamageProperties, DefenseProperties. Классы не создают отдельные типы документов. У Weapon дополнительно weaponType.
+- ProfessionData → professionSkill → skillAttack/skillDefense → общие фабрики и вложенные модели. Реальный parent DamageProperties внутри skillAttack — ProfessionData. Выбор атаки использует характеристику/уровень профессионального навыка; варианты защиты формируются внешней ProfessionData.
+- ArmorData → ResistanceData и шесть SpData. Сначала создаются enhancementItems, затем выполняется derived для сопротивлений/SP; base отдельно копирует исходный SP. Сопоставлены шесть локаций и armorPartsInfo; tailWing обрабатывается естественной бронёй монстра.
+- Item.system.damageProperties → createBaseDamageObject.properties → сообщение атаки. DamageData и DefenseMessageData включают EmbeddedDataField, а DamageMessageData использует SchemaField с ArrayField effects и полем applied. Методы модели нельзя автоматически приписывать итоговому объекту сообщения.
+- DefenseProperties.createDefenseOption даёт modifier и пустые skills/itemTypes; Weapon/Spell заполняют skills, Profession добавляет skillOverride, Item — label/value, Actor — выбор и формулу. В эту модель не включены isDefense и перечень всех защит.
+- Миграция старых свойств имеет два caller: WeaponData и SpellData. Последующая миграция массива effects принадлежит DamageProperties. Отдельная миграция ArmorData сравнивалась только в пределах эффекта.
+- Шаблоны настроек сверены с schema-путями и ключами en/ru: все label/hint этих десяти файлов найдены в обоих языках. Отдельные labels прямо помечают damageIsAblation, defenseDifferenceMultiplier и defenseMultiplierCap как неработающие; расчёт этих возможностей не домысливался.
+- WeaponType.text в схеме свободная строка, но _onDamageTypeEdit листа при вызове формирует её из четырёх флагов. Исправлена первоначальная формулировка черновика карточки о текстовом input после проверки конкретного обработчика; исходник не менялся.
+
+Уточнены девять уже существующих карточек: config, handlebars, settings, registerDataModels, WitcherItem, CommonItemData, WitcherActor, general.hbs и damageTypeModificationData. На основе новых определений дополнена issue-00025; её прежний исполняемый тест applyAP не повторялся. Фрагменты соседних файлов не объявлены полностью разобранными.
+
+### Изолированное выполнение
+
+Команда: `node --input-type=module`, сценарий передан через stdin, файлов стенда не создавалось. Через registerHooks разрешены @common-импорты установленного ядра. Использованы настоящие common DataModel/TypeDataModel, поля, utilities, системные фабрики/модели и DamageInstance. Системные типы загружены по registerDataModels; это инициализация схем, а не запуск Actor/Item мира.
+
+Тела getItemAttack, constructBaseAttackFormula, mergeDamageProperties, createBaseDamageObject и calculateDamageWithLocation взяты из текущих файлов и исполнены без переписывания логики. game/CONFIG/parent и необходимые внешние методы заданы фасадами; реальные документы, DOM, Roll, сеть и БД не вызывались. Для ветки silverTrait подменены getLocationArmor и applyAlwaysSpDamage, выбран ранний выход blockedBySp. Найденные обращения к шаблонам — статические связи, а не проверка доступности этих элементов в браузере.
+
+| Проверка | Результат |
+| --- | --- |
+| Пустой Weapon | attackOptions=[], spellAttackSkill='spellcasting', melee/ranged/itemUse навыки undefined, бонусы false |
+| Старый attackSkill | swordsmanship и archery не дали новых вариантов/навыков: поле удалено SchemaField до defaults |
+| Прямой callback и явные новые поля | callback с swordsmanship/throwable дал [melee,ranged]; явно заданные новые поля сохранились |
+| Spell с level | [spell], getItemAttack.skill='spellcasting'; общий справочник не содержит ключ |
+| Специальный getUsedSkill | class Spells с parent.type spell вернул spellcast; fallback работает |
+| Неизвестный skill в формуле | constructBaseAttackFormula получил undefined и выбросил TypeError чтения attribute |
+| defenseOptions | Default шесть ключей; явный [] сохранился; непустой неизвестный ключ принят схемой без choices |
+| DefenseProperties | melee→true; ranged/undefined/объект→false; createDefenseOption с modifier -2 вернул два пустых массива |
+| Defaults DamageProperties | 18 ключей; stun undefined, cap5; effects={} |
+| addEffects/getter | Коллизия ID заменяет запись последней; значения по ссылке. Getter не меняет собственные effects |
+| Preprocessing | Два bleeding 60 дали 120 и объединённое имя; varEffect от первой записи; безстатусная запись отдельно; исходные effects не изменились |
+| Очистка сообщения | Настоящий DamageMessageData ограничил120 до 100, applied=false, invalid=false. Ошибка валидации на этом входе не обнаружена |
+| Миграция массива | Непустой array→randomID object; пустой array helper оставил, модель очистила до{}; готовый object сохранил ID |
+| Смешанные поля | Старое true заменило новое false; прежний effects=[] заменил вложенный объект; полностью новые данные сохранились |
+| Повторное изменение нового флага | После миграции WeaponData.updateSource nested false дал false: постоянного старого shadow после очистки не осталось |
+| Эффекты ArmorData | Непустой прежний массив потерян: миграция удаляет только что сформированный объект |
+| SP | 7/10 с улучшением 2→9/12; max 0 не получает бонус; повтор derived→11, base+derived→9 |
+| Сериализация SP | toObject() содержит базовые поля; toObject(false) также modified; отрицательные числа допустимы схемой |
+| Сопротивления | Улучшение slashing:true дало false/true/false, enumerable keys — ровно три resistance |
+| Профессия | isDefense:false в ветке всё равно доступен; та же защита в definingSkill не найдена |
+| Слияние профессии | armorPiercing присоединён; effects второго объекта пропущен; cap 5+5 дал 10 |
+| Ссылка на свойства Item | Повторный createBaseDamageObject до reset видит ammo; source toObject по-прежнему содержит только base |
+| SilverTrait | После ветки instance.type остался slashing, instance.setType стал строкой silver |
+
+В окончательном сценарии assert-проверками закреплены одиннадцать групп существенных результатов, включая контрольные противоположные случаи. Диагностический первый запуск показал необходимость копировать входы/результат preprocessing перед передачей моделям: Foundry чистит переданный объект в памяти. Также минимальный контекст проверки формулы дополнен system.stats/system.skills, чтобы изолировать именно ошибку отсутствующего skill.attribute. Эти исправления относились только к сценарию; предварительные диагностические значения не использованы как окончательные выводы.
+
+### Проблемы и границы
+
+Зарегистрированы десять [potential issues-00064–00073](../../issues/README.md): неверный магический default; утрата старого attackSkill; неиспользуемый applyRangedMeleeBonus; приоритет старых свойств; удаление effects брони; пропуск effects профессии при слиянии; изменение подготовленного Item; игнорирование isDefense; пропуск definingSkill; присваивание имени метода вместо изменения серебряного типа. Дополнена issue-00025. Всего **73** карточки, все potential. Подтверждение пользователя и исправления не выполнялись.
+
+Повторный derived SP без base показан как требование порядка фаз, а не как доказательство повторного бонуса в штатном клиенте. Отсутствие части damageTypes у сопротивлений/weaponType не объявлено нарушением игровых правил. Не заявляется отказ любого заклинания из-за spellcasting: специальный fallback проверен. Поведение подготовленного Item до reset не приравнивается к постоянному изменению БД. Для definingSkill проверена модель, полный редактор остаётся TASK-0003.019.
+
+### Охват и контроль изменений
+
+Покрытие — **89 из 621 файла**, не разобраны **532**. Во второй серии проверены 17 из 96; TASK-0003.013–TASK-0003.020 содержат ещё 79 файлов; 453 пока не распределены по конкретным порциям. Следующая задача — [TASK-0003.013](../../tasks/task-0003.013.md). TASK-0003 остаётся in-progress.
+
+Итоговая техническая проверка: 621 исходник совпадает и со срезом TASK-0001, и с HEAD; сводная SHA256 по путям/байтам — `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. У всех 872 ранее отслеживаемых файлов сохранены mode/uid/gid/inode; контрольная сумма метаданных — `87ddf97b98ce8ceb34bf50042430e2487f32b849513bdb520ab5eee7ff4a6008`. Проверены 89 карточек, пять новых и 171 общая прямая относительная import-связь, 214 Markdown-документов и 4827 локальных ссылок с якорями. В рабочем дереве изменён 41 Markdown-файл, из них 20 новых; исходники не изменены. Проверки таблиц, обязательных разделов, полей/методов, охвата, очереди 79 файлов, статусов 20 подзадач и 73 potential issues пройдены; git diff --check без замечаний. История журнала от TASK-0003.011 и ниже сохранена без изменений. Коммит не создавался.
+
 ## TASK-0003.011
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; на старте рабочее дерево чистое, отслеживались 858 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Локальное ядро Foundry 14.367.0, Node 24.16.0.

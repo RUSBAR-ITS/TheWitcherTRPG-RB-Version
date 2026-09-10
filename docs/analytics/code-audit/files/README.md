@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.011 подготовлены и сверены 79 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.012 подготовлены и сверены 89 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -137,3 +137,18 @@
 | templates/sheets/item/configuration/tabs/header.hbs | [Описание](templates/sheets/item/configuration/tabs/header.hbs.md) |
 | templates/sheets/item/configuration/tabs/general.hbs | [Описание](templates/sheets/item/configuration/tabs/general.hbs.md) |
 | templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md) |
+
+## Вложенные боевые модели — TASK-0003.012
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/templates/combat/attackOptionsData.js | [Описание](module/data/item/templates/combat/attackOptionsData.js.md) |
+| module/data/item/templates/combat/damagePropertiesData.js | [Описание](module/data/item/templates/combat/damagePropertiesData.js.md) |
+| module/data/item/templates/combat/defenseOptionsData.js | [Описание](module/data/item/templates/combat/defenseOptionsData.js.md) |
+| module/data/item/templates/combat/defensePropertiesData.js | [Описание](module/data/item/templates/combat/defensePropertiesData.js.md) |
+| module/data/item/templates/combat/skillAttackData.js | [Описание](module/data/item/templates/combat/skillAttackData.js.md) |
+| module/data/item/templates/combat/skillDefenseData.js | [Описание](module/data/item/templates/combat/skillDefenseData.js.md) |
+| module/data/item/templates/weaponTypeData.js | [Описание](module/data/item/templates/weaponTypeData.js.md) |
+| module/data/item/templates/armor/resistanceData.js | [Описание](module/data/item/templates/armor/resistanceData.js.md) |
+| module/data/item/templates/armor/spData.js | [Описание](module/data/item/templates/armor/spData.js.md) |
+| module/data/migrations/damagePropertiesMigration.js | [Описание](module/data/migrations/damagePropertiesMigration.js.md) |

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.011 проверены описания **79 файлов**, для **542 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.012 проверены описания **89 файлов**, для **532 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.011](review-log.md#task-0003011) выполнена на `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.012](review-log.md#task-0003012) выполнена на `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -143,15 +143,15 @@
 | [module/data/item/ritualData.js](../../../module/data/item/ritualData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/skillItemData.js](../../../module/data/item/skillItemData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/spellData.js](../../../module/data/item/spellData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/armor/resistanceData.js](../../../module/data/item/templates/armor/resistanceData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/armor/spData.js](../../../module/data/item/templates/armor/spData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/armor/resistanceData.js](../../../module/data/item/templates/armor/resistanceData.js) | Три сопротивления брони и их объединение с улучшениями. | [Описание](files/module/data/item/templates/armor/resistanceData.js.md) | Проверено |
+| [module/data/item/templates/armor/spData.js](../../../module/data/item/templates/armor/spData.js) | Исходные и вычисленные значения SP одной локации брони. | [Описание](files/module/data/item/templates/armor/spData.js.md) | Проверено |
 | [module/data/item/templates/associatedDiagramData.js](../../../module/data/item/templates/associatedDiagramData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/combat/attackOptionsData.js](../../../module/data/item/templates/combat/attackOptionsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/combat/damagePropertiesData.js](../../../module/data/item/templates/combat/damagePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/combat/defenseOptionsData.js](../../../module/data/item/templates/combat/defenseOptionsData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/combat/defensePropertiesData.js](../../../module/data/item/templates/combat/defensePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/combat/skillAttackData.js](../../../module/data/item/templates/combat/skillAttackData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/combat/skillDefenseData.js](../../../module/data/item/templates/combat/skillDefenseData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/combat/attackOptionsData.js](../../../module/data/item/templates/combat/attackOptionsData.js) | Общие поля вариантов атаки, навыков, бонусов урона и метательного свойства. | [Описание](files/module/data/item/templates/combat/attackOptionsData.js.md) | Проверено |
+| [module/data/item/templates/combat/damagePropertiesData.js](../../../module/data/item/templates/combat/damagePropertiesData.js) | Вложенные свойства урона: флаги, эффекты, объединение, представление и миграция. | [Описание](files/module/data/item/templates/combat/damagePropertiesData.js.md) | Проверено |
+| [module/data/item/templates/combat/defenseOptionsData.js](../../../module/data/item/templates/combat/defenseOptionsData.js) | Поле множества разрешённых способов защиты от атаки. | [Описание](files/module/data/item/templates/combat/defenseOptionsData.js.md) | Проверено |
+| [module/data/item/templates/combat/defensePropertiesData.js](../../../module/data/item/templates/combat/defensePropertiesData.js) | Вложенная модель применимости собственной защиты и её модификатора. | [Описание](files/module/data/item/templates/combat/defensePropertiesData.js.md) | Проверено |
+| [module/data/item/templates/combat/skillAttackData.js](../../../module/data/item/templates/combat/skillAttackData.js) | Схема атаки профессионального навыка с общими боевыми свойствами. | [Описание](files/module/data/item/templates/combat/skillAttackData.js.md) | Проверено |
+| [module/data/item/templates/combat/skillDefenseData.js](../../../module/data/item/templates/combat/skillDefenseData.js) | Схема включения защиты профессионального навыка и DefenseProperties. | [Описание](files/module/data/item/templates/combat/skillDefenseData.js.md) | Проверено |
 | [module/data/item/templates/componentData.js](../../../module/data/item/templates/componentData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/consumableData.js](../../../module/data/item/templates/consumableData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/consumePropertiesData.js](../../../module/data/item/templates/consumePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
@@ -170,10 +170,10 @@
 | [module/data/item/templates/regions/regionPropertiesData.js](../../../module/data/item/templates/regions/regionPropertiesData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/socialStandingData.js](../../../module/data/item/templates/socialStandingData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js) | Пять полей описания типа оружия и четырёх видов урона. | [Описание](files/module/data/item/templates/weaponTypeData.js.md) | Проверено |
 | [module/data/item/valuableData.js](../../../module/data/item/valuableData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/weaponData.js](../../../module/data/item/weaponData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/migrations/damagePropertiesMigration.js](../../../module/data/migrations/damagePropertiesMigration.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/migrations/damagePropertiesMigration.js](../../../module/data/migrations/damagePropertiesMigration.js) | Перенос пяти прежних полей Weapon/Spell внутрь damageProperties. | [Описание](files/module/data/migrations/damagePropertiesMigration.js.md) | Проверено |
 | [module/item/mixins/consumeMixin.js](../../../module/item/mixins/consumeMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/mixins/damageUtilMixin.js](../../../module/item/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |

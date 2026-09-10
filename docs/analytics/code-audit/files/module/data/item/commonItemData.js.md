@@ -122,3 +122,9 @@
 Поля общей модели сверены с [шапкой десяти форм](../../../templates/partials/item-header.hbs.md). quantity остаётся StringField несмотря на data-dtype=Number в input, а weight/cost — NumberField. В отличие от них, system.clickableImage отсутствует в схеме: настоящие ValuableData/ArmorData/WeaponData/MutagenData при входном true не содержат его в подготовленных данных и toObject. Весь путь настройки разобран в [issue-00063](../../../../../../issues/potential/issue-00063.md). Это проверка моделей в Node, не запись мировых Item.
 
 [TASK-0003.011 — сценарии и сверка](../../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. У общих боевых моделей нет наследования от CommonItemData. WeaponData/SpellData/ArmorData наследуют CommonItemData и включают [DamageProperties](../../../../../../../module/data/item/templates/combat/damagePropertiesData.js), [DefenseProperties](../../../../../../../module/data/item/templates/combat/defensePropertiesData.js), [ResistanceData](../../../../../../../module/data/item/templates/armor/resistanceData.js), [SpData](../../../../../../../module/data/item/templates/armor/spData.js) через EmbeddedDataField. ArmorData явно вызывает две фазы Resistance/SP; CommonItemData их сам не обходит. Реальные parent этих вложенных полей указывают на system-модель владельца.
+
+Результат и границы — [сверка TASK-0003.012](../../../../review-log.md#task-0003012).

@@ -78,3 +78,9 @@ JavaScript-функций нет. Шаблон вычисляет условия
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.011 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Полный разбор схем [attackOptions](../../../../../../../../../module/data/item/templates/combat/attackOptionsData.js) и [defenseOptions](../../../../../../../../../module/data/item/templates/combat/defenseOptionsData.js) подтвердил пути formGroup. UI options не являются schema choices. Отдельный applyRangedMeleeBonus сохраняется полем, но расчёт его не читает ([issue-00066](../../../../../../../../issues/potential/issue-00066.md)). Для spell default задан spellcasting, отсутствующий в skillMap; это отдельная [issue-00064](../../../../../../../../issues/potential/issue-00064.md), помимо ранее описанных подписи spell и отсутствия itemUse.
+
+Результат и границы — [сверка TASK-0003.012](../../../../../../review-log.md#task-0003012).

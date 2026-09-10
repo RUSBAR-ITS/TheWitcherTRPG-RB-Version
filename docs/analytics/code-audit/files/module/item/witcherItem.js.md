@@ -191,3 +191,9 @@
 Полностью описан потребитель [WitcherItemSheet](sheets/WitcherItemSheet.js.md). Его контекст вызывает system.enrichedText?.() напрямую и редактирует system.effects через отдельные update; документы ActiveEffect обслуживает [WitcherConfigurationSheet](sheets/configurations/WitcherConfigurationSheet.js.md). Ручные add/edit/remove основного листа завершаются раньше ожидающего update; сохранение формы имеет отдельный путь ядра. getItemAttack дополнительно проверен на WeaponData с единственным itemUse: возвращает вариант без skill; потребитель останавливается на уведомлении. Причина отсутствующего выбора в редакторе описана в issue-00061; БД и полный бой не запускались.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.012
+
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. getItemAttack получает поля [attackOptions](../../../../../../module/data/item/templates/combat/attackOptionsData.js) и выбирает конкретный <вариант>AttackSkill. Реальные модели выявили недействительный default spellcasting и очистку прежнего attackSkill до initial ([issue-00064](../../../../../issues/potential/issue-00064.md), [issue-00065](../../../../../issues/potential/issue-00065.md)). createBaseDamageObject из damageUtilMixin передаёт экземпляр [DamageProperties](../../../../../../module/data/item/templates/combat/damagePropertiesData.js) по ссылке: addEffects меняет prepared Item, но не исходное toObject() ([issue-00070](../../../../../issues/potential/issue-00070.md)). Lifecycle подготовки, описанный выше, нельзя заменять предположением о постоянном сохранении этих дополнений.
+
+Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).
