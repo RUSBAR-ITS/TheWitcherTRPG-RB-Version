@@ -1,5 +1,96 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.015
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `7edb814aa870da75c7ad7633536e899a8d07e205`; на старте рабочее дерево чистое, отслеживаются 926 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/alchemicalData.js](../../../module/data/item/alchemicalData.js) | 27 |
+| [module/data/item/mutagenData.js](../../../module/data/item/mutagenData.js) | 22 |
+| [module/data/item/valuableData.js](../../../module/data/item/valuableData.js) | 25 |
+| [module/data/item/templates/consumableData.js](../../../module/data/item/templates/consumableData.js) | 10 |
+| [module/data/item/templates/consumePropertiesData.js](../../../module/data/item/templates/consumePropertiesData.js) | 15 |
+| [module/item/sheets/WitcherAlchemicalSheet.js](../../../module/item/sheets/WitcherAlchemicalSheet.js) | 31 |
+| [module/item/sheets/WitcherMutagenSheet.js](../../../module/item/sheets/WitcherMutagenSheet.js) | 27 |
+| [module/item/sheets/WitcherValuableSheet.js](../../../module/item/sheets/WitcherValuableSheet.js) | 35 |
+| [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js) | 79 |
+| [module/item/mixins/consumeMixin.js](../../../module/item/mixins/consumeMixin.js) | 42 |
+| [templates/sheets/item/alchemical-sheet.hbs](../../../templates/sheets/item/alchemical-sheet.hbs) | 36 |
+| [templates/sheets/item/mutagen-sheet.hbs](../../../templates/sheets/item/mutagen-sheet.hbs) | 20 |
+| [templates/sheets/item/valuable-sheet.hbs](../../../templates/sheets/item/valuable-sheet.hbs) | 31 |
+| [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) | 60 |
+| [templates/chat/item/consume.hbs](../../../templates/chat/item/consume.hbs) | 22 |
+
+Всего 15 файлов, 482 логические строки, 15 новых карточек. Проверены все собственные определения, методы, поля и шаблоны. Уточнены 14 связанных карточек: CommonItemData, itemEffectData, WitcherItem, WitcherActor, WitcherItemSheet, WitcherConfigurationSheet, item-header, general, effect-part, applyActiveEffect, registerDataModels, registerSheets, config, handlebars. Внешние healMixin и itemContextMenu прослежены в пределах вызываемых методов; полного статуса анализа этим файлам не присвоено.
+
+### Метод и границы изолированного выполнения
+
+Сценарий передан Node через stdin, без добавления тестовых файлов. Использованы настоящие common DataModel/TypeDataModel/DataFields, EffectModel, BaseActiveEffect и primitives Foundry; реальные модели системы зарегистрированы через registerDataModels. Настоящие классы листов/configuration и методы consumeMixin, calculateHealValue, applyActiveEffect helper; useItem/removeItem/applyStatus/removeStatus извлечены из WitcherActor без изменения тел.
+
+Core ItemSheetV2/HandlebarsApplicationMixin и подготовка вкладок использованы с DocumentSheet/DOM-фасадом. Handlebars и parse5 настоящие, formGroup — оригинальная функция /opt/foundryvtt/client/applications/handlebars.mjs; toFormGroup фиксирует реальный путь/значение вместо создания widgets. selectOptions — ограниченный генератор по valueAttr/labelAttr, не полный тест core helper. Системные getSetting/window/includes/has исполнялись из исходного handlebars.js; стандартная настройка clickableImageItemTypes включает valuable/mutagen.
+
+Actor представлен небольшим DataModel-контекстом, Item — фасадом с настоящей system-моделью. UUID-хранилище, коллекции, update/delete/toggleStatusEffect/createEmbeddedDocuments, GM query, ChatMessage и временные улучшения перехватываются. Обычный ActiveEffect действительно клонируется оригинальным кодом, но его запись не исполняется. Неоконченные Promise служат проверке ожидания операций, а не имитацией их успешного завершения.
+
+Локализация: 33 уникальных буквальных ключа этой порции проверены в en/ru после настоящего utils.expandObject, как при загрузке /opt/foundryvtt/client/helpers/localization.mjs:368. Все определены; Short.Availability — ключ с точкой внутри JSON, поэтому прямой обход необработанного объекта не подходит. Это не новая проблема перевода.
+
+### Выполненные сценарии
+
+| Группа | Фактический результат |
+| --- | --- |
+| 1. Три модели | По 15 верхних полей; isConsumable=false; consumeProperties имеет doesHeal/heal/effects/removesEffects. Входные id/addsTempHp отброшены. Временные улучшения: true/false/true. |
+| 2. Конфигурации листов | Alchemical/Valuable используют WitcherConsumableConfigurationSheet с 3 вкладками и 5 частями. Mutagen — обычную configuration с 2 вкладками и 4 частями. |
+| 3. Основные формы | 14 вариантов: алхимия alchemical/potion/decoction/oil даёт 9/10/10/9 именованных полей, 3 цвета мутагена и 7 категорий valuable — по 10. Тип мутагена выбирается в header. |
+| 4. Условия formGroup | isConsumable/doesHeal: false/false, true/false, true/true → 1/2/3 корректных группы; 0/1/1 ошибок отсутствующего addsTempHp. Остальная форма рендерится. |
+| 5. Два массива и CRUD | HBS даёт data-id=''. edit name/effects и statusEffect/removesEffects бросает TypeError до update; remove оставляет массив; add добавляет {percentage:100} и меняет prepared-массив. |
+| 6. Слушатели | _onRender подключает focusout к input[data-action=editEffect] и input к select[data-action=editEffect]. |
+| 7. Текст on | После ручного добавления временного id в prepared-запись исходный _onEditEffect передал name=false. Это условная ветвь за проблемой ID, не штатно сохраняемый документ. |
+| 8. Расчёт лечения | При HP8/10 входы '5','1','0','2.9','' дали 2,'1','0','2.9',''. Это результаты calculateHealValue; consume затем применяет parseInt. Невалидные HP-пayload и серверная валидация не проверены. |
+| 9. Применение | HP8/10+5→запрос10; fire с percentage0 вызвал toggle, poison снят. Из 2 ActiveEffect перенесён один applySelf; флаги копии сброшены, duration.value3 сохранена. quantity2 и токсичность не изменились. |
+| 10. Flag и прямой вызов | useItem(false) ничего не выполняет; прямой consume при false всё равно доходит до сообщения. |
+| 11. Контекстное меню/количество | visible/guard учитывают isConsumable; true при quantity2 вызвал update quantity1, false не списывал. Настоящие методы menu и removeItem, запись перехвачена. |
+| 12. Последняя единица/Promise | При задержанном calculateHealValue Actor.useItem удалил quantity1 из UUID-фасада, затем consume запросил HP-update, GM query и чат. Локального createEmbeddedDocuments не было. Все основные записи могут оставаться pending после завершения consume/useItem. |
+| 13. Item без Actor | consume с doesHeal=false дал TypeError на applyStatus, с true — на calculateHealValue. Защиты от отсутствующего владельца нет. |
+| 14. Чат | [] не даёт картинок; name-only, fire и unknown дают по одной. У fire корректный src, у двух других src=''. ChatMessage.create не ожидается. |
+
+Все группы утверждений завершены. Неподходящие фасады Actor/DOM, первоначально неполный учёт header и нераскрытых ключей локализации исправлены в диагностическом сценарии; они не зарегистрированы как проблемы системы. Предупреждение Node о module type оставлено без изменения package.json.
+
+### Дополнительная сверка TASK-0003.011–TASK-0003.015
+
+Пять перечней сопоставлены: **49 разных файлов**, пересечений нет. Карточки и исходники повторно сопоставлены по определениям методов, объявленным DataFields, прямым импортам и буквальным путям HBS: **46 прямых относительных импортов** этой серии разрешены и отражены в карточках. Это включает новые 15; прежние 34 не объявляются повторно выполненными runtime-тестами.
+
+| Связь | Сопоставленные файлы и вывод |
+| --- | --- |
+| Общий лист → configuration | WitcherItemSheet создаёт базовую configuration; Weapon и Armor заменяют её специализированной боевой, Alchemical/Valuable — расходуемой. Mutagen/Enhancement сохраняют базовую. Настройки Item.effects остаются документами ActiveEffect во всех этих окнах. |
+| Вложенная схема → специализированная модель | TASK-0003.012/013: attackOptions/damageProperties/defenseProperties определяют данные боя; .014 включает SP/resistance/itemEffect в броню/улучшение; .015 включает consumable/consumeProperties в три модели. Наличие схемы не означает подключения всех полей к UI или вызовам Actor. |
+| itemEffect → разные коллекции | Armor/Enhancement/DamageProperties используют TypedObjectField с ключом записи; consumeProperties — два массива SchemaField без id. Общий shape записи не делает совместимыми перебор flat(), поиск obj.id или словарные update. issues-00084/00089/00091 описывают разные разрывы. |
+| Основная форма → shared header | Header обслуживает поля и configureItem. Тип мутагена выведен именно там. Стандартный clickableImage остаётся условным полем header и связан с ранее зарегистрированным issue-00063. |
+| Configuration → эффекты | Боевой редактор и базовый ItemSheet адресуют словари; consumable configuration ищет ID в массивах. Документы ActiveEffect создаёт базовый WitcherConfigurationSheet; их изменения/длительность не являются полями itemEffect. |
+| Подготовка → применение | Бонус SP/сопротивления — расчёт prepared модели брони; расходование — отдельное действие, запрашивающее HP/status/effect записи Actor. Подготовленное значение формы не следует считать исходным, а раннее завершение Promise — завершением записи. |
+| Caller → списание → helper → чат | Actor.useItem и menu списывают количество отдельно от Item.consume. Три вида результатов consume — лечение, списки статусов, applySelf ActiveEffect; time/toxicity в этот процесс не входят. У последней единицы существует показанный порядок удаления источника до поиска UUID. |
+
+Уточнения записаны в связанные карточки. Исторические результаты .011–.014 сохранены в следующих разделах журнала; Foundry, исходники системы и формы за время серии не менялись. Исправления схем, интерфейса и правил не выбирались.
+
+### Наблюдения и ограничения
+
+Добавлены [issue-00091](../../issues/potential/issue-00091.md), [issue-00092](../../issues/potential/issue-00092.md), [issue-00093](../../issues/potential/issue-00093.md): отсутствующий ID записи, отсутствующее addsTempHp и неподключённая configuration мутагена. Дополнены issue-00008/00031/00034/00045/00049/00060; все **93 issues остаются potential**. Наличие регистрации не подтверждает проблему пользователем и не разрешает исправление.
+
+Связь расходования с issue-00049 установлена статически по toggle без active:true; disabled-документ в новых тестах не использовался. GM query перехвачен один раз: удалённая доставка/повторение не запускались. Отсутствие автоматизации токсичности, времени и вероятности записано как факт кода, без вывода о нарушении правил. Пустая иконка неизвестного статуса — граница представления; отдельная issue не создавалась.
+
+Не исполнялись мир, браузерный submit/FormDataExtended, серверная запись/валидация Item и Actor, реальные Roll с кубиками, сеть, изготовление алхимии, полные правила мутаций и внешний UI. Никаких игровых данных, runtime-файлов, сборок, настроек сервиса или прав доступа не изменено.
+
+### Контроль документов и исходников
+
+Проверки прошли: реестр содержит 621 уникальный исходник; 121 карточка связана со строками «Проверено», 500 строк остаются «Не начат». Подсчёт задач даёт 49 выполненных и 47 ожидающих файлов второй серии. Все 93 issues находятся в potential, ID последовательны; новых карточек проблем три.
+
+Во всех 121 описаниях сверены 211 прямых относительных импортов с существующими исходниками. В 266 Markdown-документах проверены 5708 локальных ссылок и якорей. Все новые карточки содержат 11 обязательных разделов, собственные методы/поля и дату/коммит; задачи и указатели согласованы. Изменены 49 документов (31 существующий, 18 новых); git diff --check завершился без ошибок.
+
+Все 621 исходник побайтово совпадают с HEAD и базовым срезом TASK-0001; фактическое дерево и исключения согласованы с реестром. Сохранены mode/uid/gid/inode всех 926 ранее отслеживаемых файлов. SHA256 набора исходников (путь + NUL + байты + NUL, порядок реестра) — `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`; SHA256 sorted JSON метаданных — `eb8f3c27a24727a4949872dc5c675abc522990fbf0ad53050bb6749e2be44f1b`. Историческая часть журнала, начиная с TASK-0003.014, сохранена дословно.
+
+Покрытие — **121 из 621 файла**, не разобраны **500**. Во второй серии выполнены **49 из 96**, в очереди TASK-0003.016–TASK-0003.020 остаются **47**; ещё **453** требуют детализации. Следующая порция — [TASK-0003.016 — Компоненты и рецепты: данные, связи и редактор](../../tasks/task-0003.016.md).
+
 ## TASK-0003.014
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `0fa589bd300856ff309f362afcb66d6fa43401ab`; на старте рабочее дерево чистое, отслеживаются 908 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

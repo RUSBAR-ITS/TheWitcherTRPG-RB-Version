@@ -203,3 +203,9 @@
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
 
 [module/data/item/enhancementData.js](../../../../../../module/data/item/enhancementData.js) — system-модель отдельного Item, чей ID оружие/броня хранят в enhancementItemIds. Его system.effects — словарь itemEffect. Передача temporaryItemImprovement через embedded Item.effects остаётся отдельным механизмом с system.changes; issue-00042 не относится к конверсии effects этой модели. Для ArmorData дополнительно проверено отсутствие system.createDefenseOption: [module/item/mixins/defenseOptionMixin.js](../../../../../../module/item/mixins/defenseOptionMixin.js) использует optional-вызов и сам не делегирует defenseProperties ([issue-00085](../../../../../issues/potential/issue-00085.md)).
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Полностью разобран [module/item/mixins/consumeMixin.js](../../../../../../module/item/mixins/consumeMixin.js): Object.assign добавляет consume/createConsumeMessage. Getter isConsumable читает system.isConsumable ?? false; сам consume не проверяет flag. Actor.useItem и контекстное меню проверяют признак и отдельно списывают одну единицу через Actor.removeItem. consume ожидает только calculateHealValue; update HP, применение/снятие статусов, applySelf и создание чата запускаются без ожидания. Чат не подтверждает завершение записей. Реальные методы и модели проверены с подменой документов/БД; задержанное лечение допускает удаление последней единицы раньше UUID-поиска эффектов.

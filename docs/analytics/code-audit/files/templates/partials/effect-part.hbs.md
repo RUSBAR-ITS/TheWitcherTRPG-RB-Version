@@ -87,3 +87,9 @@ Drag/drop, фактическая очистка description, разрешени
 Полностью сверены [контекст и actions Item-конфигурации](../../module/item/sheets/configurations/WitcherConfigurationSheet.js.md) и [обёртка activeEffects](../sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md). Header li передаёт effectType для create, строка — effectId; Item-handler ищет ID только в this.document.effects и не использует parentUuid. disabled проверяется первым; suppressed-эффект может остаться в passive и виден, потому что @root.actor в этом контексте не задан. Раскрывающий listener не найден — issue-00056 сохраняется. Конфигурация наследует разрешённый dragstart ядра, тогда как основной WitcherItemSheet возвращает false; их контроллеры не следует смешивать.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Уточнён флаг canHaveTemporaryItemImprovement для трёх полностью описанных моделей: [module/data/item/alchemicalData.js](../../../../../../module/data/item/alchemicalData.js) и [module/data/item/valuableData.js](../../../../../../module/data/item/valuableData.js) возвращают true, [module/data/item/mutagenData.js](../../../../../../module/data/item/mutagenData.js) наследует false. Это условие отображения группы временных улучшений. Оно не описывает массивы consumeProperties.effects/removesEffects и не является проверкой запрета прямого вызова consume в runtime.

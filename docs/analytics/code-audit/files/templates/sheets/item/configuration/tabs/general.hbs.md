@@ -84,3 +84,9 @@ JavaScript-функций нет. Шаблон вычисляет условия
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Полный разбор схем [attackOptions](../../../../../../../../../module/data/item/templates/combat/attackOptionsData.js) и [defenseOptions](../../../../../../../../../module/data/item/templates/combat/defenseOptionsData.js) подтвердил пути formGroup. UI options не являются schema choices. Отдельный applyRangedMeleeBonus сохраняется полем, но расчёт его не читает ([issue-00066](../../../../../../../../issues/potential/issue-00066.md)). Для spell default задан spellcasting, отсутствующий в skillMap; это отдельная [issue-00064](../../../../../../../../issues/potential/issue-00064.md), помимо ранее описанных подписи spell и отсутствия itemUse.
 
 Результат и границы — [сверка TASK-0003.012](../../../../../../review-log.md#task-0003012).
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003015).
+
+Сопоставлены полные [module/data/item/alchemicalData.js](../../../../../../../../../module/data/item/alchemicalData.js), [module/data/item/mutagenData.js](../../../../../../../../../module/data/item/mutagenData.js), [module/data/item/valuableData.js](../../../../../../../../../module/data/item/valuableData.js). Их схемы не имеют attackOptions/damageType/defenseOptions, поэтому эта general не показывает поля расходования. Alchemical/Valuable получают их из [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../../../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs), а Mutagen не подключает специализированную configuration. Наличие вкладки general само по себе не покрывает consumeProperties.

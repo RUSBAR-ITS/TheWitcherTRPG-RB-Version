@@ -97,3 +97,9 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003013).
 
 Полностью разобран [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js): добавлены три описателя PARTS, пять записей TABS.primary до фильтрации и настройка silverTrait в context. Его addEffect/removeEffect и change/editEffect изменяют TypedObjectField system.damageProperties.effects. Управление документами ActiveEffect остаётся у базовой конфигурации и относится к другой структуре данных. Сверка фильтрации выявила расхождение региональной навигации и PARTS ([issue-00074](../../../../../../../issues/potential/issue-00074.md)); отсутствие поля внутри шаблона описано отдельно.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003015).
+
+Полностью разобран прямой наследник [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js). Он расширяет PARTS и TABS вкладкой consumableProperties и добавляет собственные actions/listeners. Базовая configuration продолжает обслуживать документы Item.effects, в то время как consumableProperties содержит обычные массивы записей статусов. [module/item/sheets/WitcherMutagenSheet.js](../../../../../../../../module/item/sheets/WitcherMutagenSheet.js) оставляет этот базовый класс без новой вкладки; общая general не выводит isConsumable/consumeProperties.

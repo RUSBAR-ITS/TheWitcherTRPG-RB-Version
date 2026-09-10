@@ -83,3 +83,9 @@ Default export function itemEffect() каждый раз возвращает н
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.014 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003015).
+
+Проверен полный потребитель [module/data/item/templates/consumePropertiesData.js](../../../../../../../../module/data/item/templates/consumePropertiesData.js): effects/removesEffects — ArrayField(SchemaField(itemEffect())), а не словари, использованные бронёй/улучшением/DamageProperties. Общая запись не содержит id; очистка удаляет переданный id. [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js) требует obj.id, а [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) выводит пустой data-id; это [issue-00091](../../../../../../../issues/potential/issue-00091.md). percentage/varEffect входят в схему, но consume→Actor.applyStatus/removeStatus их не читает. Этот факт не задаёт игровых правил вероятности.

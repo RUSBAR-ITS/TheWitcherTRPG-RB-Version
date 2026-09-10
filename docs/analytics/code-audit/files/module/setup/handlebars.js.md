@@ -243,3 +243,9 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 Полностью разобраны [templates/sheets/item/armor-sheet.hbs](../../../../../../templates/sheets/item/armor-sheet.hbs) и [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs). Пары schema/name/value и подписи leftLeg/rightLeg в этих формах верны; issue-00007 по-прежнему локализована в armorPartsInfo инвентаря. Исполнены шесть вариантов location и двенадцать schema-полей конфигурации. Старый тест самого armorPartsInfo не повторялся; ключи локализации проверены по JSON.
 
 Отдельно установлено отсутствие четырёх русских подсказок в armorGeneral.hbs: [issue-00090](../../../../../issues/potential/issue-00090.md). Это не меняет правильную привязку полей к сторонам.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Прослежена цепочка main→item-header в [templates/sheets/item/alchemical-sheet.hbs](../../../../../../templates/sheets/item/alchemical-sheet.hbs), [templates/sheets/item/mutagen-sheet.hbs](../../../../../../templates/sheets/item/mutagen-sheet.hbs), [templates/sheets/item/valuable-sheet.hbs](../../../../../../templates/sheets/item/valuable-sheet.hbs): getSetting/window/includes/has из этого файла участвуют в общих условиях header. Цвет мутагена выводится там же. formGroup и selectOptions в [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) относятся к API Foundry, не определяются системным handlebars.js. В проверке использован оригинальный core formGroup; widgets и selectOptions имели ограниченные фасады.

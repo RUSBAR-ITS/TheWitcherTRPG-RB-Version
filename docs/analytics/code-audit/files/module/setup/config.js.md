@@ -421,3 +421,9 @@
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
 
 ArmorSheet._prepareContext дописывает Availability.WITCHER и config.type/armorLocations в общий CONFIG.WITCHER; EnhancementSheet формирует отдельный selects.enhancementTypes. Формы сверены с четырьмя категориями и списками statusEffects/armorEffects. armorEffects содержат id/name/refersStatusEffect/иногда addsResistance; передача этих объектов в Actor.applyStatus не соответствует его statusEffect-контракту ([issue-00089](../../../../../issues/potential/issue-00089.md)). Толкование addsResistance не подменено предложением наложить одноимённый вредоносный статус.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Уточнены потребители [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js), [module/item/mixins/consumeMixin.js](../../../../../../module/item/mixins/consumeMixin.js) и три специализированных листа .015. config.statusEffects передаёт id/name в selector, а createConsumeMessage отдельно находит metadata по id и передаёт img/name в чат. Имя записи itemEffect и локализованное имя статуса — разные поля. Alchemical/Mutagen мутируют общий config.type и Availability.WITCHER; Valuable создаёт отдельный context.selects.type. Настоящий consume не читает процент записи, time или toxicity предмета.

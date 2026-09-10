@@ -89,3 +89,9 @@ JavaScript-функций нет. Шаблон вычисляет условия
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.011 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Полностью разобраны формы [templates/sheets/item/alchemical-sheet.hbs](../../../../../../templates/sheets/item/alchemical-sheet.hbs), [templates/sheets/item/mutagen-sheet.hbs](../../../../../../templates/sheets/item/mutagen-sheet.hbs), [templates/sheets/item/valuable-sheet.hbs](../../../../../../templates/sheets/item/valuable-sheet.hbs). Для mutagen ветка header заменяет cost на system.type и получает red/green/blue из WitcherMutagenSheet.getTypes. Настоящий HBS во всех трёх вариантах даёт один selector типа. Проблема мутагена относится к неподключённой configuration расходования, а не к выбору цвета. Стандартная clickableImageItemTypes добавляет checkbox мутагену и valuable; отсутствие поля модели остаётся в issue-00063.

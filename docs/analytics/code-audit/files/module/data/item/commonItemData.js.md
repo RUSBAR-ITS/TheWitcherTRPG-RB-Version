@@ -128,3 +128,9 @@
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. У общих боевых моделей нет наследования от CommonItemData. WeaponData/SpellData/ArmorData наследуют CommonItemData и включают [DamageProperties](../../../../../../../module/data/item/templates/combat/damagePropertiesData.js), [DefenseProperties](../../../../../../../module/data/item/templates/combat/defensePropertiesData.js), [ResistanceData](../../../../../../../module/data/item/templates/armor/resistanceData.js), [SpData](../../../../../../../module/data/item/templates/armor/spData.js) через EmbeddedDataField. ArmorData явно вызывает две фазы Resistance/SP; CommonItemData их сам не обходит. Реальные parent этих вложенных полей указывают на system-модель владельца.
 
 Результат и границы — [сверка TASK-0003.012](../../../../review-log.md#task-0003012).
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003015).
+
+Полностью разобраны три наследника: [module/data/item/alchemicalData.js](../../../../../../../module/data/item/alchemicalData.js), [module/data/item/mutagenData.js](../../../../../../../module/data/item/mutagenData.js), [module/data/item/valuableData.js](../../../../../../../module/data/item/valuableData.js). Все получают восемь общих полей и включают ещё два из [module/data/item/templates/consumableData.js](../../../../../../../module/data/item/templates/consumableData.js). AlchemicalData и ValuableData переопределяют canHaveTemporaryItemImprovement=true; MutagenData сохраняет false. quantity остаётся StringField: consume не изменяет его, а Actor.removeItem вычитает количество и вызывает update либо delete.

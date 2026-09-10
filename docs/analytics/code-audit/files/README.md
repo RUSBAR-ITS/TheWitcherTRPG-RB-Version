@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.014 подготовлены и сверены 106 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.015 подготовлена и сверена 121 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -179,3 +179,23 @@
 | templates/sheets/item/armor-sheet.hbs | [Описание](templates/sheets/item/armor-sheet.hbs.md) |
 | templates/sheets/item/enhancement-sheet.hbs | [Описание](templates/sheets/item/enhancement-sheet.hbs.md) |
 | templates/sheets/item/configuration/tabs/armorGeneral.hbs | [Описание](templates/sheets/item/configuration/tabs/armorGeneral.hbs.md) |
+
+## Расходуемые предметы — TASK-0003.015
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/alchemicalData.js | [Описание](module/data/item/alchemicalData.js.md) |
+| module/data/item/mutagenData.js | [Описание](module/data/item/mutagenData.js.md) |
+| module/data/item/valuableData.js | [Описание](module/data/item/valuableData.js.md) |
+| module/data/item/templates/consumableData.js | [Описание](module/data/item/templates/consumableData.js.md) |
+| module/data/item/templates/consumePropertiesData.js | [Описание](module/data/item/templates/consumePropertiesData.js.md) |
+| module/item/sheets/WitcherAlchemicalSheet.js | [Описание](module/item/sheets/WitcherAlchemicalSheet.js.md) |
+| module/item/sheets/WitcherMutagenSheet.js | [Описание](module/item/sheets/WitcherMutagenSheet.js.md) |
+| module/item/sheets/WitcherValuableSheet.js | [Описание](module/item/sheets/WitcherValuableSheet.js.md) |
+| module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js | [Описание](module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js.md) |
+| module/item/mixins/consumeMixin.js | [Описание](module/item/mixins/consumeMixin.js.md) |
+| templates/sheets/item/alchemical-sheet.hbs | [Описание](templates/sheets/item/alchemical-sheet.hbs.md) |
+| templates/sheets/item/mutagen-sheet.hbs | [Описание](templates/sheets/item/mutagen-sheet.hbs.md) |
+| templates/sheets/item/valuable-sheet.hbs | [Описание](templates/sheets/item/valuable-sheet.hbs.md) |
+| templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs | [Описание](templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md) |
+| templates/chat/item/consume.hbs | [Описание](templates/chat/item/consume.hbs.md) |

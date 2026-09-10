@@ -167,3 +167,9 @@
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
 
 Полностью описаны [module/item/sheets/WitcherArmorSheet.js](../../../../../../module/item/sheets/WitcherArmorSheet.js), [module/item/sheets/WitcherEnhancementSheet.js](../../../../../../module/item/sheets/WitcherEnhancementSheet.js) и конфигурация брони. Регистрации Item.armor/Item.enhancement не менялись. Armor открывает специализированную конфигурацию общих свойств, Enhancement сохраняет базовую. Все три новых HBS разобраны; сторонние листы и V1 инвентарь не получили статуса полного анализа.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Полностью разобраны регистрации трёх специализированных ItemSheet: [module/item/sheets/WitcherAlchemicalSheet.js](../../../../../../module/item/sheets/WitcherAlchemicalSheet.js), [module/item/sheets/WitcherMutagenSheet.js](../../../../../../module/item/sheets/WitcherMutagenSheet.js), [module/item/sheets/WitcherValuableSheet.js](../../../../../../module/item/sheets/WitcherValuableSheet.js). Выбор конкретной configuration задаёт экземпляр листа: у Alchemical/Valuable она расходуемая, у Mutagen базовая. В изолированных контекстах получены 3/2/3 вкладки. Пользовательские переопределения листов и сторонние модули не исследовались.

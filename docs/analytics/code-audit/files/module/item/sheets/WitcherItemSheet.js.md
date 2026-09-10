@@ -130,3 +130,9 @@
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003014).
 
 Полностью разобраны [module/item/sheets/WitcherArmorSheet.js](../../../../../../../module/item/sheets/WitcherArmorSheet.js) и [module/item/sheets/WitcherEnhancementSheet.js](../../../../../../../module/item/sheets/WitcherEnhancementSheet.js). Броня заменяет configuration, расширяет общий config и через activateListeners подключает recipe-remove; улучшение добавляет отдельный context.selects и наследует базовую configuration. Обе формы используют собственные словари system.effects и общие add/remove/edit методы. Исходный обработчик снова дал name=false для текста on; добавление percentage=0 и удаление -= адресуют тот же словарь. Полное браузерное сохранение не выполнялось.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003015).
+
+Полностью проверены [module/item/sheets/WitcherAlchemicalSheet.js](../../../../../../../module/item/sheets/WitcherAlchemicalSheet.js), [module/item/sheets/WitcherMutagenSheet.js](../../../../../../../module/item/sheets/WitcherMutagenSheet.js), [module/item/sheets/WitcherValuableSheet.js](../../../../../../../module/item/sheets/WitcherValuableSheet.js). Первые и последние создают WitcherConsumableConfigurationSheet; Mutagen наследует обычную configuration. Наследуемый header показывает configureItem во всех трёх случаях, но состав окна различается: 3/2/3 вкладки. Собственных activateListeners у этих листов нет; ручные таблицы расходования слушает отдельный класс configuration. Цвет мутагена находится в header, поэтому отсутствие собственного selector в main не означает отсутствия настройки.

@@ -207,3 +207,9 @@
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003014).
 
 Полные [module/data/item/armorData.js](../../../../../../module/data/item/armorData.js) и [module/data/item/enhancementData.js](../../../../../../module/data/item/enhancementData.js) содержат 27 и 16 верхних полей соответственно; общая [module/data/item/templates/itemEffectData.js](../../../../../../module/data/item/templates/itemEffectData.js) содержит четыре. У Armor два определения location, фактически остаётся StringField; Shield не отдельный тип Item. Настоящие зарегистрированные модели использованы для проверки всех миграций и подготовленных значений, документы мира не создавались.
+
+## Уточнение TASK-0003.015
+
+2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
+
+Полностью описаны и реально созданы [module/data/item/alchemicalData.js](../../../../../../module/data/item/alchemicalData.js), [module/data/item/mutagenData.js](../../../../../../module/data/item/mutagenData.js), [module/data/item/valuableData.js](../../../../../../module/data/item/valuableData.js). Три регистрации Item ведут к моделям с 15 верхними полями каждая; consumable() добавляет isConsumable и EmbeddedDataField(ConsumablePropertiesData). Исходные четыре поля вложенной модели не содержат addsTempHp, а записи массивов не содержат id. Сама регистрация не подключает редактор этих полей.
