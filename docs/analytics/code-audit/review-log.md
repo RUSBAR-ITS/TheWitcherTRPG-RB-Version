@@ -1,5 +1,77 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.008
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `c5edcbadd05ff4038a174bd2e2a49785e40ea878`. Рабочее дерево на старте чистое, отслеживались 810 файлов. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Проверено локальное ядро Foundry 14.367.0 (/opt/foundryvtt/package.json), Node 24.16.0.
+
+Полностью прочитаны [CommonItemData](../../../module/data/item/commonItemData.js) — 29 строк и [WitcherItem](../../../module/item/witcherItem.js) — 376 строк, всего 405. Созданы две карточки. Чтение определений в наследниках, примесях, листах и ядре служит проверкой связи, а не завершением пофайлового анализа этих файлов.
+
+### Содержательная и перекрёстная сверка
+
+| Направление | Фактический результат |
+| --- | --- |
+| Реестр моделей ↔ наследование | 22 типа Item: CommonItemData как base, 16 прямых наследников и 5 независимых TypeDataModel. Восемь общих полей не приписаны независимым моделям. |
+| CommonItemData ↔ поля | description/quantity/sourcebook — StringField; weight/cost — NumberField; isHidden/isStored/isCarried — BooleanField. quantity='1'; isCarried=true; остальные initial перечислены в карточке. |
+| Масса ↔ потребители | 3×2=6; hidden оставляет 6, stored или !carried дают 0. '1d6'×2=NaN, '-2'×2=-4. Container 2×3+7=13. Actor.getTotalWeight делегирует calcWeight, экспорт монстра отдельно вычисляет quantity через Roll. |
+| Возможности ↔ интерфейс | Базовые canHaveTemporaryItemImprovement/canBeRepaired=false; первое переопределено true у Alchemical/Valuable/Spell, второе условно у Armor/Weapon. Первое управляет созданием источника улучшения в шаблоне, не запретом оружию принять эффект. |
+| Item ↔ собственные определения | Два static, десять собственных определений прототипа (включая два getters и generator), локальный AlchemyComponent с четырьмя полями/constructor; все методы описаны. Восемь импортов, из них RollConfig нужен только JSDoc. |
+| Примеси ↔ прототип | Пять Object.assign в порядке consume, repair, dismantling, damageUtil, defenseOption; 11 уникальных имён, без пересечения с собственными методами. Проверены все определения, полный алгоритм каждой примеси не заявлен. |
+| Атака ↔ модель/потребители | Set сохраняет порядок; без клавиш индекс0, shift1/alt2/ctrl3 с ограничением size-1 и приоритетом ctrl. Два варианта+ctrl→второй. Отсутствующий Set→none; пустой Set→undefined option/skill/alias. WeaponAttack и castSpell сверены до места вызова. |
+| Миграция ↔ класс | Исходный migrateSpells меняет source.type для Hexes/Rituals, затем migrateData делегирует родителю; system.class сохраняется. Проверка с минимальным родителем не считается миграцией настоящего Item ядром. |
+| Алхимия ↔ UI | Девять строк getter alchemyCraftComponentsList: vitriol, rebis, aether, quebrith, hydragenum, vermilion, sol, caelum, fulgur. _alchemyCraft вызывает отсутствующее populateAlchemyCraftComponentsList; исходный обработчик получил TypeError. Issue-00037. |
+| Изготовление ↔ Promise | realCraft + extendedRoll исполнялись с контролируемым Roll. После await realCraft removeItem/addItem/toMessage оставались pending; инициирование операций не обеспечивает порядок завершения. Issue-00038; Actor.addItem/removeItem сами ждут свою запись. |
+| Изготовление ↔ сообщение | Успешный бросок 11 при DC 10, требование 3 при доступных 2: ошибка о компонентах, нет списания/выдачи, но сообщение success=true с текстом успеха. Issue-00041; вход может моделировать устаревшую проверку листа. |
+| Таблицы ↔ коллекции | Поиск в индексах компедиумов RollTable по имени Item; game.tables не используется. Core .roll допускает [] и несколько результатов. [A,B] обработан только как A, затем генератор удалён; [] вызвал TypeError. Issue-00039. |
+| Количество добычи ↔ запись | Два результата A в существующую стопку quantity='1' с отложенным update дали патчи 2 и 2; после применения итог 2 вместо 3. Генератор удалён до завершения обоих update. Issue-00040. |
+| Legacy API ↔ ядро | ActiveEffect.apply, TableResult.documentCollection/documentId/getChatText ещё существуют в 14.367 и выдают compatibility warning; отсутствие современной формы не объявлено автоматической поломкой. |
+| Item ↔ подготовка эффектов | После super.prepareEmbeddedDocuments система применяет активные system.isTransferred эффекты одним проходом, до system.prepareDerivedData; phase/shouldApplyChange здесь не проверяются. Подготовка priority ядром и fallback mode*10 разделены. |
+| Арифметика ↔ source | Реальный CommonItemData.weight 8, change multiply0.5(final)/priority10 и add2(initial)/20 → weight 6; sourceWeight 8; overrides.system.weight 6. Disabled исключён, isTransferred=false не включён. Подменены родитель документа и static dispatcher, но не исходная арифметика поля. |
+| Передача ↔ получатель улучшения | Исходный applyTemporaryItemImprovements передал createEmbeddedDocuments объект system из трёх флагов, без changes. Источник имел одну запись, она сохранилась во входе, но потерялась в запросе. Issue-00042; полный lifecycle эффекта остаётся TASK-0003.009. |
+| Локализация ↔ строки | Все 16 уникальных буквальных ключей game.i18n.localize из WitcherItem найдены в en.json и ru.json. Проверено наличие, а не качество переводов. Девять asset-путей прочитаны как ссылки вне объёма анализа; HTTP не проверялся. |
+| Двусторонние карточки | Уточнены восемь карточек: TheWitcherTRPG.js, registerDataModels.js, queries.js, config.js, registerSheets.js, handlebars.js, dataUtils.js, witcherActor.js. Связи схемы, документа, отображения и действий разделены; добавлены обратные ссылки. |
+| Issues ↔ область | Зарегистрированы issue-00037–00042; дополнены issue-00008/00034. Все 42 остаются potential; задачи исправления не создавались. |
+
+### Команды и изолированные сценарии
+
+Перед порцией: git status --short, git rev-parse HEAD, git branch --show-current, git ls-files -z. Python сохранил SHA256 содержимого 621 исходника по путям registry и mode/uid/gid/inode 810 отслеживаемых файлов. В конце байты каждого исходника сопоставлены с git show HEAD:<path> и git show 15da5b225535e34af4e132c701b5353ef4eb667f:<path>. Полное чтение исходников через cat/nl, rg по точным определениям, всем наследникам и потребителям в module/templates/packsJson, по нужным методам установленного ядра. Python сверил 16 ключей локализации в en/ru.
+
+Сценарий `node --input-type=module` передан через stdin, файл стенда не создавался. Загрузил настоящие primitives, DataModel, TypeDataModel, fields, utils из /opt/foundryvtt/common, а также исходные CommonItemData, ContainerData, AlchemicalData, ValuableData, DiagramData и WITCHER. Локальный registerHooks разрешал alias @common. Для выполнения WitcherItem и пяти примесей в vm сняты только import/export-обёртки; тела методов и Object.assign сохранены. Родитель ItemBase заменял migrateData и prepareEmbeddedDocuments минимальными функциями; его Item.create перехватывался. Поэтому это не запуск настоящего lifecycle Item или его БД.
+
+Использованы оригинальные RollConfig и extendedRoll. Roll — управляемый объект с total=11, dice=[], options, evaluate→self; RNG, критические броски и настоящая отправка сообщений не запускались. game.i18n/settings, коллекции pack/table/Actor.items, fromUuid, create/update/delete, notifications, ChatMessage и Dialog заменены. Для realCraft заданы recipe/result UUID, количество компонентов 2 и требование2/3, DC 10; Promise списания/выдачи/сообщения разрешались вручную. Для таблицы результаты [A,B], [], дважды A и newQuantity0 проверены отдельно; повторная запись существующей стопки откладывалась до конца метода. Ожидаемые результаты — существование обоих результатов, увеличение1+1+1=3 и ожидание вложенной записи — не вычислялись исследуемыми методами.
+
+Исходный _alchemyCraft извлечён из WitcherCharacterSheet целиком: предметом был оригинальный WitcherItem с настоящей DiagramData, DOM target и ChatMessageData — двойники. Получена ошибка до открытия Dialog. Поиск старого имени подтвердил, что в системе есть один вызов и нет определения; исходный getter дал девять ожидаемых веществ.
+
+Для Item-эффектов использованы исходные WitcherActiveEffect getters, core ActiveEffect.active, совместимый apply и applyChangeField. Static applyChange заменён адаптером выбора настоящего поля и вызова исходного applyChangeField; сама DataField.applyChange/арифметика не подменялись. Effects — управляемые объекты, не полные документы ядра. Вход expandObject приведён через JSON к обычному объекту основного контекста, затем обработан настоящим utility, чтобы сравнение plain object между vm-контекстами не искажало структуру overrides. Приоритеты/type/phase переданы явно, автоматическая миграция legacy changes не моделировалась. Исходный applyTemporaryItemImprovements отдельно выполнил выбор оружия через двойник Dialog и передал перехваченный запрос создания эффекта.
+
+Первый прогон дошёл до передачи улучшения и остановился из-за отсутствующего CONST в окружении сценария; добавлен явный двойник только CHAT_MESSAGE_STYLES.OTHER, исходники системы не менялись. Исправлен межконтекстный вход expandObject; итоговый прогон со всеми утверждениями завершился с exit 0. Отдельный сбор JSON-вывода сначала натолкнулся на предупреждение Node после объекта; парсер результата уточнён, это не ошибка исследуемой системы. Node выдал MODULE_TYPELESS_PACKAGE_JSON для ES modules; package.json не менялся.
+
+```text
+Common schema:8; direct subclasses:16; independent registered models:5; Item types:22
+Lines:29+376=405; Item own definitions:12; local AlchemyComponent:4 fields
+Mixins:5; mixed methods:11; collisions:0
+Common weights:6,6,0,0,NaN,-4; Container weight:13
+Attack options:melee,ranged,spell,itemUse; ctrl wins; empty Set has undefined attack
+Alchemy UI:TypeError item.populateAlchemyCraftComponentsList is not a function
+Craft:remove-start,add-start,message,returned; pending:3
+Missing components:available2/required3; no inventory changes; message success=true
+Loot [A,B]:create A,deleteGenerator; []:TypeError
+Loot stack1 + two draws:update2,update2,deleteGenerator; final2 (expected3)
+Item changes:weight 8 -> multiply0.5(final) -> add2(initial) -> weight 6; source8
+Transferred effect.system:{isTransferred:true,applySelf:false,applyOnTarget:false}; no changes
+```
+
+### Итоговая проверка документов и сохранности
+
+Итоговая сверка пройдена: реестр содержит 621 файл; 56 карточек соответствуют строкам «Проверено», 565 файлов ещё не разобраны. Проверены все 140 Markdown-документов и 3409 локальных ссылок, таблицы и обязательные разделы, точный состав порции (405 строк), восемь полей общей модели, 12 собственных определений Item, 11 методов примесей, 16 наследников и 22 регистрации типов Item. Индекс согласован со всеми 42 потенциальными проблемами; TASK-0003.008 завершена, TASK-0003.009/010 ещё в очереди.
+
+Изменены только 29 документов: 21 существующий и восемь новых. Проверка git diff --check пройдена; все исходники совпадают с HEAD и базовым срезом. Права, владельцы, группы и inode всех 810 отслеживаемых файлов сохранены.
+
+SHA256 621 исходников (path+NUL+bytes+NUL по порядку registry): `9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e`. SHA256 mode/uid/gid/inode 810 отслеживаемых файлов: `9f32a256fa93f91bfdcfbe3174c4392cae5bd1e46ce02d2df9fec91981652502`. Историческая часть журнала, начиная с TASK-0003.007, сохранена побайтно; текущий HEAD не изменялся.
+
+### Итог и границы
+
+TASK-0003.008 завершена: 56/621 файла, 565 ещё не разобраны. Первая серия — 45/61 файла, осталось 16, вне серии 549. Следующая — [TASK-0003.009](../../tasks/task-0003.009.md). Исходники, сборка, миры, компедиумные БД и права доступа не менялись. Полный клиент, серверные запросы, реальные броски/сообщения и UI не запускались. Политика количеств, расход компонентов и другие игровые правила не утверждались и не исправлялись.
+
 ## TASK-0003.007
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Рабочее дерево на старте чистое; отслеживались 804 файла. Все 621 исходник совпали со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Локальное ядро Foundry 14.367.0, Node 24.16.0.

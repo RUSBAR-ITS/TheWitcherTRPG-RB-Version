@@ -105,3 +105,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Полностью разобраны оба Actor-потребителя: один вызов из CharacterData.enrichedText и три последовательных await из MonsterData.enrichedText. Настоящие поля имеют пути system.general.background.value и system.common/academicKnowledge/monsterLore; source после изолированного обогащения не изменён. MonsterData не проверяет show* перед вызовами; скрытие выполняет шаблон.
 
 Карточки сборки: [characterData](actor/characterData.js.md), [monsterData](actor/monsterData.js.md). [Сверка TASK-0003.006](../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. CommonItemData не определяет enrichedText. Соответствующие методы RaceData, ProfessionData и отдельной CriticalWoundData используют createEnrichedText; WitcherItem.enrichedText лишь условно делегирует system.enrichedText. Лист Item обращается к модели напрямую. Связи точечно проверены, без полного разбора этих специализированных моделей.
+
+Связанные карточки: [CommonItemData](item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

@@ -207,3 +207,9 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Установлен источник данных eachLimit: [lifeEventsData](../data/actor/templates/character/general/lifeEventsData.js.md) задаёт 20 ключей, WitcherCharacterSheet._prepareContext:133–137 преобразует объект в массив с key. Исходный helper при limit=2 передал записи с key 10/20. CharacterData допускает счётчик 21 без диапазона, eachLimit передаёт для него один undefined; HTML-ввод min=1,max=20 прочитан, обход его в обычном UI не проверялся. [issue-00024](../../../../../issues/potential/issue-00024.md) относится к изменению модели подготовкой листа, не к определению helper.
 
 [Перекрёстная сверка TASK-0003.004](../../../review-log.md#task-0003004).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Helper подсчёта компонентов в строке 91 вызывает ownedComponent.sum('quantity'). Определение Array.prototype.sum найдено в module/actor/sheets/WitcherActorSheet.js:18–24: суммирует Number(this[i].system[prop] ?? 0). Это соответствует строковой quantity общей модели Item. Сам calcWeight не использует helper или sum.
+
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). Определение потребителя: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

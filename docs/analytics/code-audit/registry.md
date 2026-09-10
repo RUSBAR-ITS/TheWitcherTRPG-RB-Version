@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.007 проверены описания **54 файлов**, для **567 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.008 проверены описания **56 файлов**, для **565 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.007](review-log.md#task-0003007) выполнена на `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.008](review-log.md#task-0003008) выполнена на `c5edcbadd05ff4038a174bd2e2a49785e40ea878`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -126,7 +126,7 @@
 | [module/data/investigation/templates/complexityData.js](../../../module/data/investigation/templates/complexityData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/alchemicalData.js](../../../module/data/item/alchemicalData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/armorData.js](../../../module/data/item/armorData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js) | Общая модель части типов Item: поля описания/количества/массы, calcWeight и признаки возможностей. | [Карточка](files/module/data/item/commonItemData.js.md) | Проверено |
 | [module/data/item/componentData.js](../../../module/data/item/componentData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/containerData.js](../../../module/data/item/containerData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js) | Не установлено | Не подготовлено | Не начат |
@@ -209,7 +209,7 @@
 | [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/mixins/associatedDiagramMixin.js](../../../module/item/sheets/mixins/associatedDiagramMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/systems/repair.js](../../../module/item/systems/repair.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/witcherItem.js](../../../module/item/witcherItem.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/witcherItem.js](../../../module/item/witcherItem.js) | Документ Item: миграция магии, выбор атаки, изготовление, генерация добычи, улучшения и пять примесей. | [Карточка](files/module/item/witcherItem.js.md) | Проверено |
 | [module/scripts/chat.js](../../../module/scripts/chat.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/combat/applyDamage.js](../../../module/scripts/combat/applyDamage.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/combat/combat.js](../../../module/scripts/combat/combat.js) | Не установлено | Не подготовлено | Не начат |

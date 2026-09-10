@@ -175,3 +175,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Сверены три регистрации Actor.character/monster/loot и их реальные схемы: 29/53/3 верхних поля. CommonActorData с 19 общими полями используется наследованием и отдельным типом не регистрируется. Все 37 ранее описанных файлов данных достижимы через импорты этих четырёх моделей. Actor.mystery и связанные части issue-00005 остаются вне этой порции.
 
 Карточки сборки: [commonActorData](../data/actor/commonActorData.js.md), [characterData](../data/actor/characterData.js.md), [monsterData](../data/actor/monsterData.js.md), [lootData](../data/actor/lootData.js.md). [Сверка TASK-0003.006](../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. CommonItemData непосредственно зарегистрирована как base; ещё 16 из 22 типов Item используют её прямых наследников. CriticalWoundData, HomelandData, SkillItemData, ClueData и ObstacleData — отдельные TypeDataModel. canHaveTemporaryItemImprovement и canBeRepaired не задаются реестром: базовые геттеры false переопределяются конкретными моделями.
+
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

@@ -133,3 +133,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Типы character/monster/loot связаны с соответствующими моделями и листами; текущие PARTS специализированных листов точечно сверены. Общая IP-вкладка монстра всё ещё не соответствует его полям (issue-00030). Отображение полей старыми шаблонами не приравнивается к использованию текущим зарегистрированным листом.
 
 Карточки сборки: [characterData](../data/actor/characterData.js.md), [monsterData](../data/actor/monsterData.js.md), [lootData](../data/actor/lootData.js.md). [Сверка TASK-0003.006](../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Отдельно от регистрации моделей и CONFIG.Item.documentClass функция регистрирует WitcherItemSheet и специализированные листы. Проверенный WitcherItemSheet._prepareContext:45–58 читает document.system/schema и вызывает system.enrichedText?.() напрямую; обёртка WitcherItem.enrichedText не является фактическим промежуточным вызовом этого листа.
+
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

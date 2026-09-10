@@ -92,3 +92,9 @@
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Прослежены цели Actor whitelist: собственный addItem, temporaryEffectMixin.applyTemporaryItemImprovements и adrenalineMixin.addAdrenaline. AddItem в изолированном выполнении действительно ждёт update/create; query не связывает свой ответ с этим Promise (issue-00008). Полный сетевой маршрут не запускался.
 
 Карточки: [WitcherActor](../actor/witcherActor.js.md), [modifierMixin](../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Whitelist restoreReliability разрешает вызов метода, присоединённого WitcherItem через repairMixin. Он делегирует RepairSystem.restoreReliability(this). Маршрутизатор пробует entity[function] и entity.system[function] отдельно и не ожидает их; realCraft/checkIfItemHasRollTable в whitelist отсутствуют. Результаты текущего разбора дополняют issue-00008, но не означают выполнения сетевого запроса.
+
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

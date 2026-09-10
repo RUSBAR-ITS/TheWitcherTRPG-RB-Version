@@ -131,3 +131,9 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. CONFIG.Actor.documentClass:33 указывает на полностью разобранный WitcherActor. createMacro:157 формирует actor.useItem по UUID владельца и ID предмета; ветки диспетчеризации описаны в карточке Actor. В module/ не найден game.TheWitcherTRPG: используется game.api и CONFIG.
 
 Карточки: [WitcherActor](actor/witcherActor.js.md), [modifierMixin](actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Импорт WitcherItem в строке 11 и CONFIG.Item.documentClass в init:32 связывают весь жизненный цикл Item с системным классом. По полному разбору Item установлены 12 собственных определений, пять примесей/11 методов и отдельный обработчик улучшений. Регистрация класса не означает регистрацию общей модели для каждого типа.
+
+Связанные карточки: [CommonItemData](data/item/commonItemData.js.md) и [WitcherItem](item/witcherItem.js.md). [Перекрёстная сверка](../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

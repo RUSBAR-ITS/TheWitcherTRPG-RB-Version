@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.007 подготовлены и сверены 54 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.008 подготовлены и сверены 56 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -97,3 +97,10 @@
 | --- | --- |
 | module/actor/witcherActor.js | [Описание](module/actor/witcherActor.js.md) |
 | module/actor/mixins/modifierMixin.js | [Описание](module/actor/mixins/modifierMixin.js.md) |
+
+## Документ Item и общая модель предмета — TASK-0003.008
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/commonItemData.js | [Описание](module/data/item/commonItemData.js.md) |
+| module/item/witcherItem.js | [Описание](module/item/witcherItem.js.md) |

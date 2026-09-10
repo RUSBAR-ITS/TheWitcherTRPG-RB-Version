@@ -373,3 +373,9 @@
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. WitcherActor.prepareDerivedData читает WITCHER.armorEffects по id; modifierMixin читает skillMap и массивы групп. Положительный combatEffects.attackModifier/defenseModifier даёт строку без '+' (issue-00033). Среди 17 примесей addDefenseModifiers перезаписывается defenseMixin; другие повторяющиеся имена примесей не найдены.
 
 Карточки: [WitcherActor](../actor/witcherActor.js.md), [modifierMixin](../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. WitcherItem.getItemAttack:67 читает WITCHER.skillMap[attackSkill]?.label и возвращает ключ, не локализованный текст. Выбор варианта зависит от порядка Set attackOptions и ctrl/alt/shift, а не от порядка skillMap. При неизвестном skill отсутствует alias; методы Item не создают карту навыков.
+
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.

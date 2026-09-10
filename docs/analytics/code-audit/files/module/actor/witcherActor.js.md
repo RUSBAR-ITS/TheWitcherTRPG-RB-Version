@@ -196,3 +196,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.007 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.008
+
+2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Полный разбор основы Item уточнил getTotalWeight: общая модель считает quantity×weight только при isCarried && !isStored, ContainerData добавляет storedWeight, независимые модели могут не иметь calcWeight. isConsumable документа — system.isConsumable ?? false, а не проверка типа. В realCraft сам Item не ожидает Actor.addItem/removeItem, хотя эти методы Actor ожидают свою запись (issue-00038). Item-эффекты обрабатываются до производных данных модели одним проходом без phase, в отличие от Actor. При точечной проверке applyTemporaryItemImprovements установлена потеря system.changes в передаваемом объекте (issue-00042); полный разбор примеси отложен.
+
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [issue-00038](../../../../../issues/potential/issue-00038.md); [issue-00042](../../../../../issues/potential/issue-00042.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
