@@ -110,3 +110,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. addSocialStanding читает единое general.socialStanding только при Actor.type=character. Шесть состояний проверены на пяти социальных навыках; feared комбинируется с tolerated/hated. Региональные поля Race Item этим методом не читаются; автоматического переноса при поиске по module/templates не найдено.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../../../module/actor/mixins/skillMixin.js); [module/data/item/raceData.js](../../../../../../../../../module/data/item/raceData.js); [module/data/item/templates/socialStandingData.js](../../../../../../../../../module/data/item/templates/socialStandingData.js). Полные карточки новых файлов — в [указателе порции](../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character читает age/socialStanding/legacy homeland, header отдаёт приоритет отдельному homeland Item. Подготовка lifeEvents выполняется прямо в общем system, counter при falsy заменяется длиной массива; обогащение general.background получено через CharacterData.enrichedText.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../../../review-log.md#task-0003031).

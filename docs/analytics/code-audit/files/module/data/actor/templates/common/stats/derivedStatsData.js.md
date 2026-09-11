@@ -187,3 +187,9 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Редактор derived показывает все 12 записей, тогда как вкладка исключает 6 ресурсов и показывает 6 расчётных параметров. Поля STUN/RUN и другие фиксированные базы после отправки заново вычисляются. Проверены 99→STUN8/RUN24, HP40/99 при customStatfalse/true монстра, Vigor99.
 
 Сверенные источники: [templates/partials/character/tab-stats.hbs](../../../../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/edit-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. sidebar получает hp/sta/focus/resolve/vigor/shield из derivedStats, а toxicity и luck отдельно из stats; temporary HP показаны отдельным суффиксом. Форма и полоса HP используют max, сердце — unmodifiedMax (issue-00203). HP120 принят настоящим updateSource: HTML max99 не является ограничением NumberField.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../actor/sheets/WitcherCharacterSheet.js.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../../../../review-log.md#task-0003031).

@@ -321,3 +321,9 @@ spell-header действительно предзагружается и вкл
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. В новой порции preload содержит stats-block; tab-stats/edit-stats подключаются через PARTS, два deprecations-HBS не предзагружаются. formatModLabel — точное value−max. JSON локализации раскрывается core expandObject до lookup; исправлена прежняя языковая проверка .029, семи Actor.Skill.* ключей хватает в en/ru.
 
 Сверенные источники: [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs); [templates/partials/character/tab-stats.hbs](../../../../../../templates/partials/character/tab-stats.hbs); [templates/dialog/deprecations/statSkillModifiers.hbs](../../../../../../templates/dialog/deprecations/statSkillModifiers.hbs); [templates/dialog/deprecations/lifepathModifiers.hbs](../../../../../../templates/dialog/deprecations/lifepathModifiers.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. character-header.hbs загружается preloadHandlebarsTemplates и PARTS.header класса Character. sidebar подключён явно через PARTS.sidebar, в preload-массиве его нет. Для обоих настоящим Handlebars выполнены ветви, системные eq/gte сверены; helper localize проверен через настоящий Localization и словари expandObject.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

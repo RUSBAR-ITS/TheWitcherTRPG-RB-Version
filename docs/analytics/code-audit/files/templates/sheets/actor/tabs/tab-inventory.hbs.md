@@ -103,3 +103,9 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ce0c7eb7069b215b641d725913b3aae21502e811`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003027) |
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.inventory Character напрямую подключает вкладку. Полный _prepareContext готовит все списки diagrams/crafting/alchemy/substances/valuables из отфильтрованных items. _craftingCraft и _alchemyCraft описаны полностью в .031; проверки соседей .034 будут уточнять контракты без повторного подсчёта класса.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../module/actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).

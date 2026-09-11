@@ -97,3 +97,9 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. stat-save ставит reversal=true, thresholdDesc и оставляет криты включёнными; rep-save также reversal с критами, face-down без порога; death-save reversal с showCrit=false. Вычисленный отрицательный threshold ниже слоя конфигурации перестаёт сравниваться, а не автоматически считается неуспехом.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Оба Character callback создают RollConfig с showCrit=true/showSuccess=true и порогом выбранного кода: обычный craftingDC, алхимический alchemyDC. Алхимический fallback к crafting не переключает этот порог. Проверки DC10/total10 и добавочного +2 используют настоящий объект конфигурации.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

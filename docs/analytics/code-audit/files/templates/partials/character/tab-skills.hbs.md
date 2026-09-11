@@ -85,3 +85,9 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Итоговая сверка связала оба openModifiers с полностью разобранным классом. Политика type/skillKey находится в HBS, не в фильтре PARTS. После раскрытия dotted JSON все 22 прежних сценария .029 повторно прошли; отсутствие русского levelUp подтверждено, отсутствие семи старых заголовков не подтвердилось.
 
 Сверенные источники: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.skills Character с _prepareTabs('skillTabs') передаёт девять групп. Нижняя .saveIpSpending вызывает _saveIpSpending: отрицательная строка остаётся строкой (issue-00200). _addIpReward, привязанный к .manualIpReward, вызывает Actor.addIpReward без ожидания.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

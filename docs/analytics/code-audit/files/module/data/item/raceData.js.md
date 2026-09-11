@@ -98,3 +98,9 @@ Race.socialStanding не копируется в Actor.system.general.socialStan
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полный addSocialStanding подтверждает различие источников: пять региональных полей Race.socialStanding и одно Actor.general.socialStanding. Наличие у Race северного hated не меняет автоматически итог броска Actor с другим общим статусом. Не установлен механизм автоматического выбора региона; никакое правило переноса не вводилось.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [module/data/actor/templates/character/generalData.js](../../../../../../../module/data/actor/templates/character/generalData.js). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полный Character._prepareCharacterData выбирает первый нестored race и вызывает настоящий enrichedText для perk1–4. Header выводит имя race, sidebar расы не показывает. Передача обогащённых описаний в tab-profession — отдельный контракт прежней issue-00109; весь этот HBS остаётся TASK-0003.038.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

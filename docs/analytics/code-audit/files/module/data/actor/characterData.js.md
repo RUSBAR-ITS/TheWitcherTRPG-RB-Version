@@ -131,3 +131,9 @@ defineSchema собирает определения; значения созд�
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Текущий CharacterSheet готовит totalStats через statMixin; Monster этого не делает. В CharacterData нет customStat, поэтому HP/STA идут по вычисляемому маршруту Actor; показанный общий редактор сам не ограничивает ввод этих баз.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Настоящая модель использована в полном контексте дочернего листа. _prepareContext меняет подготовленное general.lifeEvents на массив; _source при этом не меняется. _saveIpSpending('-3') при IP10 передаёт '10-3', и NumberField отвергает результат (issue-00200). Значение HP120 прошло FormDataExtended/_processFormData и updateSource; буквальный max99 в HTML сам по себе не ограничивает модель.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

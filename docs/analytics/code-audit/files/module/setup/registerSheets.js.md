@@ -245,3 +245,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Импорт WitcherSkillItemSheet и Items.registerSheet types=['skill'], makeDefault=true сопоставлены с полной карточкой класса и единственным PARTS.main. Оба текущих ActorSheet используют character/tab-skills; preload старого monster-sheet не означает его регистрации.
 
 Сверенные связи: [module/item/sheets/WitcherSkillItemSheet.js](../../../../../../module/item/sheets/WitcherSkillItemSheet.js); [templates/sheets/item/skill-item-sheet.hbs](../../../../../../templates/sheets/item/skill-item-sheet.hbs); [templates/partials/character/tab-skills.hbs](../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Прямая регистрация WitcherCharacterSheet теперь имеет полную карточку класса. Сверены DEFAULT_OPTIONS, 10 PARTS и TABS primary/skillTabs/magicTabs с 7/9/6 вкладками; init/registerSheet в настоящем клиенте не запускались.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

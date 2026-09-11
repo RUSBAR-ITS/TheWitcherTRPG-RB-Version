@@ -113,3 +113,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Нынешняя таблица рецепта показывает isFormulae-dependent DC, learned, компоненты и результаты enrichDiagramComponents. Вложенный helper получил ../../actor и дал6/3, алхимический список5/2. Нет кнопки связанного результата/associatedDiagramUuid. Кнопка формулы направлена в _craftingCraft — issue-00176; isFormulae и alchemyDC продолжают иметь отдельную проблему issue-00101.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полный Character группирует рецепты в 13 списков по system.type, отдельно от isFormulae и isAlchemicalCraft. Обычный диалог читает craftingComponents/craftingDC; missing associatedItem допускается моделью, но обращение к .name при нехватке ресурсов падает (issue-00201). Кнопка .crafting-craft сохраняет ранее описанное несовпадение режима формулы.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

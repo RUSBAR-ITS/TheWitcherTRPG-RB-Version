@@ -78,3 +78,9 @@ JavaScript-функций, partial-вызовов и именованных inpu
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `aa6af106e86a9c75fe050d599f961c8fadb74f1b`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003030) |
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.stats Character напрямую указывает на этот шаблон; его контекст totalStats теперь проверен полным _prepareContext: 72 для девяти max8. Ключи действий и данные модификаторов сопоставлены с базовыми listeners и #openModifiers специализированного листа.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

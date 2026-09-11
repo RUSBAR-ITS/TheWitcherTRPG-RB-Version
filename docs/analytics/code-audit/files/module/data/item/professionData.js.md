@@ -104,3 +104,9 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Полный _onDropItem ожидает сброс всех флагов system.skills.*.isProfession, затем отдельно запускает установку выбранных и addItem без ожидания. Настоящая ProfessionData с awareness/unknown дала правильный int.awareness и system.skills.undefined.unknown (issue-00116). Смена уникальной профессии наследует раннее завершение removeItemsOfType (issue-00034); модель сама unknown не валидирует по справочнику.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. В полном Character-контексте вызван настоящий enrichedText профессии: definingSkill, notes и девять навыков ветвей; getList выбирает первый нестored Item. Header читает только имя профессии. Все методы табличного представления профессии не объявляются проверенными этой порцией.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.030 подготовлены и сверены 247 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.031 подготовлены и сверены 250 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -400,3 +400,11 @@
 | templates/sheets/actor/configuration/app/partials/stats-block.hbs | [Описание](templates/sheets/actor/configuration/app/partials/stats-block.hbs.md) |
 | templates/dialog/deprecations/statSkillModifiers.hbs | [Описание](templates/dialog/deprecations/statSkillModifiers.hbs.md) |
 | templates/dialog/deprecations/lifepathModifiers.hbs | [Описание](templates/dialog/deprecations/lifepathModifiers.hbs.md) |
+
+## Лист персонажа, заголовок и боковая панель — TASK-0003.031
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/sheets/WitcherCharacterSheet.js | [Описание](module/actor/sheets/WitcherCharacterSheet.js.md) |
+| templates/partials/character-header.hbs | [Описание](templates/partials/character-header.hbs.md) |
+| templates/sheets/actor/partials/character/sidebar.hbs | [Описание](templates/sheets/actor/partials/character/sidebar.hbs.md) |

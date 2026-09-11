@@ -158,3 +158,9 @@ clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnl
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. useOptionalAdrenaline (world Boolean false) проверяется внутри addAdrenaline и определяет видимость блока sidebar через useAdrenaline. displayRep (world Boolean false) вместе с isGM управляет показом репутации, не правами вызова _onReputation. displayRollsDetails не меняет описанный пороговый смысл stat-save.
 
 Сверенные источники: [module/actor/mixins/adrenalineMixin.js](../../../../../../module/actor/mixins/adrenalineMixin.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../templates/partials/character/tab-stats.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character callbacks непосредственно читают displayRollsDetails; base context передаёт useVerbalCombat и useAdrenaline в новые шаблоны. При отключении словесного боя скрываются header-action и resolve, при отключении адреналина — его управление. Подробнее проверены формулы с displayRollsDetails в обоих режимах.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

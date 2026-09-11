@@ -323,3 +323,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Полностью описан adrenalineMixin и потребители подготовленных статов. Спасбросок характеристики читает value, удачи — max; при HP<=0 спасбросок смерти читает BODY/WILL.max. Локальный clamp10 смерти не создаёт общих min/max характеристик. Повторены расчётные границы luck/toxicity, REF/DEX/SPD, BODY/SPD.max против value; editor пишет unmodifiedMax.
 
 Сверенные источники: [module/actor/mixins/adrenalineMixin.js](../../../../../../module/actor/mixins/adrenalineMixin.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Выполнены реальные getList, getTotalWeight и методы подключённых примесей на контролируемом Actor. Character выбирает первый отсортированный нестored Item каждого уникального типа; временные HP/ресурсы поступают в sidebar через базовый контекст. Не выполнялись настоящие Document.update и lifecycle создания Actor.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

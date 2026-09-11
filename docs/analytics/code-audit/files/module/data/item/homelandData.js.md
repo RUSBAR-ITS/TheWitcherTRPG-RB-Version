@@ -85,3 +85,9 @@ value/otherValue являются данными этого Item. Одноимё
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.018 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Контекст Character выбирает отдельный homeland Item через getList. Header предпочитает его system.value/otherValue прежнему system.general.homeland, иначе выбирает otherValue либо динамический локализованный ключ. Подтверждены приоритет и экранирование текста.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

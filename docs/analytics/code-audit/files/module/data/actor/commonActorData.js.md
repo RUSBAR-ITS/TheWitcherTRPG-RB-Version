@@ -173,3 +173,9 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. deathSaves — числовой счётчик без min/integer; текущий death-minus сбрасывает его 0. Спасбросок выбирает STUN.value либо BODY/WILL.max, clamp10 до счётчика. prepareBaseData перезаписывает часть редактируемых derived.unmodifiedMax: форма не учитывает вычисляемость полей.
 
 Сверенные источники: [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Подтверждено чтение stats, skills, derivedStats и general из настоящих вложенных моделей в полном контексте Character. Fresh Skill.label и повторная модель из toObject различаются из-за миграции; это учтено отдельно от штатных ремесленных проверок.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

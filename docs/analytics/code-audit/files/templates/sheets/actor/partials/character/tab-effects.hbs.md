@@ -98,3 +98,9 @@ PARTS.effects в WitcherCharacterSheet и WitcherMonsterSheet используе
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Прослежен producer criticalWounds: общий V2 собирает объект description={value,enriched,systemField} по critWound.uuid и ждёт все enrich. lookup (...,'enriched') соответствует producer. V1 такого контекста не создаёт и текущий шаблон не использует. Перебор actual Item по document.items.documentsByType остаётся отдельным от словаря; это не устраняет двойной список issue-00054. Категории effects также могут повторить один документ (issue-00165).
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.effects специализированного Character напрямую указывает на этот шаблон. effects-контекст готовится базовым Actor-листом, вкладки — Character._prepareTabs('primary'); весь lifecycle эффектов повторно не запускался.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../module/actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../../review-log.md#task-0003031).

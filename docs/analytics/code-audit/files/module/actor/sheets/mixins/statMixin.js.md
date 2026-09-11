@@ -92,3 +92,9 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `aa6af106e86a9c75fe050d599f961c8fadb74f1b`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003030) |
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Sidebar связывает luck-minus/reset и adrenaline-minus/plus с statListener; инициатива и recovery в header обрабатываются непосредственно WitcherActorSheet. Character вызывает calc_total_stats; девять max8 дали totalStats72. Приватные #openAttributeDialog/#openDerivedDialog Character остаются пустыми, #openModifiers открывает WitcherModifiersConfiguration.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).

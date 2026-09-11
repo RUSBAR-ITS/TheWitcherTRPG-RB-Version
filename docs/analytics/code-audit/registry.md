@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.030 проверены описания **247 файлов**, для **374 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.031 проверены описания **250 файлов**, для **371 файла** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.030](review-log.md#task-0003030) выполнена на `aa6af106e86a9c75fe050d599f961c8fadb74f1b`: все 621 исходник совпадают с базовым срезом; завершено сопоставление 79 файлов третьей серии с прежними 168. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.031](review-log.md#task-0003031) выполнена на `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`: все 621 исходник совпадают с базовым срезом; добавлены три карточки листа персонажа и его панелей, уточнены связи с прежними описаниями. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -46,7 +46,7 @@
 | [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js) | Общий лист Actor V2: контекст персонажа/монстра, 11 примесей, общие действия и глобальные Array.sum/cost. | [Карточка](files/module/actor/sheets/WitcherActorSheet.js.md) | Проверено |
 | [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js) | Не подключённый общий лист Actor V1: синхронный getData, 10 примесей, обработчики и отличия подготовки от V2. | [Карточка](files/module/actor/sheets/WitcherActorSheetV1.js.md) | Проверено |
-| [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js) | Специализированный лист персонажа: контекст, вкладки, изготовление, IP и действия. | [Описание](files/module/actor/sheets/WitcherCharacterSheet.js.md) | Проверено |
 | [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | Общая форма характеристик, производных параметров и группы навыков. | [Карточка](files/module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md) | Проверено |
@@ -537,7 +537,7 @@
 | [templates/dialog/verbal-combat.hbs](../../../templates/dialog/verbal-combat.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/associated-diagram.hbs](../../../templates/partials/associated-diagram.hbs) | Представление связанного рецепта и область его drop/удаления. | [Описание](files/templates/partials/associated-diagram.hbs.md) | Проверено |
 | [templates/partials/associated-item.hbs](../../../templates/partials/associated-item.hbs) | Представление результата изготовления, его количества и связи. | [Описание](files/templates/partials/associated-item.hbs.md) | Проверено |
-| [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs) | Заголовок персонажа: имя, общие сведения, действия, IP и счётчик смертей. | [Описание](files/templates/partials/character-header.hbs.md) | Проверено |
 | [templates/partials/character/custom-skill-display.hbs](../../../templates/partials/character/custom-skill-display.hbs) | Текущая строка Item-навыка с рассогласованными контекстом и обработчиком броска. | [Карточка](files/templates/partials/character/custom-skill-display.hbs.md) | Проверено |
 | [templates/partials/character/skill-display.hbs](../../../templates/partials/character/skill-display.hbs) | Текущая строка встроенного навыка: modifiedValue, флаги и бросок. | [Карточка](files/templates/partials/character/skill-display.hbs.md) | Проверено |
 | [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -577,7 +577,7 @@
 | [templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs) | Таблица свободных рун/глифов: количество, тип, вес, стоимость, названия воздействий и процент наложения статусов.. | [Карточка](files/templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs) | Общая таблица ценностей, контейнеров и добычи монстра: количество, переносимость, доступность/скрытность, вес/цена, описание и содержимое контейнера.. | [Карточка](files/templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs) | Таблица оружия и свободных улучшений типа weapon: бросок/использование, урон, надёжность, количество, экипировка/ремонт, признаки и ячейки улучшений.. | [Карточка](files/templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs.md) | Проверено |
-| [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs) | Боковая панель: изображение, ресурсы, состояния здоровья, удача и адреналин. | [Описание](files/templates/sheets/actor/partials/character/sidebar.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../templates/sheets/actor/partials/character/spell-type-list.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/partials/character/tab-effects.hbs](../../../templates/sheets/actor/partials/character/tab-effects.hbs) | Вкладка травм, лечения и активных эффектов персонажа/монстра. | [Описание](files/templates/sheets/actor/partials/character/tab-effects.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs) | Не установлено | Не подготовлено | Не начат |

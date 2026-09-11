@@ -110,3 +110,9 @@ showResult=false возвращает тот же messageData по ссылке 
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Полностью описаны stat/death consumers. Настоящий Roll показал: порог 0 сравнивается, отрицательные−1/−2 оставляют success/rollOver undefined. В death-save отключён showCrit, поэтому 1/10 остаются одним кубиком; stat-save и обе ветви репутации используют критический механизм. Нет нового общего минимума характеристики.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Обычное изготовление Character прошло через настоящий extendedRoll/Foundry Roll с управляемым d10. Для CRA4/crafting3/modifier1/d10=5 получено13, с диаграммой15; total=10 при DC10 неуспешно. Состояние с пустой подписью модификатора разобрано отдельно как синтаксическая ошибка +1[]. Алхимические ветви условны из-за issue-00037.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

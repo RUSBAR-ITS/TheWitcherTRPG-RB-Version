@@ -122,3 +122,9 @@ L: — метка подменённой локализации в изолир�
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Уточнён потребитель addActiveEffects: rollSkillCheck передаёт skillMapEntry.name, а rollCustomSkillCheck — Item.name. Неизвестный Item.name выходит до обработки allSkills; совпадающее встроенное имя адресует его Skill. Item.system.activeEffectModifiers данным helper не читается. Общий язык дополнительно попадает в commonsp/commonspeech рассогласование.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [module/data/item/skillItemData.js](../../../../../../../module/data/item/skillItemData.js). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Настоящий addActiveEffects участвует в обоих ремесленных callbacks; подробный режим с подходящим именованным эффектом работает. При ненулевом activeEffectModifiers и пустом списке подходящих имён формируется +1[], которое отвергает парсер Foundry14 (issue-00204). Возникновение такого несогласованного Actor в мире не установлено.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

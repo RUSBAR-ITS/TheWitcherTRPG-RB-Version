@@ -97,3 +97,9 @@ const DialogV2 захватывается при импорте. Named export he
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Оба общих класса подключают healMixin; healListeners получает DOM и через $ связывает .heal-button с _onHeal. Отдельная .recover-sta вызывает собственный _onRecoverSta общего листа, а не recoverActor: у неё два callback без ожидания update. При 9/10 и REC=3 передаётся 12 (issue-00164); раннее завершение дополняет issue-00127. Открытие модального окна не означает завершение отдыха.
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Сверен контракт кнопки header .heal-button и базового healListeners; сами методы лечения уже описаны в .020. В .031 проверены наличие/данные элементов и общая привязка, полный отдых/лечение заново не запускались.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).

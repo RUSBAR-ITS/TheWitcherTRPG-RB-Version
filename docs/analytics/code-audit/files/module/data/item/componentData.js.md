@@ -96,3 +96,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. В реальном компоненте строковые rarity/forage='0' truthy, числовой weight=0 скрывается; quantity='0' остаётся в input. subtype передаётся через substances→components→summary, но не превращается в data-subtype кнопки. findNeededComponent считает по имени, UUID используется другим этапом подготовки.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. _prepareCrafting/_prepareAlchemy и девять списков _prepareSubstances сверены с system.type/substanceType/quantity. Настоящие getSubstance и Array.sum дали 2+3=5; isStored-компонент qty99 исключён поиском Actor. Неизвестный числовой ввод отдельно проверен на raw fixture, не приписан успешной валидации модели.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

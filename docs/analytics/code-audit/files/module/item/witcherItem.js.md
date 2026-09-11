@@ -280,3 +280,9 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: realCraft:181–186 переводит config.showResult в false и ожидает extendedRoll; это вычисление без публикации. Полный разбор общего броска подтвердил mutation messageData.system.rollTotal/flavor и сохранение ссылки roll.messageData. Позднейшее toMessage остаётся ответственностью realCraft. RollConfig в WitcherItem импортирован только для JSDoc. В .028 выполнен настоящий Foundry Roll с критом/провалом; цепочка списания компонентов заново не запускалась.
 
 Полные карточки зависимости: [module/scripts/rollConfig.js](../scripts/rollConfig.js.md), [module/scripts/rolls/extendedRoll.js](../scripts/rolls/extendedRoll.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Проверен настоящий вход _alchemyCraft: отсутствующий populateAlchemyCraftComponentsList прерывает его до Dialog. В обычном ремесленном callback выполнен настоящий realCraft с DC10: равенство неуспешно, результат12 списывает два компонента и запрашивает создание двух единиц связанного результата. Запись документов перехвачена. Сам callback не ожидает realCraft; repair идёт через repairMixin к RepairSystem.process.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

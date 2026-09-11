@@ -119,7 +119,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались Foundry-мир, настоящие листы в браузере, частичный рендер и повторные привязки на сохранённом DOM, доступ разных пользователей, запись в БД, полный бой и реальные dice/ChatMessage. Изолированно выполнялись неизменённые тела двух классов с заменёнными import/base/UI границами; настоящие модели, генератор Foundry и skillMixin импортированы/извлечены отдельно. Ошибки сборки первоначального фасада исправлены в памяти, исходники не изменялись. Полные Character/Monster/Loot и ещё не описанные примеси остаются вне покрытия. SkillItemData и две skill-примеси описаны полностью в .029, ChatMessageData — в .028. Порядок и содержимое race/profession enrichment сверены до определения в дочернем классе; issue-00109 не исправлена.
+Не запускались Foundry-мир, настоящие листы в браузере, частичный рендер и повторные привязки на сохранённом DOM, доступ разных пользователей, запись в БД, полный бой и реальные dice/ChatMessage. Изолированно выполнялись неизменённые тела двух классов с заменёнными import/base/UI границами; настоящие модели, генератор Foundry и skillMixin импортированы/извлечены отдельно. Ошибки сборки первоначального фасада исправлены в памяти, исходники не изменялись. Полный Character теперь описан в TASK-0003.031; полные Monster/Loot и ещё не описанные примеси остаются вне покрытия. SkillItemData и две skill-примеси описаны полностью в .029, ChatMessageData — в .028. Порядок и содержимое race/profession enrichment сверены до определения в дочернем классе; issue-00109 не исправлена.
 
 ## Связанные проблемы
 
@@ -160,3 +160,9 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Полностью описаны statMixin/deathsaveMixin. statListener использует локальную обёртку html, skillListener по-прежнему меняет глобальную jQuery; death-minus означает reset0. Общий контекст displayRep/useAdrenaline взят из настроек; totalStats не готовится базой. Character/MonsterSheet остаются вне полного покрытия.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../templates/partials/character/tab-stats.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полностью импортирован дочерний WitcherCharacterSheet; выполнены super._prepareContext и оба activateListeners. Дочерний контекст использует тот же system и уже отфильтрованные по isStored items. Собственные .alchemy-potion/.crafting-craft/.item-repair/.manualIpReward/.saveIpSpending/.open-rewards дополняют базовые обработчики. Группы 01–06,17–18,23.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).

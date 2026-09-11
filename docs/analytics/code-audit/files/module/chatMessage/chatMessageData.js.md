@@ -99,3 +99,9 @@ Default-export class без наследования. constructor сразу в�
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. stat/death consumers передают корректный Actor, стандартный type base и HTML flavor. _onStatSaveRoll и callbacks репутации задают flavor после конструктора, death-save — аргументом. Последующий Roll возвращается extendedRoll, но эти листовые методы его наружу не возвращают.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character создаёт настоящие ChatMessageData для изготовления, записывает flavor навыка/DC и success/fail текст; extendedRoll дополняет результат. Отправка ChatMessage перехвачена. Ветка недостаточных компонентов без associatedItem падает до уведомления и передачи realCraft (issue-00201).
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).

@@ -88,3 +88,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полный разбор UI показал, где проявляются прежние несовпадающие label: текущая/старая строка и редактор вызывают localize skill.label; исправлений словарей нет. calc_total_skills использует '(2)' из перевода, а levelUpSkill — отдельный costMultiplier карты; эти источники коэффициента не объединены.
 
 Сверенные связи: [templates/partials/character/skill-display.hbs](../../../../../../../../../../templates/partials/character/skill-display.hbs); [templates/partials/monster/monster-skill-display.hbs](../../../../../../../../../../templates/partials/monster/monster-skill-display.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs); [module/actor/sheets/mixins/skillMixin.js](../../../../../../../../../../module/actor/sheets/mixins/skillMixin.js); [module/actor/mixins/skillMixin.js](../../../../../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.031
+
+2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character._craftingCraft читает CRA.value/crafting.value/label/modifiers и craftingDC. _alchemyCraft использует alchemy, но при !isAlchemicalCraft меняет числовой навык на crafting, сохраняя alchemy skillName/modifiers/DC; этот путь проверен только с явным адаптером отсутствующего API в fixture.
+
+Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../../../review-log.md#task-0003031).
