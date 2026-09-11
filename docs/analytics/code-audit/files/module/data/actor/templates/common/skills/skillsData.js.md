@@ -135,3 +135,9 @@ skills():11–21 без аргументов возвращает поля гр�
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Подтверждён доступ modifierMixin через skill.attribute.name/skill.name. Указанный в конфигурации путь должен существовать в общей модели; groups allSkills не обходят ранний выход для неизвестного имени. Перечень вызовов навыкового модификатора отражён в новой карточке.
 
 Карточки: [WitcherActor](../../../../../actor/witcherActor.js.md), [modifierMixin](../../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Семь групп дают 52 встроенных навыка; текущий tab-skills выводит их дважды — all и соответствующая группа. Те же ключи ограничивают показ собственных Items и исключают spd/luck, хотя Item-лист и _prepareCustomSkills предлагают/готовят девять групп.
+
+Сверенные связи: [templates/partials/character/tab-skills.hbs](../../../../../../../../../../templates/partials/character/tab-skills.hbs); [module/item/sheets/WitcherSkillItemSheet.js](../../../../../../../../../../module/item/sheets/WitcherSkillItemSheet.js). Полные карточки новых файлов — в [указателе порции](../../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

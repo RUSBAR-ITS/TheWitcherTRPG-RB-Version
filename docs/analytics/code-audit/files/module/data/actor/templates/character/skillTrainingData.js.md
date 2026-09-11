@@ -82,3 +82,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Все четыре слота включены только CharacterData:25–28. Монстр наследует CommonActorData, а не CharacterData, поэтому использование общей IP-вкладки не создаёт ему соответствующие поля; повторно сопоставлено с issue-00030.
 
 Карточки сборки: [characterData](../../characterData.js.md), [monsterData](../../monsterData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Общая вкладка skills содержит четыре name/value пары skillTraining1–4. CharacterSheet связывает saveIpSpending с журналом; MonsterSheet использует тот же шаблон без этих схем и обработчиков. Полный HBS теперь описан, первоначальное наблюдение issue-00030 сохраняется.
+
+Сверенные связи: [templates/partials/character/tab-skills.hbs](../../../../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

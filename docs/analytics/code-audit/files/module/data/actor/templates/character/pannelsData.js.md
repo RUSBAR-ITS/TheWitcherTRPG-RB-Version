@@ -88,3 +88,9 @@
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Все 22 флага входят в CommonActorData.pannels:57 и наследуются обеими моделями. Папка character не означает исключительное применение персонажем; различия старых и текущих потребителей, установленные TASK-0003.005, сохраняются.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полностью прочитан старый monster-skill-tab: семь <stat>IsOpen читаются для шеврона и invisible таблиц; _onSkillDisplay пишет тот же динамический путь по skilltype. Текущая вкладка использует details и tabs, не этот переключатель.
+
+Сверенные связи: [module/actor/sheets/mixins/skillMixin.js](../../../../../../../../../module/actor/sheets/mixins/skillMixin.js); [templates/partials/monster/monster-skill-tab.hbs](../../../../../../../../../templates/partials/monster/monster-skill-tab.hbs); [templates/partials/character/tab-skills.hbs](../../../../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

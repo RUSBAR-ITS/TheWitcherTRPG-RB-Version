@@ -104,3 +104,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. general.race (строка), general.socialStanding (строка) и general.homeland (вложенная модель Actor) независимы от [race Item](../../../../../../../../../module/data/item/raceData.js) и [homeland Item](../../../../../../../../../module/data/item/homelandData.js). CharacterSheet выводит выбранные Item; подстановка названия расы и родины не переписывает Actor.general. skillMixin.addSocialStanding читает именно general.socialStanding: таблица пяти регионов race и homeland не выбирают его автоматически. Изолированное изменение socialStanding.north у Item не изменило Actor.general.socialStanding.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. addSocialStanding читает единое general.socialStanding только при Actor.type=character. Шесть состояний проверены на пяти социальных навыках; feared комбинируется с tolerated/hated. Региональные поля Race Item этим методом не читаются; автоматического переноса при поиске по module/templates не найдено.
+
+Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../../../module/actor/mixins/skillMixin.js); [module/data/item/raceData.js](../../../../../../../../../module/data/item/raceData.js); [module/data/item/templates/socialStandingData.js](../../../../../../../../../module/data/item/templates/socialStandingData.js). Полные карточки новых файлов — в [указателе порции](../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

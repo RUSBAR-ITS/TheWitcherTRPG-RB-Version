@@ -1,5 +1,97 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.029
+
+| Поле | Результат |
+| --- | --- |
+| Дата / версия | 2026-09-11; `rusbar-main`, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; исходники совпадают со срезом TASK-0001. |
+| Основание | [Согласованная подзадача](../../tasks/task-0003.029.md) и поручение продолжить; 14 файлов, 763 строки, 5 JS и 9 HBS. |
+| Результат | 14 новых карточек, 27 уточнённых; покрытие 238/621, не разобраны 383. В третьей серии 70/79; .030 planned, 9 файлов; ещё 374 не распределены. |
+| Проблемы | Новые potential issue-00187–00193; дополнены 00004/00015/00016/00017/00018/00028/00030/00167/00186. Подтверждение и исправление не выполнялись. |
+| Окружение | Foundry 14.367.0 (/opt/foundryvtt/package.json), Node.js 24.16.0; Linux, без мира/браузера/записи документов. |
+
+### Состав и перекрёстные связи
+
+| Исходник | Строк | Полная карточка |
+| --- | --- | --- |
+| [module/actor/mixins/skillMixin.js](../../../module/actor/mixins/skillMixin.js) | 174 | [Описание](files/module/actor/mixins/skillMixin.js.md) |
+| [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | 42 | [Описание](files/module/actor/sheets/mixins/skillMixin.js.md) |
+| [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js) | 62 | [Описание](files/module/actor/sheets/mixins/customSkillMixin.js.md) |
+| [module/data/item/skillItemData.js](../../../module/data/item/skillItemData.js) | 16 | [Описание](files/module/data/item/skillItemData.js.md) |
+| [module/item/sheets/WitcherSkillItemSheet.js](../../../module/item/sheets/WitcherSkillItemSheet.js) | 43 | [Описание](files/module/item/sheets/WitcherSkillItemSheet.js.md) |
+| [templates/sheets/item/skill-item-sheet.hbs](../../../templates/sheets/item/skill-item-sheet.hbs) | 12 | [Описание](files/templates/sheets/item/skill-item-sheet.hbs.md) |
+| [templates/partials/character/tab-skills.hbs](../../../templates/partials/character/tab-skills.hbs) | 108 | [Описание](files/templates/partials/character/tab-skills.hbs.md) |
+| [templates/partials/character/skill-display.hbs](../../../templates/partials/character/skill-display.hbs) | 24 | [Описание](files/templates/partials/character/skill-display.hbs.md) |
+| [templates/partials/character/custom-skill-display.hbs](../../../templates/partials/character/custom-skill-display.hbs) | 23 | [Описание](files/templates/partials/character/custom-skill-display.hbs.md) |
+| [templates/partials/monster/monster-skill-tab.hbs](../../../templates/partials/monster/monster-skill-tab.hbs) | 141 | [Описание](files/templates/partials/monster/monster-skill-tab.hbs.md) |
+| [templates/partials/monster/monster-skill-display.hbs](../../../templates/partials/monster/monster-skill-display.hbs) | 13 | [Описание](files/templates/partials/monster/monster-skill-display.hbs.md) |
+| [templates/partials/monster/monster-custom-skill-display.hbs](../../../templates/partials/monster/monster-custom-skill-display.hbs) | 44 | [Описание](files/templates/partials/monster/monster-custom-skill-display.hbs.md) |
+| [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs) | 14 | [Описание](files/templates/sheets/actor/configuration/partials/skillConfiguration.hbs.md) |
+| [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../templates/sheets/actor/configuration/app/edit-skills.hbs) | 47 | [Описание](files/templates/sheets/actor/configuration/app/edit-skills.hbs.md) |
+
+Все файлы перечня прочитаны полностью. Для связи использовались `rg -n`, `rg --files`, чтение определений и проверка импортов/partial по `module/` и `templates/`; исключения реестра сохранены. Ни хеширование, ни просмотр соседнего определения не повышали его статус. Проверены: Object.assign Actor и двух базовых листов; registerDataModels/Sheets; все четыре прямых импорта actor/skillMixin; Skill/Character/Monster/Item schemas; Log.addIpReward; addActiveEffects и getArmorEcumbrance; _prepareCustomSkills; PARTS и openModifiers обоих текущих листов; конфигурации, IP listeners и inline Item-edit; все буквальные шаблонные зависимости.
+
+Различены встроенный Skill в Actor, Item type skill и профессиональные навыки. Установлено, что текущие Character/Monster используют общий character/tab-skills. Старые monster partial имеют HBS-родителя monster-sheet и preload, но не выбраны текущими V2 PARTS. Проверка .029 уточняет две прежние границы: настоящий formGroup с Actor-родителем формирует правильные полные пути (технические подписи остаются), а Log сам отправляет обновление IP помимо финального update levelUpSkill. Социальный обработчик читает одно поле Actor.general, не пять региональных полей Race.
+
+Уточнённые карточки: [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md); [module/actor/mixins/modifierMixin.js](files/module/actor/mixins/modifierMixin.js.md); [module/actor/sheets/WitcherActorSheet.js](files/module/actor/sheets/WitcherActorSheet.js.md); [module/actor/sheets/WitcherActorSheetV1.js](files/module/actor/sheets/WitcherActorSheetV1.js.md); [module/actor/sheets/mixins/itemMixin.js](files/module/actor/sheets/mixins/itemMixin.js.md); [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md); [module/data/actor/monsterData.js](files/module/data/actor/monsterData.js.md); [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md); [module/data/actor/templates/common/skills/skillData.js](files/module/data/actor/templates/common/skills/skillData.js.md); [module/data/actor/templates/common/skills/intData.js](files/module/data/actor/templates/common/skills/intData.js.md); [module/data/actor/templates/common/skills/craData.js](files/module/data/actor/templates/common/skills/craData.js.md); [module/data/actor/templates/common/skills/skillsData.js](files/module/data/actor/templates/common/skills/skillsData.js.md); [module/data/actor/templates/character/logData.js](files/module/data/actor/templates/character/logData.js.md); [module/data/actor/templates/character/pannelsData.js](files/module/data/actor/templates/character/pannelsData.js.md); [module/data/actor/templates/character/skillTrainingData.js](files/module/data/actor/templates/character/skillTrainingData.js.md); [module/data/actor/templates/character/generalData.js](files/module/data/actor/templates/character/generalData.js.md); [module/data/item/raceData.js](files/module/data/item/raceData.js.md); [module/data/item/templates/socialStandingData.js](files/module/data/item/templates/socialStandingData.js.md); [module/setup/config.js](files/module/setup/config.js.md); [module/setup/registerDataModels.js](files/module/setup/registerDataModels.js.md); [module/setup/registerSheets.js](files/module/setup/registerSheets.js.md); [module/setup/handlebars.js](files/module/setup/handlebars.js.md); [module/scripts/helper.js](files/module/scripts/helper.js.md); [module/scripts/rollConfig.js](files/module/scripts/rollConfig.js.md); [module/scripts/rolls/extendedRoll.js](files/module/scripts/rolls/extendedRoll.js.md); [module/chatMessage/chatMessageData.js](files/module/chatMessage/chatMessageData.js.md); [module/scripts/investigation/rollClue.js](files/module/scripts/investigation/rollClue.js.md). Исторические записи предыдущих проверок сохранены; устаревшие текущие ограничения ActorSheet/rollClue и контекст issue-00015 уточнены.
+
+### Изолированное исполнение
+
+Одноразовые сценарии выполнялись из памяти через `node --input-type=module`; тестовые файлы/стенд в репозитории не создавались. Загрузчик использовал установленные Foundry common DataModel/TypeDataModel/fields/utils, Roll и term-классы, Peggy-парсер, Handlebars 4.7.9 и parse5. Выполнены настоящие системные модели и методы, включая Log, modifierMixin, _prepareCustomSkills и _onItemInlineEdit. `getArmorEcumbrance`, core getSpeaker, selectOptions/prepareSelectOptionGroups/formGroup и системные helpers прочитаны до определений и подключены к сценариям. Последний прогон завершился успешно: **22 группы / 22 пройдены**; предупреждение Node MODULE_TYPELESS_PACKAGE_JSON относится к способу импорта исходников.
+
+Подменены документные Actor/Item и коллекции, Application/Sheet/HandlebarsApplicationMixin-оболочки, диалоги, запись Actor/Item/ChatMessage, fulfillment/RollResolver и низкоуровневые createSelectInput/createCheckboxInput/createFormGroup. Оболочка родителя моделей наследует настоящий DataModel, чтобы fieldPath отражал system. Грани кубиков задавались очередью; случайное распределение не проверялось. Roll/парсер, расчёт моделей и вызываемые методы не переписаны под ожидаемый результат. Список modifiers в старых сценариях внедрялся явно: это вход для проверки ветвей, не поддерживаемая схема.
+
+| Группа | Проверка | Наблюдённый результат |
+| --- | --- | --- |
+| 01 | SkillItemData: 8 полей, default/coercion, неизвестный modifiers | attribute='' и value=0; произвольный атрибут и value='-1.5' приняты; NaN отклонён; modifiers отброшен и при new, и при updateSource. |
+| 02 | WitcherSkillItemSheet и core selectOptions | 9 исходных характеристик; dex selected; два поля name/system.attribute; два prepare добавляют два класса item-skill (визуальный дефект не установлен). |
+| 03 | Встроенные броски семи характеристик | По awareness/brawling/athletics/physique/charisma/alchemy/courage: грань 5 + характеристика 7 + навык 2 =14; threshold=14 даёт false. |
+| 04 | Monster.dontAddAttr | При тех же значениях результат 5+2=7; характеристика по исходнику всё равно читается до сборки формулы. |
+| 05 | EC, эффекты и пользовательская добавка | EC=3 вычтен из трёх магических навыков, не из контрольного обычного; реальный modifierMixin, группа allSkills и запрос −1 дали составной результат 18. Проверены flavor-детали. |
+| 06 | Социальная матрица и Race | equal/tolerated/hated/feared/toleratedFeared/hatedFeared: charisma 0/−1/−2/−1/−2/−3; остальные три EMP-навыка 0/−1/−2/0/−1/−2; intimidation 0/0/0/+1/+1/+1. Monster пуст; Race.north=hated сам не меняет Actor.general. |
+| 07 | Собственный бонус, имя и старый массив | 5+8+3=16 при собственных activeEffectModifiers=4; Item.name=awareness подключил встроенные +7 и дал 23; неизвестное имя проигнорировало allSkills=2. Явно внедрённый старый modifiers +2/−1 дал 17. |
+| 08 | Ошибки и отмена собственного броска | Пустой/неизвестный attribute, отсутствующий Item ID и неверное событие дали TypeError; отмена getCustomModifier отклонила Promise без сообщения. |
+| 09 | Обычные IP и стоимость | Уровни 0/2/10/−2, max(value,1), costMultiplier. При уровне 2/IP=0 payload уровня 3 и баланса −2; alchemy=2 стоит 4. Уровень 10 повышается до 11 как факт кода, без утверждения о правиле потолка. |
+| 10 | Магические IP и настоящий Log | Стоимость 4 при magic=10: Log.update на 6, затем levelUpSkill.update на 10; при magic=1: 0 и 1, обычный расход 3; при magic=0 стоимость покрывают обычные IP. |
+| 11 | Ожидание обновлений | Оба update удержаны незавершёнными Promise; levelUpSkill завершился до записей. Исход гонки на сервере не установлен. |
+| 12 | Неизвестный ключ и общий язык | rollSkill('commonspeech') считает 14, но не включает собственную +4 из-за addActiveEffects(commonsp); helper с commonspeech находит добавку. rollSkill('commonsp') и оба написания в levelUpSkill ломаются в разных lookup. |
+| 13 | Сумма навыков и подписи | 52 свежих модели уровня 1 дают 52 при отсутствующем label; сериализованные данные с заполненными миграцией подписями дают 64 в en/ru. isVisible/флаги не влияют, пустая коллекция даёт 0. |
+| 14 | Листовые события | Привязаны rollSkill/level-up и старые события; pannels инвертирован. Глобальная jQuery стала объектом; отсутствие binding в отдельном ES-module сценарии дало ReferenceError; unknown custom key не прошёл builtin lookup. |
+| 15 | Собственные события и схема | Проверены шесть регистраций; toggle isOpened; delete вызван без ожидания; add payload {name:'Modifier',value:0} без ID, модель modifiers не принимает. |
+| 16 | CRUD старого массива с некорректными ID | Массив внедрён явно в обход модели: отсутствие списка бросает TypeError, неизвестный ID удаления снимает последний элемент; edit пишет строку '-3', неизвестная строка бросает TypeError. |
+| 17 | Действующий tab-skills и Items | 52 встроенных навыка дают 104 строки (all+группа). int Item даёт две пустые строки с именем как builtin key; подготовленные spd/luck Items не выводятся. |
+| 18 | Встроенные строки текущая/старая | Проверены знаки 0/отрицательных значений, приоритет класса и независимые три иконки. isVisible=false не скрывает текущую строку, но полностью скрывает старую monster-строку. |
+| 19 | Старый monster-skill-tab и Item-строка | 7 таблиц, pannels, Item ID и custom-rollable, inline value, открытый отрицательный activeEffectModifiers. Нулевой бонус скрыт; add/edit/delete modifiers кнопок нет. |
+| 20 | Конфигурация видимости и настоящий formGroup | Настоящая MonsterData с Actor DataModel-родителем: 51 checkbox с полными system.skills.*.isVisible именами и техническими подписями; один пропущенный commonspeech DataField и ошибка helper. |
+| 21 | edit-skills и повышение монстра | Правильные @root.skillKey пути value/трёх флагов, число кнопок по группе, commonsp; неизвестная группа пустая. У Monster кнопки есть, обычный/магический levelUpSkill бросают TypeError из-за logs/magic. |
+| 22 | Числовое inline-редактирование Item | Настоящий _onItemInlineEdit выдал payload system.value='-2.5'; настоящая NumberField привела к −2.5. |
+
+Дополнительно разобраны JSON en/ru для всех буквальных WITCHER-ключей 14 файлов: семь старых WITCHER.Actor.Skill.* отсутствуют в обоих языках, текущий WITCHER.skills.levelUp — только в ru. Существующие CRA label и общий язык сопоставлены с прежними issues. parse5 удаляет tr/td внутри div редактора, сохраняя input; без установленного влияния на пользователя отдельное issue для этого не создавалось. Повторное добавление CSS-класса листа также не объявлено подтверждённым дефектом.
+
+### Проблемы и границы результата
+
+| Проблема | Наблюдение |
+| --- | --- |
+| [issue-00187](../../issues/potential/issue-00187.md) | Текущая строка собственного навыка использует контекст и бросок встроенного навыка |
+| [issue-00188](../../issues/potential/issue-00188.md) | Собственные навыки со СКОР и УДАЧЕЙ не попадают на текущую вкладку навыков |
+| [issue-00189](../../issues/potential/issue-00189.md) | Обработчики модификаторов собственного навыка не согласованы со схемой Item |
+| [issue-00190](../../issues/potential/issue-00190.md) | Бросок собственного навыка игнорирует его активную добавку и зависит от имени встроенного навыка |
+| [issue-00191](../../issues/potential/issue-00191.md) | Повышение навыка списывает обычные IP при недостаточном балансе |
+| [issue-00192](../../issues/potential/issue-00192.md) | Редактор навыков монстра предлагает повышение без необходимых данных развития |
+| [issue-00193](../../issues/potential/issue-00193.md) | В шаблонах навыков отсутствуют отдельные ключи локализации |
+
+Старый CRUD не представлен текущими кнопками; issue-00189 описывает несогласованные методы и схему, а не действующий сценарий кликов. issue-00192 касается кнопки автоматического повышения в отдельной конфигурации; прежняя issue-00030 — общей IP-вкладки. Ни один issue не переведён в open/closed. Предложения решений не считаются согласованными.
+
+Не запускались мир/служба, браузерные формы, сохранение в БД, многоклиентская синхронизация и сторонние модули. Не установлен итог гонки двух Actor.update. Нет выводов о правилах максимума навыков, допустимости отрицательных/дробных уровней и выбранной политике IP сверх того, что делает код. Character/MonsterSheet, WitcherModifiersConfiguration и полный бой не получают полного покрытия через этот анализ; .030 продолжит предусмотренную часть. Все новые JS-сущности и методы описаны; partial/поля и найденные потребители сверены встречным чтением.
+
+### Формальная проверка документации и сохранности
+
+Проверка одноразовым Python-скриптом завершена: 621 путь реестра совпадает с Git и фактическим деревом после исключений; каждый исходник побайтно совпадает с HEAD и срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. SHA256 набора исходников — `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`, без изменений. Сохранены mode/uid/gid/inode всех 1150 отслеживаемых файлов; SHA256 снимка метаданных — `b672b83132a0ee76f848b865cc3ac959dba9c39ae5312ac690404274b9ab45f4`.
+
+Проверены 238 карточек, 30 подзадач и отсутствие пересечений их списков; .001–.029 done, .030 planned. Встречная сверка охватила 304 прямых импорта: 204 default, 93 named-import statements с 98 именами и 7 namespace; в новой порции 4 импорта. Все 148 буквальных ссылок на HBS существуют, новой порцией добавлены 5 связей. Для импортов и шаблонов проверены исходящие ссылки, определения экспортов и обратные ссылки уже описанных потребителей.
+
+Проверены 493 Markdown-документа под docs и два корневых документа: 10793 локальные ссылки и якоря разрешаются; таблицы и завершающие пробелы проверены, `git diff --check` прошёл. Изменены 68 документов: 47 существующих и 21 новый (14 карточек, 7 issues); все изменения ограничены docs. Старый журнал сохранён побайтно после добавления новой записи; исходный SHA256 — `20176c3877c9dc9aa0fcc8e5c8e3d04d6fed65cef782f18d62a3a585cc9f5a6a`. Исходники, игровые данные и метаданные доступа не менялись; коммит, сборка и запуск службы не выполнялись.
+
 ## TASK-0003.028
 
 2026-09-11. Выполнена [TASK-0003.028](../../tasks/task-0003.028.md) на `rusbar-main`, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`. На старте рабочее дерево чистое: 1139 отслеживаемых файлов, 219 карточек из 621, 180 potential issues. Перечень пяти файлов и 372 логических строк совпал с планом; записи кода не выполнялись.

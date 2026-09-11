@@ -273,3 +273,9 @@
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: Регистрация ChatMessage:76–80 связывает base/attack/defense/damage с соответствующими моделями. Новый разбор fumble.js проверил точное сравнение constructor с AttackMessageData/DefenseMessageData; остальные классы при options.fumble=true могут дать видимый пункт без действия ([issue-00183](../../../../../issues/potential/issue-00183.md)). ChatMessageData из module/chatMessage/chatMessageData.js — отдельный обычный контейнер параметров, в этом реестре не регистрируется.
 
 Полные карточки зависимости: [module/scripts/rolls/fumble.js](../scripts/rolls/fumble.js.md), [module/chatMessage/chatMessageData.js](../chatMessage/chatMessageData.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Импорт SkillItemData и регистрация CONFIG.Item.dataModels.skill теперь сопоставлены с полной карточкой: 8 полей, без CommonItemData/modifiers/modifiedValue/isVisible. Встроенный Skill Actor и Item type skill — разные модели и пути данных.
+
+Сверенные связи: [module/data/item/skillItemData.js](../../../../../../module/data/item/skillItemData.js); [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

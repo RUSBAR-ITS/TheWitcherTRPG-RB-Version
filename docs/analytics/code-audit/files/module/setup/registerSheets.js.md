@@ -239,3 +239,9 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Подтверждено различие подключения: WitcherCharacterSheet.PARTS.inventory использует новую вкладку Character, WitcherMonsterSheet — короткую новую вкладку Monster с общими таблицами. Старый monster-sheet/monster-inventory-tab присутствует в preload, но отдельного зарегистрированного листа по нему не найдено.
 
 Связанные шаблоны: [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Импорт WitcherSkillItemSheet и Items.registerSheet types=['skill'], makeDefault=true сопоставлены с полной карточкой класса и единственным PARTS.main. Оба текущих ActorSheet используют character/tab-skills; preload старого monster-sheet не означает его регистрации.
+
+Сверенные связи: [module/item/sheets/WitcherSkillItemSheet.js](../../../../../../module/item/sheets/WitcherSkillItemSheet.js); [templates/sheets/item/skill-item-sheet.hbs](../../../../../../templates/sheets/item/skill-item-sheet.hbs); [templates/partials/character/tab-skills.hbs](../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

@@ -116,3 +116,9 @@ L: — метка подменённой локализации в изолир�
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
 Уточнён caller [RepairSystem.prepareRollFormula](../../../../../../../module/item/systems/repair.js): он добавляет фрагмент addActiveEffects('crafting') к 1d10+CRA+crafting. Настоящий метод дал +2[bonus] для allSkills и не добавил закрывающую скобку. Ошибка устаревшей настройки/незакрытой скобки принадлежит caller ([issue-00103](../../../../../../issues/potential/issue-00103.md)). Настоящие RollParser/grammar.pegjs приняли варианты с false и отклонили варианты с true; броски кубов не выполнялись.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Уточнён потребитель addActiveEffects: rollSkillCheck передаёт skillMapEntry.name, а rollCustomSkillCheck — Item.name. Неизвестный Item.name выходит до обработки allSkills; совпадающее встроенное имя адресует его Skill. Item.system.activeEffectModifiers данным helper не читается. Общий язык дополнительно попадает в commonsp/commonspeech рассогласование.
+
+Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [module/data/item/skillItemData.js](../../../../../../../module/data/item/skillItemData.js). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

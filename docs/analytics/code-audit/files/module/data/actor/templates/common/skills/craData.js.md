@@ -82,3 +82,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.002 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полный разбор UI показал, где проявляются прежние несовпадающие label: текущая/старая строка и редактор вызывают localize skill.label; исправлений словарей нет. calc_total_skills использует '(2)' из перевода, а levelUpSkill — отдельный costMultiplier карты; эти источники коэффициента не объединены.
+
+Сверенные связи: [templates/partials/character/skill-display.hbs](../../../../../../../../../../templates/partials/character/skill-display.hbs); [templates/partials/monster/monster-skill-display.hbs](../../../../../../../../../../templates/partials/monster/monster-skill-display.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs); [module/actor/sheets/mixins/skillMixin.js](../../../../../../../../../../module/actor/sheets/mixins/skillMixin.js); [module/actor/mixins/skillMixin.js](../../../../../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

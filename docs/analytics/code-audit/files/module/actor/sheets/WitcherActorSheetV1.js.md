@@ -129,3 +129,9 @@ context.system — сериализованная копия actor.toObject(fals
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: _onCritRoll:230–233 использует ChatMessageData(this.actor) и непосредственно Roll('1d10x10').toMessage. Новый полный разбор ChatMessageData подтвердил: flavor здесь undefined, но append/extendedRoll не вызываются, поэтому наблюдение undefinedsuffix из изолированного append к этому пути не переносится. Правильный объект Actor передаётся в getSpeaker; класс ChatMessageData — обычный контейнер, не схема message.system.
 
 Полные карточки зависимости: [module/chatMessage/chatMessageData.js](../../chatMessage/chatMessageData.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полные карточки skillMixin/customSkillMixin уточняют старые события и итог навыков. V1 _prepareCustomSkills аналогично передаёт Items; monster-custom-skill-display согласован с itemId/броском/remove/open, но не содержит CRUD массива modifiers. Регистрация V1 активным листом по-прежнему не установлена.
+
+Сверенные связи: [module/actor/sheets/mixins/skillMixin.js](../../../../../../../module/actor/sheets/mixins/skillMixin.js); [module/actor/sheets/mixins/customSkillMixin.js](../../../../../../../module/actor/sheets/mixins/customSkillMixin.js); [templates/partials/monster/monster-custom-skill-display.hbs](../../../../../../../templates/partials/monster/monster-custom-skill-display.hbs). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

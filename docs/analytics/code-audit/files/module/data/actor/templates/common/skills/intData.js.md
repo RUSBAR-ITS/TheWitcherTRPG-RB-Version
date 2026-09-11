@@ -88,3 +88,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.002 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Уточнены три потребителя commonsp/commonspeech: rollSkill('commonspeech') находит entry.name=commonsp, но addActiveEffects(commonsp) теряет добавку; levelUpSkill ломается для обоих написаний в разных местах; _getSkills конфигурации не находит одно isVisible-поле, поэтому formGroup выводит 51 вместо 52 строк.
+
+Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../../../../module/actor/mixins/skillMixin.js); [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../../../../../../../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

@@ -492,3 +492,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: meleeSkills:136 и rangedSkills:137 проверены до всех потребителей fumble.js. Ближняя атака включает brawling/melee/smallblades/staffspear/swordsmanship; дальняя — athletics/archery/crossbow. Spell определяется отдельно attack.attackOption и перекрывает предыдущий выбор; защита использует meleeSkills, остальные защиты идут в безоружную ветвь. Исполнены все значения этих двух массивов и граничная матрица таблиц; расхождения диапазонов относятся к fumble.js ([issue-00181](../../../../../issues/potential/issue-00181.md)), не к содержимому списков.
 
 Полные карточки зависимости: [module/scripts/rolls/fumble.js](../scripts/rolls/fumble.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. skillMap даёт 52 ключа и costMultiplier; magicSkills ограничен spellcast/ritcraft/hexweave. ItemSheet фильтрует statMap.originstat и получает 9 атрибутов, тогда как текущий список навыков Actor группируется по семи system.skills. Для rollCustomSkillCheck Item.name не становится автоматически ключом skillMap.
+
+Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js); [module/item/sheets/WitcherSkillItemSheet.js](../../../../../../module/item/sheets/WitcherSkillItemSheet.js); [templates/partials/character/tab-skills.hbs](../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

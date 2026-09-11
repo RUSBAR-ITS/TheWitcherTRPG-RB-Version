@@ -161,3 +161,9 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. calcCurrencyWeight прослежен до индикатора инвентаря через Actor.getTotalWeight. Семь валют вводятся через name=system.currency.*; 1001 монета дала 1.001 до общего округления вверх. HBS не выполняет этот расчёт; английские Carry/Max Carry отражены в issue-00179.
 
 Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. system.skills содержит семь групп встроенных моделей, а Item-навыки готовятся отдельно по девяти originstat. Это различие приводит к пропуску spd/luck в общем HBS. Наследование общих skills не добавляет монстру Character IP/logs/magic, необходимых levelUpSkill.
+
+Сверенные связи: [templates/partials/character/tab-skills.hbs](../../../../../../../templates/partials/character/tab-skills.hbs); [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [module/data/item/skillItemData.js](../../../../../../../module/data/item/skillItemData.js). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

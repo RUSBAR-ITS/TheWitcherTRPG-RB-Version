@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.028 подготовлены и сверены 224 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.029 подготовлены и сверены 238 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -367,3 +367,22 @@
 | module/scripts/rolls/fumble.js | [Описание](module/scripts/rolls/fumble.js.md) |
 | module/scripts/helper.js | [Описание](module/scripts/helper.js.md) |
 | module/chatMessage/chatMessageData.js | [Описание](module/chatMessage/chatMessageData.js.md) |
+
+## Навыки: броски, развитие и пользовательские навыки — TASK-0003.029
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/skillItemData.js | [Описание](module/data/item/skillItemData.js.md) |
+| module/item/sheets/WitcherSkillItemSheet.js | [Описание](module/item/sheets/WitcherSkillItemSheet.js.md) |
+| module/actor/mixins/skillMixin.js | [Описание](module/actor/mixins/skillMixin.js.md) |
+| module/actor/sheets/mixins/skillMixin.js | [Описание](module/actor/sheets/mixins/skillMixin.js.md) |
+| module/actor/sheets/mixins/customSkillMixin.js | [Описание](module/actor/sheets/mixins/customSkillMixin.js.md) |
+| templates/sheets/item/skill-item-sheet.hbs | [Описание](templates/sheets/item/skill-item-sheet.hbs.md) |
+| templates/partials/character/tab-skills.hbs | [Описание](templates/partials/character/tab-skills.hbs.md) |
+| templates/partials/character/skill-display.hbs | [Описание](templates/partials/character/skill-display.hbs.md) |
+| templates/partials/character/custom-skill-display.hbs | [Описание](templates/partials/character/custom-skill-display.hbs.md) |
+| templates/partials/monster/monster-skill-tab.hbs | [Описание](templates/partials/monster/monster-skill-tab.hbs.md) |
+| templates/partials/monster/monster-skill-display.hbs | [Описание](templates/partials/monster/monster-skill-display.hbs.md) |
+| templates/partials/monster/monster-custom-skill-display.hbs | [Описание](templates/partials/monster/monster-custom-skill-display.hbs.md) |
+| templates/sheets/actor/configuration/partials/skillConfiguration.hbs | [Описание](templates/sheets/actor/configuration/partials/skillConfiguration.hbs.md) |
+| templates/sheets/actor/configuration/app/edit-skills.hbs | [Описание](templates/sheets/actor/configuration/app/edit-skills.hbs.md) |

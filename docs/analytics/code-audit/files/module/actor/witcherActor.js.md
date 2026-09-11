@@ -311,3 +311,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getLocationObject:308/346 использует getRandomInt(10). Полный helper подтвердил Math.floor(Math.random()*max)+1, отдельно от Foundry Roll. Управляемые значения Math.random=0 и 1−EPSILON дали границы 1 и 10; распределение случайности и все варианты локаций повторно не проверялись.
 
 Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полностью разобрана подключённая actor/skillMixin: пять методов, четыре прямых импорта, построение встроенного/Item-броска, социальная добавка и развитие. rollSkillCheck использует подготовленные system.stats и отдельные addActiveEffects/addSocialStanding; EC здесь вычитается только из трёх магических навыков. levelUpSkill фактически требует модель персонажа.
+
+Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js); [module/actor/sheets/mixins/skillMixin.js](../../../../../../module/actor/sheets/mixins/skillMixin.js); [module/actor/sheets/mixins/customSkillMixin.js](../../../../../../module/actor/sheets/mixins/customSkillMixin.js). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.

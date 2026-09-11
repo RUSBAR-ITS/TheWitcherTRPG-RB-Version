@@ -119,3 +119,9 @@ defineSchema собирает определения; значения созд�
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Полный общий _prepareContext V2 присваивает context.system=actor.system; V1 getData берёт actor.toObject(false).system. Пустая настоящая CharacterData проходит оба потока с фасадом Actor; temporaryHpSum добавляется в подготовленную модель только у V2, source не меняется. Преобразование lifeEvents в массив находится в дочернем CharacterSheet, а V2 handler затем ожидает find по key (issue-00024).
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.029
+
+2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Развитие навыка использует improvementPoints, magic.magicImprovementPoints и logs. Реальный levelUpSkill/Log подтвердил конкурирующие payload магического баланса и отсутствие проверки достаточности обычных IP. tab-skills выводит четыре skillTraining и итоги, подготовленные CharacterSheet.
+
+Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [templates/partials/character/tab-skills.hbs](../../../../../../../templates/partials/character/tab-skills.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
