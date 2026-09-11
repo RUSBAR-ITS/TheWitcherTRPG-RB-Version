@@ -1,5 +1,107 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.025
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `a2670a0a10c62b28d836b1a57577c4836f14cf20`. На старте рабочее дерево чистое; отслеживаются 1106 файлов. Исходники сверяются со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.
+
+### Объём и результат
+
+По [TASK-0003.025](../../tasks/task-0003.025.md) полностью разобраны два JS-файла, 625 логических строк. Созданы две карточки, уточнены 13 связанных. Покрытие — 205 из 621; не разобраны 416. В третьей серии выполнены 37 из 79, в очереди 42; ещё 374 требуют детализации. Следующая порция — [TASK-0003.026](../../tasks/task-0003.026.md), выполнение не начато.
+
+| Файл | Карточка | Логических строк |
+| --- | --- | --- |
+| [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js) | [Описание](files/module/actor/sheets/WitcherActorSheet.js.md) | 323 |
+| [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js) | [Описание](files/module/actor/sheets/WitcherActorSheetV1.js.md) | 302 |
+
+### Методика и пределы
+
+Оба файла прочитаны целиком: собственные методы, поля, Array.prototype, Object.assign, порядок подготовки, события и внешние определения. Прослежены регистрации, два наследника V2 и отдельные Loot/Mystery, актуальные PARTS и контекст HBS. Все 11 объектов примесей проверены по export и точкам listener; полное покрытие ещё не разобранных примесей не добавлялось.
+
+Изолированные сценарии запускались через `node --input-type=module` со stdin, без создания тестовых файлов. Исполнялись собственные тела классов: строки import/экспорт заменены для помещения в минимальное окружение, внешние базовые классы заменены фасадами. Реальные модели Foundry и системы импортированы из checkout, реальные getList/getTotalWeight и core Actor.allApplicableEffects извлечены из исходников; ChatMessageData импортирован. Примеси извлечены как объекты; skillMixin для отдельной проверки импортирован настоящим ES module. Game/Actor/коллекции/DOM/$/TextEditor/Roll/DialogV2/update/toMessage представлены явно заданными фасадами; ни одна игровая запись не выполнялась. Ранняя ошибка синтаксиса фасада, форма documentTypes и отсутствовавшие TYPES/_onSkillDisplay исправлены только во входном сценарии; затем все 17 групп прошли. Код системы не менялся.
+
+Версии: Foundry VTT 14.367.0 из /opt/foundryvtt/package.json, Node 24.16.0. Foundry API просмотрен локально: ActorSheetV2._onRender/_canDragDrop, V1 ActorSheet.getData, Actor.allApplicableEffects/rollInitiative, DocumentSheetV2._onRender. Наличие доступа к коду не подтверждает работу HTTP/службы. Мир, браузер, настоящие записи, полный combat, внешние модули и частичный рендер не запускались. Отмена prompt словесного боя проверена только статически до rejectClose=true; сам общий handler лишь делегирует и не ждёт Promise.
+
+### Изолированные проверки
+
+| Группа | Сценарий | Фактический результат |
+| --- | --- | --- |
+| 01 | Класс, поля, опции, Object.assign | 11 примесей V2, 10 V1 без currency; имена не пересекаются. statMap/skillMap ссылаются на CONFIG. |
+| 02 | Пустые Character/Monster и оба API | Списки и суммы пусты/0; у V2 system совпадает с моделью, у V1 — отдельная копия. Только V2 имеет criticalWounds. |
+| 03 | isStored/isHidden/isCarried, sort, вес/стоимость | stored исключён; hidden остаётся. Не carried входит в цену, но не вес. Цена 10, вес 2; actor.items не переставлен. |
+| 04 | Array.sum/cost | Пустой массив→0; строковые числа преобразуются; дробная цена округляется по итогу. Нечисловое значение→NaN; нет system→TypeError; оба свойства enumerable. |
+| 05 | Собственные навыки | int-группа сохраняет исходный порядок, не sort. Пустой и неизвестный attribute не попадают в группы. spd создаёт группу, но основной HBS перебирает семь system.skills. |
+| 06 | Магия | 20 сочетаний четырёх level/пяти class; по 3 novice/journeyman/master, 4 MagicalGift. stored исключён, hex/ritual выделены. |
+| 07 | Оружие, броня, улучшения, контейнеры | weapon/armor и unapplied enhancement с соответствующим type; rune/glyph отдельно, applied исключён, контейнер найден. |
+| 08 | Слоты оружия и воздействия | Реальные WeaponData/EnhancementData/DamageProperties: 2 улучшения и эффекта до подготовки, 1 после при enhancements=1. Source и 2 ID сохранены. Пустые 2 слота и повтор проверены. |
+| 09 | Броня V1/V2 | V1 создаёт [{},{}], V2 не меняет enhancementItems. Это различие собственных методов, не вывод о подключении V1. |
+| 10 | Обогащение травм | Реальные CriticalWoundData/createEnrichedText: value/enriched/systemField по UUID; отказ enrich отклоняет подготовку V2. V1 обогащение не вызывает. |
+| 11 | Категории ActiveEffect | Реальный core allApplicableEffects и категории: один e при transfer+isTransferred даёт [e,e]. Комбинации transfer/stored и disabled проверены. |
+| 12 | События жизни | Оба настоящих handler для key=10 сформировали isOpened=true. V2 ожидает массив с key и падает на неизвестном key; V1 читает объект. Преобразование массива задано отдельно, полный CharacterSheet не запускался. |
+| 13 | STA | При 9/10, REC=3 передаётся 12; Full Recovery→10; при >=max — уведомление без записи. Callback завершён при pending update. Реальная модель принимает 12 при max=10. |
+| 14 | Инициатива, критический бросок, словесный бой, конфигурация | Переданы createCombatants/rerollInitiative=true, формула 1d10x10, evaluate({async:true}), ChatMessageData(type=base,speaker.actor=a). Вложенные операции/диалог не ожидаются. Отсутствие configuration безопасно. |
+| 15 | DOM-контракт | V2 передаёт DOM, V1 html[0]. Семь общих привязок: шесть click и focusin; 11/10 входов примесей, super render/listeners и select проверены. Сами внешние listeners в этой группе перехвачены. |
+| 16 | Реальный ES module skillMixin | skillListener заменил глобальный jQuery объектом, после чего jQuery(el) дал TypeError. $ и DOM подменены; это не выполненный сценарий реального browser. |
+| 17 | temporaryHpSum и повтор | 2+3→5; в V2 сумма на подготовленной модели, в V1 только на копии. Повтор даёт 5, source обоих вариантов неизменен. |
+
+### Отличия V2 и V1
+
+| Свойство | WitcherActorSheet V2 | WitcherActorSheetV1 |
+| --- | --- | --- |
+| Подключение | Character/Monster через extends и registerSheets | Импорт/наследник/регистрация не найдены |
+| Основной контекст | async _prepareContext, await шести _prepare* | Синхронный getData и синхронные _prepare* |
+| system | Ссылка actor.system; systemFields | Копия actor.toObject(false).system; без systemFields |
+| Item и notes | Живые ссылки | Тоже живые ссылки, несмотря на копию system |
+| Травмы | Promise.all enrichedText, словарь description по UUID | Обогащения нет |
+| Броня | Фильтр без padding | Фильтр и padding enhancementItems |
+| События жизни | find по key в массиве от CharacterSheet | Индексирование объекта по dataset.event |
+| Listeners | DOM; 11 примесей, включая валюту; _onRender ждёт super | jQuery; 10 примесей получают html[0]; super.activateListeners |
+| Array | Определяет enumerable sum/cost при загрузке | Только использует cost; не импортирует определение |
+| Drop | Внешний V2 _canDragDrop=isEditable; itemMixin._onDropItem дополнительно проверяет owner | Override _canDragStart/_canDragDrop всегда true; itemMixin проверяет owner |
+
+### Промежуточная сверка TASK-0003.021–TASK-0003.025
+
+Сопоставлены полные перечни 37 файлов пяти порций, карточки и реестр. Прежние 168 карточек — отдельное непересекающееся множество, вместе ровно 205. Для всех 37 повторно прочитаны определения экспортов и наличие соответствующего описания; для всех 205 проверяются направления прямых imports и literal HBS. Содержательно сопоставлены следующие границы:
+
+| Порция | Файлов | Связь | Результат и предел |
+| --- | --- | --- | --- |
+| .021 | 13 | Магические Item → листы/конфигурация → Actor.getList → общий контекст | SpellData.class/level и type hex/ritual сверены с _prepareSpells; description/enriched не создаёт числовых эффектов. Общие Item/attack/defense и прежние карточки не пересчитаны как новые. |
+| .022 | 5 | Магия → регионы → события → Actor/Token | Региональный pipeline остаётся отдельным от подготовки списка заклинаний. Полные карточки .022 и связи с .021 проверены; их прежние воспроизведения сохранены, регионы заново не создавались. |
+| .023 | 14 | Расследование → отдельный MysterySheet → Item clue/obstacle → rollSkill | MysterySheet не наследует общий WitcherActorSheet. Наличие общего WitcherActor не означает одинаковый UI/контекст; карточки и регистрация типов сопоставлены. |
+| .024 | 3 | Container.content/isStored → CommonItem.calcWeight → Actor → лист | Основной список листа исключает stored; вес использует общий расчёт, стоимость — свой список. Ссылки на исходный Item и потеря вложенного веса остаются выводами .024, не устранены контекстом. |
+| .025 | 2 | CommonActor/Item/ActiveEffect → общий V2 → Character/Monster | Обогащение травм, группы effects, живые system/Item, padding оружия, DOM-примеси; V1 без потребителя. Полные соседние Character/Monster/Loot и новые примеси ещё не засчитаны. |
+
+Это промежуточная сверка документации и выбранных процессов; она не объявляет заново исполненными все сценарии .021–.024. Содержательные результаты прежних порций сохранены в их записях ниже. Уже назначенные .026–.030 остаются planned, новые задачи не создавались. Неизвестные полного разбора: Character/Monster/Loot, itemMixin/contextMenu, stat/skill/customSkill/note/currency и потребители чата — по дальнейшему согласованному плану.
+
+### Уточнённые карточки и проблемы
+
+| Карточка | Область сверки |
+| --- | --- |
+| [module/setup/registerSheets.js](files/module/setup/registerSheets.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/setup/handlebars.js](files/module/setup/handlebars.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/actor/sheets/mixins/activeEffectMixin.js](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/actor/sheets/mixins/criticalWoundMixin.js](files/module/actor/sheets/mixins/criticalWoundMixin.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/actor/sheets/mixins/healMixin.js](files/module/actor/sheets/mixins/healMixin.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/data/item/weaponData.js](files/module/data/item/weaponData.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/data/item/armorData.js](files/module/data/item/armorData.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/data/item/criticalWoundData.js](files/module/data/item/criticalWoundData.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/data/actor/monsterData.js](files/module/data/actor/monsterData.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [templates/sheets/actor/partials/character/tab-effects.hbs](files/templates/sheets/actor/partials/character/tab-effects.hbs.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+| [module/activeEffect/witcherActiveEffect.js](files/module/activeEffect/witcherActiveEffect.js.md) | Встречные связи общего листа; уточнение TASK-0003.025 |
+
+Новые [issue-00164](../../issues/potential/issue-00164.md) — Восстановление STA за действие может превысить максимум; [issue-00165](../../issues/potential/issue-00165.md) — Список эффектов листа дублирует перенесённое временное улучшение; [issue-00166](../../issues/potential/issue-00166.md) — Подготовка листа оружия обрезает установленные улучшения и их воздействия; [issue-00167](../../issues/potential/issue-00167.md) — Обработчик навыков заменяет глобальную функцию jQuery объектом. Все остаются potential. Дополнены [issue-00024](../../issues/potential/issue-00024.md), [issue-00054](../../issues/potential/issue-00054.md), [issue-00084](../../issues/potential/issue-00084.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00127](../../issues/potential/issue-00127.md). Регистрация входит в пункт 9 TASK-0003; подтверждение пользователем и исправления отсутствуют.
+
+### Формальная проверка и сохранность
+
+Python-сверка прошла: 621 путь реестра совпадает с Git и фактическим деревом после согласованных исключений. Все 621 исходник побайтово совпадают с HEAD и срезом TASK-0001; SHA-256 набора `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4` сохранён. Для 1106 отслеживаемых файлов сохранены mode/uid/gid/inode; хеш метаданных `3b0cd5df2f149e2f2bb3c52b7b9dd6ceb5b4e6d5bb502c974c9755b02a3991da` не изменился.
+
+Проверены 205 карточек и 416 строк «Не начат», 30 подзадач (.001–.025 done, .026–.030 planned), родитель in-progress и заготовки TASK-0004/TASK-0005. По третьей серии: 37 проверены, 42 в очереди, 374 не распределены. 167 issues имеют непрерывные ID и остаются в potential.
+
+Сверены 294 прямые import-связи, включая 23 у новых файлов: 200 default, 87 именованных import-выражений с 92 именами, 7 namespace. Проверены существование экспортов и встречные записи уже описанных потребителей. Сохранены 121 literal HBS-связь; у двух общих классов собственных путей HBS нет. Определения и зависимости в карточках проверялись отдельно от поведения.
+
+Проверены 434 Markdown-документа внутри docs и два корневых: 9183 локальные ссылки, якоря, колонки изменённых таблиц, завершающие пробелы и git diff --check — без ошибок. Изменены ровно 35 согласованных документов: 29 существующих и 6 новых (2 карточки и 4 issues). Прежний хвост журнала и разделы планирования сохранены побайтово. Коммит, сборка, исправления исходников, изменение службы/БД и метаданных доступа не выполнялись.
+
 ## TASK-0003.024
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `66cd03705dbc398eba0026284a298b5fbe337035`. На старте рабочее дерево чистое, отслеживаются 1095 файлов. Код сверяется со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.

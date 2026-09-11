@@ -126,3 +126,9 @@
 | CriticalWoundData / Item.effects | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Модель не генерирует changes из treatment/lesserEffect. Обычные transfer-эффекты принадлежащих Item перечисляет Foundry Actor.allApplicableEffects; лечение заменяет сами Item. isSuppressed проверяет имеющиеся флаги system, отсутствие equipped само по себе не подавляет обычный эффект травмы. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. isAppliedTemporaryItemImprovement возвращает system.isTransferred без проверки transfer; prepareActiveEffectCategories общих V2/V1 читает isDisabled, isTemporaryItemImprovement и isTemporary. Сочетание transfer=true/isTransferred=true позволяет включить один Item effect через два потока контекста (issue-00165). isSuppressed не участвует в этом дополнительном отборе, но влияет на отдельный pipeline применения; отображение и действие не смешиваются.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

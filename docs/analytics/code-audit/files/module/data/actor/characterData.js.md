@@ -113,3 +113,9 @@ defineSchema собирает определения; значения созд�
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. 19 собственных определений Actor и порядок подключения примесей сопоставлены с CharacterData. Расчёты проверены с настоящей моделью; схемы/биография/журналы не стали частью документа Actor. Унаследованный addItem ожидает update/create, removeItemsOfType — нет (issue-00034).
 
 Карточки: [WitcherActor](../../actor/witcherActor.js.md), [modifierMixin](../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Полный общий _prepareContext V2 присваивает context.system=actor.system; V1 getData берёт actor.toObject(false).system. Пустая настоящая CharacterData проходит оба потока с фасадом Actor; temporaryHpSum добавляется в подготовленную модель только у V2, source не меняется. Преобразование lifeEvents в массив находится в дочернем CharacterSheet, а V2 handler затем ожидает find по key (issue-00024).
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

@@ -101,3 +101,9 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `b09f992960a76d1c75946f402e42d93fa0785008`; полный файл | Первая карточка; [сверка порции и второй серии](../../../../review-log.md#task-0003020) |
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. В реальном _prepareItems общего V2 await Promise.all вызывает system.enrichedText у всех document.itemTypes.criticalWound, затем context.criticalWounds[uuid]=description. Проверены value/enriched/systemField и распространение отказа enrich. V1 этого шага не имеет; его getData не используется текущими Character/Monster. Обогащение не изменяет source и не создаёт эффекты/changes.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

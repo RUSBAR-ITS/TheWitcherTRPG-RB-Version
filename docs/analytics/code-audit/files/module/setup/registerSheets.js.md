@@ -227,3 +227,9 @@
 Связанные карточки: [module/item/sheets/WitcherContainerSheet.js](../item/sheets/WitcherContainerSheet.js.md), [templates/sheets/item/container-sheet.hbs](../../templates/sheets/item/container-sheet.hbs.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Регистрация подтверждает только двух наследников общего V2: WitcherCharacterSheet и WitcherMonsterSheet. Общие классы напрямую не регистрируются; у WitcherActorSheetV1 не найдены imports/наследники. Loot и Mystery имеют отдельное наследование от ActorSheetV2. Наличие старого monster-sheet.hbs не доказывает использование V1.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

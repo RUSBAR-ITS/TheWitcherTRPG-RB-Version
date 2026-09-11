@@ -78,3 +78,9 @@ create передаёт name=DOCUMENT.New, legacy icon='icons/svg/aura.svg', ori
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.010 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Полностью разобраны оба caller: WitcherActorSheet._prepareContext и WitcherActorSheetV1.getData. Они concat allApplicableEffects() с effects не помещённых в контейнер Item, имеющими isAppliedTemporaryItemImprovement. Реальные core generator и prepareActiveEffectCategories вернули [e,e] для одного документа с transfer=true/isTransferred=true. Это issue-00165 об отображении, не доказательство двойного числового применения. В activeEffectListener поступает DOM: V2 html напрямую, V1 html[0].
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

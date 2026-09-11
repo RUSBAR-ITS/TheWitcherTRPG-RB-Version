@@ -287,3 +287,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 Связанные карточки: [module/data/item/containerData.js](../data/item/containerData.js.md), [module/item/sheets/WitcherContainerSheet.js](../item/sheets/WitcherContainerSheet.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Настоящие getList и getTotalWeight использованы в проверке общего контекста. getList исключает isStored и сортирует; общий лист отдельно фильтрует items, сохраняя живые Item. totalWeight использует calcWeight всех Item и валюту, totalCost — только не помещённых в контейнер items без валюты. V2 передаёт system ссылкой, V1 копирует toObject(false). _onInitRoll/_onVerbalCombat не возвращают Promise Actor; общие действия не означают завершённую запись. _prepareArmor листа не собирает statusEffect и не исправляет issue-00084.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

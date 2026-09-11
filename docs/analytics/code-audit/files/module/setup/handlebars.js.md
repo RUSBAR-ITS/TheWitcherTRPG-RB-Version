@@ -297,3 +297,9 @@ spell-header действительно предзагружается и вкл
 Связанные карточки: [templates/sheets/investigation/mystery-sheet.hbs](../../templates/sheets/investigation/mystery-sheet.hbs.md), [templates/sheets/investigation/partials/clue-display.hbs](../../templates/sheets/investigation/partials/clue-display.hbs.md), [templates/sheets/investigation/partials/obstacle-display.hbs](../../templates/sheets/investigation/partials/obstacle-display.hbs.md), [templates/sheets/investigation/clue-sheet.hbs](../../templates/sheets/investigation/clue-sheet.hbs.md), [templates/sheets/investigation/obstacle-sheet.hbs](../../templates/sheets/investigation/obstacle-sheet.hbs.md), [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../templates/dialog/investigation/chooseEvidenceSkill.hbs.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. getOwnedComponentCount зависит от Array.prototype.sum, определённого при загрузке WitcherActorSheet.js, хотя helper-файл его не импортирует. Полная сверка двух листов установила также Array.prototype.cost: Number(quantity)*Number(cost), Math.ceil итога. Оба свойства enumerable; неизвестная dice-строка даёт NaN, отсутствие system — TypeError. Это побочный эффект загрузки модуля, не helper Handlebars. Зависимость V1 от cost не обеспечена собственным импортом.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

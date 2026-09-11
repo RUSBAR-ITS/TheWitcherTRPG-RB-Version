@@ -92,3 +92,9 @@ PARTS.effects в WitcherCharacterSheet и WitcherMonsterSheet используе
 | Inline daysHealed | [module/actor/sheets/mixins/itemMixin.js](../../../../../../../../../module/actor/sheets/mixins/itemMixin.js) | Передаётся строка; NumberField модели очищает её числом. В текущем _onTreat нет чтения inline-счётчика напрямую. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Прослежен producer criticalWounds: общий V2 собирает объект description={value,enriched,systemField} по critWound.uuid и ждёт все enrich. lookup (...,'enriched') соответствует producer. V1 такого контекста не создаёт и текущий шаблон не использует. Перебор actual Item по document.items.documentsByType остаётся отдельным от словаря; это не устраняет двойной список issue-00054. Категории effects также могут повторить один документ (issue-00165).
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

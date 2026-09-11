@@ -123,3 +123,9 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
 Уточнён [RepairSystem](../../../../../../../module/item/systems/repair.js) как потребитель system.repair. Прямой вызов настоящей модели через restoreReliability дал payload reliability8 и stoppingPower шести зон: head6,torso7,остальные 0; ожидание update не передаётся наружу. _doRepair при праве update ссылается на отсутствующий собственный getRestoreReliabilityData, а не на ArmorData.repair. Структура текущей модели не создаёт data.damagedLocations автоматически ([issue-00102](../../../../../../issues/potential/issue-00102.md)). Числа — входы диагностического сценария, не изменения правил.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. В V2 _prepareArmor только фильтрует armor и unapplied enhancement(type=armor). Свободные слоты приходят из ArmorData.freeEnhancements. V1 дополнительно переписывает enhancementItems по enhancements; его код не зарегистрирован. Обоим листам передаются живые Item, даже когда V1 копирует actor.system. _prepareArmor листов не исправляет разрыв словаря effects в Actor.prepareDerivedData (issue-00084).
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

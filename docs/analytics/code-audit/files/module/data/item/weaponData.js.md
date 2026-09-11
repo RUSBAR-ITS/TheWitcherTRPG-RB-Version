@@ -120,3 +120,9 @@ repair посылает update родительскому документу, н
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
 Полностью разобран [ремонт](../../../../../../../module/item/systems/repair.js). RepairData.enchantsCount считает все truthy enhancementItemIds, включая повтор одного ID: [a,'',a] дал 2 и добавил 4 к DC. Рецепт DC20 дал итог 19. Прямые gmRepair/restoreReliability вызывают WeaponData.repair→parent.update({'system.reliable':10}); update в опыте оставался pending. Обычный путь не использует этот метод в ветке update: там отсутствуют damagedLocations/getRestoreReliabilityData ([issue-00102](../../../../../../issues/potential/issue-00102.md)). Прежняя [issue-00081](../../../../../../issues/potential/issue-00081.md) дополнена всеми уровнями ожидания.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. _prepareWeapons обоих общих листов изменяет подготовленное enhancementItems, которое создал WeaponData.prepareDerivedData. С настоящей моделью при enhancements=1 и двух ID получены два эффекта до листа и один после него; ID и source не меняются. Getter DamageProperties.enhancementsEffects читает этот же список. Наблюдение зарегистрировано как issue-00166. Два свободных слота заполняются [{},{}]; V2 применяет такую подготовку к живым Item контекста.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

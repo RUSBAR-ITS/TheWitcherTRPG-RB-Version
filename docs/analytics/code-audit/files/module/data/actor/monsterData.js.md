@@ -153,3 +153,9 @@ prepareBaseData, calcCurrencyWeight и три метода миграции на
 Для statusEffectImmunities установлен ещё один полный потребитель — [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../../module/scripts/statusEffects/applyStatusEffect.js). После включения статуса код вызывает необязательный statuscounter, затем при найденном иммунитете планирует повторный toggle через 1000 ms. Ошибка querySelector в интеграции не позволяет дойти до таймера (уточнение issue-00003). Это отдельный метод от WitcherActor.applyStatus с ранее описанной issue-00031; переменная statusEffectId в рассматриваемой функции определена. Настоящие межклиентские таймеры не запускались.
 
 [Журнал сверки](../../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Пустая настоящая MonsterData проходит общий _prepareContext V2. Она не требует general.lifeEvents для простого контекста; обработчик lifeEvents не вызывается её текущим header. WitcherMonsterSheet добавляет profession/lore/loot отдельно, конфигурацию открывает общий _renderConfigureDialog. V1 не найден в регистрации. По подготовке HP/списков применимы те же ссылки живой модели, что у Character.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

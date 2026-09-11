@@ -91,3 +91,9 @@ const DialogV2 захватывается при импорте. Named export he
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `b09f992960a76d1c75946f402e42d93fa0785008`; полный файл | Первая карточка; [сверка порции и второй серии](../../../../../review-log.md#task-0003020) |
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Оба общих класса подключают healMixin; healListeners получает DOM и через $ связывает .heal-button с _onHeal. Отдельная .recover-sta вызывает собственный _onRecoverSta общего листа, а не recoverActor: у неё два callback без ожидания update. При 9/10 и REC=3 передаётся 12 (issue-00164); раннее завершение дополняет issue-00127. Открытие модального окна не означает завершение отдыха.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

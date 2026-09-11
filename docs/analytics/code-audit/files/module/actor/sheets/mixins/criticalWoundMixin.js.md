@@ -81,3 +81,9 @@ Named export criticalWoundMixin присоединяется Object.assign к Wi
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `b09f992960a76d1c75946f402e42d93fa0785008`; полный файл | Первая карточка; [сверка порции и второй серии](../../../../../review-log.md#task-0003020) |
+
+## Уточнение TASK-0003.025
+
+2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Оба общих листа копируют criticalWoundMixin через Object.assign и вызывают criticalWoundListener с DOM. Селекторы — .add-crit, .delete-crit и data-action=treatCriticalWound. V2 заранее ждёт enrichedText каждой травмы и кладёт description по UUID в context.criticalWounds; сами Item не преобразуются. Дубли строк tab-effects остаются issue-00054; этот поток лишь даёт обогащённое описание.
+
+Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.

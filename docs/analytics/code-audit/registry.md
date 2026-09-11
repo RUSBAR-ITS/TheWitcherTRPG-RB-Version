@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.024 проверены описания **203 файлов**, для **418 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.025 проверены описания **205 файлов**, для **416 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.024](review-log.md#task-0003024) выполнена на `66cd03705dbc398eba0026284a298b5fbe337035`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.025](review-log.md#task-0003025) выполнена на `a2670a0a10c62b28d836b1a57577c4836f14cf20`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -44,8 +44,8 @@
 | [module/actor/mixins/verbalCombatMixin.js](../../../module/actor/mixins/verbalCombatMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/weaponAttackMixin.js](../../../module/actor/mixins/weaponAttackMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js) | Общий лист Actor V2: контекст персонажа/монстра, 11 примесей, общие действия и глобальные Array.sum/cost. | [Карточка](files/module/actor/sheets/WitcherActorSheet.js.md) | Проверено |
+| [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js) | Не подключённый общий лист Actor V1: синхронный getData, 10 примесей, обработчики и отличия подготовки от V2. | [Карточка](files/module/actor/sheets/WitcherActorSheetV1.js.md) | Проверено |
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js) | Не установлено | Не подготовлено | Не начат |
