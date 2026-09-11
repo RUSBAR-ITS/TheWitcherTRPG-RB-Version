@@ -103,3 +103,13 @@ WitcherSpellConfigurationSheet сохраняет PARTS/TABS/обработчи�
 Сверенные карточки: [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](WitcherSpellConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
 
 [Результаты и пределы сверки](../../../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.022
+
+2026-09-11, `ef8117ba6e5a184989e65761d47a068381056e4a`; исходник не изменён.
+
+Наличие system.regionProperties обеспечивает вкладку, но PART всё ещё зависит от старого system.createTemplate. Полная региональная модель не вводит ни этот верхний ключ, ни createRegionFromTemplate. Адресация query и запись макросов находятся за границей конфигурации; проблемы 74/75 отделены от ошибок выполнения.
+
+Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../../data/item/templates/regions/templatePropertiesData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](../../../data/item/templates/regions/regionPropertiesData.js.md).
+
+[Результаты и пределы сверки](../../../../../review-log.md#task-0003022).

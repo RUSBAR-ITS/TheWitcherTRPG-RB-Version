@@ -157,3 +157,13 @@
 | [issue-00135](potential/issue-00135.md) | Сообщение ритуала выводит альтернативные компоненты как объекты | `potential` |
 | [issue-00136](potential/issue-00136.md) | Изображения порчи и ритуала не привязаны к действию editImage | `potential` |
 | [issue-00137](potential/issue-00137.md) | Часть подписей магии использует несовпадающие или отсутствующие ключи локализации | `potential` |
+| [issue-00138](potential/issue-00138.md) | Обычное размещение области передаёт Promise в Promise.all | `potential` |
+| [issue-00139](potential/issue-00139.md) | Параметры применения магии теряются при записи options региона | `potential` |
+| [issue-00140](potential/issue-00140.md) | Фильтр эманации сравнивает объект Scene со строковым ID | `potential` |
+| [issue-00141](potential/issue-00141.md) | Размер эманации зависит от масштаба сетки просматриваемой сцены | `potential` |
+| [issue-00142](potential/issue-00142.md) | Асинхронные операции регионов завершаются до создания и записей | `potential` |
+| [issue-00143](potential/issue-00143.md) | Отмена создания эманации приводит к обращению к отсутствующему региону | `potential` |
+| [issue-00144](potential/issue-00144.md) | Отсчёт и удаление регионов используют текущую сцену вместо связанной | `potential` |
+| [issue-00145](potential/issue-00145.md) | Отсчёт регионов падает при отсутствии участника, Actor или активной сцены | `potential` |
+| [issue-00146](potential/issue-00146.md) | Регион без числовой длительности считается истёкшим при отсчёте | `potential` |
+| [issue-00147](potential/issue-00147.md) | Подпись tokenMoveWithin обещает исполнение макроса до движения | `potential` |

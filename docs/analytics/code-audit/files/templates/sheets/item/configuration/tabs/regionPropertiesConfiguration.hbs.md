@@ -78,3 +78,13 @@ JS-функций нет. Пять безусловных formGroup(localize=tru
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.013 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.022
+
+2026-09-11, `ef8117ba6e5a184989e65761d47a068381056e4a`; исходник не изменён.
+
+Схема подтверждает четыре Macro UUID и отсутствие createRegionFromTemplate. tokenMoveWithin ссылается на label tokenPreMove, который en/ru описывают как событие до движения; ядро обрабатывает tokenMoveWithin в update-пути перемещения (новая issue147). Существующие проблемы 74/75/76 не исправлялись.
+
+Связанные карточки: [module/data/item/templates/regions/regionBehavioursData.js](../../../../../module/data/item/templates/regions/regionBehavioursData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](../../../../../module/data/item/templates/regions/regionPropertiesData.js.md).
+
+[Результаты и пределы сверки](../../../../../../review-log.md#task-0003022).

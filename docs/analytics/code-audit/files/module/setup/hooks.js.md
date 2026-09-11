@@ -85,3 +85,13 @@
 Прослежена ветвь updateCombat → applyGeneralCombatHooks → applyCombatEffects → applyCombatEffect → [templates/chat/combat/statusEffect.hbs](../../../../../../templates/chat/combat/statusEffect.hbs). Контекст — элемент system.combatEffects.turnStartEffects; до рендера проверяются heal.amount/damage.amount, затем сообщение и сами воздействия выполняет generalCombatHook.js. Шаблон не содержит a.apply-status и не вызывает [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../module/scripts/statusEffects/applyStatusEffect.js); интерактивные ссылки чата создают другие файлы. Ранее выявленные условия updateCombat не менялись.
 
 [Журнал сверки](../../../review-log.md) — TASK-0003.009; ограничения изолированного выполнения и неподтверждённые проблемы сохранены.
+
+## Уточнение TASK-0003.022
+
+2026-09-11, `ef8117ba6e5a184989e65761d47a068381056e4a`; исходник не изменён.
+
+Полностью разобран countdownDurationOfRegions. Группа 20 отдельно проверила регистрацию updateCombat; группы 15–19 — повторный отсчёт на произвольных обновлениях, пустой combatant/Actor/scene, выбор active вместо combat.scene и завершение Promise до записей. Issue6 дополнена, а новая 145 фиксирует пустой контекст. applyGeneralCombatHooks в этих сценариях подменён и не получил полной карточки.
+
+Связанные карточки: [module/scripts/regions/regionHooks.js](../scripts/regions/regionHooks.js.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003022).

@@ -112,3 +112,13 @@
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 Уточнён разрешённый restoreReliability: [примесь Item](../../../../../../module/item/mixins/repairMixin.js) делегирует [RepairSystem.restoreReliability](../../../../../../module/item/systems/repair.js) и system.repair без ожидания. Однако штатный _doRepair использует emitForGM/socket, не User.query; проверка receiver этой порции не является новым воспроизведением раннего true из [issue-00008](../../../../../issues/potential/issue-00008.md). Контракты двух протоколов остаются раздельными.
+
+## Уточнение TASK-0003.022
+
+2026-09-11, `ef8117ba6e5a184989e65761d47a068381056e4a`; исходник не изменён.
+
+Повторена маршрутизация на настоящей Item-модели с RegionProperties: function addBehaviorsToRegionUuids возвращает true без вызова вложенного метода, так как проверяются только entity/entity.system. deleteSpellVisualEffect отсутствует в allowlist, а player-отправитель сначала падает на item. Даже прямые региональные адаптеры не ожидают записи, что отдельно описано в issue142; ответ true не подтверждает выполнение.
+
+Связанные карточки: [module/data/item/templates/regions/regionPropertiesData.js](../data/item/templates/regions/regionPropertiesData.js.md), [module/data/item/mixin/spellRegionMixin.js](../data/item/mixin/spellRegionMixin.js.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003022).

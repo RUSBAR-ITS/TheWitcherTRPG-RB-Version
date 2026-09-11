@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.021 подготовлена и сверена 181 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.022 подготовлены и сверены 186 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -289,3 +289,13 @@
 | templates/sheets/item/ritual-sheet.hbs | [Описание](templates/sheets/item/ritual-sheet.hbs.md) |
 | templates/sheets/item/configuration/tabs/spellGeneral.hbs | [Описание](templates/sheets/item/configuration/tabs/spellGeneral.hbs.md) |
 | templates/partials/spell-header.hbs | [Описание](templates/partials/spell-header.hbs.md) |
+
+## Области заклинаний и события регионов — TASK-0003.022
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/templates/regions/templatePropertiesData.js | [Описание](module/data/item/templates/regions/templatePropertiesData.js.md) |
+| module/data/item/templates/regions/regionBehavioursData.js | [Описание](module/data/item/templates/regions/regionBehavioursData.js.md) |
+| module/data/item/templates/regions/regionPropertiesData.js | [Описание](module/data/item/templates/regions/regionPropertiesData.js.md) |
+| module/data/item/mixin/spellRegionMixin.js | [Описание](module/data/item/mixin/spellRegionMixin.js.md) |
+| module/scripts/regions/regionHooks.js | [Описание](module/scripts/regions/regionHooks.js.md) |

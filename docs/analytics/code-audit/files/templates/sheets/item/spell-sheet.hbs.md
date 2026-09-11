@@ -82,3 +82,13 @@ PARTS.main WitcherSpellSheet загружает HBS, который включа
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003021) |
+
+## Уточнение TASK-0003.022
+
+2026-09-11, `ef8117ba6e5a184989e65761d47a068381056e4a`; исходник не изменён.
+
+Четыре вложенных поля templateProperties подтверждены схемой. Срок visualEffectDuration запускает клиентский таймер, а поле system.duration через castSpell попадает в отдельный flags.duration и счётчик боя. Их синхронизация этой формой не выполняется. Геометрия/жизненный цикл теперь полностью описаны в .022.
+
+Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js.md).
+
+[Результаты и пределы сверки](../../../../review-log.md#task-0003022).

@@ -93,3 +93,13 @@ registerDataModels регистрирует ritual; WitcherItem.migrateSpells р
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003021) |
+
+## Уточнение TASK-0003.022
+
+2026-09-11, `ef8117ba6e5a184989e65761d47a068381056e4a`; исходник не изменён.
+
+Применяется та же региональная примесь и обе EmbeddedDataField, что у SpellData. Вложенная миграция tokenMoveWithin подтверждена на обеих реальных моделях. Ошибка прежних путей основной формы ритуала (issue129) остаётся отдельной от отказов создания/удаления примеси. Компонентные массивы моделью региона не читаются.
+
+Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](templates/regions/templatePropertiesData.js.md), [module/data/item/templates/regions/regionBehavioursData.js](templates/regions/regionBehavioursData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](templates/regions/regionPropertiesData.js.md), [module/data/item/mixin/spellRegionMixin.js](mixin/spellRegionMixin.js.md).
+
+[Результаты и пределы сверки](../../../../review-log.md#task-0003022).

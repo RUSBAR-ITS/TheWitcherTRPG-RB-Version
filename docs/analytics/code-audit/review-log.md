@@ -1,5 +1,129 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.022
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `ef8117ba6e5a184989e65761d47a068381056e4a`. На старте рабочее дерево чистое, отслеживаются 1058 файлов. Исследуемый код сверяется со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.
+
+### Объём и результат
+
+По [TASK-0003.022](../../tasks/task-0003.022.md) полностью разобраны пять JS-файлов, 289 логических строк. Созданы пять карточек, уточнены десять ранее разобранных связанных. Реестр содержит 186 проверенных файлов и 435 неразобранных. В третьей серии завершены 18 из 79 файлов, 61 в очереди; 374 требуют дальнейшей детализации. Следующая задача — [TASK-0003.023](../../tasks/task-0003.023.md), её выполнение не начато.
+
+| Исходник | Карточка | Логических строк |
+| --- | --- | --- |
+| [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js) | [Описание](files/module/data/item/templates/regions/templatePropertiesData.js.md) | 13 |
+| [module/data/item/templates/regions/regionPropertiesData.js](../../../module/data/item/templates/regions/regionPropertiesData.js) | [Описание](files/module/data/item/templates/regions/regionPropertiesData.js.md) | 56 |
+| [module/data/item/templates/regions/regionBehavioursData.js](../../../module/data/item/templates/regions/regionBehavioursData.js) | [Описание](files/module/data/item/templates/regions/regionBehavioursData.js.md) | 26 |
+| [module/data/item/mixin/spellRegionMixin.js](../../../module/data/item/mixin/spellRegionMixin.js) | [Описание](files/module/data/item/mixin/spellRegionMixin.js.md) | 176 |
+| [module/scripts/regions/regionHooks.js](../../../module/scripts/regions/regionHooks.js) | [Описание](files/module/scripts/regions/regionHooks.js.md) | 18 |
+
+### Методика и пределы
+
+Все пять файлов прочитаны полностью. Сопоставлены определения, схемы, импорты, примесь на прототипах SpellData/RitualData, вызов из castSpell, настройки листов/HBS, query и регистрация updateCombat. Соседние файлы проверены до нужных определений и потребителей; полный разбор им автоматически не присваивался.
+
+Изолированный запуск: `node --input-type=module` со скриптом через stdin. Использованы настоящие DataModel/TypeDataModel/fields Foundry **14.367.0**, Node **24.16.0**, модели и методы системы, настоящий ExecuteMacroRegionBehaviorType. В окружении загружен Handlebars **4.7.9**; браузерный интерфейс этой порции не проверялся. Методы Actor.getDependentTokens и RegionDocument.createTokenEmanation извлечены целиком из локального ядра и исполнены с подменёнными зависимостями. Реализация исследуемых методов не переписывалась.
+
+Подменены родитель Item, game/user/users/settings/i18n, резолверы UUID, Macro и его execute, документы/коллекции Scene/Region/Token, API create/update/setFlag/deleteEmbeddedDocuments, canvas/placeRegion/legend, приложения/minimize, query и таймеры. Регистрация Hooks проверена через изолированную шину; соседний общий обработчик боя заменён заглушкой. Управляемые Promise и таймеры фиксировали порядок завершения без ожидания реального времени. Записи перехватывались в памяти: мир, БД, реальные регионы, сцены, макросы и сетевые запросы не затронуты.
+
+Настоящее конструирование моделей может запускать migrateData через migrateDataSafe. Поэтому независимая проверка четырёх UUID-полей использовала фабрику regionBehaviours в отдельной модели, а сценарии миграции — настоящие RegionProperties/SpellData/RitualData. Для пустого regionProperties ошибка миграции логируется и перехватывается ядром; затем применяются значения по умолчанию. Это не подтверждение отказа загрузки всего Item. Logger в сценарии заменён сборщиком сообщений.
+
+Контракты ядра проверены чтением следующих локальных файлов:
+
+| Файл ядра Foundry 14.367.0 | Проверенный контракт |
+| --- | --- |
+| `/opt/foundryvtt/client/canvas/layers/regions.mjs`, placeRegion: 688–781, 1162–1206 | Promise одного Region; отмена возвращает null; это не массив |
+| `/opt/foundryvtt/client/documents/region.mjs`, createTokenEmanation: 1306–1337 | Диапазон переводится в пиксели через сцену токена; создаются shape/attachment/elevation; результат может отсутствовать при отмене создания |
+| `/opt/foundryvtt/client/documents/actor.mjs`, getDependentTokens: 584–616 | По умолчанию TokenDocument из зависимых сцен; метод не ограничивает результат текущей сценой |
+| `/opt/foundryvtt/client/documents/token.mjs`, scene: 105; обработчик движения: 2973–2999 | scene — объект Scene; tokenMoveWithin обрабатывается по завершённому движению |
+| `/opt/foundryvtt/client/documents/user.mjs`, viewedScene: 47–51 | viewedScene — ID сцены либо null |
+| `/opt/foundryvtt/client/documents/scene.mjs`, подготовка dimensions: 507 | distancePixels = grid.size / grid.distance |
+| `/opt/foundryvtt/client/data/region-behaviors/execute-macro.mjs` | executeMacro принимает events/uuid/everyone; разрешает Macro и формирует аргументы события |
+| `/opt/foundryvtt/common/documents/region.mjs`, schema и права: 111–135 | Поля Region и ограничение обновления непустых behaviors для GM; top-level uuid/user не входят в схему |
+| `/opt/foundryvtt/common/abstract/data.mjs`, migrateDataSafe: 890–899 | Исключение миграции перехватывается с журналированием |
+| `/opt/foundryvtt/client/documents/combat.mjs`, _onUpdate: 633–647, _getCurrentState: 822–829 | combatantId может быть null; ядро отдельно проверяет смену состояния для своих событий хода |
+
+Отправленный массив behaviors проверен как payload. Слияние с уже сохранённой коллекцией RegionBehavior, сериализация ссылок Item/Roll в flags и разрешения живого клиента при создании региона не проверялись. Чтение проверок прав ядра не равно проверке нескольких клиентов.
+
+### Изолированные проверки
+
+Успешно завершены **20 групп**. Ошибки ниже — ожидаемые наблюдения исходного кода в сценариях, а не исправления.
+
+| Группа | Что проверено | Фактический результат |
+| --- | --- | --- |
+| 01 | Схемы, значения по умолчанию, UUID и события | Четыре поля Macro UUID; корректный 16-символьный ID принимается, Item UUID отвергается; все имена событий существуют |
+| 02 | createRegionBehaviour и настоящий тип executeMacro ядра | Структура events/uuid принимается; everyone по умолчанию false; разрешённый Macro-фасад получает контекст события; отсутствующий Macro не исполняется |
+| 03 | Миграция новых, старых, смешанных и пустых данных | Новый tokenMoveWithin затирается старым полем либо становится null; пустые настройки логируют перехваченную ошибку и получают defaults |
+| 04 | GM, адаптер UUID, обновления behaviors | Передаётся ожидаемый payload; адаптеры завершаются до управляемых записей; отсутствующий Region не отфильтрован |
+| 05 | Игрок, activeGM и настоящий маршрутизатор query | Вложенный addBehaviorsToRegionUuids не найден, несмотря на ответ true; deleteSpellVisualEffect отсутствует в allowlist и содержит неопределённый item; отсутствующий GM не обработан |
+| 06 | Условия createSpellRegion и завершение цепочки | Выключенная/неполная настройка пропускается; метод не возвращает цепочку создания; отказ поглощается catch |
+| 07 | circle, cone, rect, ray | До ожидания сформированы соответствующие shapes; каждый обычный маршрут затем отвергает Promise как неитерируемый аргумент Promise.all |
+| 08 | Контекст fromItem | Проверены отсутствие сцены и Item без владельца; обращение к нужному контексту не защищено |
+| 09 | Настоящий drawPreview при подтверждении, отмене и отказе | Минимизирует приложения; возвращает одиночный результат или null; обратное восстановление окон не реализовано |
+| 10 | Отложенное завершение preview | Размещение уже запущено и может завершиться после отказа fromItem; продолжение настройки области не выполняется |
+| 11 | Сцены зависимых токенов и единицы эманации | Сравнение Scene с ID пропускает обе сцены; для неизменного целевого токена смена сетки canvas меняет радиус создаваемой эманации |
+| 12 | Параметры применения | createSpellRegion передаёт options, fromItem читает flagOptions; переданный stamina не попадает в flags.options |
+| 13 | Прерванное создание эманации | Возвращённый undefined остаётся в массиве, последующее присваивание region.item вызывает исключение |
+| 14 | Визуальные таймеры и смена сцены | Задержка считается в секундах; callback удаляет ID через canvas.scene на момент срабатывания |
+| 15 | Границы счётчика длительности | 3 → 2, строка '2' → 1; 1/0/отрицательное/undefined/нечисловая строка попадают в удаление; чужой actorUuid пропускается |
+| 16 | Произвольные повторные updateCombat | Счётчик уменьшается повторно без смены хода; уточнение прежней issue-00006 |
+| 17 | Пустой контекст боя и активный GM | Неактивный GM сразу выходит; отсутствие участника, Actor или активной сцены приводит к исключению |
+| 18 | Сцена боя и активная сцена | Отсчёт выбирает game.scenes.active вместо сцены combat |
+| 19 | Завершение countdownDurationOfRegions | Promise функции разрешается до setFlag и deleteEmbeddedDocuments |
+| 20 | Локализация и регистрация | Подпись tokenMoveWithin использует ключ tokenPreMove; updateCombat зарегистрирован и вызывает региональный обработчик |
+
+Пример группы 11: целевая сцена с grid.size = 100, grid.distance = 5 и templateSize = 10. При grid.distance текущего canvas = 5 переданный range равен 1, итоговый радиус — 20 px; при canvas grid.distance = 10 тот же целевой токен получает range 0.5 и радиус 10 px. Это доказывает влияние посторонней сетки. Должен ли templateSize означать радиус или диаметр по правилам, эта проверка не устанавливает.
+
+Визуальный таймер visualEffectDuration и flags.duration, уменьшаемый updateCombat, рассмотрены раздельно. Корректные правила длительности, постоянных областей и повторного отсчёта требуют решения пользователя; числовые ветви текущего кода не объявляются правилами TRPG.
+
+### Перекрёстная сверка и связанные карточки
+
+Проверены импорт фабрики событий, embedding региональных моделей, Object.assign примеси, методы назначения поведения, query с Item UUID, вызов castSpell, HBS-пути и условия конфигурации. Уточнены десять карточек:
+
+- [module/data/item/spellData.js](files/module/data/item/spellData.js.md)
+- [module/data/item/ritualData.js](files/module/data/item/ritualData.js.md)
+- [module/item/sheets/WitcherSpellSheet.js](files/module/item/sheets/WitcherSpellSheet.js.md)
+- [module/item/sheets/WitcherRitualSheet.js](files/module/item/sheets/WitcherRitualSheet.js.md)
+- [templates/sheets/item/spell-sheet.hbs](files/templates/sheets/item/spell-sheet.hbs.md)
+- [templates/sheets/item/ritual-sheet.hbs](files/templates/sheets/item/ritual-sheet.hbs.md)
+- [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](files/module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md)
+- [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](files/templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs.md)
+- [module/setup/queries.js](files/module/setup/queries.js.md)
+- [module/setup/hooks.js](files/module/setup/hooks.js.md)
+
+Связи сверены в обе стороны с существующими определениями и потребителями. Отсутствие поля createRegionFromTemplate, старый system.createTemplate у конфигурационного листа и старые поля ритуальной формы сопоставлены с ранее зарегистрированными наблюдениями; новые ID для них не выдавались.
+
+### Проблемы
+
+В рамках согласованной регистрации TASK-0003 созданы десять карточек potential:
+
+| Карточка | Наблюдение |
+| --- | --- |
+| [issue-00138](../../issues/potential/issue-00138.md) | Обычное размещение области передаёт Promise в Promise.all |
+| [issue-00139](../../issues/potential/issue-00139.md) | Параметры применения магии теряются при записи options региона |
+| [issue-00140](../../issues/potential/issue-00140.md) | Фильтр эманации сравнивает объект Scene со строковым ID |
+| [issue-00141](../../issues/potential/issue-00141.md) | Размер эманации зависит от масштаба сетки просматриваемой сцены |
+| [issue-00142](../../issues/potential/issue-00142.md) | Асинхронные операции регионов завершаются до создания и записей |
+| [issue-00143](../../issues/potential/issue-00143.md) | Отмена создания эманации приводит к обращению к отсутствующему региону |
+| [issue-00144](../../issues/potential/issue-00144.md) | Отсчёт и удаление регионов используют текущую сцену вместо связанной |
+| [issue-00145](../../issues/potential/issue-00145.md) | Отсчёт регионов падает при отсутствии участника, Actor или активной сцены |
+| [issue-00146](../../issues/potential/issue-00146.md) | Регион без числовой длительности считается истёкшим при отсчёте |
+| [issue-00147](../../issues/potential/issue-00147.md) | Подпись tokenMoveWithin обещает исполнение макроса до движения |
+
+Дополнены [issue-00006](../../issues/potential/issue-00006.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00009](../../issues/potential/issue-00009.md), [issue-00074](../../issues/potential/issue-00074.md), [issue-00075](../../issues/potential/issue-00075.md), [issue-00076](../../issues/potential/issue-00076.md), [issue-00128](../../issues/potential/issue-00128.md), [issue-00129](../../issues/potential/issue-00129.md), [issue-00137](../../issues/potential/issue-00137.md). Статусы всех проблем остаются potential. Предложения в карточках не являются согласованными исправлениями.
+
+### Техническая сверка и сохранность
+
+Все 621 исходник побайтно совпадают с HEAD порции и срезом TASK-0001. Их совокупный SHA-256 — `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`, без изменений. Для всех 1058 ранее отслеживаемых файлов сохранены mode, uid, gid и inode. Историческая часть журнала начиная с TASK-0003.021 сохранена побайтно; SHA-256 всего журнала до добавления записи — `eab65f291965ff7f01ea7172ea1422098dc10e2ff517872ea9c4bfb8bd5e61cf`.
+
+Проверены состав файлов на диске и в Git, взаимное соответствие 621 строки реестра и 186 карточек, обязательные разделы новых карточек, собственные методы и поля, статусы и списки всех 30 подзадач. .001–.022 имеют done, .023–.030 — planned; родительская задача остаётся in-progress, TASK-0004/TASK-0005 — draft. В трёх сериях назначены 236 различных файлов; в третьей из 79 проверены 18, в очереди 61, вне назначенных порций остаются 374.
+
+У 186 разобранных файлов проверены 266 прямых относительных импортов: 195 default, 64 named-декларации с 69 именами, 7 namespace. Цели существуют, именованные/default экспорты найдены; связи в карточках разобранных источников и целей согласованы в обе стороны. В новой порции один импорт — RegionProperties → regionBehaviours. Дополнительно сверены 113 буквальных связей с HBS; у этой пятёрки таких путей нет.
+
+Проверены 395 Markdown-файлов в docs и два корневых указателя: **8425 локальных ссылок/якорей** разрешаются. Примеры внутри кода не учитываются как навигация. Таблицы изменённых документов согласованы по числу столбцов; `git diff --check` проходит. Все 147 issues имеют последовательные уникальные ID и остаются в potential.
+
+Изменены ровно 45 Markdown-документов: 15 новых (пять карточек, десять issues) и 30 прежних (десять связанных карточек, девять issues и одиннадцать документов навигации/отчётности). Других изменений нет. Проверка выполнена средствами rg, чтением исходников, git status/rev-parse/ls-files/show/diff и Python через stdin; постоянный проверочный скрипт не создавался.
+
+Код, игровые данные, службы, ветки Git, права и владельцы не менялись; коммит не создавался. Запуск мира, работа с БД, сборка, HTTP/браузерная проверка, живой вызов Macro и сохранённый тестовый стенд не входили в эту порцию.
+
 ## TASK-0003.021
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`. На старте рабочее дерево чистое, отслеживаются 1035 файлов. Исследуемый код сверяется со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.

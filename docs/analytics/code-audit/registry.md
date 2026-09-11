@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.021 проверены описания **181 файла**, для **440 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.022 проверены описания **186 файлов**, для **435 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.021](review-log.md#task-0003021) выполнена на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.022](review-log.md#task-0003022) выполнена на `ef8117ba6e5a184989e65761d47a068381056e4a`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -134,7 +134,7 @@
 | [module/data/item/enhancementData.js](../../../module/data/item/enhancementData.js) | Модель предмета улучшения: бонус SP, сопротивления, эффекты и миграция. | [Описание](files/module/data/item/enhancementData.js.md) | Проверено |
 | [module/data/item/hexData.js](../../../module/data/item/hexData.js) | Модель system предмета hex: описательные параметры порчи, стоимость, требование снятия и допустимые способы защиты цели. | [Карточка](files/module/data/item/hexData.js.md) | Проверено |
 | [module/data/item/homelandData.js](../../../module/data/item/homelandData.js) | Модель предмета родины: ключ выбора и дополнительное название. | [Описание](files/module/data/item/homelandData.js.md) | Проверено |
-| [module/data/item/mixin/spellRegionMixin.js](../../../module/data/item/mixin/spellRegionMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/mixin/spellRegionMixin.js](../../../module/data/item/mixin/spellRegionMixin.js) | Примесь жизненного цикла областей spell/ritual: построение Region-данных, интерактивное размещение либо привязанная к токену эманация, назначение макросов и планирование удаления через клиентский таймер. | [Карточка](files/module/data/item/mixin/spellRegionMixin.js.md) | Проверено |
 | [module/data/item/mountData.js](../../../module/data/item/mountData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/mutagenData.js](../../../module/data/item/mutagenData.js) | Модель мутагена: категория, источник, мутация и настройки расходования. | [Описание](files/module/data/item/mutagenData.js.md) | Проверено |
 | [module/data/item/noteData.js](../../../module/data/item/noteData.js) | Не установлено | Не подготовлено | Не начат |
@@ -166,9 +166,9 @@
 | [module/data/item/templates/profession/thresholdData.js](../../../module/data/item/templates/profession/thresholdData.js) | Модель включения и словаря порогов профессионального навыка. | [Описание](files/module/data/item/templates/profession/thresholdData.js.md) | Проверено |
 | [module/data/item/templates/professionPathData.js](../../../module/data/item/templates/professionPathData.js) | Фабрика пути профессии: название и три навыка. | [Описание](files/module/data/item/templates/professionPathData.js.md) | Проверено |
 | [module/data/item/templates/professionSkillData.js](../../../module/data/item/templates/professionSkillData.js) | Фабрика профессионального навыка: базовые поля и четыре вида настроек. | [Описание](files/module/data/item/templates/professionSkillData.js.md) | Проверено |
-| [module/data/item/templates/regions/regionBehavioursData.js](../../../module/data/item/templates/regions/regionBehavioursData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/regions/regionPropertiesData.js](../../../module/data/item/templates/regions/regionPropertiesData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/regions/regionBehavioursData.js](../../../module/data/item/templates/regions/regionBehavioursData.js) | Фабрика четырёх UUID-полей макросов для событий региона. | [Карточка](files/module/data/item/templates/regions/regionBehavioursData.js.md) | Проверено |
+| [module/data/item/templates/regions/regionPropertiesData.js](../../../module/data/item/templates/regions/regionPropertiesData.js) | Вложенная модель макросов региона. | [Карточка](files/module/data/item/templates/regions/regionPropertiesData.js.md) | Проверено |
+| [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js) | Вложенная модель настроек геометрии и срока визуального региона для spell/ritual. | [Карточка](files/module/data/item/templates/regions/templatePropertiesData.js.md) | Проверено |
 | [module/data/item/templates/socialStandingData.js](../../../module/data/item/templates/socialStandingData.js) | Фабрика пяти региональных строк социального положения расы. | [Описание](files/module/data/item/templates/socialStandingData.js.md) | Проверено |
 | [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js) | Пять полей описания типа оружия и четырёх видов урона. | [Описание](files/module/data/item/templates/weaponTypeData.js.md) | Проверено |
 | [module/data/item/valuableData.js](../../../module/data/item/valuableData.js) | Модель прочего предмета с категорией, скрытностью и расходованием. | [Описание](files/module/data/item/valuableData.js.md) | Проверено |
@@ -217,7 +217,7 @@
 | [module/scripts/damageInstance.js](../../../module/scripts/damageInstance.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/helper.js](../../../module/scripts/helper.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/investigation/rollClue.js](../../../module/scripts/investigation/rollClue.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/regions/regionHooks.js](../../../module/scripts/regions/regionHooks.js) | Не установлено | Не подготовлено | Не начат |
+| [module/scripts/regions/regionHooks.js](../../../module/scripts/regions/regionHooks.js) | Отсчёт длительности регионов текущего участника боя и удаление истёкших через Scene API. | [Карточка](files/module/scripts/regions/regionHooks.js.md) | Проверено |
 | [module/scripts/rollConfig.js](../../../module/scripts/rollConfig.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/rolls/extendedRoll.js](../../../module/scripts/rolls/extendedRoll.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/rolls/fumble.js](../../../module/scripts/rolls/fumble.js) | Не установлено | Не подготовлено | Не начат |
