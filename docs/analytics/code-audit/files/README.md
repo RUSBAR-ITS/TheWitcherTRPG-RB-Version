@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.035 подготовлены и сверены 278 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.036 подготовлены и сверены 282 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -456,3 +456,12 @@
 | module/data/item/mountData.js | [Описание](module/data/item/mountData.js.md) |
 | module/item/sheets/WitcherMountSheet.js | [Описание](module/item/sheets/WitcherMountSheet.js.md) |
 | templates/sheets/item/mount-sheet.hbs | [Описание](templates/sheets/item/mount-sheet.hbs.md) |
+
+## Обмен валюты — TASK-0003.036
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/currencyConverterMixin.js | [Описание](module/actor/mixins/currencyConverterMixin.js.md) |
+| module/actor/sheets/mixins/currencyConverterMixin.js | [Описание](module/actor/sheets/mixins/currencyConverterMixin.js.md) |
+| templates/sheets/actor/currencyConverter/currencyConverter.hbs | [Описание](templates/sheets/actor/currencyConverter/currencyConverter.hbs.md) |
+| templates/chat/currency-conversion.hbs | [Описание](templates/chat/currency-conversion.hbs.md) |

@@ -168,3 +168,13 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: Namespace Fumble, импорт:8, передаётся в Hooks.on('getChatMessageContextOptions', Fumble.addFumbleContextOptions):141. Файл обработчика теперь прочитан целиком: visible смотрит только Roll.options.fumble, callback выбирает точные модели attack/defense и создаёт описательное сообщение. Foundry 14.367 вызывает legacy callback с HTMLElement при jQuery:false. Диапазоны, неподдерживаемые типы и speaker отражены в [issue-00181](../../../../issues/potential/issue-00181.md)–00183; регистрация сама их не исправляет.
 
 Полные карточки зависимости: [module/scripts/rolls/fumble.js](scripts/rolls/fumble.js.md). [Перекрёстная сверка](../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+CONFIG.WITCHER=WITCHER в init30 обеспечивает currency/currencyRates/currencyConverter для полностью описанного обмена Actor. Это статическая конфигурация модуля, не чтение game.settings и не внешний валютный сервис. Сам init не открывает конвертер; открытие происходит через sheet listener→Actor method.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

@@ -138,3 +138,13 @@ registerSheets импортирует default WitcherCharacterSheet и назн�
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+PARTS.inventory52 ведёт к tab-inventory.hbs с единственной найденной кнопкой .open-currency-converter14–16. Подключение наследуется от WitcherActorSheet.activateListeners; роль этой специализации — выбор HBS, не формула/сохранение обмена. Полный actor/sheet-конвертер теперь документирован; лист наград, также связанный с инвентарём, остаётся в .037.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

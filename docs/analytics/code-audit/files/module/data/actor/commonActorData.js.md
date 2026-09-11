@@ -197,3 +197,13 @@
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный substances.hbs читает девять BooleanField system.pannels.*IsOpen; _onSubstanceDisplay изменяет соответствующий путь. Изолированный toggle с preventDefault и updateSource перевёл vitriol в открытое состояние; записей количества не выполняет.
 
 Связи: [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+currency:SchemaField(currency())20 — источник баланса Character/Monster для конвертера. Группа16 использовала замену настоящей CharacterData после открытия окна: захваченная ссылка currencyData сохранила100/5 при новом2/40, и handler предложил90/15 (issue229). Это конкретный сценарий с фасадом Actor, а не утверждение о каждом цикле подготовки документа. calcCurrencyWeight не вызывается непосредственно обменом.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

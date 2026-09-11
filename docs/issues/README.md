@@ -246,3 +246,8 @@
 | [issue-00224](potential/issue-00224.md) | Изображение добычи не связано с действием editImage | `potential` |
 | [issue-00225](potential/issue-00225.md) | Перенос профессии в Loot обращается к отсутствующим навыкам | `potential` |
 | [issue-00226](potential/issue-00226.md) | Пересчёт покупки зависит от script внутри HTML диалога | `potential` |
+| [issue-00227](potential/issue-00227.md) | Обмен валюты не проверяет диапазон суммы и комиссии | `potential` |
+| [issue-00228](potential/issue-00228.md) | Обмен не проверяет выбранные валюты и значения курсов | `potential` |
+| [issue-00229](potential/issue-00229.md) | Открытый конвертер может перезаписать изменившиеся остатки | `potential` |
+| [issue-00230](potential/issue-00230.md) | Повторная привязка конвертера дублирует обработчик кнопки | `potential` |
+| [issue-00231](potential/issue-00231.md) | Обмен возвращает завершение до создания сообщения чата | `potential` |

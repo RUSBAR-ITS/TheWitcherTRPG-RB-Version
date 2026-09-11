@@ -109,3 +109,13 @@ WitcherLootSheet использует шесть валют в prompt (без fa
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../../item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Полный конвертер использует семь NumberField из этой схемы, отображает шесть не исключённых валют. Группы05–09 с реальными Character/Monster/Loot подтвердили обычный обмен100/5→90/15 и same currency100→110 (issue20). Отрицательные/дробные значения модели численно принимают, но их допустимость как экономического правила не выбрана. Неполные ставки дают invalid payload; настоящая модель отклонила NaN (группа10).
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../../actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../../actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../../../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

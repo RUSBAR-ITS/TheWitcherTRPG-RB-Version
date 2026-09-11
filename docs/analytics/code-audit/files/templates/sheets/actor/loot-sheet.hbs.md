@@ -80,3 +80,13 @@ HBS не изменяет модель. Для пустого loot рендер�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003035) |
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Отдельный HBS loot показывает семь денежных полей, но не имеет .open-currency-converter. У него прямое сохранение остатков/покупка; конвертер имеет свой отдельный шаблон/курсы. Не переносить гарантию await update конвертера на четыре независимые записи _onItemBuy из .035.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

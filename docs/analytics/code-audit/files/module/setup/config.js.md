@@ -516,3 +516,13 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. WITCHER.homelands/socialStanding и семь labels деталей используются полным tab-background. С шестью прямыми ключами проверены 45 уникальных переводов, все доступны в en/ru после expandObject; рендер Item-родины использует lookup, Actor-родины — selectOptions.
 
 Связи: [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Уточнён полный consumer currencyConverterMixin Actor: currency624–632 задаёт семь label-ключей, rates634–641 шесть коэффициентов (4,1/3,2,3,1,1), excluded643–645 скрывает falsecoin. options строятся при открытии, rates читаются после подтверждения; getCurrencyRates возвращает исходную ссылку и проверяет только truthy объект. Группы01–12 сверили default/excluded/пустые/некорректные значения; default ставки не объявлены неисправными. Курсы не менялись.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

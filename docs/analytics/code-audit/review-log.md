@@ -1,5 +1,96 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.036
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; стартовое дерево чистое, отслеживаются 1254 файла. Основание — [TASK-0003.036](../../tasks/task-0003.036.md) и поручение продолжить согласованный пофайловый анализ.
+
+### Состав и результат
+
+Полностью прочитаны **четыре файла, 164 логические строки**: два JS на 114 строк и два HBS на 50. Actor-примесь определяет три метода, примесь листа — один регистратор с forEach callback. Одинаковые имена export сохранены с точными путями.
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js) | 107 | [Описание](files/module/actor/mixins/currencyConverterMixin.js.md) |
+| [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | 7 | [Описание](files/module/actor/sheets/mixins/currencyConverterMixin.js.md) |
+| [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs) | 33 | [Описание](files/templates/sheets/actor/currencyConverter/currencyConverter.hbs.md) |
+| [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs) | 17 | [Описание](files/templates/chat/currency-conversion.hbs.md) |
+
+Добавлены четыре карточки, уточнены **15 связанных карточек и три прежних issues**. Покрытие — **282/621**, остаток 339; в четвёртой серии проверены 35/63, в очереди 28, ещё 311 файлов требуют распределения. Код, игровые данные, курсы и правила комиссии/округления не менялись.
+
+### Методика и ограничения
+
+Проверка выполнена командой `node --input-type=module` со сценарием через stdin; в репозиторий исполняемые файлы/стенд не добавлялись. Импортированы настоящие обе currencyConverterMixin, WitcherActor/WitcherItem, CharacterData/MonsterData/LootData и core TypeDataModel/fields. Использованы Handlebars 4.7.9, parse5, core DialogV2.input/FormDataExtended и отдельно извлечённый _onSubmit. Регистрация клика проверена настоящим EventTarget Node.
+
+**21 группа прошла.** Dialog.input/prompt, HTMLFormElement, базовое Application и запись Actor/ChatMessage — фасады. При обычных сценариях patch применяется к настоящей модели; при изучении invalid payload часть update намеренно только фиксировалась, что не доказывает сохранение NaN/Infinity в Foundry. Подменённые Promise удерживались/отклонялись; конкурентные результаты описаны только для выбранного порядка фасада. Browser constraints/event pipeline, полный render/DOMParser/sanitizer, мир, сеть и серверные транзакции не запускались. Предупреждение Node MODULE_TYPELESS_PACKAGE_JSON не мешало успешному запуску.
+
+### Изолированные проверки
+
+| Группа | Сценарий | Результат | Предел |
+| --- | --- | --- | --- |
+| 01 | Курсы | Шесть ставок 4/⅓/2/3/1/1; getCurrencyRates возвращает ту же ссылку. Falsy объект вызывает явный Error. | Неполные/испорченные настройки подставлены только локально. |
+| 02 | Контекст и форма | Шесть options без falsecoin, балансы из модели. Настоящий core input/FormDataExtended дал {amount:1,from:crown,to:oren,fee:0}. | Dialog.prompt и HTMLFormElement — фасады. |
+| 03 | Отсутствующие данные | CONFIG.currency отсутствует→TypeError; нет actor.system.currency→явный Error; до рендера. | Unsupported конфигурация, не ошибка штатного набора. |
+| 04 | Excluded/пустые options | Все исключены→0options, оба select пусты. Нет currencyConverter→7options, falsecoin без курса. | Нет проверки состояния настоящей БД или настроек мира. |
+| 05 | Character/Monster/Loot | Три реальные модели: crown100/oren5→90/15; один update; OTHER chat с правильным speaker.actor. | Метод доступен на Actor; кнопка найдена только в текущем Character HBS. |
+| 06 | Формула/комиссия/floor | bizant3→crown12; crown2→ducat6; ducat2→crown0; bizant2→floren,fee10→2; fee100→0; floren1→lintar1. | Все исходные суммы списываются; не оценка правил рулбука. |
+| 07 | Нехватка/отмена | 101 из100→локализованный warn/0update/0chat; null input возвращается даже при отсутствующих rates. | Отмена не вызывает getCurrencyRates; реальный close UI не запускался. |
+| 08 | Same currency | crown100/amount10: fee0→110; fee50→105; fee100→100; один ключ в update. | Дополнение issue20, не новый ID. |
+| 09 | Сумма/комиссия вне диапазона | amount−10→110/−5;0→100/5;0.5→99.5/5. fee−10→90/16;150→90/0;100.5→90/4. | Контролируемый ввод; допустимость нулей/дробей как правил не решалась. |
+| 10 | Некорректные ставки | target0→Infinity; bad/missing→NaN; source0→списание без получения; source−1→отрицательный result. Реальная модель при пустом rates отклонила запись, чата нет. | В вариантах с перехватом без валидации виден только invalid payload, не испорченная БД. |
+| 11 | Неизвестный/исключённый ключ | Программные unknown/falsecoin from/to доходят до payload с NaN. | Штатные select не предлагают unknown и исключённый falsecoin. |
+| 12 | Типы и ограничения формы | NumberField формы: отрицательные/дробные значения приведены; blank numeric→null. HTML amount min1/step1, fee min0/max100/step1; required нет. | Настоящий FormDataExtended не выполняет диапазонную валидацию. |
+| 13 | Ожидание/отказ update | Pending update держит Promise и не даёт chat; rejected update прекращает до рендера результата. | Операции записи — фасады; права сервера не обходились. |
+| 14 | Сообщение | Pending ChatMessage.create не удерживает возвращаемый Promise; деньги уже обновлены. | Сетевая ошибка чата не воспроизводилась. |
+| 15 | Два обмена до записи | Оба рассчитали одинаковый update90/15; после выбранного порядка фасада два сообщения и один абсолютный итог90/15. | Контролируемый interleaving, не универсальное доказательство серверной гонки. |
+| 16 | Замена модели при открытом окне | Захвачено100/5; model заменена на2/40; после ввода10 update всё равно90/15, без warn. | Реальные CharacterData, подмена lifecycle Actor и persistence. |
+| 17 | Event adapter | preventDefault выполнен, this=Actor; handleCurrencyConverter ждёт Promise open. | Отдельно от регистрации/ожидания DOM события. |
+| 18 | Listeners | Пустой NodeList безопасен; одна регистрация/клик→1; две на том же узле/клик→2; новый узел→1. | Настоящий Node EventTarget; не реальный browser render. |
+| 19 | Core submit | Настоящий direct _onSubmit вызывает callback и close, не вызывает подставленный checkValidity; buttons временно отключены. | Это проверка метода. _onClickButton и его регистрация прочитаны, browser event pipeline не выполнялся. |
+| 20 | Chat HBS | fee10%, amount/result, динамические локализованные from/to; вход actor не выводится; опасная разметка экранирована. | Настоящий Handlebars, не визуальный чат. |
+| 21 | Локализация/HTML allowlist | 16 ключей маршрута доступны EN/RU после expandObject+Localization. input/select разрешены, script/onchange отсутствуют в реальных константах. | cleanNode и Dialog normalization прочитаны; DOMParser/полный sanitizer не исполнялись. |
+
+### Перекрёстная сверка
+
+| Связь | Что сопоставлено | Граница результата |
+| --- | --- | --- |
+| Конфигурация/регистрация | module/TheWitcherTRPG.init→CONFIG.WITCHER; config.currency/rates/excluded→Actor-примесь; WitcherActor Object.assign17/452. | Курсы статические, без world setting/сети. Один и тот же export-name двух примесей различён полным путём. |
+| Кнопка/наследование | Character PARTS inventory→.open-currency-converter→WitcherActorSheet.activateListeners→sheet mixin→Actor.handleCurrencyConverter. | V1 и Loot не подключают sheet mixin; Monster наследует listener, но его HBS не содержит кнопку. Прямой метод у моделей есть. |
+| Поля/форма/сохранение | CommonActorData/LootData→currency()→currencies; options→два select; Dialog.input→FormDataExtended→расчёт→два пути одного update. | Number/String/null отделены от HTML min/max/step и от model validation. Ссылку currencyData до await и ставки после input сверили раздельно. |
+| Формула/сообщение | floor(amount×fromRate/toRate×(1−fee/100)); await update→render chat→create OTHER/speaker Actor. | amount не уменьшается на комиссию; result уже округлён; HBS не вычисляет; actor label передан, но не читается. Кошелёк не пишется в currencyLog. |
+| Предыдущие проблемы | issue20 повторён; покупка issue221 сопоставлена: конвертер ожидает update. Issue226 уточнён более ранней очисткой DialogV2.content. | Историческое исполнение _renderHTML из .035 не проверяло normalization; исправлений кода нет. |
+| Подписки и части HBS | V2._onRender снова зовёт activateListeners на всём элементе; core HandlebarsApplicationMixin заменяет entries только отрендеренных частей. | Две регистрации на сохранённой кнопке дают две функции bind; полный render с новой кнопкой не объявлен проблемным. Частичный render в браузере не запускался. |
+| Границы | Четыре новых полных файла, 15 связанных описаний; оба HBS не preloaded, вызываются напрямую renderTemplate. CSS/locales/core — только зависимости. | .037 награды, последующие профессии/магия/чат не начаты. TASK0004/0005 остаются draft. |
+
+### Уточнение прежнего анализа DialogV2
+
+При разборе .036 прочитан этап **до** _renderHTML: /opt/foundryvtt/client/applications/api/dialog.mjs:_initializeApplicationOptions184–199 вызывает foundry.utils.cleanHTML для строкового content. Реализация /opt/foundryvtt/client/utils/helpers.mjs:15–19,68–107 очищает узлы/атрибуты по common/constants.mjs:1845+. Script и inline onchange не входят в allowlist, обычные form/input/select/option и атрибуты name/min/max/step/data-* поддержаны. Проверены настоящие константы; полная очистка через DOMParser не исполнялась.
+
+Это уточняет [issue-00226](../../issues/potential/issue-00226.md) и карточку LootSheet: в .035 исполнялся _renderHTML на уже переданном сыром content без normalization. Нельзя считать, что этот тест доказал попадание script в настоящее окно. По источникам очистка удаляет script/onChange раньше стадии innerHTML; ручной vm-запуск .035 по-прежнему доказывает только арифметику функций после явного исполнения. Историческая запись сохранена с её пределами; утверждение о проверенном браузерном дефекте не добавлено.
+
+### Проблемы
+
+| Новая карточка | Наблюдение |
+| --- | --- |
+| [issue-00227](../../issues/potential/issue-00227.md) | Обмен валюты не проверяет диапазон суммы и комиссии |
+| [issue-00228](../../issues/potential/issue-00228.md) | Обмен не проверяет выбранные валюты и значения курсов |
+| [issue-00229](../../issues/potential/issue-00229.md) | Открытый конвертер может перезаписать изменившиеся остатки |
+| [issue-00230](../../issues/potential/issue-00230.md) | Повторная привязка конвертера дублирует обработчик кнопки |
+| [issue-00231](../../issues/potential/issue-00231.md) | Обмен возвращает завершение до создания сообщения чата |
+
+Уточнены [issue-00020](../../issues/potential/issue-00020.md), [issue-00221](../../issues/potential/issue-00221.md), [issue-00226](../../issues/potential/issue-00226.md). Все **231 карточка остаются potential**. Регистрация не означает подтверждения, решения об исправлении или закрытия. Корректные default ставки и принятый кодом floor сами по себе не объявлены нарушениями правил.
+
+### Формальная проверка
+
+Выполнены Python-проверки дерева/Git/Markdown и `git diff --check`. Реестр содержит 621 уникальный исходник: 282 карточки «Проверено», 339 «Не начат». Новые четыре файла не пересекаются с прежними 278; для них проверены все 11 разделов карточки, собственные методы и поля формы. В серии .031–.040 проверены 35 из 63, 28 остаются planned; ещё 311 без детализации. Первые 31 файл общей сверки .035 по-прежнему имеют отдельную границу с прежними 247.
+
+Во всех 282 карточках проверены 328 прямых импортов и export-имена: 216 default, 105 named statements/110 имён, 7 namespace. Обе стороны связей сопоставлены с определениями/потребителями. Литеральных связей JS/HBS с шаблонами 189; эта порция добавила 0 импортов и 2 HBS-пути. Проверены **13 276 локальных ссылок и якорей** во всех 587 Markdown (585 в docs плюс README/AGENTS), таблицы и конечные пробелы изменённых файлов.
+
+Изменены **38 Markdown**: 29 прежних и 9 новых (4 карточки и 5 issues). Перечень совпал с согласованными материалами. Статусы всех 40 подзадач, parent in-progress, будущих задач draft/planned и всех 231 potential issues проверены; новых задач/статусов open/closed нет.
+
+Все 621 исходника побайтно совпадают с текущим HEAD `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2` и срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`; SHA256 содержимого реестра: `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`. mode/uid/gid/inode всех 1254 отслеживаемых файлов сохранены; SHA256 метаданных: `afd7d44fd392ecb3fea189448d38b5d20178a3590c620ca772ec37aba1e70a4a`. Исторический хвост review-log и раздел планирования .031–.040 сохранены побайтно; уточнение прежнего исследования добавлено новой записью и дополнениями карточек. Только docs изменены; коммит/сборка/данные мира не затрагивались.
+
+**Переход:** TASK-0003.036 выполнена; следующая — [TASK-0003.037](../../tasks/task-0003.037.md) (награды). .037–.040 остаются planned, TASK-0003 in-progress, TASK-0004/TASK-0005 draft. Коммит не создавался.
+
 ## TASK-0003.035
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; рабочее дерево на старте чистое, отслеживаются 1239 файлов. Основание — согласованная [TASK-0003.035](../../tasks/task-0003.035.md) и поручение пользователя продолжить.

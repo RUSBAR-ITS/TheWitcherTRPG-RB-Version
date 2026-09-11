@@ -153,3 +153,13 @@ context.system — сериализованная копия actor.toObject(fals
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. noteMixin полностью разобран: три функции прототипа совпадают с экспортом; activateListeners с html[0] привязывает и вызывает удаление. V1 toggle по исходному объекту ключа 10 передаёт isOpened=true. Регистрации действующего V1-листа по-прежнему не найдено; текущий tab-background не объявляется его шаблоном.
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Отрицательная сверка полного маршрута конвертера: в V1 нет import/Object.assign/currencyConverterListeners и activateListeners196–228 его не вызывает. Одинаковое имя Actor-примеси не означает одинаковые возможности листов. Текущий Character использует V2, поэтому отсутствие подключения в V1 не зарегистрировано как новая пользовательская ошибка.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

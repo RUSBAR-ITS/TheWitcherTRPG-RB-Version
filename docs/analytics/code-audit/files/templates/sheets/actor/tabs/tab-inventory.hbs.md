@@ -115,3 +115,13 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полностью разобран включаемый substances.hbs: безусловный partial:212, девять иконок/сумм, флаги и таблицы. Он не потребляет alchemyComponentsList. Смена плашки вызывает отдельный Item-mixin handler, а .crafting-craft остаётся прежним входом WitcherCharacterSheet; различие с алхимическим действием не исправлялось.
 
 Связи: [templates/partials/character/substances.hbs](../../../partials/character/substances.hbs.md); [module/actor/sheets/mixins/alchemyMixin.js](../../../../module/actor/sheets/mixins/alchemyMixin.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Полностью прослежен .open-currency-converter14–16: CharacterSheet PARTS→базовый activateListeners→currencyConverterListeners→Actor.handleCurrencyConverter→openCurrencyConverter. Кнопка не data-action. Этот маршрут теперь проверен с реальными методами/моделями и фасадами Dialog/update; браузерное окно целиком не запускалось. Независимая .open-rewards остаётся зависимостью будущей .037.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../../module/actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../../module/actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

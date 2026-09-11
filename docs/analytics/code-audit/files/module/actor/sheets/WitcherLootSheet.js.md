@@ -92,3 +92,13 @@ registerSheets регистрирует класс по умолчанию дл�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003035) |
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Покупка не вызывает полный конвертер валют, не использует currencyRates и не получает его листовой listener. В .036 уточнён более ранний шаг DialogV2: _initializeApplicationOptions184–199 выполняет foundry.utils.cleanHTML для строкового content. Core helpers.cleanNode70–84 с allowlist common/constants1845+ удаляет script и inline onchange. В .035 изолированно вызывался _renderHTML после этого этапа, поэтому он не доказывал, что исходный script дойдёт до DOM. Issue226 дополнен этим источником; браузерный маршрут/полная DOM-очистка не исполнялись. У конвертера .036 HBS не содержит script/inline событий.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

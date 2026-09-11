@@ -89,3 +89,13 @@ WitcherMonsterSheet.PARTS.inventory, TABS.primary.inventory. Корневые ta
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet._prepareLoot подтверждает 9 принимаемых типов, getList/items исключают stored; weapon/armor подготовлены отдельно. Кнопки .item-repair по-прежнему не имеют listener в полном классе. exportLoot копирует actor.toObject().items целиком, не context.loots, и обрабатывает все копии.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../../../../module/actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.036
+
+2026-09-11, `rusbar-main`, `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; исходники не менялись.
+
+Сверен отрицательный consumer: в этом HBS нет .open-currency-converter или вызова HBS конвертера. Его exporter остаётся отдельным действием. Наследуемый MonsterSheet currencyConverterListeners получает пустой набор таких элементов; отсутствие стандартной кнопки не означает отсутствия метода на Actor.
+
+Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../../../../module/actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../../../../module/actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../../../chat/currency-conversion.hbs.md).
+
+[Проверки и перекрёстная сверка](../../../../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.

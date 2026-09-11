@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.035 проверены описания **278 файлов**, для **343 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.036 проверены описания **282 файлов**, для **339 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.035](review-log.md#task-0003035) выполнена на `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`: все исходники (621 файл) совпадают с базовым срезом. Добавлены шесть карточек добычи/торговли и mount; общая сверка сопоставила 31 файл .031–.035 с прежними 247. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.036](review-log.md#task-0003036) выполнена на `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`: все исходники (621 файл) совпадают с базовым срезом. Добавлены четыре карточки обмена валюты, сверены модели, кнопка, форма, запись и сообщение. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -30,7 +30,7 @@
 | [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js) | Примесь Actor с тремя способами найти компоненты: по ключу вещества, имени и UUID происхождения из компедиума. | [Описание](files/module/actor/mixins/craftingMixin.js.md) | Проверено |
-| [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js) | Методы Actor для обмена валюты: получение курсов CONFIG, подготовка окна, расчёт комиссии/округления, одна запись двух остатков и сообщение чата | [Карточка](files/module/actor/mixins/currencyConverterMixin.js.md) | Проверено |
 | [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/damageUtilMixin.js](../../../module/actor/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/defenseMixin.js](../../../module/actor/mixins/defenseMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -56,7 +56,7 @@
 | [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Категории эффектов Actor, управление документами и раскрытие описаний. | [Описание](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Примесь листа персонажа, формирующая массив описаний девяти алхимических веществ из уже вычисленных счётчиков контекста. | [Описание](files/module/actor/sheets/mixins/alchemyMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Действия листа Actor: создать критическую травму и вызвать переход по кнопке лечения; регистрация DOM-слушателей. | [Описание](files/module/actor/sheets/mixins/criticalWoundMixin.js.md) | Проверено |
-| [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Связывает кнопки .open-currency-converter листа с методом Actor.handleCurrencyConverter | [Карточка](files/module/actor/sheets/mixins/currencyConverterMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js) | Обработчики собственного Item-навыка: бросок, удаление, раскрытие и старый CRUD модификаторов. | [Карточка](files/module/actor/sheets/mixins/customSkillMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | Ручной счётчик смерти и спасбросок с порогом из STUN либо BODY/WILL. | [Карточка](files/module/actor/sheets/mixins/deathSaveMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | Диалог дневного восстановления: расчёт HP по REC и четырём галочкам, восстановление STA/Vigor, продвижение заживления критических травм и отчёт в чат. | [Описание](files/module/actor/sheets/mixins/healMixin.js.md) | Проверено |
@@ -506,7 +506,7 @@
 | [templates/chat/combat/regeneration.hbs](../../../templates/chat/combat/regeneration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/spellItem.hbs](../../../templates/chat/combat/spellItem.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs) | Уведомление об обработке воздействия из turnStartEffects. | [Описание](files/templates/chat/combat/statusEffect.hbs.md) | Проверено |
-| [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs) | HTML сообщения о результате конвертации: заголовок, source сумма/валюта, target валюта, процент комиссии и полученное количество. | [Карточка](files/templates/chat/currency-conversion.hbs.md) | Проверено |
 | [templates/chat/damage/damageToAllLocations.hbs](../../../templates/chat/damage/damageToAllLocations.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/damageToLocation.hbs](../../../templates/chat/damage/damageToLocation.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/shieldAbsorbs.hbs](../../../templates/chat/damage/shieldAbsorbs.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -565,7 +565,7 @@
 | [templates/sheets/actor/configuration/monster/general.hbs](../../../templates/sheets/actor/configuration/monster/general.hbs) | Общая вкладка конфигурации монстра: пользовательские максимумы, регенерация, видимость знаний и боевые флаги. | [Описание](files/templates/sheets/actor/configuration/monster/general.hbs.md) | Проверено |
 | [templates/sheets/actor/configuration/monster/header.hbs](../../../templates/sheets/actor/configuration/monster/header.hbs) | Трёхстрочный заголовок окна конфигурации монстра с локализованным WITCHER.Actor.settings.actor.. | [Описание](files/templates/sheets/actor/configuration/monster/header.hbs.md) | Проверено |
 | [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs) | Конфигурация видимости навыков монстра через DataField и formGroup. | [Карточка](files/templates/sheets/actor/configuration/partials/skillConfiguration.hbs.md) | Проверено |
-| [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs) | Содержимое диалога обмена: доступные балансы и четыре поля amount/from/to/fee | [Карточка](files/templates/sheets/actor/currencyConverter/currencyConverter.hbs.md) | Проверено |
 | [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs) | Основная форма Actor loot: название, грузоподъёмность/вес, место общей стоимости, изображение, семь валют и шесть таблиц предметов. | [Карточка](files/templates/sheets/actor/loot-sheet.hbs.md) | Проверено |
 | [templates/sheets/actor/monster-sheet.hbs](../../../templates/sheets/actor/monster-sheet.hbs) | Старый полный шаблон монстра: 334 строки с колонками характеристик, ресурсами, бронёй, классификацией, сведениями, действиями, старыми вкладками и знаниями. | [Описание](files/templates/sheets/actor/monster-sheet.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](../../../templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs) | Общий фрагмент заголовка списков: шеврон, header, условные подписи урона/надёжности/STA/количества и кнопка создания Item. | [Карточка](files/templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs.md) | Проверено |
