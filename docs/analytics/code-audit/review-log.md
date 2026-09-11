@@ -1,5 +1,133 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.038
+
+Дата:2026-09-11. Ветка `rusbar-main`, HEAD `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; стартовое дерево чистое,1275 отслеживаемых файлов. Основание — [TASK-0003.038](../../tasks/task-0003.038.md) и продолжение согласованного пофайлового анализа.
+
+### Состав и результат
+
+Полностью прочитаны **четыре файла,965 строк**: один JS415 строк и три HBS550 строк. Девять собственных методов, все callbacks, десять ячеек Character дерева, defining Monster и 14 полей attack диалога описаны отдельно.
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js) | 415 | [Описание](files/module/actor/mixins/professionMixin.js.md) |
+| [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs) | 337 | [Описание](files/templates/partials/character/tab-profession.hbs.md) |
+| [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs) | 50 | [Описание](files/templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md) |
+| [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs) | 163 | [Описание](files/templates/dialog/combat/profession-attack.hbs.md) |
+
+Подготовлены четыре карточки; уточнены **29 связанных карточек и 13 прежних issues**. Покрытие **294/621**, остаток 327; в четвёртой серии 47/63, в очереди 16, ещё 311 требуют распределения. Следующая .039 не начата. Код, игровые правила/данные и права не менялись.
+
+### Методика и ограничения
+
+Запуск `node --input-type=module` со сценарием через stdin, без добавления исполняемого стенда в репозиторий. Настоящие professionMixin, item/skill/modifier методы, ProfessionData и вложенные модели, CharacterData/MonsterData/RaceData, DamageProperties, AttackMessageData, RollConfig/ChatMessageData/extendedRoll. Использованы реальные core Roll/грамматика/управляемые кубы, getSpeaker, Handlebars4.7.9/corehelpers и Localization с раскрытием словарей expandObject. Отдельно выполнена BaseActiveEffect.migrateData ядра.
+
+**24 группы прошли** на Foundry14.367.0 (`/opt/foundryvtt/package.json`) и Node24.16.0. Dialog/HTMLFormElement/editor DOM, Application, конструктор ActiveEffect, UUID/коллекции/проверки владельца, запись Item/Actor/ChatMessage и query — фасады. Ожидаемые 15/16/12/9 заданы арифметически независимо от проверяемого метода. Отдельный callback onDamage исполнен на настоящей модели сообщения. Полные weaponAttack/defense/damage, клиентский constructor/clone effect, нативный render/validity, сервисные права, сеть/БД/несколько клиентов не запускались. Неутверждённые игровые правила не использованы для исправления кода.
+
+Первоначальные ожидания тестов уточнены по ядру: пустой speaker.actor равен null, именованная torso имеет штраф−1; migrateData не переносит icon→img. Итоговые проверки прошли с настоящими соответствующими методами; исходники ради результата не менялись. Предупреждение MODULE_TYPELESS_PACKAGE_JSON не мешало запуску.
+
+### Изолированные проверки
+
+| Группа | Сценарий | Результат | Предел |
+| --- | --- | --- | --- |
+| 01 | Сумма/поиск | Нет профессии→сумма 0, поиск→TypeError; defining2+ветка 3→5; вторая профессия 10 игнорируется; дубликат Aid выбирает defining, пустое имя — первый пустой. | Первые Item через настоящий getList, без БД. |
+| 02 | Dispatcher | Приоритет attack→custom→threshold→roll; неизвестное имя→TypeError; внешний await не держит внутренний Promise. | Внутренние действия заменены управляемыми Promise. |
+| 03 | Обычный бросок/speaker | die5+int8+level2=15, default threshold0/rollOver15; speaker.actor=null без выбора, B при user.character=B для бросавшего A. | Настоящий core getSpeaker, toMessage перехвачен. |
+| 04 | Stat/custom/равенство | empty/none/unknown stat→TypeError; custom2 дал 17 при threshold17: success=false/rollOver0, showResultfalse сохранил messageData без чата. | Custom prompt/форма — фасады. |
+| 05 | Пороги | Одна запись 0 без окна; две — выбор 20; пустой словарь→TypeError после пустого select. | Доступ form.elements по id threshold воспроизведён фасадом. |
+| 06 | Отмена | Прямые skill/attack/weapon/threshold отклоняют Promise до сообщений/записей. | Подставлен rejection prompt; DOM dispatcher не ждёт его. |
+| 07 | Direct attack/форма | 14 полей; die5+stat8+level2+custom2−torso1=16; damage2d6+melee2+custom3; attack type/speaker A/attacker UUID. | Реальные методы, Roll и HBS; запись чата заменена. |
+| 08 | Все флаги/STA | 10 флагов в сумме−2, итог 12 с torso−1; isExtraAttack штрафует, STA10 не меняется, update0. | Сравнение с кодом оружейной стоимости 3, не подтверждение правила рулбука. |
+| 09 | Модификаторы | При AE навыка awareness+4 и attackModifier−2 вызван addActiveEffects(undefined); итог 14 без добавок. | Настоящий modifierMixin; generic weapon ветка отдельно прочитана. |
+| 10 | Monster/detail | monster.addMeleeBonus=false: preview meleeBonus2, displayDamage1d6 и actual damage без+2; бросок 14 с деталями. | Визуальное окно браузера не запускалось. |
+| 11 | Выбор оружия/ожидание | Set[ranged,melee] предлагает только ranged weapon; переданы skillReplacement и additionalDamageProperties, внешний Promise завершён раньше weaponAttack. | Последний consumer заменён удержанным Promise. |
+| 12 | Пустое оружие/merge | Пустой chooser делегирует undefined; настоящий mergeDamageProperties не перенёс effects object. | Полный weaponAttack не исполнялся; TypeError его первого чтения установлен кодом. |
+| 13 | Custom без HP/безцели | addTemporaryHealth=false — без броска; applyOnTarget без targets — уведомление и выход. | UI notifications перехвачены. |
+| 14 | Цель и HP | Другой Actor maxINT12/value1 при multiplier1 дал DC12; roll15/rollOver3 и 3d6[2,3,4]→9HP; duration4; origin A, query B. applySelf=true не добавил себя. | Конструктор ActiveEffect/query — фасады. |
+| 15 | Неуспех/cap | DC15/16 при 15 — без effect; DC1 даёт rollOver14,cap5 →5d6 и 5HP при единицах. | Реальные Roll/extendedRoll; не применение эффекта к Actor. |
+| 16 | Длительность/имя | duration2→TypeError;10 проходит. Имя Aid "quote" делает raw JSON невалидным. | Полный цикл эффектов не исполнялся. |
+| 17 | Не-dice HP/query | value+2 даёт выражение 5+2 внутри JSON, JSON.parse отклоняет; doProfessionSkillUsage завершён при pending query. | Только исходный payload и Promise-фасад. |
+| 18 | Два дерева/нулевойуровень | Без Item:2add Character (race/profession),1Monster; с профессией:10/1 кнопка,30/3inline; none скрывает defining кнопку. | Истинный HBS, DOM разобран parse5. |
+| 19 | Поля/редактирование | Все 35data-field Character и 3Monster принадлежат соответствующим Item schemas. Inlinelevel "0" передан строкой, модель дала Number0. | Item.update применял updateSource в памяти. |
+| 20 | HTML/языки | Character не использует enriched marker, оставляет raw@UUID; с race35inline. Все literal attack-HBS ключи найдены EN/RU после expandObject/fallback. | Core editor с фасадом DOM; сохранение rich text не проверено. |
+| 21 | Typed message/кнопка damage | Настоящая AttackMessageData: rollTotal14, attack.itemUuid=null,damage.itemUuid=null; лишний damage.item отсутствует; onDamage бросает TypeError. | Реальный onDamage с UUID-map; браузерного клика нет. |
+| 22 | Self/порог/details | Оба target/self=false →query this; skillRoll даёт 15 при details=false/true; threshold−1 не создаёт success. | Полный серверный lifecycle не исполнялся. |
+| 23 | Защиты/перевод | isDefense=false всё ещё допускает defendsAgainst; только definingSkill не даёт защиту. Три threshold RU ключа отсутствуют, EN fallback доступен. | Реальная ProfessionData, не полный defenseRoll. |
+| 24 | Миграция AE ядра | Реальная BaseActiveEffect.migrateData переносит changes→system.changes, mode→type, JSON value и duration.rounds→value/units; icon не становится img. | Полный constructor/clone/UI не запускались. |
+
+### Перекрёстная сверка
+
+| Связь | Что сопоставлено | Граница результата |
+| --- | --- | --- |
+| Регистрация/поиск | witcherActor import12/Object.assign438; skillListener31→_onProfessionRoll; getList250+→первая не помещённая на хранение профессия по sort. | Поиск по имени отделён от устойчивого data-field редактирования; повторные имена не уникальны. |
+| Контекст/представление | Character PARTS→10 навыков/раса; Monster PARTS→defining/notes. Config/statTypes/socialStanding и Item schemas сопоставлены с 35/3 полями. | Первый HBS включён в preload, другие загружаются через PARTS/прямой render. Сохранение rich text вложенного Item в браузере не проверено. |
+| Бросок/порог | stat.value+level+getCustomModifier→ChatMessageData/RollConfig→extendedRoll. | Strict >, threshold0 по умолчанию; диспетчер не ожидает; общий skill/attack AE явно не добавляется в skillRoll. |
+| Атаки/стоимость | Direct callback→14 полей→формула/damage→attack message. Weapon chooser→weaponAttack(skillReplacement,additionalDamageProperties). | STA/ammo/strike оружия не принадлежат direct ветви; их полная проверка вне порции. Отмечены пропуски модификаторов/UUID. |
+| Сообщение/защита/урон | AttackMessageData принимает payload; combat.onDamage требует attack.itemUuid; executeDefense передаёт attack/options/damage/attackRoll/attacker. | Сама примесь не отправляет запрос защиты: он возникает в позднем действии чата. Полные защита/урон не выполнялись. |
+| HP/effect/query | Target max→DC; rollOver/cap→HP; legacy newActiveEffect payload→core migration→owner.query→whitelist→applyActiveEffectToActor. | Не прямое пополнение hp. Миграция старых полей проверена отдельно от некорректного JSON и icon. Query/clone/persistence не исполнены полностью. |
+| Прежние проблемы | 69/71/72 и 110/113/118/119 сверены; дополнительно 8/109/114/115/117/153. | Исполнение нового маршрута не подтверждает все прошлые симптомы. Статус каждого issue остаётся potential. |
+
+Уточнены следующие связанные карточки:
+
+- [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md)
+- [module/actor/sheets/WitcherCharacterSheet.js](files/module/actor/sheets/WitcherCharacterSheet.js.md)
+- [module/actor/sheets/WitcherMonsterSheet.js](files/module/actor/sheets/WitcherMonsterSheet.js.md)
+- [module/actor/sheets/WitcherActorSheet.js](files/module/actor/sheets/WitcherActorSheet.js.md)
+- [module/actor/sheets/mixins/itemMixin.js](files/module/actor/sheets/mixins/itemMixin.js.md)
+- [module/actor/sheets/mixins/skillMixin.js](files/module/actor/sheets/mixins/skillMixin.js.md)
+- [module/data/item/professionData.js](files/module/data/item/professionData.js.md)
+- [module/data/item/templates/professionSkillData.js](files/module/data/item/templates/professionSkillData.js.md)
+- [module/data/item/templates/professionPathData.js](files/module/data/item/templates/professionPathData.js.md)
+- [module/data/item/templates/profession/skillUsageData.js](files/module/data/item/templates/profession/skillUsageData.js.md)
+- [module/data/item/templates/profession/temporaryHealthData.js](files/module/data/item/templates/profession/temporaryHealthData.js.md)
+- [module/data/item/templates/profession/thresholdData.js](files/module/data/item/templates/profession/thresholdData.js.md)
+- [module/data/item/templates/combat/skillAttackData.js](files/module/data/item/templates/combat/skillAttackData.js.md)
+- [module/data/item/templates/combat/attackOptionsData.js](files/module/data/item/templates/combat/attackOptionsData.js.md)
+- [module/data/item/templates/combat/defenseOptionsData.js](files/module/data/item/templates/combat/defenseOptionsData.js.md)
+- [module/data/item/templates/combat/damagePropertiesData.js](files/module/data/item/templates/combat/damagePropertiesData.js.md)
+- [module/actor/mixins/modifierMixin.js](files/module/actor/mixins/modifierMixin.js.md)
+- [module/scripts/rolls/extendedRoll.js](files/module/scripts/rolls/extendedRoll.js.md)
+- [module/scripts/rollConfig.js](files/module/scripts/rollConfig.js.md)
+- [module/chatMessage/chatMessageData.js](files/module/chatMessage/chatMessageData.js.md)
+- [module/scripts/helper.js](files/module/scripts/helper.js.md)
+- [module/setup/config.js](files/module/setup/config.js.md)
+- [module/setup/settings.js](files/module/setup/settings.js.md)
+- [module/setup/handlebars.js](files/module/setup/handlebars.js.md)
+- [module/data/item/raceData.js](files/module/data/item/raceData.js.md)
+- [module/setup/queries.js](files/module/setup/queries.js.md)
+- [module/scripts/temporaryEffects/applyActiveEffect.js](files/module/scripts/temporaryEffects/applyActiveEffect.js.md)
+- [module/data/actor/templates/common/temporaryEffectsData.js](files/module/data/actor/templates/common/temporaryEffectsData.js.md)
+- [module/data/activeEffects/witcherActiveEffectData.js](files/module/data/activeEffects/witcherActiveEffectData.js.md)
+
+Модели attackMessageData/damageData/attackData, weaponAttack, defenseMixin, combat.js и locationMixin служили источниками нужных определений; новые полные карточки им не создавались. Их частичное изучение не увеличивает покрытие. Карточки Actor, Item и конфигурации не заменялись, уточнения добавлены отдельными разделами.
+
+### Потенциальные проблемы
+
+| Issue | Наблюдение | Статус |
+| --- | --- | --- |
+| [issue-00236](../../issues/potential/issue-00236.md) | Бросок профессии выбирает отправителя через отсутствующий Actor.actor | potential |
+| [issue-00237](../../issues/potential/issue-00237.md) | Профессиональные атаки обходят модификаторы навыка и общие модификаторы атаки | potential |
+| [issue-00238](../../issues/potential/issue-00238.md) | Дополнительная профессиональная атака без оружия не списывает STA | potential |
+| [issue-00239](../../issues/potential/issue-00239.md) | Кнопка урона профессиональной атаки не получает UUID предмета | potential |
+| [issue-00240](../../issues/potential/issue-00240.md) | Формула временного здоровья без кубов попадает в JSON без вычисления | potential |
+| [issue-00241](../../issues/potential/issue-00241.md) | Обработчики профессии завершаются до вызванных бросков и применения эффекта | potential |
+| [issue-00242](../../issues/potential/issue-00242.md) | Выбор оружия способности продолжает выполнение при пустом списке | potential |
+| [issue-00243](../../issues/potential/issue-00243.md) | Временное здоровье передаёт изображение эффекта в устаревшем поле icon | potential |
+| [issue-00244](../../issues/potential/issue-00244.md) | Диалог атаки монстра показывает неиспользуемый бонус ближнего боя | potential |
+
+Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00069](../../issues/potential/issue-00069.md), [issue-00071](../../issues/potential/issue-00071.md), [issue-00072](../../issues/potential/issue-00072.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00110](../../issues/potential/issue-00110.md), [issue-00113](../../issues/potential/issue-00113.md), [issue-00114](../../issues/potential/issue-00114.md), [issue-00115](../../issues/potential/issue-00115.md), [issue-00117](../../issues/potential/issue-00117.md), [issue-00118](../../issues/potential/issue-00118.md), [issue-00119](../../issues/potential/issue-00119.md), [issue-00153](../../issues/potential/issue-00153.md). Основание регистрации — пункт 9 TASK-0003. Подтверждение/перевод статуса/исправление не выполнялись. Отсутствие ветвей в Monster UI и действие уровня 0 описаны как поведение, не как автоматически ошибочные правила.
+
+### Формальная проверка документов и сохранности
+
+Проверка Python через stdin и `git diff --check` прошла. Реестр содержит 621 файл после согласованных исключений; карточки и строки реестра согласованы:294 «Проверено»,327 «Не начат». Точный состав .038 — четыре файла/965 строк. Перечни сорока подзадач не пересекаются: .001–.038 done, .039–.040 planned, родительская in-progress. Четвёртая серия —47 проверенных из 63,16 в очереди;311 ещё не распределены. TASK-0004/TASK-0005 остаются draft.
+
+Сверены 333 прямые локальные import-связи описанных JS:217 default,109 named-выражений (116 имён),7 namespace. У новой порции четыре imports; имена/экспорты и обратные упоминания сопоставлены. Проверены 194 уникальные для каждой карточки ссылки на репозиторные HBS, одна из новой примеси; уже существующие producer-ссылки на два новых HBS также сверены в обратную сторону. Динамические зависимости и callbacks разобраны отдельно выше.
+
+Проверены **14 060 локальных ссылок** в 610 Markdown-файлах docs и двух корневых README/AGENTS: цели, якоря, столбцы изменённых таблиц, обязательные 11 разделов новых карточек и имена всех собственных методов. Issues имеют уникальныеID1–244, все potential и включены в индекс. Состав изменений — **66 Markdown-документов:53 существующих и 13 новых** (четыре карточки и девять issues); вне docs изменений нет.
+
+Все 621 исходник побайтно совпали с HEAD и срезом TASK-0001. Контрольные суммы совокупности исходников и метаданных доступа совпали со стартовыми. Сохранены mode/uid/gid/inode всех 1275 отслеживаемых файлов, ветка/HEAD и исходный хвост журнала. Историческая общая сверка .031–.035 с прежними 247 карточками сохранена без переписывания результатов. Новые файлы созданы обычной записью без отдельного назначения прав.
+
+Исторические записи журнала, включая общую сверку .031–.035, сохранены. Полная сверка всех 63 файлов серии остаётся в .040; TASK-0004/TASK-0005 draft. Исходники не исправлялись, коммит не создавался.
+
 ## TASK-0003.037
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; стартовое дерево чистое, отслеживаются 1263 файла. Основание — [TASK-0003.037](../../tasks/task-0003.037.md) и поручение продолжать согласованный пофайловый анализ.

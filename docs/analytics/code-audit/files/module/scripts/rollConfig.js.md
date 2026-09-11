@@ -103,3 +103,13 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Оба Character callback создают RollConfig с showCrit=true/showSuccess=true и порогом выбранного кода: обычный craftingDC, алхимический alchemyDC. Алхимический fallback к crafting не переключает этот порог. Проверки DC10/total10 и добавочного +2 используют настоящий объект конфигурации.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Profession skill override присваивает threshold/thresholdDesc/showResult; default параметра метода{threshold:0,showResult:true} отличается от constructor.threshold−1. Threshold метода не определён при переданном объекте без threshold. Атака безоружия не создаёт собственный RollConfig, пользуется defaults extendedRoll.
+
+[module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

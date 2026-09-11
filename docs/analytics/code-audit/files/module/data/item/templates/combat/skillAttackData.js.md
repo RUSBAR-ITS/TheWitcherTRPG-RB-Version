@@ -86,3 +86,13 @@ Default export skillAttack() вызывается внутри professionSkill()
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [professionSkill](../../../../../../../../../module/data/item/templates/professionSkillData.js) включает skillAttack для definingSkill и 9 навыков путей. [Редактор](../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) показывает вложенные свойства при isAttack, а professionMixin выбирает attack раньше custom usage и thresholds. usesWeapon делегирует weaponAttack с additionalDamageProperties, иначе используется собственный stat/level и damageFormulaOverride; первый attackOptions выбирает вариант. Чтение цепочки не означает полного аудита боя.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Direct attack использует damageFormulaOverride, applyMeleeBonus, damageProperties и первый attackOptions; usesWeapon передаёт лишь skillReplacement и additionalDamageProperties в другой метод. Настройки damage override/defenseOptions способности автоматически не подменяют оружейные. Наличие extra поля не сопровождается direct расходом STA(238).
+
+[module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

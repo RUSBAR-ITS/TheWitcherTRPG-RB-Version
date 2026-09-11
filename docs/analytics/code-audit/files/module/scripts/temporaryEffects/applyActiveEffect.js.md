@@ -99,3 +99,13 @@
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getActorOwner выбирает первого активного не-GM с OWNER при hasPlayerOwner, иначе activeGM; результат может отсутствовать. Вызовы query:41/72 не имеют guard получателя — смежные места [issue-00185](../../../../../../issues/potential/issue-00185.md). В .028 непосредственно исполнен аналогичный маршрут applyStatusEffectToActor; создание/клонирование ActiveEffect и удалённые запросы здесь повторно не исполнялись.
 
 Полные карточки зависимости: [module/scripts/helper.js](../helper.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+doProfessionSkillUsage передаёт новый эффект через query; applyActiveEffectToActor разрешает Actor, клонирует effect на получателя, сбрасывает apply flags и ожидает createEmbeddedDocuments. Caller/query сами не ждут эту цепочку. HP передаёт legacy changes/duration.rounds: core migrateData поддерживает их (группа 24); icon не переносится в img (243).
+
+[module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

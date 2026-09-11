@@ -377,3 +377,13 @@ rewardsMixin import15/Object.assign450 добавляет addIpReward/addCurrenc
 [module/actor/mixins/rewardsMixin.js](mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](rewardsSheet.js.md), [module/app/reward/reward.js](../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Полностью описаны девять методов professionMixin (import12/Object.assign438). getList250–257 исключает stored и сортирует sort; примесь берёт только первый Item. _onProfessionRoll по имени выбирает attack/custom/threshold/roll и не возвращает внутренний Promise. direct attack использует this в speaker, обычный skillRoll — ошибочный this.actor.
+
+[module/actor/mixins/professionMixin.js](mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

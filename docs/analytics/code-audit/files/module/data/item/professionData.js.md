@@ -110,3 +110,13 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. В полном Character-контексте вызван настоящий enrichedText профессии: definingSkill, notes и девять навыков ветвей; getList выбирает первый нестored Item. Header читает только имя профессии. Все методы табличного представления профессии не объявляются проверенными этой порцией.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Первая профессия используется калькулятором/поиском Actor. Group01: defining2+path1.skill1=3 дают 5; вторая профессия 10 не учитывается. Защита по-прежнему отдельный процесс через isApplicableDefense/createDefenseOption; группа 23 подтвердила isDefense=false не исключает defendsAgainst и definingSkill пропущен(71/72). Actor HBS не заменяет редактор Item.
+
+[module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

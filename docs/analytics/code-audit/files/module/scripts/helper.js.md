@@ -120,3 +120,13 @@ getRandomInt не создаёт Roll/ChatMessage; влияет на downstream 
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. getCustomModifier вызван stat-save перед броском; положительный модификатор увеличивает кубик при reversal и тем самым затрудняет успех. Отмена отклоняет Promise. Проверка переводов теперь включает expandObject, как в core; русские customModifier и savingThrow отсутствуют, en fallback есть.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+getCustomModifier используется обычным профессиональным skillRoll: строка 0 не добавляется, custom 2 даёт +2; rejectClose возвращает отклонённый Promise. getActorOwner(target) выбирает получателя temporaryHp query. applyOnTarget выбирает первую цель либо this. При отсутствии владельца/activeGM query не защищён; полный сетевой сценарий не выполнен.
+
+[module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

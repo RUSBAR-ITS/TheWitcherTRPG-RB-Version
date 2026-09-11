@@ -83,3 +83,13 @@ static defineSchema():4–13 возвращает одно поле temporaryHp 
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Потребитель [TemporaryHealth профессии](../../../../../../../../../module/data/item/templates/profession/temporaryHealthData.js) в doProfessionSkillUsage создаёт один ADD-change temporaryHp.<skillName> с JSON name/value и duration.rounds. Контроль {Aid:{name:'Aid',value:7}} принят этой моделью. Выбор получателя/длительность/кавычки исследованы отдельно; модель результата не вычисляет эти значения. issue-00023 остаётся границей расхода нескольких changes; такой эффект не создаётся производителем в данном сценарии.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Производитель HP создаёт key system.combatEffects.temporaryEffects.temporaryHp.<skillName> и строку name/value. Корректный d6-путь вычислил 9 HP в группе 14; выражение +2 без кубов дало невалидный JSON (240), кавычка в имени остаётся проблемой 117. Эти наблюдения сделаны до применения effects, прямой derivedStats.hp update отсутствует.
+
+[module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

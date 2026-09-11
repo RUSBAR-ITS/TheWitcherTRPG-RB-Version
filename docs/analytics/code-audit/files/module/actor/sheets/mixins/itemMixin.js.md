@@ -153,3 +153,13 @@ WitcherLootSheet Object.assign174 подключает itemMixin и вызыва
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Группа 19 проверила все 35data-field Character HBS (30profession+5race) и 3Monster: каждый адресует реальную schema соответствующего Item. _onItemInlineEdit передал level "0" строкой, Item-модель привела к 0. Общие особые ветви value=="false"/"true"/"checked" остаются причиной 153; имя профессии/социальный статус не получает отдельного безопасного parser.
+
+[module/actor/mixins/professionMixin.js](../../mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

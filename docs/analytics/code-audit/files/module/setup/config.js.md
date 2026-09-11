@@ -536,3 +536,13 @@ WITCHER.currency624–632 — источник семи options для Rewards.c
 [module/actor/mixins/rewardsMixin.js](../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+В новых HBS используются statTypes/socialStanding/damageTypes; формулы читают statMap[skill.stat]. Произвольный profession skillName не разрешается через skillMap для обычного броска, а direct attack передаёт отсутствующее attack.name в modifier. Конфигурация не менялась.
+
+[module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

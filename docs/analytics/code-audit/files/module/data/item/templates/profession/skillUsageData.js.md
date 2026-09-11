@@ -74,3 +74,13 @@ hasCustomEffect выбирает doProfessionSkillUsage. Если temporaryHealt
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.019 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Dispatcher выбирает hasCustomEffect только после isAttack и до thresholds. Сам doProfessionSkillUsage не проверяет hasCustomEffect; если addTemporaryHealth=false, завершает без броска. Цель определяется applyOnTarget, applySelf не читается: группами 14/22 проверены другой Actor и оба self/target флага. Повторное применение/stack не проверены.
+
+[module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

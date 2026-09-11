@@ -104,3 +104,13 @@ Race.socialStanding не копируется в Actor.system.general.socialStan
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полный Character._prepareCharacterData выбирает первый нестored race и вызывает настоящий enrichedText для perk1–4. Header выводит имя race, sidebar расы не показывает. Передача обогащённых описаний в tab-profession — отдельный контракт прежней issue-00109; весь этот HBS остаётся TASK-0003.038.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Полный Character tab-profession включает perk1–4 и 5socialStanding select;35 путей с профессией проверены на схемах. Raw editor description остаётся отдельным reader и не использует context.enrichedText.race(109). Actor inline callback пишет в raceItem через.closest.item. Browser-rich-text сохранение не проверено.
+
+[module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

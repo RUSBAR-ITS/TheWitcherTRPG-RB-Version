@@ -128,3 +128,13 @@ L: — метка подменённой локализации в изолир�
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Настоящий addActiveEffects участвует в обоих ремесленных callbacks; подробный режим с подходящим именованным эффектом работает. При ненулевом activeEffectModifiers и пустом списке подходящих имён формируется +1[], которое отвергает парсер Foundry14 (issue-00204). Возникновение такого несогласованного Actor в мире не установлено.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Full profession direct attack передаёт addActiveEffects(attack.name), но объект attack имеет skill/alias без name. Group09 записала undefined, modifier вернул пустую строку при навыке awareness с AE+4. addAttackModifiers в этой ветке отсутствует; skillReplacement оружия обходит constructBaseAttackFormula. Новая 237 фиксирует пропуск, а 33 остаётся отдельной проблемой синтаксиса добавляемого общего модификатора.
+
+[module/actor/mixins/professionMixin.js](professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

@@ -170,3 +170,13 @@ clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnl
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. useOptionalVerbalCombat проходит через базовый контекст в Monster header/sidebar и старый полный HBS. Флаг управляет кнопкой словесного боя и блоком resolve; конфигурация general предлагает custom resolve max независимо от его видимости. Другие настройки не объявляются переисследованными.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../templates/sheets/actor/configuration/monster/general.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+displayRollsDetails прочитан обоими профессиональными бросками. Группа 10/22 с реальным Roll дала одинаковые числовые итоги при переключении, различается аннотация формул. Настройки resource/применения не добавлялись.
+
+[module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

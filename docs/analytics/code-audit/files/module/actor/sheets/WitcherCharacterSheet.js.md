@@ -158,3 +158,13 @@ PARTS.inventory52 ведёт к tab-inventory.hbs с единственной н
 [module/actor/mixins/rewardsMixin.js](../mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+PARTS.profession48 → полный tab-profession337 строк. _prepareCharacterData154–167 даёт profession/race и enrichedText; HBS показывает 10 навыков, notes,4perk и 5 социальных select, но не читает enriched. totalProfSkills170 вызывает полный калькулятор всех 10 уровней первой профессии. Группы 18–20 проверили HBS и inline path.
+
+[module/actor/mixins/professionMixin.js](../mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

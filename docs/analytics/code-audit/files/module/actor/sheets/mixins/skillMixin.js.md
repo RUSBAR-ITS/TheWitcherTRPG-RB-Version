@@ -104,3 +104,13 @@
 [module/actor/mixins/rewardsMixin.js](../../mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../rewardsSheet.js.md), [module/app/reward/reward.js](../../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+skillListener31 напрямую связывает .profession-roll с thisActor._onProfessionRoll; Character HBS создаёт 10 кнопок, Monster1. Actor ищет только data-name: data-stat/data-level/description не определяют бросок, путь data-field редактора не используется. Пустой stat !=none даёт кнопку и TypeError(118), совпадающее имя выбирает первую запись(110).
+
+[module/actor/mixins/professionMixin.js](../../mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

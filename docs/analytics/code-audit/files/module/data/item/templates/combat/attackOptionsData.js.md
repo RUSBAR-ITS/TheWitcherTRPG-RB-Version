@@ -108,3 +108,13 @@
 Сверенные карточки: [module/data/item/spellData.js](../../spellData.js.md).
 
 [Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Профессиональная примесь берёт только первый элемент Set attackOptions: для chooser ranged/melee группа 11 предложила только ranged. Поля meleeAttackSkill/rangedAttackSkill/spellAttackSkill/itemUseAttackSkill не участвуют в direct formula — берутся skill.stat/level. Empty set не защищён chooser(242); выбор семантики нескольких вариантов отдельно не согласован.
+
+[module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

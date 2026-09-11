@@ -134,3 +134,13 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Разрешённый динамический addAdrenaline теперь разобран: optional=false не пишет, true запускает Actor.update и сразу завершает собственный Promise. Query тоже не ожидает entity[function]; полное завершение записи отсутствует на обоих уровнях. Потребитель defenseMixin выбирает владельца атакующего при crit; сетевой сценарий не запускался.
 
 Сверенные источники: [module/actor/mixins/adrenalineMixin.js](../../../../../../module/actor/mixins/adrenalineMixin.js); [module/actor/mixins/defenseMixin.js](../../../../../../module/actor/mixins/defenseMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Полный профессиональный producer вызывает getActorOwner(target).query("TheWitcherTRPG.query",{function:"applyActiveEffectToActor",data:[target.uuid,[newEffect]]}) без await. Whitelist query вызывает handler безожидания; ответ true не означает persisted effect(8). В HP caller есть ещё потеря Promise(241).
+
+[module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

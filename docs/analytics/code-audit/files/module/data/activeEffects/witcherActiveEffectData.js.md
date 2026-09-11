@@ -93,3 +93,13 @@
 Поля полностью сопоставлены с [templates/sheets/activeEffect/system-specific.hbs](../../../../../../../templates/sheets/activeEffect/system-specific.hbs): applyAfterCalculations выводится всегда, остальные четыре — у Item-эффекта. Это параметры целого эффекта; поля key/type/value/phase/priority отдельных строк рендерятся стандартными шаблонами ядра. [module/activeEffect/WitcherActiveEffectSheet.js](../../../../../../../module/activeEffect/WitcherActiveEffectSheet.js) не добавляет схеме ограничений характеристик; мастер лишь добавляет ключи.
 
 [Общая сверка первой серии](../../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Профессиональный HP использует ActiveEffect со старым changes/mode ADD. Настоящая core миграция положила change в system.changes и преобразовала mode→type и JSON value; поэтому старая форма changes сама по себе не зарегистрирована как ошибка. Конструктор/клон/сохранение полностью не исполнялись. icon вместо img — отдельная 243.
+
+[module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

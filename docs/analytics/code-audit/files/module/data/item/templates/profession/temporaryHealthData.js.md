@@ -78,3 +78,13 @@ TemporaryHealth extends DataModel; используется только как 
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.019 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Полный путь использует target.stats[stat].max×multiplier, а бросает владелец навыка. Строгий rollOver>0; cap ограничивает количество d6 по min. Группы 14–17 проверили цель/равенство/проигрыш/cap, default duration2*@level, длительность 2→TypeError(114), quote-name→JSON ошибка(117), новое "+2" без d→5+2 в JSON(240). Это payload перед конструктором эффекта, не запись HP в БД.
+
+[module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

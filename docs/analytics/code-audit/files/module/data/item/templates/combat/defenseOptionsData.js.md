@@ -89,3 +89,13 @@
 Сверенные карточки: [module/data/item/spellData.js](../../spellData.js.md), [module/data/item/hexData.js](../../hexData.js.md), [module/data/item/ritualData.js](../../ritualData.js.md).
 
 [Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Direct профессиональный message передаёт skill.skillAttack.defenseOptions на верхнем уровне system и копию внутри damage. Настоящая AttackMessageData принимает верхнюю часть; вложенное damage.defenseOptions не определено в damageData. Защита запускается позже контекстным действием chat/combat, сама профессия query защиты не отправляет.
+
+[module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.037 подготовлены и сверены 290 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.038 подготовлены и сверены 294 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -478,3 +478,12 @@
 | templates/sheets/actor/rewards/ip.hbs | [Описание](templates/sheets/actor/rewards/ip.hbs.md) |
 | templates/sheets/actor/rewards/currency.hbs | [Описание](templates/sheets/actor/rewards/currency.hbs.md) |
 | templates/chat/rewards.hbs | [Описание](templates/chat/rewards.hbs.md) |
+
+## Применение профессий — TASK-0003.038
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/professionMixin.js | [Описание](module/actor/mixins/professionMixin.js.md) |
+| templates/partials/character/tab-profession.hbs | [Описание](templates/partials/character/tab-profession.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/tab-profession.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md) |
+| templates/dialog/combat/profession-attack.hbs | [Описание](templates/dialog/combat/profession-attack.hbs.md) |

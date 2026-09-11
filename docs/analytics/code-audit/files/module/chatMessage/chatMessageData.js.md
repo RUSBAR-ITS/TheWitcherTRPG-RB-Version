@@ -105,3 +105,13 @@ Default-export class без наследования. constructor сразу в�
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character создаёт настоящие ChatMessageData для изготовления, записывает flavor навыка/DC и success/fail текст; extendedRoll дополняет результат. Отправка ChatMessage перехвачена. Ветка недостаточных компонентов без associatedItem падает до уведомления и передачи realCraft (issue-00201).
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).
+
+## Дополнительная сверка TASK-0003.038
+
+2026-09-11, `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; исходники не менялись.
+
+Gr03/07 проверили обе точки профессии: обычный doProfessionSkillRoll передаёт this.actor(undefined), core getSpeaker уходит к user.character; direct attack передаёт this и корректный actor ID. Новая 236 локализует caller, сам ChatMessageData делегирует ядру по своему контракту. Способностьбезоружия создаёт type attack, но без attack.itemUuid(239).
+
+[module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
+
+[Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
