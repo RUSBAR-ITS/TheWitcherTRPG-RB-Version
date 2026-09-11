@@ -123,3 +123,13 @@ WitcherLootSheet импортирует itemContextMenu1, присоединяе
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+У текущего spell-type-list нет прямых edit/delete кнопок, но li.item участвует в itemContextMenu. Группа 31 вызвала настоящий editItem.onClick и получила item.sheet.render(true). Конфигурация deleteItem имеет callback, а не onClick; её работа в браузере этой порцией не подтверждена.
+
+[templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

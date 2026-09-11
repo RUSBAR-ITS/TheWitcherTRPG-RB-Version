@@ -187,3 +187,13 @@ prepareBaseData, calcCurrencyWeight и три метода миграции на
 [module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Текущий MonsterSheet использует общий tab-magic с magic.magicImprovementPoints, которого нет в MonsterData/CommonActorData. Группа 04 проверяет рендер, не сохранение этого поля; связанное наблюдение добавлено к issue-00192. Сотворение использует общие WILL/STA/focus и проверено на модели monster.
+
+[templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

@@ -180,3 +180,13 @@ displayRollsDetails прочитан обоими профессиональны
 [module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+displayRollsDetails читается castSpell при формировании характеристик, навыка, EV, customMod и локации; группа 10 показала неизменный итог при включённых подписях. Собственного setting порога или списка магии метод не читает.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../actor/mixins/castSpellMixin.js.md).
+
+[Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

@@ -308,3 +308,13 @@ WitcherLootSheet покупает документ через Actor.addItem/remo
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+castSpell вызывает getItemAttack() без аргументов и createBaseDamageObject из damageUtilMixin. Первый attackOptions определяет метаданные; у стандартного spell skill='spellcasting', но getUsedSkill выбирает fallback spellcast. Группа 13: оба itemUuid присутствуют в настоящей AttackMessageData; это отличается от профессии issue-00239.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../actor/mixins/castSpellMixin.js.md).
+
+[Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

@@ -78,3 +78,13 @@ focus():4–9 без аргументов возвращает поля name/val
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Четыре отдельных SchemaField(focus()) включены в focus1–4:51–54 у персонажа и монстра. Одноимённый derivedStats.focus имеет другой источник; CommonActorData.prepareBaseData:88 вычисляет его unmodifiedMax из текущих WILL.value/INT.value.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Поля focus1–4.name/value редактируются в обоих HBS; текущий castSpell берёт value>0 и передаёт числовые option. Группы 06/08: первый фокус выбран автоматически, второй пустой, одно значение можно выбрать дважды; сумма вычитается до минимума 1, сила использует origStaCost.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../../actor/mixins/castSpellMixin.js.md); [templates/partials/character/tab-magic.hbs](../../../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../../../templates/partials/character/tab-magic.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/dialog/combat/spell-attack.hbs](../../../../../../../../../templates/dialog/combat/spell-attack.hbs) — [карточка](../../../../../templates/dialog/combat/spell-attack.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

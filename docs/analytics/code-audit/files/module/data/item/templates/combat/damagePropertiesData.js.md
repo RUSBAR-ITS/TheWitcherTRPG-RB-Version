@@ -157,3 +157,13 @@ Direct attack deepClone передаёт данные в typed AttackMessageData
 [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+effects в castSpell читается через Object.values, что соответствует TypedObjectField. Но исходный damage.properties — эта же модель Item: varEffect.percentage меняется 10→20→40 при двух casts со STA 2 до пересчёта. _source остаётся 10; группа 14 и issue-00247. Это не ошибка типа словаря из issue-00133, относящаяся к selfEffects сообщения.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../../actor/mixins/castSpellMixin.js.md).
+
+[Сценарии, методика и пределы проверки](../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

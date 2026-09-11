@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.038 подготовлены и сверены 294 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.039 подготовлены и сверены 300 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -487,3 +487,14 @@
 | templates/partials/character/tab-profession.hbs | [Описание](templates/partials/character/tab-profession.hbs.md) |
 | templates/sheets/actor/partials/monster/tabs/tab-profession.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md) |
 | templates/dialog/combat/profession-attack.hbs | [Описание](templates/dialog/combat/profession-attack.hbs.md) |
+
+## Магия Actor — TASK-0003.039
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/castSpellMixin.js | [Описание](module/actor/mixins/castSpellMixin.js.md) |
+| templates/partials/character/tab-magic.hbs | [Описание](templates/partials/character/tab-magic.hbs.md) |
+| templates/sheets/actor/partials/character/spell-type-list.hbs | [Описание](templates/sheets/actor/partials/character/spell-type-list.hbs.md) |
+| templates/partials/monster/monster-spell-tab.hbs | [Описание](templates/partials/monster/monster-spell-tab.hbs.md) |
+| templates/dialog/combat/spell-attack.hbs | [Описание](templates/dialog/combat/spell-attack.hbs.md) |
+| templates/chat/combat/spellItem.hbs | [Описание](templates/chat/combat/spellItem.hbs.md) |

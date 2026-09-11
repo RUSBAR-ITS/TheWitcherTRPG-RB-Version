@@ -111,3 +111,13 @@ Default export function itemEffect() каждый раз возвращает н
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современные weapon/armor/runes-glyphs отображают name/statusEffect/percentage через each словаря. При25% тег есть, при0% скрыт, оба имени сохранены; varEffect здесь не читается. Рендер не преобразует statusEffect в applyStatus и не опровергает issues-00084/00089.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs](../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs). [Проверки и ограничения](../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Для damage.properties.effects percentage масштабируется при varEffect; для selfEffects/onCastEffects castSpell передаёт statusEffect без проверки percentage/varEffect. Группа 20 применяет статус даже при percentage 0. Политика шанса этих категорий в книгах не проверялась; основной факт — разные consumers одной схемы.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../actor/mixins/castSpellMixin.js.md).
+
+[Сценарии, методика и пределы проверки](../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

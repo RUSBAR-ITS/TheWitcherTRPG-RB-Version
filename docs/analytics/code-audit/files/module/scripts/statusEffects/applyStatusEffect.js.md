@@ -95,3 +95,13 @@ API и версия statuscounter, реальные таймеры нескол�
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: onApplyStatus использует getCurrentCharacter без диалога выбора; applyStatusEffectToActor при !actor.isOwner вызывает getActorOwner(actor).query. Полный helper и настоящий метод потребителя с фасадами показали TypeError при отсутствии активного OWNER и activeGM. Это [issue-00185](../../../../../../issues/potential/issue-00185.md), отдельная от [issue-00008](../../../../../../issues/potential/issue-00008.md) о результате уже отправленного query. Источники текущего Actor и получатель запроса — разные операции.
 
 Полные карточки зависимости: [module/scripts/helper.js](../helper.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Собственные эффекты castSpell обходятся Object.values, onCastEffects передаётся целиком. Группы 20–24: dictionary self применяется без вывода ссылки; нет целей→ранний выход; цель+undefined у ritual/hex→TypeError. Ручная a.apply-status использует getCurrentCharacter при клике. Statuscounter не включался; прежняя issue-00003 остаётся отдельным ограничением.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md); [templates/chat/combat/spellItem.hbs](../../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../../templates/chat/combat/spellItem.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

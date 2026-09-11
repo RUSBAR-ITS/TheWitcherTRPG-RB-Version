@@ -100,3 +100,13 @@
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Все девять флагов веществ сопоставлены с полным substances.hbs: условный sub-open и условная таблица используют один ключ. По умолчанию девять иконок видны, таблиц нет; все true дали девять таблиц. Эти флаги не являются источником count.
 
 Связи: [templates/partials/character/substances.hbs](../../../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Шесть флагов noviceSpellIsOpen/journeymanSpellIsOpen/masterSpellIsOpen/ritualIsOpen/hexIsOpen/magicalgiftIsOpen читает старый monster-spell-tab. _onSpellDisplay собирает путь из data-spelltype. Текущий tab-magic использует TABS.magicTabs и details, не эти флаги.
+
+[templates/partials/monster/monster-spell-tab.hbs](../../../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../../../templates/partials/monster/monster-spell-tab.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

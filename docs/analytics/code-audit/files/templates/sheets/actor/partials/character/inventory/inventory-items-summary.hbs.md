@@ -95,3 +95,13 @@ has* задают наличие подписей, не фильтруют ст�
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный вход substances→components→summary подтверждён рендером. Кнопка имеет data-itemtype=component, data-subtype отсутствует; настоящий _onItemAdd с полученными атрибутами создаёт system.type=component. Отсутствие подтипа не связано с потерей HBS-контекста.
 
 Связи: [templates/partials/character/substances.hbs](../../../../../partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Consumer spell-type-list передаёт header/itemType/subtype; spellType берётся из унаследованного контекста tab-magic. Группа 05 проверила data-spelltype='spellNovice' и настоящий _onItemAdd payload. Отсутствие явно названного spellType в промежуточном include не теряет значение.
+
+[templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../spell-type-list.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

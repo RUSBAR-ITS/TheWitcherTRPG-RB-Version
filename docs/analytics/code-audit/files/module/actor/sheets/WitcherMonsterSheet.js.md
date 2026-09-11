@@ -146,3 +146,13 @@ PARTS.profession41 → отдельный HBS50 строк, только definin
 [module/actor/mixins/professionMixin.js](../mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+PARTS.magic использует общий character/tab-magic.hbs с теми же шестью magicTabs. Старый monster-spell-tab присутствует только в монолитном monster-sheet.hbs/предзагрузке. Группа 04: текущая вкладка показывает Item в all и специальной группе. Поле magic.magicImprovementPoints в общей вкладке не имеет схемы MonsterData; уточнена issue-00192, браузерная запись не проверялась.
+
+[templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

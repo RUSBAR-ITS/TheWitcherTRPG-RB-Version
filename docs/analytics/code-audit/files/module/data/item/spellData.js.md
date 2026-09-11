@@ -114,3 +114,13 @@ registerDataModels связывает тип spell с SpellData; при импо
 Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](templates/regions/templatePropertiesData.js.md), [module/data/item/templates/regions/regionBehavioursData.js](templates/regions/regionBehavioursData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](templates/regions/regionPropertiesData.js.md), [module/data/item/mixin/spellRegionMixin.js](mixin/spellRegionMixin.js.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003022).
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+Полный castSpell использует getUsedSkill (fallback spellcast для 4 допустимых class), cost, damage/shield/heal, selfEffects/onCastEffects и createSpellRegion. Группы 01/13–24: словарь selfEffects применяется, но не выводится; variable heal падает после вызова STA update; varEffect меняет модель в памяти. Неизвестный class без валидного навыка отвергается до диалога.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md); [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/dialog/combat/spell-attack.hbs](../../../../../../../templates/dialog/combat/spell-attack.hbs) — [карточка](../../../templates/dialog/combat/spell-attack.hbs.md); [templates/chat/combat/spellItem.hbs](../../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../../templates/chat/combat/spellItem.hbs.md).
+
+[Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

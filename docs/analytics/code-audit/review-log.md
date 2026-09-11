@@ -1,5 +1,109 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.039
+
+| Поле | Результат |
+| --- | --- |
+| Дата/задача | 2026-09-11; [TASK-0003.039](../../tasks/task-0003.039.md) |
+| Версия | `rusbar-main`, `c598d74e34f4be51535de78b38f0601c286c5407`; рабочее дерево на старте чистое |
+| Состав | Шесть полных файлов, 870 логических строк; castSpellMixin — 287, tab-magic — 80, spell-type-list — 174, monster-spell-tab — 223, spell-attack — 35, spellItem — 71 |
+| Среда | Foundry 14.367.0 (/opt/foundryvtt/package.json), Node 24.16.0, Handlebars 4.7.9 |
+| Исходники | 621 файл совпадает с HEAD и срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`; SHA256 `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4` |
+| Доступ | До правок сняты mode/uid/gid/inode для 1288 отслеживаемых файлов; исходный metadata SHA256 `dddc588feb6b43f016eca061b340e56637cb191911d1373b2045aa1c4eb44932` |
+| Результат | 6 новых карточек,34 уточнённые связанные,10 новых potential issues (00245–00254),17 уточнённых прежних; покрытие 300 / 621, остаток 321 |
+
+### Методика и пределы
+
+Все шесть исходников прочитаны целиком через cat/nl, определения и потребители найдены rg по module/templates. Проверены импорты, Object.assign, PARTS/TABS, подготовка списков и схемы данных, контекст partial-включений, listeners, автоматические эффекты, кнопки сообщения и граница области. Соседи прочитаны в пределах связи, их частичный разбор не увеличивает покрытие. Старый monster-spell-tab имеет consumer в старом монолите; зарегистрированный текущий MonsterSheet использует общий tab-magic.
+
+Команда изолированных сценариев — `node --input-type=module` с программой через stdin, без создания тестовых файлов. Загружены настоящие модели SpellData/HexData/RitualData/CharacterData/MonsterData/DamageProperties/AttackMessageData, WitcherItem и тела методов Actor/листов, castSpellMixin, extendedRoll/RollConfig, status/ActiveEffect helpers, chat listeners и spellRegionMixin. Поля/очистка DataModel, RollParser/грамматика и броски Foundry настоящие; выдача кубов контролируется. Handlebars использует исходные HBS, core selectOptions/concat/localize и раскрытые expandObject en/ru с настоящим Localization/fallback.
+
+Подменены Application и базовые документы окружения, Dialog/HTMLForm.elements, генераторы HTML input/select, итоговый Roll.toAnchor (только показ, не расчёт duration), отправка сообщений/запись Actor/Item, UUID resolver, ActiveEffect.clone/создание, canvas.placeRegion и User.query. parse5 — проверка разметки, не браузер. Управляемые Promise проверяют порядок завершения, не транзакции БД. Для .039 не запускались HTTP, мир, служба, компедиумы, полный бой/защита/урон, жизненный цикл ActiveEffect, statuscounter, настоящая сеть и несколько клиентов. Сохранённые материалы .009/.022 о core clone/области не выданы за повторное выполнение здесь.
+
+### Сценарии
+
+33 группы завершились успешно. Первые технические прогоны выявили недостающую инициализацию tabGroups в фасаде и неточную ожидаемую английскую подпись; исправлены только условия проверки в stdin. Эти отказы не приписаны системе. Код системы не менялся.
+
+| Группа | Предмет | Вход/метод | Результат |
+| --- | --- | --- | --- |
+| 01 | Типы/навыки/speaker | Реальные spell четырёх class, hex, ritual | spellcast/hexweave/ritcraft; total 15; Actor speaker и attack.itemUuid корректны |
+| 02 | Пустой Item/класс/навык | useItem missing; castSpell undefined; class пустой; явный melee | useItem→undefined; прямые несовместимые входы TypeError до диалога/STA |
+| 03 | Списки | Три class×три level, MagicalGift, неизвестный class/level, hex/ritual, пустой Actor | 6 групп; 12 видимых Item дают 24 кнопки в двух представлениях; unknown не выводятся |
+| 04 | Монстр/старый HBS | Настоящая MonsterData, PARTS и рендер обоих HBS | Текущий общий tab-magic; старый шаблон 6 панелей/8focus-полей |
+| 05 | Вложенный partial | tab-magic→spell-type-list→summary→_onItemAdd | spellType не теряется; spellNovice даёт class Spells/level novice |
+| 06 | Поля диалога | Минимальная/полная форма, actual selectOptions, focus2 | 2 или 6 полей; основной value 2, второй пустой; STA 5−2=3, сила 5 |
+| 07 | Отмена/нехватка STA | Отмена prompt; цена 21 при STA 20 | Нет update/сообщения; недостаток даёт notification |
+| 08 | Минимум/extra/фокусы | Нулевая цена; два выбора одного focus 2 и extra | Минимум 1; цена 6−2−2+3=5, бросок 15−3=12 |
+| 09 | Модификаторы/EV | active+2, group+1, combat−2, EV 1, ignore3, custom−1 | Итог 17; EV даёт −1+3 без ограничения компенсации |
+| 10 | Custom/details | Custom2/−2/1d6, подписи включены | 17/13/15; нечисловая строка custom не добавляется |
+| 11 | Неверная STA | Ввод abc и −2 | Запрос NaN; отрицательная исходная сила даёт щит−4 при оплате 1 |
+| 12 | Множитель | Числа, /STA, кубы, составные/дробные/пустые входы | 3×2d6+1→6d6+1; 2.9→множитель 2; 2+1→NaN; null→TypeError |
+| 13 | Урон/тип сообщения | Урон 2d6, torso, настоящая AttackMessageData | Итог 14; formula/location/itemUuid сохранены; spellcasting в metadata против spellcast в броске |
+| 14 | Повтор процента | Реальная DamageProperties, percentage 10,varEffect, STA 2 дважды | 20→40 в подготовленной модели; _source 10; запись Item не вызывается |
+| 15 | Лечение | Fixed1d6 и variable1d6 | Fixed кнопка содержит формулу; variable ReferenceError heal после STA update, без сообщения |
+| 16 | Кнопка лечения | Реальный onHeal, формула 1d6 и число 30 | parseInt даёт 1: HP 5→6; числовое лечение ограничено HP.max20 |
+| 17 | Кнопка щита | Реальный onShield, щит 2d6, Actor.system.updateSource | update получает строку, числовая модель её отвергает; damageData не хранит shield/heal |
+| 18 | Варианты щита | Fixed7, variable2/STA, variable1d6/STA при STA 3 | 7,6,3d6; вычисление кубов на границе кнопки отсутствует |
+| 19 | Выбор цели лечения | Нет цели; затем selected target против user.character | При отсутствии update нет; первая цель имеет приоритет |
+| 20 | selfEffects словарь | Реальная SpellData с fire и percentage 0 | Статус передан helper/toggle-фасаду, ссылки в HTML нет |
+| 21 | Legacy-массив | Подготовленные selfEffects массивом с именем без статуса и fire | Показана лишь запись со статусом; не миграция мировых данных |
+| 22 | Статусы/ActiveEffect | self/target/onHit с настоящими helpers | Self/target выбраны; onHit не включён; clone/запись — фасады |
+| 23 | Цель hex/ritual | Реальные типы без onCastEffects и непустой targets | Бросок 15/сообщение возвращены, отсоединённый TypeError Object.values(undefined) |
+| 24 | Fumble | d10=1, extra d10=5, shield/heal/self-status | Итог 6,fumble=true; статус пропущен, область вызвана, heal-кнопка всё ещё запросила HP 7 из 5 |
+| 25 | DC ритуала | difficultyCheck25, итог 15 | DC есть в HTML; threshold−1, options.success undefined |
+| 26 | Duration | Пустая, instant, 2 rounds, 1 hour 30 minutes, 1d6 rounds и for 1d6 rounds | undefined/пустая строка/2/130/куб 4; последний вариант отказал после STA update |
+| 27 | Завершение | Удержанные Promise update/toggle/создания эффектов | castSpell вернул Roll до завершения; контрольное разрешение завершило фасады |
+| 28 | Цена области | STA 5, focus2, перехват createSpellRegion | Оплата 3; options.stamina передана исходной строкой 5 |
+| 29 | Компоненты | Подготовленные primary3×Known/alternate4×Alternative | Чат: главный список читаемый, alternate object Object; Actor-list показывает имя альтернативы без quantity |
+| 30 | Локализация | Настоящие expandObject/Localization; literal scan6 файлов и source Water | Единственный literal ru-пропуск customModifier→Custom Modifiers; Water не найден в обоих языках |
+| 31 | Редактирование/useItem | Настоящие editItem.onClick и _onItemRoll | sheet.render(true); ID/клавиши переданы useItem; запись/UI заменены |
+| 32 | Настоящая цепочка области | castSpell→createSpellRegion→fromItem(circle)→placeRegion-фасад | flags.options пусты; прежняя ошибка Promise.all(Promise) поглощена; сообщение создано |
+| 33 | Не владелец | Реальные helpers с isOwner=false | Захвачены status/ActiveEffect query; локального toggle/создания нет, сеть не выполнялась |
+
+### Перекрёстная сверка
+
+- Путь .spell-roll → itemMixin._onItemRoll → WitcherActor.useItem → castSpell проверен по определениям. Современное редактирование доступно через itemContextMenu.editItem; кнопки item-learned в обоих списках отсутствуют. Существование внешнего метода обучения не названо реализованным действием этого UI.
+- Схемы magics → группы _prepareSpells → 12 включений списка → summary и поля диалога сопоставлены с их чтением. Наследуемый spellType сохраняется. У монстра общая вкладка показывает поле magicImprovementPoints без поля модели; уточнена прежняя issue-00192, запись не проверялась.
+- Formula/STA/исходная сила разделены: фокус и extra меняют оплату, calcStaminaMulti использует исходную цену с parseInt. Бонусы берутся из уже подготовленной WILL, навыка, ActiveEffect/group и attackModifiers; прежняя проблема положительного attackModifier сохраняется. EV-компенсация не ограничена величиной EV.
+- DamageProperties и selfEffects — разные словари: первый изменяется по ссылке до toObject(false), второй применяется через Object.values, но описание ошибочно ждёт массив. Типизированный attack несёт оба UUID; shield/heal/duration хранятся в HTML, не в damageData.
+- Автоматические эффекты проверяют fumble; сообщение и вызов области выполнены раньше. Конкретные onHeal/onShield/onDamage и status-link consumers сопоставлены с атрибутами; только heal/shield обработчики выполнены изолированно, полный боевой цикл не заявляется. Тело chat.js целиком остаётся задачей .040.
+- Область принимает исходную STA; прежние issues9/128/138/139/142/146 сохранены и уточнены на соответствующих границах. Изолированный успех запроса не назван созданием/настройкой региона.
+
+Уточнены 34 ранее существовавшие карточки. Новые исходники и определения связаны в обе стороны; последующая формальная проверка дополнительно охватывает все уже документированные прямые импорты и literal HBS-пути. Историческая [общая сверка .031–.035](review-log.md#task-0003035) (31 файл/2497 строк с прежними 247 карточками) сохранена. Итоговая сверка всех 63 файлов четвёртой серии остаётся .040, здесь не заявляется выполненной.
+
+### Проблемы
+
+Новые potential:
+
+| ID | Наблюдение |
+| --- | --- |
+| [issue-00245](../../issues/potential/issue-00245.md) | Переменная стоимость заклинания допускает NaN и отрицательную исходную силу |
+| [issue-00246](../../issues/potential/issue-00246.md) | Множитель STA обрезает дробную стоимость и не масштабирует составные формулы |
+| [issue-00247](../../issues/potential/issue-00247.md) | Переменный процент эффекта накапливается в подготовленных данных заклинания |
+| [issue-00248](../../issues/potential/issue-00248.md) | Сотворение ритуала или порчи с выбранной целью передаёт отсутствующие onCastEffects |
+| [issue-00249](../../issues/potential/issue-00249.md) | Кнопки лечения и щита не вычисляют переданные формулы заклинания |
+| [issue-00250](../../issues/potential/issue-00250.md) | Длительность заклинания извлекается из текста без сохранения единиц и границ чисел |
+| [issue-00251](../../issues/potential/issue-00251.md) | castSpell завершается до сохранения STA и применения эффектов |
+| [issue-00252](../../issues/potential/issue-00252.md) | Сложность ритуала выводится в сообщении, но не участвует в проверке броска |
+| [issue-00253](../../issues/potential/issue-00253.md) | Сообщение проваленного заклинания сохраняет действующие кнопки лечения и щита |
+| [issue-00254](../../issues/potential/issue-00254.md) | Игнорирование EV при сотворении может превратиться в положительный бонус |
+
+Уточнены прежние: [issue-00003](../../issues/potential/issue-00003.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00009](../../issues/potential/issue-00009.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00044](../../issues/potential/issue-00044.md), [issue-00064](../../issues/potential/issue-00064.md), [issue-00128](../../issues/potential/issue-00128.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00135](../../issues/potential/issue-00135.md), [issue-00137](../../issues/potential/issue-00137.md), [issue-00138](../../issues/potential/issue-00138.md), [issue-00139](../../issues/potential/issue-00139.md), [issue-00142](../../issues/potential/issue-00142.md), [issue-00146](../../issues/potential/issue-00146.md), [issue-00186](../../issues/potential/issue-00186.md), [issue-00192](../../issues/potential/issue-00192.md). Ни один статус не переводился в open/closed. Регистрация разрешена общим пунктом 9 TASK-0003; исправлений и решений по игровым правилам нет.
+
+### Формальная проверка
+
+Проверки Python из stdin и `git diff --check` завершились успешно:
+
+- Состав реестра совпал с Git и фактическим деревом: 621 исходный файл после исключений; 300 карточек со статусом «Проверено», 321 файл «Не начат». Порция содержит ровно 6 файлов и 870 строк, все 11 разделов карточек заполнены.
+- Исходные байты всех 621 файлов совпали с текущим HEAD и базовым срезом; SHA256 не изменился. Для всех 1288 отслеживаемых файлов сохранены mode, uid, gid и inode. Новые права/владельцы отдельно не назначались.
+- Проверены 338 прямых импортов из документированных JS: 218 default, 113 named-операторов (122 имени), 7 namespace; определения экспортов и обратные упоминания согласованы. В порции 5 прямых импортов. Проверены 198 literal HBS-связей, в порции 4 уникальные пары источник–шаблон (12 повторов include считаются одной парой).
+- Проверены 626 Markdown-документов docs и корневые README/AGENTS: 14 529 локальных ссылок с целевыми файлами и якорями. Проверены таблицы и отсутствие пробелов в конце строк в изменённых документах.
+- Изменены ровно 78 согласованных Markdown-документов: 62 существующих и 16 новых (6 карточек + 10 issues). Рабочий diff содержит только docs; исходники/игровые данные не затронуты.
+- Issue ID образуют непрерывный диапазон 00001–00254, все 254 карточки остаются potential. Уточнения 17 прежних issues не дублируются. Статусы и перечни 40 подзадач согласованы с покрытием; новой задачи не создано.
+- Предыдущая часть review-log сохранена без изменений; контрольный SHA256 исходного журнала `df26269144dce8b31577ce10a931bc90d61315fe23d4926ee37f1f84733cbc8d`. Исторические план и общая сверка .031–.035 не переписаны.
+
+В четвёртой серии выполнены 53 из 63 файлов;10 в очереди, ещё 311 требуют детализации. TASK-0003.039 — done; .040 — planned, TASK-0003 — in-progress, TASK-0004/0005 — draft. Изменена только документация. Коммит не создавался.
+
 ## TASK-0003.038
 
 Дата:2026-09-11. Ветка `rusbar-main`, HEAD `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; стартовое дерево чистое,1275 отслеживаемых файлов. Основание — [TASK-0003.038](../../tasks/task-0003.038.md) и продолжение согласованного пофайлового анализа.

@@ -94,3 +94,13 @@ lifepathData():3–15 без аргументов создаёт пять пол
 Полный [module/activeEffect/mixins/baseMixin.js](../../../../../../../../../module/activeEffect/mixins/baseMixin.js) предлагает шесть полей биографии. shieldParryBonus/shieldParryThrownBonus/ignoredArmorEncumbrance/ignoredEvWhenCasting — численные поля; attacks.strong и attacks.joint разрешаются в SchemaField записи, а не её value. Подтверждение схемой дополнило issue-00019; новый дубликат проблемы не создавался.
 
 [Общая сверка первой серии](../../../../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+ignoredEvWhenCasting прибавляется целиком только при положительном armorEnc. Группа 09: EV 1 и компенсация 3 дают чистый+2 к броску (issue-00254); getArmorEcumbrance отдельно учитывает ignoredArmorEncumbrance с минимумом 0. Игровой смысл предела не выбирался.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../../actor/mixins/castSpellMixin.js.md).
+
+[Сценарии, методика и пределы проверки](../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.

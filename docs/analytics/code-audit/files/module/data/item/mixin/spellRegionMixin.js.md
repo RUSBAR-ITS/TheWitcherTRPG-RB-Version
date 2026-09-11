@@ -96,3 +96,13 @@ regionData задаёт color пользователя либо #ff0000, elevati
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ef8117ba6e5a184989e65761d47a068381056e4a`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003022) |
+
+## Дополнительная сверка TASK-0003.039
+
+2026-09-11, `c598d74e34f4be51535de78b38f0601c286c5407`; исходники не менялись.
+
+В полном castSpell createSpellRegion вызван после await сообщения, до проверки fumble, без await и с {stamina:origStaCost}. Группы 28/32 подтвердили цену до фокуса и сохранение пустого flags.options из-за options/flagOptions. Настоящий fromItem circle попал в прежнюю ошибку Promise.all(Promise), поглощённую createSpellRegion; placeRegion был фасадом.
+
+[module/actor/mixins/castSpellMixin.js](../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../actor/mixins/castSpellMixin.js.md).
+
+[Сценарии, методика и пределы проверки](../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
