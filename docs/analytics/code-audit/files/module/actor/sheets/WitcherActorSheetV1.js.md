@@ -135,3 +135,9 @@ context.system — сериализованная копия actor.toObject(fals
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полные карточки skillMixin/customSkillMixin уточняют старые события и итог навыков. V1 _prepareCustomSkills аналогично передаёт Items; monster-custom-skill-display согласован с itemId/броском/remove/open, но не содержит CRUD массива modifiers. Регистрация V1 активным листом по-прежнему не установлена.
 
 Сверенные связи: [module/actor/sheets/mixins/skillMixin.js](../../../../../../../module/actor/sheets/mixins/skillMixin.js); [module/actor/sheets/mixins/customSkillMixin.js](../../../../../../../module/actor/sheets/mixins/customSkillMixin.js); [templates/partials/monster/monster-custom-skill-display.hbs](../../../../../../../templates/partials/monster/monster-custom-skill-display.hbs). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Оба stat/death mixin теперь описаны полностью и используются теми же прототипными методами. Старый monster-sheet содержит stat/death селекторы; текущий V2 использует отдельные header/tab-stats. Полная регистрация/работа V1 в Foundry14 не установлена.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../templates/partials/character/tab-stats.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

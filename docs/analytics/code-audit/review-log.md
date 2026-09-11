@@ -1,5 +1,112 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.030
+
+| Поле | Результат |
+| --- | --- |
+| Дата / версия | 2026-09-11; `rusbar-main`, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`; Foundry 14.367.0 и Node 24.16.0. |
+| Задача | [TASK-0003.030](../../tasks/task-0003.030.md): 9 файлов, 424 строки (4 JS/5 HBS); итоговая сверка третьей серии. |
+| Результат | 9 новых карточек, 25 уточнённых; 247/621 проверены, 374 не разобраны. Все 79 файлов третьей серии проверены, очередь исчерпана; новые задачи не созданы. |
+| Проблемы | 6 новых potential issue-00194–00199; дополнены 8 прежних: 00008/00011/00012/00035/00036/00167/00186/00193. Подтверждение, исправление и закрытие не выполнялись. |
+
+### Полный разбор и определения
+
+| Исходник | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | 132 | [Описание](files/module/actor/sheets/mixins/statMixin.js.md) |
+| [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | 71 | [Описание](files/module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md) |
+| [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | 51 | [Описание](files/module/actor/sheets/mixins/deathSaveMixin.js.md) |
+| [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | 7 | [Описание](files/module/actor/mixins/adrenalineMixin.js.md) |
+| [templates/partials/character/tab-stats.hbs](../../../templates/partials/character/tab-stats.hbs) | 114 | [Описание](files/templates/partials/character/tab-stats.hbs.md) |
+| [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../templates/sheets/actor/configuration/app/edit-stats.hbs) | 11 | [Описание](files/templates/sheets/actor/configuration/app/edit-stats.hbs.md) |
+| [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs) | 17 | [Описание](files/templates/sheets/actor/configuration/app/partials/stats-block.hbs.md) |
+| [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | 11 | [Описание](files/templates/dialog/deprecations/statSkillModifiers.hbs.md) |
+| [templates/dialog/deprecations/lifepathModifiers.hbs](../../../templates/dialog/deprecations/lifepathModifiers.hbs) | 10 | [Описание](files/templates/dialog/deprecations/lifepathModifiers.hbs.md) |
+
+Все 424 строки прочитаны полностью. Сверены 9 прямых импортов, Object.assign, callbacks репутации, поля/методы конфигурации и две PARTS. Для источников значений прочитаны Stats/DerivedStats/Reputation/adrenaline/CommonActorData и необходимые методы WitcherActor; для событий — оба базовых листа, PARTS/actions и producer контекста Character/Monster, headers/sidebar и query/defense-потребитель адреналина. Предзагрузка различена с фактическим выбором листа. Для обоих deprecations-HBS поиск exact path/stem/построения каталога в module/templates не обнаружил внутреннего потребителя; deprecationWarnings пуст.
+
+Уточнённые карточки: [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md); [module/actor/sheets/WitcherActorSheet.js](files/module/actor/sheets/WitcherActorSheet.js.md); [module/actor/sheets/WitcherActorSheetV1.js](files/module/actor/sheets/WitcherActorSheetV1.js.md); [module/data/actor/templates/common/stats/statData.js](files/module/data/actor/templates/common/stats/statData.js.md); [module/data/actor/templates/common/stats/statsData.js](files/module/data/actor/templates/common/stats/statsData.js.md); [module/data/actor/templates/common/stats/derivedStatsData.js](files/module/data/actor/templates/common/stats/derivedStatsData.js.md); [module/data/actor/templates/common/reputationData.js](files/module/data/actor/templates/common/reputationData.js.md); [module/data/actor/templates/common/adrenalineData.js](files/module/data/actor/templates/common/adrenalineData.js.md); [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md); [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md); [module/data/actor/monsterData.js](files/module/data/actor/monsterData.js.md); [module/setup/config.js](files/module/setup/config.js.md); [module/setup/settings.js](files/module/setup/settings.js.md); [module/setup/handlebars.js](files/module/setup/handlebars.js.md); [module/setup/deprecations.js](files/module/setup/deprecations.js.md); [module/setup/queries.js](files/module/setup/queries.js.md); [module/scripts/rollConfig.js](files/module/scripts/rollConfig.js.md); [module/scripts/rolls/extendedRoll.js](files/module/scripts/rolls/extendedRoll.js.md); [module/chatMessage/chatMessageData.js](files/module/chatMessage/chatMessageData.js.md); [module/scripts/helper.js](files/module/scripts/helper.js.md); [module/actor/sheets/mixins/skillMixin.js](files/module/actor/sheets/mixins/skillMixin.js.md); [templates/sheets/actor/configuration/app/edit-skills.hbs](files/templates/sheets/actor/configuration/app/edit-skills.hbs.md); [templates/partials/monster/monster-skill-tab.hbs](files/templates/partials/monster/monster-skill-tab.hbs.md); [templates/partials/character/tab-skills.hbs](files/templates/partials/character/tab-skills.hbs.md); [module/scripts/investigation/rollClue.js](files/module/scripts/investigation/rollClue.js.md). Старые текущие ограничения по WitcherModifiersConfiguration уточнены; исторические результаты предыдущих порций не переписаны.
+
+### Изолированные проверки и подмены
+
+19 новых групп завершены успешно: 18 основного прогона и отдельно группа 19 после проверки producer монстра. Дополнительно повторены все 22 группы .029 с исправленной загрузкой локализации —22/22 прошли. Сценарии выполнялись из памяти через `node --input-type=module`, без создания стенда/тестовых файлов. Использованы настоящие Foundry DataModel/TypeDataModel/fields/utils, Roll/terms/Peggy, Handlebars 4.7.9, parse5, системные методы и модели, FormDataExtended и DocumentSheet._processFormData. Грани кубиков заданы; отправка сообщений и update перехвачены.
+
+Подменены базовые Sheet/Application/Document оболочки, Dialog, DOM-форма/элементы/window, fulfillment/RollResolver и записывающие API. Настоящий FormDataExtended прочитал все именованные enabled поля этой формы и привёл Number; _processFormData выполнил expandObject; system.updateSource принял данные, после чего исполнялись настоящие методы подготовки Actor в нужном порядке. Это не browser submit и не серверный Document.update. Исправлялись только фасады проверок: window и сохранённые исходные данные fixture; customStat проверен на MonsterData, где он действительно объявлен. Предупреждение Node MODULE_TYPELESS_PACKAGE_JSON не устранялось изменением системы.
+
+| Группа | Проверка | Фактический результат |
+| --- | --- | --- |
+| 01 | Восемь характеристик и luck.max | При value3/max8 и кубике 5 успех только у luck; speaker Actor, type base; метод возвращает void. |
+| 02 | Модификатор/границы/крит/отмена stat-save | Равенство порогу неуспешно;5−1<5 успешно;threshold0 сравнивается, −1 нет;10+2=12,1 с провалом→0; отмена/неизвестный stat отклоняются. |
+| 03 | Репутация | Диалог не ждёт выбора; save по value5 с кубиком 5 неуспешен; face-down5+rep5+WILL4=14 без порога; save при 0 и провале до 0 тоже неуспешен. |
+| 04 | Сумма максимумов | Девять max8 дают 72; toxicity999 исключена по ключу; расход luck.value не меняет сумму; отрицательный max учитывается; пустая модель даёт 0. |
+| 05 | Минус удачи/адреналина и reset | 0/−1 не пишут,0.5→−0.5,1→0,3→2; decrement ждёт update. Luck reset копирует max14. |
+| 06 | Плюс адреналина | Опция false не пишет; true добавляет 1 к 0/10/−1/0.5; await листового плюса завершается с ожидающим update. |
+| 07 | Счётчик смерти | Плюс+1 для 0/3/−1/0.5; минус сбрасывает 0; оба метода завершаются при двух неразрешённых update. |
+| 08 | Ветви смерти/порог | HP1/0/−1, STUN0/5/7/14, BODY/WILL7/8/12, счётчик 0/2/5/6/7/−2. Верхний clamp10 до счётчика;0 даётfalse, −1/−2 — отсутствие success; счётчик сам не изменяется. |
+| 09 | Смерть без критов | HP0 читает BODY/WILL.max8 при value1; кубики 1/10 остаются одним результатом, успех 1<8 и неуспех 10<8. |
+| 10 | DOM-события | Шесть stat и три death click-контракта; методы привязаны к листу; death-minus пишет 0. |
+| 11 | Конфигурация | Настоящий класс на базовом фасаде; type stats/derivedStats/skill/неизвестный/undefined даёт 10/12/52/0/0 полей. Общий CONFIG.statLabels заменён; maps/system ссылки;8 jQuery-селекторов; skillListener меняет глобальную jQuery. |
+| 12 | Вкладка характеристик | 9 stat/6 derived; isGM/displayRep определяют репутацию;0 и отрицательные оформлены со знаками. Изменение label toxicity меняет фильтрацию, ключ остаётся прежним. |
+| 13 | Репутация max/value | При value3/max8 span.max показывает+3, разница−5. |
+| 14 | FormDataExtended и исходная база | База luck8/max12; изменён соседний INT. Настоящая форма отправляет luck.unmodifiedMax12, модель принимает; после тех же+2 и двух calculateStats max16. |
+| 15 | Редактирование derived | Настоящая MonsterData customStatfalse/true; ввод 99: STUN8/RUN24 в обоих режимах;HP40/99, Vigor99. Полная нужная последовательность подготовки после updateSource. |
+| 16 | Два уведомления | affectedActors undefined/[]→пусто; два имени и HTML-имя→экранированный список; оба языка дают перевод. |
+| 17 | Связь с прежними расчётами | Повторный luck+=2, перегруз 81 при вместимости 80→REF6/DEX6/SPD7; отрицательная база INT сохраняет−2; BODY/SPD.max2 не меняют value8 при базе 8. |
+| 18 | Правильная локализация | После core expandObject все буквальные ключи новой порции есть в en; ru не содержит savingThrow. Семь старых Actor.Skill.* есть в en/ru; levelUp отсутствует в ru. |
+| 19 | Сумма монстра | Настоящий _prepareCharacterData Monster не задаёт totalStats; HBS выводит только Total Stats:; helper для тех же данных даёт 72. |
+
+### Исправление проверки переводов .029
+
+Установленный Foundry в client/helpers/localization.mjs:368 применяет `foundry.utils.expandObject(json)` до lookup. Прежний отдельный поиск .029 пропустил этот этап: семь WITCHER.Actor.Skill.* были ошибочно названы отсутствующими. После раскрытия они найдены в en/ru. Утверждение отозвано в карточке старого monster-skill-tab и issue-00193; историческая запись .029 ниже сохранена как история с этой явной поправкой. Issue-00193 остаётся potential: ru не содержит levelUp, а новая порция добавила savingThrow; en fallback есть.
+
+Повторная статическая сверка всех 79 файлов выделила 269 буквальных WITCHER-строк:266 полных ключей и 3 динамических префикса (WITCHER.Inventory., WITCHER.fumbleResults., WITCHER.St), которые не являются самостоятельными отсутствующими переводами. У полных ключей отсутствуют 4 en и 8 ru записей: DangerLow/Medium/High и Weapon.Availability в обоих языках; дополнительно ru emanation/customModifier/levelUp/savingThrow. Это согласуется с issue-00137/00178/00186/00193. Динамические составные ключи не объявляются полностью проверенными одной такой выборкой; их условия остаются в карточках соответствующих процессов.
+
+### Итоговая перекрёстная сверка 79 файлов с прежними 168
+
+Сопоставлены все 30 списков задач и 247 карточек. Для всех 79 файлов третьей серии извлечены 607 относительных ссылок из таблиц используемых сущностей/зависимостей на 170 различных исходников: пути существуют, статус полного разбора отделён от частичного чтения. Это ссылки разных видов, включая схемы, контекст и сравнение контрактов, а не 607 подтверждённых runtime-вызовов. Общая автоматическая проверка импортов/HBS ниже сверяет обе стороны среди описанных файлов; известные динамические цепочки сверены по указанным producer/consumer определениям. Не выполнялся повторный запуск всех старых сценариев .021–.028 или полный игровой процесс.
+
+| Порция | Файлов | Ссылок в таблицах | Разных источников из прежних 168 | Из серии 79 | Вне полного покрытия |
+| --- | --- | --- | --- | --- | --- |
+| .021 | 13 | 88 | 14 | 16 | 3 |
+| .022 | 5 | 10 | 2 | 4 | 3 |
+| .023 | 14 | 63 | 3 | 16 | 4 |
+| .024 | 3 | 13 | 5 | 3 | 2 |
+| .025 | 2 | 64 | 19 | 12 | 3 |
+| .026 | 2 | 40 | 17 | 5 | 10 |
+| .027 | 12 | 154 | 21 | 13 | 11 |
+| .028 | 5 | 27 | 7 | 3 | 6 |
+| .029 | 14 | 94 | 15 | 21 | 5 |
+| .030 | 9 | 54 | 13 | 13 | 3 |
+
+Содержательные границы сведены по процессам: магические модели/листы и создание регионов → castSpell/ядро регионов; расследования → helper и rollSkill; контейнер → UUID и копирование Items; базовые листы → примеси/дочерние producers; инвентарь → схемы, контекст, callbacks и шаблоны; общий Roll → навыки и спасброски; редактор → модели и повторная подготовка Actor. Новые полные карточки .028–.030 закрыли прежние точечные границы helper, skill/stat/death и конфигурации. Прочитанные только частично Character/MonsterSheet и боевые примеси не повышены до полного покрытия. Сверка выявила и исправила описанную выше языковую неточность, остальные указанные в проверках .029 результаты сохранились.
+
+33 источника из таблиц зависимостей этой серии остаются без полной карточки: [lang/en.json](../../../lang/en.json); [lang/ru.json](../../../lang/ru.json); [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js); [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js); [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js); [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js); [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js); [module/actor/mixins/verbalCombatMixin.js](../../../module/actor/mixins/verbalCombatMixin.js); [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js); [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js); [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js); [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js); [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js); [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js); [module/data/chatMessage/attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js); [module/data/chatMessage/baseMessageData.js](../../../module/data/chatMessage/baseMessageData.js); [module/data/chatMessage/defenseMessageData.js](../../../module/data/chatMessage/defenseMessageData.js); [module/data/chatMessage/templates/attackData.js](../../../module/data/chatMessage/templates/attackData.js); [module/data/item/mountData.js](../../../module/data/item/mountData.js); [module/item/mixins/dismantlingMixin.js](../../../module/item/mixins/dismantlingMixin.js); [module/scripts/socket/socketMessage.js](../../../module/scripts/socket/socketMessage.js); [styles/loot-sheet.css](../../../styles/loot-sheet.css); [styles/tab-inventory.css](../../../styles/tab-inventory.css); [styles/witcher-styles.css](../../../styles/witcher-styles.css); [templates/chat/item/item-description.hbs](../../../templates/chat/item/item-description.hbs); [templates/chat/item/partials/item-description/alchemicals.hbs](../../../templates/chat/item/partials/item-description/alchemicals.hbs); [templates/chat/item/partials/item-description/crafting-items.hbs](../../../templates/chat/item/partials/item-description/crafting-items.hbs); [templates/chat/item/partials/item-description/description.hbs](../../../templates/chat/item/partials/item-description/description.hbs); [templates/chat/item/partials/item-description/spell-description.hbs](../../../templates/chat/item/partials/item-description/spell-description.hbs); [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs); [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs). Этот список — ближайшие задокументированные соседи; он не подменяет полный остаток 374 файлов и не формирует будущие задачи автоматически.
+
+### Проблемы и пределы выводов
+
+| Проблема | Наблюдение |
+| --- | --- |
+| [issue-00194](../../issues/potential/issue-00194.md) | Редактор сохраняет изменённый максимум характеристики как исходную базу |
+| [issue-00195](../../issues/potential/issue-00195.md) | Редактор предлагает ввод производных параметров, который перезаписывается расчётом |
+| [issue-00196](../../issues/potential/issue-00196.md) | Отрицательный порог спасброска отключает определение успеха и провала |
+| [issue-00197](../../issues/potential/issue-00197.md) | Действия адреналина и счётчика смерти завершаются до записи Actor |
+| [issue-00198](../../issues/potential/issue-00198.md) | Строка репутации показывает текущее значение на месте максимума |
+| [issue-00199](../../issues/potential/issue-00199.md) | Вкладка характеристик монстра не получает сумму totalStats |
+
+Модель/форма/вычисление/запись различены. Нет нового общего минимума 1 или потолка 10; clamp смерти применяется локально до счётчика, другие характеристики могут остаться 0/отрицательными. Ресурсные Promise проверены при удержанной записи, но потери данных/исход гонки на сервере не утверждаются. Репутация max/value проверена на явно разных подготовленных значениях; частота такого состояния в мире не исследовалась. Сравнение labels по переводу и мутация CONFIG сами по себе не зарегистрированы как ошибки.
+
+Исследование не включает реальные миры/компедиумы, браузерные формы, все языки, внешние модули и сетевую синхронизацию. Служба, сборка, игровые данные и исходники не изменялись. Третья серия завершена; TASK-0003 остаётся in-progress до исследования остатка, TASK-0004/0005 остаются draft.
+
+### Формальная проверка документации и сохранности
+
+Проверены 247 карточек и 30 списков подзадач без пересечений: .001–.030 выполнены. Реестр содержит 621 исходник, не разобраны 374. Все 79 файлов третьей серии проверены; сформированной очереди больше нет. TASK-0003 остаётся in-progress, TASK-0004/0005 — draft.
+
+Встречная проверка охватила 313 прямых импортов: 206 default, 100 named-import statements со 105 именами и 7 namespace; новая порция содержит 9 импортов. Проверены существование целей, определения экспортов, исходящие ссылки и обратные ссылки уже описанных потребителей. Аналогично проверена 151 буквальная ссылка на HBS; новой порцией добавлены 3 связи.
+
+Проверены 508 Markdown-документов в docs и два корневых файла: 11 178 локальных ссылок, включая якоря; структура таблиц и git diff --check без ошибок. Изменены 44 существующих документа, созданы 15 новых — девять карточек и шесть potential issues. Всего 59 документов; номера 199 potential issues уникальны и согласованы с реестром.
+
+Состав и байты всех 621 исходника совпадают как со стартовым HEAD, так и со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Контрольная сумма набора исходников — `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`. Для всех 1171 ранее отслеживаемых файлов сохранены mode, uid, gid и inode; контрольная сумма метаданных — `8f944510481c4cadd92d8c85b9ea34a282105249ae6445195df69e62bcec1f9d`. Прежняя часть журнала сохранена побайтово; SHA-256 прежнего файла — `b16e6fab28baea2b87a05d8ead09f4cf75af33458b67f7b82f3b2d17199114be`. HEAD и ветка не менялись; коммит не создавался.
+
 ## TASK-0003.029
 
 | Поле | Результат |

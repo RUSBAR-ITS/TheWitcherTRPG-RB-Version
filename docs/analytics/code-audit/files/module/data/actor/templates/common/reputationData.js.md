@@ -94,3 +94,9 @@ min/max диапазона фабрика stat не задаёт. Наличие
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. calculateStats:68 присваивает reputation.value=reputation.max при каждом из двух проходов; собственный модификатор reputation здесь не прибавляется. CommonActorData готовит max из unmodifiedMax; дальнейшее влияние эффекта зависит от его целевого поля/phase. Повторно описана граница вычислений без изменения правил.
 
 Карточки: [WitcherActor](../../../../actor/witcherActor.js.md), [modifierMixin](../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. statMixin использует reputation.value для обоих бросков, save с reversal и порогом, face-down с WILL.value. Редактор берёт reputation.max в input unmodifiedMax. Текущий tab-stats ошибочно повторяет value в span.max, хотя разница рассчитана с max; при равенстве value/max это незаметно.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

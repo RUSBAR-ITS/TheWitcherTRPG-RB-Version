@@ -114,3 +114,9 @@ getRandomInt не создаёт Roll/ChatMessage; влияет на downstream 
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полный разбор actor/skillMixin подтверждает два ожидаемых getCustomModifier перед extendedRoll. Отмена прерывает навык без сообщения; положительные/отрицательные добавки входят в настоящую формулу. Неизвестный Item.attribute/ID может завершить метод ещё до запроса. Политика игнорирования собственных бонусов принадлежит другому helper — modifierMixin.addActiveEffects.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. getCustomModifier вызван stat-save перед броском; положительный модификатор увеличивает кубик при reversal и тем самым затрудняет успех. Отмена отклоняет Promise. Проверка переводов теперь включает expandObject, как в core; русские customModifier и savingThrow отсутствуют, en fallback есть.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

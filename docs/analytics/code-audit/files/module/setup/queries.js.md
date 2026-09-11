@@ -128,3 +128,9 @@
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getActorOwner из helper не является подтверждением запроса: он только возвращает активного не-GM OWNER либо activeGM. Без обоих некоторые потребители обращаются к null.query до входа в этот маршрутизатор ([issue-00185](../../../../../issues/potential/issue-00185.md)). [issue-00008](../../../../../issues/potential/issue-00008.md) о return true без ожидания вызванной функции относится к следующему этапу процесса и остаётся актуальным; сам query в .028 повторно не исполнялся.
 
 Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Разрешённый динамический addAdrenaline теперь разобран: optional=false не пишет, true запускает Actor.update и сразу завершает собственный Promise. Query тоже не ожидает entity[function]; полное завершение записи отсутствует на обоих уровнях. Потребитель defenseMixin выбирает владельца атакующего при crit; сетевой сценарий не запускался.
+
+Сверенные источники: [module/actor/mixins/adrenalineMixin.js](../../../../../../module/actor/mixins/adrenalineMixin.js); [module/actor/mixins/defenseMixin.js](../../../../../../module/actor/mixins/defenseMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

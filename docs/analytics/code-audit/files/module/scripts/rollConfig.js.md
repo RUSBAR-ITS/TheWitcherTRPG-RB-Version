@@ -91,3 +91,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Оба метода навыков создают RollConfig без аргумента, затем showCrit/showSuccess=true. Только встроенный rollSkillCheck присваивает threshold входа; Item-бросок оставляет −1. showResult не меняется, сообщения создаёт extendedRoll. Граница равенства threshold даёт false по уже описанному строгому сравнению.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. stat-save ставит reversal=true, thresholdDesc и оставляет криты включёнными; rep-save также reversal с критами, face-down без порога; death-save reversal с showCrit=false. Вычисленный отрицательный threshold ниже слоя конфигурации перестаёт сравниваться, а не автоматически считается неуспехом.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

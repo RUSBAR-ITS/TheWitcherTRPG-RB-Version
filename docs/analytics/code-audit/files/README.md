@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.029 подготовлены и сверены 238 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.030 подготовлены и сверены 247 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -386,3 +386,17 @@
 | templates/partials/monster/monster-custom-skill-display.hbs | [Описание](templates/partials/monster/monster-custom-skill-display.hbs.md) |
 | templates/sheets/actor/configuration/partials/skillConfiguration.hbs | [Описание](templates/sheets/actor/configuration/partials/skillConfiguration.hbs.md) |
 | templates/sheets/actor/configuration/app/edit-skills.hbs | [Описание](templates/sheets/actor/configuration/app/edit-skills.hbs.md) |
+
+## Характеристики, модификаторы и проверки состояния — TASK-0003.030
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/sheets/mixins/statMixin.js | [Описание](module/actor/sheets/mixins/statMixin.js.md) |
+| module/actor/sheets/configurations/WitcherModifiersConfiguration.js | [Описание](module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md) |
+| module/actor/sheets/mixins/deathSaveMixin.js | [Описание](module/actor/sheets/mixins/deathSaveMixin.js.md) |
+| module/actor/mixins/adrenalineMixin.js | [Описание](module/actor/mixins/adrenalineMixin.js.md) |
+| templates/partials/character/tab-stats.hbs | [Описание](templates/partials/character/tab-stats.hbs.md) |
+| templates/sheets/actor/configuration/app/edit-stats.hbs | [Описание](templates/sheets/actor/configuration/app/edit-stats.hbs.md) |
+| templates/sheets/actor/configuration/app/partials/stats-block.hbs | [Описание](templates/sheets/actor/configuration/app/partials/stats-block.hbs.md) |
+| templates/dialog/deprecations/statSkillModifiers.hbs | [Описание](templates/dialog/deprecations/statSkillModifiers.hbs.md) |
+| templates/dialog/deprecations/lifepathModifiers.hbs | [Описание](templates/dialog/deprecations/lifepathModifiers.hbs.md) |

@@ -80,3 +80,9 @@ adrenaline():3–8 без аргументов возвращает value/label.
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Сверено включение:37 и полностью разобрана migrateAdrenaline:131–133. Прямой вызов для {current:3}/{value:0,current:3}/{value:2,current:3} дал value3/3/2. Для {value:0} без current метод оставляет собственное свойство value=undefined до очистки полей; это дополнительная граница проверки, не результат миграции мира.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. addAdrenaline при включённой мировой опции прибавляет 1 без собственного потолка/ожидания update; листовой плюс также не ожидает. Decrement ждёт update, но не зажимает дробный положительный остаток до 0. Схема не содержит min/max/integer; новое игровое ограничение не вводилось.
+
+Сверенные источники: [module/actor/mixins/adrenalineMixin.js](../../../../../../../../../module/actor/mixins/adrenalineMixin.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

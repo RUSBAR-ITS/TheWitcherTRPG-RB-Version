@@ -59,3 +59,9 @@ deprecationWarnings() не принимает аргументов, синхро
 ## История актуализации
 
 2026-09-10 — первичный разбор полного файла на указанном коммите; сверка порции 4 отражена в журнале. Файлы зависимостей проверены в пределах определений и обращений, без объявления их полного разбора.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Оба deprecations-HBS теперь прочитаны полностью. Поиск exact path/stem и построения пути в module/templates не нашёл потребителя или preload; текущий deprecationWarnings по-прежнему пуст. HBS умеют отобразить внешний affectedActors, но сами не создают список/миграцию.
+
+Сверенные источники: [templates/dialog/deprecations/statSkillModifiers.hbs](../../../../../../templates/dialog/deprecations/statSkillModifiers.hbs); [templates/dialog/deprecations/lifepathModifiers.hbs](../../../../../../templates/dialog/deprecations/lifepathModifiers.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

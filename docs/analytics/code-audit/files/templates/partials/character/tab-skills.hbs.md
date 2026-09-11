@@ -79,3 +79,9 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Итоговая сверка связала оба openModifiers с полностью разобранным классом. Политика type/skillKey находится в HBS, не в фильтре PARTS. После раскрытия dotted JSON все 22 прежних сценария .029 повторно прошли; отсутствие русского levelUp подтверждено, отсутствие семи старых заголовков не подтвердилось.
+
+Сверенные источники: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

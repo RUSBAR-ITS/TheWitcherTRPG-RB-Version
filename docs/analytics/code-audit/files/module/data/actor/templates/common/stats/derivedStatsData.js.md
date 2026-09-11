@@ -181,3 +181,9 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 | Дневное восстановление | [module/actor/sheets/mixins/healMixin.js](../../../../../../../../../../module/actor/sheets/mixins/healMixin.js) | Читает REC.max; напрямую пишет HP=min(old+total,max), STA.max и Vigor.max. Не вызывает calculateHealValue и не сбрасывает остальные шкалы. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Редактор derived показывает все 12 записей, тогда как вкладка исключает 6 ресурсов и показывает 6 расчётных параметров. Поля STUN/RUN и другие фиксированные базы после отправки заново вычисляются. Проверены 99→STUN8/RUN24, HP40/99 при customStatfalse/true монстра, Vigor99.
+
+Сверенные источники: [templates/partials/character/tab-stats.hbs](../../../../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/edit-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

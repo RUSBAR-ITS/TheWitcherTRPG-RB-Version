@@ -152,3 +152,9 @@ clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnl
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: displayRollsDetails:46–53 — world Boolean с default=false. Полный helper.addPart читает настройку до проверки hideZero; при true добавляет локализованную подпись в квадратных скобках. getCustomModifier с нулём возвращает пустую строку, с -2 — '+-2' с опциональной подписью. Реальный parser Foundry принимает такие последовательности знаков; [issue-00033](../../../../../issues/potential/issue-00033.md) относится к отсутствующему оператору в другом сборщике.
 
 Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. useOptionalAdrenaline (world Boolean false) проверяется внутри addAdrenaline и определяет видимость блока sidebar через useAdrenaline. displayRep (world Boolean false) вместе с isGM управляет показом репутации, не правами вызова _onReputation. displayRollsDetails не меняет описанный пороговый смысл stat-save.
+
+Сверенные источники: [module/actor/mixins/adrenalineMixin.js](../../../../../../module/actor/mixins/adrenalineMixin.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../templates/partials/character/tab-stats.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

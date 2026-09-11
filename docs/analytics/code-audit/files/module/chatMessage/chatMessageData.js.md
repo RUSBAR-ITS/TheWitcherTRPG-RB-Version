@@ -93,3 +93,9 @@ Default-export class без наследования. constructor сразу в�
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Оба броска навыка создают ChatMessageData(this, '<характеристика>: <навык> Check') с корректным Actor, типом base и стандартным пустым system. Вычисляемый extendedRoll дополняет результат и публикует; свойств Item в messageData класс не извлекает. Английское Check — буквальный текст формулы подписи, не отдельный новый ключ локализации.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. stat/death consumers передают корректный Actor, стандартный type base и HTML flavor. _onStatSaveRoll и callbacks репутации задают flavor после конструктора, death-save — аргументом. Последующий Roll возвращается extendedRoll, но эти листовые методы его наружу не возвращают.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

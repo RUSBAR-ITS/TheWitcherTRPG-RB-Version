@@ -206,3 +206,9 @@
 | CriticalWoundData.calculateHealingTime | [module/data/item/criticalWoundData.js](../../../../../../../../../../module/data/item/criticalWoundData.js) | Читает body.max для длительности; изменения только в подготовленном healingTime Item. BODY.value этим методом не читается. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Сумма calc_total_stats использует 9 max и исключает toxicity по ключу. Отображение фильтрует toxicity по локализованной подписи. Сохраняемый input unmodifiedMax получает max; это отдельное рассогласование от прежнего guard миграции. Восстановление удачи читает фактический max после двух проходов.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

@@ -167,3 +167,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. system.skills содержит семь групп встроенных моделей, а Item-навыки готовятся отдельно по девяти originstat. Это различие приводит к пропуску spd/luck в общем HBS. Наследование общих skills не добавляет монстру Character IP/logs/magic, необходимых levelUpSkill.
 
 Сверенные связи: [templates/partials/character/tab-skills.hbs](../../../../../../../templates/partials/character/tab-skills.hbs); [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [module/data/item/skillItemData.js](../../../../../../../module/data/item/skillItemData.js). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. deathSaves — числовой счётчик без min/integer; текущий death-minus сбрасывает его 0. Спасбросок выбирает STUN.value либо BODY/WILL.max, clamp10 до счётчика. prepareBaseData перезаписывает часть редактируемых derived.unmodifiedMax: форма не учитывает вычисляемость полей.
+
+Сверенные источники: [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

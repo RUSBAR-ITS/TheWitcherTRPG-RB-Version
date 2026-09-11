@@ -39,7 +39,7 @@
 | Skills / Pannels | [module/data/actor/templates/common/skills/skillsData.js](../../../../../../../module/data/actor/templates/common/skills/skillsData.js); [module/data/actor/templates/character/pannelsData.js](../../../../../../../module/data/actor/templates/character/pannelsData.js) | Данные system | Семь групп и intIsOpen/refIsOpen/dexIsOpen/bodyIsOpen/empIsOpen/craIsOpen/willIsOpen | Имена полей в условиях и циклах |
 | _prepareCustomSkills | [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js); [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) | Проверенные производители контекста | Группировка Item type skill по attribute | Определения обоих базовых листов; не регистрация старого родителя |
 | _onSkillDisplay | [module/actor/sheets/mixins/skillMixin.js](../../../../../../../module/actor/sheets/mixins/skillMixin.js) | Событие DOM | skill-display и ближайший skilltype → pannels | Селектор и динамический путь update |
-| localize / preload | [module/setup/handlebars.js](../../../../../../../module/setup/handlebars.js) | Core helper и список предзагрузки | WITCHER.Actor.Skill.Intelligence/Reflex/Dexterity/Body/Empathy/Crafting/Willpower | Все семь буквальных ключей отсутствуют в lang/en.json и lang/ru.json |
+| localize / preload | [module/setup/handlebars.js](../../../../../../../module/setup/handlebars.js) | Core helper и список предзагрузки | WITCHER.Actor.Skill.Intelligence/Reflex/Dexterity/Body/Empathy/Crafting/Willpower | Все семь ключей присутствуют в lang/en.json и lang/ru.json как dotted keys; исправлено в TASK-0003.030 |
 
 ## Известные потребители
 
@@ -60,7 +60,7 @@ HBS только читает system.pannels и два набора навыко
 | --- | --- | --- | --- |
 | Полный список и потребители | 141 строка; rg ссылки, PARTS и registerSheets | Семь групп, 14 вызовов, два partial; активный V2 путь иной | Внешние макросы и сторонние листы не исследованы |
 | Настоящий Handlebars | Полный старый родительский partial со Skill и Item, pannels true/false | Семь таблиц; классы/шевроны следуют pannels; собственный Item получает нужный ID | Рендер изолирован; не заявление о текущем пользовательском окне |
-| Локализация | Точный lookup семи ключей в en/ru | Все отсутствуют в обеих поставляемых таблицах | Прочие языки и runtime-переводы модулей не проверялись |
+| Локализация | Точный lookup семи ключей в en/ru | Прежний вывод об отсутствии отозван: после expandObject все семь найдены в en/ru | Прочие языки и runtime-переводы модулей не проверялись |
 
 ## Непроверенные участки и открытые вопросы
 
@@ -68,10 +68,16 @@ HBS только читает system.pannels и два набора навыко
 
 ## Связанные проблемы
 
-[issue-00188](../../../../../../issues/potential/issue-00188.md), [issue-00193](../../../../../../issues/potential/issue-00193.md). Для отсутствующих групп есть сопоставление с текущим UI; языковые пропуски отмечены с явным ограничением старого маршрута.
+[issue-00188](../../../../../../issues/potential/issue-00188.md), [issue-00193](../../../../../../issues/potential/issue-00193.md). Для отсутствующих групп есть сопоставление с текущим UI; прежнее утверждение о языковых пропусках старого маршрута отозвано после проверки expandObject.
 
 ## История актуализации
 
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Исправлена языковая часть проверки .029: Foundry сначала выполняет expandObject словаря. Семь WITCHER.Actor.Skill.* присутствуют в en/ru в виде dotted ключей; утверждение об их отсутствии отозвано. Остальные выводы о старом родителе и невыбранном текущими V2 PARTS пути сохраняются. Повторены 22 сценария .029 с корректной локализацией, все прошли.
+
+Сверенные источники: [templates/dialog/deprecations/statSkillModifiers.hbs](../../../../../../../templates/dialog/deprecations/statSkillModifiers.hbs); [module/setup/handlebars.js](../../../../../../../module/setup/handlebars.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

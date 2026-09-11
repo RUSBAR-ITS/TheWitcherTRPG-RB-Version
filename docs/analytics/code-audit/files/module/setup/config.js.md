@@ -498,3 +498,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. skillMap даёт 52 ключа и costMultiplier; magicSkills ограничен spellcast/ritcraft/hexweave. ItemSheet фильтрует statMap.originstat и получает 9 атрибутов, тогда как текущий список навыков Actor группируется по семи system.skills. Для rollCustomSkillCheck Item.name не становится автоматически ключом skillMap.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js); [module/item/sheets/WitcherSkillItemSheet.js](../../../../../../module/item/sheets/WitcherSkillItemSheet.js); [templates/partials/character/tab-skills.hbs](../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. WitcherModifiersConfiguration сохраняет ссылки statMap/skillMap и при каждой подготовке создаёт новый CONFIG.WITCHER.statLabels через label??labelShort. Оба PARTS поддерживаются одновременно, type ограничивает только содержимое edit-stats, skillKey отдельно выбирает skills. Сама мутация statLabels не объявлена дефектом.
+
+Сверенные источники: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

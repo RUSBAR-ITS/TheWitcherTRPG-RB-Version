@@ -125,3 +125,9 @@ defineSchema собирает определения; значения созд�
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Развитие навыка использует improvementPoints, magic.magicImprovementPoints и logs. Реальный levelUpSkill/Log подтвердил конкурирующие payload магического баланса и отсутствие проверки достаточности обычных IP. tab-skills выводит четыре skillTraining и итоги, подготовленные CharacterSheet.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [templates/partials/character/tab-skills.hbs](../../../../../../../templates/partials/character/tab-skills.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Текущий CharacterSheet готовит totalStats через statMixin; Monster этого не делает. В CharacterData нет customStat, поэтому HP/STA идут по вычисляемому маршруту Actor; показанный общий редактор сам не ограничивает ввод этих баз.
+
+Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

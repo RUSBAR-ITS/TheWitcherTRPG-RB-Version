@@ -108,3 +108,9 @@
 Новый полный потребитель схемы — [module/activeEffect/mixins/baseMixin.js](../../../../../../../../../../module/activeEffect/mixins/baseMixin.js): предлагает system.<origin>.<ключ>.totalModifiers для 20 записей statMap и отдельно toxicity. Пути проверены настоящей CharacterData. [module/activeEffect/WitcherActiveEffectSheet.js](../../../../../../../../../../module/activeEffect/WitcherActiveEffectSheet.js) получает fieldPath из schema.apply; реальные поля уже содержат system., поэтому предположение об отсутствии префикса отклонено. В UI-мастере нет галочки потолка.
 
 [Общая сверка первой серии](../../../../../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Новые формы сохраняют unmodifiedMax, но показывают max; исходная база integer, value допускает дроби и общих min/max нет. UI не задаёт min/max. Проверены реальные FormDataExtended/updateSource и повторная подготовка; значения ресурса 0.5 допускают результат−0.5 у decrement.
+
+Сверенные источники: [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs); [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.

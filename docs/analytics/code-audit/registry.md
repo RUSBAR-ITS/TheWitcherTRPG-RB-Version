@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.029 проверены описания **238 файлов**, для **383 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.030 проверены описания **247 файлов**, для **374 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.029](review-log.md#task-0003029) выполнена на `273a6d7db0b7c866399db3ecd4f7191817ae6f10`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.030](review-log.md#task-0003030) выполнена на `aa6af106e86a9c75fe050d599f961c8fadb74f1b`: все 621 исходник совпадают с базовым срезом; завершено сопоставление 79 файлов третьей серии с прежними 168. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -26,7 +26,7 @@
 | [module/activeEffect/mixins/baseMixin.js](../../../module/activeEffect/mixins/baseMixin.js) | Каталог путей характеристик, навыков, биографии, атак и изменений урона для мастера. | [Описание](files/module/activeEffect/mixins/baseMixin.js.md) | Проверено |
 | [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | Три подсказки путей урона для временного улучшения Item. | [Описание](files/module/activeEffect/mixins/temporaryItemImprovementMixin.js.md) | Проверено |
 | [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js) | Документ ActiveEffect: подавление, фазы изменений, выбор навыка и подготовка длительности. | [Описание](files/module/activeEffect/witcherActiveEffect.js.md) | Проверено |
-| [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | Добавление адреналина по мировой настройке. | [Карточка](files/module/actor/mixins/adrenalineMixin.js.md) | Проверено |
 | [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -49,7 +49,7 @@
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | Общая форма характеристик, производных параметров и группы навыков. | [Карточка](files/module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md) | Проверено |
 | [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js) | Контекстное меню Item: условия и обработчики редактирования, расходования, снятия улучшения, передачи, разборки и удаления. | [Карточка](files/module/actor/sheets/interactions/itemContextMenu.js.md) | Проверено |
 | [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Лист Actor-тайны на ApplicationV2. | [Карточка](files/module/actor/sheets/investigation/WitcherMysterySheet.js.md) | Проверено |
@@ -58,12 +58,12 @@
 | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Действия листа Actor: создать критическую травму и вызвать переход по кнопке лечения; регистрация DOM-слушателей. | [Описание](files/module/actor/sheets/mixins/criticalWoundMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js) | Обработчики собственного Item-навыка: бросок, удаление, раскрытие и старый CRUD модификаторов. | [Карточка](files/module/actor/sheets/mixins/customSkillMixin.js.md) | Проверено |
-| [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | Ручной счётчик смерти и спасбросок с порогом из STUN либо BODY/WILL. | [Карточка](files/module/actor/sheets/mixins/deathSaveMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | Диалог дневного восстановления: расчёт HP по REC и четырём галочкам, восстановление STA/Vigor, продвижение заживления критических травм и отчёт в чат. | [Описание](files/module/actor/sheets/mixins/healMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js) | Примесь действий инвентаря: Drop, создание и изменение Item, установка улучшений, сворачивание групп и сообщение в чат. | [Карточка](files/module/actor/sheets/mixins/itemMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | Сумма встроенных навыков, раскрытие старых групп и обработчики броска/повышения. | [Карточка](files/module/actor/sheets/mixins/skillMixin.js.md) | Проверено |
-| [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | Спасброски характеристик, репутация, сумма максимумов и действия удачи/адреналина. | [Карточка](files/module/actor/sheets/mixins/statMixin.js.md) | Проверено |
 | [module/actor/witcherActor.js](../../../module/actor/witcherActor.js) | Документ Actor: подготовка характеристик, статусы, предметы, локации и подключение 17 примесей. | [Описание](files/module/actor/witcherActor.js.md) | Проверено |
 | [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | Не установлено | Не подготовлено | Не начат |
 | [module/app/reward/reward.js](../../../module/app/reward/reward.js) | Не установлено | Не подготовлено | Не начат |
@@ -528,8 +528,8 @@
 | [templates/dialog/combat/spell-attack.hbs](../../../templates/dialog/combat/spell-attack.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/combat/variableDamage.hbs](../../../templates/dialog/combat/variableDamage.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/combat/weapon-attack.hbs](../../../templates/dialog/combat/weapon-attack.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/dialog/deprecations/lifepathModifiers.hbs](../../../templates/dialog/deprecations/lifepathModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/dialog/deprecations/lifepathModifiers.hbs](../../../templates/dialog/deprecations/lifepathModifiers.hbs) | Текст уведомления и имена Actor с прежними модификаторами биографии; внутренний вызов не найден. | [Карточка](files/templates/dialog/deprecations/lifepathModifiers.hbs.md) | Проверено |
+| [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | Текст уведомления и имена Actor с прежними модификаторами; внутренний вызов не найден. | [Карточка](files/templates/dialog/deprecations/statSkillModifiers.hbs.md) | Проверено |
 | [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | Содержимое диалога отдыха: четыре флага восстановления, итог HP и подсказка о стерилизации травм. | [Описание](files/templates/dialog/heal/heal-rest.hbs.md) | Проверено |
 | [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs) | Содержимое DialogV2 для выбора одного из навыков, разрешённых уликой. | [Карточка](files/templates/dialog/investigation/chooseEvidenceSkill.hbs.md) | Проверено |
 | [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | Содержимое диалога ремонта: предмет, сложность, повреждения и таблица компонентов. | [Описание](files/templates/dialog/repair-dialog.hbs.md) | Проверено |
@@ -545,7 +545,7 @@
 | [templates/partials/character/tab-magic.hbs](../../../templates/partials/character/tab-magic.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-skills.hbs](../../../templates/partials/character/tab-skills.hbs) | Текущая общая вкладка навыков персонажа/монстра: группы, Items, редактор и IP. | [Карточка](files/templates/partials/character/tab-skills.hbs.md) | Проверено |
-| [templates/partials/character/tab-stats.hbs](../../../templates/partials/character/tab-stats.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/character/tab-stats.hbs](../../../templates/partials/character/tab-stats.hbs) | Текущая вкладка характеристик, производных параметров и репутации двух Actor-листов. | [Карточка](files/templates/partials/character/tab-stats.hbs.md) | Проверено |
 | [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | Таблица наличия, требований и стоимости компонентов для ремонта. | [Описание](files/templates/partials/components-list.hbs.md) | Проверено |
 | [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | Краткая таблица принадлежащих Actor критических травм с ручным счётчиком дней и кнопкой перехода к следующей травме. | [Описание](files/templates/partials/crit-wounds-table.hbs.md) | Проверено |
 | [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | Общий список эффектов с источниками, длительностью, описаниями и действиями. | [Описание](files/templates/partials/effect-part.hbs.md) | Проверено |
@@ -560,8 +560,8 @@
 | [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs) | Заголовок редактора Item spell: имя, конфигурация, изображение, класс, уровень, источник и книга. | [Карточка](files/templates/partials/spell-header.hbs.md) | Проверено |
 | [templates/sheets/activeEffect/system-specific.hbs](../../../templates/sheets/activeEffect/system-specific.hbs) | Системные флаги фазы и условий применения ActiveEffect. | [Описание](files/templates/sheets/activeEffect/system-specific.hbs.md) | Проверено |
 | [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../templates/sheets/actor/configuration/app/edit-skills.hbs) | Редактор группы встроенных навыков: уровень, IP-повышение, флаги и просмотр добавки. | [Карточка](files/templates/sheets/actor/configuration/app/edit-skills.hbs.md) | Проверено |
-| [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../templates/sheets/actor/configuration/app/edit-stats.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../templates/sheets/actor/configuration/app/edit-stats.hbs) | Выбор stats/derivedStats для общего блока редактирования. | [Карточка](files/templates/sheets/actor/configuration/app/edit-stats.hbs.md) | Проверено |
+| [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs) | Числовой ввод unmodifiedMax с отображением max; репутация и фильтр токсичности. | [Карточка](files/templates/sheets/actor/configuration/app/partials/stats-block.hbs.md) | Проверено |
 | [templates/sheets/actor/configuration/monster/general.hbs](../../../templates/sheets/actor/configuration/monster/general.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/configuration/monster/header.hbs](../../../templates/sheets/actor/configuration/monster/header.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs) | Конфигурация видимости навыков монстра через DataField и formGroup. | [Карточка](files/templates/sheets/actor/configuration/partials/skillConfiguration.hbs.md) | Проверено |

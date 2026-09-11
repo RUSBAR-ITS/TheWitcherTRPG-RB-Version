@@ -97,3 +97,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. actor/skillMixin теперь описан полностью: rollSkill(name,threshold=-1) ищет CONFIG.skillMap и передаёт описание в rollSkillCheck. В текущем rollClue dc по-прежнему не передаётся; новый разбор подтвердил также отказ для неизвестного ключа. Сквозной сеанс расследования повторно не запускался, результаты .023 не расширяются до записи в мире.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js); [module/scripts/rollConfig.js](../../../../../../../module/scripts/rollConfig.js). Полные карточки новых файлов — в [указателе порции](../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.030
+
+2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Итоговая сверка третьей серии завершила полные карточки helper/skillMixin и общих roll-конфигураций. DC по-прежнему не передаётся в rollSkill; этот пропуск не исправлен. Отрицательный порог общего обработчика теперь дополнительно проверен на state-save consumers, не считается автоматическим правилом расследования.
+
+Сверенные источники: [module/scripts/rolls/extendedRoll.js](../../../../../../../module/scripts/rolls/extendedRoll.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
