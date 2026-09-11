@@ -165,3 +165,13 @@
 | criticalWound-sheet.hbs | [templates/sheets/item/criticalWound-sheet.hbs](../../../../../../../templates/sheets/item/criticalWound-sheet.hbs) | Наследуемый контекст обеспечивает document/config/systemFields/enrichedText/showConfig. Шестерёнка открывает общую конфигурацию. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+Все три листа наследуют контекст и форму; только WitcherSpellSheet заменяет configuration специализированным классом. WitcherRitualSheet добавляет blur/click в activateListeners, а базовый _onDropDocument вызывает его _onDropItem. Последний не ожидает update, поэтому await на стороне родителя не обеспечивает завершение записи. Карточки HBS различают обычные name-поля и quantity с отдельным blur.
+
+Сверенные карточки: [module/item/sheets/WitcherSpellSheet.js](WitcherSpellSheet.js.md), [module/item/sheets/WitcherHexSheet.js](WitcherHexSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](WitcherRitualSheet.js.md), [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs.md), [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs.md), [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs.md), [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs.md).
+
+[Результаты и пределы сверки](../../../../review-log.md#task-0003021).

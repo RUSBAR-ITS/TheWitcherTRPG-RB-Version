@@ -201,3 +201,13 @@
 | WitcherCriticalWoundSheet | [module/item/sheets/WitcherCriticalWoundSheet.js](../../../../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Прямой import 28 и регистрация types=['criticalWound'] 52–55. Единственная собственная часть формы, общая конфигурация Item сохраняется. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+Импорты 12/21/22 и регистрации 76–82, 92–94 связывают три модели Item с WitcherSpellSheet/WitcherHexSheet/WitcherRitualSheet. WitcherSpellConfigurationSheet отдельной регистрации не имеет: создаётся экземпляром spell-листа. Работа регистрирующих вызовов в живом клиенте заново не проверялась.
+
+Сверенные карточки: [module/item/sheets/WitcherSpellSheet.js](../item/sheets/WitcherSpellSheet.js.md), [module/item/sheets/WitcherHexSheet.js](../item/sheets/WitcherHexSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](../item/sheets/WitcherRitualSheet.js.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003021).

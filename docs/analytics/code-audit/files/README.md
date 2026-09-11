@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.020 подготовлены и сверены 168 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.021 подготовлена и сверена 181 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -271,3 +271,21 @@
 | templates/dialog/heal/heal-rest.hbs | [Описание](templates/dialog/heal/heal-rest.hbs.md) |
 | templates/chat/heal/resting-status.hbs | [Описание](templates/chat/heal/resting-status.hbs.md) |
 | templates/chat/combat/heal.hbs | [Описание](templates/chat/combat/heal.hbs.md) |
+
+## Магические предметы, формы и компоненты ритуалов — TASK-0003.021
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/spellData.js | [Описание](module/data/item/spellData.js.md) |
+| module/data/item/hexData.js | [Описание](module/data/item/hexData.js.md) |
+| module/data/item/ritualData.js | [Описание](module/data/item/ritualData.js.md) |
+| module/data/item/templates/componentData.js | [Описание](module/data/item/templates/componentData.js.md) |
+| module/item/sheets/WitcherSpellSheet.js | [Описание](module/item/sheets/WitcherSpellSheet.js.md) |
+| module/item/sheets/WitcherHexSheet.js | [Описание](module/item/sheets/WitcherHexSheet.js.md) |
+| module/item/sheets/WitcherRitualSheet.js | [Описание](module/item/sheets/WitcherRitualSheet.js.md) |
+| module/item/sheets/configurations/WitcherSpellConfigurationSheet.js | [Описание](module/item/sheets/configurations/WitcherSpellConfigurationSheet.js.md) |
+| templates/sheets/item/spell-sheet.hbs | [Описание](templates/sheets/item/spell-sheet.hbs.md) |
+| templates/sheets/item/hex-sheet.hbs | [Описание](templates/sheets/item/hex-sheet.hbs.md) |
+| templates/sheets/item/ritual-sheet.hbs | [Описание](templates/sheets/item/ritual-sheet.hbs.md) |
+| templates/sheets/item/configuration/tabs/spellGeneral.hbs | [Описание](templates/sheets/item/configuration/tabs/spellGeneral.hbs.md) |
+| templates/partials/spell-header.hbs | [Описание](templates/partials/spell-header.hbs.md) |

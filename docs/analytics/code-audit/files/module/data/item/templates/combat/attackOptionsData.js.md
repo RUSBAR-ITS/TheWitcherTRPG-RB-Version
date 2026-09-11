@@ -98,3 +98,13 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Профессиональный partial](../../../../../../../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) выводит attackOptions и условные applyMeleeBonus/applyRangedMeleeBonus/isThrowable. В отличие от формы оружия, он не выбирает базовый навык: professionMixin использует собственный профессиональный stat/level. Реальный has/Set проверен; applyRangedMeleeBonus по-прежнему не читается непосредственным расчётом профессии (issue-00066).
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+У SpellData начальный spellAttackSkill остаётся spellcasting. Четыре известных класса маскируют неверный ключ fallback на spellcast, пустой class даёт TypeError; явный ritcraft имеет приоритет. При level=novice начальный набор содержит spell, но старый attackSkill после очистки не даёт meleeAttackSkill. HexData/RitualData эту фабрику не включают.
+
+Сверенные карточки: [module/data/item/spellData.js](../../spellData.js.md).
+
+[Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).

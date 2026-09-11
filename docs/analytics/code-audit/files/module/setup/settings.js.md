@@ -136,3 +136,13 @@
 | CriticalWoundData.followUp | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Ссылка следующего Item разрешается напрямую через fromUuid; настройка pack не переназначает её. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnly(defaulttrue) прочитаны всеми тремя магическими заголовками. Checkbox может выводиться, но соответствующее поле отсутствует в трёх моделях (issue63). Отдельный editImage action присутствует у spell и отсутствует у hex/ritual (issue136).
+
+Сверенные карточки: [templates/sheets/item/spell-sheet.hbs](../../templates/sheets/item/spell-sheet.hbs.md), [templates/sheets/item/hex-sheet.hbs](../../templates/sheets/item/hex-sheet.hbs.md), [templates/sheets/item/ritual-sheet.hbs](../../templates/sheets/item/ritual-sheet.hbs.md), [templates/partials/spell-header.hbs](../../templates/partials/spell-header.hbs.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003021).

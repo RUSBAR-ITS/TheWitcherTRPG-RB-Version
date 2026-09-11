@@ -456,3 +456,13 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 | CriticalWoundData | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | calculateHealingTime содержит 8/12/15−BODY.max с минимумом 1; WITCHER.Crit не читается этим классом. Штрафы по состояниям здесь не создаются. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+Подтверждены magic: 4 класса spell→spellcast, ritual→ritcraft, hex→hexweave. statusEffects — массив id/name, подходящий selectOptions spellGeneral. Неизвестный class не имеет fallback-объекта. Словари UI источника/опасности определены в соответствующих листах, а не здесь.
+
+Сверенные карточки: [module/data/item/spellData.js](../data/item/spellData.js.md), [module/data/item/hexData.js](../data/item/hexData.js.md), [module/data/item/ritualData.js](../data/item/ritualData.js.md), [module/item/sheets/WitcherSpellSheet.js](../item/sheets/WitcherSpellSheet.js.md), [module/item/sheets/WitcherHexSheet.js](../item/sheets/WitcherHexSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](../item/sheets/WitcherRitualSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003021).

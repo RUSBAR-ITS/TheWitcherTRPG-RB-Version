@@ -126,3 +126,13 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 | WitcherCriticalWoundSheet | [module/item/sheets/WitcherCriticalWoundSheet.js](../../../../../../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Не переопределяет configuration; использует экземпляр базы. Собственного редактора эффектов или ruleId не вводит. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+Hex/Ritual используют обычную конфигурацию через WitcherItemSheet; Spell — подкласс боевой конфигурации со своей general. item/config/systemFields наследуются всеми. Два typed словаря spellGeneral не принадлежат this.item.effects и не обрабатываются onManageActiveEffect; embedded ActiveEffect по-прежнему находятся на activeEffects.
+
+Сверенные карточки: [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](WitcherSpellConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
+
+[Результаты и пределы сверки](../../../../../review-log.md#task-0003021).

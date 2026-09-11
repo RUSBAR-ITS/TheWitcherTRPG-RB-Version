@@ -79,3 +79,13 @@ true переносится, false не переносится; пустые [] 
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003013).
 
 Полностью прочитан caller [module/data/item/weaponData.js](../../../../../../../module/data/item/weaponData.js). До migrateDamageProperties он добавляет прежние enhancementItems в enhancementItemIds и содержит this.effects?.forEach; в static migrateData это обращение к классу, а не к source.effects. После общей миграции вызывается super.migrateData. Отдельно воспроизведён повтор ID при смешанном списке улучшений ([issue-00078](../../../../../../issues/potential/issue-00078.md)); он не дублирует проблему приоритета старых damageProperties из issue-00067. Очистка percentage настоящими полями не позволяет объявить отсутствие parseInt отдельной доказанной ошибкой.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+SpellData.migrateData вызывает перенос до миграции словарей и области. Группа 05 повторила перезапись armorPiercing=false старым true; проблема 67 сохраняется. Это не миграция selfEffects/onCastEffects и не Item.effects.
+
+Сверенные карточки: [module/data/item/spellData.js](../item/spellData.js.md).
+
+[Результаты и пределы сверки](../../../../review-log.md#task-0003021).

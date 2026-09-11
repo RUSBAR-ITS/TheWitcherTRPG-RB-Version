@@ -95,3 +95,13 @@ Default export function itemEffect() каждый раз возвращает н
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Профессиональная конфигурация](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) добавляет effects.<id> с percentage0, редактирует name/statusEffect/percentage и удаляет ключ через -=. [Таблица](../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) использует data-id и data-target=skillName; varEffect не показан. Текст on передаётся как checked=false (дополнение issue-00060); ActiveEffect при этих действиях не создаётся.
 
 [Перекрёстная сверка](../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+Фабрика используется двумя TypedObjectField SpellData. В spellGeneral редактируется только statusEffect; add создаёт percentage0, остальные поля дополняет модель. Пустой legacy-массив очищается Foundry в{}, непустой получает randomID при migrateEffectsToTypedField. Строковое percentage42 очищает NumberField; это не свидетельство работы SpellData.this.effects?.forEach.
+
+Сверенные карточки: [module/data/item/spellData.js](../spellData.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
+
+[Результаты и пределы сверки](../../../../../review-log.md#task-0003021).

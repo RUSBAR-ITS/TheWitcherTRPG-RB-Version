@@ -137,3 +137,13 @@ addEffects изменяет модель в памяти: toObject() остаё�
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Форма профессионального навыка](../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) редактирует 14 скалярных свойств (cap условно) и записи effects.name/statusEffect/percentage. [Конфигурация](../../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) использует полный путь system.skillPathN.skillM.skillAttack.damageProperties.effects.<id>; это TypedObjectField, не ActiveEffect. Кнопка удаления имеет issue-00111; редактирование on относится к issue-00060. Слияние с оружием остаётся прежней issue-00069, в этой порции оно прочитано по цепочке и не воспроизводилось заново.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+SpellData включает эту модель в damageProperties. Словарь damageProperties.effects отдельно от selfEffects/onCastEffects и встроенных Item.effects; первые две таблицы spellGeneral используют фабрику itemEffect напрямую, без getPreprocessedEffects DamageProperties.
+
+Сверенные карточки: [module/data/item/spellData.js](../../spellData.js.md).
+
+[Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).

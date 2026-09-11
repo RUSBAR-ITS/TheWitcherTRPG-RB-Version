@@ -241,3 +241,13 @@
 | CriticalWoundData | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Прямой import 33 и CONFIG.Item.dataModels.criticalWound 52 подтверждены. 9 полей; вычисления сроков в модели, эффекты в отдельном механизме. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+Импорты 16/24/25 и dataModels61–63 связывают spell/hex/ritual с полностью разобранными моделями. Общая фабрика templates/componentData.js — внутренняя схема строки RitualData; её не следует путать с зарегистрированным Item ComponentData.
+
+Сверенные карточки: [module/data/item/spellData.js](../data/item/spellData.js.md), [module/data/item/hexData.js](../data/item/hexData.js.md), [module/data/item/ritualData.js](../data/item/ritualData.js.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003021).

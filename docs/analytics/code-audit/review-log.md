@@ -1,5 +1,93 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.021
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`. На старте рабочее дерево чистое, отслеживаются 1035 файлов. Исследуемый код сверяется со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.
+
+### Объём и результат
+
+По [TASK-0003.021](../../tasks/task-0003.021.md) полностью разобраны 13 файлов: 8 JS и 5 HBS, 936 логических строк. Создано 13 карточек, уточнены 17 ранее разобранных связанных. Реестр содержит 181 проверенный файл и 440 неразобранных. В третьей серии завершены 13 из 79 файлов, 66 в очереди; 374 требуют дальнейшей детализации. Следующая задача — [TASK-0003.022](../../tasks/task-0003.022.md), её выполнение не начато.
+
+| Исходник | Карточка | Логических строк |
+| --- | --- | --- |
+| [module/data/item/spellData.js](../../../module/data/item/spellData.js) | [Описание](files/module/data/item/spellData.js.md) | 137 |
+| [module/data/item/hexData.js](../../../module/data/item/hexData.js) | [Описание](files/module/data/item/hexData.js.md) | 29 |
+| [module/data/item/ritualData.js](../../../module/data/item/ritualData.js) | [Описание](files/module/data/item/ritualData.js.md) | 91 |
+| [module/data/item/templates/componentData.js](../../../module/data/item/templates/componentData.js) | [Описание](files/module/data/item/templates/componentData.js.md) | 8 |
+| [module/item/sheets/WitcherSpellSheet.js](../../../module/item/sheets/WitcherSpellSheet.js) | [Описание](files/module/item/sheets/WitcherSpellSheet.js.md) | 65 |
+| [module/item/sheets/WitcherHexSheet.js](../../../module/item/sheets/WitcherHexSheet.js) | [Описание](files/module/item/sheets/WitcherHexSheet.js.md) | 28 |
+| [module/item/sheets/WitcherRitualSheet.js](../../../module/item/sheets/WitcherRitualSheet.js) | [Описание](files/module/item/sheets/WitcherRitualSheet.js.md) | 82 |
+| [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherSpellConfigurationSheet.js) | [Описание](files/module/item/sheets/configurations/WitcherSpellConfigurationSheet.js.md) | 11 |
+| [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs) | [Описание](files/templates/sheets/item/spell-sheet.hbs.md) | 125 |
+| [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs) | [Описание](files/templates/sheets/item/hex-sheet.hbs.md) | 66 |
+| [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs) | [Описание](files/templates/sheets/item/ritual-sheet.hbs.md) | 161 |
+| [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs) | [Описание](files/templates/sheets/item/configuration/tabs/spellGeneral.hbs.md) | 49 |
+| [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs) | [Описание](files/templates/partials/spell-header.hbs.md) | 84 |
+
+### Методика и пределы
+
+Все 13 файлов прочитаны полностью, сопоставлены определения, схемы, наследование, регистрации, HBS-поля/условия и обработчики. Соседние файлы прочитаны до определений/потребителей нужных сущностей; им не присваивались полные карточки автоматически. Особо разделены: описание effect; словари selfEffects/onCastEffects; damageProperties.effects; документы Item.effects; настройки области и её последующее создание.
+
+Изолированный запуск: `node --input-type=module` со скриптом через stdin. Использованы настоящие DataModel/TypeDataModel/fields Foundry **14.367.0**, Node **24.16.0**, системные модели и классы листов, Handlebars **4.7.9**, parse5 для HTML. Статические миграции верхней модели вызывались явно там, где проверялся перенос source; очистка и подготовка вложенных моделей использовали настоящие поля Foundry.
+
+Подменены родители Item (DataModel-фасад с type), базовый ItemSheetV2 и HandlebarsApplicationMixin, game/settings/i18n, resolver UUID, jQuery/DOM-события, helpers selectOptions/formGroup, Item.update, диалог/ChatMessageData/RollConfig/extendedRoll и применения эффектов на границе castSpell. Код системных методов не переписывался; castSpell целиком исполнен в vm с изолированными зависимостями. Схемы/модели/HBS настоящие, подмены UI не доказывают работу ApplicationV2. Управляемые Promise позволили проверить момент возврата Drop и отказ записи без обращения к БД. Тестовые UUID имеют корректный 16-символьный ID; пробная короткая ссылка была отвергнута настоящим DocumentUUIDField, исправлен только вход сценария.
+
+Чтением ядра установлены контракты selectOptions/formGroup, DocumentSheetV2.editImage и делегирование кликов ApplicationV2 (`/opt/foundryvtt/client/applications/handlebars.mjs`, `api/document-sheet.mjs`, `api/application.mjs`). Факт отсутствия action в HBS установлен статически; FilePicker/браузер не запускались. JSON en/ru проверены с раскрытием dotted ключей; реальная цепочка i18n fallback не исполнялась. Английская emanation существует, русская отсутствует.
+
+### Изолированные проверки
+
+Успешно завершены **18 групп**: 01–17 и дополнительная 11b. Номера сохранены для связи с карточками; 11b добавляет контроль выключенных/независимых флагов.
+
+| Группа | Сценарий | Фактический результат |
+| --- | --- | --- |
+| 01–02 | Модели и навыки/защита | 4 класса spell → spellcast; hex → hexweave; ritual → ritcraft; пустой/неизвестный class spell с default даёт TypeError, явный ritcraft имеет приоритет. Spell делегирует защиту, у Hex/Ritual методов защиты нет. |
+| 03 | Словари и миграции эффектов | Пустые массивы остаются массивами в migrateEffectsToTypedField, затем превращаются в {} при очистке настоящим TypedObjectField. Непустые массивы получают randomID; повторная миграция словаря сохраняет ID; percentage'42' становится 42. static this.effects обычно undefined; difficultyCheck после переноса не объявлено в схеме spell. |
+| 04 | Области, смешанные поля и нули | Обе миграции заменяют новый объект четырьмя старыми полями; новые настройки теряются. Числовой 0 пропускает перенос, при очистке прежние поля исчезают. Строка'2.75' у spell становится 2, у ritual —2.75; актуальное вложенное 2.75 сохраняется у обоих. |
+| 05 | Общие фабрики/миграции | Старый attackSkill не задаёт новый meleeAttackSkill; level даёт вариант spell, defaultskill остаётся spellcasting. Старый armorPiercing=true заменяет новый false. При единственном новом tokenMoveWithin обе настоящие вложенные региональные модели получают null. |
+| 06 | Подготовка компонентов | Оба массива строятся заново без дублей от повторного prepare. Известная ссылка возвращает документ; отсутствующая — {name: uuid}. img в фабрике не объявлен, quantity очищается числом, производные массивы отсутствуют в toObject. |
+| 07–08 | Адресация строк | Отсутствующая ссылка имеет пустой data-uuid: edit даёт TypeError, remove не удаляет запись. Две записи одного UUID: изменение второй редактирует первую; remove убирает обе. Проверены оба списка. |
+| 09 | Запись, типы и Drop | Вне alternateComponents Drop идёт в основной массив; внутри — в альтернативный. Promise Drop завершается при pending update; искусственный отказ не откатывает push в памяти. quantity передаётся строкой, но очищается NumberField. |
+| 10 | Наследование и события | Все контексты содержат selects/showConfig. У spell конфигурация специализирована, hex/ritual используют базовую. Проверены blur/click-селекторы ритуала. Региональная вкладка spell остаётся без PART по старому условию. |
+| 11 и 11b | Условия spell/header | 4 класса×2 STA-режима; все независимые флаги в выключенном/включённом состоянии. Согласованы видимость стоимости, sideEffect, range/defence/domain, поля области/урона/щита/лечения и UI-default1d6+0. |
+| 12 | Ritual/Hex формы | Актуальный nested createTemplate=true не включает устаревшие поля ritual HBS. У Hex выбран Medium и есть liftRequirement; данные моделей не получают отсутствующий legacy checkbox. |
+| 13–14 | Конфигурация статусов | Оба typed словаря сохраняют ID/target и выбранный id статуса. percentage не редактируется этой формой. Настоящие inherited CRUD вызывают пути ID/field/-=ID; ActiveEffect CRUD с этими записями не смешан. |
+| 15 | Локализация и изображения | В обоих языках нет DangerLow/DangerMedium/DangerHigh и ключа RemoveComponent с пробелом; в ru нет emanation. Отдельно проверен динамический Water-ключ. У всех 3 моделей отсутствует clickableImage, у картинок hex/ritual нет editImage action, у spell есть. |
+| 16 | Граница castSpell | Полное исходное тело метода с подменами зависимостей: selfEffects передаётся применению через Object.values, но не попадает в templateInfo из-за length-ветви. Фиксированное лечение работает до передачи формулы, переменное бросает ReferenceError heal после вызова façade update STA. |
+| 17 | Граница чата ритуала | Настоящий HBS показывает основной компонент '3x Known', альтернативный — '[object Object]'. Полный пофайловый разбор внешнего чат-шаблона этим не подменён. |
+
+### Перекрёстная сверка и issues
+
+Цепочки регистрации модель→лист→HBS и общие определения прослежены в обе стороны. Уточнены 17 прежних карточек: CommonItemData, damagePropertiesMigration, attackOptionsData, damagePropertiesData, defenseOptionsData, defensePropertiesData, itemEffectData, config, registerDataModels, WitcherItem, WitcherItemSheet, registerSheets, две базовые конфигурации, handlebars, settings, attackOptionsPart. Статическая сверка импортов/буквальных путей шаблонов распространена на все подготовленные карточки. Внешние региональные файлы остаются для .022; исполнение магии/полный чат — для последующих порций.
+
+Созданы 10 отдельных potential issues:
+
+| Проблема | Наблюдение |
+| --- | --- |
+| [issue-00128](../../issues/potential/issue-00128.md) | Миграции области заклинания и ритуала теряют параметры при смешанном или нулевом вводе |
+| [issue-00129](../../issues/potential/issue-00129.md) | Форма ритуала редактирует прежние пути параметров области |
+| [issue-00130](../../issues/potential/issue-00130.md) | Недоступный компонент ритуала теряет UUID для редактирования и удаления |
+| [issue-00131](../../issues/potential/issue-00131.md) | Повторные компоненты ритуала нельзя независимо изменить или удалить |
+| [issue-00132](../../issues/potential/issue-00132.md) | Обработчики компонентов ритуала не ожидают сохранение и заранее меняют массив |
+| [issue-00133](../../issues/potential/issue-00133.md) | Словарь selfEffects заклинания не попадает в описание эффектов сообщения |
+| [issue-00134](../../issues/potential/issue-00134.md) | Переменное лечение заклинанием обращается к неопределённой переменной heal |
+| [issue-00135](../../issues/potential/issue-00135.md) | Сообщение ритуала выводит альтернативные компоненты как объекты |
+| [issue-00136](../../issues/potential/issue-00136.md) | Изображения порчи и ритуала не привязаны к действию editImage |
+| [issue-00137](../../issues/potential/issue-00137.md) | Часть подписей магии использует несовпадающие или отсутствующие ключи локализации |
+
+Дополнены девять прежних issues: [issue-00062](../../issues/potential/issue-00062.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00064](../../issues/potential/issue-00064.md), [issue-00065](../../issues/potential/issue-00065.md), [issue-00067](../../issues/potential/issue-00067.md), [issue-00074](../../issues/potential/issue-00074.md), [issue-00075](../../issues/potential/issue-00075.md), [issue-00076](../../issues/potential/issue-00076.md), [issue-00098](../../issues/potential/issue-00098.md). Issue-00062 **не воспроизводится в специальной конфигурации spell**: она использует корректный attackOptionsPart, а прежняя ошибка находится в общей general. Issue-00098 покрывает повторный ключ с пробелом; новая карточка для него не создавалась. Всего 137 issues, все остаются potential; подтверждение, изменение статуса и исправление не выполнялись.
+
+### Техническая проверка документов и сохранности
+
+Проверка Python через stdin завершилась успешно: **621 исходник**, **181 карточка**, **440** неразобранных файлов; **137** issues, все в potential. Состав реестра совпал с Git и фактическим деревом. Все 621 исходник побайтно совпали с HEAD и срезом TASK-0001; общая SHA-256 содержимого **52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4** не изменилась. Для всех **1035** ранее отслеживаемых файлов сохранены mode, uid, gid и inode.
+
+Проверены **380 Markdown-документов в docs** и 2 корневых указателя, **8177 локальных ссылок** с существованием целей/якорей, структура таблиц, обязательные разделы карточек, имена собственных методов/полей, соответствие source→card и статусов задач. Для всех подготовленных карточек сверены **265 прямых относительных импортов** (в новой порции 23): **194 default**, **64 named-выражения с 69 именами**, **7 namespace**. Проверены определения экспортов и встречное упоминание источника в ранее разобранной цели. Для **113 буквальных связей с HBS** (в новой порции 6) подтверждены файлы и встречные ссылки там, где обе карточки уже существуют. Это статическая проверка связей, не запуск всех потребителей.
+
+Изменены **60 документов**: 23 новых (13 карточек файлов и 10 issues), 37 ранее отслеживаемых (17 связанных карточек, 9 issues, 11 документов навигации/реестров/задачи/журнала). `git diff --check` прошёл. Весь прежний журнал, начиная с записи планирования третьей серии, сохранён побайтно; добавлена только текущая запись. TASK-0003.001–.021 имеют done, .022–.030 — planned; первая и вторая серии 61/96 файлов, третья 79 (13 выполнены/66 в очереди), 374 вне детализации. Новые задачи и карточки для прочитанных фрагментов соседних файлов не создавались.
+
+### Ограничения и следующий шаг
+
+Не выполнялись запуск мира, HTTP-загрузка системы, создание регионов, запись документов/сообщений, чтение действующих миров/компедиумных БД, сборка, npm test, установка стенда, изменение прав или коммит. Миграционные наблюдения не доказывают наличие затронутых записей у пользователя; вызов façade update STA не доказывает списание. Результат — проверенная документация данной версии, а не подтверждение исправности магии или правил книг. Продолжение по очереди — TASK-0003.022.
+
 ## Планирование TASK-0003.021–TASK-0003.030
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `8cddfd69723128588ab90357c95f0ecf6fc2419b`. На старте рабочее дерево чистое, отслеживаются 1025 файлов. Базовый срез TASK-0001 — `15da5b225535e34af4e132c701b5353ef4eb667f`; все 621 включённый исходник совпадают с ним.

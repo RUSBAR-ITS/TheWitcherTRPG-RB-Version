@@ -152,3 +152,13 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [ProfessionData](../../../../../../../module/data/item/professionData.js) сохраняет 8 общих полей без переопределения description, добавляя notes/definingSkill/3 пути/professionSkills: всего 14. В форме редактируется sourcebook; навыки и заметки используют свои HTMLField. Общие getters/calcWeight наследуются, числовые бонусы от общего описания не создаются.
 
 [Перекрёстная сверка](../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+SpellData, HexData и RitualData наследуют общие 8 полей. Только SpellData переопределяет canHaveTemporaryItemImprovement=true; собственных полей clickableImage и механики ActiveEffect общая модель по-прежнему не даёт.
+
+Сверенные карточки: [module/data/item/spellData.js](spellData.js.md), [module/data/item/hexData.js](hexData.js.md), [module/data/item/ritualData.js](ritualData.js.md), [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs.md).
+
+[Результаты и пределы сверки](../../../../review-log.md#task-0003021).

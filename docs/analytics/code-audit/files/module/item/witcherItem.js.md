@@ -244,3 +244,13 @@
 | Item.effects | [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | Общая конфигурация управляет встроенными ActiveEffect. Удаление/создание Item в treat не является отдельным копированием effects на Actor; отдельно созданные Actor.effects не очищаются этим методом. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+migrateSpells переводит старые class Hexes/Rituals в типы hex/ritual. Эти модели не объявляют attackOptions, поэтому getItemAttack возвращает none. SpellData.getUsedSkill и Item.getItemAttack — разные контракты: рабочий fallback класса в castSpell не исправляет неправильный начальный ключ метаданных атаки. Компонентные ссылки хранятся в RitualData, не являются вложенными Item-документами.
+
+Сверенные карточки: [module/data/item/spellData.js](../data/item/spellData.js.md), [module/data/item/hexData.js](../data/item/hexData.js.md), [module/data/item/ritualData.js](../data/item/ritualData.js.md).
+
+[Результаты и пределы сверки](../../../review-log.md#task-0003021).

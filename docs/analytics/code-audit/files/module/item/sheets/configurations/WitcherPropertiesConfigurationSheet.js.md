@@ -93,3 +93,13 @@ UI сохранения, цикл частичного рендера при с�
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003014).
 
 Полностью разобрана [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js): она заменяет только PARTS.general, остальные настройки наследует. Для FullCover/Shield сохранены general/defenseProperties/activeEffects и пять частей; general всегда выводит 12 исходных SP-полей. Наличие defenseProperties в форме не компенсирует отсутствующие методы делегирования ArmorData ([issue-00085](../../../../../../../issues/potential/issue-00085.md)).
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+WitcherSpellConfigurationSheet сохраняет PARTS/TABS/обработчики родителя, меняя general. Два статуса словаря обслуживают _onAddEffect/_onEditEffect/_oRemoveEffect по ID; ActiveEffect CRUD остаётся в базовой конфигурации. Группа 10 повторила разрыв navigation/region PART из issue74. Специальная general не наследует неправильный заголовок общей general (issue62).
+
+Сверенные карточки: [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](WitcherSpellConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
+
+[Результаты и пределы сверки](../../../../../review-log.md#task-0003021).

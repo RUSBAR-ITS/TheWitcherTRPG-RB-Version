@@ -95,3 +95,13 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [ProfessionData](../../../../../../../../../module/data/item/professionData.js) проверяет Set.has через isApplicableDefense и расширяет createDefenseOption полями skillOverride/label/value. Реальный метод возвращает первый применимый навык; он передаёт строку attack корректно. При нескольких навыках выбран первый по порядку; при отсутствии — undefined. createDefenseOption Item затем сохраняет label/value навыка, перекрывая имя профессии.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.021
+
+Проверено 2026-09-11 на `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; исходник не менялся.
+
+SpellData.isApplicableDefense делегирует проверку множества, createDefenseOption добавляет skills:[getUsedSkill().name]. Контроль defendsAgainst=[ranged], modifier2 вернул ожидаемый объект для spellcast; HexData/RitualData этой вложенной модели не имеют.
+
+Сверенные карточки: [module/data/item/spellData.js](../../spellData.js.md).
+
+[Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).
