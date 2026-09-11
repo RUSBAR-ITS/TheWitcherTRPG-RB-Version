@@ -77,3 +77,13 @@ isMagic выбирает баланс в Log.addIpReward по истинност
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.005 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Фактический UI чтения — rewards/ip.hbs через RewardsSheet. label/ip/isMagic показываются тремя label, isMagic — literal true/false, без date и полей записи. Группа09 сохранила старую запись и добавила обычную/магическую; сумма истории не вычисляет improvementPoints. Магическая выдача и levelUpSkill — разные операции.
+
+[module/actor/mixins/rewardsMixin.js](../../../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

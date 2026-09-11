@@ -89,3 +89,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`; полный файл | Первая карточка; [сверка порции](../../../review-log.md#task-0003031) |
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Ссылка .open-rewards ведёт через CharacterSheet._renderRewards к отдельному RewardsSheet с журналами IP/currency. Она не запускает начисление. Полный разбор назначения окна не исправляет незакрытую ссылку (issue202), зафиксированную в .031.
+
+[module/actor/mixins/rewardsMixin.js](../../module/actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../module/actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../module/app/reward/reward.js.md), [templates/chat/rewards.hbs](../chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

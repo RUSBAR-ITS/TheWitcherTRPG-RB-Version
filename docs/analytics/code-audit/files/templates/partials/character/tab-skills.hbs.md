@@ -97,3 +97,13 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Текущий MonsterSheet.PARTS.skills выбирает эту вкладку, включая IP и общую строку без isVisible. Полный класс не определяет _saveIpSpending/_addIpReward/_renderRewards; базовый listener не привязывает .saveIpSpending. Настройки skillConfig — другое окно, не фильтр этого HBS.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Кнопки .manualIpReward/.saveIpSpending/.open-rewards имеют разные маршруты: диалог выдачи через Actor/API, прямое списание через Log и просмотр RewardsSheet. Последний имеет два HBS без полей редактирования. На Monster обработчики CharacterSheet не появляются от включения общего HBS (issue30).
+
+[module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../module/app/reward/reward.js.md), [templates/chat/rewards.hbs](../../chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

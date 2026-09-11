@@ -91,3 +91,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+levelUpSkill расходует IP через Log, но не открывает Rewards и не зависит от его GM gate. В новом диалоге isMagic=true успешно увеличивает magic.magicImprovementPoints (группа09). Это не опровержение issue17: локальное затенение magicalCost относится к расходу при развитии навыка. Общая потеря await Log остаётся issue28.
+
+[module/actor/mixins/rewardsMixin.js](rewardsMixin.js.md), [module/actor/rewardsSheet.js](../rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.036 подготовлены и сверены 282 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.037 подготовлены и сверены 290 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -465,3 +465,16 @@
 | module/actor/sheets/mixins/currencyConverterMixin.js | [Описание](module/actor/sheets/mixins/currencyConverterMixin.js.md) |
 | templates/sheets/actor/currencyConverter/currencyConverter.hbs | [Описание](templates/sheets/actor/currencyConverter/currencyConverter.hbs.md) |
 | templates/chat/currency-conversion.hbs | [Описание](templates/chat/currency-conversion.hbs.md) |
+
+## Награды — TASK-0003.037
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/rewardsMixin.js | [Описание](module/actor/mixins/rewardsMixin.js.md) |
+| module/actor/rewardsSheet.js | [Описание](module/actor/rewardsSheet.js.md) |
+| module/app/reward/reward.js | [Описание](module/app/reward/reward.js.md) |
+| module/app/htmlUtils.js | [Описание](module/app/htmlUtils.js.md) |
+| templates/sheets/actor/rewards/header.hbs | [Описание](templates/sheets/actor/rewards/header.hbs.md) |
+| templates/sheets/actor/rewards/ip.hbs | [Описание](templates/sheets/actor/rewards/ip.hbs.md) |
+| templates/sheets/actor/rewards/currency.hbs | [Описание](templates/sheets/actor/rewards/currency.hbs.md) |
+| templates/chat/rewards.hbs | [Описание](templates/chat/rewards.hbs.md) |

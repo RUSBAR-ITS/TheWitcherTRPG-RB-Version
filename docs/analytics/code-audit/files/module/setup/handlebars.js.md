@@ -365,3 +365,13 @@ spell-header действительно предзагружается и вкл
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../templates/chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Полностью разобраны четыре HBS наград: templates/sheets/actor/rewards/header.hbs, ip.hbs, currency.hbs и templates/chat/rewards.hbs. В preloadHandlebarsTemplates их нет; три грузит RewardsSheet.PARTS, последний — Rewards.renderTemplate. each/if/lookup — Handlebars, localize/concat — helpers Foundry; специальных вычисляющих helpers наград в этом файле нет.
+
+[module/actor/mixins/rewardsMixin.js](../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

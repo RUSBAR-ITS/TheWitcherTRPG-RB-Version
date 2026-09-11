@@ -125,3 +125,13 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../../module/actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../../module/actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Отдельная .open-rewards17 открывает RewardsSheet через CharacterSheet, а не диалог начисления и не конвертер валюты. Окно показывает журналы; его currency history не включает автоматически все обмены/покупки, поскольку те пишут баланс другими методами.
+
+[module/actor/mixins/rewardsMixin.js](../../../../module/actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../../module/actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../../module/app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

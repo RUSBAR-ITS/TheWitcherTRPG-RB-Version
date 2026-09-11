@@ -120,3 +120,13 @@ stats, derivedStats, healthState, attackStats, notes, logs и другие по�
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Наличие currency позволяет обмену .036 работать на LootData, но награды .037 требуют logs. В реальной LootData logs отсутствует, а player-owned Actor отбор getPlayerActors не исключает. Оба handout дают TypeError (группа14). Это не ошибка схемы валюты и не основание автоматически добавлять журнал Loot.
+
+[module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.036 проверены описания **282 файлов**, для **339 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.037 проверены описания **290 файлов**, для **331 файла** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.036](review-log.md#task-0003036) выполнена на `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`: все исходники (621 файл) совпадают с базовым срезом. Добавлены четыре карточки обмена валюты, сверены модели, кнопка, форма, запись и сообщение. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.037](review-log.md#task-0003037) выполнена на `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`: все исходники (621 файл) совпадают с базовым срезом. Добавлены восемь карточек наград, сверены API, формы, получатели, журналы, балансы и сообщение. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -38,12 +38,12 @@
 | [module/actor/mixins/locationMixin.js](../../../module/actor/mixins/locationMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) | Фрагменты формул из модификаторов навыков, групп, атаки и защиты. | [Описание](files/module/actor/mixins/modifierMixin.js.md) | Проверено |
 | [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js) | Две обёртки WitcherActor для открытия выдачи награды с заранее выбранным текущим Actor. | [Карточка](files/module/actor/mixins/rewardsMixin.js.md) | Проверено |
 | [module/actor/mixins/skillMixin.js](../../../module/actor/mixins/skillMixin.js) | Броски встроенных и Item-навыков, социальная добавка и повышение за IP. | [Карточка](files/module/actor/mixins/skillMixin.js.md) | Проверено |
 | [module/actor/mixins/temporaryEffectMixin.js](../../../module/actor/mixins/temporaryEffectMixin.js) | Выбор оружия, передача временных улучшений и сообщение в чат. | [Описание](files/module/actor/mixins/temporaryEffectMixin.js.md) | Проверено |
 | [module/actor/mixins/verbalCombatMixin.js](../../../module/actor/mixins/verbalCombatMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/weaponAttackMixin.js](../../../module/actor/mixins/weaponAttackMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | Отдельное окно просмотра двух журналов персонажа: IP и валюты | [Карточка](files/module/actor/rewardsSheet.js.md) | Проверено |
 | [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js) | Общий лист Actor V2: контекст персонажа/монстра, 11 примесей, общие действия и глобальные Array.sum/cost. | [Карточка](files/module/actor/sheets/WitcherActorSheet.js.md) | Проверено |
 | [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js) | Не подключённый общий лист Actor V1: синхронный getData, 10 примесей, обработчики и отличия подготовки от V2. | [Карточка](files/module/actor/sheets/WitcherActorSheetV1.js.md) | Проверено |
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js) | Специализированный лист персонажа: контекст, вкладки, изготовление, IP и действия. | [Описание](files/module/actor/sheets/WitcherCharacterSheet.js.md) | Проверено |
@@ -65,8 +65,8 @@
 | [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | Сумма встроенных навыков, раскрытие старых групп и обработчики броска/повышения. | [Карточка](files/module/actor/sheets/mixins/skillMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | Спасброски характеристик, репутация, сумма максимумов и действия удачи/адреналина. | [Карточка](files/module/actor/sheets/mixins/statMixin.js.md) | Проверено |
 | [module/actor/witcherActor.js](../../../module/actor/witcherActor.js) | Документ Actor: подготовка характеристик, статусы, предметы, локации и подключение 17 примесей. | [Описание](files/module/actor/witcherActor.js.md) | Проверено |
-| [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | Не установлено | Не подготовлено | Не начат |
-| [module/app/reward/reward.js](../../../module/app/reward/reward.js) | Не установлено | Не подготовлено | Не начат |
+| [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | Два DOM-конструктора подписанных полей: обычный input и select через Foundry fields. | [Карточка](files/module/app/htmlUtils.js.md) | Проверено |
+| [module/app/reward/reward.js](../../../module/app/reward/reward.js) | Публичный сервис выдачи IP и валюты: формирует список получателей, запрашивает параметры, вызывает журнал Actor и создаёт общее сообщение. | [Карточка](files/module/app/reward/reward.js.md) | Проверено |
 | [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js) | Обычный контейнер параметров сообщения: speaker, flavor, type, system, flags и поверхностное append. | [Карточка](files/module/chatMessage/chatMessageData.js.md) | Проверено |
 | [module/chatMessage/witcherChatMessage.js](../../../module/chatMessage/witcherChatMessage.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/activeEffects/witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js) | Системная модель обычного эффекта: changes ядра и пять флагов применения. | [Описание](files/module/data/activeEffects/witcherActiveEffectData.js.md) | Проверено |
@@ -522,7 +522,7 @@
 | [templates/chat/item/partials/item-description/spell-description.hbs](../../../templates/chat/item/partials/item-description/spell-description.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/repair.hbs](../../../templates/chat/item/repair.hbs) | Запрос и информация ремонта в чате: DC, материалы, цена и кнопка исполнителя. | [Описание](files/templates/chat/item/repair.hbs.md) | Проверено |
-| [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs) | Общее HTML-сообщение о выдаче награды | [Карточка](files/templates/chat/rewards.hbs.md) | Проверено |
 | [templates/dialog/activeEffects/wizard.hbs](../../../templates/dialog/activeEffects/wizard.hbs) | Выбор пути или группы путей в диалоге мастера/навыка. | [Описание](files/templates/dialog/activeEffects/wizard.hbs.md) | Проверено |
 | [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/combat/spell-attack.hbs](../../../templates/dialog/combat/spell-attack.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -590,9 +590,9 @@
 | [templates/sheets/actor/partials/monster/tabs/tab-details.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-details.hbs) | Собирает текущую вкладку сведений из четырёх partial и двух внутренних вкладок notes/lore. | [Описание](files/templates/sheets/actor/partials/monster/tabs/tab-details.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs) | Действующая вкладка инвентаря монстра: общие таблицы оружия/брони, условная добыча и кнопка exportLoot.. | [Карточка](files/templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs.md) | Проверено |
 | [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/actor/rewards/currency.hbs](../../../templates/sheets/actor/rewards/currency.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/actor/rewards/header.hbs](../../../templates/sheets/actor/rewards/header.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/actor/rewards/ip.hbs](../../../templates/sheets/actor/rewards/ip.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/actor/rewards/currency.hbs](../../../templates/sheets/actor/rewards/currency.hbs) | Вкладка просмотра валютного журнала | [Карточка](files/templates/sheets/actor/rewards/currency.hbs.md) | Проверено |
+| [templates/sheets/actor/rewards/header.hbs](../../../templates/sheets/actor/rewards/header.hbs) | Заголовок окна журналов наград | [Карточка](files/templates/sheets/actor/rewards/header.hbs.md) | Проверено |
+| [templates/sheets/actor/rewards/ip.hbs](../../../templates/sheets/actor/rewards/ip.hbs) | Вкладка просмотра журнала IP | [Карточка](files/templates/sheets/actor/rewards/ip.hbs.md) | Проверено |
 | [templates/sheets/actor/tabs/tab-inventory.hbs](../../../templates/sheets/actor/tabs/tab-inventory.hbs) | Основная вкладка инвентаря персонажа: отображает переносимый вес/предел, семь валют и категории предметов через девять различных partial. | [Карточка](files/templates/sheets/actor/tabs/tab-inventory.hbs.md) | Проверено |
 | [templates/sheets/investigation/clue-sheet.hbs](../../../templates/sheets/investigation/clue-sheet.hbs) | Форма отдельного предмета-улики для ItemSheet V1. | [Карточка](files/templates/sheets/investigation/clue-sheet.hbs.md) | Проверено |
 | [templates/sheets/investigation/mystery-sheet.hbs](../../../templates/sheets/investigation/mystery-sheet.hbs) | Основная часть листа тайны: имя/цель/сложность и две таблицы embedded Items с добавлением улик и препятствий.. | [Карточка](files/templates/sheets/investigation/mystery-sheet.hbs.md) | Проверено |

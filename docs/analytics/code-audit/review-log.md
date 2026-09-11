@@ -1,5 +1,121 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.037
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; стартовое дерево чистое, отслеживаются 1263 файла. Основание — [TASK-0003.037](../../tasks/task-0003.037.md) и поручение продолжать согласованный пофайловый анализ.
+
+### Состав и результат
+
+Полностью прочитаны **восемь файлов, 313 логических строк**: четыре JS (267 строк) и четыре HBS (46 строк). Документированы десять собственных функций/методов, статические PARTS/TABS/DEFAULT_OPTIONS, callbacks выбора и выдачи, поля обоих диалогов и все четыре шаблона.
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js) | 9 | [Описание](files/module/actor/mixins/rewardsMixin.js.md) |
+| [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | 55 | [Описание](files/module/actor/rewardsSheet.js.md) |
+| [module/app/reward/reward.js](../../../module/app/reward/reward.js) | 178 | [Описание](files/module/app/reward/reward.js.md) |
+| [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | 25 | [Описание](files/module/app/htmlUtils.js.md) |
+| [templates/sheets/actor/rewards/header.hbs](../../../templates/sheets/actor/rewards/header.hbs) | 3 | [Описание](files/templates/sheets/actor/rewards/header.hbs.md) |
+| [templates/sheets/actor/rewards/ip.hbs](../../../templates/sheets/actor/rewards/ip.hbs) | 11 | [Описание](files/templates/sheets/actor/rewards/ip.hbs.md) |
+| [templates/sheets/actor/rewards/currency.hbs](../../../templates/sheets/actor/rewards/currency.hbs) | 12 | [Описание](files/templates/sheets/actor/rewards/currency.hbs.md) |
+| [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs) | 20 | [Описание](files/templates/chat/rewards.hbs.md) |
+
+Добавлены восемь карточек; уточнены **19 связанных карточек и три прежних issues**. Покрытие — **290/621**, остаток331; в четвёртой серии проверены43/63, в очереди20, ещё311 требуют распределения. Следующая .038 не начата. Исходники, игровые правила, данные и права не менялись.
+
+### Методика и ограничения
+
+Изолированный сценарий выполнен командой `node --input-type=module` через stdin; исполняемые файлы/стенд в репозиторий не добавлялись. Импортированы настоящие Rewards, rewardsMixin, RewardsSheet, htmlUtils, CharacterData/MonsterData/LootData/Log и core TypeDataModel/fields; использованы Handlebars4.7.9, parse5, FormDataExtended core helpers localize/concat и отдельно извлечённые методы DialogV2.input, core builders, multi-select _initialize/_getValue, Application._prepareTabs/_getTabsConfig, inherited hasPlayerOwner. Везде проверялся наблюдаемый результат; ожидаемые12/6/105/13 заданы независимо от вычисляющего метода.
+
+**24 группы прошли** на Foundry14.367.0 (`/opt/foundryvtt/package.json`) / Node24.16.0. DOM-конструкторы/HTMLFormElement, prompt/ответ диалога, базовый ActorSheet, коллекция/UUID, проверки владения и Actor.update/ChatMessage.create — фасады. В обычном сценарии update применяет patch к настоящей модели в памяти; удержанные/отклонённые Promise проверяют конкретный порядок. Тестовый catch отклонений нужен только для учёта результата, его нет в коде системы. Нативный custom element, browser validity/render/полный sanitizer, сеть, права сервера, БД и несколько клиентов не запускались. Core Dialog очищает строковый content до render; этот этап прочитан ранее в .036, здесь его не подменяли утверждением об исполнении HTML. Предупреждение Node MODULE_TYPELESS_PACKAGE_JSON не помешало выполнению.
+
+При первой сборке проверки уточнены два ожидания: core не задаёт cssClass неактивной вкладке, а amount-переводы действительно отсутствуют. Итоговые assertions отражают прочитанный код и отдельные проверки результата; исходники ради прохождения не менялись.
+
+### Изолированные проверки
+
+| Группа | Сценарий | Результат | Предел |
+| --- | --- | --- | --- |
+| 01 | htmlUtils и builders | input number с name без min/max/step/required/dtype; title допускает HTML. options.name перекрывает name select; core экранирует подписи options. | DOM — минимальный фасад; title в реальном вызове — локализация. |
+| 02 | Получатели по умолчанию | hasPlayerOwner=true включён, false исключён; отсутствие actors подбирает список, явный [] остаётся пустым. | Коллекция Actor подменена. |
+| 03 | Повторные options и HTML имени | Два одинаковых UUID дали два option, но actual multi _initialize/_getValue вернул один UUID через Set; имя экранировано. | Изолированные core методы; браузер custom element целиком не запускался. |
+| 04 | Типы FormDataExtended | DialogV2.input с фасадом prompt/form: пустой number→null; 0/−2/1.5→Number; isMagic→Boolean; label пустая строка. | Это преобразование значений, не native constraint validation. |
+| 05 | Currency select | Семь ключей CONFIG, включая falsecoin; первый вариант bizant; пустая amount→null. | Нативный выбор первого option воспроизведён в фасаде формы. |
+| 06 | GM guard | Оба публичных handout для не-GM завершились до диалога/записи; прямой ipRewardDialog([]) сформировал окно. | Серверные permissions не проверены; диалог сам не начисляет. |
+| 07 | Отмена/пустой выбор | null/false/{} либо actors:[] останавливают оба handout до рендера и записи. | Ответ Dialog.input подставлен; реальные cancel/close не нажимались. |
+| 08 | 0/null награда | При валидном Actor — 0 update,0 chat, но 1 renderTemplate. | Числовой payload; строка "0" не моделирует штатный number input. |
+| 09 | Обычные/магические IP | Обычные10→12 при magic4; либо magic4→6 при обычных10. История1→2; старый элемент сохранён. В чат не переданы isMagic/speaker. | Настоящие CharacterData/Log, запись модели в памяти. |
+| 10 | Несколько денежных получателей | Оба crown100→105, история1→2; один chat. context amount5/type=crown без currency скрывает денежный блок. currency=true в контроле показывает сумму. | Контроль HBS не изменение системы. |
+| 11 | Отрицательные/дробные значения | −2/1.5 применены обоими handout к числу баланса без собственной валидации. | Допустимость корректировок по правилам не оценивалась. |
+| 12 | Повторы в подменённом ответе | Один UUID дважды в values.actors: два начисления IP,10→14, две записи, имя дважды в контексте. | В штатном multi-checkbox повторы убирает Set; не обычный способ выбора. |
+| 13 | Исчезнувший UUID | [Character, missing] инициирует один update, затем TypeError; до чата не доходит. | fromUuidSync — map; удаление Actor при открытом UI не воспроизводилось. |
+| 14 | Monster/Loot | Настоящие модели не содержат logs; hasPlayerOwner отбор их не исключает. Оба handout дают TypeError. | Фасады Actor с реальными system-моделями. |
+| 15 | Неизвестная валюта | Подменённый type=unknown дал NaN в patch, историю с unknown, неизменный crown100 и вызов chat. updateSource не добавил unknown в currency. | Штатный select unknown не предлагает; неизвестна серверная обработка patch. |
+| 16 | Обёртки Actor | await addIpReward/addCurrencyReward завершился при удержанном game.api.rewards Promise. | API заменён управляемым Promise. |
+| 17 | Завершение handout | handout завершился, когда Actor.update и ChatMessage.create ещё pending; исходный IP10 до разрешения, затем12. | Задержки фасадов, не сеть. |
+| 18 | Повтор до окончания записи | +2/+3 приIP10 создали абсолютные patches12/13. Выбранный порядок оставил13 и две новые записи вместо суммы15. | Конкретный порядок фасада; не доказательство всех серверных гонок. |
+| 19 | Частичный отказ | Rejected update первого Actor не остановил второго/чат; первый кошелёк100, второй105; prepared история первого уже увеличена push. | Тест перехватил rejection сам; система не содержит этой обработки. |
+| 20 | RewardsSheet и четыре PARTS | config/system по ссылке, core tabs ip active/currency без cssClass. Все HBS, включая core tab-navigation, дали форму без полей: FormDataExtended={}. | Base Application/DOM — фасады. |
+| 21 | История/остаток/дата | Порядок old→новая запись, isMagic literal true; HTML label экранирован. Замена истории на IP99 не пересчитала обычные10 или magic6. Даты в записи нет. | updateSource модели, не серверная форма редактирования. |
+| 22 | EN/RU и escaped text | Существующие подписи/типы валют доступны после expandObject и core fallback; имена/label не стали HTML-элементами. | Рендер Handlebars, не внешний модуль/браузер. |
+| 23 | Два отсутствующих ключа | dialog.amount и chat.amount возвращаются ключами в EN/RU. Диалог показывает первый; второй появляется в контроле currency=true. | Обычную денежную ветку скрывает отдельная issue232. |
+| 24 | Точный смысл ownership | Inherited hasPlayerOwner=true для неактивного не-GM OWNER, false для только GM owner. | Настоящее тело getter; users и testUserPermission — фасады. |
+
+### Перекрёстная сверка
+
+| Связь | Что сопоставлено | Граница результата |
+| --- | --- | --- |
+| Регистрация → UI | main22/39–41 → Rewards handout; Actor import15/Object.assign450 → две wrapper; CharacterSheet116/448–450 → addIpReward. | Прямой currency wrapper UI consumer не найден. GM gate у handout; листы/развитие не наследуют его автоматически. |
+| Просмотр → PARTS | CharacterSheet import6/field14/_renderRewards460–462 → RewardsSheet → header/ip/currency + core generic tabs. | В своих HBS нет полей формы, несмотря на submitOnChange. Общая IP-вкладка Monster не создаёт методы CharacterSheet. |
+| Форма → значения | htmlUtils → actual builders → options actors UUID/name selected:true → multi-checkbox Set; input label/ip/amount/isMagic; select type. | DialogV2.input/FormDataExtended отделены от нативной формы. Числа/boolean не выводятся из названий полей. |
+| Выбор → модель | hasPlayerOwner с non-GM OWNER → список всех типов → fromUuidSync → system.logs.add*. | CharacterData имеет logs/IP/magic; Monster/Loot нет. Явный массив не фильтруется заранее. |
+| Журнал → баланс | Log.push → update целого массива и абсолютного остатка; обычный или magic пул/одна валюта. | Нет суммы истории как источника баланса, даты записи, rollback или результатов по получателям. Конвертация/покупка не обязаны попадать в этот журнал. |
+| Обновление → сообщение | forEach Log без ожидания → await render → create OTHER без await. | Нет isMagic, speaker, timestamp в собственном payload; amount/type без currency. ChatMessage метаданные не являются датами ipLog/currencyLog. |
+| Локализация/ресурсы | config.currency → select/lookup; localize/concat core; EN/RU expandObject/fallback; .logEntry ← styles/rewards.css. | rates/excluded не участвуют. Шаблоны вне preload грузятся прямыми путями. CSS и языки целиком не добавлены в покрытие. |
+| Прежние issues | 17 — затенённая magicalCost развития;28 — потеря Promise журнала;30 — IP-форма Monster. | Прямое magic начисление работает; это не исправление17. Расширены28/30 с отделением разных входов. Issue202 остаётся дефектом ссылки header. |
+
+Уточнены связанные карточки:
+
+- [module/TheWitcherTRPG.js](files/module/TheWitcherTRPG.js.md)
+- [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md)
+- [module/actor/sheets/WitcherCharacterSheet.js](files/module/actor/sheets/WitcherCharacterSheet.js.md)
+- [module/data/actor/characterData.js](files/module/data/actor/characterData.js.md)
+- [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md)
+- [module/data/actor/monsterData.js](files/module/data/actor/monsterData.js.md)
+- [module/data/actor/lootData.js](files/module/data/actor/lootData.js.md)
+- [module/data/actor/templates/character/logData.js](files/module/data/actor/templates/character/logData.js.md)
+- [module/data/actor/templates/character/ipLogData.js](files/module/data/actor/templates/character/ipLogData.js.md)
+- [module/data/actor/templates/character/currencyLogData.js](files/module/data/actor/templates/character/currencyLogData.js.md)
+- [module/data/actor/templates/common/currencyData.js](files/module/data/actor/templates/common/currencyData.js.md)
+- [module/setup/config.js](files/module/setup/config.js.md)
+- [module/setup/handlebars.js](files/module/setup/handlebars.js.md)
+- [module/actor/mixins/skillMixin.js](files/module/actor/mixins/skillMixin.js.md)
+- [module/actor/sheets/mixins/skillMixin.js](files/module/actor/sheets/mixins/skillMixin.js.md)
+- [module/actor/sheets/WitcherMonsterSheet.js](files/module/actor/sheets/WitcherMonsterSheet.js.md)
+- [templates/partials/character-header.hbs](files/templates/partials/character-header.hbs.md)
+- [templates/partials/character/tab-skills.hbs](files/templates/partials/character/tab-skills.hbs.md)
+- [templates/sheets/actor/tabs/tab-inventory.hbs](files/templates/sheets/actor/tabs/tab-inventory.hbs.md)
+
+### Потенциальные проблемы
+
+| Issue | Наблюдение | Статус |
+| --- | --- | --- |
+| [issue-00232](../../issues/potential/issue-00232.md) | Сообщение о денежной награде скрывает сумму и валюту | potential |
+| [issue-00233](../../issues/potential/issue-00233.md) | Выдача наград не проверяет совместимость и существование получателей | potential |
+| [issue-00234](../../issues/potential/issue-00234.md) | Денежная награда обращается к отсутствующим ключам перевода количества | potential |
+| [issue-00235](../../issues/potential/issue-00235.md) | Неизвестный тип денежной награды доходит до журнала и некорректного баланса | potential |
+
+Дополнены [issue-00017](../../issues/potential/issue-00017.md), [issue-00028](../../issues/potential/issue-00028.md), [issue-00030](../../issues/potential/issue-00030.md). Регистрация разрешена пунктом9 родительской TASK-0003; подтверждение, изменение статуса и исправление не выполнялись. Отрицательная/дробная награда, отсутствие редактора/дат и неразличение magic в чате описаны как факты/ограничения; новые требования к правилам из них не выведены.
+
+### Формальная проверка документов и сохранности
+
+Проверка Python через stdin и `git diff --check` прошла. Состав реестра совпал с Git и фактическим деревом: 621 файл после исключений, 290 карточек «Проверено», 331 «Не начат». Точный состав .037 — восемь файлов/313 строк; перечни сорока подзадач не пересекаются, .001–.037 done, .038–.040 planned. Родительская задача in-progress, TASK-0004/TASK-0005 draft.
+
+Проверены 329 прямых локальных import-связей всех описанных JS: 216 default, 106 named import-выражений (112 имён) и 7 namespace; у .037 один named import с двумя exports. Сверены пути/имена определений и обратные упоминания в уже существующих карточках. Проверены 193 уникальные для каждой карточки ссылки на репозиторные HBS, из них четыре в новой порции; внешний generic/tab-navigation в это количество не включён. Динамические пути API/Log/контекста сверены отдельно в таблице выше.
+
+Проверены **13 595 локальных ссылок** в 597 Markdown-файлах docs и двух корневых README/AGENTS, якоря, столбцы изменённых таблиц и отсутствие хвостовых пробелов. Issues имеют уникальные ID1–235, все potential и отражены в индексе. Состав изменений — **45 Markdown-документов: 33 существующих и 12 новых** (восемь карточек и четыре issues); вне docs изменений нет.
+
+Все 621 исходник побайтно совпали с HEAD и базовым срезом TASK-0001. Совпали стартовые SHA256 совокупности исходников и метаданных доступа; mode/uid/gid/inode всех1263 отслеживаемых файлов сохранены. Ветка/HEAD не изменились; исходный хвост review-log совпадает с HEAD и стартовой контрольной суммой. Новые файлы созданы обычной записью, отдельного назначения прав не было.
+
+Исторические записи журнала, включая общую сверку .031–.035 с прежними247 карточками, сохранены побайтно. Полная сквозная сверка всех63 файлов предусмотрена в .040, а TASK-0004/TASK-0005 остаются draft. В рамках .037 исходники не исправлялись; коммит не создавался.
+
 ## TASK-0003.036
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; стартовое дерево чистое, отслеживаются 1254 файла. Основание — [TASK-0003.036](../../tasks/task-0003.036.md) и поручение продолжить согласованный пофайловый анализ.

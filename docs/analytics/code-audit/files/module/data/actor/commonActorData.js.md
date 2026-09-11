@@ -207,3 +207,13 @@ currency:SchemaField(currency())20 — источник баланса Character
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Общий currency не означает общего logs: Rewards выбирает hasPlayerOwner без типа, а затем требует system.logs.add*. В CommonActorData этого поля нет; MonsterData не получает его через наследование. Группа14 воспроизвела TypeError, в отличие от совместимого с currency конвертера .036.
+
+[module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

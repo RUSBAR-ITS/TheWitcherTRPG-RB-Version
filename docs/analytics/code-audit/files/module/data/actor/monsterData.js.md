@@ -177,3 +177,13 @@ prepareBaseData, calcCurrencyWeight и три метода миграции на
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный контекст MonsterSheet и форма его конфигурации выполнены с настоящей MonsterData. Три lore producer дают value/enriched, текущий HBS передаёт в enriched исходное value (issue-00013). Конфигурация не редактирует category/threat/difficulty/bounty (issue-00209). Ресурсные и текстовые поля нового sidebar/details сопоставлены со схемой.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../../templates/sheets/actor/configuration/monster/general.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Группа14 использует реальную MonsterData: currency есть, logs/IP/magic нет; getPlayerActors всё равно включает Actor с hasPlayerOwner. Оба handout падают при вызове logs. Новая issue233 относится к самостоятельному публичному API наград, issue30 остаётся наблюдением общей IP-вкладки монстра.
+
+[module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

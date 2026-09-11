@@ -126,3 +126,13 @@ Monster наследует currencyConverterListeners базового V2, но 
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Полный маршрут .037 подтвердил: экземпляр RewardsSheet и _renderRewards создаёт CharacterSheet. MonsterSheet наследует общий tab-skills с IP-разделом, но не его обработчики наград; прежняя issue30 сохраняется. Независимый API Rewards может выбрать player-owned monster и упасть на logs (233), даже без клика по этой вкладке.
+
+[module/actor/mixins/rewardsMixin.js](../mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

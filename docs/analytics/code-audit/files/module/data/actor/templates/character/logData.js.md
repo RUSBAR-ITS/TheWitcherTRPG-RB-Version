@@ -112,3 +112,13 @@ push изменяет живой массив до любого успешног
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Связан с настоящим _saveIpSpending: положительная строка '3' преобразуется в -3, отрицательная '-3' передаётся строкой. При IP10 запросы остатка — 7 и '10-3' соответственно (issue-00200). Вызов журнала в обработчике не ожидается; прежнее наблюдение об асинхронном контракте сохранено.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../../../review-log.md#task-0003031).
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+Полностью сверены оба caller handout из Rewards. push меняет массив в памяти до Actor.update; return/await отсутствуют не только здесь: handout использует forEach и не ждёт ChatMessage.create, Actor wrappers не ждут API. В группе18 две удержанные выдачи +2/+3 при10 создали абсолютные patches12/13; выбранный порядок фасада оставил13 и обе записи. Группа19 rejected update не остановил второго получателя/чат. Issue28 уточнена без дубликата. Неизвестный type даёт NaN patch и произвольную строку журнала (issue235); серверная запись не проверена.
+
+[module/actor/mixins/rewardsMixin.js](../../../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.

@@ -143,3 +143,13 @@ defineSchema собирает определения; значения созд�
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. tab-background использует gender, lifeEventCounter и enrichedText.general.background; raw/enriched передаются корректно. Форма и updateSource сохранили заметки по индексам и открытый event10, не затронув details скрытого event20. Схема принимает counter=21, который в настоящем шаблоне даёт пустую карточку; issue-00213 зарегистрирована отдельно от замены prepared lifeEvents (issue-00024).
 
 Связи: [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Дополнительная сверка TASK-0003.037
+
+2026-09-11, `rusbar-main`, `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; исходники не менялись.
+
+CharacterData задаёт improvementPoints20, magic.magicImprovementPoints22 и logs30. Группа09 через настоящий Rewards/Log увеличила обычный пул10→12 либо магический4→6, сохранив другой. Группа21 изменение только history не пересчитало остатки: журнал и баланс хранятся отдельно. RewardsSheet передаёт system в HBS без суммирования и не содержит полей редактирования.
+
+[module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
+
+[Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
