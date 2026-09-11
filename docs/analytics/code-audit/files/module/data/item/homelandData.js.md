@@ -91,3 +91,9 @@ value/otherValue являются данными этого Item. Одноимё
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Контекст Character выбирает отдельный homeland Item через getList. Header предпочитает его system.value/otherValue прежнему system.general.homeland, иначе выбирает otherValue либо динамический локализованный ключ. Подтверждены приоритет и экранирование текста.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. tab-background — установленный потребитель value/otherValue Item.homeland: эти значения выводятся вместо Actor-select. Контекст получает первый подходящий getList('homeland') элемент, stored исключается общим getList. Группа 09 отрендерила 'other' и дополнительный текст.
+
+Связи: [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

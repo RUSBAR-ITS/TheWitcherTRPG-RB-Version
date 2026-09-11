@@ -182,3 +182,9 @@ SpellData, HexData и RitualData наследуют общие 8 полей. Т�
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. quantity StringField используется экспортом монстра: строка с 'd' вычисляется Roll по одному разу на итерацию множителя; прочие значения Number(quantity)*multiple. При '-2' количество 2 становится−4, а '1d6' даёт 0; это проверка action с перехваченным update, не гарантия сохранения в БД. Множитель принадлежит UI, не схеме Item.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный NoteData наследует восемь общих полей и методы; description повторно определён тем же StringField(initial:''). Группа 01: quantity='2', weight=3 → calcWeight=6; два can*-геттера false. Автоматической связи с Actor.system.notes нет.
+
+Связи: [module/data/item/noteData.js](noteData.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

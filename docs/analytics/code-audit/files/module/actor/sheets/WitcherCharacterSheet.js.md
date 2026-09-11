@@ -116,3 +116,9 @@ registerSheets импортирует default WitcherCharacterSheet и назн�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003031) |
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background подтверждён как PARTS.background. Группы 09–13 прошли через настоящий дочерний и базовый контекст: Item-родина заменяет редакторы, raw/enriched background передаются правильно; note Items и массив независимы. Повторная подготовка сохраняет UI-ключи 10/20, но prepared-модель по схеме остаётся нарушенной (issue-00024). Программный counter=21 создаёт пустую карточку (issue-00213).
+
+Связи: [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md); [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

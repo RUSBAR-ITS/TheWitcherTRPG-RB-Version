@@ -335,3 +335,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. В полном Monster-контексте использованы настоящие getList и расчёты характеристик. При обычных BODY/WILL8 HP=40, при customStat=true заданы HP90/STA70/resolve80 и получены эти max. getAllLocations экземпляра по-прежнему теряет this для hasTailWing; отдельный прямой static.call(actor) добавляет tailWing. Экспорт вызывает toObject и внешний Actor.create, не обновляет исходного Actor.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../templates/sheets/actor/configuration/monster/general.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. getList('note') формирует oldNotes: тип note, !isStored и sort. Смешанный контекст .033 показал одну видимую Item-note, отдельно одну array-note; stored Item не выведен. noteMixin работает с system.notes и вызывает update всего массива, не меняя items.
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](sheets/mixins/noteMixin.js.md); [module/data/item/noteData.js](../data/item/noteData.js.md); [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).

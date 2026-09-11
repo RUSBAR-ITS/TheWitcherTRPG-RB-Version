@@ -116,3 +116,9 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character читает age/socialStanding/legacy homeland, header отдаёт приоритет отдельному homeland Item. Подготовка lifeEvents выполняется прямо в общем system, counter при falsy заменяется длиной массива; обогащение general.background получено через CharacterData.enrichedText.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. В полном tab-background прослежены homeland/details/age/socialStanding/background и lifeEvents. Родина из Item скрывает редакторы Actor; семь details и остальные видимые пути формы сопоставлены со схемами. isOpened меняется отдельным toggle, counter влияет на видимость, не удаляет записи.
+
+Связи: [templates/partials/character/tab-background.hbs](../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003033).

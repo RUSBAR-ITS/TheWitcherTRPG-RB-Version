@@ -279,3 +279,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Импорт SkillItemData и регистрация CONFIG.Item.dataModels.skill теперь сопоставлены с полной карточкой: 8 полей, без CommonItemData/modifiers/modifiedValue/isVisible. Встроенный Skill Actor и Item type skill — разные модели и пути данных.
 
 Сверенные связи: [module/data/item/skillItemData.js](../../../../../../module/data/item/skillItemData.js); [module/actor/mixins/skillMixin.js](../../../../../../module/actor/mixins/skillMixin.js). Полные карточки новых файлов — в [указателе порции](../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. NoteData полностью описан: default-import:11 и CONFIG.Item.dataModels.note:57 сопоставлены с классом и manifest Item.note. Общие поля сохраняются; массив Actor-notes остаётся самостоятельным. Повторного исполнения регистрационного API в .033 не было.
+
+Связи: [module/data/item/noteData.js](../data/item/noteData.js.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).

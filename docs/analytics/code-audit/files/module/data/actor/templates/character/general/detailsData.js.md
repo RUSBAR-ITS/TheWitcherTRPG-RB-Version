@@ -81,3 +81,9 @@ general.details.value — имя одной из семи пар; её текс�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.004 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background выводит все семь полей через each: clothing/personality/hairStyle/affectations/valuedPerson/value/feelingsOnPeople. Каждый путь заканчивается .value, label используется для перевода. Группа 09 проверила семь inputs; группа 15 — доступность подписей в en/ru.
+
+Связи: [templates/partials/character/tab-background.hbs](../../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003033).

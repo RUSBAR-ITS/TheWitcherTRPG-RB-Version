@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.032 проверены описания **263 файлов**, для **358 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.033 проверены описания **267 файлов**, для **354 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.032](review-log.md#task-0003032) выполнена на `8b938d44a042749df027d8b58e28bb1d79638091`: все 621 исходник совпадают с базовым срезом; добавлены 13 карточек листа монстра/конфигурации/шаблонов, уточнены связи с прежними описаниями. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.033](review-log.md#task-0003033) выполнена на `12055fee62f01c6de49967044aedef9d7cfe0632`: все 621 исходник совпадают с базовым срезом; добавлены четыре карточки биографии и заметок, уточнены связи с прежними описаниями. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -61,7 +61,7 @@
 | [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | Ручной счётчик смерти и спасбросок с порогом из STUN либо BODY/WILL. | [Карточка](files/module/actor/sheets/mixins/deathSaveMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | Диалог дневного восстановления: расчёт HP по REC и четырём галочкам, восстановление STA/Vigor, продвижение заживления критических травм и отчёт в чат. | [Описание](files/module/actor/sheets/mixins/healMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js) | Примесь действий инвентаря: Drop, создание и изменение Item, установка улучшений, сворачивание групп и сообщение в чат. | [Карточка](files/module/actor/sheets/mixins/itemMixin.js.md) | Проверено |
-| [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | Примесь листов Actor для добавления и удаления записей массива system.notes и привязки двух событий интерфейса. | [Описание](files/module/actor/sheets/mixins/noteMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | Сумма встроенных навыков, раскрытие старых групп и обработчики броска/повышения. | [Карточка](files/module/actor/sheets/mixins/skillMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | Спасброски характеристик, репутация, сумма максимумов и действия удачи/адреналина. | [Карточка](files/module/actor/sheets/mixins/statMixin.js.md) | Проверено |
 | [module/actor/witcherActor.js](../../../module/actor/witcherActor.js) | Документ Actor: подготовка характеристик, статусы, предметы, локации и подключение 17 примесей. | [Описание](files/module/actor/witcherActor.js.md) | Проверено |
@@ -137,7 +137,7 @@
 | [module/data/item/mixin/spellRegionMixin.js](../../../module/data/item/mixin/spellRegionMixin.js) | Примесь жизненного цикла областей spell/ritual: построение Region-данных, интерактивное размещение либо привязанная к токену эманация, назначение макросов и планирование удаления через клиентский таймер. | [Карточка](files/module/data/item/mixin/spellRegionMixin.js.md) | Проверено |
 | [module/data/item/mountData.js](../../../module/data/item/mountData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/mutagenData.js](../../../module/data/item/mutagenData.js) | Модель мутагена: категория, источник, мутация и настройки расходования. | [Описание](files/module/data/item/mutagenData.js.md) | Проверено |
-| [module/data/item/noteData.js](../../../module/data/item/noteData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/noteData.js](../../../module/data/item/noteData.js) | Модель данных Item типа note: наследует общие поля предмета и явно повторяет строковое поле description. | [Описание](files/module/data/item/noteData.js.md) | Проверено |
 | [module/data/item/professionData.js](../../../module/data/item/professionData.js) | Модель профессии: навыки, HTML, список базовых навыков и выбор защиты. | [Описание](files/module/data/item/professionData.js.md) | Проверено |
 | [module/data/item/raceData.js](../../../module/data/item/raceData.js) | Модель расы: четыре текстовые особенности, региональное социальное положение и подготовка HTML. | [Описание](files/module/data/item/raceData.js.md) | Проверено |
 | [module/data/item/ritualData.js](../../../module/data/item/ritualData.js) | Модель system ритуала и подготовка двух списков ссылок на компоненты для интерфейса. | [Карточка](files/module/data/item/ritualData.js.md) | Проверено |
@@ -541,7 +541,7 @@
 | [templates/partials/character/custom-skill-display.hbs](../../../templates/partials/character/custom-skill-display.hbs) | Текущая строка Item-навыка с рассогласованными контекстом и обработчиком броска. | [Карточка](files/templates/partials/character/custom-skill-display.hbs.md) | Проверено |
 | [templates/partials/character/skill-display.hbs](../../../templates/partials/character/skill-display.hbs) | Текущая строка встроенного навыка: modifiedValue, флаги и бросок. | [Карточка](files/templates/partials/character/skill-display.hbs.md) | Проверено |
 | [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs) | Текущая вкладка биографии персонажа: родина, семь описательных полей, пол/возраст/положение, богатое описание, жизненные события и два вида заметок. | [Описание](files/templates/partials/character/tab-background.hbs.md) | Проверено |
 | [templates/partials/character/tab-magic.hbs](../../../templates/partials/character/tab-magic.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-skills.hbs](../../../templates/partials/character/tab-skills.hbs) | Текущая общая вкладка навыков персонажа/монстра: группы, Items, редактор и IP. | [Карточка](files/templates/partials/character/tab-skills.hbs.md) | Проверено |
@@ -623,7 +623,7 @@
 | [templates/sheets/item/homeland-sheet.hbs](../../../templates/sheets/item/homeland-sheet.hbs) | Форма родины: выбор страны, условное название и доступ к конфигурации. | [Описание](files/templates/sheets/item/homeland-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/mutagen-sheet.hbs](../../../templates/sheets/item/mutagen-sheet.hbs) | Основная форма источника, воздействия и малой мутации; общая шапка. | [Описание](files/templates/sheets/item/mutagen-sheet.hbs.md) | Проверено |
-| [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs) | Старый самостоятельный HTML-шаблон заметки-предмета: форма с именем и многострочным описанием. | [Описание](files/templates/sheets/item/note-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/profession-sheet.hbs](../../../templates/sheets/item/profession-sheet.hbs) | Основная форма профессии: десять навыков, заметки, пути и базовые навыки. | [Описание](files/templates/sheets/item/profession-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/race-sheet.hbs](../../../templates/sheets/item/race-sheet.hbs) | Форма расы: особенности, источник, пять регионов и доступ к конфигурации. | [Описание](files/templates/sheets/item/race-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs) | Основная форма ритуала: описательные параметры, устаревшие поля области и две редактируемые таблицы компонентов. | [Карточка](files/templates/sheets/item/ritual-sheet.hbs.md) | Проверено |

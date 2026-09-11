@@ -185,3 +185,9 @@
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Сверены notes, healthState, skills и ресурсы в полном MonsterSheet. healthState объявлен прямо в CommonActorData, отдельного healthStateData файла нет. Старые Item notes и массивные notes обслуживают разные handlers. Иммунитеты к статусам принадлежат MonsterData, а общая подготовка не добавляет IP/logs/training.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный потребитель notes — noteMixin — меняет prepared-массив до Actor.update и не ждёт запись. В группах 03–05 настоящая CharacterData сохраняла прежний source при уже изменённых notes. Сценарии принадлежат общему массиву, не Item.note; решения о смене формата не принимались.
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](../../actor/sheets/mixins/noteMixin.js.md); [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

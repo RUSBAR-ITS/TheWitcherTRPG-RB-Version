@@ -510,3 +510,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Конфигурация монстра использует ключи statMap/skillMap и записывает новый statLabels в тот же CONFIG.WITCHER. _getSkills формирует 52 записи, 51 BooleanField, commonspeech остаётся undefined. Header использует 12 MonsterTypes/4 monsterDifficulty/3 monsterComplexity; status partial даёт 26 опций статусов, ID оглушения — stun.
 
 Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs](../../templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. WITCHER.homelands/socialStanding и семь labels деталей используются полным tab-background. С шестью прямыми ключами проверены 45 уникальных переводов, все доступны в en/ru после expandObject; рендер Item-родины использует lookup, Actor-родины — selectOptions.
+
+Связи: [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).

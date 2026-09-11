@@ -83,3 +83,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [Item-модель HomelandData](../../../../../../../../../../module/data/item/homelandData.js) отдельно объявляет value/otherValue и не импортирует эту фабрику. В tab-background.hbs и header.hbs присутствующий homeland Item имеет приоритет показа; при его отсутствии читается Actor.general.homeland. В проверке Item.value=other/otherValue=AuditPlace был показан при неизменном Actor.value=aedirn; после отсутствия Item показана Actor-родина. Передачи данных из Item в эту схему в проверенной цепочке нет.
 
 [Перекрёстная сверка](../../../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Группа 09 проверила ветви tab-background: без Item.homeland доступны general.homeland.value и условный otherValue; с Item остаются label из его system.value/otherValue. Строки с <...> экранируются; автоматическая запись Item-значения обратно в Actor в этом шаблоне отсутствует.
+
+Связи: [templates/partials/character/tab-background.hbs](../../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003033).

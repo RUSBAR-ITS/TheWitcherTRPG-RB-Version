@@ -62,7 +62,7 @@ note():4–9 без аргументов возвращает title/details. И�
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверены HTML-редактор, обработка формы массива в Foundry, безопасность/обогащение текста, конкурентное редактирование и преобразование старых Item.note. Отсутствие .add-note фиксируется как ограничение доступного пути, без самостоятельного решения об удалении одного из форматов.
+Не проверены работа HTML-редактора и формы в браузере, безопасность/обогащение текста, конкурентное редактирование и преобразование старых Item.note. Изолированная обработка индексных полей массива проверена в TASK-0003.033 (см. уточнение ниже). Отсутствие .add-note фиксируется как ограничение доступного пути, без самостоятельного решения об удалении одного из форматов.
 
 ## Связанные проблемы
 
@@ -84,3 +84,9 @@ note():4–9 без аргументов возвращает title/details. И�
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Текущий monster-notes использует массив title/details и индексы в name/data-note-index; отдельно показывает oldNotes как Item. Полный базовый producer передаёт обе группы. Удаление 0 из двух array-заметок оставило Second в перехваченном Actor.update; создание/редактирование в браузере не проверено.
 
 Связи: [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Группы 03–06 и 12 проверили полную noteMixin и текущий tab-background: title/details остаются строками массива, editor получает исходный details, Item.note не преобразуется в массив. FormDataExtended/_processFormData и CharacterData.updateSource сохранили изменение второй записи; после удаления первой её индекс стал 0. DOM/ProseMirror и БД подменены; новые ограничения ожидания/индекса — issue-00211/00212.
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](../../../../actor/sheets/mixins/noteMixin.js.md); [templates/partials/character/tab-background.hbs](../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003033).

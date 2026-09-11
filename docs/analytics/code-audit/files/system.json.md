@@ -138,3 +138,9 @@
 Связанные карточки: [module/data/item/containerData.js](module/data/item/containerData.js.md), [module/item/sheets/WitcherContainerSheet.js](module/item/sheets/WitcherContainerSheet.js.md).
 
 [Перекрёстная сверка порции](../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Item.note:174 сопоставлен с полностью описанной NoteData и отсутствием отдельной регистрации листа. Сам тип действителен; пустой интерфейс отдельной заметки относится к WitcherItemSheet.PARTS и не означает отсутствия модели.
+
+Связи: [module/data/item/noteData.js](module/data/item/noteData.js.md); [templates/sheets/item/note-sheet.hbs](templates/sheets/item/note-sheet.hbs.md). [Результаты и пределы проверки](../review-log.md#task-0003033).

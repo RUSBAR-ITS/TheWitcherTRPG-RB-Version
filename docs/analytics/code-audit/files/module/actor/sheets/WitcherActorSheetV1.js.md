@@ -147,3 +147,9 @@ context.system — сериализованная копия actor.toObject(fals
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный старый monster-sheet.hbs сопоставлен с базовым контрактом V1. Ни выбора этого HBS через template в V1, ни регистрации V1 не найдено. Изолированный render старого HBS с текущей моделью не является запуском старого листа.
 
 Связи: [templates/sheets/actor/monster-sheet.hbs](../../../templates/sheets/actor/monster-sheet.hbs.md); [templates/partials/monster/monster-details-tab.hbs](../../../templates/partials/monster/monster-details-tab.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. noteMixin полностью разобран: три функции прототипа совпадают с экспортом; activateListeners с html[0] привязывает и вызывает удаление. V1 toggle по исходному объекту ключа 10 передаёт isOpened=true. Регистрации действующего V1-листа по-прежнему не найдено; текущий tab-background не объявляется его шаблоном.
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

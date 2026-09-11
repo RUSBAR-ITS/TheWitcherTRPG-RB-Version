@@ -1,5 +1,84 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.033
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `12055fee62f01c6de49967044aedef9d7cfe0632`; рабочее дерево на старте чистое, отслеживаются 1223 файла. Основание — согласованная [TASK-0003.033](../../tasks/task-0003.033.md) и поручение пользователя продолжить.
+
+### Состав и результат
+
+Полностью прочитаны **четыре файла, 178 логических строк**: noteMixin — 25, NoteData — 16, tab-background — 129, note-sheet — 8. Примесь вводит три метода, класс — один собственный static defineSchema; программных функций в HBS нет.
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | 25 | [Описание](files/module/actor/sheets/mixins/noteMixin.js.md) |
+| [module/data/item/noteData.js](../../../module/data/item/noteData.js) | 16 | [Описание](files/module/data/item/noteData.js.md) |
+| [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs) | 129 | [Описание](files/templates/partials/character/tab-background.hbs.md) |
+| [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs) | 8 | [Описание](files/templates/sheets/item/note-sheet.hbs.md) |
+
+Добавлены четыре карточки, уточнены 25 связанных. Покрытие выросло с 263 до **267 из 621 файла**, осталось **354**. В четвёртой серии выполнены 20 из 63 файлов, 43 стоят в очереди; ещё 311 требуют распределения. TASK-0003.001–.033 имеют done, .034–.040 planned; родительская задача in-progress, TASK-0004/TASK-0005 draft. Общие сверки .035/.040 ещё предстоят.
+
+### Методика и пределы проверки
+
+Node 24.16.0; установленные исходники Foundry VTT 14.367.0 в /opt/foundryvtt. Сценарии исполнены через `node --input-type=module` со stdin; постоянный стенд и тестовый файл не создавались. Использованы настоящие NoteData/CommonItemData/CharacterData и вложенные схемы, noteMixin/itemMixin, WitcherCharacterSheet с полным базовым контекстом, методы Actor.getList и модели родины. V1 импортирован целиком поверх фасада ActorSheet для сопоставления прототипа и обработчиков, его регистрация в клиенте не утверждается.
+
+Handlebars 4.7.9, core formGroup/editor/selectOptions, DataField.toFormGroup, HTMLField.toInput, FormDataExtended, _processFormData, Localization и методы _prepareTabs/_getTabsConfig исполнены из установленных исходников. Конкретные внешние источники: common/data/fields.mjs; client/applications/handlebars.mjs (editor:225); client/applications/ux/form-data-extended.mjs; client/applications/api/document-sheet.mjs и application.mjs; client/helpers/localization.mjs. Системные JS импортированы без изменения их файлов; тела отдельных функций ядра исполнены в vm.
+
+Application/Document-оболочки, DOM/jQuery, createSelectInput/createFormGroup/HTMLProseMirrorElement.create и TextEditor.enrichHTML заменены фасадами; HTML разобран parse5. Для формы inputs/select/textarea получены из отрендеренной разметки, а значение prose-mirror — из перехваченных параметров editor с заданными правками. Это проверяет имена, преобразование формы и обновление модели, но не пользовательский ввод и внутреннюю работу ProseMirror. Item.create/update/delete и Actor.update заменены сборщиками/управляемыми Promise. updateSource применяется только к новым моделям в памяти, не к игровым документам.
+
+Отрицательные/дробные индексы и счётчики заданы программно. Для lifeEventCounter исходный HTML имеет min=1,max=20; нормальная браузерная валидация/step не запускались. Пустой lifeEvents задан prepared-данным искусственно, не загружен как штатная запись схемы. Нет запуска мира, HTTP, службы, БД, одновременных клиентов и генераторов packsJson. CSS прочитан лишь по связанным селекторам, не получил карточки. Отдельная предыдущая проверка core _renderHTML в issue-00057 здесь не повторялась.
+
+При подготовке сценария исправлена синтаксическая опечатка в fixture родины/пола; исходники системы не затронуты. После этого итоговый запуск всех 15 групп прошёл. Предупреждение Node о неуказанном type пакета не является отказом тестов.
+
+### Изолированные сценарии
+
+| № | Сценарий | Фактический результат | Пределы |
+| --- | --- | --- | --- |
+| 01 | NoteData | Восемь общих полей; description StringField, HTML-строка проходит roundtrip; quantity='2',weight=3 → вес 6; can*-геттеры false | Настоящие модели и поля, без Item-БД |
+| 02 | Примесь и кнопки | Три метода совпадают с функциями V1/V2; bound .add-note добавляет запись; актуальный HBS не содержит .add-note, имеет .add-item | Регистрация jQuery смоделирована; кнопка добавления массива вызвана программно |
+| 03 | Штатные операции массива | Добавление пустой записи; удаление первого/последнего/из пустого массива; source прежний при уже изменённом prepared | Actor.update перехвачен |
+| 04 | Некорректный индекс | [A,B,C]: undefined/'bad' → [B,C], '-1' → [A,B], '1.5' → [A,C], '99' → исходный массив | Нештатные dataset переданы программно |
+| 05 | Promise и отказ | Оба метода завершены при pending update; source прежний; отдельное отклонение update не возвращается через Promise метода | Отказ наблюдался отдельным catch; БД не запускалась |
+| 06 | Смешанные заметки | Одна видимая Item-note и одна array-note; stored исключён, заголовки/textarea экранированы, editor получает raw details | Создание редактора — фасад; HTML-безопасность не исследована |
+| 07 | Действия Item | Создание {name:'new note',type:'note'} с parent Actor; inline HTML-строка неизменна, false/true/checked преобразуются; удаление не меняет array-notes | Item.create/update/delete подменены |
+| 08 | Старый note-sheet | Изолированный render: одна form, имя item.name, описание system.description; общий ItemSheet.PARTS пуст | Активный потребитель HBS не найден, submit не выполнялся |
+| 09 | Родина/сведения/background | Семь inputs деталей; Item-родина заменяет select и otherValue; formGroup получает правильные raw/enriched background | enrichHTML и создание editor input заменены |
+| 10 | Жизненные события | Две карточки с ключами 10/20, открытое поле 10, корректный toggle; повторный контекст сохраняет UI-ключи, prepared-схема нарушена как в issue-00024 | toObject() source неизменён; не сохранение искажённых данных в БД |
+| 11 | V1 и границы counter | V1 toggle по исходному объекту; 0/1/20/21/−1/1.5 → 20/1/20/21/0/2 карточки; пустой prepared список → 0; у 21-й data-event='', toggle даёт TypeError | Программные значения; number min/max/step в браузере не проверены |
+| 12 | Форма массива/переиндексация | FormDataExtended/_processFormData и updateSource сохраняют новые title/details второй записи; после удаления первой остаются пути notes.0.* | DOM и значения custom element заданы фасадом |
+| 13 | Форма событий | Правка value события 10 сохраняется; скрытые details события 20 и details закрываемого события 10 остаются; в модели 20 ключей | Модель в памяти, без сервера |
+| 14 | Регистрация V1/V2 | Оба activateListeners связали add/delete-note, add/delete-item, inline-edit и life-event-display; привязанный delete-note выполнен | Посторонние listeners заглушены; V1 не объявлен зарегистрированным UI |
+| 15 | Переводы/разделение данных | 45 уникальных ключей найдены в en и ru после expandObject; два формата заметок не объединяются | Настоящий Localization; другие языки и генераторы не исследованы |
+
+### Перекрёстная сверка
+
+- noteMixin сопоставлен с двумя Object.assign и вызовами noteListener V2/V1. Текущие HBS имеют .delete-note, но не .add-note. .add-item/note, Item ID и data-field обрабатывает itemMixin; эти действия не преобразуют массив Actor.notes.
+- NoteData сопоставлен с CommonItemData, registerDataModels и Item.note в system.json. Повторное description не меняет его тип StringField. Отдельный note-sheet не найден среди PARTS/template/render/partial/preload в module/templates; его имя формы item.name описано как требующее проверки при будущем подключении, не как текущая ошибка активного сохранения.
+- oldNotes=getList('note') и notes=system.notes доведены до обоих each в tab-background и сравнены с ранее описанным monster-notes. Вложенный system.description корректно берётся у Item. Поля без name не входят в Actor-form; редакторы массива имеют индексные name/target. Их изменения и переиндексация после удаления проверены на модели.
+- Все поля биографии сопоставлены с generalData, details/background/homeland/lifeEvents/lifeEvent и CharacterData. Родина Item заменяет редактируемую родину Actor только в представлении. Семь details подписей и варианты двух конфигурационных словарей проверены вместе с прямыми ключами.
+- Цепочка createEnrichedText → CharacterData.enrichedText → formGroup передаёт корректный background raw/enriched. Для notes.details вызывается editor с исходной строкой; вызова enrichHTML на массивных заметках в этом пути нет. Реальная безопасность/обработка произвольного HTML не утверждается.
+- У событий UI-key 10/20 отличается от индекса массива и поля decade. V1 toggle использует объект, V2 — find по key. Повторная подготовка сохраняет UI-ключи, но не исправляет нарушение prepared-схемы из issue-00024. Скрытые поля сохраняются при частичной правке; counter не удаляет события.
+- Уточнены **25 прежних карточек**: базовые листы, Character/Monster/Item-листы, Actor/getList и itemMixin; CommonActor/Character/общие заметки, general и его пять вложенных схем; CommonItem/Homeland/dataUtils; config/регистрации/Handlebars/манифест и monster-notes. Исходники соседей проверены в пределах связей и не засчитаны повторно. Исторические ограничения дополнены результатами .033.
+
+### Потенциальные проблемы
+
+| ID | Наблюдение |
+| --- | --- |
+| [issue-00211](../../issues/potential/issue-00211.md) | Методы массива заметок завершаются до сохранения изменений |
+| [issue-00212](../../issues/potential/issue-00212.md) | Удаление заметки не проверяет индекс перед splice |
+| [issue-00213](../../issues/potential/issue-00213.md) | Счётчик событий выше длины списка создаёт пустые карточки |
+
+Три новые карточки зарегистрированы по пункту 9 TASK-0003, все potential. Дополнены [issue-00024](../../issues/potential/issue-00024.md), [issue-00057](../../issues/potential/issue-00057.md), [issue-00153](../../issues/potential/issue-00153.md). Наблюдения искажённого prepared lifeEvents, пустого отдельного листа note и преобразования текстов false/true не продублированы. Всего **213 potential issues**, подтверждений пользователя, исправлений и закрытий нет.
+
+### Формальная проверка и сохранность
+
+Проверены все 621 строки реестра: 267 имеют полные карточки, 354 остаются «Не начат». Состав текущей порции — ровно четыре новых карточки. В каталоге issues — 213 последовательно пронумерованных документов, все potential; у задач .001–.033 статус done, у .034–.040 planned. Четвёртая серия содержит 20 разобранных и 43 запланированных файла, вне очереди остаются 311.
+
+Проверены 12 507 локальных ссылок и якорей в 554 Markdown-файлах (552 в docs и два корневых документа). Сопоставлены 324 прямых импорта и 181 буквальная шаблонная связь описанных исходников с определениями и обратными упоминаниями в карточках; текущая порция добавила один прямой импорт, новых буквальных шаблонных связей нет. Структура карточек и таблиц, статусы, точный перечень изменённых документов и git diff --check проверку прошли.
+
+Изменены 46 Markdown-документов: 39 существующих и семь новых (четыре карточки файлов, три issues). Содержимое всех 621 исходного файла совпадает с HEAD на старте и базовым срезом TASK-0001. Права, владельцы, группы и inode всех 1223 ранее отслеживаемых файлов сохранены; историческая часть журнала совпадает с HEAD побайтово. Итоговые 15 групп изолированных сценариев прошли в указанных выше границах.
+
+Изменения ограничены документацией. Следующая — [TASK-0003.034](../../tasks/task-0003.034.md), её выполнение не начиналось. Исторические записи журнала сохранены.
+
 ## TASK-0003.032
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `8b938d44a042749df027d8b58e28bb1d79638091`; рабочее дерево на старте чистое, отслеживаются 1205 файлов. Основание — согласованная [TASK-0003.032](../../tasks/task-0003.032.md) и поручение пользователя продолжить.

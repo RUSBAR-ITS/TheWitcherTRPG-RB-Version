@@ -183,3 +183,9 @@
 Связанные карточки: [module/item/sheets/WitcherContainerSheet.js](WitcherContainerSheet.js.md), [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs.md).
 
 [Перекрёстная сверка порции](../../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Весь note-sheet прочитан и отрендерен отдельно. PARTS={} не выбирает этот HBS, специализированная регистрация note отсутствует. Старый input выдаёт item.name, textarea — system.description; при будущем подключении надо сверить путь имени. Прежний опыт core _renderHTML из issue-00057 не повторялся.
+
+Связи: [module/data/item/noteData.js](../../data/item/noteData.js.md); [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

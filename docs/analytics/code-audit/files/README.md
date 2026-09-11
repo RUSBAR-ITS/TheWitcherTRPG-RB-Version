@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.032 подготовлены и сверены 263 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.033 подготовлены и сверены 267 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -426,3 +426,12 @@
 | templates/sheets/actor/configuration/monster/general.hbs | [Описание](templates/sheets/actor/configuration/monster/general.hbs.md) |
 | templates/sheets/actor/monster-sheet.hbs | [Описание](templates/sheets/actor/monster-sheet.hbs.md) |
 | templates/partials/monster/monster-details-tab.hbs | [Описание](templates/partials/monster/monster-details-tab.hbs.md) |
+
+## Биография и заметки — TASK-0003.033
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/sheets/mixins/noteMixin.js | [Описание](module/actor/sheets/mixins/noteMixin.js.md) |
+| module/data/item/noteData.js | [Описание](module/data/item/noteData.js.md) |
+| templates/partials/character/tab-background.hbs | [Описание](templates/partials/character/tab-background.hbs.md) |
+| templates/sheets/item/note-sheet.hbs | [Описание](templates/sheets/item/note-sheet.hbs.md) |

@@ -100,3 +100,9 @@ registerSheets импортирует default WitcherMonsterSheet и регис�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003032) |
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Общая noteMixin получила полный разбор .033; механизм массива и Item-note независим. Вход монстра через описанный monster-notes совпадает с персонажным по .delete-note/@index и .add-item/note. Новый полный рендер монстра здесь не выполнялся; выводы .032 сохранены.
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md); [module/data/item/noteData.js](../../data/item/noteData.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

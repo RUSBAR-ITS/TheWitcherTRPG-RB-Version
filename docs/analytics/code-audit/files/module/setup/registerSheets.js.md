@@ -257,3 +257,9 @@
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. WitcherMonsterSheet теперь имеет полную карточку: импорт/регистрация makeDefault monster, 10 PARTS. Старый monster-sheet.hbs выбранным шаблоном не является; обнаружена только предзагрузка. Конфигурация создаётся внутри экземпляра листа, самостоятельным default не регистрируется.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный note-sheet не имеет потребителя; note по-прежнему получает общий WitcherItemSheet с PARTS={}. Текущие заметки в биографии редактируются встроенными Item-полями и массивными editor, независимо от отключённого отдельного HBS. Issue-00057 уточнена, исправления не выполнены.
+
+Связи: [templates/sheets/item/note-sheet.hbs](../../templates/sheets/item/note-sheet.hbs.md); [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).

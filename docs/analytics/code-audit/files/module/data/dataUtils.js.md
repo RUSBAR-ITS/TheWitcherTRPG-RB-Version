@@ -141,3 +141,9 @@
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. MonsterData.enrichedText вызывается полным _prepareContext; поля common/academicKnowledge/monsterLore дают раздельные value и enriched. Текущий monster-knowledge передаёт в параметр enriched именно value. Настоящие formGroup/HTMLField довели его до фасада HTMLProseMirrorElement.create: наблюдение issue-00013 подтверждено на полном producer.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs](../../templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Для general.background цепочка createEnrichedText → CharacterData.enrichedText → tab-background передаёт raw value и enriched правильно. Массив notes.details и Item.note.description этим helper в проверенном маршруте не обогащаются. Проверка дошла до core formGroup/HTMLField.toInput с фасадом создания редактора.
+
+Связи: [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).

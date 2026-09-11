@@ -172,3 +172,9 @@
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный WitcherMonsterSheet теперь выполнен вместе с super._prepareContext и унаследованным activateListeners. configuration открывает его WitcherMonsterConfigurationSheet; отсутствуют дочерние listeners item-repair/saveIpSpending. Контекст notes/oldNotes, items, resources и effects поступает из базы. Вкладки дочернего класса: 7/9/6/2.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Подтверждена цепочка _prepareGeneralInformation → oldNotes/notes → tab-background → itemListener/noteListener. Полный актуальный шаблон описан в .033: .add-item создаёт Item.note; .delete-note удаляет массивную запись. V2 _onLifeEventDisplay работает по ключу преобразованного массива; для пустого ключа карточки за пределом списка воспроизведён TypeError (issue-00213).
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md); [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).

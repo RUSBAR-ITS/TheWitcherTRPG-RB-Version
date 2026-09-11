@@ -84,3 +84,9 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полный super+child _prepareContext с настоящей моделью повторил issue-00024: 20 записей схемы становятся массивом, toObject(false) по ключу 10 читает исходное событие 110. Повторная подготовка сохраняет вложенные key за счёт порядка {key,...value}; исходный _source неизменён. Искусственно пустой prepared lifeEvents/counter0 дал []/0.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Группы 10–13 сохранили 20 исходных ключей 10–200, проверили открытые/закрытые события, повторный контекст и частичное изменение event10. Подготовка листа меняет prepared-объект на массив; counter=21 выводит лишний пустой элемент через eachLimit. См. issue-00024 и issue-00213; реальные данные мира не записывались.
+
+Связи: [templates/partials/character/tab-background.hbs](../../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003033).

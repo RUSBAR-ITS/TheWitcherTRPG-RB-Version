@@ -56,7 +56,7 @@
 
 ## Данные и изменения состояния
 
-Старые name/description имеют data-field без name и сохраняются Item-handler, поэтому не входят в обычный payload. В each контекст — Item: {{system.description}} корректно читает note.system.description. Новые title/details используют индексы массива. Core editor получает raw note.details; обогащение не вызывается здесь. Сохранение редактора/создание заметок в браузере не проверены; полный процесс .033.
+Старые name/description имеют data-field без name и сохраняются Item-handler, поэтому не входят в обычный payload. В each контекст — Item: {{system.description}} корректно читает note.system.description. Новые title/details используют индексы массива. Core editor получает raw note.details; обогащение не вызывается здесь. Сохранение редактора/создание заметок в браузере не проверены; изолированный разбор общего процесса выполнен в .033 (см. уточнение ниже).
 
 ## Проверки и доказательства
 
@@ -77,3 +77,9 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../../../../../review-log.md#task-0003032) |
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный разбор noteMixin и tab-background в .033 подтвердил общий контракт: Item.note через add-item/inline-edit/delete, Actor.notes через индексные name/target/delete-note. Внутренний each oldNotes правильно разрешает system.description. Индекс и ожидание массива описаны в issue-00211/00212; новый рендер этого monster HBS не выполнялся.
+
+Связи: [module/actor/sheets/mixins/noteMixin.js](../../../../../../../module/actor/sheets/mixins/noteMixin.js.md); [module/data/item/noteData.js](../../../../../../../module/data/item/noteData.js.md); [templates/partials/character/tab-background.hbs](../../../../../../partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../../review-log.md#task-0003033).

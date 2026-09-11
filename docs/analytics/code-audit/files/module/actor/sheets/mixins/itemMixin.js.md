@@ -131,3 +131,9 @@ Drop сначала может удалить уникальные Item и сб�
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. monster-notes .add-item/data-itemType='note' проходит HTML-преобразование в dataset.itemtype; старые Item title/textarea имеют data-field и item-id. В each {{system.description}} читает system текущего note, не Actor. Нет имени обычной формы; отдельный _onItemInlineEdit остаётся необходим. Конкретный полный цикл создания заметок перенесён в .033 по плану.
 
 Связи: [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.033
+
+2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background связывает .add-item/note, .inline-edit data-field=name/system.description и .item-delete. Группа 07 выполнила настоящие методы: Item.create получил {name:'new note',type:'note'} и parent Actor; описание HTML передано строкой, literal false/true/checked преобразованы как в issue-00153. Item.delete перехвачен; array-notes остались прежними.
+
+Связи: [templates/partials/character/tab-background.hbs](../../../../templates/partials/character/tab-background.hbs.md); [module/data/item/noteData.js](../../../data/item/noteData.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003033).
