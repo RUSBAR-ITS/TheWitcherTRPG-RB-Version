@@ -189,3 +189,13 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Весь note-sheet прочитан и отрендерен отдельно. PARTS={} не выбирает этот HBS, специализированная регистрация note отсутствует. Старый input выдаёт item.name, textarea — system.description; при будущем подключении надо сверить путь имени. Прежний опыт core _renderHTML из issue-00057 не повторялся.
 
 Связи: [module/data/item/noteData.js](../../data/item/noteData.js.md); [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Новый прямой наследник WitcherMountSheet задаёт width600/PARTS.main mount-sheet.hbs, получает configuration, item/data/config/showConfig/systemFields и handlers из общего класса. Тест19 создал этот дочерний класс и проверил контекст;20 проверил поля формы с настоящими MountData/FormDataExtended. В отличие от note-sheet, mount имеет активный PARTS. Реальное Application-окно/merge конструктора ядра не инстанцировалось.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

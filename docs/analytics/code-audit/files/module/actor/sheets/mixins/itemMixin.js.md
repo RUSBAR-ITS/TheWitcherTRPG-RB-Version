@@ -143,3 +143,13 @@ Drop сначала может удалить уникальные Item и сб�
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный substances HBS создаёт .item-substance-display с data-subtype для всех девяти ключей. Настоящий _onSubstanceDisplay вызвал preventDefault и update system.pannels.vitriolIsOpen. После открытия кнопка add-item из вложенного summary всё ещё не имеет data-subtype: _onItemAdd создал обычный component (issue-00173).
 
 Связи: [templates/partials/character/substances.hbs](../../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet Object.assign174 подключает itemMixin и вызывает itemListener в _onRender. Его HBS поддерживает .add-item/.inline-edit/.item-edit/.item-delete; buy/hide идут отдельными actions. Общий _onDropItem по-прежнему требует actor.isOwner даже при _canDragDrop=true, делает сортировку своего Item, копирует чужой mount, uniqueTypes race/profession/homeland. В Loot нет skills: profession вызывает TypeError после removeItemsOfType (новый issue225). Inline quantity0.5 передан строкой и сохранён строкой; Number dtype сам этот handler не применяет.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

@@ -106,3 +106,13 @@ registerSheets импортирует default WitcherMonsterSheet и регис�
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Общая noteMixin получила полный разбор .033; механизм массива и Item-note независим. Вход монстра через описанный monster-notes совпадает с персонажным по .delete-note/@index и .add-item/note. Новый полный рендер монстра здесь не выполнялся; выводы .032 сохранены.
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md); [module/data/item/noteData.js](../../data/item/noteData.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Сверен конечный consumer exportLoot: Actor.create(type:'loot') выбирает WitcherLootSheet, который не наследует WitcherActorSheet и собирает свои массивы. Все исходные Items копируются в payload экспортируемого Actor (.032), но строками становятся только поддержанные категории. В частности mutagen не выводится из-за mutagens (новый issue218). Issues206 (тип Folder),207 (async forEach/обновления) и208 (multiplier) не исправлены и не воспроизводились заново; создание/запись реального Actor не доказаны тестом новой таблицы. Покупка сама не вызывает checkIfItemHasRollTable.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

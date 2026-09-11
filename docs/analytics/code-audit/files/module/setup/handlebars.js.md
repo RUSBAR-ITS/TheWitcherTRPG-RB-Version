@@ -345,3 +345,13 @@ spell-header действительно предзагружается и вкл
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. substances.hbs получил полную карточку и рендер с двумя настоящими вложенными partial. getOwnedComponentCount исполнен с реальным findNeededComponent и sum: нулевая/трёхединичная одноимённые стопки дают 3. Dismantle HBS загружается отдельным renderTemplate и в preload этого файла не входит.
 
 Связи: [module/actor/mixins/craftingMixin.js](../actor/mixins/craftingMixin.js.md); [templates/partials/character/substances.hbs](../../templates/partials/character/substances.hbs.md); [templates/chat/item/dismantle.hbs](../../templates/chat/item/dismantle.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+В этой порции полностью разобраны loot-sheet.hbs (preload4) и loot-item-display.hbs (preload48); первый вызывает второй шесть раз. mount-sheet.hbs подключён PARTS WitcherMountSheet и вызывает предварительно загруженный item-header.hbs. В порции29 прямых WITCHER-ключей, все найдены EN/RU после expandObject + настоящего Localization. CSS/переводы проверены как зависимости, их покрытие не увеличено.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

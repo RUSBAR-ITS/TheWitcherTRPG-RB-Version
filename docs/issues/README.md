@@ -237,3 +237,12 @@
 | [issue-00215](potential/issue-00215.md) | Разбор предмета не проверяет доступность связанного рецепта | `potential` |
 | [issue-00216](potential/issue-00216.md) | Недоступный компонент теряет имя в результате разбора | `potential` |
 | [issue-00217](potential/issue-00217.md) | Разбор выдаёт материалы при нулевом запасе исходного предмета | `potential` |
+| [issue-00218](potential/issue-00218.md) | Лист добычи не включает предметы типа mutagen | `potential` |
+| [issue-00219](potential/issue-00219.md) | Общая стоимость в листе добычи выводится без значения | `potential` |
+| [issue-00220](potential/issue-00220.md) | Покупка не проверяет запас, количество и итог оплаты | `potential` |
+| [issue-00221](potential/issue-00221.md) | Покупка завершается до записей и не согласует их результаты | `potential` |
+| [issue-00222](potential/issue-00222.md) | Покупка не обрабатывает отсутствие доступного покупателя | `potential` |
+| [issue-00223](potential/issue-00223.md) | Строка добычи не формирует штатные данные перетаскивания Item | `potential` |
+| [issue-00224](potential/issue-00224.md) | Изображение добычи не связано с действием editImage | `potential` |
+| [issue-00225](potential/issue-00225.md) | Перенос профессии в Loot обращается к отсутствующим навыкам | `potential` |
+| [issue-00226](potential/issue-00226.md) | Пересчёт покупки зависит от script внутри HTML диалога | `potential` |

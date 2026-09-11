@@ -298,3 +298,13 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полностью описана dismantlingMixin и её HBS; все три функции прототипа совпали. Прямой разбор ждёт UUID, но не add/remove/message, не проверяет запас и теряет имя null-компонента. UI-вход остаётся блокирован issue-00168. В realCraft сопоставлены оба метода поиска: обычный вызов списал две стопки 2+3, алхимический — только вещество вне хранения; отсутствующий populateAlchemyCraftComponentsList снова дал TypeError до диалога.
 
 Связи: [module/actor/mixins/craftingMixin.js](../actor/mixins/craftingMixin.js.md); [module/item/mixins/dismantlingMixin.js](mixins/dismantlingMixin.js.md); [templates/chat/item/dismantle.hbs](../../templates/chat/item/dismantle.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet покупает документ через Actor.addItem/removeItem; собственного вызова checkIfItemHasRollTable в покупке нет. Это отличает её от exportLoot MonsterSheet, где генератор количества/таблицы вызывается до/после открытия листа с прежними границами .032. Реальные Item в .035 использовали фасад persistence; копия toObject сохраняет общие поля. В .035 не делался новый вывод об отсутствии issues39/40 в экспортированной добыче.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

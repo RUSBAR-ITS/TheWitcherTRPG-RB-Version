@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.034 подготовлены и сверены 272 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.035 подготовлены и сверены 278 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -445,3 +445,14 @@
 | module/item/mixins/dismantlingMixin.js | [Описание](module/item/mixins/dismantlingMixin.js.md) |
 | templates/partials/character/substances.hbs | [Описание](templates/partials/character/substances.hbs.md) |
 | templates/chat/item/dismantle.hbs | [Описание](templates/chat/item/dismantle.hbs.md) |
+
+## Добыча и торговля — TASK-0003.035
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/sheets/WitcherLootSheet.js | [Описание](module/actor/sheets/WitcherLootSheet.js.md) |
+| templates/sheets/actor/loot-sheet.hbs | [Описание](templates/sheets/actor/loot-sheet.hbs.md) |
+| templates/sheets/actor/partials/loot/loot-item-display.hbs | [Описание](templates/sheets/actor/partials/loot/loot-item-display.hbs.md) |
+| module/data/item/mountData.js | [Описание](module/data/item/mountData.js.md) |
+| module/item/sheets/WitcherMountSheet.js | [Описание](module/item/sheets/WitcherMountSheet.js.md) |
+| templates/sheets/item/mount-sheet.hbs | [Описание](templates/sheets/item/mount-sheet.hbs.md) |

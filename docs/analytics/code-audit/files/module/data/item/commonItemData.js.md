@@ -194,3 +194,13 @@ SpellData, HexData и RitualData наследуют общие 8 полей. Т�
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. quantity:StringField без положительного минимума сохранён настоящей моделью оружия как '0'/'-1'. Прямой dismantle выдал материалы и вызвал удаление источника (issue-00217); текущий UI-вход до него не доходит из-за issue-00168. При нормальном quantity=3/9 снимается одна единица независимо от нормы выхода.
 
 Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Новый прямой наследник MountData определяет четыре поля поверх восьми общих; итог12. Полный consumer loot-item-display выводит quantity/name/weight/cost; quantity остаётся String после _onItemInlineEdit, хотя HTML содержит data-dtype Number. isHidden выбирает CSS-класс, но Item остаётся в контексте/HTML. Mount наследует calcWeight и false для canHaveTemporaryItemImprovement/canBeRepaired. Checkbox clickableImage из общего header по-прежнему не в схеме (issue63).
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

@@ -101,3 +101,13 @@ EnhancementData extends CommonItemData, default export, CONFIG.Item.dataModels.e
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Словарь effects успешно перебирается each во всех современных секциях: percentage>0 выводит statusEffect/процент, name показывается и при нуле. Свободные weapon/armor-enhancement попадают в общие таблицы, rune/glyph в отдельную. Guard unless(eq type enhancement) внутри each использует настоящий Item.type и не путается с data-type=weapon строки.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs); [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet фильтрует getList('enhancement') по !system.applied. Это исключение из списка, без обрезки enhancementItems или изменения системных свойств. Группа03: applied улучшение не показано, но входит в общий вес при carried/not-stored. Issue166 об _prepareWeapons другого класса здесь не воспроизведён и не распространяется на Loot по одному наличию улучшений.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

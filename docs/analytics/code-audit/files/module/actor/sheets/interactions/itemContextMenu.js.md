@@ -113,3 +113,13 @@
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полностью описан вызываемый dismantlingMixin. Entry.callback в порядке ядра (target,event) снова даёт TypeError до fromUuid, сохраняя issue-00168. При прямом корректном вызове dismantleItem не ждёт Promise операции; её собственные add/remove/render/chat тоже не согласованы по завершению (issue-00214). Видимость проверяет тип/UUID, но не запас.
 
 Связи: [module/item/mixins/dismantlingMixin.js](../../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet импортирует itemContextMenu1, присоединяет175 и регистрирует в _onRender72. Прежний issue168 порядка аргументов context menu остаётся применимым; buyItem/hideItem — другие штатные actions с правильным (event,element), поэтому им эта блокировка не приписана. GiftItem (issue169) не вызывается покупкой: новый issue221 фиксирует собственные четыре не ожидаемые записи покупателя/продавца. Dismantle в .034 проверялся прямо, а не через исправленное меню.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

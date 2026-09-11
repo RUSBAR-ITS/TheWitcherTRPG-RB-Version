@@ -109,3 +109,13 @@ JavaScript-функций нет. Шаблон вычисляет условия
 Связанные карточки: [templates/sheets/item/container-sheet.hbs](../sheets/item/container-sheet.hbs.md), [module/data/item/containerData.js](../../module/data/item/containerData.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Новый полный consumer templates/sheets/item/mount-sheet.hbs включает partial в строке2. Он получает item/showConfig/config от WitcherItemSheet через WitcherMountSheet. Для mount header выводит name, quantity/weight/cost/sourcebook, configureItem и editImage; при настройке mount может показать отсутствующий schema clickableImage (issue63). HP/dex/control/speed находятся в форме mount, не в header.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../module/actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../module/data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../module/item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

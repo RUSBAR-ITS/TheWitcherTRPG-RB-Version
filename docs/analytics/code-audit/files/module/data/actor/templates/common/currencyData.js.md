@@ -99,3 +99,13 @@ currency():3–13 возвращает семь NumberField. Курсы, ком�
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Семь полей точно соответствуют input.name современной вкладки инвентаря: bizant/ducat/lintar/floren/crown/oren/falsecoin. Все input type=number/data-dtype=Number; min/max в HBS отсутствуют. Это Actor form submit, а не Item inline-edit.
 
 Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs). [Проверки и ограничения](../../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet использует шесть валют в prompt (без falsecoin) и все семь в HBS; NumberField значения напрямую уменьшаются/увеличиваются на editable totalCost, без курса. В группах09–10 отрицательный итог −10 привёл к buyer100→110/seller5→−5, дробные суммы приняли модели. Это consumer-валидация issue220, не подтверждённая политика обмена валюты; .036 ещё не выполнена.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../../item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

@@ -128,3 +128,13 @@ registerSheets импортирует default WitcherCharacterSheet и назн�
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. alchemyMixin полностью разобрана: создаёт девять описаний из *Count, контекст их получает, но module/templates не содержит потребителя alchemyComponentsList. Текущий substances.hbs напрямую читает девять счётчиков/массивов _prepareSubstances. Полный контекст: vitriol 1+2=3, stored100 исключён. Обычный crafting callback и realCraft исполнены; отдельный _alchemyCraft по-прежнему прерывается на отсутствующем API.
 
 Связи: [module/actor/mixins/craftingMixin.js](../mixins/craftingMixin.js.md); [module/actor/sheets/mixins/alchemyMixin.js](mixins/alchemyMixin.js.md); [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Общая сверка .031–.035: CharacterSheet._prepareItems правильно выделяет mutagen и использует общий WitcherActorSheet, в отличие от отдельного LootSheet с ошибочным mutagens. Контракты noteMixin/AlchemyMixin/CraftingMixin сверены с теперь полными карточками .033/.034; alchemyComponentsList не имеет найденного HBS-consumer, вещества читаются напрямую. Источник класса неизменен относительно .031; сценарии ремесла/жизненных событий из .031/.033 в .035 заново не запускались.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

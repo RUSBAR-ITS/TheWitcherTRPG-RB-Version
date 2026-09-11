@@ -1,5 +1,109 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.035
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; рабочее дерево на старте чистое, отслеживаются 1239 файлов. Основание — согласованная [TASK-0003.035](../../tasks/task-0003.035.md) и поручение пользователя продолжить.
+
+### Состав и результат
+
+Полностью прочитаны **шесть файлов, 384 логические строки**: три JS (209 строк) и три HBS (175 строк). Шесть собственных методов Loot, MountData.defineSchema, два определения функций внутри строки script и callback prompt разобраны отдельно от наследуемых методов MountSheet и mixins.
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js) | 175 | [Описание](files/module/actor/sheets/WitcherLootSheet.js.md) |
+| [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs) | 130 | [Описание](files/templates/sheets/actor/loot-sheet.hbs.md) |
+| [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs) | 25 | [Описание](files/templates/sheets/actor/partials/loot/loot-item-display.hbs.md) |
+| [module/data/item/mountData.js](../../../module/data/item/mountData.js) | 19 | [Описание](files/module/data/item/mountData.js.md) |
+| [module/item/sheets/WitcherMountSheet.js](../../../module/item/sheets/WitcherMountSheet.js) | 15 | [Описание](files/module/item/sheets/WitcherMountSheet.js.md) |
+| [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs) | 20 | [Описание](files/templates/sheets/item/mount-sheet.hbs.md) |
+
+Добавлены шесть карточек; уточнены **17 связанных карточек и 12 прежних issues**. Покрытие **278/621**, осталось 343; в четвёртой серии проверен 31 из 63 файлов, 32 в очереди, 311 ещё не распределены. Только Markdown в docs; исходники и игровые правила не исправлялись.
+
+### Методика и пределы
+
+Команда проверки — `node --input-type=module` с переданным через stdin кодом; служебные файлы/стенд в репозитории не создавались. Импортированы настоящие WitcherLootSheet/MountData/LootData/WitcherMountSheet, WitcherActor/WitcherItem, itemMixin/itemContextMenu и core TypeDataModel/fields. Формы рендерились установленным Handlebars 4.7.9, HTML разбирался parse5. Настоящие FormDataExtended/_processFormData и выборочные тела core testUserPermission/_toggleDisabled/_onDragStart/Dialog._renderHTML выполнены с минимальными фасадами.
+
+**26 групп прошли.** Диалог возвращал заданные строки callback; операции embedded create/update/delete перехватывались в памяти, часть Promise удерживалась до явного разрешения. Базовый Application, форма/DOM, коллекции и persistence — фасады. Script пересчёта цены исполнялся явно в vm, его автоматическое подключение браузером не проверялось. Браузерная валидация дробных/пустых чисел, нативный drag/drop, FilePicker, серверные разрешения/транзакции/гонки и игровой мир не запускались. Существование старого issue не доказывает неисправность каждого нового маршрута.
+
+При настройке изолированной проверки исправлены только фасады: вложенный patch system.currency, отступ извлекаемого core-метода, тип CSV-настройки и источник metadata permissions; исходники системы не менялись. Для права Actor сверено именно /opt/foundryvtt/common/documents/actor.mjs:#canUpdate134–146 (OWNER и дополнительные проверки wildcard), а не только metadata базового Document. Предупреждение Node о MODULE_TYPELESS_PACKAGE_JSON не мешало успешному запуску.
+
+### Проверки этой порции
+
+| Группа | Сценарий | Фактический результат | Предел |
+| --- | --- | --- | --- |
+| 01 | MountData | 12 полей, dex/control/speed строки; hp0/−2.5; bad HP отклонён; общий вес6 и inherited false. | Реальная схема, не правила верхового боя. |
+| 02 | Пустой Loot | Шесть массивов/таблиц, семь валют, totalWeight0, totalCost undefined. | Контекст/рендер без окна. |
+| 03 | Смешанные типы | 18 Item,9 строк; loot=mount/container/alchemical/diagrams; mutagen пропущен; applied и stored не показаны; вес17. | Специальные поля Mount/Enhancement — реальные модели, прочие типы — CommonItemData для общих свойств. |
+| 04 | Вес и hidden | При6/6 overweight,6/7 progress, max0 без шкалы. GM/nonGM разные CSS-классы, hidden имя остаётся в HTML. | CSS статически; DOM видимость не исполнялась. |
+| 05 | Нормальная покупка | qty3→2 у продавца,1 у покупателя; crown5→15 и100→90. OWNER список включает seller/buyer, выбран user.character; шесть валют без falsecoin. | Dialog callback и persistence подменены. |
+| 06 | Нехватка/неизвестная валюта | Money9 при total10 и unknown coin дают Not Enough Coins; записей0. | Неизвестный coin вводился программно, штатный select его не предлагает. |
+| 07 | Отмена | Отклонённый prompt при rejectClose приводит к rejected handler до записей. | Настоящий UI закрытия не выполнялся. |
+| 08 | Отсутствующий покупатель/Item | Пустой select character → TypeError; stale itemId падает до prompt. | Записей0, отключение кнопки в браузере не моделировалось. |
+| 09 | Запас/количество | Stock2/request5 → delete+create5, stock0/request1 → create1; request0/−1/0.5 проходит; −1 повышает seller2→3. | Нативные constraints Number input не исполнялись; количество в callback строковое. |
+| 10 | Стоимость | Итоги0/−10/0.5 и цена0.25 проходят;−10 даёт buyer110/seller−5. | Допустимость бесплатной/дробной покупки как игрового правила не решалась. |
+| 11 | Одноимённый Item | name/type merge: qty4→5, cost старого2 сохраняется. | Это контракт Actor.addItem, не копирование всех свойств при merge. |
+| 12 | Ожидание/повтор | Четыре записи pending при resolved handler; повтор создаёт те же seller qty2 и buyer crown90. Выбранный порядок фасада создаёт две копии. | Не доказательство неизбежной серверной гонки. |
+| 13 | Покупка самим продавцом | Payload delete,qty2,crown90,crown110; выбранный порядок фасада оставил без Item с crown110. | Проверен конкретный interleaving с одной последней единицей. |
+| 14 | Отказ записи продавца | Подменённые rejected remove/update не остановили buyer create и crown100→90. | Не обход серверного OWNER; полномочия core сверены отдельно. |
+| 15 | Скрытие | Только system.isHidden=true; Promise handler разрешён до item.update. | Фасад записи; кнопка в HBS только GM, собственного GM guard нет. |
+| 16 | Item Drop | Без actor.isOwner false/0write; владелец копирует чужой mount; свой Item сортируется; uniqueTypes три. | Прямой _onDropItem, внешние события/Folder/ActiveEffect не воспроизводились. |
+| 17 | Profession в Loot | deleteMany типа profession, затем TypeError отсутствующих skills до add. | Предыдущей профессии в фасаде не было; фактическая потеря не доказана. |
+| 18 | Drag | Рендер0 .draggable, img .dragable/data-id. Core _onDragStart не пишет payload; контроль data-item-id пишет UUID. | Тело core с event-фасадом, не browser drag. |
+| 19 | Изображение и MountSheet | Loot img без action; mount header с editImage; mount PARTS/width600/context.item верны. | FilePicker/окно не создавались. |
+| 20 | Форма mount | FormDataExtended + _processFormData + MountData сохранили dex/control/speed строки, hp0 число, quantity снова String; textarea экранирована. | Form-фасад не воспроизводит textarea.value, сохранение описания им не доказано. |
+| 21 | Inline/actions | qty0.5 обновлён строкой; buy/hide связаны с DEFAULT_OPTIONS, prototype содержит настоящие mixins. | Не полный dispatch окна. |
+| 22 | Script арифметики | Вручную исполненные функции дали20 для qty2/cost10;125%→unit13,total26; Actor.name вставлен raw. | Это явный vm execution, не автоматическое исполнение script окна. |
+| 23 | Права/отключение формы | Настоящие core testUserPermission и _toggleDisabled: GM/owner/observer; inputs отключены, buy anchors существуют в HBS. | Element/document фасады, не серверная авторизация. |
+| 24 | Render hooks | Настоящий Loot._onRender вызвал itemListener→itemContextMenu с element. | super Application — фасад; действия меню не выполнялись. |
+| 25 | Переводы | 29 прямых ключей шести файлов доступны EN/RU после expandObject и настоящего Localization с fallback. | Соседние helper keys не включены в эти29; другие языки не проверены. |
+| 26 | Вставка Dialog | Настоящее тело core _renderHTML присваивает content со script/inline onChange в innerHTML и регистрирует submit. | document.createElement — фасад; автоматическое выполнение script и браузерная ошибка не воспроизводились. |
+
+### Общая перекрёстная сверка TASK-0003.031–TASK-0003.035
+
+Сверены карточки 31 нового файла с исходниками и прежними 247 описаниями, направления зависимости→определение→consumer и реальные пути данных. Записи .031–.034 и их результаты сохранены как исторические: совпадение исходников проверено вновь, но весь прежний набор runtime-сценариев заново не исполнялся. Формальные проверки ниже охватывают весь текущий массив 278 карточек; содержательная сверка процессов отражена отдельно в таблице.
+
+| Связь/область | Проверенный контракт и результат | Что этим не утверждается |
+| --- | --- | --- |
+| Состав пяти порций | TASK0003.031/.032/.033/.034/.035:3+13+4+5+6=31; JS11/HBS20;2497строк. Прежние247 и новые31 не пересекаются; текущие278 =247+31. | Исходники всех621 совпали со стартовым HEAD и базовым срезом; прежние runtime-сценарии не объявлены заново исполненными. |
+| Регистрация → модель → лист | registerDataModels/registerSheets/system.json сопоставлены с Character/Monster/Loot/Mount. Character и Monster используют WitcherActorSheet; Loot core ActorSheetV2; Mount WitcherItemSheet. | Разница наследования объясняет отсутствие totalCost/skills в Loot и отсутствие _prepareWeapons; поля специализаций не приписаны общим классам. |
+| Числа и боковые панели .031/.032 | stats/derivedStats/currency/commonActorData и ранее описанные модели связаны с Character header/sidebar и Monster header/sidebar. Жизненные события/temporary HP сохраняют границу source/prepared data. | Прежние issues24/203/205 и ограничения .031 сохранены. В .035 не пересчитывались характеристики или heal; эти процессы не переписывались. |
+| Контексты → HBS → обработчики | PARTS, literal partial, data-action, jQuery selector, dataset и путь schema сверены отдельно. Покупка использует (event,element), меню по-прежнему имеет issue168. Mount имеет PARTS, note-sheet отдельно не подключён. | Наличие HBS/предварительная загрузка не равны активному листу; старый monster-sheet и пустой monster-details-tab сохраняют прежние границы .032. |
+| Экспорт монстра → Loot | Monster.exportLoot копирует все items Actor.toObject, меняет quantity и зовёт checkIfItemHasRollTable; Loot собирает собственные категории. mutagen существует в экспортном payload, но отсутствует в новом списке из-за mutagens. | Issues206/207/208,39/40 по-прежнему potential; export Actor.create/БД не запускались в .035. Покупка не повторяет генерацию таблиц. |
+| Биография/заметки .033 | Character context → Actor.notes/lifeEvents → background HBS → noteMixin/FormData; Item.note → NoteData и отдельно note-sheet. Array actor.notes не является коллекцией embedded Item.note. | Issues211/212/213 и24/57/153 сохранены. Поток Item.note не подменяет Actor.notes; source/prepared и сохранение формы различаются. |
+| Ремесло/алхимия .031/.034 | Character.craft/Item.realCraft/repair → CraftingMixin.getSubstance/findNeededComponent; direct counts + pannels → substances HBS → component partial. AlchemyMixin.alchemyComponentsList не имеет найденного HBS consumer. | getSubstance исключает stored и сортирует, findNeededComponent ищет также stored/нулевые; findComponentByUuid не имеет внутреннего caller. Полный сценарий мира повторно не запускался. |
+| Разбор → инвентарь/чат | WitcherItem.dismantle → associatedDiagramUuid/craftingComponents → fromUuid → Actor.addItem/removeItem → dismantle HBS. Покупка Loot использует те же Actor helper, но другую последовательность/вход. | Issues214–217 не исправлены; .034 исполнял direct dismantle, не заблокированное issue168 меню. В .035 добавлены отдельные наблюдения покупки220/221. |
+| Улучшения и общие Item-поля | Weapon/Armor preparation в прежних карточках влияет на enhancementItems; Loot только исключает enhancement.applied из массива, не перестраивает enhancementItems. CommonItemData задаёт Mount quantity/weight/cost/hidden. | Issue166 к Loot по одному соседнему applied Item не переносится. Hidden CSS — визуальное отображение, не гарантированное сокрытие данных от клиента. |
+| Прямые импорты/обратные связи | У первых31 файлов15 прямых импортов:12 связей в9 файлов прежних247, две внутри31, одна в пока не разобранный module/actor/rewardsSheet.js. Проверены export имена, места consumer и обратные ссылки во всех278 карточках. | rewardsSheet остаётся dependency-only до .037; полная карточка не создана. Контекст/HBS/модели проверены дополнительно, не сведены к одним import. |
+| Остаток и внешние границы | 32 файла стоят в .036–.040;311 ещё не распределены. В ближайших порциях обмен валюты, награды, профессии, магия, чат. CSS, локализации, core Foundry, assets и packs рассматриваются как точечные зависимости. | Исключённые docs/assets/.github/.git не получили строк реестра. TASK0004/TASK0005 остаются draft; общая проверка не объявляет весь аудит завершённым. |
+
+### Проблемы
+
+| Новая карточка | Наблюдение |
+| --- | --- |
+| [issue-00218](../../issues/potential/issue-00218.md) | Лист добычи не включает предметы типа mutagen |
+| [issue-00219](../../issues/potential/issue-00219.md) | Общая стоимость в листе добычи выводится без значения |
+| [issue-00220](../../issues/potential/issue-00220.md) | Покупка не проверяет запас, количество и итог оплаты |
+| [issue-00221](../../issues/potential/issue-00221.md) | Покупка завершается до записей и не согласует их результаты |
+| [issue-00222](../../issues/potential/issue-00222.md) | Покупка не обрабатывает отсутствие доступного покупателя |
+| [issue-00223](../../issues/potential/issue-00223.md) | Строка добычи не формирует штатные данные перетаскивания Item |
+| [issue-00224](../../issues/potential/issue-00224.md) | Изображение добычи не связано с действием editImage |
+| [issue-00225](../../issues/potential/issue-00225.md) | Перенос профессии в Loot обращается к отсутствующим навыкам |
+| [issue-00226](../../issues/potential/issue-00226.md) | Пересчёт покупки зависит от script внутри HTML диалога |
+
+Сопоставлены и дополнены [issue-00034](../../issues/potential/issue-00034.md), [issue-00039](../../issues/potential/issue-00039.md), [issue-00040](../../issues/potential/issue-00040.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00116](../../issues/potential/issue-00116.md), [issue-00136](../../issues/potential/issue-00136.md), [issue-00166](../../issues/potential/issue-00166.md), [issue-00168](../../issues/potential/issue-00168.md), [issue-00169](../../issues/potential/issue-00169.md), [issue-00206](../../issues/potential/issue-00206.md), [issue-00207](../../issues/potential/issue-00207.md), [issue-00208](../../issues/potential/issue-00208.md). Наблюдение 226 основано на вставке script через innerHTML и требует проверки чистого клиента; оно не описано как уже воспроизведённая браузерная ошибка. Raw Actor.name в строке выбора отмечен в карточке листа как неэкранированный HTML; инъекция/влияние на работу клиента не исследовались. Новые и прежние **226 карточек остаются potential**; подтверждения, исправления и закрытия отсутствуют.
+
+### Формальная проверка документов
+
+Проверка выполнена Python по рабочему дереву/Git и Markdown, с `git diff --check`. Реестр: 621 уникальный исходник, 278 карточек «Проверено», 343 «Не начат»; новые шесть файлов не пересекаются с прежними 272, а первые 31 файл серии — с базовыми 247. Проверены все 11 разделов новых карточек, собственные методы и name/data-field HBS.
+
+Проверены 328 прямых импортов всех карточек (216 default, 105 named statements/110 имён, 7 namespace), определения export и обе стороны ссылок; 187 литеральных связей JS/HBS с шаблонами. В .035 добавились 4 импорта и 4 связи с HBS; для первых 31 файла проверены 15 импортов и 36 литеральных связей с HBS. Из прямых зависимостей первых 31 файла без полной карточки остаётся только rewardsSheet.js; сохранена граница dependency-only.
+
+13 070 локальных ссылок и якорей прошли проверку во всех 578 Markdown (576 в docs плюс README/AGENTS). Таблицы и пробелы в изменённых документах проверены. Изменены 55 Markdown: 40 прежних и 15 новых (6 карточек и 9 issues). Перечень изменений совпал с согласованными материалами.
+
+Все 621 исходника побайтно совпадают с HEAD `1d29f681ffed1c46b9c05b0eff09935300c3bf7d` и срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. SHA256 содержимого реестра: `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`. mode/uid/gid/inode всех 1239 отслеживаемых файлов сохранены; SHA256 снимка метаданных: `8fc4f9e5e86f2061d07ffc8014225afb4ffcc8581c1d776404d2b6642b98df6d`. Историческая часть review-log, включая план .031–.040, сохранена побайтно. Исключённые пути и остаток .036–.040 без новых карточек проверены.
+
+**Переход:** TASK-0003.035 выполнена, следующая — [TASK-0003.036](../../tasks/task-0003.036.md) (обмен валюты). TASK-0003 остаётся in-progress, .036–.040 planned, TASK-0004/TASK-0005 draft. Коммит не создавался.
+
 ## TASK-0003.034
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`; рабочее дерево на старте чистое, отслеживаются 1230 файлов. Основание — согласованная [TASK-0003.034](../../tasks/task-0003.034.md) и поручение пользователя продолжить.

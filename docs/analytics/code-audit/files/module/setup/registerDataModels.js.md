@@ -285,3 +285,13 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. NoteData полностью описан: default-import:11 и CONFIG.Item.dataModels.note:57 сопоставлены с классом и manifest Item.note. Общие поля сохраняются; массив Actor-notes остаётся самостоятельным. Повторного исполнения регистрационного API в .033 не было.
 
 Связи: [module/data/item/noteData.js](../data/item/noteData.js.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Полностью проверена MountData: import8 и ключ mount55, 12 полей с CommonItemData; dex/control/speed String, hp Number initial0. Соседний ключ mutagen56 — единственное соответствующее имя типа; getList('mutagens') в WitcherLootSheet не находит такие Items (issue218). LootData отдельно имеет maxWeight/description/currency и не содержит skills.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

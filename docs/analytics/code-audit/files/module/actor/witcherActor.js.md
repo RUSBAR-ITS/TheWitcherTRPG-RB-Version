@@ -347,3 +347,13 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Все три метода craftingMixin полностью описаны: getSubstance и UUID-поиск используют getList/sort/!isStored, поиск имени — прямую коллекцию. В опыте ремесла ресурсы 2+3 списаны из двух одноимённых стопок, включая stored. Разбор вызывает настоящие addItem/removeItem без ожидания caller: повторные строки могут отправить два update=7 для одной стопки=5; это изолированные payload (issue-00214).
 
 Связи: [module/actor/mixins/craftingMixin.js](mixins/craftingMixin.js.md); [module/item/mixins/dismantlingMixin.js](../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet вызывает getList/getTotalWeight, а покупка — removeItem→addItem→buyer.update→seller.update без ожидания. Настоящие addItem/removeItem в группе12 сами корректно ждут embedded-записи; ожидание теряет caller (новый issue221), не эти методы. Совпадение name+type складывает количество, сохраняя свойства старого Item; removeItem не ограничивает requested запасом (issue220). getTotalWeight учитывает и скрытый/не представленный таблицами не-stored Item и валюту; getList('mutagens') ошибочен. uniqueTypes Drop Loot связан с removeItemsOfType и отсутствующими skills (issue225); прежний issue34 сохраняет собственный предмет.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

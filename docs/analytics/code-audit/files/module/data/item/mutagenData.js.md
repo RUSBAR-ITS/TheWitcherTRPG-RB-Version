@@ -87,3 +87,13 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Алхимическая таблица показывает effect с дополнительной подписью при ../itemType=mutagen и minorMutation отдельно. В изолированном рендере оба текста присутствовали, HTML effect экранирован. Наличие общего алхимического layout не добавляет в модель отсутствующие поля.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+WitcherLootSheet запрашивает getList('mutagens'), тогда как модель зарегистрирована ключом mutagen. Группа03 подтвердила отсутствие строки для настоящего ключа типа (модель предмета в матрице — CommonItemData для общих полей), при сохранении предмета/веса. Новый issue218. CharacterSheet использует правильный ключ, Monster export копирует все items вне зависимости от loot-фильтра.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.

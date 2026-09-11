@@ -100,3 +100,13 @@ stats, derivedStats, healthState, attackStats, notes, logs и другие по�
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Экспорт Monster создаёт Actor type loot из полной actor.toObject с новым name/folder, затем пересчитывает все embedded Items. Payload сохраняет исходные system/items/effects/ownership/flags/prototypeToken; реально нормализованный документ ядра в тесте не создавался. Экспорт не фильтруется context.loots. Работа самого Loot-листа остаётся .035.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.035
+
+2026-09-11, `rusbar-main`, `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; исходники не менялись.
+
+Полный consumer WitcherLootSheet читает maxWeight и currency, считает totalWeight через Actor.getTotalWeight→calcCurrencyWeight; HBS даёт семь валют. Модель не содержит skills, поэтому profession Drop через общий itemMixin вызывает TypeError (issue225). totalCost не поле схемы и не вычисленный контекст LootSheet (issue219). Наличие mount с HP0 не меняет модель loot.
+
+Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
+
+[Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
