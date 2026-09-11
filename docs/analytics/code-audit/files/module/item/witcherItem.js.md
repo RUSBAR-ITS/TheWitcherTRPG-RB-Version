@@ -262,3 +262,9 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 Связанные карточки: [module/data/item/containerData.js](../data/item/containerData.js.md), [module/item/sheets/WitcherContainerSheet.js](sheets/WitcherContainerSheet.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Настоящий WitcherItem используется в instanceof ветви itemMixin._onDropItem; его source копируется Actor.addItem. Контекстное меню вызывает consume/canBeDismantled/dismantle через примеси класса. consume не списывает количество, removeItem вызывается отдельно caller. Dismantle сам добавляет найденные компоненты и списывает один Item; количество компонента 5 дало 2, 0 дало 1. Это точечная проверка внешней примеси, а не её новая полная карточка.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

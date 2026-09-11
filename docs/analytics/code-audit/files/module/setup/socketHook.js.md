@@ -83,3 +83,9 @@
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 Проверен штатный отправитель [RepairSystem._doRepair](../../../../../../module/item/systems/repair.js): при success и отсутствии права update посылает через [emitForGM](../../../../../../module/scripts/socket/socketMessage.js) type='restoreReliability',data=[item.uuid]. Реальные sender/receiver исполнены с объектом в памяти: активный GM сделал shift (data стало[]), вызвал [метод Item](../../../../../../module/item/mixins/repairMixin.js), затем WeaponData.repair инициировал update. При возврате callback update оставался pending. Это не generic query; сеть/серверная запись не проверены. Произвольные типы из [issue-00010](../../../../../issues/potential/issue-00010.md) заново не подавались.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Прослежен реальный caller giftItem из itemContextMenu: emitForGM('addItem',[receiverUuid,item,1]). Реальный emitForGM при !activeGM не отправляет сообщение, но caller уже продолжает removeItem (issue-00169). registerSocketListeners исполняет только активный GM и не возвращает caller подтверждение завершённого addItem. В изолированном маршруте передан Item-фасад; его настоящая socket-сериализация не проверялась.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

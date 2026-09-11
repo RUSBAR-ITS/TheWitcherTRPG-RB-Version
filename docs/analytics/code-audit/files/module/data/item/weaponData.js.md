@@ -126,3 +126,9 @@ repair посылает update родительскому документу, н
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. _prepareWeapons обоих общих листов изменяет подготовленное enhancementItems, которое создал WeaponData.prepareDerivedData. С настоящей моделью при enhancements=1 и двух ID получены два эффекта до листа и один после него; ID и source не меняются. Getter DamageProperties.enhancementsEffects читает этот же список. Наблюдение зарегистрировано как issue-00166. Два свободных слота заполняются [{},{}]; V2 применяет такую подготовку к живым Item контекста.
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Drop оружия монстру меняет prepared equipped, однако source остаётся прежним и именно его берёт addItem (issue-00172). Реальная WeaponData участвовала в проверке. Установка enhancementItemIds происходит отдельными не ожидаемыми операциями с EnhancementData; повторные/устаревшие ID и отказ записи зарегистрированы в issue-00171, отдельно от обрезки списка в общем листе (issue-00166).
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

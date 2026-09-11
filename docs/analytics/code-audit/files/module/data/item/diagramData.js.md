@@ -101,3 +101,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
 Полностью разобран потребитель [RepairSystem](../../../../../../../module/item/systems/repair.js). Он читает craftingComponents/name/uuid и craftingDC, но не quantity требования, resultQuantity, associatedItemUuid, isFormulae или alchemyComponents. Каждая строка ремонта получает required1; это фиксация алгоритма, соответствие рулбуку не утверждается. UUID отсутствующего компонента может дать null и прервать подготовку ([issue-00105](../../../../../../issues/potential/issue-00105.md)); только unknown требования скрываются в чате из-за caller guard ([issue-00107](../../../../../../issues/potential/issue-00107.md)). Реальная DiagramData сохраняет допустимые UUID; ошибочный 15-символьный ID диагностического входа был исправлен до итоговых сценариев, это не issue системы.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. _onItemLearned переключает существующее system.learned, не SkillItemData.isLearned. Для создания handler отдельно проверяет itemtype='diagram', которого нет в manifest; штатный itemtype='diagrams' проходит Item.create без такого preset и получает defaults. Это различие ветвей зафиксировано без признания обязательности alchemical preset для всех рецептов. Контекстное canBeDismantled читает associatedDiagramUuid у weapon/armor, сам рецепт здесь не списывается.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

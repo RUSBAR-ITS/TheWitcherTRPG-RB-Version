@@ -94,3 +94,9 @@ consume запрашивает изменение system.derivedStats.hp.value, 
 | heal/treat критической травмы | [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js) | consume не вызывает их: расходование восстанавливает HP/статусы/effects, дневное заживление — отдельная примесь листа. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Полностью разобран caller itemContextMenu.consumeItem: после isConsumable запускает consume и removeItem(id,1) без ожидания. Группа 17 проверила quantity2→update1 и quantity1/0→delete; consume в этой группе заменён pending Promise. Прежний сценарий удаления последнего источника до применения UUID из .015 остаётся отдельным доказательством issue-00034/00045. Нарушение запрета нулевого количества зарегистрировано как potential issue-00174.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.025 проверены описания **205 файлов**, для **416 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.026 проверены описания **207 файлов**, для **414 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.025](review-log.md#task-0003025) выполнена на `a2670a0a10c62b28d836b1a57577c4836f14cf20`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.026](review-log.md#task-0003026) выполнена на `45a63062a2bd55939fef430609fc5dddc350b0e9`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -51,7 +51,7 @@
 | [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js) | Контекстное меню Item: условия и обработчики редактирования, расходования, снятия улучшения, передачи, разборки и удаления. | [Карточка](files/module/actor/sheets/interactions/itemContextMenu.js.md) | Проверено |
 | [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Лист Actor-тайны на ApplicationV2. | [Карточка](files/module/actor/sheets/investigation/WitcherMysterySheet.js.md) | Проверено |
 | [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Категории эффектов Actor, управление документами и раскрытие описаний. | [Описание](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -60,7 +60,7 @@
 | [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | Диалог дневного восстановления: расчёт HP по REC и четырём галочкам, восстановление STA/Vigor, продвижение заживления критических травм и отчёт в чат. | [Описание](files/module/actor/sheets/mixins/healMixin.js.md) | Проверено |
-| [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js) | Примесь действий инвентаря: Drop, создание и изменение Item, установка улучшений, сворачивание групп и сообщение в чат. | [Карточка](files/module/actor/sheets/mixins/itemMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) | Не установлено | Не подготовлено | Не начат |

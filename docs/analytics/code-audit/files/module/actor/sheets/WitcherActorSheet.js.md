@@ -130,3 +130,9 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `a2670a0a10c62b28d836b1a57577c4836f14cf20`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003025) |
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Полностью разобраны подключаемые itemMixin и itemContextMenu: 19 и 15 методов, 23 привязки и шесть menu entries. ContextMenu jQuery=false различает onClick(event,target) и callback(target,event); removeEnhancement/giftItem/dismantleItem используют несовместимые legacy callback (issue-00168). Delete со старой сигнатурой корректен. Сам общий V2 лишь подключает эти объекты; числовые действия принадлежат Item/Actor.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

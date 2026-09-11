@@ -474,3 +474,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 Связанные карточки: [module/actor/sheets/investigation/WitcherMysterySheet.js](../actor/sheets/investigation/WitcherMysterySheet.js.md), [module/item/sheets/investigation/WitcherClueSheet.js](../item/sheets/investigation/WitcherClueSheet.js.md), [module/item/sheets/investigation/WitcherObstacleSheet.js](../item/sheets/investigation/WitcherObstacleSheet.js.md), [module/scripts/investigation/rollClue.js](../scripts/investigation/rollClue.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Именованный WITCHER из itemMixin передаётся как config в item-description.hbs. Сам itemMixin использует справочник только для контекста сообщения; категории оружия/статусы/защиты читаются во вложенных HBS. Контекст {item,type,config} проверен рендером. Редактирование справочников и игровой баланс этой связью не затронуты.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

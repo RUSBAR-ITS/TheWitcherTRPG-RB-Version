@@ -98,3 +98,9 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.019 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Полный _onDropItem ожидает сброс всех флагов system.skills.*.isProfession, затем отдельно запускает установку выбранных и addItem без ожидания. Настоящая ProfessionData с awareness/unknown дала правильный int.awareness и system.skills.undefined.unknown (issue-00116). Смена уникальной профессии наследует раннее завершение removeItemsOfType (issue-00034); модель сама unknown не валидирует по справочнику.
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.

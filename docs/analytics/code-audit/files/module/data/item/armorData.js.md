@@ -129,3 +129,9 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. В V2 _prepareArmor только фильтрует armor и unapplied enhancement(type=armor). Свободные слоты приходят из ArmorData.freeEnhancements. V1 дополнительно переписывает enhancementItems по enhancements; его код не зарегистрирован. Обоим листам передаются живые Item, даже когда V1 копирует actor.system. _prepareArmor листов не исправляет разрыв словаря effects в Actor.prepareDerivedData (issue-00084).
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.026
+
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Выбор улучшения определяется ближайшим .item[data-type=armor], а не названием CSS-класса enhancement-weapon-slot у пустой ячейки. Поэтому glyph/armor отбираются корректно при таком DOM. Реальный отбор проверен вместе с weapon/rune. Запись enhancementItemIds и applied происходит двумя независимыми вызовами (issue-00171); снятие через меню раньше падает на порядке callback (issue-00168).
+
+Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
