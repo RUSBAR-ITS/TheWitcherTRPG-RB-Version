@@ -466,3 +466,11 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 Сверенные карточки: [module/data/item/spellData.js](../data/item/spellData.js.md), [module/data/item/hexData.js](../data/item/hexData.js.md), [module/data/item/ritualData.js](../data/item/ritualData.js.md), [module/item/sheets/WitcherSpellSheet.js](../item/sheets/WitcherSpellSheet.js.md), [module/item/sheets/WitcherHexSheet.js](../item/sheets/WitcherHexSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](../item/sheets/WitcherRitualSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.023
+
+2026-09-11, `538dbac9bb9432c123fe4f3c00ab788b58517afb`; исходник не изменился. skillMap используется расследованием в контексте трёх листов и lookup rollClue. Формы передают name через valueAttr=name, подпись берут из label; rollSkill использует ту же запись для attribute. Модели skillsUsed не ограничивают имена этим справочником. Неизвестное имя даёт undefined и может дойти до rollSkillCheck; строка 'cancel'/null после отмены также не является записью skillMap. Группа 17 дополнительно сверила 52 label в en/ru: не разрешаются picklock/trapcraft, остальные 50 найдены; это прежняя issue-00016. Это уточнение потребителей, без изменения справочника.
+
+Связанные карточки: [module/actor/sheets/investigation/WitcherMysterySheet.js](../actor/sheets/investigation/WitcherMysterySheet.js.md), [module/item/sheets/investigation/WitcherClueSheet.js](../item/sheets/investigation/WitcherClueSheet.js.md), [module/item/sheets/investigation/WitcherObstacleSheet.js](../item/sheets/investigation/WitcherObstacleSheet.js.md), [module/scripts/investigation/rollClue.js](../scripts/investigation/rollClue.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.

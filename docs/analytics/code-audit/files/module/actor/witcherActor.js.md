@@ -271,3 +271,11 @@ getList/addItem сравнивают тип/имя, не ID источника �
 | Лечение критических травм | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Это методы system принадлежащего Item, а не WitcherActor.calculateHealValue. Дневное восстановление вызывает отдельная примесь листа. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.023
+
+2026-09-11, `538dbac9bb9432c123fe4f3c00ab788b58517afb`; исходник не изменился. Полный разбор листа тайны подтвердил использование getList('clue')/getList('obstacle'): фильтруется тип и !system.isStored, затем sort; isHidden список не фильтрует. У новых моделей поля isStored нет, поэтому обычные записи проходят это условие. prepareDerivedData отдельно выходит для mystery до расчётов боевых характеристик. Кнопка улики вызывает rollClue для Item тайны, затем выбирается иной взаимодействующий Actor; его rollSkill подключён skillMixin. Передача DC отсутствует, threshold по умолчанию -1. Общий helper и skillMixin пока проверены только до этой цепочки.
+
+Связанные карточки: [module/actor/sheets/investigation/WitcherMysterySheet.js](sheets/investigation/WitcherMysterySheet.js.md), [module/data/investigation/mysteryActorData.js](../data/investigation/mysteryActorData.js.md), [module/scripts/investigation/rollClue.js](../scripts/investigation/rollClue.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.

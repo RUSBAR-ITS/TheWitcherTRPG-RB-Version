@@ -251,3 +251,11 @@
 Сверенные карточки: [module/data/item/spellData.js](../data/item/spellData.js.md), [module/data/item/hexData.js](../data/item/hexData.js.md), [module/data/item/ritualData.js](../data/item/ritualData.js.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.023
+
+2026-09-11, `538dbac9bb9432c123fe4f3c00ab788b58517afb`; исходник не изменился. Полностью разобраны MysteryActorData (два верхних поля), ClueData (десять полей) и ObstacleData (шесть полей). Все три напрямую наследуют TypeDataModel и не получают CommonActorData/CommonItemData через эту регистрацию. Реальный registerDataModels исполнен с настоящими тремя моделями, подменёнными прочими импортами и регистрационным окружением; ключи mystery/clue/obstacle указывают ожидаемые классы. Декларации system.json по-прежнему расходятся с этими ключами.
+
+Связанные карточки: [module/data/investigation/mysteryActorData.js](../data/investigation/mysteryActorData.js.md), [module/data/investigation/clueData.js](../data/investigation/clueData.js.md), [module/data/investigation/obstacleData.js](../data/investigation/obstacleData.js.md), [module/data/investigation/templates/complexityData.js](../data/investigation/templates/complexityData.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.

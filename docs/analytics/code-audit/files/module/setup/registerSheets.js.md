@@ -211,3 +211,11 @@
 Сверенные карточки: [module/item/sheets/WitcherSpellSheet.js](../item/sheets/WitcherSpellSheet.js.md), [module/item/sheets/WitcherHexSheet.js](../item/sheets/WitcherHexSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](../item/sheets/WitcherRitualSheet.js.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.023
+
+2026-09-11, `538dbac9bb9432c123fe4f3c00ab788b58517afb`; исходник не изменился. Исходный registerSheets повторно исполнен с тремя настоящими классами расследования и фасадами остальных классов/API регистрации. WitcherMysterySheet зарегистрирован для mystery на ActorSheetV2; WitcherClueSheet и WitcherObstacleSheet — для clue/obstacle на foundry.appv1.sheets.ItemSheet. Старый API V1 действительно существует в Foundry 14.367.0, его getData синхронен. Эти листы не используют общий WitcherItemSheet V2. Регистрация листа не устраняет отсутствие типа в манифесте.
+
+Связанные карточки: [module/actor/sheets/investigation/WitcherMysterySheet.js](../actor/sheets/investigation/WitcherMysterySheet.js.md), [module/item/sheets/investigation/WitcherClueSheet.js](../item/sheets/investigation/WitcherClueSheet.js.md), [module/item/sheets/investigation/WitcherObstacleSheet.js](../item/sheets/investigation/WitcherObstacleSheet.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.

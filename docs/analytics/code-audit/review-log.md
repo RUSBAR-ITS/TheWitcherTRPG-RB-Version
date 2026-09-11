@@ -1,5 +1,131 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.023
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `538dbac9bb9432c123fe4f3c00ab788b58517afb`. На старте рабочее дерево чистое, отслеживаются 1073 файла. Исследуемый код сверяется со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.
+
+### Объём и результат
+
+По [TASK-0003.023](../../tasks/task-0003.023.md) полностью разобраны 14 файлов: 8 JS и 6 HBS, 449 логических строк. Созданы 14 карточек, уточнены шесть ранее разобранных связанных. Реестр содержит 200 проверенных файлов и 421 неразобранный. В третьей серии завершены 32 из 79 файлов, 47 в очереди; 374 требуют дальнейшей детализации. Следующая задача — [TASK-0003.024](../../tasks/task-0003.024.md), выполнение не начато.
+
+| Файл | Карточка | Логических строк |
+| --- | --- | --- |
+| [module/data/investigation/mysteryActorData.js](../../../module/data/investigation/mysteryActorData.js) | [Описание](files/module/data/investigation/mysteryActorData.js.md) | 12 |
+| [module/data/investigation/clueData.js](../../../module/data/investigation/clueData.js) | [Описание](files/module/data/investigation/clueData.js.md) | 22 |
+| [module/data/investigation/obstacleData.js](../../../module/data/investigation/obstacleData.js) | [Описание](files/module/data/investigation/obstacleData.js.md) | 17 |
+| [module/data/investigation/templates/complexityData.js](../../../module/data/investigation/templates/complexityData.js) | [Описание](files/module/data/investigation/templates/complexityData.js.md) | 8 |
+| [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | [Описание](files/module/actor/sheets/investigation/WitcherMysterySheet.js.md) | 115 |
+| [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | [Описание](files/module/item/sheets/investigation/WitcherClueSheet.js.md) | 30 |
+| [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | [Описание](files/module/item/sheets/investigation/WitcherObstacleSheet.js.md) | 30 |
+| [module/scripts/investigation/rollClue.js](../../../module/scripts/investigation/rollClue.js) | [Описание](files/module/scripts/investigation/rollClue.js.md) | 44 |
+| [templates/sheets/investigation/mystery-sheet.hbs](../../../templates/sheets/investigation/mystery-sheet.hbs) | [Описание](files/templates/sheets/investigation/mystery-sheet.hbs.md) | 55 |
+| [templates/sheets/investigation/clue-sheet.hbs](../../../templates/sheets/investigation/clue-sheet.hbs) | [Описание](files/templates/sheets/investigation/clue-sheet.hbs.md) | 23 |
+| [templates/sheets/investigation/obstacle-sheet.hbs](../../../templates/sheets/investigation/obstacle-sheet.hbs) | [Описание](files/templates/sheets/investigation/obstacle-sheet.hbs.md) | 20 |
+| [templates/sheets/investigation/partials/clue-display.hbs](../../../templates/sheets/investigation/partials/clue-display.hbs) | [Описание](files/templates/sheets/investigation/partials/clue-display.hbs.md) | 37 |
+| [templates/sheets/investigation/partials/obstacle-display.hbs](../../../templates/sheets/investigation/partials/obstacle-display.hbs) | [Описание](files/templates/sheets/investigation/partials/obstacle-display.hbs.md) | 28 |
+| [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs) | [Описание](files/templates/dialog/investigation/chooseEvidenceSkill.hbs.md) | 8 |
+
+### Методика и пределы
+
+Все 14 файлов прочитаны полностью. Сопоставлены схемы, регистрации, разные базовые API трёх листов, контекст HBS/partial, локальные ID Items, поля и действия, получение Actor и вызов skillMixin. Соседние helper.js и skillMixin.js проверены точечно до нужных методов; они не получили полные карточки и остаются в планах .028/.029.
+
+Изолированный запуск: `node --input-type=module` со скриптом через stdin, Node **24.16.0**, Foundry **14.367.0**, Handlebars **4.7.9**, parse5. Настоящие DataModel/TypeDataModel/fields, три модели расследований, фабрика complexity, классы листов, rollClue, getInteractActor/getCurrentCharacter/chooseFromAvailableActors. Настоящие getList, rollSkill и rollSkillCheck извлечены целиком и исполнены с изолированным окружением; rollSkillCheck доходил только до отказа неизвестной записи либо заменялся на границе для захвата threshold.
+
+Настоящие registerDataModels/registerSheets исполнены в vm с тремя моделями/классами листов порции и подменами остальных импортов/API регистрации. Реальный DocumentTypeField проверен в DataModel-фасаде с TYPES из documentTypes.Item манифеста: clue отклонён при строгой проверке, spell принят. Это проверка конкретного списка типов, не серверной подготовки game.model. Недостающие типы mystery/clue/obstacle в работающую систему не добавлялись.
+
+Базовые ActorSheetV2, ItemSheet V1 и HandlebarsApplicationMixin заменены фасадами; исходные методы системных листов не переписывались. Подменены game/user/actors/canvas/UI, источники и коллекции Actor/Item, Item.create/update/delete/sheet.render, диалоги и конечный Actor.rollSkill. Управляемые Promise фиксировали ожидание записи/броска. Реальный мир, БД, сетевые запросы, случайные броски и сообщения не создавались.
+
+Скомпилированы настоящие HBS. selectOptions и prepareSelectOptionGroups извлечены целиком из ядра; DOM-append заменён фасадом HTML option с тем же условием наличия value/label, проверенным в _appendOption. parse5 разбирал строки HTML для подсчёта ячеек, атрибутов и выбранных options. Это не браузерное исполнение custom element multi-select и не проверка submitOnChange. getData базы ItemSheet V1 проверен чтением ядра; он синхронен, поэтому отсутствие await в двух системных листах не зарегистрировано как ошибка.
+
+### Сверенные контракты ядра
+
+| Источник Foundry 14.367.0 | Проверенное свойство |
+| --- | --- |
+| `/opt/foundryvtt/common/data/fields.mjs`:4172–4200 | DocumentTypeField использует Document.TYPES; строгая проверка неизвестного типа отклоняется |
+| `/opt/foundryvtt/common/abstract/document.mjs`:237 и 286–288 | Источник TYPES и getter id, возвращающий _id |
+| `/opt/foundryvtt/client/appv1/sheets/item-sheet.mjs`:62–66 | Синхронный getData добавляет item=document |
+| `/opt/foundryvtt/client/applications/api/document-sheet.mjs`:46–54, 269–272 | tag=form по умолчанию; базовый лист отключает ввод при !isEditable |
+| `/opt/foundryvtt/client/applications/api/dialog.mjs`:261–276, 405–428 | _onSubmit возвращает callback либо action; wait при закрытии по умолчанию возвращает null |
+| `/opt/foundryvtt/client/applications/handlebars.mjs`:460–500 | selectOptions нормализует selected и делегирует создание select |
+| `/opt/foundryvtt/client/applications/forms/fields.mjs`:290–360, 371–386 | prepareSelectOptionGroups формирует value/label/selected; _appendOption пропускает варианты без value/label |
+| `/opt/foundryvtt/client/applications/elements/multi-select.mjs`:122–124 | _getValue возвращает массив из внутреннего Set |
+
+Чтение DialogV2.input/prompt (dialog.mjs:369–394) подтвердило передачу результата через wait и null при закрытии; helper не задаёт rejectClose. wait/_onSubmit дополнительно исполнены настоящими методами ядра на фасаде окна: выбрано deduction → 'deduction', нажата cancel → 'cancel', окно закрыто → null. Системный rollClue проверен отдельно на этих результатах.
+
+### Изолированные проверки
+
+Успешно завершены **17 групп**:
+
+| Группа | Что проверено | Фактический результат |
+| --- | --- | --- |
+| 01 | Три схемы и фабрика сложности | Mystery: 2 поля, Clue: 10, Obstacle: 6; defaults 25/Easy, DC 14, focusDamage 1d6, successDamage 2/failDamage 1d6+2. Отрицательные дроби DC/complexity и неизвестные имена навыков допускаются |
+| 02 | Реестры и поле типа | Регистрация указывает ожидаемые классы; ключи отсутствуют в манифесте; строгий DocumentTypeField со списком Item-типов отвергает clue и принимает spell |
+| 03 | Контекст и getList | Пустые/разные типы, sort и isStored обработаны; isHidden не исключает Item из списка |
+| 04 | Два листа Item V1 | Опции 520×480, ожидаемые пути и синхронный контекст; самостоятельные формы показывают сохранённые навыки |
+| 05 | Настоящие методы DialogV2 | Выбор возвращает имя, cancel — строку 'cancel', закрытие — null |
+| 06 | 0/1/несколько навыков и DC | 0 — без броска, 1 — без диалога, несколько — с выбором; dc=99 не передаётся, порог rollSkill по умолчанию -1 |
+| 07 | Отмена выбора навыка | 'cancel'/null передаются в rollSkill; дальнейшее обращение к отсутствующему skillMapEntry даёт TypeError |
+| 08 | Выбор Actor | Токен приоритетнее назначенного персонажа; единственный доступный Actor выбирается; несколько допускают выбор; отсутствие Actor даёт уведомление и отказ rollClue, null выбора Actor ломает values.actor |
+| 09 | Неизвестные и пустые имена | Модель принимает их, один навык доходит до отказа rollSkillCheck; неизвестные записи в нескольких вариантах не дают пригодных options |
+| 10 | Promise броска | rollClue завершается раньше управляемого Promise Actor.rollSkill |
+| 11 | Основная форма и partial | 0 записей даёт 2 заголовка; 2 улики+1 препятствие — 5 строк; selected=system.skillsUsed работает через each; data-itemtype нормализован; ячейки улик 12/13, препятствий 8/8 |
+| 12 | Hidden/GM/owner | Класс скрытой строки зависит от isGM; сами данные остаются в HTML; GM-кнопки зависят только от isGM, owner не читается шаблоном |
+| 13 | CRUD и локальный ID | create получает parent Actor; add/delete ждут API; edit вызывает sheet.render(true); hide не ждёт update; отсутствующий Item не защищён |
+| 14 | Inline value и multi-select | Текст 'false' → true, 'true'/'checked' → false; обычные строки/массив навыков передаются без изменения; настоящий _getValue multi-select возвращает массив |
+| 15 | Регистрация действий и change | Пять data-action сопоставлены с методами; .inline-edit получает listener; _onRollClue вызывает правильный Item и возвращает undefined |
+| 16 | Поля HBS, статические переводы и preload | Все system-пути совпали со схемами; статические localize-ключи есть в en/ru; основная форма/partial предзагружаются; Goal/Difficulty/Complexity буквальные |
+| 17 | Динамические label всех 52 навыков | В en/ru не разрешаются label picklock/trapcraft, остальные 50 найдены; это прежняя issue-00016 |
+
+Обнаруженные исключения — ожидаемые наблюдения исходного кода в отдельных сценариях. Ни успешное исполнение фасадов, ни рендер HBS в Node не доказывают штатную доступность типов расследований в мире, успешное сохранение или отсутствие прочих ошибок.
+
+### Перекрёстная сверка
+
+Уточнены шесть ранее разобранных карточек:
+
+- [system.json](files/system.json.md)
+- [module/setup/registerDataModels.js](files/module/setup/registerDataModels.js.md)
+- [module/setup/registerSheets.js](files/module/setup/registerSheets.js.md)
+- [module/setup/handlebars.js](files/module/setup/handlebars.js.md)
+- [module/setup/config.js](files/module/setup/config.js.md)
+- [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md)
+
+Новая связь не присваивает соседнему файлу полного статуса анализа. Проверены импорт complexity → MysteryActorData, импорт rollClue → лист тайны, импорт getInteractActor → rollClue; регистрации моделей/листов, preload и буквальные HBS-пути; skillMap, getList, локальные ID, data-action и data-field. Данные system у обоих partial унаследованы от текущего Item в each; ложное наблюдение о потере selected не зарегистрировано.
+
+ClueData и ObstacleData не наследуют CommonItemData. MysteryActorData хранит только goal/complexity; имя, права и Items принадлежат Actor. Поиск module/templates установил, что complexity, время и текстовые последствия в текущем пути броска не применяются. Это описание границ реализации, не вывод о правилах TRPG. DC улики выделена в отдельную potential issue, поскольку её назначение в броске требует уточнения.
+
+Hidden-строки не вырезаются из HTML. .hidden-from-view скрывается display:none, .hidden-view имеет серебристый фон; стили импортируются witcher-styles.css. Это представление данных, не проверка разграничения доступа. Внешняя форма DocumentSheetV2 и внутренний <form> HBS зафиксированы как структура; отказ сохранения только из этого факта не утверждается. Фактические права observer/owner и поведение формы остаются непроверенными.
+
+### Проблемы
+
+В рамках согласованной регистрации TASK-0003 созданы восемь potential issues:
+
+| Карточка | Наблюдение |
+| --- | --- |
+| [issue-00148](../../issues/potential/issue-00148.md) | Отмена выбора навыка улики всё равно запускает rollSkill |
+| [issue-00149](../../issues/potential/issue-00149.md) | Выбор Actor для улики не обрабатывает отсутствие персонажа и отмену |
+| [issue-00150](../../issues/potential/issue-00150.md) | Навыки расследования допускают неизвестные имена без проверки перед броском |
+| [issue-00151](../../issues/potential/issue-00151.md) | DC улики не передаётся в бросок навыка |
+| [issue-00152](../../issues/potential/issue-00152.md) | Действия скрытия и броска расследования завершаются до результата |
+| [issue-00153](../../issues/potential/issue-00153.md) | Inline-редактор расследования преобразует текст false и true в булевы значения |
+| [issue-00154](../../issues/potential/issue-00154.md) | Число столбцов заголовка и строки улики различается |
+| [issue-00155](../../issues/potential/issue-00155.md) | Основные подписи тайны обходят локализацию |
+
+Дополнены [issue-00005](../../issues/potential/issue-00005.md) и [issue-00016](../../issues/potential/issue-00016.md). Все карточки остаются potential; подтверждение пользователя, изменение статусов и исправление не выполнялись. Строки реестра проблем собраны в одну таблицу, включая прежние строки, оказавшиеся после завершающего текста.
+
+### Техническая сверка и сохранность
+
+Все 621 исходник побайтно совпадают с HEAD порции и срезом TASK-0001. Совокупный SHA-256 — `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`, без изменений. Для 1073 ранее отслеживаемых файлов сохранены mode, uid, gid и inode. Историческая часть журнала начиная с TASK-0003.022 сохранена побайтно; SHA-256 всего журнала до новой записи — `47392ff431c41311b79c878be38f17137aa9ef3fbe2f4775877e4b7725b769a5`.
+
+Сверены фактическое дерево и Git, 621 строка реестра и 200 карточек, обязательные разделы и собственные методы/поля новой порции. Все 30 списков подзадач согласованы с реестром: .001–.023 имеют done, .024–.030 — planned. Родительская TASK-0003 остаётся in-progress, TASK-0004/TASK-0005 — draft. В трёх сериях назначены 236 разных файлов; третья содержит 79, из них 32 проверены, 47 в очереди; 374 ещё требуют детализации.
+
+У 200 разобранных файлов проверены 269 прямых относительных импортов: 196 default, 66 named-деклараций с 71 именем, 7 namespace. Цели и экспорты существуют; карточки разобранных источников и целей согласованы в обе стороны. В порции три импорта: complexityData, rollClue и helper. Проверены 119 буквальных связей с HBS, из них шесть у новой порции. Эта проверка не подменяет полный анализ ещё не описанных зависимостей.
+
+Проверены 417 Markdown-файлов docs и два корневых указателя: **8800 локальных ссылок/якорей** разрешаются; примеры внутри кода не считаются навигацией. Таблицы изменённых документов согласованы по числу столбцов, `git diff --check` проходит. У 155 potential issues последовательные уникальные ID; статусы не менялись.
+
+Изменён 41 Markdown-документ: 22 новых (14 карточек, восемь issues) и 19 прежних (шесть связанных карточек, две issues, одиннадцать документов навигации/отчётности). Других изменений нет. Проверка выполнена чтением кода, rg, git status/rev-parse/ls-files/show/diff и Python через stdin; постоянный скрипт не создавался.
+
+Код, игровые данные, службы, ветки Git, права и владельцы не менялись; коммит не создавался. Мир, HTTP/браузер, БД, сборка и сохранённый тестовый стенд не входили в эту порцию.
+
 ## TASK-0003.022
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `ef8117ba6e5a184989e65761d47a068381056e4a`. На старте рабочее дерево чистое, отслеживаются 1058 файлов. Исследуемый код сверяется со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.

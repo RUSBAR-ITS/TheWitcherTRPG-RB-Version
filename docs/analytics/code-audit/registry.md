@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.022 проверены описания **186 файлов**, для **435 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.023 проверены описания **200 файлов**, для **421 файла** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.022](review-log.md#task-0003022) выполнена на `ef8117ba6e5a184989e65761d47a068381056e4a`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.023](review-log.md#task-0003023) выполнена на `538dbac9bb9432c123fe4f3c00ab788b58517afb`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -52,7 +52,7 @@
 | [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Лист Actor-тайны на ApplicationV2. | [Карточка](files/module/actor/sheets/investigation/WitcherMysterySheet.js.md) | Проверено |
 | [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Категории эффектов Actor, управление документами и раскрытие описаний. | [Описание](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Действия листа Actor: создать критическую травму и вызвать переход по кнопке лечения; регистрация DOM-слушателей. | [Описание](files/module/actor/sheets/mixins/criticalWoundMixin.js.md) | Проверено |
@@ -120,10 +120,10 @@
 | [module/data/chatMessage/templates/damageData.js](../../../module/data/chatMessage/templates/damageData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/chatMessage/templates/locationData.js](../../../module/data/chatMessage/templates/locationData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/dataUtils.js](../../../module/data/dataUtils.js) | Подготовка HTML, исходного текста и определения поля для листов Actor/Item | [Карточка](files/module/data/dataUtils.js.md) | Проверено |
-| [module/data/investigation/clueData.js](../../../module/data/investigation/clueData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/investigation/mysteryActorData.js](../../../module/data/investigation/mysteryActorData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/investigation/obstacleData.js](../../../module/data/investigation/obstacleData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/investigation/templates/complexityData.js](../../../module/data/investigation/templates/complexityData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/investigation/clueData.js](../../../module/data/investigation/clueData.js) | Самостоятельная TypeDataModel улики: скрытие, навыки, DC, время и текстовые значения последствий.. | [Карточка](files/module/data/investigation/clueData.js.md) | Проверено |
+| [module/data/investigation/mysteryActorData.js](../../../module/data/investigation/mysteryActorData.js) | Модель system документа Actor типа mystery: цель расследования и вложенные данные сложности.. | [Карточка](files/module/data/investigation/mysteryActorData.js.md) | Проверено |
+| [module/data/investigation/obstacleData.js](../../../module/data/investigation/obstacleData.js) | Самостоятельная TypeDataModel препятствия: скрытие, навыки, DC и текстовые значения последствий успеха/неудачи.. | [Карточка](files/module/data/investigation/obstacleData.js.md) | Проверено |
+| [module/data/investigation/templates/complexityData.js](../../../module/data/investigation/templates/complexityData.js) | Фабрика двух полей сложности тайны; создаёт новый набор полей для вложенного SchemaField модели MysteryActorData.. | [Карточка](files/module/data/investigation/templates/complexityData.js.md) | Проверено |
 | [module/data/item/alchemicalData.js](../../../module/data/item/alchemicalData.js) | Модель алхимического Item с текстовыми свойствами и настройками расходования. | [Описание](files/module/data/item/alchemicalData.js.md) | Проверено |
 | [module/data/item/armorData.js](../../../module/data/item/armorData.js) | Модель брони и щитов: SP, сопротивления, улучшения, ремонт и миграции. | [Описание](files/module/data/item/armorData.js.md) | Проверено |
 | [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js) | Общая модель части типов Item: поля описания/количества/массы, calcWeight и признаки возможностей. | [Карточка](files/module/data/item/commonItemData.js.md) | Проверено |
@@ -205,8 +205,8 @@
 | [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) | Конфигурация путей профессии, поиск навыков и CRUD воздействий/порогов. | [Описание](files/module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) | Общая конфигурация урона, защиты, регионов и предметных воздействий. | [Описание](files/module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherSpellConfigurationSheet.js) | Адаптер конфигурации spell: заменяет общую вкладку свойств на таблицы статусов и настройки атаки, сохраняя остальные части WitcherPropertiesConfigurationSheet. | [Карточка](files/module/item/sheets/configurations/WitcherSpellConfigurationSheet.js.md) | Проверено |
-| [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | Лист отдельного Item clue на API ApplicationV1. | [Карточка](files/module/item/sheets/investigation/WitcherClueSheet.js.md) | Проверено |
+| [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js) | Лист отдельного Item obstacle на API ApplicationV1. | [Карточка](files/module/item/sheets/investigation/WitcherObstacleSheet.js.md) | Проверено |
 | [module/item/sheets/mixins/associatedDiagramMixin.js](../../../module/item/sheets/mixins/associatedDiagramMixin.js) | Примесь привязки/удаления рецепта на листах оружия и брони. | [Описание](files/module/item/sheets/mixins/associatedDiagramMixin.js.md) | Проверено |
 | [module/item/systems/repair.js](../../../module/item/systems/repair.js) | Ремонт Item: рецепт и материалы, исполнитель, DC/формула, диалог, сообщения и восстановление. | [Описание](files/module/item/systems/repair.js.md) | Проверено |
 | [module/item/witcherItem.js](../../../module/item/witcherItem.js) | Документ Item: миграция магии, выбор атаки, изготовление, генерация добычи, улучшения и пять примесей. | [Карточка](files/module/item/witcherItem.js.md) | Проверено |
@@ -216,7 +216,7 @@
 | [module/scripts/combat/generalCombatHook.js](../../../module/scripts/combat/generalCombatHook.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/damageInstance.js](../../../module/scripts/damageInstance.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/helper.js](../../../module/scripts/helper.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/investigation/rollClue.js](../../../module/scripts/investigation/rollClue.js) | Не установлено | Не подготовлено | Не начат |
+| [module/scripts/investigation/rollClue.js](../../../module/scripts/investigation/rollClue.js) | Выбирает взаимодействующего Actor и навык из clueItem.system.skillsUsed, затем запускает обычный Actor.rollSkill.. | [Карточка](files/module/scripts/investigation/rollClue.js.md) | Проверено |
 | [module/scripts/regions/regionHooks.js](../../../module/scripts/regions/regionHooks.js) | Отсчёт длительности регионов текущего участника боя и удаление истёкших через Scene API. | [Карточка](files/module/scripts/regions/regionHooks.js.md) | Проверено |
 | [module/scripts/rollConfig.js](../../../module/scripts/rollConfig.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/rolls/extendedRoll.js](../../../module/scripts/rolls/extendedRoll.js) | Не установлено | Не подготовлено | Не начат |
@@ -531,7 +531,7 @@
 | [templates/dialog/deprecations/lifepathModifiers.hbs](../../../templates/dialog/deprecations/lifepathModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | Содержимое диалога отдыха: четыре флага восстановления, итог HP и подсказка о стерилизации травм. | [Описание](files/templates/dialog/heal/heal-rest.hbs.md) | Проверено |
-| [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs) | Содержимое DialogV2 для выбора одного из навыков, разрешённых уликой. | [Карточка](files/templates/dialog/investigation/chooseEvidenceSkill.hbs.md) | Проверено |
 | [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | Содержимое диалога ремонта: предмет, сложность, повреждения и таблица компонентов. | [Описание](files/templates/dialog/repair-dialog.hbs.md) | Проверено |
 | [templates/dialog/verbal-combat-defense.hbs](../../../templates/dialog/verbal-combat-defense.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/verbal-combat.hbs](../../../templates/dialog/verbal-combat.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -594,11 +594,11 @@
 | [templates/sheets/actor/rewards/header.hbs](../../../templates/sheets/actor/rewards/header.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/rewards/ip.hbs](../../../templates/sheets/actor/rewards/ip.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/actor/tabs/tab-inventory.hbs](../../../templates/sheets/actor/tabs/tab-inventory.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/investigation/clue-sheet.hbs](../../../templates/sheets/investigation/clue-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/investigation/mystery-sheet.hbs](../../../templates/sheets/investigation/mystery-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/investigation/obstacle-sheet.hbs](../../../templates/sheets/investigation/obstacle-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/investigation/partials/clue-display.hbs](../../../templates/sheets/investigation/partials/clue-display.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/investigation/partials/obstacle-display.hbs](../../../templates/sheets/investigation/partials/obstacle-display.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/investigation/clue-sheet.hbs](../../../templates/sheets/investigation/clue-sheet.hbs) | Форма отдельного предмета-улики для ItemSheet V1. | [Карточка](files/templates/sheets/investigation/clue-sheet.hbs.md) | Проверено |
+| [templates/sheets/investigation/mystery-sheet.hbs](../../../templates/sheets/investigation/mystery-sheet.hbs) | Основная часть листа тайны: имя/цель/сложность и две таблицы embedded Items с добавлением улик и препятствий.. | [Карточка](files/templates/sheets/investigation/mystery-sheet.hbs.md) | Проверено |
+| [templates/sheets/investigation/obstacle-sheet.hbs](../../../templates/sheets/investigation/obstacle-sheet.hbs) | Форма отдельного предмета-препятствия для ItemSheet V1. | [Карточка](files/templates/sheets/investigation/obstacle-sheet.hbs.md) | Проверено |
+| [templates/sheets/investigation/partials/clue-display.hbs](../../../templates/sheets/investigation/partials/clue-display.hbs) | Строка улики в таблице тайны: inline-поля, открытие редактора, GM-действия и бросок навыка.. | [Карточка](files/templates/sheets/investigation/partials/clue-display.hbs.md) | Проверено |
+| [templates/sheets/investigation/partials/obstacle-display.hbs](../../../templates/sheets/investigation/partials/obstacle-display.hbs) | Строка препятствия в таблице тайны: inline-поля, открытие редактора, GM-действия скрытия/удаления.. | [Карточка](files/templates/sheets/investigation/partials/obstacle-display.hbs.md) | Проверено |
 | [templates/sheets/item/alchemical-sheet.hbs](../../../templates/sheets/item/alchemical-sheet.hbs) | Основная форма категории, доступности, времени и описания алхимии. | [Описание](files/templates/sheets/item/alchemical-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs) | Основная форма брони, щита, сопротивлений и предметных воздействий. | [Описание](files/templates/sheets/item/armor-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs) | Форма категории, субстанции, доступности и описательных полей компонента. | [Описание](files/templates/sheets/item/component-sheet.hbs.md) | Проверено |

@@ -289,3 +289,11 @@ spell-header действительно предзагружается и вкл
 Сверенные карточки: [templates/sheets/item/spell-sheet.hbs](../../templates/sheets/item/spell-sheet.hbs.md), [templates/sheets/item/hex-sheet.hbs](../../templates/sheets/item/hex-sheet.hbs.md), [templates/sheets/item/ritual-sheet.hbs](../../templates/sheets/item/ritual-sheet.hbs.md), [templates/partials/spell-header.hbs](../../templates/partials/spell-header.hbs.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.023
+
+2026-09-11, `538dbac9bb9432c123fe4f3c00ab788b58517afb`; исходник не изменился. Разобраны три предварительно загружаемых шаблона расследования: основная форма тайны и оба partial. Поля и выбранные навыки проверены настоящим Handlebars 4.7.9 и helpers selectOptions/prepareSelectOptionGroups ядра с фасадом вывода option. Контекст each сохраняет system текущего Item: selected=system.skillsUsed у обоих partial работает в штатном вызове. Самостоятельные формы clue/obstacle и диалог навыка загружаются своими потребителями по literal path, но не добавлены этим наблюдением в список preload.
+
+Связанные карточки: [templates/sheets/investigation/mystery-sheet.hbs](../../templates/sheets/investigation/mystery-sheet.hbs.md), [templates/sheets/investigation/partials/clue-display.hbs](../../templates/sheets/investigation/partials/clue-display.hbs.md), [templates/sheets/investigation/partials/obstacle-display.hbs](../../templates/sheets/investigation/partials/obstacle-display.hbs.md), [templates/sheets/investigation/clue-sheet.hbs](../../templates/sheets/investigation/clue-sheet.hbs.md), [templates/sheets/investigation/obstacle-sheet.hbs](../../templates/sheets/investigation/obstacle-sheet.hbs.md), [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../templates/dialog/investigation/chooseEvidenceSkill.hbs.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.

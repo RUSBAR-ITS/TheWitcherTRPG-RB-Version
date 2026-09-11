@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.022 подготовлены и сверены 186 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.023 подготовлены и сверены 200 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -299,3 +299,22 @@
 | module/data/item/templates/regions/regionPropertiesData.js | [Описание](module/data/item/templates/regions/regionPropertiesData.js.md) |
 | module/data/item/mixin/spellRegionMixin.js | [Описание](module/data/item/mixin/spellRegionMixin.js.md) |
 | module/scripts/regions/regionHooks.js | [Описание](module/scripts/regions/regionHooks.js.md) |
+
+## Расследования, улики и препятствия — TASK-0003.023
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/investigation/templates/complexityData.js | [Описание](module/data/investigation/templates/complexityData.js.md) |
+| module/data/investigation/mysteryActorData.js | [Описание](module/data/investigation/mysteryActorData.js.md) |
+| module/data/investigation/clueData.js | [Описание](module/data/investigation/clueData.js.md) |
+| module/data/investigation/obstacleData.js | [Описание](module/data/investigation/obstacleData.js.md) |
+| module/actor/sheets/investigation/WitcherMysterySheet.js | [Описание](module/actor/sheets/investigation/WitcherMysterySheet.js.md) |
+| module/item/sheets/investigation/WitcherClueSheet.js | [Описание](module/item/sheets/investigation/WitcherClueSheet.js.md) |
+| module/item/sheets/investigation/WitcherObstacleSheet.js | [Описание](module/item/sheets/investigation/WitcherObstacleSheet.js.md) |
+| module/scripts/investigation/rollClue.js | [Описание](module/scripts/investigation/rollClue.js.md) |
+| templates/sheets/investigation/mystery-sheet.hbs | [Описание](templates/sheets/investigation/mystery-sheet.hbs.md) |
+| templates/sheets/investigation/clue-sheet.hbs | [Описание](templates/sheets/investigation/clue-sheet.hbs.md) |
+| templates/sheets/investigation/obstacle-sheet.hbs | [Описание](templates/sheets/investigation/obstacle-sheet.hbs.md) |
+| templates/sheets/investigation/partials/clue-display.hbs | [Описание](templates/sheets/investigation/partials/clue-display.hbs.md) |
+| templates/sheets/investigation/partials/obstacle-display.hbs | [Описание](templates/sheets/investigation/partials/obstacle-display.hbs.md) |
+| templates/dialog/investigation/chooseEvidenceSkill.hbs | [Описание](templates/dialog/investigation/chooseEvidenceSkill.hbs.md) |

@@ -122,3 +122,11 @@
 | criticalWounds | [module/setup/settings.js](../../../../module/setup/settings.js) | Pack объявлен в манифесте; ready индексирует поля отбора. Действующие DB и содержимое компедиума не проверялись. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.023
+
+2026-09-11, `538dbac9bb9432c123fe4f3c00ab788b58517afb`; исходник не изменился. Повторно сверены Actor.mystery и Item.clue/obstacle: модели и листы зарегистрированы, но ключей в documentTypes нет. Изолированная строгая проверка настоящего DocumentTypeField с перечнем Item-типов манифеста отвергает clue, принимает spell. Это проверка поля с заданным перечнем, а не создание документов через сервер; реальные game.model/мир не менялись. Наблюдение остаётся issue-00005.
+
+Связанные карточки: [module/data/investigation/mysteryActorData.js](module/data/investigation/mysteryActorData.js.md), [module/data/investigation/clueData.js](module/data/investigation/clueData.js.md), [module/data/investigation/obstacleData.js](module/data/investigation/obstacleData.js.md).
+
+[Перекрёстная сверка порции](../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
