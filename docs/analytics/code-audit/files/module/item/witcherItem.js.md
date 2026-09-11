@@ -286,3 +286,9 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Проверен настоящий вход _alchemyCraft: отсутствующий populateAlchemyCraftComponentsList прерывает его до Dialog. В обычном ремесленном callback выполнен настоящий realCraft с DC10: равенство неуспешно, результат12 списывает два компонента и запрашивает создание двух единиц связанного результата. Запись документов перехвачена. Сам callback не ожидает realCraft; repair идёт через repairMixin к RepairSystem.process.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полностью описан внешний потребитель checkIfItemHasRollTable — #exportLoot MonsterSheet. Он запускает async forEach и не ждёт проверку/обновление всех Items (новая issue-00207). Настоящий checkIfItemHasRollTable выполнен отдельно: нет совпадения→false; один генератор с двумя результатами вызывает две Item.create, уведомления/чат и delete генератора. API/запись подменены; прежние гонки/ошибки результатов не воспроизводились повторно.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

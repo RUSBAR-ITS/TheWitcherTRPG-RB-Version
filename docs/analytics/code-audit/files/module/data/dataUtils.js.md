@@ -135,3 +135,9 @@
 | Actor._prepareItems | [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) | enrichedText травмы собирается в context.criticalWounds[uuid], затем родитель вкладки выводит description.enriched. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. MonsterData.enrichedText вызывается полным _prepareContext; поля common/academicKnowledge/monsterLore дают раздельные value и enriched. Текущий monster-knowledge передаёт в параметр enriched именно value. Настоящие formGroup/HTMLField довели его до фасада HTMLProseMirrorElement.create: наблюдение issue-00013 подтверждено на полном producer.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs](../../templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

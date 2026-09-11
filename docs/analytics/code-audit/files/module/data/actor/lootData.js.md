@@ -94,3 +94,9 @@ stats, derivedStats, healthState, attackStats, notes, logs и другие по�
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. WitcherActor.prepareDerivedData возвращается после super для type=loot, не обращаясь к stats/derivedStats. getTotalWeight суммирует calcWeight всех items и calcCurrencyWeight модели с Math.ceil; getList фильтрует stored для обычных типов, но не в специальной ветке shield.
 
 Карточки: [WitcherActor](../../actor/witcherActor.js.md), [modifierMixin](../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Экспорт Monster создаёт Actor type loot из полной actor.toObject с новым name/folder, затем пересчитывает все embedded Items. Payload сохраняет исходные system/items/effects/ownership/flags/prototypeToken; реально нормализованный документ ядра в тесте не создавался. Экспорт не фильтруется context.loots. Работа самого Loot-листа остаётся .035.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

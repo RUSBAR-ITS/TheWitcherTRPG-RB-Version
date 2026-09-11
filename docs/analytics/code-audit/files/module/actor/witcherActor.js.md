@@ -329,3 +329,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Выполнены реальные getList, getTotalWeight и методы подключённых примесей на контролируемом Actor. Character выбирает первый отсортированный нестored Item каждого уникального типа; временные HP/ресурсы поступают в sidebar через базовый контекст. Не выполнялись настоящие Document.update и lifecycle создания Actor.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. В полном Monster-контексте использованы настоящие getList и расчёты характеристик. При обычных BODY/WILL8 HP=40, при customStat=true заданы HP90/STA70/resolve80 и получены эти max. getAllLocations экземпляра по-прежнему теряет this для hasTailWing; отдельный прямой static.call(actor) добавляет tailWing. Экспорт вызывает toObject и внешний Actor.create, не обновляет исходного Actor.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../templates/sheets/actor/configuration/monster/general.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

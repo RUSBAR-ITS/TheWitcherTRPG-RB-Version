@@ -88,3 +88,9 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Класс WitcherModifiersConfiguration теперь полностью описан: две части, context.config ссылка, замена statLabels и последовательное подключение stat/skillListener. Полный разбор подтвердил сохранение проблемы глобального jQuery; соседний statListener использует только локальный html.
 
 Сверенные источники: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js); [module/actor/sheets/mixins/statMixin.js](../../../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet наследует skillListener и общие вкладки навыков. В актуальном списке awareness с isVisible=false по-прежнему присутствует; конфигурация отдельно показывает/меняет этот Bool. Глобальная jQuery и подготовка редактора остаются прежними наблюдениями .025/.029.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).

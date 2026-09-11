@@ -119,7 +119,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались Foundry-мир, настоящие листы в браузере, частичный рендер и повторные привязки на сохранённом DOM, доступ разных пользователей, запись в БД, полный бой и реальные dice/ChatMessage. Изолированно выполнялись неизменённые тела двух классов с заменёнными import/base/UI границами; настоящие модели, генератор Foundry и skillMixin импортированы/извлечены отдельно. Ошибки сборки первоначального фасада исправлены в памяти, исходники не изменялись. Полный Character теперь описан в TASK-0003.031; полные Monster/Loot и ещё не описанные примеси остаются вне покрытия. SkillItemData и две skill-примеси описаны полностью в .029, ChatMessageData — в .028. Порядок и содержимое race/profession enrichment сверены до определения в дочернем классе; issue-00109 не исправлена.
+Не запускались Foundry-мир, настоящие листы в браузере, частичный рендер и повторные привязки на сохранённом DOM, доступ разных пользователей, запись в БД, полный бой и реальные dice/ChatMessage. Изолированно выполнялись неизменённые тела двух классов с заменёнными import/base/UI границами; настоящие модели, генератор Foundry и skillMixin импортированы/извлечены отдельно. Ошибки сборки первоначального фасада исправлены в памяти, исходники не изменялись. Полные Character и Monster описаны в TASK-0003.031/.032; полный Loot и ещё не описанные примеси остаются вне покрытия. SkillItemData и две skill-примеси описаны полностью в .029, ChatMessageData — в .028. Порядок и содержимое race/profession enrichment сверены до определения в дочернем классе; issue-00109 не исправлена.
 
 ## Связанные проблемы
 
@@ -166,3 +166,9 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полностью импортирован дочерний WitcherCharacterSheet; выполнены super._prepareContext и оба activateListeners. Дочерний контекст использует тот же system и уже отфильтрованные по isStored items. Собственные .alchemy-potion/.crafting-craft/.item-repair/.manualIpReward/.saveIpSpending/.open-rewards дополняют базовые обработчики. Группы 01–06,17–18,23.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный WitcherMonsterSheet теперь выполнен вместе с super._prepareContext и унаследованным activateListeners. configuration открывает его WitcherMonsterConfigurationSheet; отсутствуют дочерние listeners item-repair/saveIpSpending. Контекст notes/oldNotes, items, resources и effects поступает из базы. Вкладки дочернего класса: 7/9/6/2.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

@@ -85,3 +85,9 @@ Default export extends HandlebarsApplicationMixin(ActorSheetV2). CharacterSheet 
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `aa6af106e86a9c75fe050d599f961c8fadb74f1b`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003030) |
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet action #openModifiers передаёт document/type/skillKey, preventDefault и render без ожидания. Это другое окно, чем WitcherMonsterConfigurationSheet; наличие обоих путей объясняет, почему настройка isVisible и повышение навыка относятся к разным обработчикам.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).

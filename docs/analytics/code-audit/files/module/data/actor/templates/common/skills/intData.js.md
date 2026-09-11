@@ -94,3 +94,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Уточнены три потребителя commonsp/commonspeech: rollSkill('commonspeech') находит entry.name=commonsp, но addActiveEffects(commonsp) теряет добавку; levelUpSkill ломается для обоих написаний в разных местах; _getSkills конфигурации не находит одно isVisible-поле, поэтому formGroup выводит 51 вместо 52 строк.
 
 Сверенные связи: [module/actor/mixins/skillMixin.js](../../../../../../../../../../module/actor/mixins/skillMixin.js); [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../../../../../../../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Конфигурация монстра строит путь по ключу skillMap.commonspeech, а модель хранит commonsp: запись есть, поле isVisible отсутствует, core formGroup выводит предупреждение и ничего не рисует. В общем количестве 52 записей остаётся 51 checkbox; прежняя issue-00004 не исправлена.
+
+Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).

@@ -83,3 +83,9 @@ WitcherMonsterSheet.PARTS.inventory, TABS.primary.inventory. Корневые ta
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ce0c7eb7069b215b641d725913b3aae21502e811`; полный файл | Первая карточка; [сверка порции](../../../../../../../review-log.md#task-0003027) |
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet._prepareLoot подтверждает 9 принимаемых типов, getList/items исключают stored; weapon/armor подготовлены отдельно. Кнопки .item-repair по-прежнему не имеют listener в полном классе. exportLoot копирует actor.toObject().items целиком, не context.loots, и обрабатывает все копии.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../../../../module/actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).

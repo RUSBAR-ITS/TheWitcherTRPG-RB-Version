@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.031 подготовлены и сверены 250 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.032 подготовлены и сверены 263 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -408,3 +408,21 @@
 | module/actor/sheets/WitcherCharacterSheet.js | [Описание](module/actor/sheets/WitcherCharacterSheet.js.md) |
 | templates/partials/character-header.hbs | [Описание](templates/partials/character-header.hbs.md) |
 | templates/sheets/actor/partials/character/sidebar.hbs | [Описание](templates/sheets/actor/partials/character/sidebar.hbs.md) |
+
+## Лист монстра, конфигурация и шаблоны — TASK-0003.032
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/sheets/WitcherMonsterSheet.js | [Описание](module/actor/sheets/WitcherMonsterSheet.js.md) |
+| module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js | [Описание](module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md) |
+| templates/sheets/actor/partials/monster/header.hbs | [Описание](templates/sheets/actor/partials/monster/header.hbs.md) |
+| templates/sheets/actor/partials/monster/sidebar.hbs | [Описание](templates/sheets/actor/partials/monster/sidebar.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/tab-details.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/tab-details.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md) |
+| templates/sheets/actor/configuration/monster/header.hbs | [Описание](templates/sheets/actor/configuration/monster/header.hbs.md) |
+| templates/sheets/actor/configuration/monster/general.hbs | [Описание](templates/sheets/actor/configuration/monster/general.hbs.md) |
+| templates/sheets/actor/monster-sheet.hbs | [Описание](templates/sheets/actor/monster-sheet.hbs.md) |
+| templates/partials/monster/monster-details-tab.hbs | [Описание](templates/partials/monster/monster-details-tab.hbs.md) |

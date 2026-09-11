@@ -212,3 +212,9 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Сумма calc_total_stats использует 9 max и исключает toxicity по ключу. Отображение фильтрует toxicity по локализованной подписи. Сохраняемый input unmodifiedMax получает max; это отдельное рассогласование от прежнего guard миграции. Восстановление удачи читает фактический max после двух проходов.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Новый Monster sidebar читает toxicity.value/max из stats, но не содержит luck/adrenaline. Старый полный HBS перебирает stats кроме luck и разделяет readonly value и редактируемый unmodifiedMax. Явные пути проверены по модели и готовому HTML.
+
+Связи: [templates/sheets/actor/partials/monster/sidebar.hbs](../../../../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).

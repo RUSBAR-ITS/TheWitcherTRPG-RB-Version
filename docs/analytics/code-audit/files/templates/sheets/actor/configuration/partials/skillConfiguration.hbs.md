@@ -75,3 +75,9 @@ PARTS.skills WitcherMonsterConfigurationSheet. Контекст _getSkills пе�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003029) |
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный provider WitcherMonsterConfigurationSheet._getSkills даёт 52 записи/51 настоящее поле. Повторная подготовка отражает awareness true→false, core formGroup пропускает undefined commonspeech с предупреждением. tabs.skills автоматически подготовлен core для единственной primary-группы конфигурации.
+
+Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003032).

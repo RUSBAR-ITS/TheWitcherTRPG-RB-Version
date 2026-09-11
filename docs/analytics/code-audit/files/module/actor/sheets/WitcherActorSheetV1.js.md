@@ -141,3 +141,9 @@ context.system — сериализованная копия actor.toObject(fals
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Оба stat/death mixin теперь описаны полностью и используются теми же прототипными методами. Старый monster-sheet содержит stat/death селекторы; текущий V2 использует отдельные header/tab-stats. Полная регистрация/работа V1 в Foundry14 не установлена.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../module/actor/sheets/mixins/statMixin.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../templates/partials/character/tab-stats.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный старый monster-sheet.hbs сопоставлен с базовым контрактом V1. Ни выбора этого HBS через template в V1, ни регистрации V1 не найдено. Изолированный render старого HBS с текущей моделью не является запуском старого листа.
+
+Связи: [templates/sheets/actor/monster-sheet.hbs](../../../templates/sheets/actor/monster-sheet.hbs.md); [templates/partials/monster/monster-details-tab.hbs](../../../templates/partials/monster/monster-details-tab.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

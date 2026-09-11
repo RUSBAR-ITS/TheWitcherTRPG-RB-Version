@@ -98,3 +98,9 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Sidebar связывает luck-minus/reset и adrenaline-minus/plus с statListener; инициатива и recovery в header обрабатываются непосредственно WitcherActorSheet. Character вызывает calc_total_stats; девять max8 дали totalStats72. Приватные #openAttributeDialog/#openDerivedDialog Character остаются пустыми, #openModifiers открывает WitcherModifiersConfiguration.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. MonsterSheet не вычисляет calc_total_stats: при девяти max8 функция дала бы 72, но полный контекст totalStats отсутствует. Текущий sidebar не имеет luck/adrenaline, старый monster-sheet содержит stat-roll по each stats. Пустая сумма остаётся issue-00199.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).

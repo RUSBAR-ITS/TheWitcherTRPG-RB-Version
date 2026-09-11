@@ -164,3 +164,9 @@ clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnl
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character callbacks непосредственно читают displayRollsDetails; base context передаёт useVerbalCombat и useAdrenaline в новые шаблоны. При отключении словесного боя скрываются header-action и resolve, при отключении адреналина — его управление. Подробнее проверены формулы с displayRollsDetails в обоих режимах.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. useOptionalVerbalCombat проходит через базовый контекст в Monster header/sidebar и старый полный HBS. Флаг управляет кнопкой словесного боя и блоком resolve; конфигурация general предлагает custom resolve max независимо от его видимости. Другие настройки не объявляются переисследованными.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../templates/sheets/actor/configuration/monster/general.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

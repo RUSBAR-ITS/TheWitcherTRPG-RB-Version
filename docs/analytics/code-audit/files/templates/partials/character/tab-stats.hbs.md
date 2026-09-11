@@ -84,3 +84,9 @@ JavaScript-функций, partial-вызовов и именованных inpu
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.stats Character напрямую указывает на этот шаблон; его контекст totalStats теперь проверен полным _prepareContext: 72 для девяти max8. Ключи действий и данные модификаторов сопоставлены с базовыми listeners и #openModifiers специализированного листа.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Текущий MonsterSheet.PARTS.stats по-прежнему выбирает этот HBS. Полный контекст не содержит totalStats, хотя расчёт для проверенного Actor даёт 72 (issue-00199). Наличие producer у Character не означает его наследования Monster.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

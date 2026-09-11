@@ -78,3 +78,9 @@ note():4–9 без аргументов возвращает title/details. И�
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Подтверждено notes:ArrayField(SchemaField(note())):56 общей модели. Эта схема массива не создаёт Item.note и не связывает два вида заметок автоматически.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Текущий monster-notes использует массив title/details и индексы в name/data-note-index; отдельно показывает oldNotes как Item. Полный базовый producer передаёт обе группы. Удаление 0 из двух array-заметок оставило Second в перехваченном Actor.update; создание/редактирование в браузере не проверено.
+
+Связи: [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003032).

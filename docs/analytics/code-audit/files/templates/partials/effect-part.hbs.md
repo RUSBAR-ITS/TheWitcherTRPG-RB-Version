@@ -93,3 +93,9 @@ Drag/drop, фактическая очистка description, разрешени
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003015).
 
 Уточнён флаг canHaveTemporaryItemImprovement для трёх полностью описанных моделей: [module/data/item/alchemicalData.js](../../../../../../module/data/item/alchemicalData.js) и [module/data/item/valuableData.js](../../../../../../module/data/item/valuableData.js) возвращают true, [module/data/item/mutagenData.js](../../../../../../module/data/item/mutagenData.js) наследует false. Это условие отображения группы временных улучшений. Оно не описывает массивы consumeProperties.effects/removesEffects и не является проверкой запрета прямого вызова consume в runtime.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Старый monster-sheet.hbs: 305 содержит literal partial этого файла, без кавычек вокруг пути; настоящий Handlebars успешно компилирует и рендерит его. Активный современный MonsterSheet использует character/tab-effects, поэтому старое подключение не объявлено текущим.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../module/actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

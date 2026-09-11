@@ -91,3 +91,9 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.skills Character с _prepareTabs('skillTabs') передаёт девять групп. Нижняя .saveIpSpending вызывает _saveIpSpending: отрицательная строка остаётся строкой (issue-00200). _addIpReward, привязанный к .manualIpReward, вызывает Actor.addIpReward без ожидания.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../character-header.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Текущий MonsterSheet.PARTS.skills выбирает эту вкладку, включая IP и общую строку без isVisible. Полный класс не определяет _saveIpSpending/_addIpReward/_renderRewards; базовый listener не привязывает .saveIpSpending. Настройки skillConfig — другое окно, не фильтр этого HBS.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

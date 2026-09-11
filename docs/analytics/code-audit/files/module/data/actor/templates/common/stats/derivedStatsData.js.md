@@ -193,3 +193,9 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. sidebar получает hp/sta/focus/resolve/vigor/shield из derivedStats, а toxicity и luck отдельно из stats; temporary HP показаны отдельным суффиксом. Форма и полоса HP используют max, сердце — unmodifiedMax (issue-00203). HP120 принят настоящим updateSource: HTML max99 не является ограничением NumberField.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../actor/sheets/WitcherCharacterSheet.js.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. В Monster sidebar max99 присутствует только в input HP/STA; progress использует текущий max, сердце — unmodifiedMax. Форма general при customStat редактирует hp/sta/resolve.unmodifiedMax. Контролируемые max90/70/80 сохранены настоящим расчётом customStat.
+
+Связи: [templates/sheets/actor/partials/monster/sidebar.hbs](../../../../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../../../../../templates/sheets/actor/configuration/monster/general.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).

@@ -179,3 +179,9 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Подтверждено чтение stats, skills, derivedStats и general из настоящих вложенных моделей в полном контексте Character. Fresh Skill.label и повторная модель из toObject различаются из-за миграции; это учтено отдельно от штатных ремесленных проверок.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Сверены notes, healthState, skills и ресурсы в полном MonsterSheet. healthState объявлен прямо в CommonActorData, отдельного healthStateData файла нет. Старые Item notes и массивные notes обслуживают разные handlers. Иммунитеты к статусам принадлежат MonsterData, а общая подготовка не добавляет IP/logs/training.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

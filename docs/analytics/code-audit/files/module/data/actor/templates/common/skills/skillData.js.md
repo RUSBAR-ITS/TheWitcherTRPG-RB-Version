@@ -133,3 +133,9 @@ NumberField не задаёт ограничения диапазона и це�
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Для ремесленных проверок использована повторно созданная модель с заполненными миграцией label. Отдельный тест свежей модели подтвердил label=undefined и ошибку skillName.replace в callback. Это условие модели, а не доказанный lifecycle нового Actor в браузере. Ненулевой activeEffectModifiers без имён также проверен отдельно (issue-00204).
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. В полном _getSkills конфигурации Monster использованы настоящие BooleanField.isVisible. Исходно isVisible=false; контролируемый awareness true→false отразился повторной подготовкой, но текущая строка навыка всё равно выводится. Поле.label/isVisible.label свежей модели остаются отдельной старой issue-00015.
+
+Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).

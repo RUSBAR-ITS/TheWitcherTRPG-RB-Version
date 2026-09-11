@@ -104,3 +104,9 @@ PARTS.effects в WitcherCharacterSheet и WitcherMonsterSheet используе
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.effects специализированного Character напрямую указывает на этот шаблон. effects-контекст готовится базовым Actor-листом, вкладки — Character._prepareTabs('primary'); весь lifecycle эффектов повторно не запускался.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../module/actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet.PARTS.effects выбирает эту общую часть; контекст categories готовит базовый ActorSheet. Старый полный monster-sheet использует иной effect-part; оба маршрута явно разделены.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../../monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003032).

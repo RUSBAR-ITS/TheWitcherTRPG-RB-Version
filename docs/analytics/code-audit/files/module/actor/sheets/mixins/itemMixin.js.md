@@ -125,3 +125,9 @@ Drop сначала может удалить уникальные Item и сб�
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Уточнён потребитель _onItemInlineEdit: старый monster-custom-skill-display передаёт data-field=system.value и Item ID. Реальный метод выдаёт строку '-2.5'; настоящая NumberField SkillItemData принимает −2.5. Это проверка преобразования модели, не записи в мире. Новая текущая custom-строка этого inline поля не содержит.
 
 Сверенные связи: [templates/partials/monster/monster-custom-skill-display.hbs](../../../../../../../../templates/partials/monster/monster-custom-skill-display.hbs); [module/data/item/skillItemData.js](../../../../../../../../module/data/item/skillItemData.js). Полные карточки новых файлов — в [указателе порции](../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. monster-notes .add-item/data-itemType='note' проходит HTML-преобразование в dataset.itemtype; старые Item title/textarea имеют data-field и item-id. В each {{system.description}} читает system текущего note, не Actor. Нет имени обычной формы; отдельный _onItemInlineEdit остаётся необходим. Конкретный полный цикл создания заметок перенесён в .033 по плану.
+
+Связи: [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).

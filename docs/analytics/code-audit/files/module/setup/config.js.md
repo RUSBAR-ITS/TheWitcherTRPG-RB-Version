@@ -504,3 +504,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. WitcherModifiersConfiguration сохраняет ссылки statMap/skillMap и при каждой подготовке создаёт новый CONFIG.WITCHER.statLabels через label??labelShort. Оба PARTS поддерживаются одновременно, type ограничивает только содержимое edit-stats, skillKey отдельно выбирает skills. Сама мутация statLabels не объявлена дефектом.
 
 Сверенные источники: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Конфигурация монстра использует ключи statMap/skillMap и записывает новый statLabels в тот же CONFIG.WITCHER. _getSkills формирует 52 записи, 51 BooleanField, commonspeech остаётся undefined. Header использует 12 MonsterTypes/4 monsterDifficulty/3 monsterComplexity; status partial даёт 26 опций статусов, ID оглушения — stun.
+
+Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/partials/monster/header.hbs](../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs](../../templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

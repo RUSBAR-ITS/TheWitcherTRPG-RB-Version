@@ -251,3 +251,9 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Прямая регистрация WitcherCharacterSheet теперь имеет полную карточку класса. Сверены DEFAULT_OPTIONS, 10 PARTS и TABS primary/skillTabs/magicTabs с 7/9/6 вкладками; init/registerSheet в настоящем клиенте не запускались.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. WitcherMonsterSheet теперь имеет полную карточку: импорт/регистрация makeDefault monster, 10 PARTS. Старый monster-sheet.hbs выбранным шаблоном не является; обнаружена только предзагрузка. Конфигурация создаётся внутри экземпляра листа, самостоятельным default не регистрируется.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../actor/sheets/WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).

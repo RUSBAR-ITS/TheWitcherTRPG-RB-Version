@@ -89,3 +89,9 @@ Export называется deathsaveMixin (строчная s), файл — de
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Header содержит .death-roll/.death-minus/.death-plus и .death-counter; sidebar редактирует healthState.deathState.ignored. Полный activateListeners Character вызывает базовую цепочку, где deathSaveListener привязывает действия. Незакрытая open-rewards создаёт пустые ссылки, но счётчик смертей не оказывается их дочерним узлом (issue-00202).
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../templates/partials/character-header.hbs.md); [templates/sheets/actor/partials/character/sidebar.hbs](../../../../templates/sheets/actor/partials/character/sidebar.hbs.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Новый header содержит death-roll/minus/plus с базовыми listeners. Новый счётчик печатает deathSaves числом, старый monster-sheet показывает девять пороговых значков. Это разница UI, не лимит счётчика; _removeDeathSaves по-прежнему reset в 0.
+
+Связи: [templates/sheets/actor/partials/monster/header.hbs](../../../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).

@@ -98,3 +98,9 @@ preloadHandlebarsTemplates загружает его и старый monster-she
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ce0c7eb7069b215b641d725913b3aae21502e811`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003027) |
+
+## Уточнение TASK-0003.032
+
+2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полностью описан старый внешний monster-sheet.hbs: 296 и отсутствие его регистрации. Прежняя issue-00180 об устаревших полях брони сохраняется в пределах старого маршрута; новый MonsterSheet использует другой tab-inventory.
+
+Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).

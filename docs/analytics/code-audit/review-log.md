@@ -1,5 +1,106 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.032
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `8b938d44a042749df027d8b58e28bb1d79638091`; рабочее дерево на старте чистое, отслеживаются 1205 файлов. Основание — согласованная [TASK-0003.032](../../tasks/task-0003.032.md) и поручение пользователя продолжить.
+
+### Состав и результат
+
+Полностью прочитаны **13 файлов, 973 логические строки**: WitcherMonsterSheet — 224, WitcherMonsterConfigurationSheet — 91, одиннадцать HBS — 658. У классов 8 собственных методов, внутри экспорта 2 callback. Старый monster-details-tab содержит четыре пустые строки; его разбор завершён, а не пропущен. Все текущие и старые шаблонные маршруты указаны отдельно.
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js) | 224 | [Описание](files/module/actor/sheets/WitcherMonsterSheet.js.md) |
+| [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | 91 | [Описание](files/module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md) |
+| [templates/sheets/actor/partials/monster/header.hbs](../../../templates/sheets/actor/partials/monster/header.hbs) | 42 | [Описание](files/templates/sheets/actor/partials/monster/header.hbs.md) |
+| [templates/sheets/actor/partials/monster/sidebar.hbs](../../../templates/sheets/actor/partials/monster/sidebar.hbs) | 154 | [Описание](files/templates/sheets/actor/partials/monster/sidebar.hbs.md) |
+| [templates/sheets/actor/partials/monster/tabs/tab-details.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-details.hbs) | 18 | [Описание](files/templates/sheets/actor/partials/monster/tabs/tab-details.hbs.md) |
+| [templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs) | 22 | [Описание](files/templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs.md) |
+| [templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs) | 23 | [Описание](files/templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs.md) |
+| [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs) | 22 | [Описание](files/templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs.md) |
+| [templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs](../../../templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs) | 14 | [Описание](files/templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs.md) |
+| [templates/sheets/actor/configuration/monster/header.hbs](../../../templates/sheets/actor/configuration/monster/header.hbs) | 3 | [Описание](files/templates/sheets/actor/configuration/monster/header.hbs.md) |
+| [templates/sheets/actor/configuration/monster/general.hbs](../../../templates/sheets/actor/configuration/monster/general.hbs) | 22 | [Описание](files/templates/sheets/actor/configuration/monster/general.hbs.md) |
+| [templates/sheets/actor/monster-sheet.hbs](../../../templates/sheets/actor/monster-sheet.hbs) | 334 | [Описание](files/templates/sheets/actor/monster-sheet.hbs.md) |
+| [templates/partials/monster/monster-details-tab.hbs](../../../templates/partials/monster/monster-details-tab.hbs) | 4 | [Описание](files/templates/partials/monster/monster-details-tab.hbs.md) |
+
+Добавлены 13 карточек, уточнена 31 связанная. Покрытие выросло с 250 до **263 из 621 файлов**, осталось **358**. В четвёртой серии .031/.032 выполнены 16 из 63 файлов, 47 стоят в очереди; 311 ещё требуют распределения. TASK-0003.001–.032 имеют done, .033–.040 planned; родительская задача in-progress, TASK-0004/TASK-0005 draft. Общие сверки .035/.040 ещё предстоят.
+
+### Методика и внешние границы
+
+Node v24.16.0, установленная Foundry VTT 14.367.0 в /opt/foundryvtt. Сценарии выполнены через `node --input-type=module` со stdin; постоянного стенда/тестового файла не создано. Исходники не менялись, мир и серверные операции не запускались.
+
+Настоящие MonsterData/CommonActorData, вложенные схемы, WitcherMonsterSheet, WitcherMonsterConfigurationSheet и общий WitcherActorSheet импортированы целиком. У Actor выполнены реальные getList/числовые методы/обёртка локаций, у Item — checkIfItemHasRollTable. Foundry DataField.toFormGroup, Handlebars 4.7.9, core formGroup/editor/selectOptions/not, FormDataExtended/_processFormData, Localization и Roll/Peggy использованы из установленного ядра. _prepareTabs/_getTabsConfig также выполнялись из настоящих тел core Application. Для единственной группы конфигурации tabs подготавливает базовый API: отсутствие отдельного вызова в самой конфигурации не является ошибкой.
+
+Application/Document-оболочки и состав базового document-context смоделированы по core document-sheet.mjs: 172–183. DOM/jQuery, createInput/createFormGroup/HTMLProseMirrorElement.create, TextEditor.enrichHTML и окна заменены фасадами. В изолированном экспорте actor.toObject возвращает контролируемую полную сериализацию; Folder.create/Actor.create возвращают объекты fixture, Item.update и сообщения перехвачены. Это проверяет payload и последовательность метода, не серверную нормализацию ID/прав/схем и не поведение реального каталога. В отдельной группе 22 pack/Item.create/чат также подменены и не пополняют коллекцию автоматически.
+
+Константа типов папок импортирована из настоящего common/constants.mjs: 542: первый элемент ActiveEffect, второй Actor. Права создания не выводятся из отсутствия проверки в action: common/documents/actor.mjs: 112 использует hasPermission('ACTOR_CREATE'); UI/серверная авторизация не запускались. DialogV2 использует форму с submit и rejectClose; отрицательный множитель не ограничен min, дробный 1.5 в тесте передан программно. Нативный шаг number-input и окончательная валидация браузера не проверены.
+
+Предупреждение core formGroup о несуществующем поле в группе 03 ожидаемо для commonspeech (issue-00004); это не незавершённый тест. При подготовке фасада были уточнены значения схемы и API: семь primary вкладок, isVisible=false, 10/13 полей конфигурации, custom resolve = 80, ID stun, core HTMLProseMirrorElement/not. Эти изменения относились только к тестовому окружению. Итоговый запуск всех 25 групп прошёл.
+
+### Изолированные сценарии
+
+| Группа | Что проверено | Результат | Пределы |
+| --- | --- | --- | --- |
+| 01 | Полный контекст/класс | 10 PARTS; группы 7/9/6/2; configuration того же Actor; totalStats отсутствует при расчётной сумме 72 | Настоящие super+child и модели; базовый Application-контекст фасад |
+| 02 | Профессия/добыча | Первый нестored profession по sort; 9 типов loots, без stored, weapon/armor; enriched профессии не готовится | Часть legacy item types задана сырыми fixture, не валидирована как разрешённые типы мира |
+| 03 | Настройка навыков | 52 записи/51 поле; commonspeech undefined; awareness true→false отражён повторной подготовкой | Настоящие schema/getField/formGroup; DOM input фасад |
+| 04 | Форма конфигурации | 10 input без customStat, 13 с ним; bool и три max переданы через FormDataExtended/_processFormData в MonsterData.updateSource | Сам Document.update и сохранение сервера не запускались |
+| 05 | Обычные/пользовательские ресурсы | При BODY/WILL8 обычный HP40; customStat сохраняет HP90/STA70/resolve80 | Настоящие числовые методы; lifecycle Actor вызван вручную по проверенной цепочке |
+| 06 | Заголовки и подписи | <Name> экранирован; Vampire/hard/complex переведены; один name input; verbal-button условен; configuration header локализован | Рендер без браузера; наличие редакторов проверено поиском всей разметки |
+| 07 | Sidebar | HP120/toxicity−2/armorTailWing9 в payload; 12 полей с resolve, без luck/adrenaline; 12 актуальных category src существуют | FormDataExtended и DOM фасад; assets проверены только на наличие |
+| 08 | Иконка HP | 40/60/base40→целая; 35/35/base40→треснувшая | Повторный контракт issue-00203, без изменения игровых правил |
+| 09 | Общие сведения | Пять StringField-путей; <weight> экранирован в HTML, payload строковый | Не масса Item и не проверка записи БД |
+| 10 | Знания | Три HTMLField и 3 порога; visibility false скрывает; enriched параметр получает raw @UUID, producer имел отличающийся HTML | enrichHTML и HTMLProseMirrorElement.create фасады; методы моделей/formGroup настоящие |
+| 11 | Заметки | Item textarea корректно читает текущий each.system.description; 2 array notes, add-item вместо add-note; удаление 0 оставляет Second | Item add/editor-save в браузере не выполнялись; noteDelete update перехвачен |
+| 12 | Статусы | Четыре текстовых input, multi-select с 26 опциями, stun выбран | Core selectOptions; custom element не запускался, applyStatus не выполнялся |
+| 13 | Сборка details/старый пустой partial | Одна nav, 4 полных partial; старый details trim/read/render пуст; старый общий HBS компилируется | Core _prepareTabs/_getTabsConfig реальные; переключение вкладок не проверено в DOM |
+| 14 | Listeners/конфигурации | configure/death наследуются; item-repair/saveIpSpending отсутствуют; конфигурация и openModifiers открываются | jQuery/DOM/contextMenu и render фасады; действие openModifiers настоящее |
+| 15 | Папка экспорта | CONST.FOLDER_DOCUMENT_TYPES[0]=ActiveEffect; Actor-папка нужного имени пропущена, запрошена ActiveEffect; существующая ActiveEffect найдена | Настоящая константа и метод; Folder.create подменён |
+| 16 | Пустой/повторный экспорт | Два экспорта дают два вызова Actor.create; type/name/folder заменены, effects/ownership/flags/_id в payload сохранены | Полная сериализация Actor задана fixture, окончательное поведение создающей подсистемы ядра не воспроизводилось |
+| 17 | Фиксированные количества/состав | Множитель 2: 0/1/3→0/2/6; weapon и note также скопированы и умножены; исходная сериализация не меняется | Actor/create/update фасады, не реальная запись |
+| 18 | Количество формулой | Два настоящих Roll('1d6') с 2/3 дают 5 | Управляемая генерация кубиков и запись Item; async завершение дождались отдельно в тесте |
+| 19 | Множители | '-2': qty2→−4, 1d6→0; 0/пусто→0; программное 1.5: qty2→3, 1d6→два броска 2+3=5 | Прохождение дробного ввода через native step не утверждается; отрицательное значение не ограничено min |
+| 20 | Ожидание экспорта | Отдельно удержаны table Promise/update Promise; action и render завершены раньше, qty ещё 3; после разрешения 6 | Управляемые задержки, без многоклиентных гонок |
+| 21 | Генератор/отмена | true от checkIfItemHasRollTable исключает обычный update; отклонение prompt не создаёт Actor/Folder | Результат генератора подменён; штатная ошибка dismiss прочитана в DialogV2 |
+| 22 | Настоящий Item-генератор | Без pack→false; один pack/один результат на итерацию, quantity2→два запроса Item.create, два сообщения и удаление генератора | Pack/Item.create/chat подменены; create не пополняет коллекцию fixture, поэтому накопление существующей стопки не проверяется |
+| 23 | Старый полный HBS | Render всех 334 строк с настоящими partial/core not; редакторы 4 полей есть, readonly stat value; 11 из 12 category src отсутствуют | Активный потребитель старого HBS не найден; HTTP и браузер не запускались |
+| 24 | Видимость/локации/сумма | Текущий awareness anchor есть при isVisible=false; hasTailWing true: wrapper без tailWing, static.call(actor) с tailWing; totalStats нет | Настоящие методы/шаблон; полный бой не выполнялся |
+| 25 | Локализация | 67 полных ключей и 2 префикса; все 67 есть в en, в ru отсутствуют лишь 4 прежних ignore/ignoreHint | Настоящий Localization и expandObject/fallback; остальные языки не исследованы |
+
+### Перекрёстная сверка исходников и карточек
+
+- Регистрация makeDefault monster сопоставлена с полным WitcherMonsterSheet: три прямых default-import и 9 системных PARTS. Десятая часть — core generic/tab-navigation. ConfigurationSheet не зарегистрирован самостоятельным листом: создаётся полем configuration и открывается базовым _renderConfigureDialog.
+- Конфигурация связывает statMap/skillMap со схемой и BooleanField.isVisible, передаёт statLabels по общей ссылке CONFIG.WITCHER. Общий шаблон навыков и его IP-часть не становятся корректными для Monster от наличия конфигурации; прежние issue-00018/00030/00192 сохранены.
+- Current header/sidebar/details и четыре partial сведены с MonsterData/CommonActorData. В header только name input и текстовая классификация. Sidebar использует toxicity из stats, ресурсы из derivedStats, 4 поля брони и 2 ignored; luck/adrenaline отсутствуют. general конфигурации даёт 10/13 input, 3 visibility-флага и боевые опции; реальные потребители флагов найдены, полный бой не выполнялся.
+- Связь createEnrichedText→MonsterData.enrichedText→MonsterSheet→monster-knowledge доведена до настоящего HTMLField.toInput: HBS передаёт raw value в enriched. notes/oldNotes различены; {{system.description}} внутри each oldNotes корректно читает Item, а не Actor. Статусы используют известный ID stun и 26 опций.
+- Экспорт не использует context.loots как фильтр: передаёт полный actor.toObject, меняет type/name/folder и обрабатывает все Items. Тип Folder/порядок Promise/обычные и формульные количества сопоставлены с core константой, Roll и Item-генератором. Прежняя проблема накопления общей стопки не выдана за повторно проверенную новой выдачей двух Item.
+- Старый monster-sheet.hbs и пустой monster-details-tab найдены в предзагрузке; действующего template-потребителя старого полного HBS в module/templates не найдено. Пять его partial существуют и рендерятся в изоляции; непроцитированный путь effect-part допустим для Handlebars. Сведения/бонусы/иконки старого маршрута не приписаны текущему V2.
+- Сверены ресурсы вне покрытия: все 12 текущих динамических иконок существуют; 11 старых plural-путей отсутствуют. Картинки не анализировались и не получили карточек. CSS прочитан по нужным селекторам, внешнее представление браузера не проверено.
+- Уточнена **31 прежняя карточка**: базовые листы, Actor/Item/Loot/Monster/CommonActor/общие поля и dataUtils; config/registerSheets/handlebars/settings; stat/death/item/skill-примеси и WitcherModifiersConfiguration; общие/старые вкладки навыков/инвентаря/эффектов. У базового листа снято ограничение о непрочитанном полном Monster; полный Loot остаётся .035.
+
+### Потенциальные проблемы
+
+| ID | Наблюдение |
+| --- | --- |
+| [issue-00206](../../issues/potential/issue-00206.md) | Экспорт добычи выбирает тип папки ActiveEffect вместо Actor |
+| [issue-00207](../../issues/potential/issue-00207.md) | Экспорт добычи завершается до пересчёта количества предметов |
+| [issue-00208](../../issues/potential/issue-00208.md) | Экспорт добычи допускает отрицательный множитель количества |
+| [issue-00209](../../issues/potential/issue-00209.md) | Текущий лист монстра не предлагает редактировать категорию и оценку угрозы |
+| [issue-00210](../../issues/potential/issue-00210.md) | Старый шаблон монстра ссылается на отсутствующие изображения категорий |
+
+Новые пять карточек зарегистрированы по пункту 9 TASK-0003; все potential. Дополнены 16 прежних: [issue-00004](../../issues/potential/issue-00004.md), [issue-00013](../../issues/potential/issue-00013.md), [issue-00015](../../issues/potential/issue-00015.md), [issue-00018](../../issues/potential/issue-00018.md), [issue-00030](../../issues/potential/issue-00030.md), [issue-00031](../../issues/potential/issue-00031.md), [issue-00032](../../issues/potential/issue-00032.md), [issue-00039](../../issues/potential/issue-00039.md), [issue-00040](../../issues/potential/issue-00040.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00177](../../issues/potential/issue-00177.md), [issue-00180](../../issues/potential/issue-00180.md), [issue-00192](../../issues/potential/issue-00192.md), [issue-00199](../../issues/potential/issue-00199.md), [issue-00203](../../issues/potential/issue-00203.md), [issue-00205](../../issues/potential/issue-00205.md). Наблюдения sidebar HP/переводов дополнены в существующих issue-00203/00205, дубликаты не создавались. Всего **210 potential issues**, подтверждений пользователя, исправлений и закрытий нет.
+
+### Формальная проверка и сохранность
+
+Проверены все 621 строки реестра: 263 имеют полные карточки, 358 остаются «Не начат». В этой порции добавлены 13 карточек; в каталоге issues находятся 210 документов со статусом potential. Состав четвёртой серии согласован с задачами: 63 файла, из них 16 разобраны, 47 запланированы; ещё 311 файлов требуют распределения.
+
+Проверены 12 329 локальных ссылок и якорей в 547 Markdown-файлах (545 в docs и два корневых документа). Для описанных исходников сверены 323 прямых импорта и 181 буквальная шаблонная связь; текущая порция добавляет три импорта и 21 шаблонную связь. Проверки структуры таблиц, статусов задач, точного состава карточек, реестра и git diff --check прошли.
+
+Изменены 76 Markdown-документов: 58 существующих и 18 новых (13 карточек файлов и пять issues). Содержимое всех 621 исходного файла совпадает с состоянием до анализа; права, владельцы, группы и inode всех 1205 ранее отслеживаемых файлов сохранены. Историческая часть журнала совпадает с HEAD побайтово. Итоговые 25 групп изолированных сценариев выполнены успешно в указанных выше границах.
+
+Изменения ограничены документацией. Следующая — [TASK-0003.033](../../tasks/task-0003.033.md), её выполнение не начиналось. Исторические записи журнала сохранены.
+
 ## TASK-0003.031
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. На старте рабочее дерево чистое, отслеживаются 1196 файлов. Основание — согласованная [TASK-0003.031](../../tasks/task-0003.031.md) и поручение пользователя продолжить.
