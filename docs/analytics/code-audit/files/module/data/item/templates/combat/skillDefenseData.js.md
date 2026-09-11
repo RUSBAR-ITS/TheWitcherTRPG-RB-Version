@@ -73,3 +73,9 @@ skillDefense() — default export, вызывается из professionSkill() �
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.012 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Полный [разбор ProfessionData](../../../../../../../../../module/data/item/professionData.js) повторно подтвердил issue-00071/00072: isDefense=false не исключил Guard, а defining-only защита не найдена. createDefenseOption корректно передаёт attack; получены modifier3 и skillOverride ref/2 через модель, WitcherItem и Actor до skillDefense. [Форма](../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) скрывает defendsAgainst/modifier при выключенном isDefense, не удаляя данные.
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

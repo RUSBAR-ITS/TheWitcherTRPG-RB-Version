@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.018 проверены описания **146 файлов**, для **475 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.019 проверены описания **158 файлов**, для **463 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.018](review-log.md#task-0003018) выполнена на `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.019](review-log.md#task-0003019) выполнена на `c26eb64dd54cc434087f54c3c6b678b6092b15a2`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -138,7 +138,7 @@
 | [module/data/item/mountData.js](../../../module/data/item/mountData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/mutagenData.js](../../../module/data/item/mutagenData.js) | Модель мутагена: категория, источник, мутация и настройки расходования. | [Описание](files/module/data/item/mutagenData.js.md) | Проверено |
 | [module/data/item/noteData.js](../../../module/data/item/noteData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/professionData.js](../../../module/data/item/professionData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/professionData.js](../../../module/data/item/professionData.js) | Модель профессии: навыки, HTML, список базовых навыков и выбор защиты. | [Описание](files/module/data/item/professionData.js.md) | Проверено |
 | [module/data/item/raceData.js](../../../module/data/item/raceData.js) | Модель расы: четыре текстовые особенности, региональное социальное положение и подготовка HTML. | [Описание](files/module/data/item/raceData.js.md) | Проверено |
 | [module/data/item/ritualData.js](../../../module/data/item/ritualData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/skillItemData.js](../../../module/data/item/skillItemData.js) | Не установлено | Не подготовлено | Не начат |
@@ -161,11 +161,11 @@
 | [module/data/item/templates/effectStatData.js](../../../module/data/item/templates/effectStatData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/itemEffectData.js](../../../module/data/item/templates/itemEffectData.js) | Фабрика четырёх полей одной записи предметного воздействия. | [Описание](files/module/data/item/templates/itemEffectData.js.md) | Проверено |
 | [module/data/item/templates/perkData.js](../../../module/data/item/templates/perkData.js) | Фабрика имени и HTML-описания расовой особенности. | [Описание](files/module/data/item/templates/perkData.js.md) | Проверено |
-| [module/data/item/templates/profession/skillUsageData.js](../../../module/data/item/templates/profession/skillUsageData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/profession/temporaryHealthData.js](../../../module/data/item/templates/profession/temporaryHealthData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/profession/thresholdData.js](../../../module/data/item/templates/profession/thresholdData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/professionPathData.js](../../../module/data/item/templates/professionPathData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/professionSkillData.js](../../../module/data/item/templates/professionSkillData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/profession/skillUsageData.js](../../../module/data/item/templates/profession/skillUsageData.js) | Модель использования способности и выбора получателя. | [Описание](files/module/data/item/templates/profession/skillUsageData.js.md) | Проверено |
+| [module/data/item/templates/profession/temporaryHealthData.js](../../../module/data/item/templates/profession/temporaryHealthData.js) | Модель порога, формулы и длительности временного здоровья. | [Описание](files/module/data/item/templates/profession/temporaryHealthData.js.md) | Проверено |
+| [module/data/item/templates/profession/thresholdData.js](../../../module/data/item/templates/profession/thresholdData.js) | Модель включения и словаря порогов профессионального навыка. | [Описание](files/module/data/item/templates/profession/thresholdData.js.md) | Проверено |
+| [module/data/item/templates/professionPathData.js](../../../module/data/item/templates/professionPathData.js) | Фабрика пути профессии: название и три навыка. | [Описание](files/module/data/item/templates/professionPathData.js.md) | Проверено |
+| [module/data/item/templates/professionSkillData.js](../../../module/data/item/templates/professionSkillData.js) | Фабрика профессионального навыка: базовые поля и четыре вида настроек. | [Описание](files/module/data/item/templates/professionSkillData.js.md) | Проверено |
 | [module/data/item/templates/regions/regionBehavioursData.js](../../../module/data/item/templates/regions/regionBehavioursData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/regions/regionPropertiesData.js](../../../module/data/item/templates/regions/regionPropertiesData.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js) | Не установлено | Не подготовлено | Не начат |
@@ -192,7 +192,7 @@
 | [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js) | Общий лист Item: контекст, форма, редактор предметных воздействий, конфигурация и Drop. | [Описание](files/module/item/sheets/WitcherItemSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherMountSheet.js](../../../module/item/sheets/WitcherMountSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherMutagenSheet.js](../../../module/item/sheets/WitcherMutagenSheet.js) | Лист мутагена: категории цветов и унаследованная конфигурация. | [Описание](files/module/item/sheets/WitcherMutagenSheet.js.md) | Проверено |
-| [module/item/sheets/WitcherProfessionSheet.js](../../../module/item/sheets/WitcherProfessionSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherProfessionSheet.js](../../../module/item/sheets/WitcherProfessionSheet.js) | Лист профессии: шаблон, специальная конфигурация и варианты выбора. | [Описание](files/module/item/sheets/WitcherProfessionSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherRaceSheet.js](../../../module/item/sheets/WitcherRaceSheet.js) | Лист расы: основной шаблон и наследование общих действий Item. | [Описание](files/module/item/sheets/WitcherRaceSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherRitualSheet.js](../../../module/item/sheets/WitcherRitualSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/WitcherSkillItemSheet.js](../../../module/item/sheets/WitcherSkillItemSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -202,7 +202,7 @@
 | [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js) | Специализация общей конфигурации с вкладкой SP брони. | [Описание](files/module/item/sheets/configurations/WitcherArmorConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | Базовая конфигурация Item: вкладки, категории и действия над ActiveEffect. | [Описание](files/module/item/sheets/configurations/WitcherConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js) | Редактор флага расходования, лечения и двух массивов статусов. | [Описание](files/module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js.md) | Проверено |
-| [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) | Конфигурация путей профессии, поиск навыков и CRUD воздействий/порогов. | [Описание](files/module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js) | Общая конфигурация урона, защиты, регионов и предметных воздействий. | [Описание](files/module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md) | Проверено |
 | [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherSpellConfigurationSheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/sheets/investigation/WitcherClueSheet.js](../../../module/item/sheets/investigation/WitcherClueSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -603,9 +603,9 @@
 | [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs) | Основная форма брони, щита, сопротивлений и предметных воздействий. | [Описание](files/templates/sheets/item/armor-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs) | Форма категории, субстанции, доступности и описательных полей компонента. | [Описание](files/templates/sheets/item/component-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs) | Общий фрагмент выбора вариантов атаки и соответствующих навыков. | [Описание](files/templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md) | Проверено |
-| [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) | Фрагмент выбора видов атаки и условных флагов профессии. | [Описание](files/templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs.md) | Проверено |
+| [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) | Фрагмент вкладки пути с тремя редакторами навыка. | [Описание](files/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs.md) | Проверено |
+| [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) | Форма механик навыка: атака, защита, использование, HP и пороги. | [Описание](files/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs) | Обёртка вкладки ActiveEffect Item с общим partial списка. | [Описание](files/templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs) | Общая конфигурация исходных SP и максимумов шести частей тела. | [Описание](files/templates/sheets/item/configuration/tabs/armorGeneral.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) | Вкладка расходования: лечение, добавление и снятие статусов. | [Описание](files/templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md) | Проверено |
@@ -624,7 +624,7 @@
 | [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/mutagen-sheet.hbs](../../../templates/sheets/item/mutagen-sheet.hbs) | Основная форма источника, воздействия и малой мутации; общая шапка. | [Описание](files/templates/sheets/item/mutagen-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/note-sheet.hbs](../../../templates/sheets/item/note-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/profession-sheet.hbs](../../../templates/sheets/item/profession-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/profession-sheet.hbs](../../../templates/sheets/item/profession-sheet.hbs) | Основная форма профессии: десять навыков, заметки, пути и базовые навыки. | [Описание](files/templates/sheets/item/profession-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/race-sheet.hbs](../../../templates/sheets/item/race-sheet.hbs) | Форма расы: особенности, источник, пять регионов и доступ к конфигурации. | [Описание](files/templates/sheets/item/race-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/skill-item-sheet.hbs](../../../templates/sheets/item/skill-item-sheet.hbs) | Не установлено | Не подготовлено | Не начат |

@@ -148,3 +148,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [Лист расы](../../../../../../../module/item/sheets/WitcherRaceSheet.js) и [лист родины](../../../../../../../module/item/sheets/WitcherHomelandSheet.js) используют общие _prepareContext и configuration без переопределения. С настоящими моделями контекст race получил 4 записи enrichedText, homeland — undefined через необязательный вызов; оба получили CONFIG.WITCHER, systemFields, data и showConfig. Наследуемый configureItem открыл конфигурацию-фасад по одному разу. Сохранение UI и браузерное слияние параметров окна не выполнялись.
 
 [Перекрёстная сверка](../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Лист профессии](../../../../../../../module/item/sheets/WitcherProfessionSheet.js) наследует основной контекст и заменяет configuration на [специализированную](../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js). Его _prepareContext использует config как общую ссылку и добавляет statOptions; основной HBS получил 47 именованных элементов и 11 enriched HTML. Direct Item CRUD/настройка эффектов у базового листа остаются отдельными от 6 методов правки записей навыка.
+
+[Перекрёстная сверка](../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

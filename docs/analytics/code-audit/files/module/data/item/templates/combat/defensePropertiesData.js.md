@@ -89,3 +89,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003013).
 
 В [module/data/item/weaponData.js](../../../../../../../../../module/data/item/weaponData.js) isApplicableDefense делегирует проверку вложенной модели, а createDefenseOption дополняет её результат одним навыком через цепочку ??. Настоящие модели подтвердили сохранение modifier и defendsAgainst, но skills может содержать пустую строку ([issue-00079](../../../../../../../../issues/potential/issue-00079.md)). [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../../../../../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs) выводит ровно три поля parrying/defendsAgainst/modifier; собственных actions не содержит.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [ProfessionData](../../../../../../../../../module/data/item/professionData.js) проверяет Set.has через isApplicableDefense и расширяет createDefenseOption полями skillOverride/label/value. Реальный метод возвращает первый применимый навык; он передаёт строку attack корректно. При нескольких навыках выбран первый по порядку; при отсутствии — undefined. createDefenseOption Item затем сохраняет label/value навыка, перекрывая имя профессии.
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

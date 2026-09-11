@@ -105,3 +105,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Типы Item.race и Item.homeland объявлены и совпадают с ключами регистрации моделей и листов. Для race указаны htmlFields description и *.description; фактическая [RaceData](../../../../module/data/item/raceData.js) содержит HTMLField общего описания и четыре HTMLField описаний особенностей. [HomelandData](../../../../module/data/item/homelandData.js) задаёт два строковых поля. Эти два типа не расширяют перечень отсутствующих деклараций в [issue-00005](../../../issues/potential/issue-00005.md).
 
 [Перекрёстная сверка](../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Item.profession объявлен с htmlFields notes, definingSkill.definition, *.*.definition. [ProfessionData](../../../../module/data/item/professionData.js) соответствует этим 11 HTML-полям; общее description наследуется StringField. Модель и лист зарегистрированы под тем же типом.
+
+[Перекрёстная сверка](../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

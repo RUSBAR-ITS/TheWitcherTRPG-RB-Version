@@ -185,3 +185,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [WitcherRaceSheet](../../../../../../module/item/sheets/WitcherRaceSheet.js) и [WitcherHomelandSheet](../../../../../../module/item/sheets/WitcherHomelandSheet.js) зарегистрированы по types race/homeland с makeDefault=true. Каждый лист задаёт собственную ширину 600 и main-шаблон; контекст, конфигурация и обработка формы наследуются от WitcherItemSheet. Собственные схемы этих типов согласованы с манифестом.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Default import из [module/item/sheets/WitcherProfessionSheet.js](../../../../../../module/item/sheets/WitcherProfessionSheet.js) локально назван WitcherProfessionSheet; фактическое имя класса в файле WitcheProfessionSheet. Регистрация 72–75 с makeDefault/types profession работает через default export и не зависит от этого написания. Основной лист создаёт специальную [конфигурацию](../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js).
+
+[Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.018 подготовлены и сверены 146 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.019 подготовлены и сверены 158 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -239,3 +239,20 @@
 | module/item/sheets/WitcherHomelandSheet.js | [Лист родины: основной шаблон и наследование общих действий Item.](module/item/sheets/WitcherHomelandSheet.js.md) |
 | templates/sheets/item/race-sheet.hbs | [Форма расы: особенности, источник, пять регионов и доступ к конфигурации.](templates/sheets/item/race-sheet.hbs.md) |
 | templates/sheets/item/homeland-sheet.hbs | [Форма родины: выбор страны, условное название и доступ к конфигурации.](templates/sheets/item/homeland-sheet.hbs.md) |
+
+## Профессия, навыки и конфигурация — TASK-0003.019
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/professionData.js | [Модель профессии: навыки, HTML, список базовых навыков и выбор защиты.](module/data/item/professionData.js.md) |
+| module/data/item/templates/professionPathData.js | [Фабрика пути профессии: название и три навыка.](module/data/item/templates/professionPathData.js.md) |
+| module/data/item/templates/professionSkillData.js | [Фабрика профессионального навыка: базовые поля и четыре вида настроек.](module/data/item/templates/professionSkillData.js.md) |
+| module/data/item/templates/profession/skillUsageData.js | [Модель использования способности и выбора получателя.](module/data/item/templates/profession/skillUsageData.js.md) |
+| module/data/item/templates/profession/temporaryHealthData.js | [Модель порога, формулы и длительности временного здоровья.](module/data/item/templates/profession/temporaryHealthData.js.md) |
+| module/data/item/templates/profession/thresholdData.js | [Модель включения и словаря порогов профессионального навыка.](module/data/item/templates/profession/thresholdData.js.md) |
+| module/item/sheets/WitcherProfessionSheet.js | [Лист профессии: шаблон, специальная конфигурация и варианты выбора.](module/item/sheets/WitcherProfessionSheet.js.md) |
+| module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js | [Конфигурация путей профессии, поиск навыков и CRUD воздействий/порогов.](module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md) |
+| templates/sheets/item/profession-sheet.hbs | [Основная форма профессии: десять навыков, заметки, пути и базовые навыки.](templates/sheets/item/profession-sheet.hbs.md) |
+| templates/sheets/item/configuration/partials/profession/skillPathPart.hbs | [Фрагмент вкладки пути с тремя редакторами навыка.](templates/sheets/item/configuration/partials/profession/skillPathPart.hbs.md) |
+| templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs | [Форма механик навыка: атака, защита, использование, HP и пороги.](templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md) |
+| templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs | [Фрагмент выбора видов атаки и условных флагов профессии.](templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs.md) |

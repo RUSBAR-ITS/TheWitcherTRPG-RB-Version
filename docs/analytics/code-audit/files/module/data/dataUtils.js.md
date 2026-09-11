@@ -117,3 +117,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [RaceData.enrichedText](../../../../../../module/data/item/raceData.js) последовательно вызывает createEnrichedText для perk1–perk4, в том числе с пустым описанием. Возвращаются исходный value, отдельно enriched и реальные поля schema с путями system.perkN.description; source не изменяется. [Форма Item](../../../../../../templates/sheets/item/race-sheet.hbs) передаёт все три части правильно. WitcherCharacterSheet также готовит enrichedText.race, но tab-profession.hbs читает raw description через editor: [issue-00109](../../../../../issues/potential/issue-00109.md).
 
 [Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [ProfessionData.enrichedText](../../../../../../module/data/item/professionData.js) делает 11 последовательных вызовов createEnrichedText для notes и 10 definition. Настоящие поля дали полные system.* пути; source не меняется. [Item-форма](../../../../../../templates/sheets/item/profession-sheet.hbs) передаёт value/enriched правильно, а tab-profession через editor берёт raw тексты. Это расширение [issue-00109](../../../../../issues/potential/issue-00109.md) на профессию в том же шаблоне/механизме.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

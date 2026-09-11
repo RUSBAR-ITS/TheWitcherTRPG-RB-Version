@@ -261,3 +261,9 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 Полностью прочитаны предзагружаемые [repair-dialog](../../../../../../templates/dialog/repair-dialog.hbs) и [repair chat](../../../../../../templates/chat/item/repair.hbs). Первый получает data/components/isRequest/canEditCost и включает [components-list](../../../../../../templates/partials/components-list.hbs); второй — data/isRequest/isOrder/showComponents. Пути preload/render совпадают. Отсутствующий damagedLocations не вызывает ошибки HBS, но не рисует строки. showComponents исключает случай только unknown; это [issue-00107](../../../../../issues/potential/issue-00107.md). Рендер изолированный, настоящего HTTP-клиента не было.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. loadHandlebarTemplates предзагружает [skillPathSkillPart](../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) и [profAttackOptionsPart](../../../../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) строками 58–59. [skillPathPart](../../../../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) загружается как PARTS трёх вкладок и включает первый partial, тот — второй. Helper has147–149 использует Set.has; в рендере профессии проверены пустой и включённые варианты.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

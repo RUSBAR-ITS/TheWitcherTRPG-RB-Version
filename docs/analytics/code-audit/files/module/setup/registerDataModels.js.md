@@ -225,3 +225,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Импорты RaceData и HomelandData разрешаются в [module/data/item/raceData.js](../../../../../../module/data/item/raceData.js) и [module/data/item/homelandData.js](../../../../../../module/data/item/homelandData.js); обе модели зарегистрированы для соответствующих Item-типов. Настоящие модели Foundry 14 в памяти дали 13 и 2 верхнеуровневых поля. RaceData наследует CommonItemData и переопределяет description как HTMLField; HomelandData напрямую наследует TypeDataModel, не получает общую схему предмета.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [ProfessionData](../../../../../../module/data/item/professionData.js) импортирован строкой 15 и включён в Item.profession. Настоящая модель дала 14 верхнеуровневых полей, основной навык и 3 пути по 3 навыка. SkillUsage/TemporaryHealth/Threshold являются вложенными DataModel, отдельных documentTypes для них нет.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

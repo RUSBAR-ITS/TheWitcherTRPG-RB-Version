@@ -92,3 +92,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003013).
 
 Полностью проверен [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../../../../../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs): семь formGroup, три условные секции melee/ranged/spell, отсутствует редактор itemUseAttackSkill ([issue-00061](../../../../../../../../issues/potential/issue-00061.md)). Прямое включение найдено в spellGeneral.hbs; оружие использует отдельную разметку general.hbs. [module/item/sheets/WitcherWeaponSheet.js](../../../../../../../../../module/item/sheets/WitcherWeaponSheet.js) формирует общий context.config.attackSkills из восьми навыков ближнего/дальнего боя, но читатель этого нового списка поиском не найден. Выбор skills в WeaponData.createDefenseOption использует ?? и может остановиться на пустой строке: [issue-00079](../../../../../../../../issues/potential/issue-00079.md).
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Профессиональный partial](../../../../../../../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) выводит attackOptions и условные applyMeleeBonus/applyRangedMeleeBonus/isThrowable. В отличие от формы оружия, он не выбирает базовый навык: professionMixin использует собственный профессиональный stat/level. Реальный has/Set проверен; applyRangedMeleeBonus по-прежнему не читается непосредственным расчётом профессии (issue-00066).
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

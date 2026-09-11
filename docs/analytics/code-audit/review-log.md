@@ -1,5 +1,117 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.019
+
+Дата: 2026-09-10. Ветка rusbar-main, HEAD `c26eb64dd54cc434087f54c3c6b678b6092b15a2`; рабочее дерево на старте чистое, отслеживаются 985 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/professionData.js](../../../module/data/item/professionData.js) | 115 |
+| [module/data/item/templates/professionPathData.js](../../../module/data/item/templates/professionPathData.js) | 12 |
+| [module/data/item/templates/professionSkillData.js](../../../module/data/item/templates/professionSkillData.js) | 21 |
+| [module/data/item/templates/profession/skillUsageData.js](../../../module/data/item/templates/profession/skillUsageData.js) | 23 |
+| [module/data/item/templates/profession/temporaryHealthData.js](../../../module/data/item/templates/profession/temporaryHealthData.js) | 37 |
+| [module/data/item/templates/profession/thresholdData.js](../../../module/data/item/templates/profession/thresholdData.js) | 18 |
+| [module/item/sheets/WitcherProfessionSheet.js](../../../module/item/sheets/WitcherProfessionSheet.js) | 35 |
+| [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) | 212 |
+| [templates/sheets/item/profession-sheet.hbs](../../../templates/sheets/item/profession-sheet.hbs) | 169 |
+| [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) | 5 |
+| [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) | 122 |
+| [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) | 12 |
+
+Всего **12 файлов, 781 логическая строка**. Полностью разобраны ProfessionData (7 методов), две фабрики пути/навыка, три вложенные DataModel, основной лист (1 метод), конфигурация (11 методов) и 4 HBS. Сверены 13 прямых относительных импортов, регистрация, контекст, поля и все собственные действия. Подготовлены 12 новых карточек; уточнены 18 связанных.
+
+Внешние Actor-потребители (professionMixin, defenseMixin, itemMixin, _prepareCharacterData и tab-profession), примесь Item-защиты, редактор/диспетчер ядра, CSS и локализация прочитаны в пределах проверяемых связей. Их полный аудит не заявлен и статус не повышен. Компедиумы и игровые данные не менялись.
+
+### Методика и подмены
+
+JavaScript выполнен через Node stdin, без файлов стенда. Настоящие DataModel/TypeDataModel/fields/common BaseItem Foundry и системные модели/фабрики загружены по registerDataModels. Настоящий WitcherItem работал поверх common BaseItem, не client Item. Источник контрольного документа сравнен до/после через toObject.
+
+Настоящие ItemSheetV2/HandlebarsApplicationMixin/DragDrop исполнены поверх DocumentSheet-фасада; специализированные классы системы импортированы без правок. _prepareTabs/_getTabsConfig взяты из ядра Application. _onChangeForm родительского фасада только фиксирует coreSubmit: обработка реального FormData/сохранение не моделируется. Полное слияние опций/жизненный цикл окон и клиентские права не проверялись.
+
+Handlebars 4.7.9/parse5, formInput/formGroup/selectOptions/prepareSelectOptionGroups и системный has настоящие. HTMLField.toInput и 11 входов редактора реально вызваны; ProseMirror.create заменён HTML-регистратором. Для formGroup конфигурации/SetField использованы фасады реальных DataField с фиксацией path,label,value,options: это проверка связывания/условий, не реализация виджетов Foundry. Для Actor-editor вызваны настоящие editor/createEditorInput и минимальный DOM; TextEditor.enrichHTML возвращал отличимый маркер. Реальные UUID не разрешались.
+
+Выполнены настоящие выбранные методы professionMixin/itemMixin/defenseMixin и модельные методы защиты. Actor/коллекции/цели/запись представлены фасадами. Dialog возвращал контролируемый выбор или пустую строку. doProfessionSkillRoll в проверках использования заменён заданным rollOver; настоящий метод отдельно вызван для отсутствующего stat. Roll временных HP сохранял формулу и возвращал total7, без случайных кубиков. ActiveEffect сохранял переданный payload; query/toMessage фиксировались, без сети/БД. Это не проверка реального получения/расхода временных HP.
+
+Шесть update-проверок возвращали pending Promise, чтобы отделить завершение метода от записи; Promise затем разрешены. Диспетчер #onClickAction ядра выполнен как извлечённое тело с переименованием приватного метода для вызова, остальное тело сохранено; событие/элемент подменены. Это не click в браузере.
+
+### Выполненные сценарии
+
+| Группа | Фактический результат |
+| --- | --- |
+| 1. Схема/значения | 14 верхних полей ProfessionData;4 поля пути;8 полей навыка;10 независимых слотов. Начальные строки/level0 и вложенные defaults сверены. Произвольный stat и level=-2 приняты; у HP.stat blank запрещён. ProfessionSkills в памяти Set устраняет дубликаты, toObject сохраняет входной массив. |
+| 2. Обогащение/основная форма | 11 реальных createEnrichedText для 10 definition и notes; source сохранён. Основной HBS дал 47 именованных элементов и 11 HTML-входов с нужными fieldPath/value/enriched. |
+| 3. Обычные навыки/Drop | 52 UI-ключа найдены в схеме character. На фасаде Actor _onDropItem сначала сбросил флаги, затем передал awareness=true и неизвестный system.skills.undefined.missing.isProfession=true; remove/add profession зафиксированы. |
+| 4. Листы/вкладки | Фактическое имя класса WitcheProfessionSheet; специальная конфигурация;9 statOptions записаны в общий CONFIG.WITCHER. Пять вкладок, названия путей берутся как есть, включая пустые. General не вывел полей;4 категории ActiveEffect доступны. |
+| 5. Ветви конфигурации | Путь 1 с 2 полными навыками и 1 пустым дал 74 formGroup; пустые пути 2/3 —по 12. Четыре главных флага у выключенного навыка,35 полей у полного. DefiningSkill не появился ни в одной части конфигурации. Проверены raw row id/target/field. |
+| 6. CRUD/pending | Шесть методов дали expected system.skillPath1.skill1 пути: add effects percentage0;edit on→false;delete -=fx;add threshold value0;edit value строка 9;delete -=th. Все завершились до разрешения update; это не доказанная потеря записей. |
+| 7. Change-handler | _onChangeForm сначала вызвал coreSubmit-фасад, затем спецupdate thresholds.th.value='12'. Реальная обработка FormData не исполнялась. |
+| 8. Удаление по click | Действие removeEffectDamageProperties отсутствует в actions (есть removeEffect); core dispatcher отправил его в fallback, update0. Прямой remove с currentTarget приложения дал TypeError dataset; контроль с currentTarget строки дал правильный payload. |
+| 9. Идентификация навыка | Два Dup в путях и Dup в definingSkill: конфигурация выбрала path1.skill1, Actor — definingSkill. Пустое имя выбрало первый пустой слот; неизвестное→undefined, addThreshold→TypeError path. Defining-only Main не найден конфигурацией. |
+| 10. Защита | Guard/ref/level2/defendsAgainst melee/modifier3/isDefense=false дал true и полноценный option; он сохранён через WitcherItem и Actor до вызова skillDefense. Из двух защит выбран первый Guard; отсутствие даёт undefined, defining-only не подходит. Attack передаётся корректно. |
+| 11. Маршрут использования | Реальный _onProfessionRoll выбрал attack→custom usage→threshold→обычный roll согласно флагам; выбранные операции были регистраторами, полный бой не запускался. |
+| 12. Пустая характеристика | Actor-HBS свежей профессии дал 10 кнопок profession-roll, поскольку stat='' отличается от none. Настоящий doProfessionSkillRoll прочитал stats[''].value и бросил TypeError до кубика. |
+| 13. Пороги | Пустой словарь дал пустой select и TypeError value после выбора ''. Один Easy5 передан без prompt; два — выбор b передал B8. |
+| 14. Получатель | [applySelf,applyOnTarget] false/false,true/false,false/true,true/true дали caster,caster,target,target и DC24/24/12/12. Нет цели при applyOnTarget=true→noTarget, ранний возврат. |
+| 15. Временные HP | rollOver0 не создал эффекта;3→3d6,9 при cap5→5d6. Принудительный total7 вошёл в JSON name/value; level2 с default duration→4 раунда. Создан один ADD-change и query на applyActiveEffectToActor. |
+| 16. Длительность | level3:2*@level→6;10→10;строки 2 и 2+@level→TypeError чтения match[0] у null. Это парсинг текущего кода, не сверка игровых правил. |
+| 17. JSON/модель результата | Aid дал JSON{name:Aid,value:7}, принятый настоящей TemporaryEffects. Имя Aid с двойными кавычками создало невалидную JSON-строку; JSON.parse→SyntaxError. Применение/расход эффекта в клиенте не проверялись. |
+| 18. Actor-описания | Реальный _prepareCharacterData подготовил 11 HTML профессии;11 editor в исходном tab-profession использовали raw, маркер потерян, @UUID осталась. То же место/helper дополняет issue-00109. |
+| 19. Локализация | 157 ключей из порции, схем и вариантов. В en отсутствуют 2 прежних skillMap label;в ru —те же 2 и 3 thresholds. Все 52 значения professionSkills сопоставлены с ключами навыков character. |
+
+Все 19 групп завершены. Первое предположение о потере attack было опровергнуто исполнением настоящей модели и повторным чтением строки 106: createDefenseOption передаёт аргумент. Это ошибка первоначального прочтения, не проблема системы; прежняя issue-00071 описывает верный результат. Недостающий logCompatibilityWarning добавлен только в фасад окружения; первая выдача большого JSON была усечена инструментом, повторная выдача сохранена полностью. Код системы и журнал прежних проверок из-за этих ошибок не менялись.
+
+### Перекрёстная сверка связей
+
+| Цепочка | Сопоставление |
+| --- | --- |
+| Регистрация → модель → формы | system.json Item.profession → registerDataModels → ProfessionData → WitcheProfessionSheet и специальная конфигурация. Восемь общих полей+шесть новых;11 HTML-путей совпадают с декларацией. |
+| Модель навыка → разные потребители | definingSkill и 9 слотов имеют одну professionSkill-схему. Основная форма редактирует все 10; конфигурация и модельный выбор защиты только 9 путей; Actor.findSkillWithName сначала definingSkill. |
+| DataField → formGroup → CRUD | Полные path именованных полей получаются из схемы. Ручные effects/threshold rows передают ID записи и skillName. Поиск по имени, actions и ожидание update проверены независимо от рендера. |
+| Профессиональный список → Actor | professionSkills — Set обычных навыков из 52 вариантов; Drop меняет isProfession, не уровень. Сначала сброс, затем установка выбранных флагов; неизвестный ключ не защищён. Это не десятка собственных профессиональных навыков. |
+| Защита → Item → Actor | defendsAgainst.has(attack) → первый path/slot → option с modifier/skillOverride → defenseOptionMixin → prepareAndExecuteDefense → skillDefense. isDefense и definingSkill пропущены в прежних границах; аргументы не теряются. |
+| Атака → оружие/собственный бросок | isAttack имеет приоритет. usesWeapon → выбор оружия и additionalDamageProperties; иначе stat/level/formula и первый attackOptions. applyRangedMeleeBonus не читается; merge effects остаётся прежней issue-00069, повторный числовой бой не выполнялся. |
+| Использование → временные HP | hasCustomEffect → выбор цели по applyOnTarget → target.stat.max×multiplier → профессиональный rollOver → capped formula и duration → отдельный ActiveEffect → owner.query. Это не вызов эффектов Item по applySelf. |
+| Временные HP → общая модель/расход | Payload name/value соответствует TemporaryEffects. Производитель имеет один change; прежняя issue-00023 относится к расходу всех changes выбранного эффекта. Полный pipeline клиента в этой порции не исполнялся. |
+| Порог → выбор → бросок | TypedObjectField thresholds → ID/name/value таблицы → Object.entries/одно значение либо prompt → threshold/thresholdDesc для doProfessionSkillRoll. Пустой список и неверный ID не защищены. |
+| Текст → enriched → редактор | 11 createEnrichedText → Item.formInput корректно; Actor.enrichedText.profession приготовлен, но тот же tab-profession.editor использует raw. Сохранение редактора не проверено. |
+| Шаблоны → helpers/локализация/CSS | Два partial предзагружены, skillPathPart является PARTS; has использует Set.has.157 ключей проверены. CSS-селекторы profession/card/input/editor связаны с разметкой, визуальное отображение не проверялось. |
+
+### Проблемы и пределы выводов
+
+Добавлены 11 отдельных [potential issues](../../issues/README.md): issue-00110 — адресация одноимённых навыков;00111 — удаление воздействия;00112 — отсутствие настроек definingSkill;00113 — applySelf не участвует в выборе цели;00114 — разбор duration;00115 — пустой порог;00116 — неизвестный professionSkills при Drop;00117 — кавычка в JSON HP;00118 — бросок пустого stat;00119 — три русские подписи;00120 — завершение 6 CRUD до записи.
+
+Дополнены 9 прежних карточек: issue-00016/00023/00034/00060/00066/00069/00071/00072/00109. Для последних HTML-потребителей issue-00109 расширена на профессию в том же шаблоне, без дубля. Прежние сценарии, которые не выполнялись повторно, явно отделены от новых проверок связей.
+
+Пустые названия вкладок, фиксированные 3 пути и 10 навыков, отсутствие min/max уровней, наличие полей схемы без представления в этом partial и выбор первого защитного навыка описаны как факты. Игровая необходимость их изменения не установлена. Не спроектированы новые правила или профессии; найденные проблемы не подтверждены пользователем и не исправлены.
+
+### Структурная проверка и сохранность
+
+Python через stdin сопоставил Git, фактическое дерево, реестр и Markdown. Результаты:
+
+| Проверка | Результат |
+| --- | --- |
+| Реестр и карточки | 621 уникальный исходник; 158 карточек «Проверено», 463 строки «Не начат» |
+| Новая порция | Ровно 12 файлов TASK-0003.019, 781 логическая строка; 11 обязательных разделов, определения полей/методов и версия присутствуют |
+| Импорты | 240 прямых относительных импортов всех описанных JS разрешены и представлены в карточках; 13 относятся к новой порции |
+| Markdown | 330 документов, 6816 локальных ссылок; цели/якоря существуют, таблицы согласованы, завершающих пробелов нет |
+| Задачи | .001–.019 done; .020 planned, её 10 файлов ещё «Не начат»; TASK-0003 in-progress |
+| Проблемы | 120 последовательных ID, все в potential; 11 новых карточек имеют обязательные разделы и текущий коммит |
+| Состав изменений | 61 документ: 12 новых и 18 уточнённых карточек файлов, 11 новых и 9 дополненных issues, 11 указателей/задач/журналов |
+| Исходники | Все 621 файл побайтно совпадают с HEAD и TASK-0001; SHA256 сводного снимка 9de49bf9b75194490fcfd7bfc80e2b1c8bcd9d90dd26f3603faf21d92b3d0e1e |
+| Метаданные доступа | Для 985 отслеживаемых файлов сохранены mode, uid, gid и inode; SHA256 снимка b20166e770b42b9bd0ee330d4a9af608b4978c8d19387e6f33906a1e0c18b9f8 |
+| История и diff | Журнал начиная с TASK-0003.018 сохранён побайтно; git diff --check прошёл; HEAD/ветка не менялись |
+
+Хеш всего журнала на старте: 28548b1ae99abbd93f49e8a29b7f9c78f948b4d9a2e577bc6ce02d22e84ffff4. Строки текущих итогов и затронутые указатели прочитаны после обновления; исторические результаты прежних порций сохранены. Структурные проверки дополняют содержательную сверку выше и не доказывают работу системы в клиенте.
+
+### Результат и ограничения
+
+[TASK-0003.019](../../tasks/task-0003.019.md) завершена в согласованном объёме: **158 из 621 файла** проверены, **463** не разобраны. Во второй серии разобраны **86 из 96**, в очереди 10 файлов [TASK-0003.020](../../tasks/task-0003.020.md) (planned);453 требуют дальнейшей детализации.
+
+Изменена только документация. Исходники, права/владельцы/группы существующих файлов, миры, сервис и БД сохранены; браузер и клиентский игровой процесс не запускались. Коммит не создавался.
+
 ## TASK-0003.018
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`; рабочее дерево на старте чистое, отслеживаются 976 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

@@ -80,3 +80,9 @@ Default export skillAttack() вызывается внутри professionSkill()
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.012 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [professionSkill](../../../../../../../../../module/data/item/templates/professionSkillData.js) включает skillAttack для definingSkill и 9 навыков путей. [Редактор](../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) показывает вложенные свойства при isAttack, а professionMixin выбирает attack раньше custom usage и thresholds. usesWeapon делегирует weaponAttack с additionalDamageProperties, иначе используется собственный stat/level и damageFormulaOverride; первый attackOptions выбирает вариант. Чтение цепочки не означает полного аудита боя.
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

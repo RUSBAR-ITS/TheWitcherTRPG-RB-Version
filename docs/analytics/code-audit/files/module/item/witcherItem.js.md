@@ -227,3 +227,9 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. [RaceData](../../../../../../module/data/item/raceData.js) и [HomelandData](../../../../../../module/data/item/homelandData.js) отвечают за system; имя, изображение и коллекция effects принадлежат Item. Изолированные экземпляры настоящего WitcherItem поверх common BaseItem подтвердили обе модели и их формы; client Item/мир не запускались. Тексты perk не создают effects/changes. Конфигурация обоих типов использует общий ActiveEffect CRUD, а перенос на Actor определяется transfer в отдельном Actor.allApplicableEffects ядра.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Для [ProfessionData](../../../../../../module/data/item/professionData.js) inherited defenseOptionMixin.createDefenseOption получает объект attack, передаёт attack.attackOption и расширяет результат. Guard из навыка перекрывает label/value имени Item; modifier3 и skillOverride ref/2 сохранены в проверке. Отдельный Item.effects и вложенные skillAttack.damageProperties.effects — разные данные. Экземпляры WitcherItem в проверке построены поверх common BaseItem, не client Item.
+
+[Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

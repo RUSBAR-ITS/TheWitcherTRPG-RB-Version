@@ -439,3 +439,9 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Для [формы родины](../../../../../../templates/sheets/item/homeland-sheet.hbs) homelands содержит 26 вариантов, включая other. Для [формы расы](../../../../../../templates/sheets/item/race-sheet.hbs) socialStanding содержит 6 вариантов. Все 32 ключа этих вариантов и 7 буквальных ключей порции найдены в en/ru. Это варианты UI: StringField в моделях не задают choices, и произвольные значения приняты настоящими моделями. Регион socialStanding.dolBlathanna и код родины dolblathanna имеют разный регистр; преобразователь между ними не найден.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Лист профессии](../../../../../../module/item/sheets/WitcherProfessionSheet.js) готовит 52 варианта professionSkills из skillMap.name/label; все 52 ключа найдены в схеме character. statTypes содержит none и 9 характеристик; statOptions из 9 элементов создаётся листом в общем CONFIG.WITCHER. Среди 157 проверенных ключей два label навыков отсутствуют в en/ru (issue-00016); дополнительно 3 thresholds отсутствуют в ru (issue-00119).
+
+[Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

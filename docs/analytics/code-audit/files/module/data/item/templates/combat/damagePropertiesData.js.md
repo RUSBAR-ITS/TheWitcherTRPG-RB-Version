@@ -131,3 +131,9 @@ addEffects изменяет модель в памяти: toObject() остаё�
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003014).
 
 Полностью описана фабрика [module/data/item/templates/itemEffectData.js](../../../../../../../../../module/data/item/templates/itemEffectData.js): четыре поля, ID во внешнем словаре, процент ограничивается 0–100 при очистке записи. [module/data/item/enhancementData.js](../../../../../../../../../module/data/item/enhancementData.js) поставляет словарь effects; getPreprocessedEffects группирует его записи и может складывать проценты уже после очистки. Текущая [module/data/item/armorData.js](../../../../../../../../../module/data/item/armorData.js) имеет отдельные effectsWithEnhancements/enhancementsEffects; это не методы DamageProperties и не документы ActiveEffect.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Форма профессионального навыка](../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) редактирует 14 скалярных свойств (cap условно) и записи effects.name/statusEffect/percentage. [Конфигурация](../../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) использует полный путь system.skillPathN.skillM.skillAttack.damageProperties.effects.<id>; это TypedObjectField, не ActiveEffect. Кнопка удаления имеет issue-00111; редактирование on относится к issue-00060. Слияние с оружием остаётся прежней issue-00069, в этой порции оно прочитано по цепочке и не воспроизводилось заново.
+
+[Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

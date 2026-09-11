@@ -109,3 +109,9 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Для [race](../../../../../../../../module/data/item/raceData.js) и [homeland](../../../../../../../../module/data/item/homelandData.js) общий шаблон general не вывел именованных полей, поскольку в схемах нет attack/damage/defense. При этом конфигурация содержит четыре категории ActiveEffect. Прямой вызов настоящего onManageActiveEffect для passive обеих моделей передал запрос createEmbeddedDocuments с name/icon/origin/duration/disabled; явные transfer и changes в этом payload отсутствуют. Запросы перехвачены, документы в БД не создавались. Доступность редактора эффекта не означает наличия настроенного воздействия.
 
 [Перекрёстная сверка](../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Конфигурация профессии](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) сохраняет 4 общих PARTS, добавляет 3 пути и использует 5 вкладок. Общий general пуст для схемы профессии; activeEffects содержит 4 категории и общие actions. Основной навык не добавлен в части (issue-00112). Собственные actions записей effects/thresholds не являются ActiveEffect CRUD.
+
+[Перекрёстная сверка](../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.

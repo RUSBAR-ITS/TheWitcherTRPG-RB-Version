@@ -89,3 +89,9 @@ Default export function itemEffect() каждый раз возвращает н
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003015).
 
 Проверен полный потребитель [module/data/item/templates/consumePropertiesData.js](../../../../../../../../module/data/item/templates/consumePropertiesData.js): effects/removesEffects — ArrayField(SchemaField(itemEffect())), а не словари, использованные бронёй/улучшением/DamageProperties. Общая запись не содержит id; очистка удаляет переданный id. [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js) требует obj.id, а [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs) выводит пустой data-id; это [issue-00091](../../../../../../../issues/potential/issue-00091.md). percentage/varEffect входят в схему, но consume→Actor.applyStatus/removeStatus их не читает. Этот факт не задаёт игровых правил вероятности.
+
+## Уточнение TASK-0003.019
+
+2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Профессиональная конфигурация](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) добавляет effects.<id> с percentage0, редактирует name/statusEffect/percentage и удаляет ключ через -=. [Таблица](../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) использует data-id и data-target=skillName; varEffect не показан. Текст on передаётся как checked=false (дополнение issue-00060); ActiveEffect при этих действиях не создаётся.
+
+[Перекрёстная сверка](../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
