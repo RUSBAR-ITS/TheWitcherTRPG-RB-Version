@@ -32,7 +32,7 @@
 | Функция или метод | Входы и предусловия | Результат | Основные действия | Ошибки, асинхронность и изменения состояния |
 | --- | --- | --- | --- | --- |
 | isSuppressed; 4–16 | Родитель с system; системные флаги | Boolean | true при parent.system.isActive=false, equipped=false или любом из applySelf/applyOnTarget/applyOnHit/applyOnDamage=true | Синхронно; parent без проверки. Не вызывает super.isSuppressed |
-| isDisabled; 18–20 | disabled, необязательный parent.system.equipped | Boolean | disabled либо отсутствие equipped при значении по умолчанию true | Геттер для интерфейсной категоризации; не заменяет core active |
+| isDisabled; 18–20 | disabled, необязательный parent.system.equipped | Boolean | disabled либо !(parent?.system?.equipped ?? true); отсутствующее equipped само по себе не отключает эффект | Геттер для интерфейсной категоризации; не заменяет core active |
 | isAppliedTemporaryItemImprovement; 26–28 | system.isTransferred | Значение поля | Возвращает признак уже переданного улучшения | Не проверяет type и корневой transfer |
 | isTemporaryItemImprovement; 30–32 | type | Boolean | Сравнивает с temporaryItemImprovement | Не проверяет disabled, transfer или isTransferred |
 | _preCreate; 39–71 | data, options, user; super._preCreate | false при запрете родителя, иначе undefined | При Actor-родителе или isTransferred и уже существующем start.combat.started уточняет combatant/длительность; затем последовательно выбирает навыки для ключей с @skill | await super и chooseSkill; updateSource меняет источник до сохранения; отмена выбора отклоняет Promise |
@@ -132,3 +132,7 @@
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. isAppliedTemporaryItemImprovement возвращает system.isTransferred без проверки transfer; prepareActiveEffectCategories общих V2/V1 читает isDisabled, isTemporaryItemImprovement и isTemporary. Сочетание transfer=true/isTransferred=true позволяет включить один Item effect через два потока контекста (issue-00165). isSuppressed не участвует в этом дополнительном отборе, но влияет на отдельный pipeline применения; отображение и действие не смешиваются.
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Общая промежуточная сверка № 1
+
+2026-09-11: уточнено описание isDisabled по исходному условию и E01. При отсутствующем equipped результат false (если disabled=false); при equipped=false — true. Подавление через applySelf отдельно даёт isSuppressed=true при isDisabled=false. Это разные проверки, используемые исполнением и интерфейсной категоризацией. [Общий протокол](../../../cross-check-0001.md).

@@ -13,7 +13,7 @@
 
 ## Назначение файла
 
-Примесь листов Actor для спасброска характеристики, двух бросков репутации, суммы исходных максимумов и ручных действий с удачей/адреналином.
+Примесь листов Actor для спасброска характеристики, двух бросков репутации, суммы подготовленных максимумов (max) и ручных действий с удачей/адреналином.
 
 ## Условия использования
 
@@ -104,3 +104,7 @@
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. MonsterSheet не вычисляет calc_total_stats: при девяти max8 функция дала бы 72, но полный контекст totalStats отсутствует. Текущий sidebar не имеет luck/adrenaline, старый monster-sheet содержит stat-roll по each stats. Пустая сумма остаётся issue-00199.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../WitcherMonsterSheet.js.md); [templates/sheets/actor/partials/monster/sidebar.hbs](../../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).
+
+## Общая сверка 2026-09-11
+
+Уточнено назначение: calc_total_stats суммирует max, а не unmodifiedMax. K04 повторно проверил различие на разных входных значениях; реализация не менялась. [Протокол общей сверки](../../../../../cross-check-0001.md).
