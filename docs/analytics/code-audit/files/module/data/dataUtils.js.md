@@ -123,3 +123,15 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [ProfessionData.enrichedText](../../../../../../module/data/item/professionData.js) делает 11 последовательных вызовов createEnrichedText для notes и 10 definition. Настоящие поля дали полные system.* пути; source не меняется. [Item-форма](../../../../../../templates/sheets/item/profession-sheet.hbs) передаёт value/enriched правильно, а tab-profession через editor берёт raw тексты. Это расширение [issue-00109](../../../../../issues/potential/issue-00109.md) на профессию в том же шаблоне/механизме.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| CriticalWoundData.enrichedText | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Прямой import и await createEnrichedText(this,description,'description'). Настоящая модель дала system.description; TextEditor-фасад возвращал маркер. |
+| description formInput | [templates/sheets/item/criticalWound-sheet.hbs](../../../../../../templates/sheets/item/criticalWound-sheet.hbs) | Поля helper value/enriched/systemField передаются согласованно; браузерный HTML-редактор не проверялся. |
+| Actor._prepareItems | [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) | enrichedText травмы собирается в context.criticalWounds[uuid], затем родитель вкладки выводит description.enriched. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

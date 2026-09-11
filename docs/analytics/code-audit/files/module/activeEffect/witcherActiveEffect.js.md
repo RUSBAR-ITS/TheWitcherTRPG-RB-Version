@@ -116,3 +116,13 @@
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. isSuppressed не содержит отдельной ветви для [race](../../../../../../module/data/item/raceData.js) или [homeland](../../../../../../module/data/item/homelandData.js). Настоящий getter на фасадах родителей обоих типов вернул false без запрещающих полей/флагов и true при applySelf=true. Внешний core Actor.allApplicableEffects собирает Actor.effects и Item.effects с transfer без ограничения по этим типам; actual generator проверен в памяти. active/shouldApplyChange/фазы и числовое применение отдельно прочитаны, но весь pipeline здесь не запускался. Текст особенности расы сам эффектов не порождает.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| CriticalWoundData / Item.effects | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Модель не генерирует changes из treatment/lesserEffect. Обычные transfer-эффекты принадлежащих Item перечисляет Foundry Actor.allApplicableEffects; лечение заменяет сами Item. isSuppressed проверяет имеющиеся флаги system, отсутствие equipped само по себе не подавляет обычный эффект травмы. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

@@ -154,3 +154,14 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Лист профессии](../../../../../../../module/item/sheets/WitcherProfessionSheet.js) наследует основной контекст и заменяет configuration на [специализированную](../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js). Его _prepareContext использует config как общую ссылку и добавляет statOptions; основной HBS получил 47 именованных элементов и 11 enriched HTML. Direct Item CRUD/настройка эффектов у базового листа остаются отдельными от 6 методов правки записей навыка.
 
 [Перекрёстная сверка](../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| WitcherCriticalWoundSheet | [module/item/sheets/WitcherCriticalWoundSheet.js](../../../../../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Реализован собственный _onDropItem: сохраняет UUID в followUp без ожидания update. Этот наследник имеет Item-обработчик, в отличие от незаданных маршрутов базового класса. |
+| criticalWound-sheet.hbs | [templates/sheets/item/criticalWound-sheet.hbs](../../../../../../../templates/sheets/item/criticalWound-sheet.hbs) | Наследуемый контекст обеспечивает document/config/systemFields/enrichedText/showConfig. Шестерёнка открывает общую конфигурацию. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

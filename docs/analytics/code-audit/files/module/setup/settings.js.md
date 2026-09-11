@@ -125,3 +125,14 @@
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 Повторно исполнен настоящий registerSettings с настоящим ClientSettings Foundry 14.367 и storage/Setting-фасадами: зарегистрированы 9 прежних ключей, displayRollsDetails по умолчанию false. [RepairSystem](../../../../../../module/item/systems/repair.js) обращается к отсутствующей woundsAffectSkillBase; реальный get выбросил ошибку неизвестной настройки. Это [issue-00103](../../../../../issues/potential/issue-00103.md), а не молчаливое значение false. Проверка дополнительной регистрации внешними модулями не выполнялась.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| criticalWoundsPack | [module/actor/mixins/damageMixin.js](../../../../../../module/actor/mixins/damageMixin.js) | applyCritWound:314–339 читает выбранный pack, фильтрует treatment=none/location/criticalLevel и выбирает lesserEffect. Это внешний потребитель модели травмы, не функция лечения. |
+| CriticalWoundData.followUp | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | Ссылка следующего Item разрешается напрямую через fromUuid; настройка pack не переназначает её. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

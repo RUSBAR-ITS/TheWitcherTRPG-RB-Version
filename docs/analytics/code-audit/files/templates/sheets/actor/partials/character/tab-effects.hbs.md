@@ -80,3 +80,15 @@ PARTS.effects в WitcherCharacterSheet и WitcherMonsterSheet используе
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.010 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| crit-wounds-table.hbs | [templates/partials/crit-wounds-table.hbs](../../../../../../../../../templates/partials/crit-wounds-table.hbs) | Исходный HBS повторно отрендерен: одна травма дала 2 строки data-item-id и 2 treat-кнопки. Это повторный вывод, не создание документов (issue-00054). |
+| criticalWoundMixin | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../../../../../module/actor/sheets/mixins/criticalWoundMixin.js) | add-crit создаёт Item, treat вызывает system.treat по UUID; не устанавливает treatment=treated. |
+| Inline daysHealed | [module/actor/sheets/mixins/itemMixin.js](../../../../../../../../../module/actor/sheets/mixins/itemMixin.js) | Передаётся строка; NumberField модели очищает её числом. В текущем _onTreat нет чтения inline-счётчика напрямую. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

@@ -1,5 +1,112 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.020
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `b09f992960a76d1c75946f402e42d93fa0785008`; рабочее дерево на старте чистое, отслеживаются 1008 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.
+
+### Полный охват порции
+
+| Файл | Логических строк |
+| --- | --- |
+| [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js) | 107 |
+| [module/item/sheets/WitcherCriticalWoundSheet.js](../../../module/item/sheets/WitcherCriticalWoundSheet.js) | 22 |
+| [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | 32 |
+| [module/actor/mixins/healMixin.js](../../../module/actor/mixins/healMixin.js) | 25 |
+| [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | 123 |
+| [templates/sheets/item/criticalWound-sheet.hbs](../../../templates/sheets/item/criticalWound-sheet.hbs) | 36 |
+| [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | 40 |
+| [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | 17 |
+| [templates/chat/heal/resting-status.hbs](../../../templates/chat/heal/resting-status.hbs) | 23 |
+| [templates/chat/combat/heal.hbs](../../../templates/chat/combat/heal.hbs) | 3 |
+
+Полностью прочитаны 10 файлов, 428 логических строк: 5 JS и 5 HBS. Подготовлены 10 карточек; уточнены 18 ранее разобранных: [system.json](files/system.json.md), [module/setup/registerDataModels.js](files/module/setup/registerDataModels.js.md), [module/setup/registerSheets.js](files/module/setup/registerSheets.js.md), [module/setup/settings.js](files/module/setup/settings.js.md), [module/TheWitcherTRPG.js](files/module/TheWitcherTRPG.js.md), [module/setup/config.js](files/module/setup/config.js.md), [module/setup/handlebars.js](files/module/setup/handlebars.js.md), [module/data/dataUtils.js](files/module/data/dataUtils.js.md), [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md), [module/item/witcherItem.js](files/module/item/witcherItem.js.md), [module/item/sheets/WitcherItemSheet.js](files/module/item/sheets/WitcherItemSheet.js.md), [module/item/sheets/configurations/WitcherConfigurationSheet.js](files/module/item/sheets/configurations/WitcherConfigurationSheet.js.md), [templates/sheets/actor/partials/character/tab-effects.hbs](files/templates/sheets/actor/partials/character/tab-effects.hbs.md), [module/data/actor/templates/common/stats/derivedStatsData.js](files/module/data/actor/templates/common/stats/derivedStatsData.js.md), [module/data/actor/templates/common/stats/statsData.js](files/module/data/actor/templates/common/stats/statsData.js.md), [module/data/actor/templates/common/combatEffectsData.js](files/module/data/actor/templates/common/combatEffectsData.js.md), [module/item/mixins/consumeMixin.js](files/module/item/mixins/consumeMixin.js.md), [module/activeEffect/witcherActiveEffect.js](files/module/activeEffect/witcherActiveEffect.js.md). Соседние Actor-листы, itemMixin, damageMixin и generalCombatHook прочитаны только в пределах связей и не получили полного статуса.
+
+### Методика и выполненные сценарии
+
+Исполнены исходные CriticalWoundData, обе healMixin, criticalWoundMixin, дочерний WitcherCriticalWoundSheet, createEnrichedText и выделенный _onItemInlineEdit. Модель использовала настоящие TypeDataModel/DataModel/fields Foundry; родители — минимальные DataModel-фасады, не client Actor/Item. Конкретные методы вызваны из исходников, их тела не заменялись переписанной реализацией.
+
+Команда — `node --input-type=module` с программой через stdin. Записи Item/Actor и чата, UUID-поиск, DialogV2, DOM/querySelector/addEventListener и базовый класс листа представлены регистраторами/управляемыми Promise. TextEditor возвращал отличимый HTML-маркер. Roll был фасадом с заданным total=6; случайные кубики/парсер не проверялись. Handlebars 4.7.9 и parse5 настоящие; formInput/formGroup регистрировали аргументы поля, не создавали реальные виджеты. Для speaker из /opt/foundryvtt/client/documents/chat-message.mjs исполнены getSpeaker и три private helper над фасадами Actor/canvas/user. Common Document.createEmbeddedDocuments, ClientDatabaseBackend и DataModel.cleanData прочитаны для контракта создания; полноценные DB-операции не запускались.
+
+| Группа | Способ | Фактический результат |
+| --- | --- | --- |
+| 1. Схема/сроки | Настоящая CriticalWoundData и классы Foundry | 9 полей; BODY 5→simple3/complex7/difficult10; BODY 20→минимум1. deadly/unknown сохраняют 99; Item без Actor остаётся на исходном0. Source healingTime при расчёте не переписан. |
+| 2. Валидация | Настоящие поля модели | daysHealed='2.5'→2.5; healingTime=−1 и произвольные criticalLevel/treatment/location принимаются. Это факты схемы без решения о допустимых игровых границах. |
+| 3. Обогащение | Настоящий createEnrichedText, TextEditor-маркер | description получает value/enriched/systemField с fieldPath=system.description; source не записывается. |
+| 4. Ветки heal | Настоящий heal, операции Item перехвачены | none/stabilized с 0 днями →update({}); treated +1 и ещё +2 при новой стерилизации; достигнутый срок→delete. none с днями3/сроком3 тоже→delete. deadly не удаляется. |
+| 5. Стерилизация | Два heal; между ними применены флаг/счётчик через updateSource, reset и prepareDerivedData | BODY 1/simple: первый день3, после фиксации sterilized второй день4. Второй update содержит только daysHealed=4; флаг не даёт ещё +2. |
+| 6. Item без Actor | Настоящий prepareDerivedData/heal | Начальная none-травма с 0/0 дала delete. Это прямой вызов модели; кнопка такого heal у standalone Item не найдена. |
+| 7. Переход/pending | Настоящий treat, UUID-фасад и отложенные create/delete | Запрошены create затем delete, но treat уже завершён при обоих pending. Поля/effects followUp переданы как часть найденного Item; ручного копирования прежних дней нет. |
+| 8. Недоступная ссылка | fromUuid→null, создание возвращает контролируемый rejected Promise | create('Item',[null]) и delete уже вызваны. Ошибка создания не удерживает удаление; реальная БД не запускалась. |
+| 9. Ошибка разрешения | fromUuid отклоняет Promise | treat завершился ошибкой до create/delete. Этот случай отличается от ошибки создания после разрешения. |
+| 10. Переход без Actor | Standalone Item с непустым followUp | После resolve TypeError на createEmbeddedDocuments; delete не вызван. |
+| 11. Заживление/pending | heal при незавершённом update | Метод вернулся; дни в подготовленной модели1, source0. Исходный update не ожидается. |
+| 12. Лист травмы | Исходный дочерний класс, superclass/Item — фасады | Размер600×620, один PARTS.main; Drop weapon сохранил его UUID как followUp, вернулся до update. |
+| 13. Слушатели травмы | Исходная примесь и DOM/UUID-фасады | Добавление передало name/type; treat вызван один раз. Зарегистрированы 3 селектора; неизвестный id→TypeError. Искусственный delete-crit→отсутствующий _onCriticalWoundRemove; текущая разметка с таким элементом не найдена. |
+| 14. Inline-edit | Исходный _onItemInlineEdit и настоящая очистка модели | Запрос system.daysHealed='2.5', модель получает число2.5. data-dtype не преобразует вручную в этом handler, но ошибка типа сохранения не установлена. |
+| 15. Открытие/отмена | Исходный _onHeal с DialogV2/DOM-фасадами | modal=false, render force=true, 4 change-слушателя; открытие и callback cancel не записали Actor. |
+| 16. Переключение | Исходный updateHealAmount, REC 7 | Все флаги→14; все выключены→3, isResting/isSterilized остались true. isHealingHand/isHealingTent остаются false; сейчас чат их не читает. |
+| 17. Несколько окон | Два _onHeal при REC 7/20 | Глобальный querySelector получил первые поля; на одном resting 2 listener, один extra-info в конце показывает +20. Это проверка изолированной адресации, не открытые браузерные окна. |
+| 18. Восстановление/сообщение | recoverActor + HBS, записи/коллекция/чат — фасады | HP 9/10,totalRec3→update HP10,STA20,Vigor3; критическая травма получила heal(false). Метод и чат завершились до её pending heal. Чат сообщает3 и resting, уведомление active, раздел дней скрыт; speaker ищется по name. |
+| 19. Величина лечения | Actor.calculateHealValue; Roll-фасад возвращал6 | HP 5/10: 1d6→5; строка'2' остаётся строкой, '2+3' не вычисляется, отрицательное не ограничено снизу. HP 12/10→−2; null/undefined→TypeError includes. Это не проверка Roll-парсера. |
+| 20. Speaker Actor | Исходный createHealMessage и 4 метода core ChatMessage | Для лечимого id=healed при character пользователя id=other получилось speaker.actor=other. У Actor нет this.actor для переданного аргумента; ядро выбирает запасной источник. |
+| 21. Пять шаблонов | Handlebars 4.7.9, parse5; formInput/formGroup — регистраторы полей | 3 поля helper адресованы system.description/lesserEffect/followUp; value/enriched переданы. Один partial→1 строка, родитель→2 строки/2 кнопки. heal='<x>' экранирован. Штатный resting-status не показывает дней. |
+| 22. Локализация | Раскрытие JSON en/ru, буквальные ключи порции плюс 3 словаря CONFIG | 44 разных ключа, пропусков нет в обеих локализациях. Старый WITCHER.CritWound.HealingTime.Label существует как составной ключ; не зарегистрирован ложный issue о его отсутствии. |
+
+Все 22 группы завершены. В подготовке диагностики исправлены две неверные предпосылки самого сценария: пробная строка с буквой d попадала в Roll-ветку фасада, а старый ключ подписи существует в локализации. Между двумя днями стерилизации после reset повторён prepareDerivedData, как требует проверяемая модель; окончательный результат — update до 4 дней, не удаление по устаревшему нулевому сроку. Эти уточнения не меняли код системы. Временные исполняемые файлы и тестовый стенд не создавались.
+
+### Перекрёстная сверка текущих процессов
+
+| Цепочка | Что сверено |
+| --- | --- |
+| Тип/регистрация → модель → форма | system.json → registerDataModels/registerSheets → CriticalWoundData/WitcherCriticalWoundSheet → основной HBS. 9 полей и source/derived healingTime разделены; общая configuration предоставляет Item.effects. |
+| Индекс → получение травмы | ready индексирует criticalLevel/location/lesserEffect/treatment; applyCritWound читает их из выбранного pack, разрешает Item и вызывает addItem. Эта ветвь не запускает heal/treat и не определяет переходы followUp. |
+| Actor-вкладка → кнопка/inline → Item | CriticalWoundListener берёт UUID кнопки; itemMixin берёт id строки. Ручной ввод дней очищается NumberField; duplicate partial относится к отображению. Современные Character/Monster используют один tab-effects. |
+| Отдых → HP/STA/Vigor → дни Item → переход | recoverActor ждёт запись шкал, затем запускает heal для всех травм без ожидания. heal начисляет дни только treated, сравнивает срок для всех и вызывает treat; create/delete в treat не ожидаются. |
+| Item → ActiveEffect → Actor | Модель травмы не содержит таблицы бонусов и не интерпретирует treatment как changes. Foundry Actor.allApplicableEffects перечисляет transfer-эффекты Item; WitcherActiveEffect определяет подавление. Отдельные Actor.effects не очищаются лечением автоматически. |
+| Регенерация/расходование → calculateHealValue | GeneralCombatHook и consume используют общую примесь Actor. У каждого отдельная запись HP; дни травм не участвуют. Rest использует собственную сумму REC. Известная issue-00022 сохранена. |
+| Контекст → сообщения/локализация | HBS потребляет actualWoundList, которого нет в producer; totalRec не равен гарантированному приросту. Speaker отдельно от видимого actor.name. Все проверенные en/ru подписи найдены. |
+
+### Итоговая сверка второй серии с прежними 72 файлами
+
+Перечни TASK-0003.011–TASK-0003.020 объединены по полным путям: 96 различных файлов (60 JS, 36 HBS), пересечение с 72 ранее разобранными пустое. Текущая совокупность — 168 карточек. Сопоставлены исторические итоги каждой порции, определения импортируемых сущностей, таблицы зависимостей и известные потребители; прежние сценарии не запускались повторно и не объявлены новыми успешными тестами.
+
+| Порция | Файлов | Сопоставленные связи |
+| --- | --- | --- |
+| [TASK-0003.011](../../tasks/task-0003.011.md) | 7 | База ItemSheet/configuration, PARTS/TABS, FormData и встроенные ActiveEffect; CriticalWoundSheet использует тот же контекст, не отдельный обработчик эффектов. |
+| [TASK-0003.012](../../tasks/task-0003.012.md) | 10 | Вложенные attack/defense/damage-модели и миграция остаются общими для разных Item/профессии. Их числовые и формальные контракты сверены с карточками потребителей, а лечение их не использует. |
+| [TASK-0003.013](../../tasks/task-0003.013.md) | 8 | WeaponData/лист/боевые формы читают вложенные модели .012; Item/Actor вызывают методы предмета. Настроенные воздействия и ActiveEffect — разные структуры. |
+| [TASK-0003.014](../../tasks/task-0003.014.md) | 9 | Armor/Enhancement и itemEffect связаны с подготовкой Item/Actor и .012. Прежние риски миграции/передачи effects сохраняются; повторные игровые проверки не объявлены. |
+| [TASK-0003.015](../../tasks/task-0003.015.md) | 15 | ConsumableProperties→consume→Actor.calculateHealValue и applyActiveEffectToActorViaId. Полный новый разбор heal уточнил прежний точечный consumer; расходование не двигает дни травм. |
+| [TASK-0003.016](../../tasks/task-0003.016.md) | 12 | Component/Diagram, recipe/item UUID, состав компонентов и редакторы сопоставлены с repair .017. Разрешение ссылок — отдельный шаг от наличия строки UUID; сама ссылка не копирует документ. |
+| [TASK-0003.017](../../tasks/task-0003.017.md) | 5 | RepairSystem/RepairData, repairMixin, costEdit и сообщения: передача UUID/стоимости, отдельные socket/query. Прежние блокировки ремонта сохраняются; похожий глобальный DOM отдыха имеет отдельный issue. |
+| [TASK-0003.018](../../tasks/task-0003.018.md) | 8 | Race/Homeland, фиксированные особенности и регионы, enrichment и Actor-показ. Текстовые поля не превращаются автоматически в changes. CommonItemData наследуется расой, но не Homeland/CriticalWound. |
+| [TASK-0003.019](../../tasks/task-0003.019.md) | 12 | Profession/пути/usage/thresholds и конфигурация: вложенные .012, временные HP и Actor-потребители. Временные HP не очищаются новым отдыхом; заживление Item — другой процесс. |
+| [TASK-0003.020](../../tasks/task-0003.020.md) | 10 | CriticalWoundData→форма/таблица→treat/heal→отдых/чат; общие классы Item, Actor и ActiveEffect сверены с 72 прежними карточками. |
+
+Автоматизированная часть сверки охватила 242 прямых относительных import-связи всех описанных JS: 77 исходят из второй серии, 42 соединяют вторую серию с прежними 72 файлами. Проверены 174 default-импорта и 66 имён экспортов в 61 именованном import; ещё 7 namespace-import проверены как ссылки на модули. Все пути существуют, исходящие ссылки присутствуют в карточках, обратные упоминания есть у уже описанных получателей. Дополнительно сверены 107 разных пар «описанный источник → буквальный путь HBS системы» с теми же проверками направления и известных потребителей. Расхождений этих указателей не найдено; это проверка структуры связей, не доказательство правильности функций.
+
+57 различных целей импортов ещё не разобраны целиком: среди них большие примеси Actor (бой, профессия, навыки, изготовление), листы Actor и оставшихся Item, модели заклинаний/контейнеров/расследований, сообщения, rollConfig/extendedRoll, combat и регионы. Их определения для отдельных вызовов проверялись, но полный разбор не засчитан. Внешние вызовы модулей/макросов, динамические UUID/followUp/таблицы действующих миров, вычисляемые пути и браузерный жизненный цикл остаются за пределами установленного графа. Отсутствие найденного потребителя, например .delete-crit, не означает отсутствия внешних вызовов.
+
+Остаток — 453 файла, все пока вне детализированных подзадач: module 89, templates 90, packsJson 226, styles 36, lang 8, utils 2 и два корневых файла (build.json/package.json). Новые подзадачи этой сверкой не создавались. TASK-0003 остаётся in-progress; TASK-0004/TASK-0005 — draft.
+
+### Проблемы и пределы выводов
+
+Добавлены 7 отдельных potential issues: [issue-00121](../../issues/potential/issue-00121.md) — переход к следующей травме удаляет исходный item до завершения создания; [issue-00122](../../issues/potential/issue-00122.md) — завершение заживления проверяется вне условия treatment=treated; [issue-00123](../../issues/potential/issue-00123.md) — несколько диалогов отдыха используют поля первого окна; [issue-00124](../../issues/potential/issue-00124.md) — сообщение отдыха сохраняет флаг после снятия галочки; [issue-00125](../../issues/potential/issue-00125.md) — отчёт об отдыхе не получает фактические результаты восстановления; [issue-00126](../../issues/potential/issue-00126.md) — сообщения лечения могут выбирать другого actor как отправителя; [issue-00127](../../issues/potential/issue-00127.md) — методы лечения и отдыха завершаются до вложенных записей. Дополнены issue-00022/00034/00054/00106. Все 127 проблем остаются в potential; подтверждение, исправление и закрытие не выполнялись.
+
+Не объявлены новыми проблемами: допустимая передача Document в createEmbeddedDocuments; существующий ключ HealingTime.Label; числовая очистка inline-строки; отсутствие ограничений choices/min/max само по себе; неиспользуемая текущими шаблонами ветвь delete-crit; передача строки без d без отдельного согласованного контракта формулы. Исследование описывает код, а не утверждает его соответствие правилам рулбука.
+
+### Структурная проверка и сохранность
+
+Проверка через Python/stdin и git diff --check завершена без ошибок: 621 строка реестра, 168 карточек в точном соответствии проверенным строкам, 453 неразобранных файла; все 20 подзадач имеют done, родитель in-progress. Состав Git и фактического дерева совпадает после согласованных исключений. Все 621 исходник побайтно равны HEAD и срезу TASK-0001; сводная SHA256 неизменна. Для всех 1008 ранее отслеживаемых файлов сохранены mode, uid, gid и inode.
+
+Проверены 347 Markdown-файлов в docs и два корневых указателя: 7289 локальных ссылок и якорей разрешаются; примеры ссылок внутри кода не считаются навигацией. Таблицы изменённых документов имеют согласованное число столбцов, лишних конечных пробелов нет. Новые карточки содержат все 11 разделов, методы и поля текущих исходников. Реестр issues содержит непрерывные ID 00001–00127, все в potential. Состав изменений строго соответствует 50 документам: 10 новых карточек файлов, 18 связанных, 7 новых issues, 4 прежних issues и 11 документов навигации/задач/журнала. Историческая часть журнала начиная с TASK-0003.019 сохранена побайтно.
+
+Структурные проверки импортов и HBS описаны выше отдельно от исполнения 22 групп сценариев. Запуск мира, браузерные сохранения, сеть, игровые БД, сборка и изменения прав не выполнялись.
+
+### Результат
+
+TASK-0003.020 завершена; вторая серия полностью разобрана и сверена. Покрытие — **168 из 621 файла**, не разобраны **453**. Изменена только документация. Код системы, игровые данные, Git-ветки, служба и права доступа не менялись; коммит не создавался.
+
 ## TASK-0003.019
 
 Дата: 2026-09-10. Ветка rusbar-main, HEAD `c26eb64dd54cc434087f54c3c6b678b6092b15a2`; рабочее дерево на старте чистое, отслеживаются 985 файлов. Все 621 исходник совпадают со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. Foundry 14.367.0 по /opt/foundryvtt/package.json, Node 24.16.0.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.019 проверены описания **158 файлов**, для **463 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.020 проверены описания **168 файлов**, для **453 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.019](review-log.md#task-0003019) выполнена на `c26eb64dd54cc434087f54c3c6b678b6092b15a2`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.020](review-log.md#task-0003020) выполнена на `b09f992960a76d1c75946f402e42d93fa0785008`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -34,7 +34,7 @@
 | [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/damageUtilMixin.js](../../../module/actor/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/defenseMixin.js](../../../module/actor/mixins/defenseMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/healMixin.js](../../../module/actor/mixins/healMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/healMixin.js](../../../module/actor/mixins/healMixin.js) | Общие методы Actor для расчёта величины лечения с ограничением HP.max и формирования сообщения о лечении. Сам файл HP не записывает. | [Описание](files/module/actor/mixins/healMixin.js.md) | Проверено |
 | [module/actor/mixins/locationMixin.js](../../../module/actor/mixins/locationMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) | Фрагменты формул из модификаторов навыков, групп, атаки и защиты. | [Описание](files/module/actor/mixins/modifierMixin.js.md) | Проверено |
 | [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -55,11 +55,11 @@
 | [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Категории эффектов Actor, управление документами и раскрытие описаний. | [Описание](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Действия листа Actor: создать критическую травму и вызвать переход по кнопке лечения; регистрация DOM-слушателей. | [Описание](files/module/actor/sheets/mixins/criticalWoundMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/deathSaveMixin.js](../../../module/actor/sheets/mixins/deathSaveMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/healMixin.js](../../../module/actor/sheets/mixins/healMixin.js) | Диалог дневного восстановления: расчёт HP по REC и четырём галочкам, восстановление STA/Vigor, продвижение заживления критических травм и отчёт в чат. | [Описание](files/module/actor/sheets/mixins/healMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -129,7 +129,7 @@
 | [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js) | Общая модель части типов Item: поля описания/количества/массы, calcWeight и признаки возможностей. | [Карточка](files/module/data/item/commonItemData.js.md) | Проверено |
 | [module/data/item/componentData.js](../../../module/data/item/componentData.js) | Модель Item-компонента: категория, субстанция и описательные сведения. | [Описание](files/module/data/item/componentData.js.md) | Проверено |
 | [module/data/item/containerData.js](../../../module/data/item/containerData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js) | Схема system предмета criticalWound, расчёт длительности заживления, подготовка описания и переход к следующему Item. Механическое действие травмы задаётся отдельно встроенными ActiveEffect. | [Описание](files/module/data/item/criticalWoundData.js.md) | Проверено |
 | [module/data/item/diagramData.js](../../../module/data/item/diagramData.js) | Модель рецепта/формулы: требования, результат, обогащение и миграция. | [Описание](files/module/data/item/diagramData.js.md) | Проверено |
 | [module/data/item/enhancementData.js](../../../module/data/item/enhancementData.js) | Модель предмета улучшения: бонус SP, сопротивления, эффекты и миграция. | [Описание](files/module/data/item/enhancementData.js.md) | Проверено |
 | [module/data/item/hexData.js](../../../module/data/item/hexData.js) | Не установлено | Не подготовлено | Не начат |
@@ -184,7 +184,7 @@
 | [module/item/sheets/WitcherArmorSheet.js](../../../module/item/sheets/WitcherArmorSheet.js) | Лист брони: контекст, варианты ношения, конфигурация и рецепт. | [Описание](files/module/item/sheets/WitcherArmorSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherComponentSheet.js](../../../module/item/sheets/WitcherComponentSheet.js) | Минимальный лист компонента с основной формой и шириной 600. | [Описание](files/module/item/sheets/WitcherComponentSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherContainerSheet.js](../../../module/item/sheets/WitcherContainerSheet.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/sheets/WitcherCriticalWoundSheet.js](../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/sheets/WitcherCriticalWoundSheet.js](../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Специализированный лист criticalWound: размеры окна, основная форма и назначение followUp переносом Item. | [Описание](files/module/item/sheets/WitcherCriticalWoundSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherDiagramSheet.js](../../../module/item/sheets/WitcherDiagramSheet.js) | Редактор рецепта: категории, строки материалов, drop и связь результата. | [Описание](files/module/item/sheets/WitcherDiagramSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherEnhancementSheet.js](../../../module/item/sheets/WitcherEnhancementSheet.js) | Лист улучшения с вариантами его категории. | [Описание](files/module/item/sheets/WitcherEnhancementSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherHexSheet.js](../../../module/item/sheets/WitcherHexSheet.js) | Не установлено | Не подготовлено | Не начат |
@@ -502,7 +502,7 @@
 | [templates/chat/combat/defense/defense.hbs](../../../templates/chat/combat/defense/defense.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/defense/defenseCrit.hbs](../../../templates/chat/combat/defense/defenseCrit.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/defense/defenseStun.hbs](../../../templates/chat/combat/defense/defenseStun.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/combat/heal.hbs](../../../templates/chat/combat/heal.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/combat/heal.hbs](../../../templates/chat/combat/heal.hbs) | Минимальный текст сообщения о величине лечения: локализованная подпись и heal. | [Описание](files/templates/chat/combat/heal.hbs.md) | Проверено |
 | [templates/chat/combat/regeneration.hbs](../../../templates/chat/combat/regeneration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/spellItem.hbs](../../../templates/chat/combat/spellItem.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs) | Уведомление об обработке воздействия из turnStartEffects. | [Описание](files/templates/chat/combat/statusEffect.hbs.md) | Проверено |
@@ -511,7 +511,7 @@
 | [templates/chat/damage/damageToLocation.hbs](../../../templates/chat/damage/damageToLocation.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/shieldAbsorbs.hbs](../../../templates/chat/damage/shieldAbsorbs.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/damage/spAbsorbs.hbs](../../../templates/chat/damage/spAbsorbs.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/heal/resting-status.hbs](../../../templates/chat/heal/resting-status.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/heal/resting-status.hbs](../../../templates/chat/heal/resting-status.hbs) | Сообщение о дневном восстановлении Actor: активный день/отдых, величина HP, полная STA и условный блок дней заживления. | [Описание](files/templates/chat/heal/resting-status.hbs.md) | Проверено |
 | [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs) | Сообщение со списком временных улучшений выбранного оружия. | [Описание](files/templates/chat/item/appliedTemporaryItemImprovements.hbs.md) | Проверено |
 | [templates/chat/item/consume.hbs](../../../templates/chat/item/consume.hbs) | Шаблон сообщения о лечении и добавляемых статусах при расходовании. | [Описание](files/templates/chat/item/consume.hbs.md) | Проверено |
 | [templates/chat/item/dismantle.hbs](../../../templates/chat/item/dismantle.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -530,7 +530,7 @@
 | [templates/dialog/combat/weapon-attack.hbs](../../../templates/dialog/combat/weapon-attack.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/deprecations/lifepathModifiers.hbs](../../../templates/dialog/deprecations/lifepathModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | Содержимое диалога отдыха: четыре флага восстановления, итог HP и подсказка о стерилизации травм. | [Описание](files/templates/dialog/heal/heal-rest.hbs.md) | Проверено |
 | [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/dialog/repair-dialog.hbs](../../../templates/dialog/repair-dialog.hbs) | Содержимое диалога ремонта: предмет, сложность, повреждения и таблица компонентов. | [Описание](files/templates/dialog/repair-dialog.hbs.md) | Проверено |
 | [templates/dialog/verbal-combat-defense.hbs](../../../templates/dialog/verbal-combat-defense.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -547,7 +547,7 @@
 | [templates/partials/character/tab-skills.hbs](../../../templates/partials/character/tab-skills.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-stats.hbs](../../../templates/partials/character/tab-stats.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/components-list.hbs](../../../templates/partials/components-list.hbs) | Таблица наличия, требований и стоимости компонентов для ремонта. | [Описание](files/templates/partials/components-list.hbs.md) | Проверено |
-| [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs) | Краткая таблица принадлежащих Actor критических травм с ручным счётчиком дней и кнопкой перехода к следующей травме. | [Описание](files/templates/partials/crit-wounds-table.hbs.md) | Проверено |
 | [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs) | Общий список эффектов с источниками, длительностью, описаниями и действиями. | [Описание](files/templates/partials/effect-part.hbs.md) | Проверено |
 | [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs) | Общая шапка предметных форм: имя, картинка, количество, вес, цена/тип и источник. | [Описание](files/templates/partials/item-header.hbs.md) | Проверено |
 | [templates/partials/item-image.hbs](../../../templates/partials/item-image.hbs) | Картинка списка предметов с условной кнопкой увеличения; потребитель — прежний инвентарь монстра. | [Описание](files/templates/partials/item-image.hbs.md) | Проверено |
@@ -616,7 +616,7 @@
 | [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs) | Региональная форма: запрошенный флаг и четыре ссылки на макросы. | [Описание](files/templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs.md) | Проверено |
 | [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/sheets/item/criticalWound-sheet.hbs](../../../templates/sheets/item/criticalWound-sheet.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/sheets/item/criticalWound-sheet.hbs](../../../templates/sheets/item/criticalWound-sheet.hbs) | Основная форма Item критической травмы: имя, степень, лечение, локация, счётчик/срок заживления, описание, lesserEffect и followUp. | [Описание](files/templates/sheets/item/criticalWound-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/diagrams-sheet.hbs](../../../templates/sheets/item/diagrams-sheet.hbs) | Основная форма рецепта/формулы и редактор материалов. | [Описание](files/templates/sheets/item/diagrams-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/enhancement-sheet.hbs](../../../templates/sheets/item/enhancement-sheet.hbs) | Форма категории улучшения, его физических бонусов и воздействий. | [Описание](files/templates/sheets/item/enhancement-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs) | Не установлено | Не подготовлено | Не начат |

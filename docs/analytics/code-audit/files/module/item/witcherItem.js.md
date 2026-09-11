@@ -233,3 +233,14 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Для [ProfessionData](../../../../../../module/data/item/professionData.js) inherited defenseOptionMixin.createDefenseOption получает объект attack, передаёт attack.attackOption и расширяет результат. Guard из навыка перекрывает label/value имени Item; modifier3 и skillOverride ref/2 сохранены в проверке. Отдельный Item.effects и вложенные skillAttack.damageProperties.effects — разные данные. Экземпляры WitcherItem в проверке построены поверх common BaseItem, не client Item.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| CriticalWoundData | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | У criticalWound нет CommonItemData, quantity/cost и calcWeight. Класс Item предоставляет документ, parent и effects; heal/treat принадлежат system. |
+| Item.effects | [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) | Общая конфигурация управляет встроенными ActiveEffect. Удаление/создание Item в treat не является отдельным копированием effects на Actor; отдельно созданные Actor.effects не очищаются этим методом. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

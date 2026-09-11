@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.019 подготовлены и сверены 158 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.020 подготовлены и сверены 168 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -256,3 +256,18 @@
 | templates/sheets/item/configuration/partials/profession/skillPathPart.hbs | [Фрагмент вкладки пути с тремя редакторами навыка.](templates/sheets/item/configuration/partials/profession/skillPathPart.hbs.md) |
 | templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs | [Форма механик навыка: атака, защита, использование, HP и пороги.](templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md) |
 | templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs | [Фрагмент выбора видов атаки и условных флагов профессии.](templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs.md) |
+
+## Критические травмы, лечение и отдых — TASK-0003.020
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/criticalWoundData.js | [Описание](module/data/item/criticalWoundData.js.md) |
+| module/item/sheets/WitcherCriticalWoundSheet.js | [Описание](module/item/sheets/WitcherCriticalWoundSheet.js.md) |
+| module/actor/sheets/mixins/criticalWoundMixin.js | [Описание](module/actor/sheets/mixins/criticalWoundMixin.js.md) |
+| module/actor/mixins/healMixin.js | [Описание](module/actor/mixins/healMixin.js.md) |
+| module/actor/sheets/mixins/healMixin.js | [Описание](module/actor/sheets/mixins/healMixin.js.md) |
+| templates/sheets/item/criticalWound-sheet.hbs | [Описание](templates/sheets/item/criticalWound-sheet.hbs.md) |
+| templates/partials/crit-wounds-table.hbs | [Описание](templates/partials/crit-wounds-table.hbs.md) |
+| templates/dialog/heal/heal-rest.hbs | [Описание](templates/dialog/heal/heal-rest.hbs.md) |
+| templates/chat/heal/resting-status.hbs | [Описание](templates/chat/heal/resting-status.hbs.md) |
+| templates/chat/combat/heal.hbs | [Описание](templates/chat/combat/heal.hbs.md) |

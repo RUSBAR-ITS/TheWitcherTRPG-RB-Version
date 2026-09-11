@@ -111,3 +111,14 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Item.profession объявлен с htmlFields notes, definingSkill.definition, *.*.definition. [ProfessionData](../../../../module/data/item/professionData.js) соответствует этим 11 HTML-полям; общее description наследуется StringField. Модель и лист зарегистрированы под тем же типом.
 
 [Перекрёстная сверка](../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| criticalWound / htmlFields | [module/data/item/criticalWoundData.js](../../../../module/data/item/criticalWoundData.js) | Декларация documentTypes.Item.criticalWound сопоставлена с девятью полями модели; description — HTMLField. criticalWound наследует TypeDataModel напрямую, не общую Item-модель. |
+| criticalWounds | [module/setup/settings.js](../../../../module/setup/settings.js) | Pack объявлен в манифесте; ready индексирует поля отбора. Действующие DB и содержимое компедиума не проверялись. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

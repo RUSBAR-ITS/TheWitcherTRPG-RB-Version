@@ -267,3 +267,15 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. loadHandlebarTemplates предзагружает [skillPathSkillPart](../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) и [profAttackOptionsPart](../../../../../../templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs) строками 58–59. [skillPathPart](../../../../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) загружается как PARTS трёх вкладок и включает первый partial, тот — второй. Helper has147–149 использует Set.has; в рендере профессии проверены пустой и включённые варианты.
 
 [Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| crit-wounds-table.hbs | [templates/partials/crit-wounds-table.hbs](../../../../../../templates/partials/crit-wounds-table.hbs) | Предзагрузка 29 → включение tab-effects. Partial выводит одну строку на Item, родитель дополнительно повторяет цикл. |
+| Динамические шаблоны лечения | [module/actor/sheets/mixins/healMixin.js](../../../../../../module/actor/sheets/mixins/healMixin.js) | heal-rest/resting-status загружаются явным renderTemplate; отсутствие в preload не означает недоступности. |
+| heal.hbs | [templates/chat/combat/heal.hbs](../../../../../../templates/chat/combat/heal.hbs) | Actor.createHealMessage загружает отдельный HBS через renderTemplate. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

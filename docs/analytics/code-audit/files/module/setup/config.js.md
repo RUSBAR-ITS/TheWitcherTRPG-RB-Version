@@ -445,3 +445,14 @@ ArmorSheet._prepareContext дописывает Availability.WITCHER и config.t
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. [Лист профессии](../../../../../../module/item/sheets/WitcherProfessionSheet.js) готовит 52 варианта professionSkills из skillMap.name/label; все 52 ключа найдены в схеме character. statTypes содержит none и 9 характеристик; statOptions из 9 элементов создаётся листом в общем CONFIG.WITCHER. Среди 157 проверенных ключей два label навыков отсутствуют в en/ru (issue-00016); дополнительно 3 thresholds отсутствуют в ru (issue-00119).
 
 [Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| critLevel/critTreatment/location | [templates/sheets/item/criticalWound-sheet.hbs](../../../../../../templates/sheets/item/criticalWound-sheet.hbs) | Форма использует 4 степени, 3 состояния лечения и 6 обычных локаций; строки модели не имеют choices. Наличие расширенных локаций монстра в других схемах не добавляет их в этот select. |
+| CriticalWoundData | [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js) | calculateHealingTime содержит 8/12/15−BODY.max с минимумом 1; WITCHER.Crit не читается этим классом. Штрафы по состояниям здесь не создаются. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

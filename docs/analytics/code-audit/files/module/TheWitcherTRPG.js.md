@@ -151,3 +151,14 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../review-log.md#task-0003017).
 
 Уточнена связь renderChatMessageHTML→Chat.chatMessageListeners: [ремонтный HBS](../../../../../templates/chat/item/repair.hbs) выводит кнопку с data-owner/item; [onRepairRequest](../../../../../module/scripts/chat.js) выбирает artisan и вызывает [processRequest](../../../../../module/item/systems/repair.js). Настоящий listener на фасадах открыл диалог с существующими ID; отсутствие owner дало TypeError до guard ([issue-00108](../../../../issues/potential/issue-00108.md)). Это проверка callback, без запуска Hooks всего клиента.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| getIndex полей травмы | [module/data/item/criticalWoundData.js](../../../../../module/data/item/criticalWoundData.js) | ready:64–67 запрашивает criticalLevel/location/lesserEffect/treatment; они объявлены моделью. daysHealed, sterilized и followUp этим запросом не вычисляются. |
+| applyCritWound | [module/actor/mixins/damageMixin.js](../../../../../module/actor/mixins/damageMixin.js) | Индекс используется внешним обработчиком выбора травмы; полноценный Item затем разрешается по UUID. Работа pack и повторного получения в мире не запускалась. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

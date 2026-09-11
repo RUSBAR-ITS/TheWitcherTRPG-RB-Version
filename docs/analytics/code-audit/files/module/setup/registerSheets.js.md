@@ -191,3 +191,13 @@
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Default import из [module/item/sheets/WitcherProfessionSheet.js](../../../../../../module/item/sheets/WitcherProfessionSheet.js) локально назван WitcherProfessionSheet; фактическое имя класса в файле WitcheProfessionSheet. Регистрация 72–75 с makeDefault/types profession работает через default export и не зависит от этого написания. Основной лист создаёт специальную [конфигурацию](../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js).
 
 [Перекрёстная сверка](../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| WitcherCriticalWoundSheet | [module/item/sheets/WitcherCriticalWoundSheet.js](../../../../../../module/item/sheets/WitcherCriticalWoundSheet.js) | Прямой import 28 и регистрация types=['criticalWound'] 52–55. Единственная собственная часть формы, общая конфигурация Item сохраняется. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.

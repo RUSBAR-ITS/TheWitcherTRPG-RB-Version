@@ -170,3 +170,14 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Полностью сверены calculateFixedDerivedStats и calculateDerivedStat. У run/enc.max используются текущие SPD/BODY.value; у leap/rec/woundTreshold.max — соответствующие максимумы. Stun.value прибавляет modifier после clamp. Сценарий initial STA.max×0.25:40→10; последующий calculateDerivedStat восстановил40 (issue-00036).
 
 Карточки: [WitcherActor](../../../../../actor/witcherActor.js.md), [modifierMixin](../../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.020
+
+2026-09-11, `rusbar-main`, `b09f992960a76d1c75946f402e42d93fa0785008`; проверены связи с критическими травмами, лечением и отдыхом. Полный первоначальный разбор и его ограничения сохранены.
+
+| Связь | Файл | Результат проверки |
+| --- | --- | --- |
+| Actor healMixin | [module/actor/mixins/healMixin.js](../../../../../../../../../../module/actor/mixins/healMixin.js) | HP.value/max используются для верхнего ограничения лечения. Метод возвращает исходный тип до переполнения; нижний предел здесь не накладывает. |
+| Дневное восстановление | [module/actor/sheets/mixins/healMixin.js](../../../../../../../../../../module/actor/sheets/mixins/healMixin.js) | Читает REC.max; напрямую пишет HP=min(old+total,max), STA.max и Vigor.max. Не вызывает calculateHealValue и не сбрасывает остальные шкалы. |
+
+[Сверка порции и итоговая сверка 96 файлов второй серии](../../../../../../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
