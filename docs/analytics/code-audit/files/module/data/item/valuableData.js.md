@@ -83,3 +83,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.015 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Таблица valuables использует isCarried/avail/conceal/quantity/weight/cost/description и также принимает loots разных типов у Monster. Подготовка Character задаёт семь группы ценностей, mount — отдельный partial. Отсутствующие на чужой модели avail/conceal не становятся ошибкой рендера. issue-00178 касается подписи доступности, а не существующих словарей.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

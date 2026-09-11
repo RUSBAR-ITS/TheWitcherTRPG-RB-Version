@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.026 подготовлены и сверены 207 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.027 подготовлены и сверены 219 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -340,3 +340,20 @@
 | --- | --- |
 | module/actor/sheets/mixins/itemMixin.js | [Описание](module/actor/sheets/mixins/itemMixin.js.md) |
 | module/actor/sheets/interactions/itemContextMenu.js | [Описание](module/actor/sheets/interactions/itemContextMenu.js.md) |
+
+## Вкладки и таблицы инвентаря Actor — TASK-0003.027
+
+| Файл | Карточка |
+| --- | --- |
+| templates/sheets/actor/tabs/tab-inventory.hbs | [Описание](templates/sheets/actor/tabs/tab-inventory.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs | [Описание](templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs.md) |
+| templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs | [Описание](templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs.md) |
+| templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs.md) |
+| templates/partials/monster/monster-inventory-tab.hbs | [Описание](templates/partials/monster/monster-inventory-tab.hbs.md) |

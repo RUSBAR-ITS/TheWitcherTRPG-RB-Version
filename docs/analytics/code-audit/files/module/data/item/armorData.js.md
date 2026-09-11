@@ -132,6 +132,12 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 
 ## Уточнение TASK-0003.026
 
-2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Выбор улучшения определяется ближайшим .item[data-type=armor], а не названием CSS-класса enhancement-weapon-slot у пустой ячейки. Поэтому glyph/armor отбираются корректно при таком DOM. Реальный отбор проверен вместе с weapon/rune. Запись enhancementItemIds и applied происходит двумя независимыми вызовами (issue-00171); снятие через меню раньше падает на порядке callback (issue-00168).
+2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Выбор улучшения зависит от dataset.type ближайшей .item, а не названия CSS-класса enhancement-weapon-slot. У современной брони data-type отсутствует: undefined выбирает else для glyph/armor (уточнено в TASK-0003.027). В .026 выбор проверялся с явно заданным armor на DOM-фасаде; это не доказательство наличия атрибута в HBS. Запись enhancementItemIds и applied происходит двумя независимыми вызовами (issue-00171); снятие через меню раньше падает на порядке callback (issue-00168).
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современный armor partial читает вложенный SP через armorPartsInfo и вложенные resistance, а прежний monster partial — отсутствующие плоские поля; issue-00180 ограничена старым шаблоном. Исправлено прежнее утверждение об атрибуте: современная .item брони не содержит data-type; выбор glyph/armor получается через else обработчика. На рендере quantity не зависит от hasQuantity заголовка, ремонтная кнопка у Monster не имеет найденного listener.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs); [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -299,3 +299,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Подтверждено различие callers и методов Actor: addItem/removeItem ждут свои операции, но gift/consume/Drop не ждут их. removeItemsOfType по-прежнему возвращается до удаления: реальный _onDropItem при смене одноимённой расы обновил старую, позднее удалённую (issue-00034). Для monster weapon assignment prepared equipped=true не входит в source toObject, переданный addItem; payload нового Item остаётся false (issue-00172). Меню вызывает consume даже с qty0 (issue-00174).
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Инвентарь отображает результат getTotalWeight: Item.calcWeight, storedWeight контейнеров и округление монет; 1001 монета дала 2 единицы веса. useItem вызывается именем оружия/брони, но Armor/Enhancement не приобретают weaponAttack от CSS/data-type. Таблица сама не фильтрует isStored/isHidden и не производит вычислений цены.
+
+Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs). [Проверки и ограничения](../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

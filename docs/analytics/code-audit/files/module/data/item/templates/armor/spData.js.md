@@ -89,3 +89,9 @@ Default export SpData extends foundry.abstract.DataModel. ArmorData включа
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003014).
 
 Полностью разобран владелец [module/data/item/armorData.js](../../../../../../../../../module/data/item/armorData.js): он вызывает base всех шести SpData, разрешает enhancementItemIds, затем запускает их derived. Для исходного 4/10 и двух улучшений +2/+1 получено modified 7/13; при maxStoppingPower=0 бонус пропущен. applySpDamage сверяет урон с modified SP, но записывает исходный stoppingPower; превышение полностью пропускает update ([issue-00083](../../../../../../../../issues/potential/issue-00083.md)). Старые пары SP и их конфликты описаны в [issue-00086](../../../../../../../../issues/potential/issue-00086.md).
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современная броня использует modifiedStoppingPower/modifiedMaxStoppingPower через armorPartsInfo; чисел SP непосредственно в input нет. Старый monster partial ищет headStopping и другие плоские поля: head.stoppingPower=5/max10 не заполнили старую строку. Это mismatch сохранённого неактивного HBS, не изменение модели.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs). [Проверки и ограничения](../../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -80,3 +80,9 @@
 2026-09-10, `8cca18e14b75ec53028ee6bc49a837597de4d9af`; исходник неизменен. [Перекрёстная сверка](../../../../../review-log.md#task-0003013).
 
 Полный разбор [module/item/sheets/WitcherWeaponSheet.js](../../../../../../../../module/item/sheets/WitcherWeaponSheet.js) и [templates/sheets/item/weapon-sheet.hbs](../../../../../../../../templates/sheets/item/weapon-sheet.hbs) установил цепочку WitcherItemSheet._onRender → this.activateListeners → .damage-type/change → _onDamageTypeEdit. Четыре checkbox имеют id, но не name; метод инвертирует текущий флаг по id, затем собирает text из локализованных включённых типов в фиксированном порядке. При начальном slashing=true и событии для piercing получен payload с text «Режущий, Колющий». Изолированный вызов настоящего _onRender подтвердил регистрацию слушателя; интерфейс мира не запускался.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современный weapon partial читает именно weapon.system.type.text, а не преобразует type в строку; реальный WeaponData с text=Sword вывел Sword. Флаги slashing/piercing/bludgeoning/elemental этого поля непосредственно в таблице не читаются.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs). [Проверки и ограничения](../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -105,3 +105,9 @@ Default export function itemEffect() каждый раз возвращает н
 Сверенные карточки: [module/data/item/spellData.js](../spellData.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
 
 [Результаты и пределы сверки](../../../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современные weapon/armor/runes-glyphs отображают name/statusEffect/percentage через each словаря. При25% тег есть, при0% скрыт, оба имени сохранены; varEffect здесь не читается. Рендер не преобразует statusEffect в applyStatus и не опровергает issues-00084/00089.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs](../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs). [Проверки и ограничения](../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

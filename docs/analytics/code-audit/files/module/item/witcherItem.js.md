@@ -268,3 +268,9 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Настоящий WitcherItem используется в instanceof ветви itemMixin._onDropItem; его source копируется Actor.addItem. Контекстное меню вызывает consume/canBeDismantled/dismantle через примеси класса. consume не списывает количество, removeItem вызывается отдельно caller. Dismantle сам добавляет найденные компоненты и списывает один Item; количество компонента 5 дало 2, 0 дало 1. Это точечная проверка внешней примеси, а не её новая полная карточка.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. UI-цепочка рецепта в инвентаре проверена до realCraft: даже isFormulae=true кнопка .crafting-craft вызывает _craftingCraft, передаёт CRA+crafting и проверяет обычные компоненты. RealCraft в сценарии заменён приёмником аргументов: его собственный выбор режима/списание не выполнялись повторно. issue-00176 отделена от прежнего расхождения isFormulae/alchemyDC issue-00101.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs). [Проверки и ограничения](../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -83,3 +83,9 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.015 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Таблица alchemical читает type/alchemyDC/avail/time/weight/cost/toxicity/effect. Для mutagen тот же partial получает itemType=mutagen; для valuable alchemical-item часть полей отсутствует. effect остаётся экранированным StringField, consume не запускается рендером.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

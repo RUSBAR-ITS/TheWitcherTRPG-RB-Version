@@ -83,3 +83,9 @@ OR делает сопротивление true, если оно уже было
 2026-09-10, `0fa589bd300856ff309f362afcb66d6fa43401ab`; исходник неизменен. [Перекрёстная сверка](../../../../../../review-log.md#task-0003014).
 
 Проверены полная [module/data/item/armorData.js](../../../../../../../../../module/data/item/armorData.js) и [templates/sheets/item/armor-sheet.hbs](../../../../../../../../../templates/sheets/item/armor-sheet.hbs). derived выполняется после разрешения улучшений и объединяет boolean в подготовленной модели. HBS использует эти значения в именованных checkbox; модель сохранения формы сохранила сопротивление после снятия улучшения ([issue-00088](../../../../../../../../issues/potential/issue-00088.md)). Это не реальный браузерный submit: FormData.object смоделирован, _processFormData и модели настоящие. Старая миграция сопротивлений проверена отдельно ([issue-00087](../../../../../../../../issues/potential/issue-00087.md)).
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современный armor partial проверяет armor.system.resistance.slashing/piercing/bludgeoning и показывает локализованные теги. В старом шаблоне disabled checkbox читают плоские system.slashing/... и остаются пустыми при вложенном true (issue-00180). Отображение сопротивления не является вызовом applyStatus.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs). [Проверки и ограничения](../../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -1,5 +1,104 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.027
+
+Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `ce0c7eb7069b215b641d725913b3aae21502e811`. На старте рабочее дерево чистое; отслеживаются 1122 файла. Исходники сверяются со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.
+
+### Объём и результат
+
+По [TASK-0003.027](../../tasks/task-0003.027.md) полностью прочитаны 12 HBS-файлов, 1375 логических строк. Созданы 12 карточек, уточнены 25 связанных. Покрытие — 219 из 621, не разобраны 402. В третьей серии проверен 51 из 79 файлов; в очереди 28, ещё 374 требуют детализации. Следующая задача — [TASK-0003.028](../../tasks/task-0003.028.md), общий бросок, критические результаты и вспомогательные функции; выполнение не начато.
+
+| Файл | Карточка | Логических строк |
+| --- | --- | --- |
+| [templates/sheets/actor/tabs/tab-inventory.hbs](../../../templates/sheets/actor/tabs/tab-inventory.hbs) | [Описание](files/templates/sheets/actor/tabs/tab-inventory.hbs.md) | 247 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs.md) | 88 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs.md) | 135 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs.md) | 75 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs.md) | 114 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs.md) | 65 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs.md) | 67 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs.md) | 101 |
+| [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs.md) | 131 |
+| [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](../../../templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs) | [Описание](files/templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs.md) | 23 |
+| [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs) | [Описание](files/templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs.md) | 16 |
+| [templates/partials/monster/monster-inventory-tab.hbs](../../../templates/partials/monster/monster-inventory-tab.hbs) | [Описание](files/templates/partials/monster/monster-inventory-tab.hbs.md) | 313 |
+
+### Методика и пределы
+
+Все шаблоны прочитаны целиком, включая повторные блоки прежней брони. Выписаны введённая разметка, поля, each/if/unless/partial, контексты ../ и ../../, DOM-селекторы и внешние методы. Проверены определения моделей, producer-методов Character/Monster/общего ActorSheet, helpers, регистрации листов и загрузки шаблонов. Эти точечные чтения не добавили полных карточек соседей; MountData, листы Character/Monster, алхимия/производство, валюта/награды и экспорт остаются за дальнейшими порциями.
+
+Изолированные сценарии исполнялись через node --input-type=module со stdin, без тестовых файлов. Использовались настоящие Handlebars 4.7.9/parse5, Foundry DataModel/fields, модели Item системы, itemMixin/ContextMenu, registerHandelbarHelpers, craftingMixin/alchemyMixin, выбранные исходные методы подготовки контекста и Actor.getTotalWeight. Для проверки формулы исполнялись настоящее тело _craftingCraft и callback, ChatMessageData и RollConfig; realCraft заменён приёмником аргументов. Core concat/localize извлечены из /opt/foundryvtt/client/applications/handlebars.mjs без изменения тела, _loc/game.i18n представлены словарным фасадом. Core Localization.localize просмотрен локально для fallback. Версии Foundry 14.367.0, Node 24.16.0.
+
+Actor/Item базовые документы, коллекции, settings, DOM-события, окна и операции записи представлены ограниченными фасадами. Типы system-моделей настоящие; полная подготовка документов/листов не запускалась. Имена навыков для callback заданы явно, поскольку фасад не выполняет всю подготовку Actor. Browser, DragDrop, внешний CSS-рендер, эффекты, бросок, списание/изготовление/ремонт, экспорт Actor, мир, БД и сеть не запускались.
+
+При настройке сценариев исправлены только входные подмены: граница извлечения Array.prototype, некорректный короткий UUID, ожидание общего числа input вместо семи валют, закрытые флаги девяти панелей, Boolean вместо CSV настройки и отсутствующая подготовленная label навыка. После этого завершены все 19 групп. Эти ошибки сценариев не зарегистрированы как ошибки системы.
+
+### Изолированные проверки
+
+| Группа | Сценарий | Результат |
+| --- | --- | --- |
+| 01 | 12 шаблонов; 8 категорий × 0/1/2 Item × false/true флаги; 32 комбинации summary | Все компилируются. Количество строк/inline quantity совпало; hasQuantity влияет на заголовок, не ввод строки; subtype не становится атрибутом. |
+| 02 | Weapon: accuracy -2/0/2, equipped, isAmmo, ремонт и description | Положительная accuracy имеет +, остальные скрыты. type.text показан; описание экранировано; hasQuantity наследуется summary. |
+| 03 | Armor: SP, resistance, цвета, отсутствие data-type | SP7/10,5/10,0/10 дали green/orange/red, подписи ног перепутаны. Undefined dataset.type привёл реальный выбор улучшения в armor/glyph. |
+| 04 | Вложенные улучшения и TypedObject effects | 25% показаны, 0% скрыты, оба name сохранены; img-запись и пустой объект дают Item/слот. Текущий Item.type=enhancement скрывает блок улучшений. |
+| 05 | Алхимия/мутаген | Effect label по ../itemType, minorMutation, время и токсичность показаны; effect HTML экранирован. |
+| 06 | Компоненты/нулевые значения | Quantity='0', строковые rarity/forage='0' остаются; location показано. Data-subtype отсутствует после двух partial. |
+| 07 | Рецепт: ../ и ../../, UUID/компоненты/вещества | getOwnedComponentCount получил Actor и вывел 6/3, включая stored; алхимический count дал 5/2. Выключение isFormulae скрыло только список веществ; HTML description сохранён. |
+| 08 | MountData | dex='0'/control/speed дали 3 тега при hp=0; hp5 добавил четвёртый. |
+| 09 | ContainerData | 2×3 веса → storedWeight6/max12. Вложенный details несёт UUID, не имеет .item и отдельного ввода quantity. |
+| 10 | Character: пустые данные, валюты, stored/hidden/carried | 0 строк Item и 7 currency-input. Hidden carried учитывается; stored скрыт, not-carried не даёт веса. Вес 4, totalCost6; цена не отображается отдельным итогом. |
+| 11 | Все категории Character и 9 панелей веществ | 45 Item по подтипам рецептов/ценностей/алхимии/компонентов/mount/mutagen/container/enhancement: при открытых панелях каждый показан один раз. При weight9/10/11 и ENC10 overweight включён при 10/11. |
+| 12 | Современный Monster | Две ремонтные кнопки и один data-action exportLoot; регистрация ремонта найдена только Character. Свободный weapon-enhancement появился в weapons и loots. |
+| 13 | Старый Monster, все 5 location и пустой список | Head/Torso/Leg/FullCover/Shield отрендерены. Quantity добычи '1d6' читается правильно через текущий system. Старые flat SP отсутствуют в модели; экспортная ссылка без data-action. |
+| 14 | Локализация | 114 статических ключей, WITCHER.Weapon.Availability отсутствует в en/ru. У 10 из 13 подтипов рецепта нет TYPES.Item.* в en. Четыре подписи веса — строковые литералы. |
+| 15 | Кнопка изготовления формулы | Настоящий _craftingCraft при CRA5/crafting2/alchemy8 передал realCraft-приёмнику 5+2 и craftingDC; пять требуемых vitriol не участвовали в предварительной проверке. |
+| 16 | Core concat/localize | Настоящие helper из Foundry с фасадом _loc/game.i18n: tooltip остался WITCHER.Weapon.Availability, тип формулы — TYPES.Item.potion. |
+| 17 | Отрендеренные поля → itemMixin | Восемь таблиц направили quantity='3' в Item.update; equipped/isCarried/learned переключены. Img='' остаётся пустым, шаблон fallback не добавляет. |
+| 18 | Неизвестные lookup/нули/валюта | Отсутствующие поля не сломали рендер; hp0 скрыт, dex='0' показан. Настоящий calcCurrencyWeight для 1001 монеты с Actor.getTotalWeight дал 2. При отсутствии itemType плюсика нет. |
+| 19 | Все корректные словари и legacy resistance | Проверены 4 Availability,4 Concealment,4 hands,5 craftingLevels. Реальное head.stoppingPower5/max10 не заполнило старый headStopping; resistance.slashing=true не отметило старый checkbox. |
+
+### Перекрёстная сверка и поправка к прежней записи
+
+Современная строка брони не содержит data-type="armor". В TASK-0003.026 DOM-фасад задавал этот атрибут явно; описание в карточках itemMixin/ArmorData и формулировка журнала .026 ошибочно перенесли его в HBS. По полному чтению и рендеру .027 установлено: dataset.type=undefined, поэтому _chooseEnhancement выбирает else с armor/glyph. У оружия data-type=weapon есть. Две прежние карточки исправлены; исторический текст журнала сохранён, данная запись уточняет его. CSS-класс enhancement-weapon-slot у брони сам по себе не является причиной неправильного выбора.
+
+Проверены 25 связанных карточек: [module/actor/sheets/WitcherActorSheet.js](files/module/actor/sheets/WitcherActorSheet.js.md); [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md); [module/data/actor/commonActorData.js](files/module/data/actor/commonActorData.js.md); [module/data/item/commonItemData.js](files/module/data/item/commonItemData.js.md); [module/data/item/containerData.js](files/module/data/item/containerData.js.md); [module/data/actor/templates/common/currencyData.js](files/module/data/actor/templates/common/currencyData.js.md); [module/setup/handlebars.js](files/module/setup/handlebars.js.md); [module/setup/config.js](files/module/setup/config.js.md); [module/actor/sheets/mixins/itemMixin.js](files/module/actor/sheets/mixins/itemMixin.js.md); [module/data/item/alchemicalData.js](files/module/data/item/alchemicalData.js.md); [module/data/item/mutagenData.js](files/module/data/item/mutagenData.js.md); [module/data/item/valuableData.js](files/module/data/item/valuableData.js.md); [module/actor/sheets/interactions/itemContextMenu.js](files/module/actor/sheets/interactions/itemContextMenu.js.md); [module/data/item/armorData.js](files/module/data/item/armorData.js.md); [module/data/item/templates/armor/spData.js](files/module/data/item/templates/armor/spData.js.md); [module/data/item/templates/armor/resistanceData.js](files/module/data/item/templates/armor/resistanceData.js.md); [module/data/item/enhancementData.js](files/module/data/item/enhancementData.js.md); [module/data/item/componentData.js](files/module/data/item/componentData.js.md); [module/data/item/diagramData.js](files/module/data/item/diagramData.js.md); [module/item/witcherItem.js](files/module/item/witcherItem.js.md); [module/data/item/templates/itemEffectData.js](files/module/data/item/templates/itemEffectData.js.md); [module/data/item/weaponData.js](files/module/data/item/weaponData.js.md); [module/data/item/templates/weaponTypeData.js](files/module/data/item/templates/weaponTypeData.js.md); [templates/partials/item-image.hbs](files/templates/partials/item-image.hbs.md); [module/setup/registerSheets.js](files/module/setup/registerSheets.js.md). Сведения о вызовах и полях дополнены встречными ссылками на полные карточки новых шаблонов. Строки реестра соседей вне порции не меняли статус.
+
+Сводный partial не суммирует инвентарь: он выводит header и условные подписи. Непереданные явно hasQuantity/spellType наследуются от контекста; subtype доходит до summary, но отсутствует в DOM. HBS современных категорий не фильтрует stored/hidden; это делает producer, причём hidden сохраняется. Вложенный UUID контейнера не является ID встроенного Item, а .stored-item не является .item. Кнопка рецепта использует .crafting-craft, не обработчик associated-diagram; issue-00080 не переносилась на этот путь.
+
+Из улучшений отображаются словари effects, но рендер не вызывает applyStatus и не устраняет issue-00084/00089. В текущем Monster есть data-action=exportLoot; в старом partial только class export-loot. Сам preload старого шаблона не доказывает его использование в зарегистрированном V2. Разные представления/исходы отделены от предположений об игровых правилах.
+
+### Наблюдения
+
+Пять новых карточек зарегистрированы только в potential:
+
+| Issue | Наблюдение |
+| --- | --- |
+| [issue-00176](../../issues/potential/issue-00176.md) | Кнопка изготовления формулы запускает ремесленный обработчик |
+| [issue-00177](../../issues/potential/issue-00177.md) | Кнопки ремонта инвентаря монстра не имеют подключённого обработчика |
+| [issue-00178](../../issues/potential/issue-00178.md) | Подписи инвентаря обращаются к отсутствующим ключам локализации |
+| [issue-00179](../../issues/potential/issue-00179.md) | Подписи веса инвентаря и контейнеров обходят локализацию |
+| [issue-00180](../../issues/potential/issue-00180.md) | Старый инвентарь монстра читает и редактирует устаревшие поля брони |
+
+Дополнены [issue-00007](../../issues/potential/issue-00007.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00080](../../issues/potential/issue-00080.md), [issue-00084](../../issues/potential/issue-00084.md), [issue-00089](../../issues/potential/issue-00089.md), [issue-00101](../../issues/potential/issue-00101.md), [issue-00166](../../issues/potential/issue-00166.md), [issue-00173](../../issues/potential/issue-00173.md). Воспроизведение агентом не заменяет подтверждения пользователя. Изменение статуса и исправление не выполнялись.
+
+Отсутствующий заголовок Quantity у современной брони, скрытая неположительная accuracy и пересечение enhancement в списках Monster описаны как фактические особенности; отдельная необходимость изменения этих представлений не объявлялась доказанной. Тройные скобки description рецепта и экранирование StringField других таблиц зафиксированы, но сами по себе не квалифицированы как ошибка.
+
+### Формальная проверка
+
+Автоматическая сверка завершена без ошибок:
+
+- Реестр содержит 621 исходник и совпадает с Git/файловой системой после согласованных исключений. Все исходники побайтово совпали с текущим HEAD и срезом TASK-0001.
+- 219 карточек соответствуют статусу «Проверено», 402 файла имеют статус «Не начат». Для 12 новых карточек проверены обязательные разделы, версия и буквальные поля name/data-field. Списки 30 подзадач не пересекаются: .001–.027 выполнены, .028–.030 остаются planned.
+- Проверены 297 прямых импортов уже описанных JS: 201 default, 89 именованных statements с 94 именами и 7 namespace; в новой порции JS нет. Проверены существование целей, экспорты и встречные упоминания в описанных карточках.
+- Проверены 143 буквальные связи с HBS, в том числе 21 связь из новой порции. Все цели существуют, исходящие ссылки и встречные связи уже описанных потребителей согласованы.
+- Все 180 ID проблем последовательны и находятся в potential. Пять новых карточек имеют обязательные разделы; 25 дополнений карточек файлов и восемь дополнений issues присутствуют по одному разу.
+- Проверены 461 Markdown-документ внутри docs и два корневых справочных документа: 9977 локальных ссылок и их якоря. Таблицы изменённых файлов и git diff --check прошли.
+- Изменены только 61 документ: 44 ранее отслеживаемых и 17 новых. Mode/uid/gid/inode всех 1122 отслеживаемых файлов совпадают со стартовыми. Общие хеши исходников/метаданных не изменились; прежний журнал, включая .026, сохранён дословно.
+
+SHA-256 набора исходников: `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`. Формальные проверки подтверждают целостность документации и неизменность кода, а не работу игрового мира.
+
+Исходники и игровые данные не менялись. Сборка, запуск службы, коммит и изменение прав не выполнялись. Историческая часть журнала сохранена дословно.
+
 ## TASK-0003.026
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `45a63062a2bd55939fef430609fc5dddc350b0e9`. На старте рабочее дерево чистое; отслеживаются 1112 файлов. Исходники сверяются со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.

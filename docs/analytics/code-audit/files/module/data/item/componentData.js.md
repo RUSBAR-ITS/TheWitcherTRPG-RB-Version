@@ -90,3 +90,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. _onItemAdd имеет три формы начальных данных: alchemical, substances+substanceType и обычный component. Реальный HBS списка веществ не передаёт subtype в data-subtype кнопки, и попытка создания из vitriol передала обычный component (issue-00173). Прямой ввод subtype=vitriol даёт правильную форму данных. StringField quantity не превращает строковый inline ввод в число на уровне handler.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. В реальном компоненте строковые rarity/forage='0' truthy, числовой weight=0 скрывается; quantity='0' остаётся в input. subtype передаётся через substances→components→summary, но не превращается в data-subtype кнопки. findNeededComponent считает по имени, UUID используется другим этапом подготовки.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

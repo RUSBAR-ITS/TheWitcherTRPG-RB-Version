@@ -88,3 +88,9 @@ content содержит ссылки на исходные документы, 
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `66cd03705dbc398eba0026284a298b5fbe337035`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003024) |
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современная строка valuable.type=container читает prepared itemContent/storedWeight/carry: две единицы по3 дают progress6/max12. Вложенный details имеет полный UUID в data-item-id, но не класс .item, не предоставляет отдельного редактора количества. Это снимок, а не встроенный документ; обращений к UUID сам HBS не выполняет.
+
+Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -233,3 +233,9 @@
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Регистрация подтверждает только двух наследников общего V2: WitcherCharacterSheet и WitcherMonsterSheet. Общие классы напрямую не регистрируются; у WitcherActorSheetV1 не найдены imports/наследники. Loot и Mystery имеют отдельное наследование от ActorSheetV2. Наличие старого monster-sheet.hbs не доказывает использование V1.
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Подтверждено различие подключения: WitcherCharacterSheet.PARTS.inventory использует новую вкладку Character, WitcherMonsterSheet — короткую новую вкладку Monster с общими таблицами. Старый monster-sheet/monster-inventory-tab присутствует в preload, но отдельного зарегистрированного листа по нему не найдено.
+
+Связанные шаблоны: [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

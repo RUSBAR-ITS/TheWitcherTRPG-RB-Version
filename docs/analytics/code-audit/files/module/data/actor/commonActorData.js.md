@@ -155,3 +155,9 @@
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. Полностью разобран потребитель WitcherActor: модель задаёт исходные максимумы, затем initial эффекты, два прохода основных характеристик и производные расчёты, затем final эффекты ядра. Восемь stats.value рассчитываются из unmodifiedMax, не max. Числовой initial-эффект по max может не достигнуть value либо быть перезаписан (issue-00036); это дополнительный результат интеграции.
 
 Карточки: [WitcherActor](../../actor/witcherActor.js.md), [modifierMixin](../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../review-log.md#task-0003007).
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. calcCurrencyWeight прослежен до индикатора инвентаря через Actor.getTotalWeight. Семь валют вводятся через name=system.currency.*; 1001 монета дала 1.001 до общего округления вверх. HBS не выполняет этот расчёт; английские Carry/Max Carry отражены в issue-00179.
+
+Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -93,3 +93,9 @@ currency():3–13 возвращает семь NumberField. Курсы, ком�
 2026-09-10, `fe7ea7420cd4dfa6ee51baf7520f7b0ad8f8b13d`. Повторно сопоставлены оба прямых включения currency: CommonActorData:20 и LootData:10. Персонаж/монстр получают первое по наследованию; LootData общую модель не наследует. По одной монете семи видов дали 0.007 в каждой из четырёх настоящих моделей; округление общего веса остаётся в Actor.getTotalWeight.
 
 Карточки сборки: [commonActorData](../../commonActorData.js.md), [lootData](../../lootData.js.md). [Сверка TASK-0003.006](../../../../../../review-log.md#task-0003006).
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Семь полей точно соответствуют input.name современной вкладки инвентаря: bizant/ducat/lintar/floren/crown/oren/falsecoin. Все input type=number/data-dtype=Number; min/max в HBS отсутствуют. Это Actor form submit, а не Item inline-edit.
+
+Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs). [Проверки и ограничения](../../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

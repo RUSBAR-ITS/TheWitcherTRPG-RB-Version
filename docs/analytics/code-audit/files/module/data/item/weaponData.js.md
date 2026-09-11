@@ -132,3 +132,9 @@ repair посылает update родительскому документу, н
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Drop оружия монстру меняет prepared equipped, однако source остаётся прежним и именно его берёт addItem (issue-00172). Реальная WeaponData участвовала в проверке. Установка enhancementItemIds происходит отдельными не ожидаемыми операциями с EnhancementData; повторные/устаревшие ID и отказ записи зарегистрированы в issue-00171, отдельно от обрезки списка в общем листе (issue-00166).
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современная строка использует существующее type.text (SchemaField), reliable/maxReliability, damage, accuracy, equipped/canBeRepaired и enhancementItems. Матрица -2/0/+2 показала только положительную accuracy. Старый monster partial отдельно редактирует damage/reliable/rateOfFire. Общий HBS даёт ремонтную кнопку Monster, listener только Character (issue-00177).
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs); [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.

@@ -107,3 +107,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. _onItemLearned переключает существующее system.learned, не SkillItemData.isLearned. Для создания handler отдельно проверяет itemtype='diagram', которого нет в manifest; штатный itemtype='diagrams' проходит Item.create без такого preset и получает defaults. Это различие ветвей зафиксировано без признания обязательности alchemical preset для всех рецептов. Контекстное canBeDismantled читает associatedDiagramUuid у weapon/armor, сам рецепт здесь не списывается.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.027
+
+2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Нынешняя таблица рецепта показывает isFormulae-dependent DC, learned, компоненты и результаты enrichDiagramComponents. Вложенный helper получил ../../actor и дал6/3, алхимический список5/2. Нет кнопки связанного результата/associatedDiagramUuid. Кнопка формулы направлена в _craftingCraft — issue-00176; isFormulae и alchemyDC продолжают иметь отдельную проблему issue-00101.
+
+Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
