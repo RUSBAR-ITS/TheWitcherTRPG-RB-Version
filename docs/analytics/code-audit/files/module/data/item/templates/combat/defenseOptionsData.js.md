@@ -99,3 +99,11 @@ Direct профессиональный message передаёт skill.skillAtta
 [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Прямой потребитель AttackMessageData включает ...defenseOptions() в корень system. Группа06 подтвердила default Set из шести элементов, сохранение явного пустого Set и допуск произвольной непустой строки. Схема не проверяет существование боевого обработчика для custom. combat.js проверяет truthy коллекцию, поэтому наличие пустого Set не равно отсутствию поля; полная пользовательская защита с пустым набором не запускалась.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../../../module/data/chatMessage/attackMessageData.js). Полные новые описания: [attackMessageData.js](../../../chatMessage/attackMessageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

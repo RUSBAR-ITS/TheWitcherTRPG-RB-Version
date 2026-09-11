@@ -105,3 +105,11 @@ API и версия statuscounter, реальные таймеры нескол�
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md); [templates/chat/combat/spellItem.hbs](../../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../../templates/chat/combat/spellItem.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. damageMixin.applyDamage выбирает properties.effects с truthy statusEffect/applied, затем передаёт damageObject.duration в applyStatusEffectToActor. DamageMessageData хранит массив этих записей, а duration в схему не входит. Группы07–09 проверили тип и удаление duration, без создания реального статуса. Прямой applyDamageFromStatus и HTML data-duration у ручных ссылок не проходят эту же границу; их нельзя объявлять потерявшими длительность по этому тесту.
+
+Сопоставленные исходники: [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js). Полные новые описания: [damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [damageData.js](../../data/chatMessage/templates/damageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

@@ -60,7 +60,7 @@ DamageMessageData использует только defineSchema(), затем �
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
 | itemEffect | [module/data/item/templates/itemEffectData.js](../../../../../../../../../module/data/item/templates/itemEffectData.js) | ES import и вызов | Строки1,49; состав отдельного воздействия | Четыре поля: name '', statusEffect null, percentage0 с min0/max100, varEffect false |
-| DataModel; fields.*; randomID | Foundry14.367.0, common/abstract/data.mjs; common/data/fields.mjs; common/utils/helpers.mjs | Наследование, схема и генерация ID | defineSchema/migrateData/миграция массива | Настоящие модели/поля/утилиты в Node |
+| DataModel; fields.*; randomID | Foundry 14.367.0, common/abstract/data.mjs; common/data/fields.mjs; common/utils/helpers.mjs | Наследование, схема и генерация ID | defineSchema/migrateData/миграция массива | Настоящие модели/поля/утилиты в Node |
 | parent.enhancementItems | [module/data/item/weaponData.js](../../../../../../../../../module/data/item/weaponData.js) | Чтение внешнего контекста | getter enhancementsEffects ожидает записи {system,...}, подготовленные WeaponData | prepareDerivedData и реальный parent сверены |
 | enhancement.system.effects | [module/data/item/enhancementData.js](../../../../../../../../../module/data/item/enhancementData.js) | Чтение схемы другого предмета | getter и внешний вызов addEffects | Тип TypedObjectField совпал |
 | WITCHER.Weapon.*; WITCHER.Item.DamageProperties.* | [lang/ru.json](../../../../../../../../../lang/ru.json); [lang/en.json](../../../../../../../../../lang/en.json) | Локализация | Labels полей | Три неработающие настройки обозначены прямо в обоих переводах |
@@ -167,3 +167,11 @@ effects в castSpell читается через Object.values, что соот�
 [module/actor/mixins/castSpellMixin.js](../../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. DamageProperties напрямую импортируется defenseMessageData, damageMessageData и damageData. Attack.damage.properties и Defense.attackWeaponProperties — EmbeddedDataField с настоящей моделью и словарём effects. Damage.damage.properties — обычный SchemaField с копией defineSchema и заменой effects на ArrayField: методов getPreprocessedEffects/addEffects и миграции модели у него нет. Группы07–08 показали applied=false по умолчанию, очистку словаря в [] и clamp percentage0–100. Суммирование вероятностей выполняется до сообщения в damageUtilMixin, не в DamageMessageData.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../../../module/data/chatMessage/templates/damageData.js). Полные новые описания: [attackMessageData.js](../../../chatMessage/attackMessageData.js.md), [defenseMessageData.js](../../../chatMessage/defenseMessageData.js.md), [damageMessageData.js](../../../chatMessage/damageMessageData.js.md), [damageData.js](../../../chatMessage/templates/damageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

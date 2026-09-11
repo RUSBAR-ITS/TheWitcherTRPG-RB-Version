@@ -144,3 +144,11 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Item.note:174 сопоставлен с полностью описанной NoteData и отсутствием отдельной регистрации листа. Сам тип действителен; пустой интерфейс отдельной заметки относится к WitcherItemSheet.PARTS и не означает отсутствия модели.
 
 Связи: [module/data/item/noteData.js](module/data/item/noteData.js.md); [templates/sheets/item/note-sheet.hbs](templates/sheets/item/note-sheet.hbs.md). [Результаты и пределы проверки](../review-log.md#task-0003033).
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. В documentTypes.ChatMessage объявлены attack/defense/damage. Базовый base разрешён common BaseChatMessage через baseTypeAllowed и coreTypes; отсутствие явного base в manifest не означает ошибку. Типы system сопоставлены настоящим TypeDataField (группа02). Пустой WitcherChatMessage не добавляет ограничений. Клиентский старт не проверен.
+
+Сопоставленные исходники: [module/chatMessage/witcherChatMessage.js](../../../../module/chatMessage/witcherChatMessage.js), [module/data/chatMessage/baseMessageData.js](../../../../module/data/chatMessage/baseMessageData.js), [module/data/chatMessage/attackMessageData.js](../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../module/data/chatMessage/damageMessageData.js). Полные новые описания: [witcherChatMessage.js](module/chatMessage/witcherChatMessage.js.md), [baseMessageData.js](module/data/chatMessage/baseMessageData.js.md), [attackMessageData.js](module/data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](module/data/chatMessage/defenseMessageData.js.md), [damageMessageData.js](module/data/chatMessage/damageMessageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

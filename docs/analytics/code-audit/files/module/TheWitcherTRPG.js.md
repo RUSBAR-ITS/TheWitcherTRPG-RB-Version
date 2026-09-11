@@ -188,3 +188,11 @@ CONFIG.WITCHER=WITCHER в init30 обеспечивает currency/currencyRates
 [module/actor/mixins/rewardsMixin.js](actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](actor/rewardsSheet.js.md), [module/app/reward/reward.js](app/reward/reward.js.md), [templates/chat/rewards.hbs](../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Прямой namespace-import Chat; renderChatMessageHTML передаёт message/html в chatMessageListeners наряду с Combat/VerbalCombat/ApplyStatusEffects. Полный chat.js разобран: message не используется; привязка берёт первую кнопку shield/heal/request-repair. Callback лечения/щита получает данные из HTML и не проверяет fumble/type. Отправляемое сообщение результата без explicit type попадает в base; серверная обработка user/author не проверена.
+
+Сопоставленные исходники: [module/scripts/chat.js](../../../../../module/scripts/chat.js). Полные новые описания: [chat.js](scripts/chat.js.md).
+
+[Сверка порции и всей серии .031–.040](../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

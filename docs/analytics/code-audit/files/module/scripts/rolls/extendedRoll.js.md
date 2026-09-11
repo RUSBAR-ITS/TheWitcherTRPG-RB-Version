@@ -136,3 +136,11 @@ castSpell задаёт RollConfig({showResult:false}) с threshold−1, зате
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. extendedRoll присваивает messageData.system.rollTotal; AttackMessageData и DefenseMessageData дают getter attackRoll именно для этого поля. В defense это итог защиты. Getter не входит в schema/source; прямое prepared-присваивание не обновляет исходные данные. Самая базовая модель не имеет initial0. Асинхронное сохранение flags остаётся наблюдением issue-00184; серверные задержки в этой порции не воспроизводились.
+
+Сопоставленные исходники: [module/data/chatMessage/baseMessageData.js](../../../../../../../module/data/chatMessage/baseMessageData.js), [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js). Полные новые описания: [baseMessageData.js](../../data/chatMessage/baseMessageData.js.md), [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../../data/chatMessage/defenseMessageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

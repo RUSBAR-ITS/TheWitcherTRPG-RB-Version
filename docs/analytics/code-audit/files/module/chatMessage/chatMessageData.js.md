@@ -125,3 +125,11 @@ castSpell создаёт ChatMessageData(this, HBS, 'attack', {attacker,attack,d
 [module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../actor/mixins/castSpellMixin.js.md); [templates/chat/combat/spellItem.hbs](../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../templates/chat/combat/spellItem.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. ChatMessageData — обычный объект параметров до границы ядра; WitcherChatMessage — документ; четыре DataModel — схемы system. append поверхностно объединяет payload и не заменяет type, но не гарантирует сохранение добавленного произвольного ключа. Настоящий BaseChatMessage очищает damage.duration и defense.crit.critEffectModifier (группы09–10). rollTotal задаёт отправитель, не этот контейнер и не модели.
+
+Сопоставленные исходники: [module/chatMessage/witcherChatMessage.js](../../../../../../module/chatMessage/witcherChatMessage.js), [module/data/chatMessage/baseMessageData.js](../../../../../../module/data/chatMessage/baseMessageData.js), [module/data/chatMessage/attackMessageData.js](../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../module/data/chatMessage/damageMessageData.js). Полные новые описания: [witcherChatMessage.js](witcherChatMessage.js.md), [baseMessageData.js](../data/chatMessage/baseMessageData.js.md), [attackMessageData.js](../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../data/chatMessage/defenseMessageData.js.md), [damageMessageData.js](../data/chatMessage/damageMessageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

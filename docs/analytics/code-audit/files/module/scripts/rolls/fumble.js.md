@@ -90,3 +90,11 @@ TheWitcherTRPG.js импортирует namespace Fumble и регистрир�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003028) |
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Два прямых импорта используются для сравнения message.system.constructor с AttackMessageData/DefenseMessageData. Это точные классы зарегистрированных моделей, не WitcherChatMessage. Схемы/metadata и регистрация сверены; произвольный наследник не равен базовому constructor. Условия интерфейса и жизненный цикл fumble не перепроверены полностью; issue-00183 сохраняет собственные ограничения.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../../data/chatMessage/defenseMessageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

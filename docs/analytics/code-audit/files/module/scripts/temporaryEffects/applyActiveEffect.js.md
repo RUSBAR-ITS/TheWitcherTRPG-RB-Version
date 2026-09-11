@@ -119,3 +119,11 @@ castSpell фильтрует Item.effects по system.applySelf/applyOnTarget, �
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Новые модели выявили раннюю потерю duration: defenseMixin.handleDefenseResults передаёт attackDamageObject.duration в applyActiveEffectToActorViaId(...,'applyOnHit',duration), damageMixin.applyDamage — damageObject.duration с 'applyOnDamage'. Типизированное сообщение этот ключ удаляет ещё до clone (issue-00257). Прямые castSpell self/target-вызовы сохраняют исходный объект; issue-00044 относится к более позднему этапу clone и не объединена с новой.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [damageData.js](../../data/chatMessage/templates/damageData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

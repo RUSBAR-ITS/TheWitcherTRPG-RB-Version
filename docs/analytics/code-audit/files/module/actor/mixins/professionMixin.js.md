@@ -66,9 +66,9 @@
 | TemporaryEffects | [module/data/actor/templates/common/temporaryEffectsData.js](../../../../../../../module/data/actor/templates/common/temporaryEffectsData.js) | Путь назначения effect | temporaryHp.<skillName> → name/value | Схема ожидает числовой value; не прямой прирост derivedStats.hp |
 | AttackMessageData/damageData/attackData | [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js); [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js); [module/data/chatMessage/templates/attackData.js](../../../../../../../module/data/chatMessage/templates/attackData.js) | Тип сообщения | attack, damage, defenseOptions, rollTotal | attack.itemUuid/damage.itemUuid отсутствуют в producer; лишнее damage.item не входит в schema |
 | attackChatMessageListeners/onDamage/executeDefense | [module/scripts/combat/combat.js](../../../../../../../module/scripts/combat/combat.js) | Потребитель сообщения | Кнопка damage/контекст защиты | onDamage требует attack.itemUuid; defense читает attackRoll/options/damage/attacker |
-| ActiveEffect/миграция | Foundry14.367.0: common/documents/active-effect.mjs:152–241 | Конструктор/совместимость | changes(mode2)/duration.rounds — старый ввод | Реальная migrateData преобразует system.changes/type/value и duration; icon не превращается в img |
+| ActiveEffect/миграция | Foundry 14.367.0: common/documents/active-effect.mjs:152–241 | Конструктор/совместимость | changes(mode2)/duration.rounds — старый ввод | Реальная migrateData преобразует system.changes/type/value и duration; icon не превращается в img |
 | WitcherActiveEffectData/регистрация | [module/data/activeEffects/witcherActiveEffectData.js](../../../../../../../module/data/activeEffects/witcherActiveEffectData.js); [module/setup/registerDataModels.js](../../../../../../../module/setup/registerDataModels.js); [module/TheWitcherTRPG.js](../../../../../../../module/TheWitcherTRPG.js) | Тип/документ эффекта | baseType + apply flags; CONFIG.ActiveEffect.documentClass | Полный lifecycle конструктора не исполнялся |
-| DialogV2, Roll, fromUuid, User.query | Foundry14.367.0 | Внешние API | prompt, dice, message/query; DOM .checked/.value | Реальный Roll и данные; окна/query/запись — фасады |
+| DialogV2, Roll, fromUuid, User.query | Foundry 14.367.0 | Внешние API | prompt, dice, message/query; DOM .checked/.value | Реальный Roll и данные; окна/query/запись — фасады |
 | Локализация | [lang/en.json](../../../../../../../lang/en.json); [lang/ru.json](../../../../../../../lang/ru.json) | Текст/подписи | WITCHER.Dialog/Attack/Armor/table/profession | expandObject и core Localization/fallback; имена способности — пользовательские строки |
 
 ## Известные потребители
@@ -102,7 +102,7 @@ HP: цель — первая выбранная, только если applyOnT
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитан файл; соседние определения проверены в пределах вызовов. 24 группы изолированных сценариев: реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9 и отдельные функции ядра Foundry 14.367.0 на Node24.16.0. Dialog, DOM/Application, ActiveEffect-конструктор, запись Actor/Item/ChatMessage и query — фасады. Core миграция ActiveEffect выполнена отдельно на payload. Браузерные события/валидация/сохранение, полный жизненный цикл эффекта, HTTP, БД и несколько клиентов не запускались. Игровые требования сверх кода не выбирались.
+Полностью прочитан файл; соседние определения проверены в пределах вызовов. 24 группы изолированных сценариев: реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9 и отдельные функции ядра Foundry 14.367.0 на Node 24.16.0. Dialog, DOM/Application, ActiveEffect-конструктор, запись Actor/Item/ChatMessage и query — фасады. Core миграция ActiveEffect выполнена отдельно на payload. Браузерные события/валидация/сохранение, полный жизненный цикл эффекта, HTTP, БД и несколько клиентов не запускались. Игровые требования сверх кода не выбирались.
 
 ## Связанные проблемы
 
@@ -113,3 +113,11 @@ HP: цель — первая выбранная, только если applyOnT
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003038) |
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Прямое применение способности отправляет attack без itemUuid; настоящий AttackMessageData оставляет null. Фабрика attackData не выводит ссылку из других данных и не проверяет существование Item. Кнопка combat.onDamage разрешает именно message.system.attack.itemUuid и ожидает rollDamage. Это уточняет issue-00239, а не создаёт её дубль. Метод getItemAttack является отдельным вызываемым API.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/templates/attackData.js](../../../../../../../module/data/chatMessage/templates/attackData.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [attackData.js](../../data/chatMessage/templates/attackData.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

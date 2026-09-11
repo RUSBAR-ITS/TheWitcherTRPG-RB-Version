@@ -106,3 +106,11 @@ Duration: непустая строка сначала лишается всех
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `c598d74e34f4be51535de78b38f0601c286c5407`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003039) |
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. spellItem.hbs получает сырой damage до отправки: кнопки сохраняют damage.shield/heal и actor.uuid. Затем typed AttackMessageData очищает незаявленные duration/heal/shield; кнопки продолжают читать HTML. Непосредственные self/target эффекты castSpell используют исходный damage.duration, но дальнейшие applyOnHit/applyOnDamage читают очищенный объект сообщения: issue-00257. chat.js не использует message/fumble; воспроизведены парсинг/цели/ошибки кнопок. Новые связи дополняют проверенную в .039 логику; полный боевой цикл не выполнен.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js), [module/scripts/chat.js](../../../../../../../module/scripts/chat.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [damageData.js](../../data/chatMessage/templates/damageData.js.md), [chat.js](../../scripts/chat.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

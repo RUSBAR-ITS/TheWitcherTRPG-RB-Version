@@ -85,3 +85,11 @@ selfEffects здесь ожидает массив {effect,statusEffect}; в а�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `c598d74e34f4be51535de78b38f0601c286c5407`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003039) |
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Shield/heal кнопки читают damage.shield/heal из исходного render-контекста; data-actor=templateInfo.actor.uuid. Дальнейший chat.js использует currentTarget и HTML, а не message.system.damage, поэтому schema-очистка не отключает эти действия. Шаблон даёт одну кнопку каждого типа; ошибка первого querySelector не заявлена. Кнопки не проверяют исход броска; формулы и fumble остаются issue-00249/00253. Ссылки apply-status читают data-duration отдельно — не путать с автоматическим onHit/onDamage.
+
+Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js), [module/scripts/chat.js](../../../../../../../module/scripts/chat.js). Полные новые описания: [attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js.md), [damageMessageData.js](../../../module/data/chatMessage/damageMessageData.js.md), [damageData.js](../../../module/data/chatMessage/templates/damageData.js.md), [chat.js](../../../module/scripts/chat.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

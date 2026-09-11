@@ -1,5 +1,117 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.040
+
+| Поле | Результат |
+| --- | --- |
+| Дата / ветка | 2026-09-11 / rusbar-main |
+| Коммит проверки | `74322e91edac106c82668f4a47eef53ce1889dc1`; рабочее дерево на старте чистое |
+| Базовый срез | `15da5b225535e34af4e132c701b5353ef4eb667f`; все 621 исходник сохраняют байтовое совпадение |
+| Порция | [TASK-0003.040](../../tasks/task-0003.040.md); 10 файлов / 237 строк |
+| Покрытие | 300 → 310 из 621; не разобраны311. Четвёртая серия:63 из 63, очередь0, вне конкретных подзадач311. |
+| Окружение | Foundry 14.367.0 из /opt/foundryvtt; Node 24.16.0. Проверки запускались через node --input-type=module (stdin); тестовые файлы/стенд в репозитории не создавались. |
+| Документация | 10 новых полных карточек, уточнения 17 связанных и 17 прежних issues; 4 новых potential issues. |
+
+### Точный состав
+
+| Исходник | Строк | Карточка |
+| --- | --- | --- |
+| [module/chatMessage/witcherChatMessage.js](../../../module/chatMessage/witcherChatMessage.js) | 3 | [Описание](files/module/chatMessage/witcherChatMessage.js.md) |
+| [module/data/chatMessage/baseMessageData.js](../../../module/data/chatMessage/baseMessageData.js) | 16 | [Описание](files/module/data/chatMessage/baseMessageData.js.md) |
+| [module/data/chatMessage/attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js) | 31 | [Описание](files/module/data/chatMessage/attackMessageData.js.md) |
+| [module/data/chatMessage/defenseMessageData.js](../../../module/data/chatMessage/defenseMessageData.js) | 42 | [Описание](files/module/data/chatMessage/defenseMessageData.js.md) |
+| [module/data/chatMessage/damageMessageData.js](../../../module/data/chatMessage/damageMessageData.js) | 37 | [Описание](files/module/data/chatMessage/damageMessageData.js.md) |
+| [module/data/chatMessage/templates/attackData.js](../../../module/data/chatMessage/templates/attackData.js) | 10 | [Описание](files/module/data/chatMessage/templates/attackData.js.md) |
+| [module/data/chatMessage/templates/critData.js](../../../module/data/chatMessage/templates/critData.js) | 8 | [Описание](files/module/data/chatMessage/templates/critData.js.md) |
+| [module/data/chatMessage/templates/damageData.js](../../../module/data/chatMessage/templates/damageData.js) | 18 | [Описание](files/module/data/chatMessage/templates/damageData.js.md) |
+| [module/data/chatMessage/templates/locationData.js](../../../module/data/chatMessage/templates/locationData.js) | 10 | [Описание](files/module/data/chatMessage/templates/locationData.js.md) |
+| [module/scripts/chat.js](../../../module/scripts/chat.js) | 62 | [Описание](files/module/scripts/chat.js.md) |
+
+### Методика и границы исполнения
+
+Прочитаны полные десять файлов, прямые определения и места регистрации; боевые/ремонтные соседи — в пределах полей и вызовов. Статические imports, SchemaField/EmbeddedDataField/TypeDataField, metadata, внешние API, HTML атрибуты, локализация и потребители сверены отдельно. Подробные методы, defaults, записи и ошибочные границы перечислены в карточках.
+
+В Node загружены настоящие DataModel/fields из /opt/foundryvtt/common, четыре модели системы и common BaseChatMessage. Локальные правила DocumentUUIDField/TypeDataField изучены по исходникам этой установленной версии: UUID не доказывает существование документа; обычный DataModel допустим; base является разрешённым типом ядра. Конфигурация типов и минимальные game.model/users/release заданы явно. Это не запуск клиентского WitcherChatMessage, базы данных и миграции старой истории.
+
+Callbacks чата исполнялись через реальную регистрацию chatMessageListeners; HTML получен настоящим Handlebars и разобран parse5, вместо DOM использован адаптер getAttribute/dataset/querySelector/addEventListener. Коллекции Actor/Item, UUID resolver, canvas/targets, DialogV2, update, addItem и ChatMessage.create — фасады; контролируемые Promise показывают границы ожидания. Из соседнего кода исполнены контекст передачи защиты, applyCritWound, processRequest и ранний участок prepareData. Удержание/восстановление методов prototype Repair выполнялось только в памяти процесса. Все 24 группы после уточнения ожиданий для очистки полей прошли.
+
+Книги правил, браузерные события, серверные права и сохранение, несколько клиентов, полный боевой цикл и успешный полный ремонт не проверялись. Исследование не меняет игровые значения или архитектуру.
+
+### Изолированные сценарии
+
+| Группа | Сценарий | Наблюдаемый результат | Пределы |
+| --- | --- | --- | --- |
+| 01 | Определения, metadata и пустой класс документа | У WitcherChatMessage только constructor в prototype; модели имеют frozen type; Base.rollTotal default undefined. | Клиентский ChatMessage заменён фасадом; методы модели настоящие. |
+| 02 | Четыре модели в настоящем common BaseChatMessage | base/attack/defense/damage выбраны по CONFIG; rollTotal '7'→7; parent связывает модель с документом. Отсутствующий type даёт base. | game.model/CONFIG/users и release — минимальные данные окружения; не клиент и не DB. |
+| 03 | Числа, getter и source | −3/0/1.5 принимаются; 'abc' отклоняется. attackRoll отражает prepared rollTotal; toObject(true) сохраняет исходное значение. | Сохранение через update не выполнялось. |
+| 04 | UUID | Синтаксически допустимы Actor/Item/embedded UUID, даже не разрешающиеся resolver. Неверный/относительный UUID отвергнут; пустое поле null. | UUID не ограничены типом Actor/Item; resolver перехвачен. |
+| 05 | Четыре фабрики и локации | Новые поля при каждом вызове. damage.location.modifier — строка, formula initial1; defense.crit.location.modifier — число, formula default undefined; нечисловой текст отклонён. | Проверены данные, не все формулы выбора локаций. |
+| 06 | defenseOptions | Шесть default-элементов; явный пустой Set сохраняется; custom допустим, пустая строка отклонена. | Наличие custom-защиты в боевом UI не подтверждено. |
+| 07 | properties и эффекты | Attack.properties — DamageProperties/словарь; Damage.properties — обычный объект/массив; applied defaultfalse. | Это записи itemEffect, не встроенные документы ActiveEffect. |
+| 08 | Очистка массива и вероятности | effects-словарь в damage очищается в []; percentage101→100, −1→0, '25'→25; старый массив attack-effects мигрирует в словарь. | Ожидание ошибки для словаря/101 уточнено по настоящему ArrayField/NumberField: выполняется очистка, не исключение. |
+| 09 | Потеря полей damage при создании документа | У настоящих attack/damage ChatMessage удалены duration, heal, shield, item и вложенный defenseOptions из prepared/source. | Только duration имеет установленного последующего потребителя system.damage; корневой defenseOptions атаки сохраняется. |
+| 10 | Схема критического результата защиты | Сырой critEffectModifier удалён из prepared и source; crit.location.critEffect остаётся undefined, если не задан. | Настоящий common-документ; не DB. |
+| 11 | Выбор критической травмы | Настоящий applyCritWound при двух кандидатах и modifier+6 выбирает greater; после DefenseMessageData выбирает lesser из-за NaN. | Пак/UUID/addItem/ChatMessage — фасады; при явном critEffect или одном кандидате другая ветвь. |
+| 12 | Контекст защиты | Настоящий combat.addDefenseOptionsContextMenu передаёт prepared attack/Set/damage, attackRoll17 и attackerUUID. | Actor.prepareAndExecuteDefense заменён приёмником аргументов; сам бой не исполняется. |
+| 13 | Привязка кнопок | Без элементов — нет callback; при нескольких однотипных — привязывается первая кнопка каждого класса. | DOM адаптер parse5; текущие HBS содержат по одной такой кнопке. |
+| 14 | Щит | 7/0/−2 передаются строкой в shield.value; сообщение имеет speaker источника, explicit type не задан. | update/create перехвачены; допустимость отрицательного щита как правила не оценивалась. |
+| 15 | Цель лечения | Приоритет targets.first.actor → controlled[0].actor → user.character; при отсутствии всех — выход; speaker остаётся источником. | Коллекции и canvas заменены; это отдельный алгоритм, не getInteractActor. |
+| 16 | Величина лечения | HP5/max20: heal50→20, 0→5, −9→−4, '2.8'→7; пустое/abc→NaN. При HP25/max20 heal0→20. | Зафиксирован payload update, не подтверждена запись отрицательных/NaN значений в серверную модель. |
+| 17 | Отсутствующий источник | Щит падает без update; лечение с доступной целью сначала вызывает update, затем падает на actor.name. | Источник не удалялся в реальном мире; resolver вернул undefined. |
+| 18 | Формулы в кнопках | Лечение '1d6' превращается в1; щит '2d6' передаётся строкой, числовая модель такую строку не принимает. | Продолжение issue-00249; это не проверка Roll.evaluate. |
+| 19 | Граница завершения | onShield вернул undefined и создал сообщение при ещё pending update. | Promise удерживался локально; реальный отказ/гонка клиентов не проверялись; heal без await установлен статически. |
+| 20 | Успешная передача запроса ремонта | Реальный callback и processRequest получают owner/item/artisan в правильном порядке и ждут renderDialog. | На prototype Repair заменены prepareData/renderDialog с восстановлением; не полная операция ремонта. |
+| 21 | Устаревший запрос и target | Нет owner — TypeError до guard; нет Item при существующем owner — выход; вложенный target без dataset повторяет missing-owner. | Текущий HBS имеет текстовую кнопку, не иконку; последний случай — граница DOM-контракта. |
+| 22 | Выбор исполнителя | Отсутствие исполнителя не защищает от missing-owner; DialogV2.input=null при нескольких Actor вызывает TypeError внутри helper. | Результат отмены управляемого DialogV2, не браузерный сценарий. |
+| 23 | Настоящий ранний отказ ремонта | processRequest/prepareData при отсутствующей ссылке диаграммы уведомляют и не выполняют ремонтные записи. | Стоимость/skillBase/полный ремонт не достигнуты; issue-00103 не объявлена перепроверенной полным циклом. |
+| 24 | HBS, атрибуты, ключи | Реальный repair.hbs рендерится с data-owner/item; кнопка текстовая. Ключи shieldApplied/healed доступны в en/ru. | DOM/события/создание чата заменены; служба Foundry не проверялась. |
+
+### Итоговая сверка TASK-0003.031–TASK-0003.040
+
+Перечни десяти задач сопоставлены друг с другом, исходниками и реестром: **63 уникальных файла (29 JS /34 HBS), 5046 строк**. Пересечений с прежними 247 нет:247+63=310. Все 63 имеют полные карточки с 11 обязательными разделами; собственные определения/методы и поля сверены. Десять новых карточек включают все определения нынешней порции. Для прежних 53 использованы их полные карточки, доказательства завершённых порций и неизменность исходников; прежние игровые сценарии всех десяти задач повторно не запускались.
+
+| Часть серии | Опорные исходники | Перекрёстная проверка |
+| --- | --- | --- |
+| .031 — персонаж | [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js); [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs); [templates/sheets/actor/partials/character/sidebar.hbs](../../../templates/sheets/actor/partials/character/sidebar.hbs) | WitcherActorSheet, регистрация листа, CharacterData, itemMixin и Handlebars-поля. Собственные методы/контекст/действия сверены по карточкам и определениям; 26 групп .031 сохраняют свои ограничения. |
+| .032 — монстр | [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | Наследование текущего V2-листа и конфигурации, MonsterData, действующие PARTS и исторические HBS разделены. Не все хранящиеся шаблоны являются зарегистрированными путями. |
+| .033 — биография/заметки | [module/actor/sheets/mixins/noteMixin.js](../../../module/actor/sheets/mixins/noteMixin.js); [module/data/item/noteData.js](../../../module/data/item/noteData.js); [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs) | Actor.notes и Item.note — разные структуры; lifeEvents, редакторы и их запись связаны с Actor sheet/CharacterData/CommonItemData. Изменение prepared не приравнено к сохранению source. |
+| .034 — ремесло/алхимия | [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js); [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js); [module/item/mixins/dismantlingMixin.js](../../../module/item/mixins/dismantlingMixin.js) | Object.assign Actor/Item, поиск компонентов, шаблон веществ и отчёт разбора. Критерии поиска и прямой метод отделены от дефектных UI/меню путей. |
+| .035 — добыча/торговля | [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js); [module/data/item/mountData.js](../../../module/data/item/mountData.js); [module/item/sheets/WitcherMountSheet.js](../../../module/item/sheets/WitcherMountSheet.js) | Loot Actor sheet, контекст торговца и mount Item/ItemSheet; world/synthetic и query не смешаны. Историческая общая сверка первых31 файлов сохранена. |
+| .036 — валюта | [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js); [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Две одноимённые примеси имеют разные точки Object.assign. Курсы/выбранная валюта/форма/сообщение и границы save/query сопоставлены с config и Actor-данными. |
+| .037 — награды | [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js); [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js); [module/app/reward/reward.js](../../../module/app/reward/reward.js); [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | Акторная примесь, Application, диалоги и HBS связаны с журналом наград/валютой/IP. Повторно проверены переводы; две missing amount-подписи остаются issue-00234. |
+| .038 — профессия | [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js); [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs) | Кнопки текущих листов → Actor.applyProfession → ChatMessageData/extendedRoll → AttackMessageData. Новая схема не заполняет отсутствующий itemUuid; подтверждена связь issue-00239. |
+| .039 — магия | [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js); [templates/chat/combat/spellItem.hbs](../../../templates/chat/combat/spellItem.hbs) | Текущие/старые списки и форма → castSpell → сырой damage и flavor → модель атаки. Автоматические эффекты до/после сообщения и HTML data-* разделены; новая потеря duration не подменяет старую проблему clone. |
+| .040 — чат | [module/chatMessage/witcherChatMessage.js](../../../module/chatMessage/witcherChatMessage.js); [module/data/chatMessage/baseMessageData.js](../../../module/data/chatMessage/baseMessageData.js); [module/data/chatMessage/attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js); [module/data/chatMessage/defenseMessageData.js](../../../module/data/chatMessage/defenseMessageData.js); [module/data/chatMessage/damageMessageData.js](../../../module/data/chatMessage/damageMessageData.js); [module/data/chatMessage/templates/attackData.js](../../../module/data/chatMessage/templates/attackData.js); [module/data/chatMessage/templates/critData.js](../../../module/data/chatMessage/templates/critData.js); [module/data/chatMessage/templates/damageData.js](../../../module/data/chatMessage/templates/damageData.js); [module/data/chatMessage/templates/locationData.js](../../../module/data/chatMessage/templates/locationData.js); [module/scripts/chat.js](../../../module/scripts/chat.js) | WitcherChatMessage — класс документа; ChatMessageData — обычный отправляемый объект; четыре DataModel — system; четыре фабрики — вложенные поля; chat.js — три HTML-действия. Бой, защита, ремонт и эффекты проверены только на указанных границах. |
+
+Среди 310 описанных исходников сверены352 прямых относительных импорта (231 default, 114 named-операторов с 123 именами, 7 namespace) и198 буквальных связей на HBS. Новая порция добавляет 14 импортов и ни одного пути HBS. Исходник каждого импорта и соответствующий export существуют; карточка отправителя указывает источник, а описанная карточка источника — потребителя. Литералы шаблонов сопоставлены с существующими файлами и обратными упоминаниями. Это счётчик синтаксических связей, а не готовый граф всех динамических вызовов.
+
+У серии 63 файлов — 39 прямых импортов, из них 27 в прежние247; прежние карточки имеют 24 импорта в серию. В серии 47 буквальных связей на HBS, из них 15 в прежние247; в обратную сторону 18. Динамические Object.assign, registration/PARTS/TABS, Hooks, form/action, пути system и цепочки отправитель→модель→потребитель сверены содержательно по таблице; внешние модули, миры и пользовательские макросы не охвачены. Неразобранный сосед с просмотренным вызовом не получает карточку или статус полного анализа.
+
+Проверка переводов использовала настоящие expandObject и Localization.localize с английским fallback, а не плоский поиск JSON. Из63 файлов извлечены 255 уникальных литеральных кандидатов WITCHER.*. Восемь — префиксы (Actor.tabs/settings/rewards; Homelands., socialStanding., Monster.Type., Currency., Spell.), а не самостоятельные ключи. Среди 247 конкретных литералов доступны 245, отсутствуют только WITCHER.rewards.dialog.amount и WITCHER.rewards.chat.amount в обоих языках — существующая [issue-00234](../../issues/potential/issue-00234.md). Дополнительно разрешились 62 конкретных ключа вкладок и config-справочников homelands/socialStanding/currency/MonsterTypes. Динамические spell source/level/danger сохраняют проверки .039; произвольные пользовательские суффиксы, внешние словари и все восемь языков не объявлены проверенными.
+
+### Сопоставление проблем
+
+| Новая карточка | Наблюдение |
+| --- | --- |
+| [issue-00255](../../issues/potential/issue-00255.md) | Кнопки щита и лечения обращаются к отсутствующему Actor-источнику |
+| [issue-00256](../../issues/potential/issue-00256.md) | Лечение из чата передаёт отрицательные и нечисловые значения в HP |
+| [issue-00257](../../issues/potential/issue-00257.md) | Схема сообщений удаляет длительность эффектов из damage |
+| [issue-00258](../../issues/potential/issue-00258.md) | Сообщение защиты теряет модификатор тяжести критической травмы |
+
+Дополнены [issue-00005](../../issues/potential/issue-00005.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00025](../../issues/potential/issue-00025.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00044](../../issues/potential/issue-00044.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00108](../../issues/potential/issue-00108.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00127](../../issues/potential/issue-00127.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00183](../../issues/potential/issue-00183.md), [issue-00184](../../issues/potential/issue-00184.md), [issue-00234](../../issues/potential/issue-00234.md), [issue-00239](../../issues/potential/issue-00239.md), [issue-00249](../../issues/potential/issue-00249.md), [issue-00253](../../issues/potential/issue-00253.md). Границы сравнений записаны в каждой карточке: base допускается ядром; chat.getSpeaker корректно получает источник; schema-очистка duration предшествует clone; formula/fumble проблемы прежние; async-кнопки дополняют issue-00127. Предыдущие проверки query, формул, flags и полного ремонта не объявлены выполненными заново.
+
+Все 258 карточек остаются potential. Регистрация входит в [пункт9 TASK-0003](../../tasks/task-0003-remaining-files.md#общие-требования-к-каждой-подзадаче) и поручение продолжить анализ; это не подтверждение проблемы пользователем, не разрешение исправлять и не закрытие.
+
+### Формальная проверка и остаток
+
+Проверены состав и статусы реестра:621 исходник,310 карточек «Проверено», 311 «Не начат»; все40 подзадач завершены без двойного учёта. Проверены структура карточек, обязательные разделы issues, последовательная нумерация1–258 и отсутствие карточек open/closed. Все источники импортов, имена exports, буквальные HBS-пути и обратные упоминания сопоставлены; результаты содержательной сверки приведены выше.
+
+Проверены 640 Markdown-файлов docs и корневые README/AGENTS:14897 локальных ссылок, существование целей/якорей, ширина таблиц и отсутствие хвостовых пробелов в изменённых документах. git diff --check проходит. Ровно 59 Markdown-документов в согласованном объёме изменены или созданы: 45 существующих и 14 новых (10 карточек файлов + 4 issues). Старые записи review-log и текст исторического плана сохранены без изменений.
+
+Все 621 исходник байтово совпадают и с HEAD проверки, и со срезом TASK-0001; хеш совокупности исходников 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4. Для всех 1304 ранее отслеживаемых файлов сохранены mode/uid/gid/inode. Правки существующих документов выполнены на месте; права, владельцы, группы и служба не менялись. Сборка, извлечение компедиумов, создание стенда, изменение миров/БД, коммит и push не выполнялись.
+
+TASK-0003.040 закрыта по критериям анализа; все .001–.040 выполнены. TASK-0003 остаётся in-progress, TASK-0004/TASK-0005 — draft. **311 оставшихся файлов требуют следующего согласованного планирования**; новых подзадач в этой порции не создано. Направления: остальные боевые примеси/обработчики, словесный бой, сокетные отправители, дополнительные модели/шаблоны, CSS, локализации, компедиумные данные и сборочные инструменты. Полные процессы и окончательный граф зависимостей остаются будущими этапами.
+
 ## TASK-0003.039
 
 | Поле | Результат |

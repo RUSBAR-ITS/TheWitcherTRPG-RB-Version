@@ -140,3 +140,11 @@ getActorOwner вызывается из effect/status helpers после castSpe
 [templates/chat/combat/spellItem.hbs](../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../templates/chat/combat/spellItem.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Прямой named-import getInteractActor используется только запросом ремонта chat.js. Сначала выбирается controlled/user.character либо доступный Actor, и только потом проверяются owner/item. При отсутствии исполнителя callback всё ещё может упасть на отсутствующем owner. Отмена выбора из нескольких персонажей в тестовом DialogV2.input=null приводит к TypeError внутри chooseFromAvailableActors(values.actor). Кнопка лечения использует собственный targets→controlled→character алгоритм и не вызывает этот helper.
+
+Сопоставленные исходники: [module/scripts/chat.js](../../../../../../module/scripts/chat.js). Полные новые описания: [chat.js](chat.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.

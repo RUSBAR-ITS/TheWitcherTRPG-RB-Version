@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.039 подготовлены и сверены 300 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.040 подготовлены и сверены 310 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -498,3 +498,18 @@
 | templates/partials/monster/monster-spell-tab.hbs | [Описание](templates/partials/monster/monster-spell-tab.hbs.md) |
 | templates/dialog/combat/spell-attack.hbs | [Описание](templates/dialog/combat/spell-attack.hbs.md) |
 | templates/chat/combat/spellItem.hbs | [Описание](templates/chat/combat/spellItem.hbs.md) |
+
+## Сообщения чата — TASK-0003.040
+
+| Файл | Карточка |
+| --- | --- |
+| module/chatMessage/witcherChatMessage.js | [Описание](module/chatMessage/witcherChatMessage.js.md) |
+| module/data/chatMessage/baseMessageData.js | [Описание](module/data/chatMessage/baseMessageData.js.md) |
+| module/data/chatMessage/attackMessageData.js | [Описание](module/data/chatMessage/attackMessageData.js.md) |
+| module/data/chatMessage/defenseMessageData.js | [Описание](module/data/chatMessage/defenseMessageData.js.md) |
+| module/data/chatMessage/damageMessageData.js | [Описание](module/data/chatMessage/damageMessageData.js.md) |
+| module/data/chatMessage/templates/attackData.js | [Описание](module/data/chatMessage/templates/attackData.js.md) |
+| module/data/chatMessage/templates/critData.js | [Описание](module/data/chatMessage/templates/critData.js.md) |
+| module/data/chatMessage/templates/damageData.js | [Описание](module/data/chatMessage/templates/damageData.js.md) |
+| module/data/chatMessage/templates/locationData.js | [Описание](module/data/chatMessage/templates/locationData.js.md) |
+| module/scripts/chat.js | [Описание](module/scripts/chat.js.md) |

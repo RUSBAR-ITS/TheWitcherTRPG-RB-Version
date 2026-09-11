@@ -139,3 +139,11 @@ Foundry 14.367/Node 24.16, Linux. Полностью прочитан этот �
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полная craftingMixin подтвердила контракт findNeededComponent: включает stored и quantity0, сохраняет порядок коллекции. prepareData:35 берёт лишь [0], затем при отсутствии имени отдельно пробует UUID. В .034 заново проверен сам поиск, полный ремонт не запускался; прежняя issue-00104 и другие результаты ремонта не подменяются новым сценарием.
 
 Связи: [module/actor/mixins/craftingMixin.js](../../actor/mixins/craftingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+### Дополнительная сверка TASK-0003.040
+
+2026-09-11, `rusbar-main`, `74322e91edac106c82668f4a47eef53ce1889dc1`; исходники прежние. Default singleton RepairSystem импортирован chat.js. Его callback передаёт processRequest(owner,item,artisan) в правильном порядке и ожидает Promise. Группа20 исполнила реальный processRequest с заменёнными prototype prepareData/renderDialog, группа23 — настоящий prepareData до раннего отсутствия диаграммы. Успешный полный ремонт не выполнялся; missing-owner падает до RepairSystem (issue-00108), а missing Item при существующем owner даёт выход.
+
+Сопоставленные исходники: [module/scripts/chat.js](../../../../../../../module/scripts/chat.js). Полные новые описания: [chat.js](../../scripts/chat.js.md).
+
+[Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
