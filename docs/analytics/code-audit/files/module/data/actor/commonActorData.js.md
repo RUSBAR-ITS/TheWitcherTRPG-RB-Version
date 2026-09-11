@@ -191,3 +191,9 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный потребитель notes — noteMixin — меняет prepared-массив до Actor.update и не ждёт запись. В группах 03–05 настоящая CharacterData сохраняла прежний source при уже изменённых notes. Сценарии принадлежат общему массиву, не Item.note; решения о смене формата не принимались.
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](../../actor/sheets/mixins/noteMixin.js.md); [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный substances.hbs читает девять BooleanField system.pannels.*IsOpen; _onSubstanceDisplay изменяет соответствующий путь. Изолированный toggle с preventDefault и updateSource перевёл vitriol в открытое состояние; записей количества не выполняет.
+
+Связи: [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

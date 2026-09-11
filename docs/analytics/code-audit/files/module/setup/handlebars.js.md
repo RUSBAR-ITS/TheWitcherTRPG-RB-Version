@@ -339,3 +339,9 @@ spell-header действительно предзагружается и вкл
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background — preload-путь и единственный найденный буквальный потребитель eachLimit. Группа 11 довела ранее описанный выход за keys.length до HTML и toggle: counter=21 даёт пустую 21-ю карточку/data-event='', затем TypeError. Границы обычного HTML-ввода 1–20 отделены от программного ввода; issue-00213. Генераторы packsJson не исследованы.
 
 Связи: [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. substances.hbs получил полную карточку и рендер с двумя настоящими вложенными partial. getOwnedComponentCount исполнен с реальным findNeededComponent и sum: нулевая/трёхединичная одноимённые стопки дают 3. Dismantle HBS загружается отдельным renderTemplate и в preload этого файла не входит.
+
+Связи: [module/actor/mixins/craftingMixin.js](../actor/mixins/craftingMixin.js.md); [templates/partials/character/substances.hbs](../../templates/partials/character/substances.hbs.md); [templates/chat/item/dismantle.hbs](../../templates/chat/item/dismantle.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003034).

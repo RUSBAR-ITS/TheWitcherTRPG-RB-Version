@@ -178,3 +178,9 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Подтверждена цепочка _prepareGeneralInformation → oldNotes/notes → tab-background → itemListener/noteListener. Полный актуальный шаблон описан в .033: .add-item создаёт Item.note; .delete-note удаляет массивную запись. V2 _onLifeEventDisplay работает по ключу преобразованного массива; для пустого ключа карточки за пределом списка воспроизведён TypeError (issue-00213).
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](mixins/noteMixin.js.md); [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Array.prototype.sum('quantity') — числовой producer девяти счётчиков перед _prepareAlchemyComponentsList; настоящий полный дочерний контекст и substances HBS проверены с нулевым и смешанным запасом. Базовый itemListener связывает click панели через itemMixin; изменение флага не является списанием вещества.
+
+Связи: [module/actor/sheets/mixins/alchemyMixin.js](mixins/alchemyMixin.js.md); [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

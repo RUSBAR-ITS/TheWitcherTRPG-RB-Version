@@ -119,3 +119,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Полный Character группирует рецепты в 13 списков по system.type, отдельно от isFormulae и isAlchemicalCraft. Обычный диалог читает craftingComponents/craftingDC; missing associatedItem допускается моделью, но обращение к .name при нехватке ресурсов падает (issue-00201). Кнопка .crafting-craft сохраняет ранее описанное несовпадение режима формулы.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. dismantle читает craftingComponents и обрабатывает строки по одной: max(1,floor(quantity/2)); isFormulae/alchemyComponents/resultQuantity не используются. enrichDiagramComponents сохраняет строку при недоступном UUID, но последующий dismantle теряет её name/uuid в {item:null,quantity} (новая issue-00216). Это отдельный путь от прежней issue-00095 листа рецепта.
+
+Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

@@ -141,3 +141,9 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современный armor partial читает вложенный SP через armorPartsInfo и вложенные resistance, а прежний monster partial — отсутствующие плоские поля; issue-00180 ограничена старым шаблоном. Исправлено прежнее утверждение об атрибуте: современная .item брони не содержит data-type; выбор glyph/armor получается через else обработчика. На рендере quantity не зависит от hasQuantity заголовка, ремонтная кнопка у Monster не имеет найденного listener.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs); [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный dismantlingMixin явно допускает type='armor' и использует общую associatedDiagramUuid/quantity; нормы SP, resistances и надетости не читает. Полный runtime разбор в .034 выполнен с оружием; эквивалентная ветвь типа armor установлена статически, повторного сценария брони нет.
+
+Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

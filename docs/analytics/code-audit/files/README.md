@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.033 подготовлены и сверены 267 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.034 подготовлены и сверены 272 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -435,3 +435,13 @@
 | module/data/item/noteData.js | [Описание](module/data/item/noteData.js.md) |
 | templates/partials/character/tab-background.hbs | [Описание](templates/partials/character/tab-background.hbs.md) |
 | templates/sheets/item/note-sheet.hbs | [Описание](templates/sheets/item/note-sheet.hbs.md) |
+
+## Компоненты, алхимическая панель и разбор предметов — TASK-0003.034
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/craftingMixin.js | [Описание](module/actor/mixins/craftingMixin.js.md) |
+| module/actor/sheets/mixins/alchemyMixin.js | [Описание](module/actor/sheets/mixins/alchemyMixin.js.md) |
+| module/item/mixins/dismantlingMixin.js | [Описание](module/item/mixins/dismantlingMixin.js.md) |
+| templates/partials/character/substances.hbs | [Описание](templates/partials/character/substances.hbs.md) |
+| templates/chat/item/dismantle.hbs | [Описание](templates/chat/item/dismantle.hbs.md) |

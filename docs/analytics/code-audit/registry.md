@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.033 проверены описания **267 файлов**, для **354 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.034 проверены описания **272 файлов**, для **349 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.033](review-log.md#task-0003033) выполнена на `12055fee62f01c6de49967044aedef9d7cfe0632`: все 621 исходник совпадают с базовым срезом; добавлены четыре карточки биографии и заметок, уточнены связи с прежними описаниями. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.034](review-log.md#task-0003034) выполнена на `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`: все исходники (621 файл) совпадают с базовым срезом; добавлены пять карточек компонентов, алхимической панели и разбора предметов, уточнены связи с прежними описаниями. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -29,7 +29,7 @@
 | [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | Добавление адреналина по мировой настройке. | [Карточка](files/module/actor/mixins/adrenalineMixin.js.md) | Проверено |
 | [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js) | Примесь Actor с тремя способами найти компоненты: по ключу вещества, имени и UUID происхождения из компедиума. | [Описание](files/module/actor/mixins/craftingMixin.js.md) | Проверено |
 | [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/damageUtilMixin.js](../../../module/actor/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
@@ -54,7 +54,7 @@
 | [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js) | Контекстное меню Item: условия и обработчики редактирования, расходования, снятия улучшения, передачи, разборки и удаления. | [Карточка](files/module/actor/sheets/interactions/itemContextMenu.js.md) | Проверено |
 | [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js) | Лист Actor-тайны на ApplicationV2. | [Карточка](files/module/actor/sheets/investigation/WitcherMysterySheet.js.md) | Проверено |
 | [module/actor/sheets/mixins/activeEffectMixin.js](../../../module/actor/sheets/mixins/activeEffectMixin.js) | Категории эффектов Actor, управление документами и раскрытие описаний. | [Описание](files/module/actor/sheets/mixins/activeEffectMixin.js.md) | Проверено |
-| [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/sheets/mixins/alchemyMixin.js](../../../module/actor/sheets/mixins/alchemyMixin.js) | Примесь листа персонажа, формирующая массив описаний девяти алхимических веществ из уже вычисленных счётчиков контекста. | [Описание](files/module/actor/sheets/mixins/alchemyMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../module/actor/sheets/mixins/criticalWoundMixin.js) | Действия листа Actor: создать критическую травму и вызвать переход по кнопке лечения; регистрация DOM-слушателей. | [Описание](files/module/actor/sheets/mixins/criticalWoundMixin.js.md) | Проверено |
 | [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js) | Обработчики собственного Item-навыка: бросок, удаление, раскрытие и старый CRUD модификаторов. | [Карточка](files/module/actor/sheets/mixins/customSkillMixin.js.md) | Проверено |
@@ -178,7 +178,7 @@
 | [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | Слушатели цен компонентов и пересчёт дополнительной стоимости через глобальный DOM. | [Описание](files/module/item/mixins/costEditMixin.js.md) | Проверено |
 | [module/item/mixins/damageUtilMixin.js](../../../module/item/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/item/mixins/defenseOptionMixin.js](../../../module/item/mixins/defenseOptionMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/mixins/dismantlingMixin.js](../../../module/item/mixins/dismantlingMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/mixins/dismantlingMixin.js](../../../module/item/mixins/dismantlingMixin.js) | Примесь Item для разбора оружия или брони по связанному рецепту, выдачи компонентов, списания одной единицы и формирования сообщения. | [Описание](files/module/item/mixins/dismantlingMixin.js.md) | Проверено |
 | [module/item/mixins/repairMixin.js](../../../module/item/mixins/repairMixin.js) | Два входа Item: открытие процесса ремонта и делегирование восстановления модели. | [Описание](files/module/item/mixins/repairMixin.js.md) | Проверено |
 | [module/item/sheets/WitcherAlchemicalSheet.js](../../../module/item/sheets/WitcherAlchemicalSheet.js) | Лист алхимии с категориями и конфигурацией расходования. | [Описание](files/module/item/sheets/WitcherAlchemicalSheet.js.md) | Проверено |
 | [module/item/sheets/WitcherArmorSheet.js](../../../module/item/sheets/WitcherArmorSheet.js) | Лист брони: контекст, варианты ношения, конфигурация и рецепт. | [Описание](files/module/item/sheets/WitcherArmorSheet.js.md) | Проверено |
@@ -514,7 +514,7 @@
 | [templates/chat/heal/resting-status.hbs](../../../templates/chat/heal/resting-status.hbs) | Сообщение о дневном восстановлении Actor: активный день/отдых, величина HP, полная STA и условный блок дней заживления. | [Описание](files/templates/chat/heal/resting-status.hbs.md) | Проверено |
 | [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs) | Сообщение со списком временных улучшений выбранного оружия. | [Описание](files/templates/chat/item/appliedTemporaryItemImprovements.hbs.md) | Проверено |
 | [templates/chat/item/consume.hbs](../../../templates/chat/item/consume.hbs) | Шаблон сообщения о лечении и добавляемых статусах при расходовании. | [Описание](files/templates/chat/item/consume.hbs.md) | Проверено |
-| [templates/chat/item/dismantle.hbs](../../../templates/chat/item/dismantle.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/item/dismantle.hbs](../../../templates/chat/item/dismantle.hbs) | Сообщение о разборе предмета с заголовком источника, найденными компонентами и именами неизвестных материалов. | [Описание](files/templates/chat/item/dismantle.hbs.md) | Проверено |
 | [templates/chat/item/item-description.hbs](../../../templates/chat/item/item-description.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/partials/item-description/alchemicals.hbs](../../../templates/chat/item/partials/item-description/alchemicals.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/item/partials/item-description/crafting-items.hbs](../../../templates/chat/item/partials/item-description/crafting-items.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -540,7 +540,7 @@
 | [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs) | Заголовок персонажа: имя, общие сведения, действия, IP и счётчик смертей. | [Описание](files/templates/partials/character-header.hbs.md) | Проверено |
 | [templates/partials/character/custom-skill-display.hbs](../../../templates/partials/character/custom-skill-display.hbs) | Текущая строка Item-навыка с рассогласованными контекстом и обработчиком броска. | [Карточка](files/templates/partials/character/custom-skill-display.hbs.md) | Проверено |
 | [templates/partials/character/skill-display.hbs](../../../templates/partials/character/skill-display.hbs) | Текущая строка встроенного навыка: modifiedValue, флаги и бросок. | [Карточка](files/templates/partials/character/skill-display.hbs.md) | Проверено |
-| [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs) | Текущая панель девяти алхимических веществ: иконки, суммарные количества и раскрываемые таблицы компонентов. | [Описание](files/templates/partials/character/substances.hbs.md) | Проверено |
 | [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs) | Текущая вкладка биографии персонажа: родина, семь описательных полей, пол/возраст/положение, богатое описание, жизненные события и два вида заметок. | [Описание](files/templates/partials/character/tab-background.hbs.md) | Проверено |
 | [templates/partials/character/tab-magic.hbs](../../../templates/partials/character/tab-magic.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs) | Не установлено | Не подготовлено | Не начат |

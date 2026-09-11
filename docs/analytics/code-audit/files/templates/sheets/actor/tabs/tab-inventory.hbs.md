@@ -109,3 +109,9 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. PARTS.inventory Character напрямую подключает вкладку. Полный _prepareContext готовит все списки diagrams/crafting/alchemy/substances/valuables из отфильтрованных items. _craftingCraft и _alchemyCraft описаны полностью в .031; проверки соседей .034 будут уточнять контракты без повторного подсчёта класса.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../module/actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полностью разобран включаемый substances.hbs: безусловный partial:212, девять иконок/сумм, флаги и таблицы. Он не потребляет alchemyComponentsList. Смена плашки вызывает отдельный Item-mixin handler, а .crafting-craft остаётся прежним входом WitcherCharacterSheet; различие с алхимическим действием не исправлялось.
+
+Связи: [templates/partials/character/substances.hbs](../../../partials/character/substances.hbs.md); [module/actor/sheets/mixins/alchemyMixin.js](../../../../module/actor/sheets/mixins/alchemyMixin.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003034).

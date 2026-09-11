@@ -133,3 +133,9 @@ Foundry 14.367/Node 24.16, Linux. Полностью прочитан этот �
 2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: commonRepair:190 вызывает extendedRoll с prepareRollConfig, где showResult=false. Общий бросок не исправляет формулу: реальный parser отклоняет незакрытую скобку и фрагмент с пропущенным оператором. В штатном ремонте [issue-00103](../../../../../../issues/potential/issue-00103.md) прерывает подготовку раньше, на незарегистрированной настройке; повторного исполнения ремонта в этой порции не было. RollConfig.showSuccess не читается extendedRoll, успех определяется threshold>=0.
 
 Полные карточки зависимости: [module/scripts/rollConfig.js](../../scripts/rollConfig.js.md), [module/scripts/rolls/extendedRoll.js](../../scripts/rolls/extendedRoll.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полная craftingMixin подтвердила контракт findNeededComponent: включает stored и quantity0, сохраняет порядок коллекции. prepareData:35 берёт лишь [0], затем при отсутствии имени отдельно пробует UUID. В .034 заново проверен сам поиск, полный ремонт не запускался; прежняя issue-00104 и другие результаты ремонта не подменяются новым сценарием.
+
+Связи: [module/actor/mixins/craftingMixin.js](../../actor/mixins/craftingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

@@ -94,3 +94,9 @@
 2026-09-11, `273a6d7db0b7c866399db3ecd4f7191817ae6f10`. Полностью прочитан старый monster-skill-tab: семь <stat>IsOpen читаются для шеврона и invisible таблиц; _onSkillDisplay пишет тот же динамический путь по skilltype. Текущая вкладка использует details и tabs, не этот переключатель.
 
 Сверенные связи: [module/actor/sheets/mixins/skillMixin.js](../../../../../../../../../module/actor/sheets/mixins/skillMixin.js); [templates/partials/monster/monster-skill-tab.hbs](../../../../../../../../../templates/partials/monster/monster-skill-tab.hbs); [templates/partials/character/tab-skills.hbs](../../../../../../../../../templates/partials/character/tab-skills.hbs). Полные карточки новых файлов — в [указателе порции](../../../../../README.md#навыки-броски-развитие-и-пользовательские-навыки--task-0003029). [Проверки, ограничения и версия](../../../../../../review-log.md#task-0003029). Исходники и статус проблем не менялись.
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Все девять флагов веществ сопоставлены с полным substances.hbs: условный sub-open и условная таблица используют один ключ. По умолчанию девять иконок видны, таблиц нет; все true дали девять таблиц. Эти флаги не являются источником count.
+
+Связи: [templates/partials/character/substances.hbs](../../../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003034).

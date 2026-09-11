@@ -188,3 +188,9 @@ SpellData, HexData и RitualData наследуют общие 8 полей. Т�
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный NoteData наследует восемь общих полей и методы; description повторно определён тем же StringField(initial:''). Группа 01: quantity='2', weight=3 → calcWeight=6; два can*-геттера false. Автоматической связи с Actor.system.notes нет.
 
 Связи: [module/data/item/noteData.js](noteData.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. quantity:StringField без положительного минимума сохранён настоящей моделью оружия как '0'/'-1'. Прямой dismantle выдал материалы и вызвал удаление источника (issue-00217); текущий UI-вход до него не доходит из-за issue-00168. При нормальном quantity=3/9 снимается одна единица независимо от нормы выхода.
+
+Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

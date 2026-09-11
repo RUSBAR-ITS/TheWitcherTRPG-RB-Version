@@ -138,3 +138,9 @@ repair посылает update родительскому документу, н
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современная строка использует существующее type.text (SchemaField), reliable/maxReliability, damage, accuracy, equipped/canBeRepaired и enhancementItems. Матрица -2/0/+2 показала только положительную accuracy. Старый monster partial отдельно редактирует damage/reliable/rateOfFire. Общий HBS даёт ремонтную кнопку Monster, listener только Character (issue-00177).
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs); [templates/partials/monster/monster-inventory-tab.hbs](../../../../../../../templates/partials/monster/monster-inventory-tab.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Модель с associatedDiagramUuid и quantity использована в прямом dismantle. Тип weapon разрешён, нормальная стопка уменьшается на 1; нулевой/отрицательный запас всё ещё допускает выдачу материалов (issue-00217). Верификация API меню отдельно подтвердила раннюю ошибку аргументов issue-00168, поэтому тесты операции не доказывают обычный клик.
+
+Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).

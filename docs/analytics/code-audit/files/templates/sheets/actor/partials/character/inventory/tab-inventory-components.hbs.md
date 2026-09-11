@@ -88,3 +88,9 @@ data-field=system.quantity относится к ближайшей .item, вв�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ce0c7eb7069b215b641d725913b3aae21502e811`; полный файл | Первая карточка; [сверка порции](../../../../../../../review-log.md#task-0003027) |
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Теперь полностью описан верхний substances: все девять вызовов передают components, itemType=component, subtype, header и hasQuantity. Полный рендер дал десять строк по девяти группам, stored исключён producer. Подтип доходит в summary-контекст, но не в DOM-кнопку (issue-00173).
+
+Связи: [templates/partials/character/substances.hbs](../../../../../partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003034).

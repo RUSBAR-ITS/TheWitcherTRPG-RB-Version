@@ -341,3 +341,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. getList('note') формирует oldNotes: тип note, !isStored и sort. Смешанный контекст .033 показал одну видимую Item-note, отдельно одну array-note; stored Item не выведен. noteMixin работает с system.notes и вызывает update всего массива, не меняя items.
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](sheets/mixins/noteMixin.js.md); [module/data/item/noteData.js](../data/item/noteData.js.md); [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Все три метода craftingMixin полностью описаны: getSubstance и UUID-поиск используют getList/sort/!isStored, поиск имени — прямую коллекцию. В опыте ремесла ресурсы 2+3 списаны из двух одноимённых стопок, включая stored. Разбор вызывает настоящие addItem/removeItem без ожидания caller: повторные строки могут отправить два update=7 для одной стопки=5; это изолированные payload (issue-00214).
+
+Связи: [module/actor/mixins/craftingMixin.js](mixins/craftingMixin.js.md); [module/item/mixins/dismantlingMixin.js](../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../review-log.md#task-0003034).

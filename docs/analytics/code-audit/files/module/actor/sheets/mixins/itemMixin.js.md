@@ -137,3 +137,9 @@ Drop сначала может удалить уникальные Item и сб�
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background связывает .add-item/note, .inline-edit data-field=name/system.description и .item-delete. Группа 07 выполнила настоящие методы: Item.create получил {name:'new note',type:'note'} и parent Actor; описание HTML передано строкой, literal false/true/checked преобразованы как в issue-00153. Item.delete перехвачен; array-notes остались прежними.
 
 Связи: [templates/partials/character/tab-background.hbs](../../../../templates/partials/character/tab-background.hbs.md); [module/data/item/noteData.js](../../../data/item/noteData.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный substances HBS создаёт .item-substance-display с data-subtype для всех девяти ключей. Настоящий _onSubstanceDisplay вызвал preventDefault и update system.pannels.vitriolIsOpen. После открытия кнопка add-item из вложенного summary всё ещё не имеет data-subtype: _onItemAdd создал обычный component (issue-00173).
+
+Связи: [templates/partials/character/substances.hbs](../../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003034).

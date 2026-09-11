@@ -102,3 +102,9 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. _prepareCrafting/_prepareAlchemy и девять списков _prepareSubstances сверены с system.type/substanceType/quantity. Настоящие getSubstance и Array.sum дали 2+3=5; isStored-компонент qty99 исключён поиском Actor. Неизвестный числовой ввод отдельно проверен на raw fixture, не приписан успешной валидации модели.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.034
+
+2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полностью описанный craftingMixin различает item.type='component', system.type='substances', substanceType и name. Поиск имени включает stored и quantity0; getSubstance/UUID-поиск исключают stored. Для обеих локалей все девять имён вещества разрешились; _stats.compendiumSource сопоставляется отдельно от Item.uuid. Панель видит только getSubstance-набор.
+
+Связи: [module/actor/mixins/craftingMixin.js](../../actor/mixins/craftingMixin.js.md); [module/actor/sheets/mixins/alchemyMixin.js](../../actor/sheets/mixins/alchemyMixin.js.md); [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
