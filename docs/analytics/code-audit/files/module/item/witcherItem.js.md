@@ -97,7 +97,7 @@
 
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
-| extendedRoll | [module/scripts/rolls/extendedRoll.js](../../../../../../module/scripts/rolls/extendedRoll.js) | Импорт/await | realCraft:186; вычисляет Roll, config успеха и меняет messageData | Определение 9–112 прочитано; оригинальная функция исполнена с контролируемым Roll |
+| extendedRoll | [module/scripts/rolls/extendedRoll.js](../../../../../../module/scripts/rolls/extendedRoll.js) | Импорт/await | realCraft:186; вычисляет Roll, config успеха и меняет messageData | Определение 9–107 прочитано; оригинальная функция исполнена с контролируемым Roll |
 | RollConfig | [module/scripts/rollConfig.js](../../../../../../module/scripts/rollConfig.js) | Импорт для JSDoc | Тип config у realCraft:179; нет new RollConfig в этом файле | Сверены обращение и поля constructor |
 | WITCHER.skillMap | [module/setup/config.js](../../../../../../module/setup/config.js) | Импорт/lookup | getItemAttack:67 возвращает label как ключ локализации | Прямой доступ; проверены выбор и неизвестное значение |
 | Пять объектов *Mixin | [consumeMixin](../../../../../../module/item/mixins/consumeMixin.js), [repairMixin](../../../../../../module/item/mixins/repairMixin.js), [dismantlingMixin](../../../../../../module/item/mixins/dismantlingMixin.js), [damageUtilMixin](../../../../../../module/item/mixins/damageUtilMixin.js), [defenseOptionMixin](../../../../../../module/item/mixins/defenseOptionMixin.js) | Импорт/Object.assign | 372–376, полный перечень выше | Определения всех 11 имён сверены; полный разбор файлов отложен |
@@ -274,3 +274,9 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. UI-цепочка рецепта в инвентаре проверена до realCraft: даже isFormulae=true кнопка .crafting-craft вызывает _craftingCraft, передаёт CRA+crafting и проверяет обычные компоненты. RealCraft в сценарии заменён приёмником аргументов: его собственный выбор режима/списание не выполнялись повторно. issue-00176 отделена от прежнего расхождения isFormulae/alchemyDC issue-00101.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs). [Проверки и ограничения](../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: realCraft:181–186 переводит config.showResult в false и ожидает extendedRoll; это вычисление без публикации. Полный разбор общего броска подтвердил mutation messageData.system.rollTotal/flavor и сохранение ссылки roll.messageData. Позднейшее toMessage остаётся ответственностью realCraft. RollConfig в WitcherItem импортирован только для JSDoc. В .028 выполнен настоящий Foundry Roll с критом/провалом; цепочка списания компонентов заново не запускалась.
+
+Полные карточки зависимости: [module/scripts/rollConfig.js](../scripts/rollConfig.js.md), [module/scripts/rolls/extendedRoll.js](../scripts/rolls/extendedRoll.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

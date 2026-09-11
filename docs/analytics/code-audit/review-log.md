@@ -1,5 +1,80 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.028
+
+2026-09-11. Выполнена [TASK-0003.028](../../tasks/task-0003.028.md) на `rusbar-main`, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`. На старте рабочее дерево чистое: 1139 отслеживаемых файлов, 219 карточек из 621, 180 potential issues. Перечень пяти файлов и 372 логических строк совпал с планом; записи кода не выполнялись.
+
+### Полный охват
+
+| Исходник | Строк | Описание | Результат |
+| --- | --- | --- | --- |
+| [module/scripts/rollConfig.js](../../../module/scripts/rollConfig.js) | 19 | [Карточка](files/module/scripts/rollConfig.js.md) | Полностью прочитан и сверен |
+| [module/scripts/rolls/extendedRoll.js](../../../module/scripts/rolls/extendedRoll.js) | 107 | [Карточка](files/module/scripts/rolls/extendedRoll.js.md) | Полностью прочитан и сверен |
+| [module/scripts/rolls/fumble.js](../../../module/scripts/rolls/fumble.js) | 119 | [Карточка](files/module/scripts/rolls/fumble.js.md) | Полностью прочитан и сверен |
+| [module/scripts/helper.js](../../../module/scripts/helper.js) | 106 | [Карточка](files/module/scripts/helper.js.md) | Полностью прочитан и сверен |
+| [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js) | 21 | [Карточка](files/module/chatMessage/chatMessageData.js.md) | Полностью прочитан и сверен |
+
+Созданы пять полных карточек, уточнены 13 связанных: [module/item/witcherItem.js](files/module/item/witcherItem.js.md), [module/item/systems/repair.js](files/module/item/systems/repair.js.md), [module/actor/witcherActor.js](files/module/actor/witcherActor.js.md), [module/scripts/investigation/rollClue.js](files/module/scripts/investigation/rollClue.js.md), [module/scripts/statusEffects/applyStatusEffect.js](files/module/scripts/statusEffects/applyStatusEffect.js.md), [module/scripts/temporaryEffects/applyActiveEffect.js](files/module/scripts/temporaryEffects/applyActiveEffect.js.md), [module/TheWitcherTRPG.js](files/module/TheWitcherTRPG.js.md), [module/actor/sheets/WitcherActorSheetV1.js](files/module/actor/sheets/WitcherActorSheetV1.js.md), [module/actor/sheets/WitcherActorSheet.js](files/module/actor/sheets/WitcherActorSheet.js.md), [module/setup/config.js](files/module/setup/config.js.md), [module/setup/settings.js](files/module/setup/settings.js.md), [module/setup/queries.js](files/module/setup/queries.js.md), [module/setup/registerDataModels.js](files/module/setup/registerDataModels.js.md). Соседние модели сообщений, боевые/словесные примеси и полные листы просматривались до используемых определений, без добавления к покрытию.
+
+### Среда и границы исполнения
+
+Сценарии выполнены одноразовым `node --input-type=module` через stdin, без файлов тестового стенда. Node 24.16.0; `/opt/foundryvtt/package.json` — Foundry 14.367.0. Импортированы настоящие пять файлов и AttackMessageData/DefenseMessageData/BaseMessageData с настоящими DataModel/fields Foundry. Настоящие Roll, RollParser, RollTerm/DiceTerm/Die/NumericTerm/OperatorTerm и другие term-классы загружены из `/opt/foundryvtt/client/dice`; parser скомпилирован в памяти Peggy из установленной `grammar.pegjs`. Формулы и вычисления не переписаны в проверке.
+
+Грани задавались через CONFIG.Dice.fulfillment handler с проверкой допустимого значения и исчерпания очереди; приложение RollResolver представлено фасадом. Это проверка арифметики и повторного x10 с заданными гранями, не проверка генератора случайности. Roll.toMessage, ChatMessage.create/setFlag заменены наблюдаемыми фасадами, часть Promise удерживалась до явного разрешения. Для speaker выполнены оригинальные getSpeaker и три private helper из `client/documents/chat-message.mjs`; Actor/Token/Scene представлены минимальными классами, а game/canvas/коллекции — контролируемыми данными.
+
+DialogV2.input/prompt представлены фасадами; обработчик кнопки getCustomModifier исполнен из настоящего helper. Поведение закрытия input отдельно сверено с `client/applications/api/dialog.mjs:369–427`: default rejectClose=false → null. Проверены регистрации меню ChatLog и ApplicationV2._createContextMenu: jQuery=false; legacy callback получает HTMLElement. Сам ContextMenu в браузере не запускался. Локализация возвращала ключи для проверки ветвей; содержимое таблиц сопоставлено статически с en/ru. getRandomInt проверен с временной заменой Math.random и её восстановлением.
+
+### Фактические сценарии
+
+| Группа | Предмет | Вход / действие | Наблюдаемый результат |
+| --- | --- | --- | --- |
+| 01 | RollConfig | Девять default-полей, options={}, {showResult:false,threshold:99}, null | {} даёт undefined showResult; дополнительные options не применяются; null → TypeError. |
+| 02 | ChatMessageData | Ссылки входных system/flags, append, speaker/type | append поверхностный: вложенные ссылки общие, namespace заменяется; незаданный flavor + строка даёт undefinedsuffix. |
+| 03 | Обычный/числовой бросок | 1d10+8 при 5; константа 0 | 13 с исходными dice; константа 0 без критической ветви. |
+| 04 | Повторный крит | 1d10+8 при гранях 10;10,10,3; reversal | 41; options.crit=true, итоговый Roll без dice. Reversal меняет CSS, знак прибавления сохраняет. |
+| 05 | Провал и минимум | 1d10+8 при 1;10,10,3 и 1;3; 1d10-8 при 1;2 | 0 с fumbleAmount=23; 6 с amount=3; отрицательный исходный total также ограничивается нулём. |
+| 06 | Первый результат / showCrit | Отключённый крит; d20=10, d6=1, 2d10kh1 с первым неактивным 1 | showCrit=false оставляет исходный итог; faces/active не проверяются. Это контракт общего метода, не заявленный сбой стандартного 1d10. |
+| 07 | Сравнения | 4/5/6 при threshold=5 × defense/reversal: 12 комбинаций | Строгие >/< для обычного режима, >=/<= для defense; rollOver и тексты успеха/неудачи соответствуют направлению. |
+| 08 | Крайние пороги и showSuccess | threshold 0/-1/-3/undefined; showSuccess=false | При 0 сравнение включено; отрицательные/undefined отключают options.success и оформление; showSuccess не читается. |
+| 09 | Отложенное сообщение | showResult=false, отдельный flags и mutation system | toMessage не вызывается; roll.messageData === входной объект; отдельный аргумент flags не применяется. |
+| 10 | Ожидание сообщения и флагов | Удержанные Promise toMessage/setFlag; array/object/null | toMessage удерживает extendedRoll, setFlag — нет. После разрешения setFlag данные появляются; обе формы flags работают при showResult=true. |
+| 11 | Настоящий парсер | +-2, ++-2, ++2, (-2), пропущенный оператор и незакрытая скобка; отсутствующий system | Корректные знаки дали 3/3/7/3 при грани 5; два неверных выражения отклонены. Отсутствие messageData.system → TypeError. |
+| 12 | Все таблицы провала | 70 случаев: 7 маршрутов × 0/1/5/6/7/8/9/10/11/23; все melee/rangedSkills | Выявлены сдвиги ranged 7/9, armed defense 9 и пропуск unarmed 9. Spell перекрывает обычную таблицу; неизвестный skill без spell → undefined. |
+| 13 | Контекстное меню | BaseMessageData/неизвестный/subclass, rolls=[], отсутствие message, неверный event | При fumble=true неподдерживаемые constructor видимы, callback без действия; пустой rolls скрывает; неверное сообщение/dataset → TypeError. |
+| 14 | speaker | Реальные UUID-поля моделей и getSpeaker ядра; Actor A/назначенный B/без character | UUID A в fumble даёт B либо пользователя; корректный объект A в контрольном вызове даёт A; отсутствующий UUID также fallback. |
+| 15 | Выбор Actor/токена | Первый controlled, character, 0/1/>1 кандидатов, NPC без player owner, отмена/удалённый ID | 0 → уведомление и undefined; null input → TypeError; >1 выбор ID работает; нет character для getCurrentToken → TypeError. |
+| 16 | Владелец и query | Активный OWNER/GM/отсутствие обоих; настоящий applyStatusEffectToActor | OWNER приоритетнее GM; без обоих null. Не-owner Actor приводит к TypeError до query, если получателя нет. |
+| 17 | Случайное целое | Math.random=0 и 1−EPSILON; max=2/6/10/100, дополнительно 0/undefined | Корректные границы 1..max; max=0 → 1, undefined → NaN. Распределение случайности не проверено. |
+| 18 | Модификатор | addPart:0/'0'/-2, детализация, callback prompt и отмена | Ноль скрывается, -2 → '+-2' с опциональной подписью. Prompt получает title/rejectClose=true, отмена отклоняет Promise. |
+
+Все 18 групп завершились без падения утверждений после настройки фасадов. Первые подготовительные попытки bootstrap потребовали исправить синтаксис фасада, добавить CONFIG.Dice.termTypes и RollResolver.addTerm; эти ошибки относились к окружению проверки и не регистрировались как дефекты системы. Node вывел MODULE_TYPELESS_PACKAGE_JSON при импорте ES-модулей: файлы успешно разобраны, package.json не изменён.
+
+### Перекрёстная сверка
+
+- RollConfig сопоставлен со всеми 12 импортирующими файлами: extendedRoll читает восемь полей, showSuccess оставлен без потребителя; WitcherItem импортирует класс для JSDoc. Передаваемые конфигурации обычных навыков, спасбросков, защиты, заклинаний, изготовления и ремонта сверены по местам вызова.
+- extendedRoll имеет 12 импортирующих файлов. Разделены собственно вычисление, отложенный вывод в defense/castSpell/realCraft/repair и дополнительные flags словесного боя. Пропущенный оператор issue-00033 и незакрытая скобка условной ветви issue-00103 сопоставлены с настоящим парсером; штатный ремонт не исполнялся и по-прежнему останавливается раньше на настройке.
+- ChatMessageData сверена с 13 импортирующими файлами и двумя append в защите. speaker/type после append сохраняются; system/flags сливаются поверхностно. Текущие append в защите не получают содержательных конфликтующих flags, поэтому отдельная issue о потере их namespace не заведена. _onCritRoll обоих базовых листов не использует append/extendedRoll: отсутствие flavor там не объявлено видимым undefinedsuffix.
+- fumble: два default import доведены до настоящих классов и UUID/StringField; CONFIG.WITCHER.meleeSkills/rangedSkills — до определений, таблицы — до переводов. Строгое сравнение constructor, видимость, диапазоны и fallback speaker проверены независимо. Обработчик создаёт только текст; правила книги и фактическое применение последствий не исследовались.
+- helper: проверены все восемь экспортов и 16 импортирующих файлов, включая randomHuman/randomMonster (10), случайную сторону защиты (2), последствия травмы (6), вероятность Item-эффекта (100), модификаторы, улики, ремонт, боевые/словесные действия, статусы и временные эффекты. getCurrentToken не имеет найденного внешнего вызова. Некорректный max не передаётся найденными потребителями. Guard выбора Actor в executeDefense/repair отделён от отсутствующих guard в других действиях; отмена внутри helper предшествует им.
+
+Структурная проверка точных WITCHER-ключей пяти файлов нашла все используемые строки в en и один пропуск в ru: WITCHER.Dialog.customModifier. Регистрация ru подтверждена system.json; стандартный английский fallback сверён с client/helpers/localization.mjs:234–236, 434–445. Это отдельная статическая проверка, не девятнадцатая группа исполнения и не проверка переводов сторонних модулей.
+
+### Проблемы и ограничения
+
+Зарегистрированы [issue-00181](../../issues/potential/issue-00181.md) — границы таблиц провала пропускают и сдвигают отдельные результаты; [issue-00182](../../issues/potential/issue-00182.md) — результат провала передаёт UUID вместо Actor при выборе отправителя; [issue-00183](../../issues/potential/issue-00183.md) — пункт результата провала виден у сообщений без поддерживаемого обработчика; [issue-00184](../../issues/potential/issue-00184.md) — общий бросок завершается до сохранения дополнительных флагов сообщения; [issue-00185](../../issues/potential/issue-00185.md) — делегирование действия не обрабатывает отсутствие активного владельца или GM; [issue-00186](../../issues/potential/issue-00186.md) — подпись модификатора отсутствует в русском словаре. Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00149](../../issues/potential/issue-00149.md), [issue-00175](../../issues/potential/issue-00175.md). Все 186 карточек остаются potential; воспроизведение агентом не заменяет подтверждение пользователя и не разрешает исправления.
+
+Полный разбор skillMixin и остальных примесей/схем не завершался за рамками пяти файлов. Мир, браузер, службы и сетевые клиенты не запускались; игровые документы и БД не читались и не менялись. Не утверждаются соответствие рулбуку, качество случайного распределения, продолжительность гонки setFlag или доступ службы к ресурсам. Итоговые ограничения перенесены в карточки и задачу.
+
+### Формальная проверка
+
+Проверка одноразовым Python-скриптом завершена: 621 путь реестра совпадает с Git и фактическим деревом после исключений; каждый исходник побайтно совпадает с HEAD и срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. SHA256 набора исходников — `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`, без изменений. Сохранены mode/uid/gid/inode всех 1139 отслеживаемых файлов; SHA256 снимка метаданных — `632c31aa8e12a78a2991eae5cfb13e1a619f2967911a86f394aab926aba77f28`.
+
+Проверены 224 карточки, 30 подзадач и отсутствие пересечений их списков; .001–.028 done, .029–.030 planned. Встречная сверка охватила 300 прямых импортов: 203 default, 90 named-import statements с 95 именами и 7 namespace; в новой порции 3 импорта. Все 143 буквальные ссылки на HBS существуют, новой порцией они не добавлены. Для импортов и шаблонов проверены исходящие ссылки, определения экспортов и обратные ссылки уже описанных потребителей.
+
+Проверены 472 Markdown-документа под docs и два корневых документа: 10247 локальных ссылок и якорей разрешаются; таблицы и завершающие пробелы проверены, `git diff --check` прошёл. Изменён 41 документ: 30 существующих и 11 новых (5 карточек, 6 issues); все изменения ограничены docs. Старый журнал сохранён побайтно после добавления новой записи; исходный SHA256 — `161e8362cc9b69186ad5ac842c8ce7db4dfe0b4e05491930fe54025d523d257d`. Исправлений кода, прав доступа, коммитов, сборки и запуска службы не выполнялось.
+
+Покрытие: **224 из 621**, **397** не разобраны. В третьей серии выполнены .021–.028 на **56 из 79** файлов, две задачи на **23** файла остаются planned; ещё **374** требуют детализации. [Следующая задача — TASK-0003.029](../../tasks/task-0003.029.md); она не начиналась. TASK-0003 остаётся in-progress, TASK-0004/0005 — draft.
+
 ## TASK-0003.027
 
 Дата: 2026-09-11. Ветка `rusbar-main`, HEAD `ce0c7eb7069b215b641d725913b3aae21502e811`. На старте рабочее дерево чистое; отслеживаются 1122 файла. Исходники сверяются со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`.

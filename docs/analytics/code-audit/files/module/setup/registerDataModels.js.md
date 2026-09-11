@@ -267,3 +267,9 @@
 Связанные карточки: [module/data/item/containerData.js](../data/item/containerData.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: Регистрация ChatMessage:76–80 связывает base/attack/defense/damage с соответствующими моделями. Новый разбор fumble.js проверил точное сравнение constructor с AttackMessageData/DefenseMessageData; остальные классы при options.fumble=true могут дать видимый пункт без действия ([issue-00183](../../../../../issues/potential/issue-00183.md)). ChatMessageData из module/chatMessage/chatMessageData.js — отдельный обычный контейнер параметров, в этом реестре не регистрируется.
+
+Полные карточки зависимости: [module/scripts/rolls/fumble.js](../scripts/rolls/fumble.js.md), [module/chatMessage/chatMessageData.js](../chatMessage/chatMessageData.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.027 подготовлены и сверены 219 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.028 подготовлены и сверены 224 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -357,3 +357,13 @@
 | templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs | [Описание](templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs.md) |
 | templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs | [Описание](templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs.md) |
 | templates/partials/monster/monster-inventory-tab.hbs | [Описание](templates/partials/monster/monster-inventory-tab.hbs.md) |
+
+## Общий бросок и вспомогательные функции — TASK-0003.028
+
+| Файл | Карточка |
+| --- | --- |
+| module/scripts/rollConfig.js | [Описание](module/scripts/rollConfig.js.md) |
+| module/scripts/rolls/extendedRoll.js | [Описание](module/scripts/rolls/extendedRoll.js.md) |
+| module/scripts/rolls/fumble.js | [Описание](module/scripts/rolls/fumble.js.md) |
+| module/scripts/helper.js | [Описание](module/scripts/helper.js.md) |
+| module/chatMessage/chatMessageData.js | [Описание](module/chatMessage/chatMessageData.js.md) |

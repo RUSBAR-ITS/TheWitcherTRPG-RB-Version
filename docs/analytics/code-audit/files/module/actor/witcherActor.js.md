@@ -305,3 +305,9 @@ getList/addItem сравнивают тип/имя, не ID источника �
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Инвентарь отображает результат getTotalWeight: Item.calcWeight, storedWeight контейнеров и округление монет; 1001 монета дала 2 единицы веса. useItem вызывается именем оружия/брони, но Armor/Enhancement не приобретают weaponAttack от CSS/data-type. Таблица сама не фильтрует isStored/isHidden и не производит вычислений цены.
 
 Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs). [Проверки и ограничения](../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getLocationObject:308/346 использует getRandomInt(10). Полный helper подтвердил Math.floor(Math.random()*max)+1, отдельно от Foundry Roll. Управляемые значения Math.random=0 и 1−EPSILON дали границы 1 и 10; распределение случайности и все варианты локаций повторно не проверялись.
+
+Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

@@ -93,3 +93,9 @@
 2026-09-10, `7edb814aa870da75c7ad7633536e899a8d07e205`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003015).
 
 Полностью проверен [module/item/mixins/consumeMixin.js](../../../../../../../module/item/mixins/consumeMixin.js), прямой caller applyActiveEffectToActorViaId(actor.uuid,item.uuid,'applySelf') без duration. Из двух настоящих BaseActiveEffect helper отобрал applySelf=true и сформировал копию со сброшенными флагами применения; duration.value=3 сохранилась. Текстовые time/toxicity Item не участвуют в этом вызове. При quantity1 и задержанном лечении Actor.removeItem удалил UUID источника из фасада до helper; перехвачен один запрос GM, локального createEmbeddedDocuments не было. Удалённый обработчик и повторная доставка не запускались; связь с issue-00045 уточнена без имитации сети.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getActorOwner выбирает первого активного не-GM с OWNER при hasPlayerOwner, иначе activeGM; результат может отсутствовать. Вызовы query:41/72 не имеют guard получателя — смежные места [issue-00185](../../../../../../issues/potential/issue-00185.md). В .028 непосредственно исполнен аналогичный маршрут applyStatusEffectToActor; создание/клонирование ActiveEffect и удалённые запросы здесь повторно не исполнялись.
+
+Полные карточки зависимости: [module/scripts/helper.js](../helper.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

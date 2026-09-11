@@ -122,3 +122,9 @@
 Связанные карточки: [module/data/item/templates/regions/regionPropertiesData.js](../data/item/templates/regions/regionPropertiesData.js.md), [module/data/item/mixin/spellRegionMixin.js](../data/item/mixin/spellRegionMixin.js.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003022).
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getActorOwner из helper не является подтверждением запроса: он только возвращает активного не-GM OWNER либо activeGM. Без обоих некоторые потребители обращаются к null.query до входа в этот маршрутизатор ([issue-00185](../../../../../issues/potential/issue-00185.md)). [issue-00008](../../../../../issues/potential/issue-00008.md) о return true без ожидания вызванной функции относится к следующему этапу процесса и остаётся актуальным; сам query в .028 повторно не исполнялся.
+
+Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

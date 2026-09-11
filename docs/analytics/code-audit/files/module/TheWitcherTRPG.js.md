@@ -162,3 +162,9 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 | applyCritWound | [module/actor/mixins/damageMixin.js](../../../../../module/actor/mixins/damageMixin.js) | Индекс используется внешним обработчиком выбора травмы; полноценный Item затем разрешается по UUID. Работа pack и повторного получения в мире не запускалась. |
 
 [Сверка порции и итоговая сверка 96 файлов второй серии](../../review-log.md#task-0003020); браузер, мир и записи в БД не запускались.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: Namespace Fumble, импорт:8, передаётся в Hooks.on('getChatMessageContextOptions', Fumble.addFumbleContextOptions):141. Файл обработчика теперь прочитан целиком: visible смотрит только Roll.options.fumble, callback выбирает точные модели attack/defense и создаёт описательное сообщение. Foundry 14.367 вызывает legacy callback с HTMLElement при jQuery:false. Диапазоны, неподдерживаемые типы и speaker отражены в [issue-00181](../../../../issues/potential/issue-00181.md)–00183; регистрация сама их не исправляет.
+
+Полные карточки зависимости: [module/scripts/rolls/fumble.js](scripts/rolls/fumble.js.md). [Перекрёстная сверка](../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

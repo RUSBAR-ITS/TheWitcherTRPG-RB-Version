@@ -146,3 +146,9 @@ clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnl
 Сверенные карточки: [templates/sheets/item/spell-sheet.hbs](../../templates/sheets/item/spell-sheet.hbs.md), [templates/sheets/item/hex-sheet.hbs](../../templates/sheets/item/hex-sheet.hbs.md), [templates/sheets/item/ritual-sheet.hbs](../../templates/sheets/item/ritual-sheet.hbs.md), [templates/partials/spell-header.hbs](../../templates/partials/spell-header.hbs.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: displayRollsDetails:46–53 — world Boolean с default=false. Полный helper.addPart читает настройку до проверки hideZero; при true добавляет локализованную подпись в квадратных скобках. getCustomModifier с нулём возвращает пустую строку, с -2 — '+-2' с опциональной подписью. Реальный parser Foundry принимает такие последовательности знаков; [issue-00033](../../../../../issues/potential/issue-00033.md) относится к отсутствующему оператору в другом сборщике.
+
+Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

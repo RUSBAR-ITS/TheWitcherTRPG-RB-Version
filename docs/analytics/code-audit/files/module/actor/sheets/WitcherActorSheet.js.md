@@ -142,3 +142,9 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Полностью описаны 12 HBS инвентаря: общий контекст поставляет items/weapons/armors/runeItems/glyphItems/containers и totalWeight; totalCost в текущей вкладке не выводится. getList/items исключают stored, но сохраняют hidden. В полной матрице 45 Item распределены по разделам Character, девять веществ видны только при открытых pannels. Одинаковые таблицы оружия/брони потребляются Monster; listener ремонта находится только в Character.
 
 Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs); [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../../../../../../../templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: _onCritRoll:253–256 использует ChatMessageData(this.actor) и непосредственно Roll('1d10x10').toMessage. Новый полный разбор ChatMessageData подтвердил: flavor здесь undefined, но append/extendedRoll не вызываются, поэтому наблюдение undefinedsuffix из изолированного append к этому пути не переносится. Правильный объект Actor передаётся в getSpeaker; класс ChatMessageData — обычный контейнер, не схема message.system.
+
+Полные карточки зависимости: [module/chatMessage/chatMessageData.js](../../chatMessage/chatMessageData.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

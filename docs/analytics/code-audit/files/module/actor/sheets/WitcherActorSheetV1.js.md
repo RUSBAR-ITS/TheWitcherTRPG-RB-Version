@@ -123,3 +123,9 @@ context.system — сериализованная копия actor.toObject(fals
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Полностью описаны itemMixin и itemContextMenu, подключённые через Object.assign. У V1 Drop-данные проходят fromDropData→toObject до сравнения parent: parent отсутствует, сортировка своего Item не выбирается. Это проверено на фасаде, а активного потребителя V1 в checkout нет. Общий ContextMenu имеет те же несовместимые callbacks (issue-00168); передачу html[0] нельзя путать с порядком аргументов entry.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Уточнение TASK-0003.028
+
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: _onCritRoll:230–233 использует ChatMessageData(this.actor) и непосредственно Roll('1d10x10').toMessage. Новый полный разбор ChatMessageData подтвердил: flavor здесь undefined, но append/extendedRoll не вызываются, поэтому наблюдение undefinedsuffix из изолированного append к этому пути не переносится. Правильный объект Actor передаётся в getSpeaker; класс ChatMessageData — обычный контейнер, не схема message.system.
+
+Полные карточки зависимости: [module/chatMessage/chatMessageData.js](../../chatMessage/chatMessageData.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.

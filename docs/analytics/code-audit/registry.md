@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.027 проверены описания **219 файлов**, для **402 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.028 проверены описания **224 файлов**, для **397 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.027](review-log.md#task-0003027) выполнена на `ce0c7eb7069b215b641d725913b3aae21502e811`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.028](review-log.md#task-0003028) выполнена на `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: все 621 исходник совпадают с базовым срезом выше. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -67,7 +67,7 @@
 | [module/actor/witcherActor.js](../../../module/actor/witcherActor.js) | Документ Actor: подготовка характеристик, статусы, предметы, локации и подключение 17 примесей. | [Описание](files/module/actor/witcherActor.js.md) | Проверено |
 | [module/app/htmlUtils.js](../../../module/app/htmlUtils.js) | Не установлено | Не подготовлено | Не начат |
 | [module/app/reward/reward.js](../../../module/app/reward/reward.js) | Не установлено | Не подготовлено | Не начат |
-| [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js) | Обычный контейнер параметров сообщения: speaker, flavor, type, system, flags и поверхностное append. | [Карточка](files/module/chatMessage/chatMessageData.js.md) | Проверено |
 | [module/chatMessage/witcherChatMessage.js](../../../module/chatMessage/witcherChatMessage.js) | Не установлено | Не подготовлено | Не начат |
 | [module/data/activeEffects/witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js) | Системная модель обычного эффекта: changes ядра и пять флагов применения. | [Описание](files/module/data/activeEffects/witcherActiveEffectData.js.md) | Проверено |
 | [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) | Модель временного улучшения: changes, флаги применения и передачи. | [Описание](files/module/data/activeEffects/witcherTemporaryItemImprovementData.js.md) | Проверено |
@@ -215,12 +215,12 @@
 | [module/scripts/combat/combat.js](../../../module/scripts/combat/combat.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/combat/generalCombatHook.js](../../../module/scripts/combat/generalCombatHook.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/damageInstance.js](../../../module/scripts/damageInstance.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/helper.js](../../../module/scripts/helper.js) | Не установлено | Не подготовлено | Не начат |
+| [module/scripts/helper.js](../../../module/scripts/helper.js) | Выбор Actor, токена и владельца, случайное целое, часть формулы и диалог пользовательского модификатора. | [Карточка](files/module/scripts/helper.js.md) | Проверено |
 | [module/scripts/investigation/rollClue.js](../../../module/scripts/investigation/rollClue.js) | Выбирает взаимодействующего Actor и навык из clueItem.system.skillsUsed, затем запускает обычный Actor.rollSkill.. | [Карточка](files/module/scripts/investigation/rollClue.js.md) | Проверено |
 | [module/scripts/regions/regionHooks.js](../../../module/scripts/regions/regionHooks.js) | Отсчёт длительности регионов текущего участника боя и удаление истёкших через Scene API. | [Карточка](files/module/scripts/regions/regionHooks.js.md) | Проверено |
-| [module/scripts/rollConfig.js](../../../module/scripts/rollConfig.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/rolls/extendedRoll.js](../../../module/scripts/rolls/extendedRoll.js) | Не установлено | Не подготовлено | Не начат |
-| [module/scripts/rolls/fumble.js](../../../module/scripts/rolls/fumble.js) | Не установлено | Не подготовлено | Не начат |
+| [module/scripts/rollConfig.js](../../../module/scripts/rollConfig.js) | Конфигурация общего броска: порог, режим сравнения, критические результаты и вывод сообщения. | [Карточка](files/module/scripts/rollConfig.js.md) | Проверено |
+| [module/scripts/rolls/extendedRoll.js](../../../module/scripts/rolls/extendedRoll.js) | Вычисление Roll с критом/провалом, порогом, оформлением и немедленным либо отложенным сообщением. | [Карточка](files/module/scripts/rolls/extendedRoll.js.md) | Проверено |
+| [module/scripts/rolls/fumble.js](../../../module/scripts/rolls/fumble.js) | Пункт меню результата провала: выбор текста для атаки/защиты по величине провала и создание сообщения. | [Карточка](files/module/scripts/rolls/fumble.js.md) | Проверено |
 | [module/scripts/socket/socketMessage.js](../../../module/scripts/socket/socketMessage.js) | Не установлено | Не подготовлено | Не начат |
 | [module/scripts/statusEffects/applyStatusEffect.js](../../../module/scripts/statusEffects/applyStatusEffect.js) | Применение статусов, ссылки чата, иммунитеты и интеграция statuscounter. | [Описание](files/module/scripts/statusEffects/applyStatusEffect.js.md) | Проверено |
 | [module/scripts/temporaryEffects/applyActiveEffect.js](../../../module/scripts/temporaryEffects/applyActiveEffect.js) | Применение и копирование ActiveEffect в Actor, маршруты целей и Queries. | [Описание](files/module/scripts/temporaryEffects/applyActiveEffect.js.md) | Проверено |
