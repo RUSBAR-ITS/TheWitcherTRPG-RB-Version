@@ -254,3 +254,11 @@ migrateSpells переводит старые class Hexes/Rituals в типы he
 Сверенные карточки: [module/data/item/spellData.js](../data/item/spellData.js.md), [module/data/item/hexData.js](../data/item/hexData.js.md), [module/data/item/ritualData.js](../data/item/ritualData.js.md).
 
 [Результаты и пределы сверки](../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Контейнерный Drop сохраняет UUID этого же документа и изменяет system.isStored; WitcherItem не создаёт копию и не меняет parent в этой цепочке. Ни у WitcherItem, ни у ContainerData/CommonItemData не найдено собственной очистки content/isStored при удалении контейнера. Ядро ClientDocumentMixin._onDelete передаёт событие модели, базовый TypeDataModel._onDelete пуст. Сценарий удаления исполнен с фасадом delete, не как запись в реальный мир.
+
+Связанные карточки: [module/data/item/containerData.js](../data/item/containerData.js.md), [module/item/sheets/WitcherContainerSheet.js](sheets/WitcherContainerSheet.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

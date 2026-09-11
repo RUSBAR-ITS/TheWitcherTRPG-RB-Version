@@ -101,3 +101,11 @@ JavaScript-функций нет. Шаблон вычисляет условия
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../review-log.md#task-0003016).
 
 Полностью описаны [templates/sheets/item/component-sheet.hbs](../../../../../../templates/sheets/item/component-sheet.hbs) и [templates/sheets/item/diagrams-sheet.hbs](../../../../../../templates/sheets/item/diagrams-sheet.hbs), включающие общую шапку. Стандартная clickableImageItemTypes не добавляет checkbox этим двум типам. В диагностике компонент с временным helper select имел 10 собственных+общих именованных полей, либо 11 для substances. Рецепт со связанным результатом — 12/20 в двух режимах; editor.description проверен отдельно как фасад. Это числа шаблонов, не успешный штатный рендер component.
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Форма контейнера включает шапку без отдельного hash-контекста. Настоящий HBS отрендерен вместе с общей шапкой и context item/data/config/showConfig; system-пути соответствуют 11 полям ContainerData при обычном контейнере. Общая configuration доступна, image использует editImage. Helpers настроек/права окна подменены; вариант clickableImage для контейнера не включался и не подтверждён этой проверкой.
+
+Связанные карточки: [templates/sheets/item/container-sheet.hbs](../sheets/item/container-sheet.hbs.md), [module/data/item/containerData.js](../../module/data/item/containerData.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

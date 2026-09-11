@@ -259,3 +259,11 @@
 Связанные карточки: [module/data/investigation/mysteryActorData.js](../data/investigation/mysteryActorData.js.md), [module/data/investigation/clueData.js](../data/investigation/clueData.js.md), [module/data/investigation/obstacleData.js](../data/investigation/obstacleData.js.md), [module/data/investigation/templates/complexityData.js](../data/investigation/templates/complexityData.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Для container подтверждён ContainerData extends CommonItemData, 11 полей схемы (8 общих и carry/storedWeight/content). itemContent — prepared-массив вне схемы, storedWeight имеет поле схемы и пересчитывается при подготовке. Тип container объявлен в манифесте. Реестр назначает класс; расчёт происходит позже в system.prepareDerivedData через жизненный цикл документа.
+
+Связанные карточки: [module/data/item/containerData.js](../data/item/containerData.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

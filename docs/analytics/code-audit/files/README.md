@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.023 подготовлены и сверены 200 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.024 подготовлены и сверены 203 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -318,3 +318,11 @@
 | templates/sheets/investigation/partials/clue-display.hbs | [Описание](templates/sheets/investigation/partials/clue-display.hbs.md) |
 | templates/sheets/investigation/partials/obstacle-display.hbs | [Описание](templates/sheets/investigation/partials/obstacle-display.hbs.md) |
 | templates/dialog/investigation/chooseEvidenceSkill.hbs | [Описание](templates/dialog/investigation/chooseEvidenceSkill.hbs.md) |
+
+## Контейнеры и хранение предметов — TASK-0003.024
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/containerData.js | [Описание](module/data/item/containerData.js.md) |
+| module/item/sheets/WitcherContainerSheet.js | [Описание](module/item/sheets/WitcherContainerSheet.js.md) |
+| templates/sheets/item/container-sheet.hbs | [Описание](templates/sheets/item/container-sheet.hbs.md) |

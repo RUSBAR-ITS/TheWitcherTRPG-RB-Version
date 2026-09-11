@@ -162,3 +162,11 @@ SpellData, HexData и RitualData наследуют общие 8 полей. Т�
 Сверенные карточки: [module/data/item/spellData.js](spellData.js.md), [module/data/item/hexData.js](hexData.js.md), [module/data/item/ritualData.js](ritualData.js.md), [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. ContainerData полностью разобрана: к восьми общим полям добавляются carry/storedWeight/content; canBeRepaired и canHaveTemporaryItemImprovement наследуются как false. Общий calcWeight исключает isStored Item; контейнер добавляет storedWeight, рассчитанный только из quantity*weight непосредственных ссылок. Такое разделение предотвращает двойной учёт в простой согласованной цепочке, но теряет содержимое вложенного контейнера. Сам content не меняет parent и не создаёт embedded Item.
+
+Связанные карточки: [module/data/item/containerData.js](containerData.js.md).
+
+[Перекрёстная сверка порции](../../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

@@ -279,3 +279,11 @@ getList/addItem сравнивают тип/имя, не ID источника �
 Связанные карточки: [module/actor/sheets/investigation/WitcherMysterySheet.js](sheets/investigation/WitcherMysterySheet.js.md), [module/data/investigation/mysteryActorData.js](../data/investigation/mysteryActorData.js.md), [module/scripts/investigation/rollClue.js](../scripts/investigation/rollClue.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Полностью прослежен контейнерный вклад getTotalWeight. При оболочке quantity2×weight2 и одном stored Item весом 6 результат 10; прямой вес stored Item нулевой. Содержимое не умножается на quantity контейнера. Вложенность outer1/inner2/leaf6 даёт 3 из-за игнорирования inner.storedWeight; два контейнера могут учитывать один UUID. getList фильтрует один bool isStored без проверки content. addItem не используется контейнерным Drop: собственник исходного Item остаётся прежним. При удалении контейнера без освобождения stored-содержимого вес/список Actor его пропускают.
+
+Связанные карточки: [module/data/item/containerData.js](../data/item/containerData.js.md), [module/item/sheets/WitcherContainerSheet.js](../item/sheets/WitcherContainerSheet.js.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

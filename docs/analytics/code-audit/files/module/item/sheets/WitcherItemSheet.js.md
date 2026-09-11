@@ -175,3 +175,11 @@
 Сверенные карточки: [module/item/sheets/WitcherSpellSheet.js](WitcherSpellSheet.js.md), [module/item/sheets/WitcherHexSheet.js](WitcherHexSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](WitcherRitualSheet.js.md), [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs.md), [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs.md), [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs.md), [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003021).
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Контейнер имеет собственный _onDropItem, поэтому ветвь Item у общего _onDropDocument работает и возвращает null после undefined результата наследника. isEditable=false останавливает общий Drop; hook dropItemSheetData по-прежнему не вызывается. Actor-ветвь на контейнере даёт TypeError отсутствующего _onDropActor. Подготовка контекста контейнера использует data=item.system и общую configuration; _onRender контейнера вызывает async super без ожидания и отдельно ставит click .remove-item. Ошибки двух update принадлежат специализированному листу, а не устраняются await в базовом dispatcher.
+
+Связанные карточки: [module/item/sheets/WitcherContainerSheet.js](WitcherContainerSheet.js.md), [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs.md).
+
+[Перекрёстная сверка порции](../../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

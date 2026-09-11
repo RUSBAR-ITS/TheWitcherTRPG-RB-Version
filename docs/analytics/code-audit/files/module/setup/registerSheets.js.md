@@ -219,3 +219,11 @@
 Связанные карточки: [module/actor/sheets/investigation/WitcherMysterySheet.js](../actor/sheets/investigation/WitcherMysterySheet.js.md), [module/item/sheets/investigation/WitcherClueSheet.js](../item/sheets/investigation/WitcherClueSheet.js.md), [module/item/sheets/investigation/WitcherObstacleSheet.js](../item/sheets/investigation/WitcherObstacleSheet.js.md).
 
 [Перекрёстная сверка порции](../../../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Полностью разобран WitcherContainerSheet, зарегистрированный для Item.container с makeDefault:true. Он наследует WitcherItemSheet V2, задаёт PARTS.main и собственный Drop Item. Шаблон/контекст и click .remove-item сопоставлены с обработчиками. В этой порции регистрация проверена статически по вызову, реальные регистрационные API не запускались.
+
+Связанные карточки: [module/item/sheets/WitcherContainerSheet.js](../item/sheets/WitcherContainerSheet.js.md), [templates/sheets/item/container-sheet.hbs](../../templates/sheets/item/container-sheet.hbs.md).
+
+[Перекрёстная сверка порции](../../../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.

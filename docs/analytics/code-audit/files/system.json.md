@@ -130,3 +130,11 @@
 Связанные карточки: [module/data/investigation/mysteryActorData.js](module/data/investigation/mysteryActorData.js.md), [module/data/investigation/clueData.js](module/data/investigation/clueData.js.md), [module/data/investigation/obstacleData.js](module/data/investigation/obstacleData.js.md).
 
 [Перекрёстная сверка порции](../review-log.md#task-0003023). БД, мир, исходники и права доступа не менялись.
+
+## Уточнение TASK-0003.024
+
+2026-09-11, `66cd03705dbc398eba0026284a298b5fbe337035`; исходник не изменился. Все девять значений storableItems (weapon, armor, enhancement, valuable, alchemical, component, diagrams, mutagen, container) присутствуют в documentTypes.Item. Это сравнение имён, не утверждение, что любой из них должен быть допустим по правилам. ContainerData и WitcherContainerSheet зарегистрированы по ключу container; расхождения типа для этой порции не обнаружено.
+
+Связанные карточки: [module/data/item/containerData.js](module/data/item/containerData.js.md), [module/item/sheets/WitcherContainerSheet.js](module/item/sheets/WitcherContainerSheet.js.md).
+
+[Перекрёстная сверка порции](../review-log.md#task-0003024). Мир, БД, код и метаданные доступа не менялись.
