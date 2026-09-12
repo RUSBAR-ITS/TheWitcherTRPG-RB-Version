@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.051 подготовлены и сверены 389 карточек. Текущий реестр расширен до 615 файлов: 226 JSON компедиумов поставлены в очередь .052–.061 и пока не имеют карточек. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.052 подготовлены 396 карточек, включая семь JSON style. Текущий реестр содержит 615 файлов; остальные 219 JSON компедиумов поставлены в очередь .053–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,4 +650,18 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватят 226 файлов packsJson. Полные описания ещё не подготовлены; будущие пути повторяют исходники внутри files/packsJson/ с суффиксом .md. Вложенные результаты и эффекты учитываются в карточке владельца. Планирование не увеличило количество проверенных карточек.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style описаны ниже; 219 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+
+## Таблицы стиля и ценностей — TASK-0003.052
+
+| Исходник | Карточка | Охват |
+| --- | --- | --- |
+| packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json | [Style: Affectations](packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json.md) | 10 текстовых результатов |
+| packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json | [Style: Clothing](packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json.md) | 10 текстовых результатов |
+| packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json | [Style: Hair Style](packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json.md) | 10 текстовых результатов |
+| packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json | [Style: Personality](packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json.md) | 10 текстовых результатов |
+| packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json | [Values: Feelings on People](packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json.md) | 10 текстовых результатов |
+| packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json | [Values: Ideals](packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json.md) | 10 текстовых результатов |
+| packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json | [Values: Valued Person](packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json.md) | 10 текстовых результатов |
+
+[Перекрёстная сверка](../review-log.md#task-0003052): связи, настоящие модели Foundry и изолированные броски/вывод. Новых issues нет.

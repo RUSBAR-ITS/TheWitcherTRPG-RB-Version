@@ -87,3 +87,11 @@ general.details.value — имя одной из семи пар; её текс�
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background выводит все семь полей через each: clothing/personality/hairStyle/affectations/valuedPerson/value/feelingsOnPeople. Каждый путь заканчивается .value, label используется для перевода. Группа 09 проверила семь inputs; группа 15 — доступность подписей в en/ru.
 
 Связи: [templates/partials/character/tab-background.hbs](../../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.052
+
+2026-09-12, rusbar-main, 2a3f197019c96225c0b6bedfb7c322ab9cc734bc; исходник не изменён.
+
+Таблицы style содержат семь тематически соответствующих групп: clothing, personality, hairStyle, affectations, valuedPerson, value, feelingsOnPeople. В экспортных JSON нет путей system.general.details, а в проверенном module/templates не найден обработчик, переносящий результат этих таблиц в пары .value. Реальный RollTable.draw формирует сообщение чата; сама фабрика details() не вызывает таблицы. Сходство тематики не отмечено как программная зависимость. Поля по-прежнему допускают ручное заполнение через форму.
+
+[Семь карточек style](../../../../../../README.md#таблицы-стиля-и-ценностей--task-0003052), [перекрёстная сверка и пределы исполнения](../../../../../../../review-log.md#task-0003052).

@@ -1,0 +1,129 @@
+# packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json
+
+| Поле | Значение |
+| --- | --- |
+| Исходный файл | [packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json](../../../../../../packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json) |
+| Тип файла | JSON: экспорт RollTable с десятью TableResult |
+| Статус анализа | Проверено |
+| Дата проверки | 2026-09-12 |
+| Ветка и коммит | rusbar-main, 2a3f197019c96225c0b6bedfb7c322ab9cc734bc |
+| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Задача и порция | [TASK-0003.052](../../../../../tasks/task-0003.052.md); 7 файлов / 1820 строк, этот файл — 260 строк |
+| Запись перекрёстной сверки | [TASK-0003.052](../../../review-log.md#task-0003052) |
+| SHA-256 файла | e4d011b87f5ede4b0f5ca645e5473f9c565097f2ee6e1f98425383a4eb737727 |
+
+## Назначение файла
+
+Одежда: десять текстовых вариантов для описания персонажа. Файл задаёт таблицу `Style: Clothing`, а не Item и не ActiveEffect. Собственных обработчиков изменения Actor и игровых бонусов в нём нет.
+
+## Условия использования
+
+[utils/packs.mjs](../../../../../../utils/packs.mjs) передаёт каталог packsJson/style в compilePack с recursive:true. [system.json](../../../../../../system.json):82–87 регистрирует результат как RollTable-пакет TheWitcherTRPG.Style_and_Values_Sub-tables с исходным путём packs/style.db; очищенное ядром имя каталога без .db установлено в карточке утилиты .050. JSON не импортируется браузером как модуль. Наличие экспорта не подтверждает наличие тех же документов в действующей БД.
+
+Предполагаемый адрес документа по манифесту и ID: `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.BuyEb4FcAyQL2hov`. Его можно разыграть штатным интерфейсом таблиц либо получить при рекурсивном броске генератора Style and Values. Нажатие обычной ссылки на документ открывает лист; рекурсивный roll и действие draw — отдельные пути.
+
+## Введённые сущности и действия с ними
+
+| Сущность / поля | Определение | Действия и смысл |
+| --- | --- | --- |
+| RollTable: name, _id, _key | 2, 244, 259; ID BuyEb4FcAyQL2hov | Имя для UI/индекса; ключ `!tables!BuyEb4FcAyQL2hov` для подготовки БД |
+| results | 9–240; десять вложенных TableResult | Каждый результат принадлежит этой таблице; диапазон определяет выбор |
+| formula, replacement, displayRoll | 241–243: 1d10, true, true | Бросок d10; результаты остаются доступными; собственный draw может показывать бросок |
+| Root img / description | 7–8: icons/svg/d20-grey.svg / пустая строка | Стандартная иконка таблицы, дополнительное описание отсутствует |
+| Result type / name / description | Каждая запись: text / пустое имя / текст ниже | description выводится в чат; пустое name разрешено схемой |
+| Result weight / range / drawn | В каждой записи: 1 / [n,n] / false | Равные одиночные интервалы; начально все доступны; normalize строит диапазоны из весов |
+| Result img / flags / _stats | icons/svg/d20-black.svg; пустые flags; coreVersion 13.341, остальные пять полей null | Иконка и служебные данные; нет documentUuid, внешних ссылок или исполняемой формулы в описании |
+| flags | 3–6: пустые better-rolltables и core | Пространства флагов сохранены, настроек и действий внутри нет; наличие флага не доказывает установленный модуль |
+| _stats | 245–252: coreVersion 13.341; compendiumSource `RollTable.5pFOZfKbrBpyNbSO`; systemId/systemVersion/duplicateSource/exportSource null | История происхождения документа, не адрес вложенного броска |
+| ownership / folder / sort | 253–258: default=0, 2w1nWBDVMXqVbciv=3; null; 0 | Сохранённые настройки доступа/расположения; фактический доступ игрока и состояние пользователей не проверялись |
+
+Все результаты имеют _key вида `!tables.results!BuyEb4FcAyQL2hov.<ID результата>`. Повтор тех же десяти локальных ID в соседних таблицах допустим: родитель входит в _key и UUID; 70 вложенных UUID серии различаются. В каждой отдельной таблице ID не повторяются.
+
+| Значение d10 / диапазон [n,n] | ID результата | Точное description из JSON | Строки записи |
+| --- | --- | --- | --- |
+| 1 | `q0DM4FW7XCnFdKZu` | `Clothing: A Uniform` | 10–32 |
+| 2 | `oKZeEBIq2FLMNk2e` | `Clothing: Traveling Clothing` | 33–55 |
+| 3 | `kQX7ZeIIWKy5yTPF` | `Clothing: Fancy Clothing` | 56–78 |
+| 4 | `36ROPw9QWjYWmpBV` | `Clothing: Ragged Clothing` | 79–101 |
+| 5 | `9kVdEtFeX4a3nAoe` | `Clothing: Utilitarian Clothing` | 102–124 |
+| 6 | `cQfRuoxqB1FI58LA` | `Clothing: Traditional Clothing` | 125–147 |
+| 7 | `th9s2aW3pwS3ZZX2` | `Clothing: Revealing Clothing` | 148–170 |
+| 8 | `tfUjaxwfTwqW98vG` | `Clothing: Heavy Clothing` | 171–193 |
+| 9 | `XFy2l49tSxFMwvUu` | `Clothing: Strange Clothing` | 194–216 |
+| 10 | `NlfhnGUfAnLtImRU` | `Clothing: Flamboyant Clothing` | 217–239 |
+
+Все десять описаний различаются.
+
+## Основные функции и методы
+
+Собственных функций у JSON нет. Потребляющие методы принадлежат Foundry 14.367.0:
+
+| Метод | Работа с этими данными | Изменение состояния |
+| --- | --- | --- |
+| RollTable.getResultsForRoll(value) | Выбирает все результаты с drawn=false, чей диапазон содержит value | Только возвращает массив; для каждого целого 1–10 здесь одна запись |
+| RollTable.roll | Выполняет formula, проверяет доступность/границы и получает результаты; для text рекурсии нет | Для заполненной formula нормализация не требуется; здесь без записи документов |
+| RollTable.draw | При необходимости вызывает roll; затем toMessage, если displayChat=true | При replacement=true не отмечает drawn; создаёт сообщение чата |
+| RollTable.normalize / resetResults | normalize строит интервалы и формулу из weight; reset снимает drawn | normalize(save=true) / resetResults обновляют документы; в проверке normalize использовался только с save=false |
+| TableResult.getHTML / RollTable.toMessage | description проходит enrichHTML и result-details.hbs, затем table-result.hbs | Подготовка HTML и ChatMessage.create; назначение полям Actor отсутствует |
+
+Для value=0/11 getResultsForRoll возвращает пустой массив. Это проверка непосредственного выбора, а не утверждение о стандартном roll: собственный 1d10 таких значений не даёт. Сохраняемый drawn учитывается даже при replacement=true; наш экспорт содержит только false.
+
+## Используемые сущности и зависимости
+
+| Сущность | Файл-источник / API | Вид связи и доказательство |
+| --- | --- | --- |
+| Регистрация имени, типа и пути пакета | [system.json](../../../../../../system.json):38, 82–87 | Декларативная регистрация; таблица сопоставлена с пакетом по каталогу/ID |
+| compilePack, recursive:true | [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10; [package.json](../../../../../../package.json) | Утилита читает этот JSON; _key согласован с контрактом CLI из .050, сборка не запускалась |
+| extractPack, folders:true, replacer | [utils/extract.mjs](../../../../../../utils/extract.mjs):9–27 | Обратный producer экспортного формата; прежние дефекты извлечения не исправлялись |
+| BaseRollTable / BaseTableResult.defineSchema | Foundry /opt/foundryvtt/common/documents/roll-table.mjs:43–62; table-result.mjs:48–68 | Настоящие модели приняли все исходные поля; _key отсутствует в toObject, поля результатов сохранились |
+| EmbeddedCollection / buildUuid / parseUuid | Foundry common/abstract/embedded-collection.mjs; common/utils/helpers.mjs:1299,1536 | Вложенность и адреса; проверены уникальность UUID и разрешение адреса из генератора в памяти |
+| Roll / Die / RollParser / grammar | Foundry client/dice/roll.mjs, terms/die.mjs, terms/dice.mjs, parser.mjs, grammar.pegjs | Реальные разбор формулы, границы и броски; источник случайных чисел контролировался |
+| RollTable.roll/draw/getResultsForRoll | Foundry client/documents/roll-table.mjs:98–143,264–342 | Реальные тела методов выполнены на моделях; оболочка клиентского документа и сохранение подменены |
+| TableResult.getHTML/documentToAnchor; шаблоны чата | Foundry client/documents/table-result.mjs:45–59; templates/sheets/roll-table/result-details.hbs; templates/dice/table-result.hbs | Настоящие методы и Handlebars-шаблоны; enrichHTML и UI кубика подменены, серверного сообщения нет |
+
+Для внешних файлов путь отсчитывается от /opt/foundryvtt; они не являются файлами системы и не получают строк реестра. Иконки icons/svg/d20-grey.svg и d20-black.svg найдены в public/icons установленного ядра; HTTP-доступ не проверялся.
+
+## Известные потребители
+
+| Файл-потребитель | Сущность | Условия использования / основание |
+| --- | --- | --- |
+| [packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json](../../../../../../packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json) | results[0], ID `q0DM4FW7XCnFdKZu`; documentUuid, строка 30 | Прямая ссылка на этот RollTable. При рекурсивном roll генератора получается один из его текстовых результатов |
+| [utils/packs.mjs](../../../../../../utils/packs.mjs) | JSON и _key | Рекурсивная подготовка style; системный браузерный модуль JSON напрямую не читает |
+| Foundry client/applications/sheets/roll-table-sheet.mjs:428–438; sidebar/tabs/roll-table-directory.mjs:28–33 | Документ RollTable | Действие листа roll→draw либо draw из меню; статическая сверка обработчиков |
+| [module/item/witcherItem.js](../../../../../../module/item/witcherItem.js):257–315 | Совпадение Item.name с `Style: Clothing` | Условный потребитель checkIfItemHasRollTable при экспорте добычи. Подбирает таблицу по индексу/имени; текстовый результат не превращается в Item, выдаётся exportLootInvalidItemError |
+
+Поиск выполнен в module/, templates/, utils/, system.json и экспортных packsJson по имени пакета, ID, UUID и имени документа, затем проверен общий поиск RollTable по имени в WitcherItem. Единственная прямая ссылка на этот документ в других JSON — указанная запись общего генератора; это не исключает внешних макросов, модулей и данных миров. Полный разбор генератора остаётся .056; чтение его семи ссылок не увеличивает покрытие.
+
+[module/data/actor/templates/character/general/detailsData.js](../../../../../../module/data/actor/templates/character/general/detailsData.js) определяет смысловое поле `system.general.details.clothing.value`. Автоматическое присваивание туда результата этой таблицы в проверенном коде не найдено: схема задаёт текстовую пару, а форма позволяет вводить значение. Соответствие тематики не является программной зависимостью.
+
+## Данные и изменения состояния
+
+Сохраняются название/служебные поля таблицы и десять описаний. Для собственного 1d10 все десять результатов имеют вероятность 1/10 при равномерном кубике. weight не применяется как отдельный множитель при выборе из уже заданных диапазонов; используется нормализацией. Вызванный draw с replacement=true оставляет результаты доступными для повторного получения. При displayChat=false сообщение не создаётся.
+
+Общий генератор имеет formula=1d1, семь пересекающихся диапазонов [1,1] и displayRoll=false. Поэтому его обычный рекурсивный draw получает по одному тексту из каждой таблицы и формирует одну карточку с семью результатами без HTML броска генератора. Непересекающиеся диапазоны не являются универсальным требованием к RollTable. Собственный displayRoll=true этой подтаблицы не управляет сообщением, которое создаёт родитель.
+
+## Проверки и доказательства
+
+| Проверка | Фактический результат | Пределы |
+| --- | --- | --- |
+| Полное чтение структуры | Все 260 строк учтены: 14 корневых ключей, 10 результатов по 11 ключей, без дубликатов ключей JSON | Числа и тексты не сравнивались с рулбуком |
+| ID, диапазоны, ссылки | 11 различных _key этого файла; [1,1]…[10,10]; входящая ссылка указывает на ID/имя/тип | Действующая БД и внешние источники не открывались |
+| Настоящие модели Foundry | Строгая валидация успешна; пустое name допустимо, description сохраняется, documentUuid отсутствует | Подготовка клиентских методов вызвана явно; серверная запись не проверена |
+| Выбор и повторные броски | Все 10 исходов; по два draw на каждый; границы 1/10; drawn исключает запись; normalize(save=false) сохраняет интервалы | Контролируемый randomUniform; распределение RNG статистически не измерялось |
+| Вывод | 20 подготовленных сообщений этой таблицы содержат нужное description и HTML-заглушку соответствующего броска | ChatMessage.create, enrichHTML, интерфейс кубика — фасады |
+| Перекрёстная сверка | Общий генератор разрешил все семь UUID; словарь полей Actor и динамический Item-потребитель проверены отдельно | Генератор пока не имеет полной карточки |
+| Общий протокол | 521 проверка модели/бросков/вывода плюс 9 проверок Item-потребителя; [TASK-0003.052](../../../review-log.md#task-0003052) | Это изолированное исполнение, не запуск мира |
+
+## Непроверенные участки и открытые вопросы
+
+Исходник прочитан полностью. Не выполнялись сборка/извлечение, установка зависимостей, открытие packs, запуск мира, браузер, HTTP и сохранение документов. Не проверены фактические права игроков, состояние индексов действующих пакетов, внешние better-rolltables/custom enrichers и макросы, статистика RNG или соответствие контента правилам. Реальная очистка HTML в DOM не запускалась. Прямые связи с генератором подлежат повторной сверке в .056/.057.
+
+## Связанные проблемы
+
+Новых технических проблем данного JSON в выполненном объёме не обнаружено. [issue-00313](../../../../../issues/potential/issue-00313.md) относится к предварительному удалению таких корневых JSON утилитой извлечения; это прежняя проблема процесса, а не дефект этих результатов. [issue-00039](../../../../../issues/potential/issue-00039.md) описывает ограничения другого потребителя RollTable — генератора добычи; таблица стиля не объявляется генератором Item.
+
+## История актуализации
+
+| Дата | Версия и область пересмотра | Результат |
+| --- | --- | --- |
+| 2026-09-12 | 2a3f197019c96225c0b6bedfb7c322ab9cc734bc; весь файл, все результаты и связи | Первичная карточка; [TASK-0003.052](../../../review-log.md#task-0003052) |
