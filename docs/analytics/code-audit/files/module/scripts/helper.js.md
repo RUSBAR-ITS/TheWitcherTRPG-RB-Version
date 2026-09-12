@@ -172,3 +172,11 @@ getActorOwner вызывается из effect/status helpers после castSpe
 Полностью разобраны [общий словесный бросок](../actor/mixins/verbalCombatMixin.js.md) и [применение урона](verbalCombat/verbalCombat.js.md). Настоящий addPart принимает 0/−2/+2/2+3 и truthy строку 'hide'; формулы распарсены настоящим Roll (группа 02). Defense самостоятельно сравнивает текстовый customModifiers с 0 и пропускает 2+3, не вызывает addPart для него. applyVerbalCombatDamage:52–55 без Actor выбрасывает TypeError, executeDefense:19–20 имеет guard (группы 15/17); меню блокируется раньше по [302](../../../../../issues/potential/issue-00302.md). Это уточнение [149](../../../../../issues/potential/issue-00149.md), сам выбор getInteractActor/input повторно не запускался.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Уточнение TASK-0003.057 — боевые таблицы
+
+2026-09-12, rusbar-main 8573642b0136f80b8ae3456de51e1b7f637ec7f3; исходник не изменён.
+
+getRandomInt:73–75 реально использован в 20 проверках Actor.randomHuman/randomMonster с контролируемым Math.random. Основные RollTable используют собственный Roll/Die RNG. Совпадение названия локаций не связывает эти генераторы.
+
+[Карточки Combat](../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.

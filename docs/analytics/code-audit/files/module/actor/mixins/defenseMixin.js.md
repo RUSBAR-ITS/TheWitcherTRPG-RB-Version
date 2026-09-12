@@ -174,3 +174,11 @@ attackDamageObject не копируется. Если это prepared damage и
 Проверен полностью [маршрут чата](../../../../../../../module/scripts/combat/combat.js). executeDefense передаёт attack, defenseOptions, damage, attackRoll, attacker из выбранного сообщения; его Actor выбирается helper, отсутствующий Actor отсекается. stunSave на button.stun получает attackWeaponProperties.stun, на crit-stun — без аргумента. Все кнопки stun связываются отдельно, вложенный target не меняет сообщение. Группа 23 подтверждает, что critical menu получает уже очищенный crit без modifier (258). Полные исходы skillDefense/stunSave из .042 заново не запускались.
 
 [Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Уточнение TASK-0003.057 — боевые таблицы
+
+2026-09-12, rusbar-main 8573642b0136f80b8ae3456de51e1b7f637ec7f3; исходник не изменён.
+
+handleCritLocation исполнен для сумм0,2,3,4,5,6,8,9,10,11,12,14 и явной локации: 12+ → head/critEffect6, 11 → head/1, 9–10 → torso/6, 6–8 → torso/1, 4–5 → случайная рука, ниже4 → случайная нога. Ни checkForCrit, ни handleCritLocation не вызывают четыре Combat Critical RollTable. Таблицы используют обычный 2d6, handler учитывает critLocationModifier.
+
+[Карточки Combat](../../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.

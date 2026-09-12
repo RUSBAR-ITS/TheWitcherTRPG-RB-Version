@@ -220,3 +220,11 @@ languages сохраняет все восемь объявлений. В тек
 Полностью разобраны пять RollTable-пакетов Character-gen, Character-gen_Sub-tables, Witcher_Lifepath_and_BG_Sub-tables, Life_Event_Sub-tables и Style_and_Values_Sub-tables: 117 JSON / 929 результатов. Все 252 documentUuid разрешены между ними; внешних входов из остальных packsJson не найдено. Это зарегистрированные таблицы, а не механизм создания Actor. Путь Character-gen остаётся packs/character-generator.db; манифест не изменён.
 
 [Основные генераторы](README.md#основные-генераторы-персонажа--task-0003056), [общая сверка пяти пакетов](../review-log.md#task-0003056).
+
+## Уточнение TASK-0003.057 — боевые таблицы
+
+2026-09-12, rusbar-main 8573642b0136f80b8ae3456de51e1b7f637ec7f3; исходник не изменён.
+
+Combat зарегистрирован как RollTable с packs/combat.db на одном уровне с criticalWounds (Item) в Witcher TRPG System; родство папки не означает вызова одного пакета другим. Все 11 Combat JSON соотнесены с пакетом; общий набор шести RollTable-пакетов — 128 JSON, 995 TableResult, 254 documentUuid (252 разрешимых, два отсутствующих).
+
+[Карточки Combat](README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.

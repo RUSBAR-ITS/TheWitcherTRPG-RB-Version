@@ -429,3 +429,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 [verbalCombatMixin](mixins/verbalCombatMixin.js.md) импортируется на строке 8 и подключается на 446. Полностью разобраны оба метода: verbalCombat ожидает prompt, но не extendedRoll; createVerbalCombatFlags возвращает два описания записи, а не сам сохраняет их. Словесный урон читает resolve.value и отправляет update без ожидания ([304](../../../../../issues/potential/issue-00304.md)). Уже описанный calculateDerivedStat('resolve') рассчитывает max и не меняет value; Group15/16 проверяли именно потребителя текущего ресурса с фасадом Actor, без повторного полного prepareData. Автоматический max=floor((WILL.value+INT.value)/2)×5+totalModifiers; начальный unmodifiedMax в CommonActorData — отдельная стадия.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Уточнение TASK-0003.057 — боевые таблицы
+
+2026-09-12, rusbar-main 8573642b0136f80b8ae3456de51e1b7f637ec7f3; исходник не изменён.
+
+Настоящие static getLocationObject и helper.getRandomInt проверены на всех 10 гранях randomHuman и randomMonster. При randomMonster=9 выбран leftLeg, при10 tailWing. Таблица Monster Damage Location при9 возвращает два text (issue-00322), но static её не читает; независимость двух маршрутов подтверждена.
+
+[Карточки Combat](../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.

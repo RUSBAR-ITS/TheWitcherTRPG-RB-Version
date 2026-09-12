@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.056 подготовлены 506 карточек, включая 117 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 109 JSON поставлены в очередь .057–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.057 подготовлены 517 карточек, включая 128 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 98 JSON criticalWounds поставлены в очередь .058–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath, 35 character-generator-sub-tables, 41 witcher-lifepath и 13 character-generator описаны ниже. Общая сверка пяти пакетов охватывает 117 файлов; 109 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath, 35 character-generator-sub-tables, 41 witcher-lifepath, 13 character-generator и 11 combat описаны ниже. Общая сверка шести RollTable-пакетов охватывает 128 файлов; 98 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -803,3 +803,21 @@
 | [packsJson/character-generator/Witcher_Lifepath__Non_Neutral_Decade_obLsbuoNixBUbeAy.json](packsJson/character-generator/Witcher_Lifepath__Non_Neutral_Decade_obLsbuoNixBUbeAy.json.md) | Выбирает опасность десятилетия с отказом от нейтралитета и всегда добавляет его исход. |
 | [packsJson/character-generator/Witcher_Lifepath__Normal_Decade_dsvsdl2GfKCWKsEO.json](packsJson/character-generator/Witcher_Lifepath__Normal_Decade_dsvsdl2GfKCWKsEO.json.md) | Выбирает опасность обычного десятилетия и всегда добавляет его исход. |
 | [packsJson/character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json](packsJson/character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json.md) | Выбирает опасность рискованного десятилетия и всегда добавляет его исход. |
+
+## Боевые таблицы — TASK-0003.057
+
+11 RollTable, 66 результатов, 25 inline-вставок; [задача](../../../tasks/task-0003.057.md), [общая сверка шести пакетов](../review-log.md#task-0003057). Тексты и числа рулбуков не проверялись.
+
+| Файл | Назначение |
+| --- | --- |
+| [packsJson/combat/Complex_Critical_p3EAPCnu8RDawpWR.json](packsJson/combat/Complex_Critical_p3EAPCnu8RDawpWR.json.md) | Текстовая таблица сложных критических результатов по сумме 2d6 |
+| [packsJson/combat/Deadly_Critical_GoXapMH54rEUWaZn.json](packsJson/combat/Deadly_Critical_GoXapMH54rEUWaZn.json.md) | Текстовая таблица смертельных критических результатов по сумме 2d6 |
+| [packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json](packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json.md) | Текстовая таблица тяжёлых критических результатов по сумме 2d6 |
+| [packsJson/combat/Human_Damage_Location_jKFIdFvv4P49JXPU.json](packsJson/combat/Human_Damage_Location_jKFIdFvv4P49JXPU.json.md) | Ручной выбор локации попадания по человеку и показ справочных множителей |
+| [packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json](packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json.md) | Ручной выбор локации попадания по монстру; два результата при сумме 9 |
+| [packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json](packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json.md) | Общий вызов последствий потери управления верхом; две неразрешимые ссылки экспорта |
+| [packsJson/combat/Mounted_Control_Loss__Mount_XRdHZOmutZ3yzGRe.json](packsJson/combat/Mounted_Control_Loss__Mount_XRdHZOmutZ3yzGRe.json.md) | Текстовые последствия потери управления для ездового животного |
+| [packsJson/combat/Mounted_Control_Loss__Personal_KWLoKiOHKXXnq5E4.json](packsJson/combat/Mounted_Control_Loss__Personal_KWLoKiOHKXXnq5E4.json.md) | Текстовые последствия потери управления для всадника |
+| [packsJson/combat/Scatter__Direction_and_Distance_qTOHZYKhe5GN3Ciw.json](packsJson/combat/Scatter__Direction_and_Distance_qTOHZYKhe5GN3Ciw.json.md) | Текстовое направление разброса и inline-бросок расстояния |
+| [packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json](packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json.md) | Текстовая таблица простых критических результатов по сумме 2d6 |
+| [packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json](packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json.md) | Текстовые последствия потери управления транспортом |

@@ -1,5 +1,112 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.057
+
+Дата: 2026-09-12. Ветка rusbar-main, HEAD 8573642b0136f80b8ae3456de51e1b7f637ec7f3; перед работой дерево чистое, 1599 отслеживаемых файлов. Исходники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. Выполняется [TASK-0003.057](../../tasks/task-0003.057.md), продолжение согласованного технического аудита. Полные карточки — [Combat](files/README.md#боевые-таблицы--task-0003057).
+
+### Объём и границы
+
+Прочитаны целиком 11 JSON packsJson/combat: 1915 строк, 66 TableResult (64 text, два document), 25 inline-вставок в 19 description. Подготовлены 11 отдельных карточек с полными текстами результатов, точными диапазонами, ID, источниками зависимостей, потребителями, исключениями и локализацией.
+
+Общая сверка шести пакетов включает 128 RollTable / 27042 строки / 995 TableResult (741 text, 254 document), 51 inline-вставку. Четыре группы criticalWounds — 98 файлов: 94 Item и четыре Folder — использованы только для точечного индексного сравнения; их полный разбор остаётся .058–.061. Соответствие рулбукам, редактура текстов, содержимое packs/, HTTP, миграция и сохранение настоящего мира исключены.
+
+### Структура и все результаты Combat
+
+| Таблица / карточка | Строк | Результатов | Formula | Наблюдение |
+| --- | --- | --- | --- | --- |
+| [Complex Critical](files/packsJson/combat/Complex_Critical_p3EAPCnu8RDawpWR.json.md) | 173 | 6 | 2d6 | Текстовая таблица сложных критических результатов по сумме 2d6 |
+| [Deadly Critical](files/packsJson/combat/Deadly_Critical_GoXapMH54rEUWaZn.json.md) | 174 | 6 | 2d6 | Текстовая таблица смертельных критических результатов по сумме 2d6 |
+| [Difficult Critical](files/packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json.md) | 174 | 6 | 2d6 | Текстовая таблица тяжёлых критических результатов по сумме 2d6 |
+| [Human Damage Location](files/packsJson/combat/Human_Damage_Location_jKFIdFvv4P49JXPU.json.md) | 174 | 6 | 1d10 | Ручной выбор локации попадания по человеку и показ справочных множителей |
+| [Monster Damage Location](files/packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json.md) | 151 | 5 | 1d10 | Ручной выбор локации попадания по монстру; два результата при сумме 9 |
+| [Mounted Control Loss](files/packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json.md) | 84 | 2 | 1d1 | Общий вызов последствий потери управления верхом; две неразрешимые ссылки экспорта |
+| [Mounted Control Loss: Mount](files/packsJson/combat/Mounted_Control_Loss__Mount_XRdHZOmutZ3yzGRe.json.md) | 220 | 8 | 1d10 | Текстовые последствия потери управления для ездового животного |
+| [Mounted Control Loss: Personal](files/packsJson/combat/Mounted_Control_Loss__Personal_KWLoKiOHKXXnq5E4.json.md) | 220 | 8 | 1d10 | Текстовые последствия потери управления для всадника |
+| [Scatter: Direction and Distance](files/packsJson/combat/Scatter__Direction_and_Distance_qTOHZYKhe5GN3Ciw.json.md) | 266 | 10 | 1d10 | Текстовое направление разброса и inline-бросок расстояния |
+| [Simple Critical](files/packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json.md) | 174 | 6 | 2d6 | Текстовая таблица простых критических результатов по сумме 2d6 |
+| [Vehicle Control Loss](files/packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json.md) | 105 | 3 | 1d6 | Текстовые последствия потери управления транспортом |
+
+У всех replacement=true/displayRoll=true; корневое description пустое, folder=null/sort=0, weight каждого результата=1, drawn=false, result.flags={}. Проверены все служебные _key, parent/result ID и поля _stats. Повтор одинаковых resultId между разными родителями допустим; идентичность ссылки учитывает пакет и родителя.
+
+flags.better-rolltables/core пусты; flags.scene-packer содержит прежний sourceId/hash. Они не исправляют и не заменяют documentUuid. Все 66 img результатов — внешние Forge URL; десять корневых img тоже внешние, Complex Critical использует локальную найденную иконку bone-joint-tan.webp. Сетевой доступ не проверен. Полный внешний black.svg не равен CONFIG.RollTable.resultIcon, поэтому сам по себе не включает подстановку иконки корня.
+
+Четыре Critical используют 2d6 и одинаковые интервалы 2–3,4–5,6–8,9–10,11,12. Перебраны все 36 упорядоченных пар для каждой: частоты 3,7,16,7,2,1 из 36. Строки Stabilized/Treated и текстовые «Roll 1d10»/«every 1d6» не превращаются в эффекты, броски или переходы Item.
+
+Human Damage Location покрывает десять граней одной записью. Monster Damage Location при 9 возвращает две: L. Limb [8,9] и Tail or Wing [9,10]. Сумма частот пяти записей 11/10 является следствием пересечения. Это отдельный справочный результат, не вызов автоматического switch Actor.
+
+Mounted Control Loss при 1 выбирает два document-результата. Personal/Mount существуют, но сохранённые UUID указывают на другие ID. При карте текущих экспортов рекурсивный результат пустой. Прямые Personal/Mount обрабатываются самостоятельно. Scatter даёт десять текстовых направлений с независимым 1d6; координаты/движение токена не рассчитываются. Vehicle Control Loss выбирает три текстовых результата на 1–2/3–4/5–6.
+
+### Связи всех шести RollTable-пакетов
+
+| Направление documentUuid | Число разрешимых ссылок |
+| --- | --- |
+| character-generator → character-generator | 5 |
+| character-generator → character-generator-sub-tables | 27 |
+| character-generator → lifepath | 3 |
+| character-generator → style | 7 |
+| character-generator → witcher-lifepath | 18 |
+| character-generator-sub-tables → character-generator-sub-tables | 79 |
+| lifepath → lifepath | 18 |
+| witcher-lifepath → lifepath | 1 |
+| witcher-lifepath → witcher-lifepath | 94 |
+| **Всего разрешимых** | **252** |
+
+Ещё две ссылки из Combat отсутствуют: Mounted Control Loss → aLBBrVnSsL3wqQUx (Personal, documentUuid:26) и →6FrD4tQuyJOICu5m (Mount, :50). Действительные IDs одноимённых таблиц — KWLoKiOHKXXnq5E4 и XRdHZOmutZ3yzGRe. Из Combat нет других documentUuid, связей с пятью биографическими пакетами или Item criticalWounds. Прямых входящих ссылок на 11 Combat нет. Граф 252 разрешимых связей не содержит циклов; прежние ограничения глубины issue-00320 сохраняются. Прочитанные sourceId сторонних flags в этот граф не подмешиваются.
+
+Точные имена, IDs и пространство Compendium.TheWitcherTRPG.Combat не найдены в module/templates и 98 экспортных файлах criticalWounds. Проверка не исключает динамические вызовы или внешние модули. Generic checkIfItemHasRollTable остаётся условным потребителем по точному Item.name.
+
+### Проверка настоящего ядра
+
+Использовано ядро Foundry 14.367.0 из /opt/foundryvtt и Node.js 24.16.0. Два сценария выполнены через stdin, без создания файлов стенда, npm install, compile/extract или запуска службы.
+
+Первый сценарий: **5223 утверждения**, 128 строгих RollTable с 995 TableResult; 1728 контролируемых прямых исходов (1527 прежних биографических и 201 Combat), достигнуты 985 различных результатов. Десять недостижимых естественной формулой записей относятся к ранее описанным Trials, не к Combat. В Combat доступны все 66 исходных результатов без рекурсии. Выполнены 402 повторных draw без чата, 22 draw мировых копий, 100 успешных сообщений на всех естественных суммах десяти непустых Combat-таблиц; пустой Mounted проверен отдельно. Каждый из 995 result.getHTML и все 51 inline-вставки реально обработаны. Для каждого Combat отдельно проверены normalize({save:false}) и неизменность prepared-документа.
+
+Настоящие компоненты: common/abstract DataModel/Document/EmbeddedCollection, BaseRollTable/BaseTableResult, поля и константы; client/documents/roll-table.mjs и table-result.mjs; Roll/Die/термы, RollParser и grammar.pegjs; TextEditor._enrichInlineRolls/_createInlineRoll, Roll.toAnchor; HBS result-details.hbs/table-result.hbs.
+
+Фасады: bootstrap globals/CONFIG/game, карта разрешения UUID из экспортов, index/collections, ClientDocumentMixin, document.toAnchor/createAnchor, минимальный DOM и обход текстовых узлов, Roll.render, локализация, уведомления, ChatMessage и методы записи. Методы клиентских классов загружены из настоящих исходников с заменой импортов и mixin-зависимостей; тела исследуемых roll/draw/getHTML не переписаны. Синтаксически правильные отсутствующие documentUuid дают content-link при recursive:false; её фактический клик здесь не проверялся. Полный enrichHTML/DOM, браузерные события и доступность иконок не имитируются как проверка живого клиента.
+
+Core roll-table.mjs:264–341 проверяет доступный диапазон и выбирает все совпадения; :312–325 пропускает отсутствующую вложенную цель; draw:98–107 возвращает [] до создания чата. normalize:213–230 превращает единичные weights в новые равномерные интервалы, но обычный roll этих файлов не нормализует, поскольку formula задана.
+
+### Inline и состояние
+
+25 Combat-вставок: шесть Mount, шесть Personal, десять Scatter, три Vehicle. На максимальных гранях проверены 1d10→10,2d10→20,1d6→6,1d6/2→3,5d6→30. Полный перебор 1d6/2 дал 0.5/1/1.5/2/2.5/3 без округления. Слова «если упал», «если наземный транспорт» не задают условного исполнения; все вставки выбранного description вычисляются при показе.
+
+Vehicle x2/x3 — действительный explode по грани 2/3, в отличие от прежних недостижимых x10/x100. Проверены последовательности 2→4=6 и2→2→4=8 для x2,3→4=7 и3→3→4=10 для x3; контроли умножения при первой грани дали4 и9. Обогащение настоящих description подтвердило totals 6/7. На грани 10 обе исходные формулы дали10; это не максимальный возможный total explode.
+
+JSON не применяет повреждения, травмы, смерть, статусы или перемещение. Непустой draw создаёт сообщение; replacement=true сохраняет drawn=false и в pack, и в мировой копии. Счётчик persistence в сценариях равен0; ChatMessage перехватывается в памяти. Редактирование sheet и его submit могут сохранять документ в настоящем клиенте; эти действия текущий сценарий не выполнял.
+
+### Системные потребители и граница с criticalWounds
+
+Второй сценарий: **74 утверждения**. Исполнены исходные static getLocationObject, getRandomInt, handleCritLocation, applyCritWound и checkIfItemHasRollTable. Случайность контролировалась, Roll/парсер оставались настоящими. Проверены 20 исходов Human/Monster: randomMonster=9 → leftLeg,10 → tailWing; обращения к Combat нет.
+
+handleCritLocation проверен на суммах 0,2,3,4,5,6,8,9,10,11,12,14 с реальной формулой 2d6+modifier и отдельно на явной локации. Степень критического результата вычисляет checkForCrit по разнице атаки и защиты, а не одна из четырёх RollTable. applyCritWound:312–345 фильтрует Item-пакет по treatment='none', location и criticalLevel; один кандидат выбирается сразу, несколько — через lesserEffect. settings:2–14/86–95 предлагает Item-пакеты; ready:64–67 индексирует их поля. combat.js:85–92 передаёт system.crit в Actor.
+
+Для applyCritWound индекс составлен из 94 Item, четыре Folder исключены. Проверены 16 положительных сочетаний явно заданных полей: difficult/deadly × head/torso × critEffect1/6 и четыре степени × leftLeg/rightLeg. fromUuid/addItem/ChatMessage — фасады; полная модель Item/Actor и применение effects не запускались.
+
+Дополнительные четыре сценария complex/head/torso,critEffect6 при двух порядках индекса выявили location=torso у Minor Head Wound. Для головы всегда выбран Lost Teeth; для торса — Minor Head Wound либо Ruptured Spleen в зависимости от порядка. Статусы stabilized/treated прочитаны точечно и тоже содержат torso. Это issue-00324; полное исследование остаётся .059. Отсутствующий lesserEffect у Cracked Jaw не объявлен ошибкой: actual defineSchema задаёт initial=false, модель/индекс этого Item нужно проверить в .058.
+
+Все 11 имён Combat проверены исходным генератором добычи: десять text дали exportLootInvalidItemError, пустой Mounted дал TypeError documentCollection. Одинаковое имя Item в действующем мире не устанавливалось. Проблема защиты массива — прежняя issue-00039, неверные UUID — отдельная issue-00323.
+
+### Issues и обратные уточнения
+
+Проверен реестр 321 прежней potential-карточки поиском по UUID/именам/диапазонам/формулам и механизмам; связанные issue-00039,00289,00319 прочитаны полностью. Добавлены [issue-00322](../../issues/potential/issue-00322.md), [issue-00323](../../issues/potential/issue-00323.md), [issue-00324](../../issues/potential/issue-00324.md). Дополнены 00039/00289/00319; заголовок 00319 расширен до xN (семь вставок, пять JSON). Всего 324 potential, open/closed пусты. Подтверждения и исправления не выполнялись.
+
+Уточнены 14 карточек движка: system.json, package.json, compile/extract, точка входа/settings, WitcherActor/locationMixin/helper, defenseMixin/damageMixin, WitcherItem, CriticalWoundData и combat.js. Они явно отделяют регистрацию, реального потребителя и совпадение тематики/имени. В .058–.061 и TASK-0004/0005 добавлены только материалы сверки; статусы planned/draft сохранены.
+
+### Перекрёстная проверка документов
+
+Все 995 записей исходных 128 таблиц сверены с индивидуальными карточками: тексты/name, resultId вместе с родителем, диапазоны исходных строк, формулы и ссылки. Проверены все 254 documentUuid и 252 обратных связи к существующим целям; два отсутствующих UUID явно описаны. Поиск циклов посетил все 128 вершин, циклов нет. Отдельно сопоставлены две новые строки documentUuid и все 25 Combat-вставок.
+
+Проверка документации подтвердила 615 строк реестра, 517 карточек, 98 файлов в четырёх planned-порциях; 61 подзадача распределяет 604 различных файла, ещё 11 относятся к TASK-0002. TASK-0003 продолжается, TASK-0004/0005 остаются draft. Реестр issues содержит 324 potential без пропусков ID; open/closed пусты. Проверены локальные ссылки и прямоугольность Markdown-таблиц; ошибок нет. git diff --check пройден.
+
+Исправлены устаревшие вводные счётчики registry (452/163) и итоговые строки серии в задачах (63/163). Актуальное покрытие — 517/98, серия компедиумов — 128/98. Старый журнал сохранён целиком после новой записи, исторические результаты порций не переписаны.
+
+Состав изменений: 34 существующих Markdown-документа и 14 новых (11 карточек, три issues), только внутри docs/. Mode, uid, gid и inode всех 1599 отслеживаемых файлов совпали с исходным снимком. Контрольные суммы всех файлов вне согласованного списка документации сохранены; HEAD 8573642b0136f80b8ae3456de51e1b7f637ec7f3, ветка rusbar-main и индекс Git не изменены. Коммиты не создавались.
+
+SHA-256 Combat (отсортированные пути + NUL + байты): 5a51f08f2dca41a530dac50395cd97b0ec9bcfc0c580d9b2d36a48a02ab1b457. Всех 128 RollTable: b56b5f2faa334c898a0ada1ad496631cbb42bfb5864911101a0e89006a1c6b46. Контроль 615 исходников совпал: 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c; контроль исходных 621 с шестью исключёнными языками также сохранён.
+
+TASK-0003.057 завершена. Следующая порция — .058; дальнейшие проверки эффектов, переходов и подготовленных Item выполняются в своих задачах.
+
 ## TASK-0003.056
 
 Дата: 2026-09-12. Ветка rusbar-main, HEAD be1c48770219a6d2871259f12c30d93636aac646; в начале рабочее дерево чистое, 1586 отслеживаемых файлов. [Задача](../../tasks/task-0003.056.md), [13 карточек](files/README.md#основные-генераторы-персонажа--task-0003056). Источники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f.
