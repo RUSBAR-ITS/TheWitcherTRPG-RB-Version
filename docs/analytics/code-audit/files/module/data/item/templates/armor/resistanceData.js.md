@@ -89,3 +89,11 @@ OR делает сопротивление true, если оно уже было
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современный armor partial проверяет armor.system.resistance.slashing/piercing/bludgeoning и показывает локализованные теги. В старом шаблоне disabled checkbox читают плоские system.slashing/... и остаются пустыми при вложенном true (issue-00180). Отображение сопротивления не является вызовом applyStatus.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs). [Проверки и ограничения](../../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.043
+
+2026-09-12, rusbar-main, 929ac4c6d90509ce06ef0795be380925e8b59e69; исходники не изменены.
+
+Полный [calculateArmorResistances](../../../../../../../../../module/actor/mixins/armorMixin.js) испытан с настоящей ArmorData. Несколько носимых сопротивлений применяются один раз, Natural — отдельной веткой. Последняя читает общий damage.type вместо damageInstance.type: silver=20 при основном slashing остаётся 20 у Light, но становится 10 у Natural со slashing ([280](../../../../../../../../issues/potential/issue-00280.md)). Группа 12 повторила 25/26; OR улучшений не изменялся.
+
+[Методика и пределы проверки](../../../../../../review-log.md#task-0003043). Уточнение связей не увеличивает покрытие. Статусы issues остаются potential; подтверждение и исправления не выполнялись.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.042 проверены описания **319 файлов**, для **302 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.043 проверены описания **322 файлов**, для **299 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.042](review-log.md#task-0003042) выполнена на 16695cbfc7fec3e0de56660c7cab21bc0304e94b: все 621 исходник совпадают с базовым срезом. Добавлены пять карточек: примесь Actor, обёртка Item и три шаблона защиты. Выполнены 33 группы проверок и сверка определений с потребителями. Статус «Проверено» относится к анализу документации, а не к отсутствию ошибок или полному запуску Foundry.
+Последняя [сверка TASK-0003.043](review-log.md#task-0003043) выполнена на 929ac4c6d90509ce06ef0795be380925e8b59e69: все 621 исходник совпадают с базовым срезом. Добавлены три карточки брони, локаций и CSS. Выполнена 31 группа проверок и сверка определений с потребителями. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -27,7 +27,7 @@
 | [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) | Три подсказки путей урона для временного улучшения Item. | [Описание](files/module/activeEffect/mixins/temporaryItemImprovementMixin.js.md) | Проверено |
 | [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js) | Документ ActiveEffect: подавление, фазы изменений, выбор навыка и подготовка длительности. | [Описание](files/module/activeEffect/witcherActiveEffect.js.md) | Проверено |
 | [module/actor/mixins/adrenalineMixin.js](../../../module/actor/mixins/adrenalineMixin.js) | Добавление адреналина по мировой настройке. | [Карточка](files/module/actor/mixins/adrenalineMixin.js.md) | Проверено |
-| [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/armorMixin.js](../../../module/actor/mixins/armorMixin.js) | Выбор и сочетание брони по локации, EV, сопротивления и запросы износа предметов и естественной брони монстра. | [Карточка](files/module/actor/mixins/armorMixin.js.md) | Проверено |
 | [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js) | Два метода Actor: полное сотворение spell/hex/ritual и масштабирование отдельных значений по исходной стоимости STA. Объединяет бросок, диалог, расход ресурса, параметры урона/щита/лечения, сообщение, область и эффекты. | [Карточка](files/module/actor/mixins/castSpellMixin.js.md) | Проверено |
 | [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js) | Примесь Actor с тремя способами найти компоненты: по ключу вещества, имени и UUID происхождения из компедиума. | [Описание](files/module/actor/mixins/craftingMixin.js.md) | Проверено |
 | [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js) | Методы Actor для обмена валюты: получение курсов CONFIG, подготовка окна, расчёт комиссии/округления, одна запись двух остатков и сообщение чата | [Карточка](files/module/actor/mixins/currencyConverterMixin.js.md) | Проверено |
@@ -35,7 +35,7 @@
 | [module/actor/mixins/damageUtilMixin.js](../../../module/actor/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/defenseMixin.js](../../../module/actor/mixins/defenseMixin.js) | Одиннадцать методов Actor: выбор и бросок защиты, расход STA, критические результаты и локации, реакции на попадание/успех и спасбросок от оглушения. | [Карточка](files/module/actor/mixins/defenseMixin.js.md) | Проверено |
 | [module/actor/mixins/healMixin.js](../../../module/actor/mixins/healMixin.js) | Общие методы Actor для расчёта величины лечения с ограничением HP.max и формирования сообщения о лечении. Сам файл HP не записывает. | [Описание](files/module/actor/mixins/healMixin.js.md) | Проверено |
-| [module/actor/mixins/locationMixin.js](../../../module/actor/mixins/locationMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/locationMixin.js](../../../module/actor/mixins/locationMixin.js) | Два метода экземпляра Actor, делегирующие перечисление и описание локаций статическим методам WitcherActor. | [Карточка](files/module/actor/mixins/locationMixin.js.md) | Проверено |
 | [module/actor/mixins/modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) | Фрагменты формул из модификаторов навыков, групп, атаки и защиты. | [Описание](files/module/actor/mixins/modifierMixin.js.md) | Проверено |
 | [module/actor/mixins/professionMixin.js](../../../module/actor/mixins/professionMixin.js) | Девять методов Actor для суммы и поиска профессиональных навыков, выбора пути применения, броска, профессиональной атаки и временного здоровья. Источником служит первая нестored профессия Actor по sort; основное дерево и ветви хранятся в Item. | [Карточка](files/module/actor/mixins/professionMixin.js.md) | Проверено |
 | [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js) | Две обёртки WitcherActor для открытия выдачи награды с заранее выбранным текущим Actor. | [Карточка](files/module/actor/mixins/rewardsMixin.js.md) | Проверено |
@@ -463,7 +463,7 @@
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json) | Не установлено | Не подготовлено | Не начат |
 | [styles/activeEffect.css](../../../styles/activeEffect.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/armor-sheet.css](../../../styles/armor-sheet.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/armor-sheet.css](../../../styles/armor-sheet.css) | Шесть глобальных правил оформления локаций, списка эффектов и строк SP старого инвентаря монстра. | [Карточка](files/styles/armor-sheet.css.md) | Проверено |
 | [styles/attack-sheet.css](../../../styles/attack-sheet.css) | Оформление таблиц и select в секции attack-sheet; дополнительно глобальные отступы изображений внутри h2. | [Карточка](files/styles/attack-sheet.css.md) | Проверено |
 | [styles/character-header.css](../../../styles/character-header.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/character/sheet.css](../../../styles/character/sheet.css) | Не установлено | Не подготовлено | Не начат |

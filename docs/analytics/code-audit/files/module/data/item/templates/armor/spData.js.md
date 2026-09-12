@@ -95,3 +95,11 @@ Default export SpData extends foundry.abstract.DataModel. ArmorData включа
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современная броня использует modifiedStoppingPower/modifiedMaxStoppingPower через armorPartsInfo; чисел SP непосредственно в input нет. Старый monster partial ищет headStopping и другие плоские поля: head.stoppingPower=5/max10 не заполнили старую строку. Это mismatch сохранённого неактивного HBS, не изменение модели.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs). [Проверки и ограничения](../../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.043
+
+2026-09-12, rusbar-main, 929ac4c6d90509ce06ef0795be380925e8b59e69; исходники не изменены.
+
+Полный [расчёт Actor](../../../../../../../../../module/actor/mixins/armorMixin.js) использует modifiedMaxStoppingPower>0 для покрытия и modifiedStoppingPower для величины SP. Группа 03 подтвердила независимость этого отбора от строкового location; группа 14 — сохранение сопротивления при current=0/max>0. Группы 15–16 повторили границу [83](../../../../../../../../issues/potential/issue-00083.md) через вызывающую примесь. Исходное/подготовленное значения и запрос записи отделены; новые проблемы сочетания слоёв описаны в [279](../../../../../../../../issues/potential/issue-00279.md).
+
+[Методика и пределы проверки](../../../../../../review-log.md#task-0003043). Уточнение связей не увеличивает покрытие. Статусы issues остаются potential; подтверждение и исправления не выполнялись.

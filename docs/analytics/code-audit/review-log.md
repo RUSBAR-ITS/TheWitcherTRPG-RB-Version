@@ -1,5 +1,99 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.043
+
+| Поле | Результат |
+| --- | --- |
+| Дата / ветка | 2026-09-12 / rusbar-main |
+| Коммит | 929ac4c6d90509ce06ef0795be380925e8b59e69; рабочее дерево на старте чистое |
+| Состав | armorMixin.js — 285 строк; locationMixin.js — 11; armor-sheet.css — 24; всего 3 файла / 320 логических строк |
+| Покрытие | 322 из 621; 299 не разобраны. В пятой серии 12 из 77 выполнены, 65 в очереди; 234 вне очереди |
+| Проверки | 31 группа изолированного запуска; все итоговые assertions выполнены |
+| Связанные документы | Четыре прежние карточки и шесть прежних issues уточнены; семь новых potential issues 00277–00283 |
+| Границы изменений | Только docs; исходники, игровые данные и права не менялись; коммит не создавался |
+
+### Состав и перекрёстные связи
+
+[Задача](../../tasks/task-0003.043.md). Полные карточки: [armorMixin.js](files/module/actor/mixins/armorMixin.js.md), [locationMixin.js](files/module/actor/mixins/locationMixin.js.md), [armor-sheet.css](files/styles/armor-sheet.css.md).
+
+Прочитаны 11 методов armorMixin, два wrapper locationMixin, все шесть селекторов и восемь CSS declarations. Сопоставлены ArmorData/SpData/ResistanceData, поля MonsterData и DamageProperties, DamageInstance, getList/static locations/calculateStat Actor, getMultiDamageMod и calculateDamageWithLocation; пути EV в castSpell/rollSkillCheck. Для CSS сверены manifest/imports, более поздний .effect-list и текущий/старый HBS. Прямое поле spDamage проверено до producer generalCombatHook и combatEffectsData.
+
+Прежние карточки ArmorData, SpData, ResistanceData и armor-sheet.hbs прочитаны вместе с поздними уточнениями и дополнены обратными связями. Соседи вне состава порции не получили полного покрытия. В частности, damageMixin, damageUtilMixin и DamageInstance остаются в очереди своего полного разбора; исполнение отдельных методов не заменяет его.
+
+### Методика и фиксированные входы
+
+Команда одноразового запуска: node --no-warnings --input-type=module, код через stdin. Node v24.16.0; Foundry 14.367.0 по /opt/foundryvtt/package.json. Постоянных тестовых файлов, установки зависимостей, сборки и игрового мира не создавалось.
+
+Использованы настоящие common DataModel/TypeDataModel/fields/primitives Foundry, ArmorData, MonsterData, DamageProperties, SpData/ResistanceData внутри ArmorData, DamageInstance, CONFIG.WITCHER и импортированные armorMixin/damageUtilMixin. Parent Item — подкласс DataModel с пустой схемой и TYPES=[], полями type/id/actor и перехваченным update. Родитель удовлетворяет контракту модели, но не является Foundry Item Document. У персонажа Actor.system — минимальный объект; у монстра — настоящая MonsterData.
+
+SP готовились настоящими base/derived каждой вложенной модели; enhancementItems задан в памяти как объект с system.stopping. Полный ArmorData lifecycle/поиск улучшений по Actor.items не выполнялся. Типичная броня: equipped=true, location=FullCover, current=max=заданному SP всех шести зон, иначе указаны изменения.
+
+Точные тела getList, двух static Actor, calculateStat, calculateDamageWithLocation и applyDamageToAllLocations извлечены из исходников в vm. locationMixin исполнен с заменой импортированного класса классом с исходными static. Метод расчёта каждой зоны в группе 26 заменён фасадом: проверяются имена и прохождение consumer, а не полный общий урон. Группа 31 исполняет только исходный участок построения формулы EV castSpell.
+
+Настоящие Roll/parser/terms и peggy-грамматика из Foundry работают в памяти; evaluate получает minimize либо maximize. Для случайной локации getRandomInt фиксирован на 10. Это не проверка распределения RNG. Actor/Item.update возвращают незавершённые Promise и регистрируют аргументы; никакая запись в БД не исполнялась.
+
+PostCSS разобрал CSS; Handlebars и parse5 — HBS. Helpers localize/eq/or/checked/selectOptions и header/diagram partial заменены фасадами; значения модели переданы HBS собственными полями отдельного объекта. Браузер, полный рендер листа, штатные localize/expandObject/fallback, computedStyle и HTTP не запускались.
+
+Первые запуски одноразового кода обнаружили ошибки его сборки (лишняя скобка, отсутствующий TYPES у тестового parent), затем предупреждение Handlebars о доступе к prototype getter. Исправлены только фасады/вход HBS. Эти результаты не зарегистрированы как ошибки системы; итоговый запуск 31 группы завершился с кодом 0.
+
+### Результаты групп
+
+| № | Сценарий | Наблюдение |
+| --- | --- | --- |
+| 01 | пустая броня и локации | Все шесть пустых локаций: totalSP=0, displaySP='0'; EV=0. |
+| 02 | EV и исключение хранения | EV надетых Light=2 и stored Medium=3 равен 5, SP берёт только Light=10; игнорирование 8 ограничивает EV нулём. |
+| 03 | отбор по modifiedMax вместо имени локации | location='Head' с head.max=0/torso.max=10 даёт head SP=0, torso SP=3. |
+| 04 | щит и надёжность отделены от SP | Щит reliability=20 сам не даёт SP; EV=2 учитывается. Добавленное torso SP=5 участвует в расчёте. |
+| 05 | слои и естественная броня предметом | Light=10+Medium=15+Heavy=20+Natural=3 дают SP=33; текст содержит два бонуса слоёв. |
+| 06 | пороги бонуса разницы | Разницы 0/5/6/9/10/15/16/20/21 дают 5/5/4/4/3/3/2/2/0; обратная разница и неположительные SP проверены. |
+| 07 | повреждённый тяжёлый слой снижает SP | Light=10+повреждённый Heavy=1 дают SP=5; снятие Heavy возвращает SP=10. |
+| 08 | повтор класса и выбор последнего Natural | Два Light: предупреждение, затем TypeError. Два Natural с SP=9/3: последний по sort даёт SP=3. |
+| 09 | монстр и независимые bypass flags | Поля монстра по семи зонам с предметами дают 15/17/17/17/19/19/8; флаги обхода в torso — 17/7/10/0. |
+| 10 | AP сохраняет числовой расчёт SP в примеси | В getLocationArmor обычная/AP/improvedAP атаки получают одинаковый SP=10. |
+| 11 | сопротивление изменяет тот же экземпляр | slashing=21 → 10 при сопротивлении двух носимых слоёв; изменён тот же экземпляр, afterResistance ещё null. |
+| 12 | multiplier кратность и applyAP | multiplication=3: 20/30/45 без/с одним/двумя сопротивлениями; applyAP вызывает TypeError, AP/IAP обходят helper. |
+| 13 | Natural читает тип общей атаки | При основном slashing порция silver=20 не меняется носимым сопротивлением slashing, но Natural уменьшает её до 10. |
+| 14 | bypass и сопротивление с нулевым SP | Броня current=0/max=10 сохраняет сопротивление: урон 20 → 10; bypassWorn/AP оставляют 20. |
+| 15 | износ меньше равен больше SP через Actor | SP=3, прямой износ 2/3/4 → запрос 1/0/отсутствие запроса. |
+| 16 | улучшение и исходный SP | База 1+улучшение 2, износ 2 → запрос stoppingPower=-1; _source остаётся 1. |
+| 17 | ablating и crushing реальный Roll | Обычный/удвоенный/ablation min/max/max×crushing износ: 1/2/1/4/8 на настоящем Roll. |
+| 18 | bypassWorn прекращает обычный износ монстра | bypassWorn у монстра останавливает обычный износ; без флага armorUpper5 → запрос 4. |
+| 19 | постоянный износ игнорирует worn bypass | Прямой spDamage2 при bypassWorn и crushing запрашивает Item10→8 и Monster5→3; не удваивается; Natural Item пропущен. |
+| 20 | локации монстра и ограничение нулём | Семь зон адресуют четыре правильных поля монстра с ограничением 0; bypassNatural и type=character не пишут. |
+| 21 | два запроса используют прежний SP | Износ 2, затем 1: pending Item/Actor.update запросили 8/8, затем 9/9 при прежних 10. |
+| 22 | consumer блок и пробитие | Настоящий calculateDamageWithLocation: урон 10/SP=10 блокирован, износ 0; урон 20/SP=10 оставил 10, обычный износ 1. Нулевой прямой износ также вызвал update. |
+| 23 | improvedAP NaN только в отображении | Heavy=20+Light=10: SP=23, IAP →12, урон 30 →afterSp=18; displaySP=NaN. |
+| 24 | getAllLocations теряет this но объект хвоста доступен | Monster hasTailWing=true: wrapper=6, static.call(actor)7; false→6; отдельный объект хвоста доступен. |
+| 25 | все объекты локаций и random | Проверены семь пар formula/modifier; random d10=10 →leftLeg/tailWing; неизвестное name сохраняется и ломает последующий расчёт брони. |
+| 26 | потребитель списка локаций | Настоящий applyDamageToAllLocations с подменённым расчётом зон передал шесть имён, сумма 6; хвост не включён. |
+| 27 | EV и prepared REF DEX | calculateStat с базами 8, EV=2 и подменённым штрафом массы 1 дал REF=4/DEX=4/SPD=7. |
+| 28 | CSS declarations и подключение | PostCSS: шесть селекторов, восемь declarations; armor-sheet импортирован раньше activeEffect. |
+| 29 | CSS потребители и HBS условия | Настоящие Handlebars/parse5 с фасадами helpers/partials: .location-table есть у FullCover, отсутствует у Shield. |
+| 30 | все сочетания носимых слоёв | Все восемь наборов Light=4/Medium=8/Heavy=12: 0/4/8/13/12/16/17/22; Natural=3 прибавляет 3 к каждому. |
+| 31 | EV в исходном участке формулы сотворения | Исходный участок castSpell: EV=2/ignoredEv=4 → 'BASE -2 +4'; без надетой брони → 'BASE'. |
+
+### Проблемы и сопоставление с прежним массивом
+
+Уточнены [25](../../issues/potential/issue-00025.md) (applyAP), [26](../../issues/potential/issue-00026.md) (кратность multiplication), [32](../../issues/potential/issue-00032.md) (список локаций и consumer), [35](../../issues/potential/issue-00035.md) (перегруз отдельно от EV), [83](../../issues/potential/issue-00083.md) (превышение SP) и [254](../../issues/potential/issue-00254.md) (вклад EV в сотворение). Учтены поздние уточнения и [общая промежуточная сверка](cross-check-0001.md). Дубль 00200/00029 и прежние статусы не менялись.
+
+- [issue-00277](../../issues/potential/issue-00277.md) — Броня на хранении учитывается в штрафе EV.
+- [issue-00278](../../issues/potential/issue-00278.md) — Повторный класс надетой брони вызывает исключение после предупреждения.
+- [issue-00279](../../issues/potential/issue-00279.md) — Добавление повреждённого тяжёлого слоя уменьшает суммарный SP.
+- [issue-00280](../../issues/potential/issue-00280.md) — Сопротивление Natural использует общий тип атаки вместо типа порции урона.
+- [issue-00281](../../issues/potential/issue-00281.md) — Обход носимой брони прекращает обычный износ естественной брони монстра.
+- [issue-00282](../../issues/potential/issue-00282.md) — Последовательные запросы износа SP используют прежнее значение.
+- [issue-00283](../../issues/potential/issue-00283.md) — Улучшенная бронебойность превращает пояснение составного SP в NaN.
+
+Всего 283 issues, все potential. Регистрация разрешена пунктом 9 TASK-0003; подтверждение пользователем, исправление и закрытие не выполнялись. Сопротивления при SP=0, выбор последнего Natural, отсутствие износа Natural Item и отрицательные исходные SP описаны отдельно от подтверждённого правила игры; самостоятельные issues по этим неоднозначным ожиданиям не создавались.
+
+### Формальная сверка и пределы
+
+Реестр 621 файлов сопоставлен с 322 карточками и 299 строками «Не начат». Перечни всех 50 подзадач содержат 376 уникальных исходников; .001–.043 done, .044–.050 planned. В очереди 65, ещё 234 вне неё. TASK-0003 in-progress, TASK-0004/TASK-0005 draft.
+
+Ссылки, якоря, новые Markdown-таблицы и git diff --check проверены. Изменения ограничены docs. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. Совокупный SHA256 (сортированные пути UTF-8 + NUL + байты) — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4. mode/uid/gid/inode всех 1356 ранее отслеживаемых файлов сохранены; прежний журнал ниже не изменён.
+
+Не проверены настоящий Actor lifecycle, мир, HP/БД, межклиентский порядок записей, ActiveEffect поверх SP, полный урон по всем локациям, фактический чат и соответствие чисел рулбуку. Статус карточки «Проверено» означает пофайловый анализ с указанными пределами.
+
 ## TASK-0003.042
 
 | Поле | Результат |

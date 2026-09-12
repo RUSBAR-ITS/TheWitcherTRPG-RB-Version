@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.042 подготовлены и сверены 319 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.043 подготовлены и сверены 322 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -532,3 +532,11 @@
 | templates/chat/combat/defense/defense.hbs | [Описание](templates/chat/combat/defense/defense.hbs.md) |
 | templates/chat/combat/defense/defenseCrit.hbs | [Описание](templates/chat/combat/defense/defenseCrit.hbs.md) |
 | templates/chat/combat/defense/defenseStun.hbs | [Описание](templates/chat/combat/defense/defenseStun.hbs.md) |
+
+## Броня и локации — TASK-0003.043
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/armorMixin.js | [Описание](module/actor/mixins/armorMixin.js.md) |
+| module/actor/mixins/locationMixin.js | [Описание](module/actor/mixins/locationMixin.js.md) |
+| styles/armor-sheet.css | [Описание](styles/armor-sheet.css.md) |
