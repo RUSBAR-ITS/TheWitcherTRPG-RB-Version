@@ -1,5 +1,130 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.053
+
+2026-09-12. Ветка rusbar-main, HEAD 93beea0953821c9d8f080f815e686dc4da0c6f9e; стартовое рабочее дерево чистое, 1486 отслеживаемых файлов. Выполнен технический разбор 21 JSON в packsJson/lifepath: 3845 строк, 21 RollTable и 139 TableResult. Исходники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. [Задача](../../tasks/task-0003.053.md), [21 карточка](files/README.md#таблицы-жизненных-событий--task-0003053).
+
+### Охват и индивидуальная сверка
+
+| Файл | Строк | text / document | formula | Особенность |
+| --- | --- | --- | --- | --- |
+| [packsJson/lifepath/Allies__Closeness_IswiqefPmaHECa5X.json](files/packsJson/lifepath/Allies__Closeness_IswiqefPmaHECa5X.json.md) | 145 | 5 / 0 | 1d10 | Вероятности пяти записей при равномерном d10: 40%, 20%, 20%, 10%, 10% |
+| [packsJson/lifepath/Allies__Gender_QFHhoiXtIBYkL8Rd.json](files/packsJson/lifepath/Allies__Gender_QFHhoiXtIBYkL8Rd.json.md) | 99 | 3 / 0 | 1d10 | Вероятности записей: 40%, 40%, 20% |
+| [packsJson/lifepath/Allies__Generator_Va7NF10ETcMvndFo.json](files/packsJson/lifepath/Allies__Generator_Va7NF10ETcMvndFo.json.md) | 150 | 0 / 5 | 1d1 | Все пять результатов имеют диапазон [1,1] и выбираются одновременно |
+| [packsJson/lifepath/Allies__How_You_Met_BqAizN8u9r6nMSyK.json](files/packsJson/lifepath/Allies__How_You_Met_BqAizN8u9r6nMSyK.json.md) | 260 | 10 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Allies__Position_5sroduMneFqG9INx.json](files/packsJson/lifepath/Allies__Position_5sroduMneFqG9INx.json.md) | 260 | 10 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Allies__Where_Are_They__W19e7rtl3ycrMhQU.json](files/packsJson/lifepath/Allies__Where_Are_They__W19e7rtl3ycrMhQU.json.md) | 122 | 4 / 0 | 1d10 | Вероятности записей: 30%, 30%, 30%, 10% |
+| [packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json](files/packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json.md) | 78 | 0 / 2 | 1d2 | Два диапазона [1,1] и [2,2] выбираются с вероятностью 1/2 |
+| [packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json](files/packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json.md) | 99 | 3 / 0 | 1d10 | Вероятности записей: 40%, 40%, 20% |
+| [packsJson/lifepath/Enemies__Generator_7AXmeCSRkK3ktJ9Y.json](files/packsJson/lifepath/Enemies__Generator_7AXmeCSRkK3ktJ9Y.json.md) | 198 | 0 / 7 | 1d1 | Все семь результатов имеют диапазон [1,1] и выбираются одновременно |
+| [packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json](files/packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json.md) | 145 | 5 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json](files/packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json.md) | 260 | 10 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json](files/packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json.md) | 260 | 10 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json](files/packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json.md) | 260 | 10 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json](files/packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json.md) | 145 | 5 / 0 | 1d10 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json](files/packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json.md) | 76 | 2 / 0 | 1d2 | Одиночные диапазоны; все записи перечислены в карточке |
+| [packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json](files/packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json.md) | 260 | 10 / 0 | 1d10 | Два вхождения [[…]]: Jackpot содержит [[1d10x100]], Tamed a Wild Animal — [[1d10]] |
+| [packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json](files/packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json.md) | 78 | 0 / 2 | 1d2 | При recursive:true d2 возвращает один текст Misfortune или Fortune |
+| [packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json](files/packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json.md) | 260 | 10 / 0 | 1d10 | Десять вхождений [[…]] в восьми записях: Debt содержит [[1d10x100]] с технической проблемой issue-00319, остальные девять — [[1d10]] |
+| [packsJson/lifepath/Romance_CDgdx129wZvINn16.json](files/packsJson/lifepath/Romance_CDgdx129wZvINn16.json.md) | 170 | 4 / 2 | 1d10 | Диапазоны 2–4 и 5–6 намеренно представлены парой записей: text-заголовок и documentUuid |
+| [packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json](files/packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json.md) | 260 | 10 / 0 | 1d10 | Прямой draw учитывает собственный displayRoll=true |
+| [packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json](files/packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json.md) | 260 | 10 / 0 | 1d10 | Прямой draw учитывает собственный displayRoll=true |
+
+Прочитаны все исходные файлы, включая каждое description, ID, range и служебные поля. Python-проверка JSON с object_pairs_hook не обнаружила дубликатов ключей. Структура — 14 ключей корня, 11 у каждого из 121 text и 12 у каждого из 18 document. У text пустое name, текст в description и d20-black; у document заполнено имя цели, description пустое, иконка d20-grey и отдельное documentUuid.
+
+- Все replacement=true, weight=1, drawn=false. Только две листовые таблицы Romance имеют displayRoll=true; остальные 19 — false.
+- У корней img=d20-grey, description пуст, folder=null, sort=0; ownership содержит default=0 и прежний ID владельца со значением 3. Пустые flags better-rolltables/core не доказывают установленный модуль.
+- _stats.coreVersion=13.341 — метаданные экспорта, а не версия текущего исполнения. Исторические compendiumSource не используются как адреса рекурсивного roll; все остальные значения перечислены в карточках.
+- 160 разных ключей хранения: 21 корневой и 139 вложенных. Внутри каждого родителя ID уникальны; между родителями повторяются, всего 25 разных локальных ID результатов. Полный UUID включает родителя.
+- В описаниях нет @UUID/@Compendium, URL, HTML-тегов и HTML-сущностей. Найдены 12 inline-выражений в 10 записях; ссылки на страницы книги остаются текстом.
+- Иконки d20-grey.svg и d20-black.svg существуют в public/icons/svg установленного ядра. Их HTTP-доступ и доступ документов для игроков не проверялись.
+
+### Граф и сверка потребителей
+
+system.json:37,76–81 связывает Life_Event_Sub-tables с packs/lifepath.db, типом RollTable и группой компедиумов. Повторно прочитаны utils/packs.mjs и utils/extract.mjs; контракт compile/extract и очистка суффикса .db опираются также на прежнюю .050. Команды сборки/извлечения не выполнялись.
+
+Все 18 исходящих documentUuid внутри этой порции разрешены в существующие RollTable того же пакета; ID и name совпали. Граф без циклов, максимальная глубина — два перехода.
+
+| Источник | Прямые цели по порядку JSON | Результат стандартного recursive:true |
+| --- | --- | --- |
+| Allies: Generator | Gender, Position, How You Met, Closeness, Where Are They? | Пять текстов |
+| Enemies: Generator | Gender, Position, The Cause, Who Was Wronged, Power, How Far Has It Escalated?, What Is Their Power? | Семь текстов |
+| Allies and Enemies | Enemies: Generator; Allies: Generator | При 1 семь текстов; при 2 пять |
+| Fortune or Misfortune | Misfortune; Fortune | Один текст выбранной таблицы |
+| Romance | Romantic Tragedy; Problematic Love | Один текст либо заголовок и текст подтаблицы |
+
+Все 226 экспортов проверены на входящие documentUuid. Найдены четыре внешние ссылки:
+
+| Источник | ID результата | Строка documentUuid | Цель |
+| --- | --- | --- | --- |
+| [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../../../packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json) | fEC34SOBkzdDBUtx | 30 | [Fortune](files/packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json.md) |
+| [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../../../packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json) | nzF8eW0BGLhTGpdM | 54 | [Misfortune](files/packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json.md) |
+| [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../../../packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json) | fnoSJmCrZPrgneXp | 78 | [Romance](files/packsJson/lifepath/Romance_CDgdx129wZvINn16.json.md) |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json) | q0DM4FW7XCnFdKZu | 30 | [Enemies: Gender](files/packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json.md) |
+
+Life Event Generator ссылается непосредственно на Fortune при 1–4, Misfortune при 5–7 и Romance при 8–10. Он не проходит через Fortune or Misfortune. Ведьмачий Danger - Enemies Generator использует общую Enemies: Gender; его остальные шесть ссылок относятся к ведьмачьему пакету и остаются предметом полного разбора .055. Здесь прочитан весь внешний документ для проверки границы, но в исполнении проверено только совпадение указанной общей цели; его полный рекурсивный draw не запускался. Полный разбор Life Event Generator остаётся .056; шесть граничных вызовов его трёх ветвей входят в текущую проверку ссылок и не добавляют карточку/строку покрытия.
+
+Прямых связей lifepath ↔ style по ID/UUID не найдено. Поиск в module/templates/utils не выявил статических обращений к пакету и 21 ID. Имена проверены с учётом контекста: например, Romance в конфигурации словесного боя не является вызовом этой таблицы. Универсальный поиск RollTable по Item.name существует в module/item/witcherItem.js:257–315. Метод берёт results[0] и ожидает Item; реальные результаты lifepath после рекурсии — text. Его ветка ошибки установлена статически; этот метод с 21 именем повторно не исполнялся. Результаты .052 не выданы за новый прогон.
+
+lifeEventData.js задаёт value/details/isOpened и decade; lifeEventsData.js — двадцать записей по ключам 10–200. WitcherCharacterSheet.js:133–137 превращает их в массив с key; tab-background.hbs:57–95 позволяет вводить текст. Присваивания результатов таблиц этим полям и lifepathModifiers из common/lifepathData.js не найдено. Текстовые бонусы, потеря HP, проклятия, животные и другие последствия не создают автоматически Actor/Item/ActiveEffect.
+
+Уточнены восемь прежних карточек: system.json, utils/packs.mjs, utils/extract.mjs, module/item/witcherItem.js, lifeEventData.js, lifeEventsData.js, common/lifepathData.js и tab-background.hbs. Прежние проверки и ограничения сохранены; дополнительные сведения не увеличивают покрытие этих исходников.
+
+### Исполнение ядра и доказательства
+
+Через node --input-type=module и stdin использованы настоящие BaseRollTable, BaseTableResult, EmbeddedCollection, клиентские RollTable/TableResult, Roll/Die/RollParser и скомпилированная штатная grammar.pegjs установленного Foundry 14.367.0. Оболочка ClientDocumentMixin, индекс/разрешение UUID и сохранение подменены фасадами в памяти. Источник случайных чисел управлялся для воспроизводимых граней.
+
+| Проверка | Результат |
+| --- | --- |
+| Строгие модели всех 21 JSON | Приняты 21 таблица и 139 результатов; _key удаляется при toObject, содержательные поля сохраняются |
+| Все 168 возможных исходов основных формул | Две 1d1, три 1d2, шестнадцать 1d10; достигнуты все 139 исходных записей |
+| getResultsForRoll и recursive:false | Все записи соответствующего диапазона сохраняются в порядке JSON; вне домена пусто; drawn=true исключается |
+| recursive:true | Все пути заканчиваются text, без циклов и превышения глубины; 5/7 результатов генераторов, 7/5 селектора, 1/2 у Romance |
+| Повторные draw без чата | 336 вызовов на всех гранях; результаты доступны, данные не изменяются |
+| Draw моделей без pack | 42 вызова, по два на таблицу; replacement=true сохраняет drawn=false |
+| normalize(save:false) | Клон с 1dN по числу единичных весов и одиночными диапазонами; исходные модели не изменены |
+| Реальные getHTML/toMessage и оба HBS-шаблона | 168 сообщений, по одному на каждую грань каждой таблицы; число строк совпало с массивом результатов |
+| recursive:false с подготовкой чата | Пять вызовов составных таблиц; document-результаты остались ссылками, их anchor заменён фасадом |
+| Вход Life Event Generator | Шесть вызовов на границах 1/4,5/7,8/10; цели и конечные text совпали |
+| Inline-обогащение | Все 12 выражений разобраны; число вставок в сообщениях совпало с выбранными description |
+| Общий итог изолированного сценария | 1917 утверждений; 179 перехваченных сообщений; 0 записей документов; все исходные модели неизменны |
+
+Основной roll сам не создаёт чат и не выполняет inline-выражения. Для toMessage использованы настоящие getHTML и Handlebars-шаблоны; основной Roll.render заменён маркером, позволяющим проверить условие displayRoll. Полный TextEditor.enrichHTML/DOM не запускался: его обход текстовых узлов заменён последовательной обработкой строк, но регулярное выражение из _enrichInlineRolls, _createInlineRoll, Roll.evaluate и Roll.toAnchor исполнены из настоящего ядра. Минимальный DOM-элемент хранил классы/dataset/children; число и total вычисленных вставок проверены отдельно.
+
+Перекрытия в генераторах и Romance технически допустимы: getResultsForRoll возвращает все подходящие записи. Неравная ширина диапазонов при weight=1 также допустима. Явный normalize способен изменить распределение или разъединить составную выдачу; стандартный roll не делает этого при уже заданной formula. Этот эффект нормализации описан в каждой карточке, не объявлен новой ошибкой данных.
+
+### Inline-броски и проблема x100
+
+В Fortune два выражения: Jackpot — 1d10x100, Tamed a Wild Animal — 1d10. В Misfortune десять: Debt — 1d10x100; остальные девять — 1d10 в семи записях. Accident содержит три выражения и при обогащении вычисляет все три независимо от текстовой ветки. Указания вида «1–4», изменения HP и остальные последствия не превращаются в программные условия.
+
+При RNG, дающем d10=10, все 12 действующих вставок вернули 10; у Accident получены [10,10,10]. Для Jackpot/Debt причина — синтаксис x100. Отдельный контроль на настоящем Roll/Die дал:
+
+| Формула | validate | Минимум / максимум | При d10=10 | Разбор |
+| --- | --- | --- | --- | --- |
+| 1d10x100 | true | 1 / 10 | 10 | Die, modifiers=["x100"], explode при результате 100 |
+| 1d10*100 | true | 100 / 1000 | 1000 | Die, OperatorTerm("*"), NumericTerm(100) |
+| 1d10 | true | 1 / 10 | 10 | Die без модификатора |
+
+Die.MODIFIERS.x и explode находятся в client/dice/terms/die.mjs:16–20,136–170. У TextEditor._createInlineRoll отсутствие /команды означает немедленное вычисление (text-editor.mjs:718–742). Клик по готовому inline-result раскрывает/сворачивает детали, а не выполняет отсроченный бросок (_onClickInlineRoll:805–846; проверено чтением). Фактический DOM-клик не запускался.
+
+Зарегистрирована [issue-00319](../../issues/potential/issue-00319.md) о двух денежных вставках. Ожидаемое умножение выведено из сопровождающего текста экспортов и требует подтверждения пользователя; сверки с рулбуком не было. Поиск по 318 прежним карточкам не выявил дубля; прежние проблемы арифметики других потребителей не объединялись с этим наблюдением. Issue-00039 и проблемы извлечения 00313–00315 рассмотрены с их полными пояснениями; новые записи не меняют их статусы. Всего стало 319 potential, open/closed пусты.
+
+### Пределы и итоговая сверка
+
+Проверены экспортные JSON и доступное установленное ядро. Не запускались действующий мир, полный браузер, HTTP, модули, compile/extract или запись в packs/БД. Содержимое установленного пакета, работа нескольких клиентов, права игроков и литературная/правиловая корректность текстов не проверялись. Сценарии выполнялись через stdin; отдельный стенд, тестовые файлы и задачи исправления не создавались.
+
+Итоговая сверка документов завершена: 417 карточек из 615 файлов, 198 в очереди .054–.061. Все 139 строк результатов сверены с исходными ID, range, type, description/name и строками; 18 documentUuid и контрольные суммы совпали. 594 прежние строки реестра не менялись, добавлена 21 карточка и одна issue. Задачи распределяют 604 различных файла TASK-0003 и 11 TASK-0002 без повторов; .001–.053 — done, .054–.061 — planned. TASK-0003 продолжается, TASK-0004/TASK-0005 — draft. Локальные ссылки/якоря и таблицы Markdown проверены; ошибок не найдено. В реестре issues пояснения перенесены после списка, чтобы 319 строк оставались одной таблицей; прежние строки и 318 карточек issues сохранены. Старый журнал сверок сохранён целиком после новой записи.
+
+Состав изменений: 21 существующий Markdown-документ и 22 новых (21 карточка, issue-00319). По всем 1486 отслеживаемым на старте файлам проверены mode/uid/gid/inode: метаданные доступа и исходные inode сохранены. Содержимое всех файлов вне согласованных документов неизменно; текущие 615 и исторические 621 исходник совпали с инвентаризацией. Git diff --check прошёл. Мир, компедиумы и исходный код не изменялись.
+
+Контрольные суммы (SHA-256; отсортированные относительные пути UTF-8 + NUL + содержимое каждого файла):
+
+| Набор | SHA-256 |
+| --- | --- |
+| 21 JSON lifepath | 13aad6c98ba52e394f3de11de85bf6791d23f4f069fac95c97ea1e16898dd21f |
+| Текущие 615 исходников | 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c |
+| Исторические 621 исходник | 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4 |
+
 ## TASK-0003.052
 
 2026-09-12. Ветка rusbar-main, HEAD 2a3f197019c96225c0b6bedfb7c322ab9cc734bc; стартовое рабочее дерево чистое. Выполнен технический разбор семи JSON в packsJson/style: 1820 строк, семь RollTable и 70 TableResult. Исходники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. [Задача](../../tasks/task-0003.052.md), [семь карточек](files/README.md#таблицы-стиля-и-ценностей--task-0003052).

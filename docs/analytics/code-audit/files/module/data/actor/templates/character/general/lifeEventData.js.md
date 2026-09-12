@@ -84,3 +84,11 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный tab-background использует value/details/isOpened, а key добавляет WitcherCharacterSheet; key не является decade из модели. data-event и form-пути используют 10/20 и т. д. Закрытие event10 сохраняет details, скрытый event20 не отправляет свои поля; удаляющего обработчика событий в этом HBS нет.
 
 Связи: [templates/partials/character/tab-background.hbs](../../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.053
+
+2026-09-12, rusbar-main, 93beea0953821c9d8f080f815e686dc4da0c6f9e; исходник не изменён.
+
+Подробно разобран packsJson/lifepath: 21 RollTable / 139 результатов. Ни один JSON не задаёт путь system.general.lifeEvents.<ключ>.value/details/isOpened. Текст результатов и inline-броски готовятся для чата Foundry; присваивающего обработчика в этой фабрике и прямого вызова таблиц в проверенном module/templates нет. Схема четырёх полей остаётся независимой; значение decade не является ID таблицы.
+
+[21 карточка lifepath](../../../../../../README.md#таблицы-жизненных-событий--task-0003053), [перекрёстная сверка и пределы проверки](../../../../../../../review-log.md#task-0003053).

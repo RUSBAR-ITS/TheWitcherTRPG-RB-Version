@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.052 подготовлены 396 карточек, включая семь JSON style. Текущий реестр содержит 615 файлов; остальные 219 JSON компедиумов поставлены в очередь .053–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.053 подготовлены 417 карточек, включая 28 JSON style/lifepath. Текущий реестр содержит 615 файлов; остальные 198 JSON компедиумов поставлены в очередь .054–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style описаны ниже; 219 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style и 21 JSON lifepath описаны ниже; 198 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -665,3 +665,31 @@
 | packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json | [Values: Valued Person](packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json.md) | 10 текстовых результатов |
 
 [Перекрёстная сверка](../review-log.md#task-0003052): связи, настоящие модели Foundry и изолированные броски/вывод. Новых issues нет.
+
+## Таблицы жизненных событий — TASK-0003.053
+
+| Файл | Назначение |
+| --- | --- |
+| [packsJson/lifepath/Allies__Closeness_IswiqefPmaHECa5X.json](packsJson/lifepath/Allies__Closeness_IswiqefPmaHECa5X.json.md) | Описывает степень близости с союзником: пять текстовых вариантов с разной шириной диапазонов. |
+| [packsJson/lifepath/Allies__Gender_QFHhoiXtIBYkL8Rd.json](packsJson/lifepath/Allies__Gender_QFHhoiXtIBYkL8Rd.json.md) | Описывает гендер союзника: три текстовых варианта с диапазонами 1–4, 5–8 и 9–10. |
+| [packsJson/lifepath/Allies__Generator_Va7NF10ETcMvndFo.json](packsJson/lifepath/Allies__Generator_Va7NF10ETcMvndFo.json.md) | Собирает описание союзника из пяти подтаблиц: гендер, положение, знакомство, близость и местонахождение. |
+| [packsJson/lifepath/Allies__How_You_Met_BqAizN8u9r6nMSyK.json](packsJson/lifepath/Allies__How_You_Met_BqAizN8u9r6nMSyK.json.md) | Задаёт десять текстовых обстоятельств знакомства с союзником. |
+| [packsJson/lifepath/Allies__Position_5sroduMneFqG9INx.json](packsJson/lifepath/Allies__Position_5sroduMneFqG9INx.json.md) | Задаёт десять текстовых вариантов положения или роли союзника. |
+| [packsJson/lifepath/Allies__Where_Are_They__W19e7rtl3ycrMhQU.json](packsJson/lifepath/Allies__Where_Are_They__W19e7rtl3ycrMhQU.json.md) | Задаёт четыре текстовых региона, где находится союзник. |
+| [packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json](packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json.md) | Выбирает генератор врага при 1 или генератор союзника при 2, затем раскрывает выбранный составной результат. |
+| [packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json](packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json.md) | Описывает гендер врага; используется также генератором врагов ведьмачьего жизненного пути. |
+| [packsJson/lifepath/Enemies__Generator_7AXmeCSRkK3ktJ9Y.json](packsJson/lifepath/Enemies__Generator_7AXmeCSRkK3ktJ9Y.json.md) | Собирает описание врага из семи подтаблиц: гендер, положение, причина, пострадавшая сторона, уровень силы, эскалация и источник силы. |
+| [packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json](packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json.md) | Описывает степень эскалации конфликта с врагом: пять текстовых вариантов по две грани d10. |
+| [packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json](packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json.md) | Задаёт десять текстовых вариантов положения или роли врага. |
+| [packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json](packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json.md) | Выводит текстовый уровень силы врага от 1 до 10; числового поля Actor эти результаты не задают. |
+| [packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json](packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json.md) | Задаёт десять текстовых причин конфликта с врагом. |
+| [packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json](packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json.md) | Описывает источник силы врага: общественное влияние, знания, физическая сила, слуги или магия. |
+| [packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json](packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json.md) | Определяет текстом, кто пострадал в конфликте; два результата на d2. |
+| [packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json](packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json.md) | Задаёт десять удачных событий с описанными наградами и двумя встроенными бросками. |
+| [packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json](packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json.md) | Выбирает Misfortune при 1 или Fortune при 2 и раскрывает один текстовый результат выбранной таблицы. |
+| [packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json](packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json.md) | Задаёт десять неудачных событий, включая последствия и десять встроенных бросков в описаниях. |
+| [packsJson/lifepath/Romance_CDgdx129wZvINn16.json](packsJson/lifepath/Romance_CDgdx129wZvINn16.json.md) | Выбирает тип романтического события; для трагедии и проблемных отношений объединяет заголовок с результатом подтаблицы. |
+| [packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json](packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json.md) | Задаёт десять текстовых обстоятельств проблемных отношений; подтаблица Romance. |
+| [packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json](packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json.md) | Задаёт десять текстовых исходов романтической трагедии; подтаблица Romance. |
+
+[Перекрёстная сверка](../review-log.md#task-0003053): 21 RollTable, 139 результатов, рекурсия и inline-броски. Зарегистрирована [issue-00319](../../../issues/potential/issue-00319.md); JSON не менялись.
