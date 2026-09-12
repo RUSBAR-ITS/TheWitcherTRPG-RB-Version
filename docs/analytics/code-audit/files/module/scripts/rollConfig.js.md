@@ -55,7 +55,7 @@
 | [module/actor/mixins/verbalCombatMixin.js](../../../../../../module/actor/mixins/verbalCombatMixin.js) | RollConfig | addPart собирает формулу; сообщение damage с vcDamage и два дополнительных флага verbalCombat/damage. Вызов extendedRoll не ожидает. | 61–84, createVerbalCombatFlags:87–101 |
 | [module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) | RollConfig | Атака заклинанием: ChatMessageData attack, RollConfig({showResult:false}); затем await roll.toMessage(messageData). | 238–248 |
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../../../../module/actor/sheets/WitcherCharacterSheet.js) | RollConfig | Изготовление: создаёт ChatMessageData base, задаёт RollConfig и тексты, вызывает Item.realCraft либо extendedRoll для симуляции. | ChatMessageData:265/361; конфигурация и вызов:326–346/414–434 |
-| [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | RollConfig | Словесная защита: ChatMessageData base, defense=true и порог totalAttack; передаёт флаги createVerbalCombatFlags. Выбор Actor отдельно в context callback:13. | 94–123 |
+| [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | RollConfig | Словесная защита: ChatMessageData base, defense=true и порог totalAttack; передаёт флаги createVerbalCombatFlags. Выбор Actor отдельно в context callback:13. | 94–118 |
 | [module/scripts/rolls/extendedRoll.js](../../../../../../module/scripts/rolls/extendedRoll.js) | RollConfig | Конфигурация аргумента по умолчанию | import:1; extendedRoll:9 |
 
 Область поиска: module/ и templates/ текущего checkout; прямые импорты и места вызова сверены отдельно от динамических обращений. Типы сообщений проверены по system.json и module/setup/registerDataModels.js. Внешние модули, макросы миров и действующие компедиумы не исследовались.
@@ -131,3 +131,11 @@ castSpell использует showResult:false и не меняет начал�
 [createDefenseRollConfig](../actor/mixins/defenseMixin.js.md) меняет showResult=false, defense=true, threshold/thresholdDesc; showCrit остаётся true. stunSave меняет showCrit=false, reversal=true, threshold, сохраняя defense=false и showResult=true. Поэтому равенство успешно только для защиты (группа 19). showSuccess=true в stunSave не отдельная проверка правила: ветвление успеха происходит в extendedRoll по threshold.
 
 [Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+[Общее словесное действие](../actor/mixins/verbalCombatMixin.js.md) оставляет threshold−1/defense=false, showResult=true/showCrit=true. [createRollConfig защиты](verbalCombat/verbalCombatDefense.js.md) присваивает threshold=totalAttack, defense=true/showResult=true и thresholdDesc=skill.label; фактически получает число навыка и теряет подпись ([305](../../../../../issues/potential/issue-00305.md)). Группы 18/21 подтвердили undefined label и fallback на число порога, равенство остаётся успехом. Counterargue открывает новое actor.verbalCombat без передачи прежнего threshold.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

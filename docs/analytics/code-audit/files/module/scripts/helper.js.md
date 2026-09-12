@@ -73,7 +73,7 @@
 | [module/scripts/chat.js](../../../../../../module/scripts/chat.js) | getInteractActor | onRepairRequest; до processRequest проверяет actor | 51–61; другие owner/item guards — отдельный вопрос |
 | [module/scripts/combat/combat.js](../../../../../../module/scripts/combat/combat.js) | getInteractActor | stunSave/критический урон/травма без guard; executeDefense с guard | 29/35, 47–55, 75/83/91 |
 | [module/scripts/combat/applyDamage.js](../../../../../../module/scripts/combat/applyDamage.js) | getInteractActor | Меню обычного/несмертельного урона; зависимый диалог читает actor.type | 15/27, createApplyDamageDialog:64 |
-| [module/scripts/verbalCombat/verbalCombat.js](../../../../../../module/scripts/verbalCombat/verbalCombat.js) | getInteractActor | Меню словесного урона; applyVerbalCombatDamage читает targetActor.system | 23, 60–62; DOM-путь требует отдельной проверки |
+| [module/scripts/verbalCombat/verbalCombat.js](../../../../../../module/scripts/verbalCombat/verbalCombat.js) | getInteractActor | Меню словесного урона; applyVerbalCombatDamage читает targetActor.system | 23, 52–55; DOM-путь разобран в дополнении .046 |
 | [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | getInteractActor | Меню словесной защиты; executeDefense имеет if(!actor)return | 13, 19–20; остальные ошибки DOM не переоцениваются в этой порции |
 
 Область поиска: module/ и templates/ текущего checkout; прямые импорты и места вызова сверены отдельно от динамических обращений. Типы сообщений проверены по system.json и module/setup/registerDataModels.js. Внешние модули, макросы миров и действующие компедиумы не исследовались.
@@ -164,3 +164,11 @@ getActorOwner вызывается из effect/status helpers после castSpe
 Полностью описаны [боевые listeners](../../../../../../module/scripts/combat/combat.js) и [меню урона](../../../../../../module/scripts/combat/applyDamage.js). Группа 04 получила отсутствующий Actor через фасад getInteractActor: executeDefense вышел, stun и три critical callbacks дали TypeError. Группа 11 проверила чтение actor.type в диалоге. Это повторная проверка уже перечисленных потребителей issue149; новый дубль не создан. Сам алгоритм выбора/helper input заново не исполнялся. Вложенный event.target не ломает эти closure/listeners; прежняя проблема onRepairRequest относится к другому пути.
 
 [Проверки, результаты и ограничения](../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+Полностью разобраны [общий словесный бросок](../actor/mixins/verbalCombatMixin.js.md) и [применение урона](verbalCombat/verbalCombat.js.md). Настоящий addPart принимает 0/−2/+2/2+3 и truthy строку 'hide'; формулы распарсены настоящим Roll (группа 02). Defense самостоятельно сравнивает текстовый customModifiers с 0 и пропускает 2+3, не вызывает addPart для него. applyVerbalCombatDamage:52–55 без Actor выбрасывает TypeError, executeDefense:19–20 имеет guard (группы 15/17); меню блокируется раньше по [302](../../../../../issues/potential/issue-00302.md). Это уточнение [149](../../../../../issues/potential/issue-00149.md), сам выбор getInteractActor/input повторно не запускался.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

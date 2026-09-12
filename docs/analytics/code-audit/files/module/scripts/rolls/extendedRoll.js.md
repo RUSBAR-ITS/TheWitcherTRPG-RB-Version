@@ -64,7 +64,7 @@ Named export async extendedRoll. Формулу, параметры сообще
 | [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) | extendedRoll | Атака заклинанием: ChatMessageData attack, RollConfig({showResult:false}); затем await roll.toMessage(messageData). | 238–248 |
 | [module/actor/mixins/weaponAttackMixin.js](../../../../../../../module/actor/mixins/weaponAttackMixin.js) | extendedRoll | Оружейная атака: ChatMessageData attack с UUID атакующего; extendedRoll с конфигурацией по умолчанию, без импорта RollConfig. | 303–310 |
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../../../../../module/actor/sheets/WitcherCharacterSheet.js) | extendedRoll | Изготовление: создаёт ChatMessageData base, задаёт RollConfig и тексты, вызывает Item.realCraft либо extendedRoll для симуляции. | ChatMessageData:265/361; конфигурация и вызов:326–346/414–434 |
-| [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | extendedRoll | Словесная защита: ChatMessageData base, defense=true и порог totalAttack; передаёт флаги createVerbalCombatFlags. Выбор Actor отдельно в context callback:13. | 94–123 |
+| [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | extendedRoll | Словесная защита: ChatMessageData base, defense=true и порог totalAttack; передаёт флаги createVerbalCombatFlags. Выбор Actor отдельно в context callback:13. | 94–118 |
 
 Область поиска: module/ и templates/ текущего checkout; прямые импорты и места вызова сверены отдельно от динамических обращений. Типы сообщений проверены по system.json и module/setup/registerDataModels.js. Внешние модули, макросы миров и действующие компедиумы не исследовались.
 
@@ -160,3 +160,11 @@ castSpell задаёт RollConfig({showResult:false}) с threshold−1, зате
 [skillDefense](../../actor/mixins/defenseMixin.js.md) передаёт showResult=false/defense=true/threshold=attack и затем сам вызывает roll.toMessage после crit/stun. Группа 19 настоящим helper проверила 10[Stun] против 10: options.success=true. stunSave использует reversal=true и defense=false: d10=1 при пороге 1 дал options.success=false. Остальные исходы тестов примеси заданы на границе helper, formulas разобраны настоящим Roll.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+Оба [словесных producer](../../actor/mixins/verbalCombatMixin.js.md) передают дополнительные verbalCombat/damage flags. Группа 08 исполнила настоящий helper: сообщение уже создано, два setFlag pending, consumer ещё не получает damage; это уточнение [184](../../../../../../issues/potential/issue-00184.md). Общий action не ждёт extendedRoll; [обычная защита](../verbalCombat/verbalCombatDefense.js.md) ждёт его. Группы 21–22 проверили defense=true:8=8 успешно,8<9 нет; при управляемых d10 фумбл дал 7<8, крит 18=18 успешен. thresholdDesc теряется в caller из-за numeric skill ([305](../../../../../../issues/potential/issue-00305.md)), сравнение остаётся правильным. ChatMessage/toMessage/setFlag заменены; настоящей записи нет.
+
+[Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

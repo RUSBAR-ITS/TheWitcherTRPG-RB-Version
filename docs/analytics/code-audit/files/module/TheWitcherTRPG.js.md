@@ -196,3 +196,11 @@ CONFIG.WITCHER=WITCHER в init30 обеспечивает currency/currencyRates
 Сопоставленные исходники: [module/scripts/chat.js](../../../../../module/scripts/chat.js). Полные новые описания: [chat.js](scripts/chat.js.md).
 
 [Сверка порции и всей серии .031–.040](../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+Полностью описаны [словесные listeners/урон](scripts/verbalCombat/verbalCombat.js.md) и [защита](scripts/verbalCombat/verbalCombatDefense.js.md). Регистрация на строках 55/137–138 существует; она вызывает одиночный chatMessageListeners, а не прежний массовый addVerbalCombatChatListeners. Настоящие predicates меню скрывают пункты для DOM-маркеров из-за .length; принудительные callbacks имеют дополнительные [0]/find ошибки ([302](../../../../issues/potential/issue-00302.md), группы 11–12). Ядро 14 поддерживает legacy callback(target,event); само имя callback причиной не признано. Listener кнопки захватывает message, не читает вложенный event.target; повторная привязка добавляет обработчик.
+
+[Сценарии, результаты и ограничения](../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

@@ -1,5 +1,82 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.046
+
+Дата: 2026-09-12. Порция: [Словесный бой: атака, защита, сообщения и Resolve](../../tasks/task-0003.046.md). Ветка rusbar-main; HEAD a69f11d2e4c4318cfbf635dabad97b0062c63c20. Перед началом рабочее дерево чистое. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f; SHA-256 списка путей и содержимого — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4 (отсортированный UTF-8 путь + NUL + байты файла).
+
+### Состав и перекрёстная сверка
+
+| Полностью прочитанный файл | Строки | Проверенная связь и результат |
+| --- | --- | --- |
+| [verbalCombatMixin.js](files/module/actor/mixins/verbalCombatMixin.js.md) |101 | Object.assign Actor → общий лист/Counterargue → prompt → все 16 действий CONFIG → addPart/addActiveEffects → damage DTO → extendedRoll/два flags |
+| [verbalCombat.js](files/module/scripts/verbalCombat/verbalCombat.js.md) |55 | Render/menu Hooks → message closure → getFlag → обычный Roll → сообщение; выбор Actor/DOM total → update Resolve; старый массовый listener не имеет найденных внешних вызовов |
+| [verbalCombatDefense.js](files/module/scripts/verbalCombat/verbalCombatDefense.js.md) |118 | Menu → scalar totalAttack → Dialog V1 → четыре защиты → base DTO/flags; Counterargue открывает общий action |
+| [verbal-combat.hbs](files/templates/dialog/verbal-combat.hbs.md) |14 | Два each,5 групп/16 radio, checked у каждого, group/value и текстовый customModifiers |
+| [verbal-combat-defense.hbs](files/templates/dialog/verbal-combat-defense.hbs.md) |13 |4 radio без checked; producer передаёт только defenses, cssClass/groupName отсутствуют |
+| **Всего** | **301** | **Пять карточек;12 именованных функций/методов JS и существенные callbacks описаны. У обоих HBS нет завершающего newline.** |
+
+Сопоставлены определения и обращения: CONFIG skillMap/statMap/verbalCombat, modifierMixin.addActiveEffects, helper.addPart/getInteractActor, RollConfig, extendedRoll, ChatMessageData, DamageMessageData/BaseMessageData, регистрация Hooks в TheWitcherTRPG, Object.assign и расчёт Resolve Actor, общий лист V2 и аналог V1. Проверены оба producer шаблонов, имена полей, кнопки/маркеры и consumers flags; область поиска — module/templates, без внешних макросов. Уточнены 10 связанных карточек: TheWitcherTRPG, config, witcherActor, WitcherActorSheet, helper, modifierMixin, extendedRoll, RollConfig, ChatMessageData и DamageMessageData. Старые номера строк verbalCombat/защиты в нескольких таблицах приведены к текущему срезу. Соседи не засчитаны повторно.
+
+Матрица 16 действий дана в карточке Actor. Особо сверены deceit/perception/gambling на EMP; характеристика навыка не обязана совпадать с dmgStat. Persuade делит d6, затем прибавляет EMP. Общий диалог включает Defenses/Tools; специальный callback Counterargue открывает новую атаку без прежнего threshold. Строки effect только показываются: автоматическое создание ActiveEffect/Status/Item этими файлами отсутствует. Соответствие книги и расширение автоматизации не оценивались.
+
+### Методика
+
+Выполнена изолированная команда node --input-type=module с JS через stdin, без создания файлов стенда. Три полных JS-файла прочитаны и исполнены в VM после снятия import/export; исходные тела не переписывались. CONFIG, RollConfig, ChatMessageData, addPart, modifierMixin и extendedRoll импортированы из системы. Настоящие Foundry14.367.0 DataModel/TypeDataModel/fields, DMD/BMD, Roll/термы/parser использованы локально; Handlebars, parse5 и peggy взяты из уже установленных зависимостей Foundry. Не выполнялись npm install/build и извлечение packs.
+
+Кубики запускались через настоящий evaluate с заданными minimize/maximize; Roll.toMessage/getSpeaker/setFlag заменены захватом. Actor, формы/радио, getInteractActor, DialogV2.prompt и создание Dialog V1 — фасады. Для проверок завершения использованы управляемые Promise. Отдельно извлечены и исполнены настоящие core concat, ContextMenu._onClickItem и Dialog V1.submit; у них UI/render/close представлены фасадами. Поэтому проверка callback-контракта не равна полному browser lifecycle.
+
+Первичные локальные источники ядра: /opt/foundryvtt/client/client.mjs:170 (global Dialog), client/appv1/api/dialog-v1.mjs:215–224 (submit и jQuery), client/applications/ux/context-menu.mjs (_onClickItem), applications/api/application.mjs:2230–2235 и applications/sidebar/tabs/chat.mjs:398–403 (DOM target), client/applications/handlebars.mjs:199 (concat). Legacy Dialog существует в 14, устаревает до 16; html.find в его callback допустим. li.find в меню ChatLog относится к другому контракту.
+
+Локализация использовала словари en/ru, настоящий expandObject/getProperty и en fallback. Проверены 14 буквальных ключей и все динамические варианты имени/урона в 16 действиях. Полный Localization service не создавался.
+
+### Выполненные сценарии
+
+| Группа | Сценарий и наблюдаемый результат |
+| --- | --- |
+|01 | Все 16 CONFIG-записей: точные навыки/характеристики/формулы/flags; общий HBS даёт 16 radio и 5 групп, checked у каждого |
+|02 | EMP7/навык 2/d10=1: custom0/−2/+2/2+3 →10/8/12/15; детали дают [Empathy], формула разбирается настоящим Roll |
+|03 | Настоящий modifierMixin: прямой 3 + allSkills2 добавляются к 10 →15; Counterargue без skill оставляет 1d10 |
+|04 | Атака: нет radio/неизвестное действие → TypeError; отказ prompt останавливает до Roll |
+|05 | Глобальный Intimidate из другого окна сочетается с custom4 текущей формы Seduce:1d10+5+2+4 |
+|06 | await Actor.verbalCombat завершается при pending extendedRoll; verbalCombat flag хранит тот же объект CONFIG |
+|07 | Настоящая DamageMessageData очищает vcDamage, сохраняет rollTotal10; base имеет rollTotal, flags находятся вне system-схемы |
+|08 | Настоящий extendedRoll создаёт сообщение до завершения двух setFlag; немедленный consumer видит отсутствующий damage; после разрешения флаг доступен |
+|09 | Текущий listener связывает первую кнопку, замыкает message и игнорирует вложенный target; повторная привязка добавляет второй listener; отсутствие кнопки безопасно |
+|10 | Неиспользуемый массовый helper падает на .each у Element/null; текущая регистрация его не вызывает |
+|11 | Оба predicates меню возвращают undefined для существующего DOM-маркера; принудительные callbacks падают на [0].innerText либо .find |
+|12 | Настоящий dispatch ContextMenu14 передаёт HTMLElement в callback; реальные predicates скрывают пункты. Полный render не исполнялся |
+|13 | Настоящие Roll2+3=5,1d6/2+7=7.5 при minimize,−2=−2; parse5 обнаружил атрибут '<h1' вместо h1 в словесном flavor |
+|14 | Нет name/formula либо формула NONE → отклонение; rollDamage ждёт toMessage, но не последующий setFlag |
+|15 | Resolve10: урон 3.8/'3.8' →7,0→10,−2→12,15→−5,'?'→NaN в запросе update; без Actor ошибка, статусы/эффекты не применяются |
+|16 | Два ожидаемых метода урона 3/4 возвращаются до update, готовят 7/6 из Resolve10; разрешённые записи оставляют 6. Это фасад записи, не реальный сетевой конфликт |
+|17 | Защита: нет Actor → нет окна; Cancel без callback; нет radio → нет броска;4 radio без checked, data-group='/' из незаполненного unquoted атрибута |
+|18 | Все 4 защиты:3 обычных base DTO/defense=true/threshold20 и потерянный thresholdDesc; Counterargue запускает actor.verbalCombat без передачи прежнего 99/custom4 |
+|19 | Defense custom0/−2/+2 →8/6/10 при заданных Actor/минимальном d10; строка 2+3 пропускается сравнением с 0; детали содержат [Custom] |
+|20 | Глобальный Seduce из окна атаки не существует в Defenses → TypeError; допустимый ChangeSubject работает в изоляции |
+|21 | createRollConfig получает numeric skill, label undefined; настоящий extendedRoll:8=8 успех,8<9 провал,8>7 успех; подпись заменяется числом порога |
+|22 | Настоящая защита с контролируемыми кубиками: fumble7<8 неуспешен, крит 18=18 успешен |
+|23 | Обычный defense callback ждёт extendedRoll; executeDefense только открывает окно, messageId не используется |
+|24 |16 вариантов в en/ru: кнопки у девяти baseDmg; None/CounterargueDmg не создают кнопку; отсутствующий ru customModifier показывает en fallback |
+|25 | Настоящий Dialog V1.submit передаёт jQuery и закрывает окно, не ожидая async callback |
+|26 |14 буквальных ключей: все есть в en, в ru отсутствует только уже известный WITCHER.Dialog.customModifier |
+| **Результат** | **26 групп PASS; exit0. Настоящая логика отделена от фасадов и статического чтения.** |
+
+Ожидаемые числа заданы отдельно от проверяемых функций. При настройке проверок ошибочные ожидания характеристик deceit/perception/gambling были сверены с CONFIG и исправлены в памяти; ожидание пустого data-group уточнено до фактического '/' по parse5. Это поправки сценария, не изменения системы и не выявленные дефекты CONFIG.
+
+### Issues и пределы вывода
+
+Новые potential: [302](../../issues/potential/issue-00302.md) — меню DOM/jQuery; [303](../../issues/potential/issue-00303.md) — глобальный выбор из другого окна; [304](../../issues/potential/issue-00304.md) — возврат до броска/Resolve-update; [305](../../issues/potential/issue-00305.md) — числовой skill вместо описания в конфигурации результата.
+
+Уточнены пять прежних: [184](../../issues/potential/issue-00184.md) (post-message flags), [149](../../issues/potential/issue-00149.md) (нет Actor), [186](../../issues/potential/issue-00186.md) (ru customModifier), [293](../../issues/potential/issue-00293.md) (второй producer malformed HTML), [127](../../issues/potential/issue-00127.md) (внешняя обёртка листа против нижнего метода). Дубли не создавались для этих наблюдений; все 305 карточек остаются potential. Воспроизведение агентом не заменяет подтверждения пользователя.
+
+Скрытые пункты 302 — ранний барьер штатного UI. Прямые проверки последующих функций не объявлены успешным полным словесным боем. Очистка vcDamage не означает потерю используемой формулы: consumer читает flags. Потерянная подпись 305 не изменяет правило равенства. Ввод 2+3 в защите и значения Resolve за границами описаны как контракт входа; новые игровые ограничения не предлагались как принятые. Мир, браузер, БД, HTTP-доступ службы, сетевой порядок нескольких клиентов и реальные права не проверялись.
+
+### Формальная сверка и результат
+
+Реестр и карточки:341 из 621 проверены,280 не начаты. В пятой серии 31 из 77 проверены,46 в очереди;234 файла требуют последующего планирования. Все 50 подзадач по-прежнему охватывают 376 уникальных файлов. Полные исходники, назначения/ссылки/статусы, шаблонные разделы и таблицы новых документов сверены; проверены 17 195 локальных ссылок/якорей по всему docs и структура 41 таблицы новых документов. Исторические записи журнала и cross-check-0001 сохранены. Метаданные доступа 1398 существовавших tracked-путей (mode, uid, gid, inode) сохранены; git diff --check выполнен. Менялась только документация;9 новых документов — пять карточек и четыре issues.
+
+[TASK-0003.046](../../tasks/task-0003.046.md) выполнена; следующая — [TASK-0003.047](../../tasks/task-0003.047.md). TASK-0003 остаётся in-progress, TASK-0004/0005 — draft. Общая сверка .045 остаётся вспомогательным материалом для TASK-0004; данная запись дополняет материал связями словесного боя, не заменяет общий этап.
+
 ## TASK-0003.045
 
 Дата:2026-09-12. Ветка rusbar-main, HEAD 20ce99a1218a82bf46c84570e55587253d0cfbc3; на старте дерево чистое. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. SHA256(sorted path UTF-8 + NUL + bytes):52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4.

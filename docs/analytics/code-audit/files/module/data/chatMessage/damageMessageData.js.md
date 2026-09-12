@@ -94,3 +94,11 @@ damage.itemUuid/formula/crit/strike/type/originalLocation/location наслед�
 Полностью разобран [consumer сообщения](../../../../../../../module/scripts/combat/applyDamage.js). Он читает первый DOM .dice-total, а не message.rolls/system.rollTotal, выбирает HP/STA и передаёт prepared damage по ссылке. Группа 12 на настоящей модели повторила удаление duration и установила наследование выбранных head/oilEffect следующим применением при неизменном _source (300). Группы 29–31 проверили отдельные полные расчёты статуса до фасадной записи HP/shield; это не полный цикл обычного клика с реальным ChatMessage. [Расчёт Actor](../../../../../../../module/actor/mixins/damageMixin.js) описан в .044; прежняя оговорка о последующих задачах теперь относится к истории проверки .040.
 
 [Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+Дополнен другой producer: [общее словесное действие](../../actor/mixins/verbalCombatMixin.js.md) передаёт type:damage, system:{vcDamage}; extendedRoll добавляет rollTotal. Группа 07 на настоящей модели сохранила rollTotal10, удалила vcDamage и подготовила defaults damage. Следующий [onDamage](../../scripts/verbalCombat/verbalCombat.js.md) читает flags.damage.formula, а не system.vcDamage/system.damage; это отличается от боевого applyDamageFromMessage. Для этого маршрута удаление vcDamage не зарегистрировано как отдельная потеря используемых данных. Ожидание двух flags проверено отдельно (184); БД не запускалась.
+
+[Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

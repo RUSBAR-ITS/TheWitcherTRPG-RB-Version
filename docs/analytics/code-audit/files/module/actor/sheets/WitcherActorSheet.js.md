@@ -224,3 +224,11 @@ _prepareSpells собирает spell по class Spells/Invocations/Witcher и l
 [templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md); [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+Полностью разобран [Actor.verbalCombat](../mixins/verbalCombatMixin.js.md). Общий лист вызывает его через _onVerbalCombat:295–296; кнопка зависит от useOptionalVerbalCombat, метод Actor эту настройку не проверяет. В .025 была проверена внешняя обёртка; группа 06 этой порции отдельно исполнила нижний метод: он возвращается после prompt при pending extendedRoll ([304](../../../../../../issues/potential/issue-00304.md)). Отмена prompt с rejectClose:true распространяется, но лист Promise не возвращает. Полный browser click не запускался; аналогичный вызов V1 проверен чтением.
+
+[Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

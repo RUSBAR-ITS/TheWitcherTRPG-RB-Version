@@ -55,7 +55,7 @@ Default-export class без наследования. constructor сразу в�
 | [module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) | ChatMessageData | Атака заклинанием: ChatMessageData attack, RollConfig({showResult:false}); затем await roll.toMessage(messageData). | 238–248 |
 | [module/actor/mixins/weaponAttackMixin.js](../../../../../../module/actor/mixins/weaponAttackMixin.js) | ChatMessageData | Оружейная атака: ChatMessageData attack с UUID атакующего; extendedRoll с конфигурацией по умолчанию, без импорта RollConfig. | 303–310 |
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../../../../module/actor/sheets/WitcherCharacterSheet.js) | ChatMessageData | Изготовление: создаёт ChatMessageData base, задаёт RollConfig и тексты, вызывает Item.realCraft либо extendedRoll для симуляции. | ChatMessageData:265/361; конфигурация и вызов:326–346/414–434 |
-| [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | ChatMessageData | Словесная защита: ChatMessageData base, defense=true и порог totalAttack; передаёт флаги createVerbalCombatFlags. Выбор Actor отдельно в context callback:13. | 94–123 |
+| [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) | ChatMessageData | Словесная защита: ChatMessageData base, defense=true и порог totalAttack; передаёт флаги createVerbalCombatFlags. Выбор Actor отдельно в context callback:13. | 94–118 |
 | [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) | ChatMessageData | Создаёт ChatMessageData(this.actor) без flavor; отдельный 1d10x10 через Roll.toMessage, без extendedRoll. | _onCritRoll:253–256 |
 | [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../module/actor/sheets/WitcherActorSheetV1.js) | ChatMessageData | Аналогичный отдельный 1d10x10 и ChatMessageData без flavor; без extendedRoll. | _onCritRoll:230–233 |
 | [module/item/mixins/damageUtilMixin.js](../../../../../../module/item/mixins/damageUtilMixin.js) | ChatMessageData | getRandomInt(100) для вероятности эффекта; ChatMessageData(this.parent, flavor, 'damage', {damage}) для урона. | 61, 77 |
@@ -149,3 +149,11 @@ castSpell создаёт ChatMessageData(this, HBS, 'attack', {attacker,attack,d
 [skillDefense](../actor/mixins/defenseMixin.js.md) создаёт основной flavor и append для crit/stun, затем отправляет один message. В каждом конструкторе передан Actor. HTML-контекст crit содержит только название тяжести; system.crit получает полный сырой объект и очищается позднее моделью. [Три фрагмента защиты](../../templates/chat/combat/defense/defense.hbs.md) теперь имеют полные карточки.
 
 [Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+[Атака/общее действие](../actor/mixins/verbalCombatMixin.js.md) создаёт DTO типа damage с system.vcDamage, [обычная защита](../scripts/verbalCombat/verbalCombatDefense.js.md) — default base с пустым system. extendedRoll дописывает rollTotal. Группа 07 проверила настоящие DMD/BMD: vcDamage очищается схемой damage; base сохраняет rollTotal. Формула урона отдельно передаётся через flags.damage.formula и читается [onDamage](../scripts/verbalCombat/verbalCombat.js.md); очистка лишнего поля system сама по себе не доказывает потерю формулы. DTO не сохраняет flags; post-create запись описана в [184](../../../../../issues/potential/issue-00184.md).
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

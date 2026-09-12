@@ -130,7 +130,7 @@ Actor.allApplicableEffects ядра включает собственные эф
 | 6 / 443 | defenseMixin — [module/actor/mixins/defenseMixin.js](../../../../../../module/actor/mixins/defenseMixin.js) | prepareAndExecuteDefense, skillDefense, addDefenseModifiers, handleExtraDefense, handleLifepathModifier, createDefenseRollConfig, checkForStun, checkForCrit, handleCritLocation, handleDefenseResults, stunSave |
 | 7 / 444 | healMixin — [module/actor/mixins/healMixin.js](../../../../../../module/actor/mixins/healMixin.js) | calculateHealValue, createHealMessage |
 | 8 / 445 | castSpellMixin — [module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) | castSpell, calcStaminaMulti |
-| 9 / 446 | verbalCombatMixin — [module/actor/mixins/verbalCombatMixin.js](../../../../../../module/actor/mixins/verbalCombatMixin.js) | verbalCombat, createVerbalCombatFlags |
+| 8 / 446 | verbalCombatMixin — [module/actor/mixins/verbalCombatMixin.js](../../../../../../module/actor/mixins/verbalCombatMixin.js) | verbalCombat, createVerbalCombatFlags |
 | 10 / 447 | locationMixin — [module/actor/mixins/locationMixin.js](../../../../../../module/actor/mixins/locationMixin.js) | getAllLocations, getLocationObject |
 | 11 / 448 | temporaryEffectMixin — [module/actor/mixins/temporaryEffectMixin.js](../../../../../../module/actor/mixins/temporaryEffectMixin.js) | applyTemporaryItemImprovements |
 | 12 / 449 | armorMixin — [module/actor/mixins/armorMixin.js](../../../../../../module/actor/mixins/armorMixin.js) | getArmorEcumbrance, getLocationArmor, getArmors, getArmorSp, getStackedArmorSp, getArmorDiffBonus, calculateArmorResistances, applySpDamage, applyAlwaysSpDamage, applySpDamageToItemArmor, applySpDamageToMonsterArmor |
@@ -421,3 +421,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 [Полная примесь защиты](mixins/defenseMixin.js.md) содержит 11 методов; Object.assign:443 заменяет addDefenseModifiers из modifierMixin. getList('shield') включает isStored, тогда как обычный getList — нет (274). applyStatus/removeStatus — собственные методы Actor, вызовы защиты их не ожидают; ошибка иммунитетов 31 не проверялась повторно. Критический query адресует примесь addAdrenaline, которая учитывает useOptionalAdrenaline.
 
 [Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+[verbalCombatMixin](mixins/verbalCombatMixin.js.md) импортируется на строке 8 и подключается на 446. Полностью разобраны оба метода: verbalCombat ожидает prompt, но не extendedRoll; createVerbalCombatFlags возвращает два описания записи, а не сам сохраняет их. Словесный урон читает resolve.value и отправляет update без ожидания ([304](../../../../../issues/potential/issue-00304.md)). Уже описанный calculateDerivedStat('resolve') рассчитывает max и не меняет value; Group15/16 проверяли именно потребителя текущего ресурса с фасадом Actor, без повторного полного prepareData. Автоматический max=floor((WILL.value+INT.value)/2)×5+totalModifiers; начальный unmodifiedMax в CommonActorData — отдельная стадия.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

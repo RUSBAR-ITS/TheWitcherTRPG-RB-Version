@@ -164,3 +164,11 @@ Full profession direct attack передаёт addActiveEffects(attack.name), н
 [skillDefense](defenseMixin.js.md) использует собственное более позднее определение addDefenseModifiers. Группа 17 повторила положительную ошибку 33 и отрицательный контроль с AE+2; skillOverride сохраняет общие модификаторы защиты, но addActiveEffects получает undefined skillName и возвращает пустую строку. Это отличается от обхода обоих helper в профессиональной оружейной атаке.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.046
+
+2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
+
+Оба [общих действия](verbalCombatMixin.js.md) и [обычная защита](../../scripts/verbalCombat/verbalCombatDefense.js.md) используют addActiveEffects(skill.name). Настоящий modifierMixin в группе 03 добавил прямой activeEffectModifiers3 и подходящий allSkills2 к характеристике 7/навыку 2/минимальному d10=1, получено 15. Counterargue без skill в общем action оставляет 1d10 и не вызывает helper. Эти файлы не вызывают addAttackModifiers/addDefenseModifiers: контекстные боевые надбавки из тех методов не приписываются словесной формуле.
+
+[Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.

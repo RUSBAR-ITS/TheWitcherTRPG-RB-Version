@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.045 подготовлено и сверено 336 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.046 подготовлена и сверена 341 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -564,3 +564,13 @@
 | module/scripts/combat/generalCombatHook.js | [Описание](module/scripts/combat/generalCombatHook.js.md) |
 | templates/chat/combat/regeneration.hbs | [Описание](templates/chat/combat/regeneration.hbs.md) |
 | module/scripts/socket/socketMessage.js | [Описание](module/scripts/socket/socketMessage.js.md) |
+
+## Словесный бой — TASK-0003.046
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/verbalCombatMixin.js | [Описание](module/actor/mixins/verbalCombatMixin.js.md) |
+| module/scripts/verbalCombat/verbalCombat.js | [Описание](module/scripts/verbalCombat/verbalCombat.js.md) |
+| module/scripts/verbalCombat/verbalCombatDefense.js | [Описание](module/scripts/verbalCombat/verbalCombatDefense.js.md) |
+| templates/dialog/verbal-combat.hbs | [Описание](templates/dialog/verbal-combat.hbs.md) |
+| templates/dialog/verbal-combat-defense.hbs | [Описание](templates/dialog/verbal-combat-defense.hbs.md) |
