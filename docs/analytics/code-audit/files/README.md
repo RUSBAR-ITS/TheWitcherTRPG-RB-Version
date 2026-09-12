@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.053 подготовлены 417 карточек, включая 28 JSON style/lifepath. Текущий реестр содержит 615 файлов; остальные 198 JSON компедиумов поставлены в очередь .054–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.054 подготовлены 452 карточки, включая 63 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 163 JSON поставлены в очередь .055–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style и 21 JSON lifepath описаны ниже; 198 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath и 35 character-generator-sub-tables описаны ниже; 163 файла следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -693,3 +693,45 @@
 | [packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json](packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json.md) | Задаёт десять текстовых исходов романтической трагедии; подтаблица Romance. |
 
 [Перекрёстная сверка](../review-log.md#task-0003053): 21 RollTable, 139 результатов, рекурсия и inline-броски. Зарегистрирована [issue-00319](../../../issues/potential/issue-00319.md); JSON не менялись.
+
+## Подтаблицы создания персонажа — TASK-0003.054
+
+| Файл | Назначение |
+| --- | --- |
+| [packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json](packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json.md) | Выбирает текст профессии для дворфа/гнома из семи вариантов. |
+| [packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json](packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json.md) | Выбирает текст профессии эльфа из девяти вариантов. |
+| [packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json](packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json.md) | Описывает один из десяти вариантов судьбы семьи в землях старших рас. |
+| [packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json](packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json.md) | Описывает один из десяти вариантов судьбы семьи в Нильфгаарде. |
+| [packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json](packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json.md) | Выбирает судьбу северной семьи; исходы 1–9 дополнительно раскрывают семейное положение и знакомого. |
+| [packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json](packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | Выбирает семейное положение в землях старших рас и влиятельного знакомого этого региона. |
+| [packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json](packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | Выбирает семейное положение в Нильфгаарде и влиятельного знакомого этого региона. |
+| [packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json](packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | Выбирает семейное положение на Севере и влиятельного знакомого этого региона. |
+| [packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json](packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md) | Составляет сведения о семье и родителях в землях старших рас через связанные подтаблицы. |
+| [packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json](packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json.md) | Составляет сведения о семье и родителях в Нильфгаарде через связанные подтаблицы. |
+| [packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json](packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json.md) | Составляет сведения о семье и родителях на Севере через связанные подтаблицы. |
+| [packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json](packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json.md) | Выбирает текст профессии человека из девяти вариантов. |
+| [packsJson/character-generator-sub-tables/Most_Influential_Friend__Elderland_eATe1gk2PaKG1K9r.json](packsJson/character-generator-sub-tables/Most_Influential_Friend__Elderland_eATe1gk2PaKG1K9r.json.md) | Выбирает влиятельного знакомого в землях старших рас и текст памятной вещи. |
+| [packsJson/character-generator-sub-tables/Most_Influential_Friend__Nilfgaard_8R2zAqegJcbDr4xB.json](packsJson/character-generator-sub-tables/Most_Influential_Friend__Nilfgaard_8R2zAqegJcbDr4xB.json.md) | Выбирает влиятельного знакомого в Нильфгаарде и текст памятной вещи. |
+| [packsJson/character-generator-sub-tables/Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json](packsJson/character-generator-sub-tables/Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | Выбирает влиятельного знакомого на Севере и текст памятной вещи. |
+| [packsJson/character-generator-sub-tables/Nilfgaard_Vassal_Origin_IEPMPHNGahrfyCWI.json](packsJson/character-generator-sub-tables/Nilfgaard_Vassal_Origin_IEPMPHNGahrfyCWI.json.md) | Выбирает одно из десяти вассальных государств Нильфгаарда с текстовым указанием бонуса. |
+| [packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json](packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json.md) | Выбирает Дол Блатанну или Махакам с текстовым указанием бонуса происхождения. |
+| [packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json](packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json.md) | Выбирает северную или нильфгаардскую ветвь человеческого происхождения. |
+| [packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json](packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json.md) | Выбирает сердце Нильфгаарда либо заголовок и вассальное государство из подтаблицы. |
+| [packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json](packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json.md) | Выбирает одно из десяти северных происхождений с текстовым указанием бонуса. |
+| [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json.md) | Выбирает судьбу родителей старших рас, затронутого родителя, семейное положение и знакомого. |
+| [packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json](packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json.md) | Выбирает судьбу нильфгаардских родителей и затронутого родителя; исходы 1–9 добавляют положение и знакомого. |
+| [packsJson/character-generator-sub-tables/Parental_Fate__Northern_FQEyr6n57ae1ySLC.json](packsJson/character-generator-sub-tables/Parental_Fate__Northern_FQEyr6n57ae1ySLC.json.md) | Выбирает судьбу северных родителей, затронутого родителя, семейное положение и знакомого. |
+| [packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json](packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json.md) | Выбирает состояние родителей старших рас и раскрывает семейное положение либо судьбу родителей. |
+| [packsJson/character-generator-sub-tables/Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json](packsJson/character-generator-sub-tables/Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json.md) | Выбирает состояние родителей в Нильфгаарде и раскрывает семейное положение либо судьбу родителей. |
+| [packsJson/character-generator-sub-tables/Parents__Northern_SGuXziIZzzst1LVJ.json](packsJson/character-generator-sub-tables/Parents__Northern_SGuXziIZzzst1LVJ.json.md) | Выбирает состояние родителей на Севере и раскрывает семейное положение либо судьбу родителей. |
+| [packsJson/character-generator-sub-tables/Siblings__Age_0PcW1kFO5g40cELc.json](packsJson/character-generator-sub-tables/Siblings__Age_0PcW1kFO5g40cELc.json.md) | Описывает возраст одного брата или сестры относительно персонажа. |
+| [packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json](packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json.md) | Выбирает текст количества братьев и сестёр дворфа/низушка: от одного до пяти либо единственный ребёнок. |
+| [packsJson/character-generator-sub-tables/Siblings__Elves_6QuZTatyIKElcCKz.json](packsJson/character-generator-sub-tables/Siblings__Elves_6QuZTatyIKElcCKz.json.md) | Выбирает текст количества братьев и сестёр эльфа: один, два либо единственный ребёнок. |
+| [packsJson/character-generator-sub-tables/Siblings__Feelings_About_You_ACf1JfCfVtJWw5DG.json](packsJson/character-generator-sub-tables/Siblings__Feelings_About_You_ACf1JfCfVtJWw5DG.json.md) | Описывает отношение одного брата или сестры к персонажу. |
+| [packsJson/character-generator-sub-tables/Siblings__Gender_QbkrG0W11fREICK8.json](packsJson/character-generator-sub-tables/Siblings__Gender_QbkrG0W11fREICK8.json.md) | Описывает гендер одного брата или сестры. |
+| [packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json](packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json.md) | Выбирает текст количества братьев и сестёр нильфгаардца: от одного до пяти либо единственный ребёнок. |
+| [packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json](packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json.md) | Выбирает текст количества братьев и сестёр северянина: от одного до восьми либо единственный ребёнок. |
+| [packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json](packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json.md) | Описывает характер одного брата или сестры. |
+| [packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json](packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json.md) | Уточняет, относится событие к отцу, матери или обоим родителям. |
+
+[Перекрёстная сверка](../review-log.md#task-0003054): 35 RollTable / 313 результатов, региональные варианты и предел рекурсии. Зарегистрирована [issue-00320](../../../issues/potential/issue-00320.md); исходники сохранены.

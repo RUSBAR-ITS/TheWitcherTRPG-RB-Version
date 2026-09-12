@@ -1,5 +1,187 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.054
+
+2026-09-12. Ветка rusbar-main, HEAD 63e9a79fefa7743fcf709b2fa19ddbe144f353a0; рабочее дерево на старте чистое, 1508 отслеживаемых файлов. Разобраны 35 JSON / 8319 строк в packsJson/character-generator-sub-tables: 35 RollTable и 313 TableResult. Исходники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. [Задача](../../tasks/task-0003.054.md), [35 карточек](files/README.md#подтаблицы-создания-персонажа--task-0003054).
+
+### Индивидуальный охват
+
+| Файл / карточка | Строк | text / document | formula | Особенность |
+| --- | --- | --- | --- | --- |
+| [packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json](files/packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json.md) | 188 | 7 / 0 | 1d7 | 1d7; также используется для Halfling |
+| [packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json](files/packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json.md) | 234 | 9 / 0 | 1d9 | Results совпадают с Human |
+| [packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json](files/packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json](files/packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json](files/packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json.md) | 476 | 10 / 9 | 1d10 | При 10 только судьба; при 1–9 судьба/статус/знакомый |
+| [packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json](files/packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | 359 | 7 / 7 | 1d10 | Парные диапазоны, root <p>, &amp;amp; в одной записи |
+| [packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json](files/packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | 359 | 7 / 7 | 1d10 | Парные диапазоны, root <p> |
+| [packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json](files/packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | 359 | 7 / 7 | 1d10 | Парные диапазоны, root <p>, &amp;amp; в одной записи |
+| [packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json](files/packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md) | 148 | 2 / 3 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json](files/packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json.md) | 148 | 2 / 3 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json](files/packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json.md) | 124 | 2 / 2 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json](files/packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json.md) | 234 | 9 / 0 | 1d9 | Results совпадают с Elf; displayRoll отличается |
+| [packsJson/character-generator-sub-tables/Most_Influential_Friend__Elderland_eATe1gk2PaKG1K9r.json](files/packsJson/character-generator-sub-tables/Most_Influential_Friend__Elderland_eATe1gk2PaKG1K9r.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Most_Influential_Friend__Nilfgaard_8R2zAqegJcbDr4xB.json](files/packsJson/character-generator-sub-tables/Most_Influential_Friend__Nilfgaard_8R2zAqegJcbDr4xB.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json](files/packsJson/character-generator-sub-tables/Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Nilfgaard_Vassal_Origin_IEPMPHNGahrfyCWI.json](files/packsJson/character-generator-sub-tables/Nilfgaard_Vassal_Origin_IEPMPHNGahrfyCWI.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json](files/packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json.md) | 76 | 2 / 0 | 1d2 | У Mahakam иконка d20-grey |
+| [packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json](files/packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json.md) | 78 | 0 / 2 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json](files/packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json.md) | 100 | 2 / 1 | 1d10 | Сердце 1–3; заголовок и вассал на 4–10 |
+| [packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json](files/packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json.md) | 260 | 10 / 0 | 1d10 | Две HTML-сущности &amp;amp; |
+| [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](files/packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json.md) | 524 | 10 / 11 | 1d10 | Десять текстов совпадают с Nilfgaard; статус на всех гранях |
+| [packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json](files/packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json.md) | 500 | 10 / 10 | 1d10 | При 10 два текста вместо четырёх; Which Parent остаётся |
+| [packsJson/character-generator-sub-tables/Parental_Fate__Northern_FQEyr6n57ae1ySLC.json](files/packsJson/character-generator-sub-tables/Parental_Fate__Northern_FQEyr6n57ae1ySLC.json.md) | 524 | 10 / 11 | 1d10 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json](files/packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json.md) | 124 | 2 / 2 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json](files/packsJson/character-generator-sub-tables/Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json.md) | 124 | 2 / 2 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Parents__Northern_SGuXziIZzzst1LVJ.json](files/packsJson/character-generator-sub-tables/Parents__Northern_SGuXziIZzzst1LVJ.json.md) | 124 | 2 / 2 | 1d2 | Составные переходы; порядок и ветви перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Siblings__Age_0PcW1kFO5g40cELc.json](files/packsJson/character-generator-sub-tables/Siblings__Age_0PcW1kFO5g40cELc.json.md) | 99 | 3 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json](files/packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json.md) | 260 | 10 / 0 | 1d10 | Пять одинаковых only child; собственная иконка знамени |
+| [packsJson/character-generator-sub-tables/Siblings__Elves_6QuZTatyIKElcCKz.json](files/packsJson/character-generator-sub-tables/Siblings__Elves_6QuZTatyIKElcCKz.json.md) | 99 | 3 / 0 | 1d10 | Неравные интервалы 1–2 / 3–8 / 9–10 |
+| [packsJson/character-generator-sub-tables/Siblings__Feelings_About_You_ACf1JfCfVtJWw5DG.json](files/packsJson/character-generator-sub-tables/Siblings__Feelings_About_You_ACf1JfCfVtJWw5DG.json.md) | 260 | 10 / 0 | 1d10 | Четыре одинаковых No Feelings About You |
+| [packsJson/character-generator-sub-tables/Siblings__Gender_QbkrG0W11fREICK8.json](files/packsJson/character-generator-sub-tables/Siblings__Gender_QbkrG0W11fREICK8.json.md) | 99 | 3 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json](files/packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json.md) | 260 | 10 / 0 | 1d10 | Results совпадают с Dwarves/Halflings; другое знамя |
+| [packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json](files/packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json.md) | 260 | 10 / 0 | 1d10 | Два одинаковых only child; собственная иконка знамени |
+| [packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json](files/packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json.md) | 260 | 10 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+| [packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json](files/packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json.md) | 99 | 3 / 0 | 1d10 | Все тексты и индивидуальные диапазоны перечислены в карточке |
+
+Все файлы прочитаны целиком: текст, корневые/вложенные поля, ID, диапазоны и служебные данные. Каждая из 313 записей сохранена в таблице своей карточки с точным description/name, типом, ID, диапазоном и номерами строк. Для document отдельно приведены полный UUID, строка ссылки и целевая карточка.
+
+Python-проверка object_pairs_hook не нашла повторяющихся ключей JSON. Корневых полей по 14; у 234 text-результатов по 11, у 79 document — по 12. Все replacement=true, weight=1, drawn=false; корневые folder=null/sort=0/ownership совпадают. 348 полных ключей хранения различны; локальных ID результатов 133, они повторяются между родителями, но не внутри одной таблицы.
+
+Различия общих полей проверены для каждого файла:
+
+- Три таблицы профессий имеют flags={}; остальные 32 — пустые better-rolltables/core. Это не доказывает наличие внешней автоматизации.
+- _stats.coreVersion=13.341 у корней и результатов — история экспорта. У трёх профессий compendiumSource=null; у остальных корней сохранён прежний RollTable-адрес. Вложенные _stats не содержат источник; остальные пять значений null.
+- displayRoll=true у 24 таблиц и false у 11. Две профессии Elf/Dwarf и девять ранних семейных таблиц скрывают основной бросок; Human Profession показывает его.
+- У трёх Family Status одинаковый непустой root description с одним HTML-абзацем; у остальных корней он пуст. В getHTML/toMessage сообщение использует description вызывающей таблицы, а не добавляет описания всех вложенных таблиц.
+- У четырёх таблиц количества братьев/сестёр собственные иконки знамён; у 31 корня d20-grey. 232 text-результата имеют d20-black, два — d20-grey (Mahakam и заголовок Nilfgaard Vassal Origin); все 79 document имеют d20-grey. Иконки найдены в public/icons.
+- Четыре &amp;amp; находятся в трёх файлах: по одному у Family Status Elderland/Northern и два в Origin: Northern Kingdom. Иных HTML-тегов в результатах, URL, @UUID/@Compendium и inline [[…]] не найдено. Штатные HBS передают эти описания без повторного экранирования; полноценный DOM-enrichHTML не исполнялся.
+- Подтверждены совпадения results Human Profession/Elf Profession и Siblings: Dwarves/Halflings/Nilfgaard; у Parental Fate Elderland/Nilfgaard совпали десять text-description, но не состав ссылок. Смысловая правильность совпадений и расовых/региональных различий не оценивалась по рулбуку.
+
+### Зависимости и границы автоматизации
+
+system.json:35,64–69 регистрирует Character-gen_Sub-tables как RollTable в packs/character-generator-sub-tables.db. Контракт compile/extract и удаления .db при подготовке пути сопоставлен с карточками утилит .050; команды не запускались. Все 79 documentUuid из 15 таблиц этой порции ведут к существующим RollTable того же пакета; имя цели совпадает. Циклов нет, максимальная внутренняя глубина — четыре перехода.
+
+| Группа | Смысл переходов |
+| --- | --- |
+| Family and Parents, 3 региона | Живая семья → Parents; событие семьи → Family Fate, с отдельным Family Status у Elderland/Nilfgaard |
+| Parents, 3 региона | Живые родители → Family Status; событие родителей → Parental Fate |
+| Parental Fate, 3 региона | Which Parent на любом исходе, Family Status на всех исходах кроме Nilfgaard=10 |
+| Family Fate: Northern | Family Status на 1–9, без этой ссылки на 10 |
+| Family Status, 3 региона | Семь групп text+document ведут к Most Influential Friend |
+| Origin: Human Lands | d2 выбирает северную или нильфгаардскую таблицу |
+| Origin: Nilfgaard | На 4–10 заголовок сопровождается Nilfgaard Vassal Origin |
+| Профессии, знакомые и Siblings | Листовые text; количество братьев/сестёр не вызывает Siblings Generator |
+
+Входящие ссылки проверены во всех 226 packsJson. Найдено 27 прямых ссылок из пяти генераторов Character-gen:
+
+| Файл / источник | ID результата | Строка documentUuid | Цель |
+| --- | --- | --- | --- |
+| [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) | VySuFOPm5I8jY8r9 | 76 | [Parents: Elderland](files/packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json.md) |
+| [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) | lQTRDF2dEv3hPTOh | 100 | [Siblings: Dwarves/Halflings](files/packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json.md) |
+| [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) | fHqJQkniV2WVHHIf | 124 | [Dwarf / Gnome Profession](files/packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json.md) |
+| [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) | rx40q7d9iV7PIvy0 | 171 | [Family Fate: Elderland](files/packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json.md) |
+| [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) | hNdtp3IHu6NaWkJo | 195 | [Family Status: Elderland](files/packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) |
+| [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json) | VySuFOPm5I8jY8r9 | 76 | [Parents: Elderland](files/packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json.md) |
+| [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json) | 6stg4kxtfUkySns5 | 100 | [Siblings: Elves](files/packsJson/character-generator-sub-tables/Siblings__Elves_6QuZTatyIKElcCKz.json.md) |
+| [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json) | zpupYNP2QGhmUGIU | 124 | [Elf Profession](files/packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json.md) |
+| [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json) | rx40q7d9iV7PIvy0 | 171 | [Family Fate: Elderland](files/packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json.md) |
+| [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json) | hNdtp3IHu6NaWkJo | 195 | [Family Status: Elderland](files/packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json) | 0dQ3NR8YsZjPzHul | 56 | [Origin: Human Lands](files/packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json.md) |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json) | L1KBkf196CGL9GXv | 80 | [Family and Parents: Elderland](files/packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md) |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json) | dsneFT5aK1HggTKQ | 104 | [Siblings: Dwarves/Halflings](files/packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json.md) |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json) | pbEqX2RnJhB453Ch | 128 | [Dwarf / Gnome Profession](files/packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json.md) |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json) | NQvQKUljwbGcZKIk | 175 | [Origin: Elderland](files/packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json.md) |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json) | Lq6SDOHwOyB0ZrZt | 199 | [Family and Parents: Elderland](files/packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | 0dQ3NR8YsZjPzHul | 56 | [Origin: Northern Kingdom](files/packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | bgm46MMbKjQdbD6L | 80 | [Family and Parents: Northern](files/packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | CqIZCaJZUj1KOpiU | 104 | [Siblings: Northern](files/packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | IaiOuyj71oLzU7JG | 128 | [Human Profession](files/packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | NQvQKUljwbGcZKIk | 175 | [Origin: Nilfgaard](files/packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | L1KBkf196CGL9GXv | 199 | [Family and Parents: Nilfgaard](files/packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json.md) |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) | NUQQD2rE4MFniN0C | 223 | [Siblings: Nilfgaard](files/packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json.md) |
+| [packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json](../../../packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json) | lHDeQbKOzEyvSCTK | 32 | [Siblings: Gender](files/packsJson/character-generator-sub-tables/Siblings__Gender_QbkrG0W11fREICK8.json.md) |
+| [packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json](../../../packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json) | 6wmO1a81DMV7foRw | 56 | [Siblings: Age](files/packsJson/character-generator-sub-tables/Siblings__Age_0PcW1kFO5g40cELc.json.md) |
+| [packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json](../../../packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json) | x8daSlTDdqBl39P0 | 80 | [Siblings: Feelings About You](files/packsJson/character-generator-sub-tables/Siblings__Feelings_About_You_ACf1JfCfVtJWw5DG.json.md) |
+| [packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json](../../../packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json) | ZHa5PBGJnRAbdzZr | 104 | [Siblings: Personality](files/packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json.md) |
+
+При повторении одного UUID в одном файле строка каждой ссылки определялась по её собственному ID, а не по первому вхождению UUID. Например, две ссылки Halfling на Family and Parents: Elderland находятся на 80 и 199.
+
+Пять прямых потребителей прочитаны для проверки входов; собственные 1d2 у четырёх Background Generator и 1d1 у Siblings Generator исполнены на всех девяти исходах. Ссылки первой группы совпали с экспортными целями. Siblings Generator возвращает четыре текста в порядке Gender, Age, Feelings About You, Personality, но текст количества братьев/сестёр не вызывает его автоматически.
+
+Отдельно найден родитель этих Background Generator — RandomCharacter. Четыре его ссылки относятся к Human/Elves/Dwarves/Halfling, пятая ведёт к ведьмачьему генератору. В этой порции прочитан документ для установления дополнительной глубины и исполнены целевые семейные сценарии; ветка Witcher не запускалась. Полный пофайловой разбор всех шести внешних документов остаётся TASK-0003.056, их карточки/покрытие здесь не добавлялись. В .056 внесена ссылка на результаты и issue-00320.
+
+Прямых ссылок между новой группой и уже разобранными style/lifepath нет. Поиск имён пакета, ID и документных имён в module/templates/utils не выявил прямого вызова этих таблиц. У WitcherItem.checkIfItemHasRollTable остаётся общий поиск по точному Item.name; он ожидает Item-результат и берёт results[0]. Новые таблицы после рекурсии выдают text. Эта граница установлена чтением реального метода и типами результатов; сам метод с 35 именами не запускался повторно.
+
+Сверены backgroundData.js (HTML биографии), Actor homelandData.js и Item HomelandData (строковые value/otherValue), ProfessionData (Item с definingSkill/skillPath), WitcherCharacterSheet:154–156 и tab-background.hbs:7–25,51–53. Текст таблицы не создаёт предметы, родственников, навыки или расовые бонусы и не присваивается этим моделям автоматически. Объединённые текстовые земли Lyria/Rivia и Kovir/Poviss не подменяют отдельные config.homelands ключи.
+
+Уточнены восемь карточек: system.json, utils/packs.mjs, utils/extract.mjs, Actor backgroundData.js/homelandData.js, Item homelandData.js/professionData.js и tab-background.hbs. Прежние результаты не перезаписаны, исходники соседей не менялись и повторно в покрытие не включены.
+
+### Выполненные проверки ядра
+
+Настоящие BaseRollTable/BaseTableResult, EmbeddedCollection, клиентские RollTable/TableResult, Roll, Die, RollParser и grammar.pegjs Foundry 14.367.0 загружены через node --input-type=module и stdin. Node 24.16.0; зависимостей и отдельных файлов тестового стенда не создавалось.
+
+| Проверка | Фактический результат |
+| --- | --- |
+| Строгая загрузка экспортов | 35 моделей, 313 TableResult; содержательные поля и изображения сохранены, _key не входит в toObject |
+| Домены собственных формул | 281 исход: одна 1d7, две 1d9, восемь 1d2, двадцать четыре 1d10 |
+| Прямой выбор / recursive:false | Достигнуты все 313 записей; порядок и интервалы совпали с исходными данными; 0 и значение выше домена дают пусто |
+| recursive:true | Все исходы каждой таблицы при прямом запуске завершились текстом; совпадение результатов повторного вызова проверено |
+| Повторные draw без чата | 562 вызова, сохранены доступность результатов и исходные данные |
+| Модели без pack | 70 draw, по два на файл; при replacement=true не записывается drawn |
+| normalize(save:false) | Для каждого файла клон с формулой 1dN и одиночными диапазонами по N единичным весам; оригинал не изменён |
+| Чат для каждой грани | 281 сообщение: число строк и тексты совпали с results; displayRoll, root description и иконки знамён проверены |
+| Чат при recursive:false | 15 сообщений, по одному от каждой таблицы с документными ссылками; ожидаемое число anchor-ссылок |
+| Пять прямых внешних генераторов | Девять исходов основных формул, все выбранные прямые цели разрешены |
+| Длинные семейные сценарии | Три Family and Parents выдали по 6 текстов на глубине 4; прямые Human/Halfling — по 10 на глубине 5 |
+| Особые исходы 9/10 | Family Fate Northern: 3/1 текста; Parental Fate Nilfgaard: 4/2 текста |
+| Основной сценарий | 3263 утверждения; 305 перехваченных сообщений; 0 записей документов; исходные модели неизменны |
+| Отдельный предел внешней рекурсии | 18 утверждений: 3 ожидаемых исключения на глубине 6, 4 успешных контроля на глубине 5; 4 сообщения, 0 записей документов |
+
+Подмены явно ограничивают доказательства: ClientDocumentMixin и сохранение документов — фасады; fromUuid/fromUuidSync и pack-индекс разрешают документы в памяти; enrichHTML возвращает исходную строку; document.toAnchor и Roll.render заменены маркерами; ChatMessage.create перехвачен. Реальные getHTML/toMessage и два штатных HBS-шаблона исполнены. CONFIG.RollTable.resultIcon=d20-black сверено с client/config.mjs:575. В длинных сценариях обёртка вокруг настоящего roll только задаёт случайную грань для текущего имени и записывает _depth.
+
+Полностью перебраны исходы каждой основной формулы при прямом вызове; все комбинации независимых вложенных бросков не перебирались. Диапазоны общего числа возвращаемых текстов в карточках рассчитаны отдельно по всем ветвям графа, с учётом нескольких одновременно выбранных записей.
+
+### Региональные отличия и предел глубины
+
+Перекрывающиеся text/document диапазоны — допустимый способ составной выдачи. У Family Status семь пар на диапазонах 1,2,3,4,5,6–7,8–10; при обычном roll сначала получается статус, затем выбранный знакомый. Явный normalize построил бы 1d14 и разделил пары, но при заполненной formula автоматическая нормализация не запускается.
+
+Family Fate: Northern на 10 не содержит ссылки на статус; Parental Fate: Nilfgaard на 10 сохраняет Which Parent, но также не содержит статуса. Оба случая воспроизведены. Они оставлены как особенности с неопределённой намеренностью; различие вариантов само по себе не объявлено дефектом и не исправлено. У Parental Fate позиция общей Which Parent [1,10] влияет на порядок: при большинстве граней она стоит перед текстом судьбы.
+
+Выявлена другая, технически воспроизведённая проблема — [issue-00320](../../issues/potential/issue-00320.md). Максимум четыре перехода внутри подтаблиц превращается в шесть после добавления двух уровней RandomCharacter → расовый Background Generator:
+
+| _depth | Звено |
+| --- | --- |
+| 0 | Background Generator: RandomCharacter |
+| 1 | Background Generator: Human или Halfling |
+| 2 | Family and Parents соответствующего региона |
+| 3 | Parents |
+| 4 | Parental Fate |
+| 5 | Family Status; соседний Which Parent также на 5 |
+| 6 | Most Influential Friend — исключение до его броска |
+
+В /opt/foundryvtt/client/documents/roll-table.mjs:264–267 проверяется _depth>5; на 312–322 вложенный вызов получает _depth+1. Подтверждены три отказа при Parents=2 и Parental Fate=2: Human/Northern, Human/Nilfgaard, Halfling/Elderland. Ошибка содержит ID соответствующего Most Influential Friend: Xc9k6o8pE8Aaj1Kb, 8R2zAqegJcbDr4xB, eATe1gk2PaKG1K9r. На этих отказах сообщений не создавалось.
+
+Контроли RandomCharacter с живыми родителями Human/Halfling дали по 9 текстов, Elves/Dwarves с выбранной судьбой родителей — по 10; максимальная глубина 5. Циклов и потерянных ссылок в этих цепочках нет. Полные трассы и последовательность воспроизведения сохранены в issue-00320.
+
+Поиск среди 319 прежних issues не выявил дубля глубины рекурсии. Issue-00039 относится к форме результатов у потребителя добычи; issue-00319 — к x100 в другой группе. Проблемы извлечения 00313–00315 и отсутствующего выбранного пакета 00002 не исправлялись и не подтверждались этой проверкой. Новая карточка остаётся potential: всего 320 potential, open/closed пусты.
+
+### Итоговая сверка и ограничения
+
+Мир, полный браузер, HTTP, модули и БД не запускались. Экспортный JSON не подтверждает действующий pack или права игроков. Собственный UI нестандартных d7/d9 и полный DOM-enrichHTML не проверялись. Соответствие текстов и чисел рулбукам, литературная редактура и локализации компедиумов исключены.
+
+Итоговая сверка завершена: 452 карточки из 615, 163 файла в очереди .055–.061. С исходниками сверены все 313 строк результатов, root description/img и 79 строк documentUuid; проверены обратные связи и относительные ссылки. Все 580 прежних строк реестра вне текущей группы сохранены. В 61 подзадаче TASK-0003 распределены 604 различных файла, ещё 11 относятся к TASK-0002; повторов и файлов вне очереди нет. .001–.054 — done, .055–.061 — planned. TASK-0003 продолжается, TASK-0004/TASK-0005 — draft. Локальные ссылки и якоря разрешаются, таблицы Markdown согласованы, git diff --check проходит. Прежний журнал сохранён целиком после этой записи.
+
+Изменены 22 существующих Markdown-документа; созданы 35 карточек файлов и issue-00320, всего 36 новых документов. Все 319 прежних карточек issues и строки их реестра сохранены. По всем 1508 отслеживаемым на старте файлам проверены mode/uid/gid/inode: метаданные доступа и inode неизменны. Содержимое файлов вне согласованного списка документов не менялось; текущие 615 и исторические 621 исходник совпадают с инвентаризацией. Мир, базы компедиумов, исходный код и настройки доступа не изменены.
+
+Контрольные суммы SHA-256 (отсортированные пути UTF-8 + NUL + байты каждого файла):
+
+| Набор | SHA-256 |
+| --- | --- |
+| 35 JSON character-generator-sub-tables | b440352406f3a819abd201d07ef92d1b1639880036b9feeb8b87b93e501bb6b5 |
+| Текущие 615 исходников | 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c |
+| Исторические 621 исходник | 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4 |
+
 ## TASK-0003.053
 
 2026-09-12. Ветка rusbar-main, HEAD 93beea0953821c9d8f080f815e686dc4da0c6f9e; стартовое рабочее дерево чистое, 1486 отслеживаемых файлов. Выполнен технический разбор 21 JSON в packsJson/lifepath: 3845 строк, 21 RollTable и 139 TableResult. Исходники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. [Задача](../../tasks/task-0003.053.md), [21 карточка](files/README.md#таблицы-жизненных-событий--task-0003053).

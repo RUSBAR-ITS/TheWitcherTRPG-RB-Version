@@ -128,3 +128,11 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 [Wrapper](../../item/mixins/defenseOptionMixin.js.md) и [полный бросок защиты](../../actor/mixins/defenseMixin.js.md) испытаны с настоящей ProfessionData. Guard/ref/level=4/modifier=1 даёт 1d10+5+4+1 и заголовок Guard. skillName остаётся undefined, потому что skills/itemTypes пусты, а основа берётся через skillOverride. isDefense=false не исключает кнопку (71); defining-only не добавляется (72).
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Уточнение TASK-0003.054
+
+2026-09-12, rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0; исходник не изменён.
+
+Dwarf / Gnome Profession содержит семь text-результатов на 1d7; Elf Profession и Human Profession — девять на 1d9, причём их results совпадают. Ни одна запись не содержит profession Item, definingSkill/skillPath или documentUuid на профессию. WitcherCharacterSheet:154 берёт первый уже имеющийся profession Item. Генератор выдаёт название для пользователя, не вызывает ProfessionData и не создаёт дерево навыков; соответствие списков рулбуку не проверялось.
+
+[35 карточек подтаблиц](../../../README.md#подтаблицы-создания-персонажа--task-0003054), [перекрёстная сверка и пределы](../../../../review-log.md#task-0003054).

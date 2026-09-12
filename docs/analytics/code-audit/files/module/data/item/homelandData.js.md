@@ -97,3 +97,11 @@ value/otherValue являются данными этого Item. Одноимё
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. tab-background — установленный потребитель value/otherValue Item.homeland: эти значения выводятся вместо Actor-select. Контекст получает первый подходящий getList('homeland') элемент, stored исключается общим getList. Группа 09 отрендерила 'other' и дополнительный текст.
 
 Связи: [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.054
+
+2026-09-12, rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0; исходник не изменён.
+
+Таблицы происхождения из character-generator-sub-tables не содержат documentUuid на Item homeland; их ссылки ведут к другим RollTable, а конечные результаты имеют type=text. Найденный в тексте +1 к навыку не создаёт effect и не меняет value/otherValue. WitcherCharacterSheet:155 получает первый уже принадлежащий Actor предмет homeland; это отдельный путь от генерации биографии.
+
+[35 карточек подтаблиц](../../../README.md#подтаблицы-создания-персонажа--task-0003054), [перекрёстная сверка и пределы](../../../../review-log.md#task-0003054).

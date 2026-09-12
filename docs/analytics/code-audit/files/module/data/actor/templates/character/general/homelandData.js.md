@@ -89,3 +89,11 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Группа 09 проверила ветви tab-background: без Item.homeland доступны general.homeland.value и условный otherValue; с Item остаются label из его system.value/otherValue. Строки с <...> экранируются; автоматическая запись Item-значения обратно в Actor в этом шаблоне отсутствует.
 
 Связи: [templates/partials/character/tab-background.hbs](../../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003033).
+
+## Уточнение TASK-0003.054
+
+2026-09-12, rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0; исходник не изменён.
+
+Origin: Human Lands/Northern Kingdom/Nilfgaard/Elderland и Nilfgaard Vassal Origin выдают description с названиями и бонусами, а не ключи этой схемы. WITCHER.homelands содержит отдельные ключи, в том числе lyria/rivia и kovir/poviss, тогда как таблицы объединяют пары в текст. Автоматический разбор или присваивание value/otherValue не найдено. Подробный аудит экспортов не меняет прежний приоритет отображения homeland Item над Actor.general.homeland.
+
+[35 карточек подтаблиц](../../../../../../README.md#подтаблицы-создания-персонажа--task-0003054), [перекрёстная сверка и пределы](../../../../../../../review-log.md#task-0003054).
