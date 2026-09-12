@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.044 подготовлены и сверены 331 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.045 подготовлено и сверено 336 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -554,3 +554,13 @@
 | templates/chat/damage/damageToAllLocations.hbs | [Описание](templates/chat/damage/damageToAllLocations.hbs.md) |
 | templates/chat/damage/shieldAbsorbs.hbs | [Описание](templates/chat/damage/shieldAbsorbs.hbs.md) |
 | templates/chat/damage/spAbsorbs.hbs | [Описание](templates/chat/damage/spAbsorbs.hbs.md) |
+
+## Чат, Combat и сокет GM — TASK-0003.045
+
+| Файл | Карточка |
+| --- | --- |
+| module/scripts/combat/combat.js | [Описание](module/scripts/combat/combat.js.md) |
+| module/scripts/combat/applyDamage.js | [Описание](module/scripts/combat/applyDamage.js.md) |
+| module/scripts/combat/generalCombatHook.js | [Описание](module/scripts/combat/generalCombatHook.js.md) |
+| templates/chat/combat/regeneration.hbs | [Описание](templates/chat/combat/regeneration.hbs.md) |
+| module/scripts/socket/socketMessage.js | [Описание](module/scripts/socket/socketMessage.js.md) |

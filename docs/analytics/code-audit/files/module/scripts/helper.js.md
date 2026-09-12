@@ -156,3 +156,11 @@ getActorOwner вызывается из effect/status helpers после castSpe
 В [критическом пути](../actor/mixins/defenseMixin.js.md) getActorOwner исполнен: активный OWNER предпочтён GM, отсутствие GM/владельца ведёт к TypeError до toMessage (185). Отдельно отсутствующий attacker Actor ломает чтение hasPlayerOwner. getRandomInt для сторон конечностей заменён фиксированным 1/2; распределение случайности не проверено.
 
 [Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+Полностью описаны [боевые listeners](../../../../../../module/scripts/combat/combat.js) и [меню урона](../../../../../../module/scripts/combat/applyDamage.js). Группа 04 получила отсутствующий Actor через фасад getInteractActor: executeDefense вышел, stun и три critical callbacks дали TypeError. Группа 11 проверила чтение actor.type в диалоге. Это повторная проверка уже перечисленных потребителей issue149; новый дубль не создан. Сам алгоритм выбора/helper input заново не исполнялся. Вложенный event.target не ломает эти closure/listeners; прежняя проблема onRepairRequest относится к другому пути.
+
+[Проверки, результаты и ограничения](../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.

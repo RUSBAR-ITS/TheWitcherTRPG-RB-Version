@@ -86,3 +86,11 @@ damage.itemUuid/formula/crit/strike/type/originalLocation/location наслед�
 Выполнен полный [rollDamage](../../item/mixins/damageUtilMixin.js.md) с настоящим Roll и очисткой payload через DamageMessageData (группы 03–06): properties.effects — Array, applied50%=true/false по контролируемому входу,0%=false. raw/flag duration7 остаётся, system.damage.duration удаляется; critEffectModifier6 внутри damage.crit сохраняется. toMessage ожидается, последующий setFlag нет (уточнение 184). [Получатель](../../actor/mixins/damageMixin.js.md) рассчитывает урон и читает именно эту Array-форму, не Item TypedObject. Запись ChatMessage в БД подменена.
 
 [Методика и пределы проверки](../../../../review-log.md#task-0003044). Уточнение связей не увеличивает покрытие; мир, браузер и БД не запускались.
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+Полностью разобран [consumer сообщения](../../../../../../../module/scripts/combat/applyDamage.js). Он читает первый DOM .dice-total, а не message.rolls/system.rollTotal, выбирает HP/STA и передаёт prepared damage по ссылке. Группа 12 на настоящей модели повторила удаление duration и установила наследование выбранных head/oilEffect следующим применением при неизменном _source (300). Группы 29–31 проверили отдельные полные расчёты статуса до фасадной записи HP/shield; это не полный цикл обычного клика с реальным ChatMessage. [Расчёт Actor](../../../../../../../module/actor/mixins/damageMixin.js) описан в .044; прежняя оговорка о последующих задачах теперь относится к истории проверки .040.
+
+[Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.

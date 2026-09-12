@@ -96,3 +96,11 @@ rollTotal — результат защиты. criticalLevel/critdamage/bonusdam
 [Полный producer](../../actor/mixins/defenseMixin.js.md) в группе 22 передал critEffectModifier=6; настоящая модель удаляет его (258). Группа 32 на выходе этого producer: native applyCritWound выбрал greater для raw и lesser для cleaned при фиксированном d6=1. В профессиональной ветке defense undefined, основа/заголовок работают через skillOverride; влияние на предметные fumble отдельно не тестировалось.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+Группа 23 выполнила [критический пункт меню](../../../../../../../module/scripts/combat/combat.js) с настоящей DefenseMessageData. Consumer передал actor.applyCritWound тот же model.crit, в котором critEffectModifier уже отсутствует. Это подтверждает последнюю границу issue258, без повторного создания травмы/выбора компедиума. Группы 03/05 отдельно подтвердили чтение attackWeaponProperties.stun и пять аргументов executeDefense; DOM/выбор Actor — фасады.
+
+[Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.

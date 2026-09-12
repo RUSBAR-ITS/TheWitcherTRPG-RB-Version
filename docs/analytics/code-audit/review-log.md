@@ -1,5 +1,127 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.045
+
+Дата:2026-09-12. Ветка rusbar-main, HEAD 20ce99a1218a82bf46c84570e55587253d0cfbc3; на старте дерево чистое. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. SHA256(sorted path UTF-8 + NUL + bytes):52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4.
+
+### Область и результат
+
+Выполнена [TASK-0003.045](../../tasks/task-0003.045.md):5 файлов /336 логических строк,19 именованных функций и существенные callbacks,1 HBS. Карточки перечислены в последних пяти строках общей матрицы ниже. Покрытие 331→336 из 621, остаток 285; пятая серия 26 из 77 проверены,51 в очереди,234 вне детализированного плана. TASK-0003 in-progress, TASK-0004/0005 draft; следующая .046.
+
+Выполнены **32 группы проверок**, общая сверка 26 файлов .041–.045 и документированных связей с прежними 310 карточками. Уточнены 11 связанных карточек и 11 прежних issues; добавлены 3 новых potential issues299–301. Исправления кода/игровых данных и подтверждение проблем не выполнялись.
+
+### Методика и пределы
+
+Чтение исходников целиком, rg/rg --files для определений, импортов/регистраций, вызовов, моделей и consumers. Локальные Foundry14.367.0 и Node24.16.0. Исполнение: node --input-type=module через quoted stdin heredoc; код проверок существует в памяти инструмента, файлы стенда не создавались.
+
+Настоящие полные тела четырёх JS текущей порции загружены vm с удалением import/export только для задания явных зависимостей; дополнительно реальные setup/hooks.js/socketHook.js. Импортированы настоящие DamageInstance, DamageMessageData, DefenseMessageData, MonsterData, фабрика combatEffects и healMixin, Foundry DataModel/fields и utils, CONFIG.WITCHER, Handlebars. Настоящий ContextMenu импортирован из ядра: _onActivate/_onClickItem исполнялись на минимальном DOM, render/close заменены. Факт jQuery:false установлен чтением ApplicationV2 factory и ChatLog. Реальный Socket.IO4.8.3 создан autoConnect:false, emit/буфер проверены без соединения.
+
+Группы 29–31 используют полный настоящий Actor.damageMixin, armorMixin, damageUtilMixin, DamageInstance/ArmorData/MonsterData и извлечённые неизменённые location static/getList. Функции эффектов/UUID, Actor/Item-документы, ChatMessage, game/settings/user/коллекции, prompt и update — фасады. Обычный update применяет поля в памяти; для очередиHP update возвращает управляемый Promise. Это позволяет установить аргументы/ожидания и результат определённого порядка, но не моделирует серверную очередь или весь prepareData lifecycle. Получение getInteractActor в этой порции задано фасадом; прежние проверки выбора/отмены helper не объявлены повторёнными.
+
+В первичном адаптере ожидание одного setImmediate не гарантировало завершения асинхронного чтения HBS: шаблоны предварительно скомпилированы в памяти, результат проверен повторно. В интеграционной группе 30 shield-update первоначально попал в списокHP как undefined; фильтр выделил HP-записи, щитовые применены отдельно. Изменены только проверки, не исходник. Итоговые запуски 28+3+1 завершились exit0.
+
+### Сценарии текущей порции
+
+| Группа | Наблюдаемый результат |
+| --- | --- |
+| 01 | Attack listener: первая button.damage, вложенный event.target не меняет замкнутое сообщение; повторная регистрация добавляет второй listener, отсутствие кнопок допустимо. |
+| 02 | Старый/отсутствующий UUID → onDamage TypeError; одиночный listener не принимает jQuery. Старый массовый wrapper проверен на пропуске неизвестного сообщения; прямых callers не найдено. |
+| 03 | Все button.stun/crit-stun связаны; две обычные передали 4, критическая — undefined; вложенный target не влияет. |
+| 04 | Отсутствующий Actor: executeDefense выходит, stun и три critical callbacks отклоняются. |
+| 05 | Меню передало пять исходных полей защиты и identity crit; неизвестное сообщение ломает visible/executeDefense. |
+| 06 | Настоящий ContextMenu14._onClickItem вызвал callback(target,event) и onClick(event,target). ApplicationV2._createContextMenu задаёт jQuery:false, ChatLog использует этот factory. |
+| 07 | Первый DOM total7.9 →7 вопреки rolls99/1 и второму DOM99; normal→HP, isNonLethal→STA, forced→STA. |
+| 08 | Маркер damage-message без dice-total проходит visible и даёт TypeError; текст? даёт NaN в DamageInstance. |
+| 09 | ApplyNormalDamage возвращается при pending prompt; applyDamageFromMessage/applyDamageFromStatus — при pending Actor.applyDamage. |
+| 10 | Настоящий callback inline prompt:8 options, monster controls/checked и пять выходных полей; rejectClose:true. |
+| 11 | Отмена prompt отклоняет внутренний applyDamageFromMessage до Actor; отсутствующие message/Actor дают ошибки на соответствующих границах. |
+| 12 | Настоящий DamageMessageData удалил duration; первый выбор head/oil некрофага изменил prepared, _source остался torso/пусто; следующий Actor с Empty/без масла получил прежние head/oil. |
+| 13 | Исходный registerHooks одинаково вызывает общий handler при flags/start/turn; неактивный GM отсекается; пустой combatant вызывает ошибку. |
+| 14 | Character/zero/dead останавливают регенерацию; dead не останавливает отдельный status damage. |
+| 15 | HP19/max20+regen2 запросил 20; сообщение показывает 19/2, escaped name и whisper текущего GM; при полномHP повторно сообщение/update20. |
+| 16 | Настоящая MonsterData принимает regeneration−3; при HP1 consumer запросил−2. Это граница без выбора нового правила. |
+| 17 | Регенерация/root завершаются при pending update; отсутствие Actor отдельно отклоняет обе внутренние ветви. |
+| 18 | Настоящая turnStartEffects схема:damage5+2→7, type fire потерян, heal3/modifier2→+3; allLocations/ignoreArmor/bypassesShield/spDamage передаются. |
+| 19 | Modifier-only при amount0 пропускается; amount−1 создаёт status-message без урона; amount2/modifier−5→damage−3 в STA. |
+| 20 | Реальное calculateHealValue:HP19/max20,heal3→1; при полномHP heal-message нет; heal-ветвь ждёт pending update. |
+| 21 | С facade Actor.applyDamage два статуса 3/4 изHP10 подготовили 7/6, затем итог 6. Это проверка очереди, повторённая настоящими методами в 30. |
+| 22 | Регенерация 2 и heal3 запустили записи 12/13 изHP10 до завершения regen update. |
+| 23 | Настоящий DefenseMessageData удалил critEffectModifier6; critical menu передал этот же очищенный crit. |
+| 24 | Socket sender: guards socket/user/users, GM,нет activeGM; допустимый envelope сохраняет reference data, канал точный, ack-аргумента нет. |
+| 25 | Настоящий Socket.IO4.8.3 с autoConnect:false:emit возвращает Socket, два события остаются sendBuffer, acks пуст; соединение не создавалось. |
+| 26 | Настоящий receiver игнорирует другого GM/игрока; activeGM вызывает addItem/restoreReliability, data.shift удаляет UUID из полученного массива. |
+| 27 | Unknown type,null message/data,пустой UUID/нет документа отклоняют callback; следующий правильный запрос исполняется. |
+| 28 | Receiver завершается при pending addItem; _createMessage содержит только type/data, результата операции нет. |
+| 29 | Настоящий status→Actor.damageMixin:при fire.flat4 потерянный тип даёт урон 5 (HP100→95), контроль с type fire даёт 9 (95→86). |
+| 30 | Настоящие status/Actor.damageMixin/armorMixin/locationMixin/DamageInstance:два pending HP update97/96 из 100, итог 96 после записи; математически последовательный урон 3+4 оставил бы 93. Щитовые update исполнялись сразу. |
+| 31 | Настоящий положительный status.amount2/modifier−5 дал damage−3, shield5→8,HP100 неизменён; уточнение 291. |
+| 32 | 22 буквальных ключа локализации трёх файлов проверены штатными expandObject/getProperty:все есть в en/ru; динамическое DamageType по произвольному input этим не покрыто. |
+
+### Общая сверка .041–.045 с предыдущими карточками
+
+Точный состав:26 файлов /2423 строки (687+477+320+603+336). Для всех 26 проверены существование полных карточек, исходные определения/импорты и направления к producers/consumers, описанные ниже. Машинно прочитаны ссылки всех 310 прежних карточек; объединение прямых и обратных документированных пересечений включает 79 из них. Остальные 231 не имеют найденного ссылочного пересечения с этими 26; это не доказательство отсутствия динамической зависимости.
+
+Числа «назад/вперёд» — количество прежних карточек, которые ссылаются на файл, и количество прежних файлов, на которые ссылается его карточка; срез перед добавлением уточнений .045. Они включают ссылки на исходник и карточку с устранением дублей, не являются числами вызовов. Все явные относительные JS-import этих 26 отражены в карточках; пропусков нет. Полный повторный runtime-разбор 79 или 310 файлов не выполнялся: содержательная сверка ограничена обозначенными границами. Исторические результаты .041–.044 используются с их исходными пределами.
+
+| Файл / карточка | Строк | Назад / вперёд | Сопоставленная связь и пределы |
+| --- | --- | --- | --- |
+| [module/actor/mixins/weaponAttackMixin.js](files/module/actor/mixins/weaponAttackMixin.js.md) | 382 | 29 / 20 | weaponAttack → AttackMessageData → кнопка/combat.js; serialized rollOnlyDmg отдельно (297), не проходящий контролем обычной атаки. |
+| [templates/dialog/combat/weapon-attack.hbs](files/templates/dialog/combat/weapon-attack.hbs.md) | 270 | 4 / 4 | Контекст/controls weaponAttack и две группы CSS; ammo raw HTML (266); составной Roll и массив отдельных Roll не смешаны. |
+| [styles/weapon-roll.css](files/styles/weapon-roll.css.md) | 19 | 2 / 1 | @import witcher-styles и .weapon_roll_sheet; профиль .041 сохранён, computedStyle не повторялся. |
+| [styles/attack-sheet.css](files/styles/attack-sheet.css.md) | 16 | 2 / 2 | Общий attack-sheet и глобальный h2 img; невалидность word-wrap из 267 остаётся прежним наблюдением. |
+| [module/actor/mixins/defenseMixin.js](files/module/actor/mixins/defenseMixin.js.md) | 457 | 38 / 21 | Item options/подготовленные Actor-поля → defense → очищенный crit; фактический menu consumer проверен в 05/23. |
+| [module/item/mixins/defenseOptionMixin.js](files/module/item/mixins/defenseOptionMixin.js.md) | 9 | 5 / 5 | Item wrapper → createDefenseOption модели; коллизии value одинаковых имён (268) не исправлены. |
+| [templates/chat/combat/defense/defense.hbs](files/templates/chat/combat/defense/defense.hbs.md) | 2 | 1 / 3 | defenseName/displayFormula из producer; ChatMessageData.append добавляет HTML. |
+| [templates/chat/combat/defense/defenseCrit.hbs](files/templates/chat/combat/defense/defenseCrit.hbs.md) | 6 | 0 / 2 | crit-taken/crit-stun доступны menu/listener; critEffectModifier теряется в модели, не в HBS. |
+| [templates/chat/combat/defense/defenseStun.hbs](files/templates/chat/combat/defense/defenseStun.hbs.md) | 3 | 0 / 2 | button.stun привязан ко всем кнопкам; число из attackWeaponProperties, для shield ранняя проблема 272 сохранена. |
+| [module/actor/mixins/armorMixin.js](files/module/actor/mixins/armorMixin.js.md) | 285 | 12 / 10 | Данные ArmorData/SP/resistance и Actor; общий тип статуса теперь прослежен до getter, полная матрица слоёв .043 не повторялась. |
+| [module/actor/mixins/locationMixin.js](files/module/actor/mixins/locationMixin.js.md) | 11 | 5 / 5 | Actor static/getLocationObject, all-locations wrapper теряет monster this (32); ручной tailWing допустим отдельно. |
+| [styles/armor-sheet.css](files/styles/armor-sheet.css.md) | 24 | 1 / 9 | Фактические armor/effects классы и legacy monster partial различены; нового UI-вывода нет. |
+| [module/item/mixins/damageUtilMixin.js](files/module/item/mixins/damageUtilMixin.js.md) | 109 | 13 / 11 | Item.rollDamage → DamageMessageData → menu; методы DamageProperties есть в AttackMessageData, отсутствуют у plain DTO (297). |
+| [module/scripts/damageInstance.js](files/module/scripts/damageInstance.js.md) | 52 | 1 / 0 | Один экземпляр на menu/status; type undefined передан реально; общий mutable массив всех зон остаётся 285. |
+| [templates/dialog/combat/variableDamage.hbs](files/templates/dialog/combat/variableDamage.hbs.md) | 6 | 0 / 0 | Контекст currentDamage/окно принадлежит rollDamage; отдельный диалог применения урона — inline JS .045. |
+| [module/actor/mixins/damageMixin.js](files/module/actor/mixins/damageMixin.js.md) | 356 | 20 / 17 | Actor.applyDamage → shield/SP/location/modifiers/HP/effects; новая проверка очереди реальных методов 29–31. |
+| [module/actor/mixins/damageUtilMixin.js](files/module/actor/mixins/damageUtilMixin.js.md) | 17 | 3 / 5 | getFlatDamageMod читает damage.type; отсутствующий fire пропускает flat4 (21); applyAP неверный путь 25 остаётся. |
+| [templates/chat/damage/damageToLocation.hbs](files/templates/chat/damage/damageToLocation.hbs.md) | 40 | 1 / 1 | Контекст detail damageToLocation с ошибкой 287; подмена сообщений в .045 не подтверждает исправный HTML. |
+| [templates/chat/damage/damageToAllLocations.hbs](files/templates/chat/damage/damageToAllLocations.hbs.md) | 15 | 0 / 1 | Общий итог/массив результатов с ошибкой 287 и shared instances285; не смешан с несколькими turnStartEffects299. |
+| [templates/chat/damage/shieldAbsorbs.hbs](files/templates/chat/damage/shieldAbsorbs.hbs.md) | 5 | 0 / 0 | Сообщение поглощения не означает завершённый update щита;292 отдельно от 299. |
+| [templates/chat/damage/spAbsorbs.hbs](files/templates/chat/damage/spAbsorbs.hbs.md) | 3 | 0 / 0 | Раннее поглощение SP и информационное сообщение; эффекты applyOnDamage после SP (290) не исправлены. |
+| [module/scripts/combat/combat.js](files/module/scripts/combat/combat.js.md) | 96 | 8 / 10 | Два render-listener и два menu extender; HTMLElement, target, UUID и выбранный Actor — группы 01–06/23. |
+| [module/scripts/combat/applyDamage.js](files/module/scripts/combat/applyDamage.js.md) | 124 | 9 / 8 | Меню/inline prompt → HP/STA/DamageInstance; cleaned/prepared/source и ожидаемость —07–12. |
+| [module/scripts/combat/generalCombatHook.js](files/module/scripts/combat/generalCombatHook.js.md) | 87 | 8 / 11 | Hook/current Actor → regen/status → реальные расчёты;13–22/29–31. |
+| [templates/chat/combat/regeneration.hbs](files/templates/chat/combat/regeneration.hbs.md) | 8 | 1 / 2 | Контекст {actor} до update, escaped name и GM whisper;15. |
+| [module/scripts/socket/socketMessage.js](files/module/scripts/socket/socketMessage.js.md) | 21 | 3 / 8 | Только repair/gift → общий канал → activeGM receiver;24–28, отдельно от User.query. |
+
+### Сопоставление issues и противоречий
+
+Машинно прочитаны 301 документа potential для привязки путей к матрице; статус не заменён результатом теста. Для содержательной сверки причин использованы карточки и прежние журналы:
+
+| Граница | Issues / решение сверки |
+| --- | --- |
+| Запуск и пустой контекст Combat | [6](../../issues/potential/issue-00006.md) — любое update; [145](../../issues/potential/issue-00145.md) дополнена общей ветвью. Новая[299](../../issues/potential/issue-00299.md) про ожидание записей имеет другую причину. |
+| Выбор Actor и устаревшая кнопка | [149](../../issues/potential/issue-00149.md) уже включала combat/applyDamage, дополнена исполнением без нового дубля; [239](../../issues/potential/issue-00239.md) — Item у onDamage. [108](../../issues/potential/issue-00108.md) — другой repair handler/event.target, не переносится на боевые closures. |
+| Схемы до и после сообщения | [257](../../issues/potential/issue-00257.md) — duration; [258](../../issues/potential/issue-00258.md) — critEffectModifier; [297](../../issues/potential/issue-00297.md) — plain properties в rollOnlyDmg. Успешный обычный AttackMessageData-контроль не устраняет ранний барьер rollOnlyDmg. |
+| Форма предметных воздействий | [70](../../issues/potential/issue-00070.md) — producer/преобразование; [295](../../issues/potential/issue-00295.md) — неизвестный ID; applied-array после сообщения и Item TypedObject различены. |
+| Тип и интенсивность статуса | [21](../../issues/potential/issue-00021.md), [22](../../issues/potential/issue-00022.md) повторены; [291](../../issues/potential/issue-00291.md) получила реальный источник отрицательного итогового damage. |
+| Броня/щиты/общий массив | [282](../../issues/potential/issue-00282.md), [292](../../issues/potential/issue-00292.md) — отдельные SP/shield-записи; [285](../../issues/potential/issue-00285.md) — shared DamageInstance по локациям; [299](../../issues/potential/issue-00299.md) — несколько отдельных status-запросов HP. Это не один дефект. |
+| Модификаторы и типы сопротивлений | [25](../../issues/potential/issue-00025.md), [26](../../issues/potential/issue-00026.md), [27](../../issues/potential/issue-00027.md), [280](../../issues/potential/issue-00280.md), [286](../../issues/potential/issue-00286.md): неверный путь, кратность, flat и разные типы имеют разные условия; статус без fire отдельно 21. |
+| Перечисление локаций | [32](../../issues/potential/issue-00032.md): getAllLocations теряет контекст. Корректный единичный tailWing в dialog/location не опровергает дефект списка. |
+| Масло/локация сообщения | Новая[300](../../issues/potential/issue-00300.md): воспроизведены два последовательных применения DamageMessageData. Прежняя .042 описывала изменение location в критической защите без повторного consumer; это иной участок, не новый вывод о правилах крита. |
+| HTML и итог броска | [287](../../issues/potential/issue-00287.md) — поля detail; [293](../../issues/potential/issue-00293.md) — malformed flavor; новая[301](../../issues/potential/issue-00301.md) — отсутствие/нечисловой DOM total. parseInt первого итога не объявлен ошибкой обычной составной формулы. |
+| Травма и временные HP | [288](../../issues/potential/issue-00288.md), [289](../../issues/potential/issue-00289.md), [294](../../issues/potential/issue-00294.md): quantity/выбор Item/миграция AE — самостоятельные причины. Передача crit menu не доказывает успешность этих downstream операций. |
+| Сокет и ремонт/передача | [10](../../issues/potential/issue-00010.md), [169](../../issues/potential/issue-00169.md) дополнены guards/receiver/буфером. Это другой протокол, чем User.query и [8](../../issues/potential/issue-00008.md). |
+| Сохранённый дубль | [200](../../issues/potential/issue-00200.md) и[29](../../issues/potential/issue-00029.md) остаются potential, как в [протоколе 1](cross-check-0001.md). В новой порции аналогичные уже зарегистрированным наблюдения 149/145/239/21/22 не размножались. |
+
+Противоречие между «старый callback» и «меню сломано» разрешено чтением/исполнением настоящего ContextMenu: этот callback ещё поддерживается. Поведение первой damage-кнопки и неиспользуемого legacy wrapper описано отдельно от штатной регистрации. Старые карточки со словами «будет разобрано позже» дополнены актуальным состоянием и конкретными пределами; прошлые протоколы не переписаны.
+
+### Изменения документов и контроль
+
+Добавлены 5 карточек и 3 issues299–301; обновлены 11 связанных карточек: hooks, socketHook, helper, combatEffectsData, DamageMessageData, DefenseMessageData, Actor.damageMixin, Actor.defenseMixin, Item.damageUtilMixin, itemContextMenu, healMixin. Дополнены 11 прежних issues:6,10,21,22,145,149,169,239,257,258,291. Задача .045, родитель, указатели, реестры, журнал и CHANGELOG согласованы.
+
+Формальная проверка:336 карточек соответствуют 336 строкам «Проверено»,285 «Не начат»;50 подзадач сохраняют 376 уникальных назначенных файлов,51 в .046–.050. Все 301 issues остаются potential, open/closed без issues. Локальные ссылки и якоря проверены после правок; исходники 621, прежний журнал и метаданные доступа 1390 отслеживаемых путей сохранены. Итог: 16 964 локальные ссылки/якоря — ошибок нет; 40 таблиц восьми новых документов имеют корректные разделители и число ячеек; git diff --check прошёл. Изменены 33 прежних документа, добавлены 8; всё внутри docs. У всех 1390 исходно отслеживаемых путей совпали mode/uid/gid/inode. Агрегат исходников совпал с приведённым выше; прежний журнал сохранён побайтово после новой записи.
+
+Границы результата: не запускались мир/браузер/БД, сборка, HTTP-служба, реальная сеть/доставка сокета и межклиентские сценарии. Никакие правила игры, код, настройки, права или ветки не менялись; коммит агент не создавал. Общая сверка — вспомогательный материал для TASK-0004, которая остаётся draft.
+
 ## TASK-0003.044
 
 Дата: 2026-09-12. Ветка rusbar-main; HEAD 965132d5d7972a0edd73aaa62484a1b6ba15991f. Перед работой дерево чистое. Все 621 исходник реестра побайтово совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f; агрегат SHA256 по sorted(path UTF-8 + NUL + bytes): 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4.

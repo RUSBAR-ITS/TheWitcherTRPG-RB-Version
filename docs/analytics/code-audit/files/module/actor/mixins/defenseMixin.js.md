@@ -166,3 +166,11 @@ attackDamageObject не копируется. Если это prepared damage и
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 16695cbfc7fec3e0de56660c7cab21bc0304e94b; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003042) |
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+Проверен полностью [маршрут чата](../../../../../../../module/scripts/combat/combat.js). executeDefense передаёт attack, defenseOptions, damage, attackRoll, attacker из выбранного сообщения; его Actor выбирается helper, отсутствующий Actor отсекается. stunSave на button.stun получает attackWeaponProperties.stun, на crit-stun — без аргумента. Все кнопки stun связываются отдельно, вложенный target не меняет сообщение. Группа 23 подтверждает, что critical menu получает уже очищенный crit без modifier (258). Полные исходы skillDefense/stunSave из .042 заново не запускались.
+
+[Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.

@@ -133,3 +133,11 @@ WitcherLootSheet импортирует itemContextMenu1, присоединяе
 [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+[emitForGM](../../../../../../../../module/scripts/socket/socketMessage.js) полностью описан. Группы 24–28 подтвердили guards, envelope, receiver activeGM и отсутствие прикладного результата даже после await sender/receiver. Отключённый настоящий Socket.IO4.8.3 буферизовал события; сети не было. giftItem по-прежнему отдельно запускает removeItem после отправки, как описано в 169. Тело giftItem не исполнялось повторно, вывод связан с новым доказательством sender/receiver.
+
+[Проверки, результаты и ограничения](../../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.

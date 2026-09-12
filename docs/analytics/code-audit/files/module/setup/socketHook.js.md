@@ -89,3 +89,11 @@
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Прослежен реальный caller giftItem из itemContextMenu: emitForGM('addItem',[receiverUuid,item,1]). Реальный emitForGM при !activeGM не отправляет сообщение, но caller уже продолжает removeItem (issue-00169). registerSocketListeners исполняет только активный GM и не возвращает caller подтверждение завершённого addItem. В изолированном маршруте передан Item-фасад; его настоящая socket-сериализация не проверялась.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+Полностью описан [sender](../../../../../../module/scripts/socket/socketMessage.js). Реальный отключённый Socket.IO4.8.3 подтвердил return Socket и отсутствие acknowledgement: await emit не подтверждает addItem. Группы 26–28 исполнили этот receiver с activeGM/другими users; оба штатных type вызывают нужный документ, malformed message/data/UUID отклоняют текущий callback, после чего корректный запрос ещё работает. Pending document Promise не ожидается. Все пользователи/документы представлены фасадами, autoConnect:false исключает сетевой обмен.
+
+[Проверки, результаты и ограничения](../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.

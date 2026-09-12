@@ -103,3 +103,11 @@ createBaseDamageObject не делает копию properties: последую
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 965132d5d7972a0edd73aaa62484a1b6ba15991f; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003044) |
+
+## Дополнительная сверка TASK-0003.045
+
+2026-09-12, rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3; исходники не изменены.
+
+[onDamage](../../../../../../../module/scripts/combat/combat.js) теперь полностью описан: выбирает Item по message.system.attack.itemUuid и передаёт исходный system.damage в rollDamage, не ожидая Promise. В действующем Hook получает HTMLElement; старый addAttackChatListeners не имеет найденных вызовов и передаёт jQuery несовместимому listener. [Menu consumer](../../../../../../../module/scripts/combat/applyDamage.js) читает первый DOM .dice-total из сообщения урона, а не system.rollTotal. Полный rollDamage повторно не исполнялся, прежняя граница модели/serialized properties (297) сохраняется.
+
+[Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
