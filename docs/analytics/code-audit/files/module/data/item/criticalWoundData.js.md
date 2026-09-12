@@ -107,3 +107,11 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. В реальном _prepareItems общего V2 await Promise.all вызывает system.enrichedText у всех document.itemTypes.criticalWound, затем context.criticalWounds[uuid]=description. Проверены value/enriched/systemField и распространение отказа enrich. V1 этого шага не имеет; его getData не используется текущими Character/Monster. Обогащение не изменяет source и не создаёт эффекты/changes.
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Дополнительная сверка TASK-0003.044
+
+2026-09-12, rusbar-main, 965132d5d7972a0edd73aaa62484a1b6ba15991f; исходники не изменены.
+
+[Полностью разобран applyCritWound](../../actor/mixins/damageMixin.js.md): выбор из Compendium.index по четырём полям, затем fromUuid и общий Actor.addItem. Группы 27–30/36–37: при повторном name/type addItem отправляет quantity=NaN, которого схема травмы не имеет; treatment/days не сбрасывает (новая 288). Первое добавление передаёт копию с quantity 1, дальнейшая очистка схемы убирает это незаявленное поле. Сохранение не проверено. Отдельный Actor.calculateHealingTime возвращает те же 3/7/10 при BODY 5 и 1 при BODY 20; deadly/unknown→undefined, тогда как метод этой модели сохраняет прежнее healingTime99. Это два независимых определения.
+
+[Методика и пределы проверки](../../../../review-log.md#task-0003044). Уточнение связей не увеличивает покрытие; мир, браузер и БД не запускались.

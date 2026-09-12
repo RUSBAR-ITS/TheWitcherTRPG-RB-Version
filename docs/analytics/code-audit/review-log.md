@@ -1,5 +1,128 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.044
+
+Дата: 2026-09-12. Ветка rusbar-main; HEAD 965132d5d7972a0edd73aaa62484a1b6ba15991f. Перед работой дерево чистое. Все 621 исходник реестра побайтово совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f; агрегат SHA256 по sorted(path UTF-8 + NUL + bytes): 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4.
+
+### Область и результат
+
+Выполнена [TASK-0003.044](../../tasks/task-0003.044.md):9 файлов /603 логические строки. Четыре JS: Item.damageUtilMixin (3 метода), DamageInstance (10 определений), Actor.damageMixin (12 методов), Actor.damageUtilMixin (2 метода); пять HBS. Полные карточки:
+
+| Файл | Строк | Карточка |
+| --- | --- | --- |
+| module/actor/mixins/damageMixin.js | 356 | [Описание](files/module/actor/mixins/damageMixin.js.md) |
+| module/item/mixins/damageUtilMixin.js | 109 | [Описание](files/module/item/mixins/damageUtilMixin.js.md) |
+| module/scripts/damageInstance.js | 52 | [Описание](files/module/scripts/damageInstance.js.md) |
+| module/actor/mixins/damageUtilMixin.js | 17 | [Описание](files/module/actor/mixins/damageUtilMixin.js.md) |
+| templates/dialog/combat/variableDamage.hbs | 6 | [Описание](files/templates/dialog/combat/variableDamage.hbs.md) |
+| templates/chat/damage/damageToLocation.hbs | 40 | [Описание](files/templates/chat/damage/damageToLocation.hbs.md) |
+| templates/chat/damage/damageToAllLocations.hbs | 15 | [Описание](files/templates/chat/damage/damageToAllLocations.hbs.md) |
+| templates/chat/damage/shieldAbsorbs.hbs | 5 | [Описание](files/templates/chat/damage/shieldAbsorbs.hbs.md) |
+| templates/chat/damage/spAbsorbs.hbs | 3 | [Описание](files/templates/chat/damage/spAbsorbs.hbs.md) |
+
+Покрытие 322→331 из 621, остаток 290. В пятой серии 21 из 77 проверены,56 в очереди;234 требуют последующей детализации. TASK-0003 остаётся in-progress; TASK-0004/0005 — draft; следующая .045.
+
+### Методика и пределы
+
+Исходники читались целиком с nl/cat; определения, callers, Object.assign, схемы, шаблоны, styles и локализации проверялись rg/rg --files. Соседи прочитаны в пределах связей, их полные карточки не засчитаны повторно. Использованы существующие файлы Foundry14.367.0 в /opt/foundryvtt, Node24.16.0. Запуск: node --input-type=module через quoted stdin heredoc; код проверок существовал только в памяти инструмента, стенд/файлы тестов не создавались.
+
+Настоящие импорты: DamageInstance, DamageProperties, DamageMessageData, AttackMessageData, CriticalWoundData, ArmorData, armorMixin, Actor damageUtilMixin, ChatMessageData; исходные полные объекты Actor.damageMixin и Item.damageUtilMixin загружены vm с подменой импортированных документов/эффектов. Тела static location/getList/addItem извлечены без изменения арифметики. Foundry DataModel/fields, Roll/evaluate (цифровые кубы minimize), ActiveEffectTypeDataModel, BaseActiveEffect.migrateData, Handlebars и parse5 настоящие. @common разрешён к локальному ядру. CONFIG.WITCHER из исходника. Переводы проверены штатным expandObject и getProperty.
+
+Actor/Item-владельцы, game/ui/settings, окно DialogV2, UUID/Compendium.index, callbacks эффектов, ChatMessage/toMessage/setFlag и update/create — фасады. Для обычной арифметики update применяет переданные поля к минимальному объекту; для проверки ожидания возвращает управляемый pending Promise. В тестах схемы payload vm сначала сериализуется в JSON, как plain data, чтобы не спутать cross-realm объект с отказом Foundry. Исходники не исправлялись. Первоначальные ошибки адаптера (cross-realm object, тестовый ID bleeding вместо штатного bleed, перекрытое имя фабрики item и короткий тестовый UUID для валидации AttackMessageData) устранены только в коде проверки; итоговый запуск ниже завершился exit0.
+
+Итог: **40 групп проверок прошли**. Это проверка текущего поведения, включая ожидаемые исключения, а не утверждение исправности функций.
+
+### Проверенные сценарии
+
+| Группа | Фактический результат |
+| --- | --- |
+| 01 | createBaseDamageObject сохраняет identity properties/item/defenseOptions; addEffects виден следующему prepared-чтению, source неизменен; без parent исключение. |
+| 02 | Все 10 определений DamageInstance: defaults, цепочка setters, строки 7[src]/5[src]/15[src]/7[src]/7[src]; null-стадия выводится как null. |
+| 03 | Настоящий Roll:4→4,2+3→5,2d6+1 при minimize→3,strong4→8, пустая строка→0 с одним уведомлением. |
+| 04 | Диалог получает currentDamage1d6; newDamage2+3→5. Отмена, '???' и отсутствующая location отклоняют выполнение до нового сообщения. |
+| 05 | Настоящая DamageProperties: bleed30+20→50; фиксированный 50 проходит,51 нет; poison0 получает applied=false при очистке сообщения; source не меняется. Неизвестный ID вызывает чтение img у undefined. |
+| 06 | rollDamage ждёт toMessage, но не setFlag. После очистки DamageMessageData duration7 исчез, в запросе flag остаётся; critEffectModifier6 внутри damage.crit сохранён. |
+| 07 | parse5 разобрал исходный flavor: div.damage-message имеет атрибут '<h1'; отдельный h1 не создан. Имя с HTML остаётся в сыром flavor; sanitization не проверена. |
+| 08 | Общий shield 5: входы 3/5/8/[3,4] дают damage[0]/[0]/[3]/[0,2]. Сообщение только в первом случае, где остался щит. |
+| 09 | bypassesShield=true,damage 3,shield 5→shield 2,HP 100. Обход не отключает handleShield. |
+| 10 | Отрицательный damage−3 увеличивает shield 5→8. updateDerivedStat105.9 снижает HP 100→−5; damage−3 увеличивает STA 30→33. Эти последние границы записаны без оценки правил. |
+| 11 | Два await handleShield3 при held updates из shield 5 отправляют 2 и 2, оба поглощают 3. Контекст сообщения читает прежний 5. |
+| 12 | Одно попадание 10 в голову, SP 2→24; HP 100→76 и STA 30→6. SP-отбор в этой группе задан фасадом. |
+| 13 | При damage 10/SP 20/HP 100 внешний applyDamage всё равно вызывает status bleed и Item applyOnDamage с duration7. Сами эффекты перехвачены. |
+| 14 | Полное поглощение shield 20 при damage 10 прекращает внешний applyDamage до добавления масла и обоих видов эффектов. |
+| 15 | Масло совпавшей категории добавляет 5 после щита: damage 10/shield 2→[8,5],HP 87. |
+| 16 | Строковые temporaryHp3 и attackModifier5 одного эффекта поглощают 6, чужой бонус становится 2,HP 100. Два отдельные источника 3+4 и damage 10 оставляют HP 97. |
+| 17 | Некорректный JSON временных HP прекращает HP-путь до записи; STA не читает эти изменения и уменьшается 30→27. |
+| 18 | SP 10 расходуется один раз на экземпляры 6+8→0+4; серебряные 4 по обычной цели→2. AlwaysSP вызван и при полном блоке; normalSP только в положительной ветке. |
+| 19 | allLocations без SP:16→общий остаток 3, шесть ссылок results на один массив, total18,HP 82; damage.location после цикла leftLeg. |
+| 20 | allLocations со SP 5 и входом 10: общий массив обнуляется до продолжений, все шесть результатов blocked, total0. |
+| 21 | silverTrait присваивает строку setType, сохраняя type=slashing; при сопротивлении несеребру итог 5 из 10. Это не ожидаемая правильная серебряная формула. |
+| 22 | Настройка silverTrait=false, silverDamage2d6 и minimize: обычный удар→[10,2], strong→[10,4]. Наличие silverDamage не даёт основной порции пройти ветку half за несеребро. |
+| 23 | flat−3/0/+3 дают[10]/[10]/[10,3]. Положительный flat при resistNonSilver вызывает TypeError likeSilver из-за null-типа. |
+| 24 | multiplication3 без сопротивления брони не используется; nonMeteorite+vulnerable превращают 9→4→8. applyAP=true со штатным properties вызывает TypeError, AP-флаг обходит helper. |
+| 25 | Контекст одиночного HBS теряет damageProperties; блоки IAP/ablating/crushingForce скрыты. Общий partial не получает готовые тексты стадий. spAbsorbs выводит 5[S] и 8. |
+| 26 | Критический и бонусный урон передают 8/4, torso,hp, обход обеих броней,type=null; оба метода возвращаются при pending applyDamage. |
+| 27 | Отбор none/torso/simple: critEffect5→greater; d6=1+modifier0→lesser; +modifier6→greater; единственный кандидат выбирается без случайности. |
+| 28 | Отсутствующий pack→index; пустой список→uuid; resolve=null передаётся в addItem, затем name-ошибка. addItem в null-сценарии перехвачен отдельно. |
+| 29 | Общий addItem при повторе name/type травмы отправляет quantity=NaN; treatment=stabilized,daysHealed3 остаются, create не вызывается. |
+| 30 | Actor helper и CriticalWoundData: BODY 5→3/7/10;BODY 20→1/1/1. Для deadly/unknown Actor возвращает undefined, модель сохраняет 99. |
+| 31 | Настоящие ActiveEffectTypeDataModel/WitcherActiveEffectData: changes располагается в system, type=add,phase=initial; value допускает строковый JSON. |
+| 32 | Настоящий expandObject локализаций en/ru: все 14 литеральных ключей пяти HBS найдены; WITCHER.Item.properties.variableDamage из JS отсутствует в обеих. |
+| 33 | Прямой applyDamage с TypedObject effects падает на filter после HP 100→97. Обычная DamageMessageData имеет Array; этот прямой сценарий не объявлен штатным UI-маршрутом. |
+| 34 | Настоящая ArmorData Light SP 5: allLocations10 оставляет HP 100; отдельные свежие расчёты дают 15/5/2/2/2/2. SP-записи перехвачены. |
+| 35 | Настоящий BaseActiveEffect.migrateData переводит корневой changes и JSON value в system.changes с object value; updateDerivedStat2 затем отклоняется на JSON.parse до HP. |
+| 36 | Два lesser-кандидата при запросе greater вызывают uuid-ошибку. Single location завершается при pending ChatMessage.create, allLocations ожидает create. |
+| 37 | Полный applyCritWound→addItem: первый вызов передаёт копию с quantity 1 и создаёт сообщение при pending Item.create; повторный совпавший Item отправляет quantity=NaN. |
+| 38 | Граница rollOnlyDmg: toObject(false) убирает getPreprocessedEffects; настоящий consumer отклоняется. Настоящая AttackMessageData восстанавливает модель и даёт Roll4. Полный weaponAttack/диалог не исполнялся. |
+| 39 | strong silverDamage1d6+1 с minimize: native1d6+1*2→3; контроль (1d6+1)*2→4. Простая формула из 22 работала иначе по структуре. |
+| 40 | Полный applyDamage с oil и resistNonSilver отклоняется на likeSilver до HP. Настоящая CriticalWoundData убирает незаявленный quantity 1 из prepared/source. |
+
+### Перекрёстная сверка
+
+| Связь | Проверка и вывод |
+| --- | --- |
+| Item → properties → attack/damage message | createBaseDamageObject передаёт prepared ссылку; preprocessing копирует записи; DMD меняет контейнер effects на Array. Сырой flag не исправляет duration в system. |
+| DamageInstance → Actor → armor | Стадии пишутся напрямую; один totalSP расходуется между экземплярами. Сравнены raw result и его HBS-адаптеры. Полный allLocations проверен с настоящей ArmorData. |
+| applyOnHit / applyOnDamage | Флаги объявлены раздельно; после blockedBySp внешний метод всё равно вызывает applyOnDamage. Подтвержден вызов, не применение эффекта в мире. |
+| Временные HP → ядро 14 → расход | system.changes — правильный путь; миграция строки value в объект создаёт несовпадение с JSON.parse consumer. Строковой тест 23 не доказывает расход мигрированного эффекта. |
+| Crit → индекс → Item | Не RollTable: ready заранее загружает четыре поля индекса; applyCritWound выбирает/разрешает запись. Общий addItem пытается складывать quantity даже у травмы. |
+| Лечение травмы | Расчёт срока в Actor и в модели — разные определения, не взаимные вызовы. none/stabilized/treated/followUp не изменяются методом получения. |
+| HBS / локализация / HTML | Все поля пяти шаблонов сопоставлены с контекстами; partial зарегистрирован preload.14 HBS-ключей en/ru существуют; JS title ключ отсутствует; начальный h1 flavor некорректен. |
+
+Уточнены шесть прежних карточек: DamageProperties, DamageMessageData, CriticalWoundData, WitcherActiveEffectData, armorMixin, weaponAttackMixin. Дополнены десять прежних issues:00023/00025/00026/00027/00070/00073/00117/00184/00257/00262. Прежние 00032/00258/00280/00282/00283 сопоставлены по действующим определениям; исторические результаты не объявляются новыми тестами.
+
+### Проблемы
+
+Зарегистрированы 15 новых potential issues — всего 298, все по-прежнему potential:
+
+| ID | Наблюдение |
+| --- | --- |
+| [issue-00284](../../issues/potential/issue-00284.md) | Обход щита проверяется после поглощения урона и расходования щита |
+| [issue-00285](../../issues/potential/issue-00285.md) | Урон по всем локациям повторно изменяет один массив экземпляров |
+| [issue-00286](../../issues/potential/issue-00286.md) | Дополнительный урон flat и oil не имеет записи типа для проверки сопротивлений |
+| [issue-00287](../../issues/potential/issue-00287.md) | Контексты сообщений урона не соответствуют полям шаблона подробностей |
+| [issue-00288](../../issues/potential/issue-00288.md) | Повторное получение одноимённой травмы попадает в изменение отсутствующего quantity |
+| [issue-00289](../../issues/potential/issue-00289.md) | Выбор критической травмы не обрабатывает отсутствие подходящего Item |
+| [issue-00290](../../issues/potential/issue-00290.md) | Полное поглощение бронёй не прекращает применение эффектов applyOnDamage |
+| [issue-00291](../../issues/potential/issue-00291.md) | Отрицательный входящий урон увеличивает запас щита |
+| [issue-00292](../../issues/potential/issue-00292.md) | Повторное поглощение щитом может использовать прежний незаписанный запас |
+| [issue-00293](../../issues/potential/issue-00293.md) | Начальный HTML сообщения урона превращает h1 в атрибут div |
+| [issue-00294](../../issues/potential/issue-00294.md) | Расход временных HP повторно разбирает объект value после миграции Foundry 14 |
+| [issue-00295](../../issues/potential/issue-00295.md) | Неизвестный ID статусного воздействия прерывает бросок урона |
+| [issue-00296](../../issues/potential/issue-00296.md) | Заголовок окна переменного урона запрашивает отсутствующий ключ перевода |
+| [issue-00297](../../issues/potential/issue-00297.md) | Режим только урона передаёт сериализованные свойства без getPreprocessedEffects |
+| [issue-00298](../../issues/potential/issue-00298.md) | Сильный удар умножает только последний член составного серебряного урона |
+
+Не оформлялись как установленные нарушения правил: допустимость отрицательных HP, назначение отрицательного flat/multiplication, требуемый общий итог AoE, кратность сопротивлений, нулевой процент воздействия и контактные эффекты. Для 290 ожидание явно условно до решения пользователя. Прямой TypedObject-вход в applyDamage описан как отличный от найденного штатного маршрута. Новые наблюдения не дублируют прежние 25/26/27/73/184/257; ссылки добавлены к соответствующим карточкам.
+
+### Итоговые проверки документов
+
+Проверены точный состав 9 карточек/603 строки, наличие всех собственных методов и таблиц зависимостей/потребителей, соответствие путей исходникам. Реестр содержит 621 строку,331 «Проверено» и 290 «Не начат»; карточек 331. Пятьдесят подзадач сохраняют 376 уникальных назначенных файлов; .001–.044 done, .045–.050 planned; в очереди 56. Новых документов 24 (9 карточек+15 issues); изменяются только docs. Старые записи журнала сохранены.
+
+Финальная сверка: 16 699 локальных ссылок/якорей — без ошибок; 107 новых таблиц имеют заголовки, разделители и согласованное число столбцов. Все 27 собственных определений JS найдены в карточках; девять путей и 603 строки совпадают с задачей. git diff --check завершился exit0. Изменены 27 существующих документов и созданы 24; вне docs изменений нет. У всех 1366 файлов исходного tracked-набора сохранены mode, uid, gid и inode. Агрегат 621 исходника остался прежним; исторические записи журнала сохранены побайтово.
+
+Мир/браузер/серверная запись, HTTP-доступ ресурсов и несколько клиентов не запускались. Реальные компедиумы, права службы и соответствие рулбукам не исследовались. Исходники, игровые данные и настройки не менялись; коммит агентом не создавался.
+
 ## TASK-0003.043
 
 | Поле | Результат |

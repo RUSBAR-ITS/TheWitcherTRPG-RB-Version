@@ -103,3 +103,11 @@
 [module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Дополнительная сверка TASK-0003.044
+
+2026-09-12, rusbar-main, 965132d5d7972a0edd73aaa62484a1b6ba15991f; исходники не изменены.
+
+Группа 31 снова исполнила унаследованную схему: system.changes корректен, value — AnyField. Группа 35 связала ранее известную миграцию с [updateDerivedStat](../../actor/mixins/damageMixin.js.md): BaseActiveEffect.migrateData разбирает корневую JSON-строку value в объект; потребитель затем повторно JSON.parse-ит объект и прерывает расход HP (новая 294). Группа 13 также показала запрос applyOnDamage после полного поглощения SP (290). Это поведение потребителей, не ошибка объявления самого флага/поля.
+
+[Методика и пределы проверки](../../../../review-log.md#task-0003044). Уточнение связей не увеличивает покрытие; мир, браузер и БД не запускались.

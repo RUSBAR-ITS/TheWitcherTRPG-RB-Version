@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.043 подготовлены и сверены 322 карточки. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.044 подготовлены и сверены 331 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -540,3 +540,17 @@
 | module/actor/mixins/armorMixin.js | [Описание](module/actor/mixins/armorMixin.js.md) |
 | module/actor/mixins/locationMixin.js | [Описание](module/actor/mixins/locationMixin.js.md) |
 | styles/armor-sheet.css | [Описание](styles/armor-sheet.css.md) |
+
+## Формирование и применение урона — TASK-0003.044
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/damageMixin.js | [Описание](module/actor/mixins/damageMixin.js.md) |
+| module/item/mixins/damageUtilMixin.js | [Описание](module/item/mixins/damageUtilMixin.js.md) |
+| module/scripts/damageInstance.js | [Описание](module/scripts/damageInstance.js.md) |
+| module/actor/mixins/damageUtilMixin.js | [Описание](module/actor/mixins/damageUtilMixin.js.md) |
+| templates/dialog/combat/variableDamage.hbs | [Описание](templates/dialog/combat/variableDamage.hbs.md) |
+| templates/chat/damage/damageToLocation.hbs | [Описание](templates/chat/damage/damageToLocation.hbs.md) |
+| templates/chat/damage/damageToAllLocations.hbs | [Описание](templates/chat/damage/damageToAllLocations.hbs.md) |
+| templates/chat/damage/shieldAbsorbs.hbs | [Описание](templates/chat/damage/shieldAbsorbs.hbs.md) |
+| templates/chat/damage/spAbsorbs.hbs | [Описание](templates/chat/damage/spAbsorbs.hbs.md) |
