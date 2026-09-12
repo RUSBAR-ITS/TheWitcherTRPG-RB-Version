@@ -125,3 +125,11 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. dismantle читает craftingComponents и обрабатывает строки по одной: max(1,floor(quantity/2)); isFormulae/alchemyComponents/resultQuantity не используются. enrichDiagramComponents сохраняет строку при недоступном UUID, но последующий dismantle теряет её name/uuid в {item:null,quantity} (новая issue-00216). Это отдельный путь от прежней issue-00095 листа рецепта.
 
 Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.048
+
+2026-09-12, rusbar-main, ee24c2605f4db98fad1ff6db024d2b0c26883670; исходники не изменены.
+
+[templates/chat/item/partials/item-description/crafting-items.hbs](../../../../../../../templates/chat/item/partials/item-description/crafting-items.hbs) читает prepared craftingComponents напрямую; в отличие от повторного map листа из issue-00095, здесь недоступный UUID сохраняет name. Группы 02–03/11: доступный UUID дал ResolvedName/resolved.png; недоступный — SavedUnknown без img; quantity=0 остался 0. Схема убрала исходный img, подготовка вернула его только разрешённой записи. Корректный тип документа — diagrams. Заголовок материалов остаётся у пустого рецепта из-за truthy объекта alchemyComponents; положительные вещества выводятся только при isFormulae.
+
+[Сценарии, результаты и ограничения](../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.

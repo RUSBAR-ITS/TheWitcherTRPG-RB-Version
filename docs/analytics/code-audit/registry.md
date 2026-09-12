@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.047 проверены описания **351 файла**, для **270 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.048 проверены описания **367 файлов**, для **254 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.047](review-log.md#task-0003047) выполнена на 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c: все 621 исходник совпадают с базовым срезом. Добавлены десять карточек фабрик полей и CSS; выполнены 15 групп локальных проверок, перечислены все селекторы/свойства и сверены зависимости/потребители. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
+Последняя [сверка TASK-0003.048](review-log.md#task-0003048) выполнена на ee24c2605f4db98fad1ff6db024d2b0c26883670: все 621 исходник совпадают с базовым срезом. Добавлены 16 карточек HBS/CSS представления предметов; выполнены 16 групп локальных проверок и сверены зависимости/потребители. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -468,16 +468,16 @@
 | [styles/character-header.css](../../../styles/character-header.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/character/sheet.css](../../../styles/character/sheet.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/character/tab-profession.css](../../../styles/character/tab-profession.css) | Уточняет оформление активной вкладки профессии Character и Monster: заголовки, расположение путей, поля навыков и расовые особенности. | [Карточка](files/styles/character/tab-profession.css.md) | Проверено |
-| [styles/chat.css](../../../styles/chat.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/components-list.css](../../../styles/components-list.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/chat.css](../../../styles/chat.css) | Оформление описания Item, запроса ремонта и отдельных фрагментов боевых сообщений: цвет исхода процентного воздействия, кнопки статусов/урона/оглушения и заголовки. | [Карточка](files/styles/chat.css.md) | Проверено |
+| [styles/components-list.css](../../../styles/components-list.css) | Таблица материалов ремонта и оформление итоговой цены, в том числе строки цены в сообщении ремонта. | [Карточка](files/styles/components-list.css.md) | Проверено |
 | [styles/configurations/modifier-configuration.css](../../../styles/configurations/modifier-configuration.css) | Переопределяет display содержимого окна конфигурации модификаторов, исключая для него общую сетку листа Actor. | [Карточка](files/styles/configurations/modifier-configuration.css.md) | Проверено |
-| [styles/container-sheet.css](../../../styles/container-sheet.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/container-sheet.css](../../../styles/container-sheet.css) | Расположение строк содержимого на отдельном листе контейнера и строки фактического веса/вместимости. | [Карточка](files/styles/container-sheet.css.md) | Проверено |
 | [styles/crit-wounds-table.css](../../../styles/crit-wounds-table.css) | Оформляет заголовки и поля критических травм в списке Actor и редакторе Item; также содержит правила прежней табличной разметки без найденных текущих элементов. | [Карточка](files/styles/crit-wounds-table.css.md) | Проверено |
-| [styles/currency-converter.css](../../../styles/currency-converter.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/currency-converter.css](../../../styles/currency-converter.css) | Сетка балансов и четырёх полей содержимого диалога конвертации валют. | [Карточка](files/styles/currency-converter.css.md) | Проверено |
 | [styles/dialog.css](../../../styles/dialog.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/item-header.css](../../../styles/item-header.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/item-sheets.css](../../../styles/item-sheets.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/loot-sheet.css](../../../styles/loot-sheet.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/item-header.css](../../../styles/item-header.css) | Общие размеры и расположение элементов шапки Item и шапки диалога ремонта; стили ограничены предком .item-header. | [Карточка](files/styles/item-header.css.md) | Проверено |
+| [styles/item-sheets.css](../../../styles/item-sheets.css) | Общие классы форм Item: опции, колонки, таблицы, поля воздействий, блоки магии и редактор описания. Некоторые глобальные правила также достигают Loot и расследований. | [Карточка](files/styles/item-sheets.css.md) | Проверено |
+| [styles/loot-sheet.css](../../../styles/loot-sheet.css) | Боковая область Loot, отображение скрытых предметов и ширины пустых крайних ячеек; общие классы переиспользованы расследованием. | [Карточка](files/styles/loot-sheet.css.md) | Проверено |
 | [styles/monster-sheet.css](../../../styles/monster-sheet.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/monster-skill-tab.css](../../../styles/monster-skill-tab.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/monster/details.css](../../../styles/monster/details.css) | Не установлено | Не подготовлено | Не начат |
@@ -487,10 +487,10 @@
 | [styles/monster/sidebar.css](../../../styles/monster/sidebar.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/profession-sheet.css](../../../styles/profession-sheet.css) | Задаёт общие карточки и цветовые ветки профессии, поля навыков, заметки и анимацию кнопки броска в Item и Actor. | [Карточка](files/styles/profession-sheet.css.md) | Проверено |
 | [styles/race-sheet.css](../../../styles/race-sheet.css) | Задаёт высоту150px содержимому редактора внутри расовой особенности; применяется также в расовом блоке Character. | [Карточка](files/styles/race-sheet.css.md) | Проверено |
-| [styles/repair.css](../../../styles/repair.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/rewards.css](../../../styles/rewards.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/repair.css](../../../styles/repair.css) | Выравнивание сводки ремонта и два независимых ограничения высоты прокручиваемых частей диалога. | [Карточка](files/styles/repair.css.md) | Проверено |
+| [styles/rewards.css](../../../styles/rewards.css) | Горизонтальное расположение одной записи журнала IP или валюты в окне RewardsSheet. | [Карточка](files/styles/rewards.css.md) | Проверено |
 | [styles/special-skill-table.css](../../../styles/special-skill-table.css) | Содержит оформление специального списка навыков и кнопок модификаторов; текущие HTML/JS-потребители этих классов не найдены. | [Карточка](files/styles/special-skill-table.css.md) | Проверено |
-| [styles/substances.css](../../../styles/substances.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/substances.css](../../../styles/substances.css) | Панель девяти алхимических веществ, активное состояние группы и общий размер иконок веществ в панели, рецепте и HTML списка алхимии. | [Карточка](files/styles/substances.css.md) | Проверено |
 | [styles/system-styles.css](../../../styles/system-styles.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/tab-background.css](../../../styles/tab-background.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/tab-inventory-list.css](../../../styles/tab-inventory-list.css) | Не установлено | Не подготовлено | Не начат |
@@ -515,12 +515,12 @@
 | [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs) | Сообщение со списком временных улучшений выбранного оружия. | [Описание](files/templates/chat/item/appliedTemporaryItemImprovements.hbs.md) | Проверено |
 | [templates/chat/item/consume.hbs](../../../templates/chat/item/consume.hbs) | Шаблон сообщения о лечении и добавляемых статусах при расходовании. | [Описание](files/templates/chat/item/consume.hbs.md) | Проверено |
 | [templates/chat/item/dismantle.hbs](../../../templates/chat/item/dismantle.hbs) | Сообщение о разборе предмета с заголовком источника, найденными компонентами и именами неизвестных материалов. | [Описание](files/templates/chat/item/dismantle.hbs.md) | Проверено |
-| [templates/chat/item/item-description.hbs](../../../templates/chat/item/item-description.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/partials/item-description/alchemicals.hbs](../../../templates/chat/item/partials/item-description/alchemicals.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/partials/item-description/crafting-items.hbs](../../../templates/chat/item/partials/item-description/crafting-items.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/partials/item-description/description.hbs](../../../templates/chat/item/partials/item-description/description.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/partials/item-description/spell-description.hbs](../../../templates/chat/item/partials/item-description/spell-description.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/item/item-description.hbs](../../../templates/chat/item/item-description.hbs) | Корневой шаблон сообщения «показать предмет в чате»: изображение и имя Item, описание по типу, материалы рецепта и теги свойств. | [Карточка](files/templates/chat/item/item-description.hbs.md) | Проверено |
+| [templates/chat/item/partials/item-description/alchemicals.hbs](../../../templates/chat/item/partials/item-description/alchemicals.hbs) | Текстовый partial описания алхимии, мутагенов и места получения компонента. | [Карточка](files/templates/chat/item/partials/item-description/alchemicals.hbs.md) | Проверено |
+| [templates/chat/item/partials/item-description/crafting-items.hbs](../../../templates/chat/item/partials/item-description/crafting-items.hbs) | Перечень обычных материалов и положительных алхимических требований в сообщении рецепта Item типа diagrams. | [Карточка](files/templates/chat/item/partials/item-description/crafting-items.hbs.md) | Проверено |
+| [templates/chat/item/partials/item-description/description.hbs](../../../templates/chat/item/partials/item-description/description.hbs) | Обычное текстовое описание оружия, брони, рецепта, транспорта и ценности в сообщении Item. | [Карточка](files/templates/chat/item/partials/item-description/description.hbs.md) | Проверено |
+| [templates/chat/item/partials/item-description/spell-description.hbs](../../../templates/chat/item/partials/item-description/spell-description.hbs) | Текст эффекта, побочного эффекта и условия снятия для spell, hex и ritual в общем сообщении Item. | [Карточка](files/templates/chat/item/partials/item-description/spell-description.hbs.md) | Проверено |
+| [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs) | Все группы тегов кратких свойств Item: от доступности и массы до сопротивлений, сложности рецепта и точности оружия. | [Карточка](files/templates/chat/item/partials/item-description/tags.hbs.md) | Проверено |
 | [templates/chat/item/repair.hbs](../../../templates/chat/item/repair.hbs) | Запрос и информация ремонта в чате: DC, материалы, цена и кнопка исполнителя. | [Описание](files/templates/chat/item/repair.hbs.md) | Проверено |
 | [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs) | Общее HTML-сообщение о выдаче награды | [Карточка](files/templates/chat/rewards.hbs.md) | Проверено |
 | [templates/dialog/activeEffects/wizard.hbs](../../../templates/dialog/activeEffects/wizard.hbs) | Выбор пути или группы путей в диалоге мастера/навыка. | [Описание](files/templates/dialog/activeEffects/wizard.hbs.md) | Проверено |

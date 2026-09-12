@@ -119,3 +119,11 @@ JavaScript-функций нет. Шаблон вычисляет условия
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../module/actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../module/data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../module/item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.048
+
+2026-09-12, rusbar-main, ee24c2605f4db98fad1ff6db024d2b0c26883670; исходники не изменены.
+
+Полный [styles/item-header.css](../../../../../../styles/item-header.css) содержит 15 rule-узлов / 33 declarations. Все конечные selectors сопоставлены с шапкой: вложенные itemname/input/configure-item, img, теги itemimage/general, information и строки таблицы. .itemname text-align приходит из [styles/item-sheets.css](../../../../../../styles/item-sheets.css), flex и отступы добавляет более поздний item-header. Тот же CSS обслуживает spell/hex/ritual/repair. Элементы race/profession вне .item-header не становятся потребителями этого scoped CSS от совпадения внутренних классов.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.

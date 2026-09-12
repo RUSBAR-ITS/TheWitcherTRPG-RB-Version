@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.047 подготовлена и сверена 351 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.048 подготовлены и сверены 367 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -589,3 +589,24 @@
 | styles/special-skill-table.css | [Описание](styles/special-skill-table.css.md) |
 | styles/race-sheet.css | [Описание](styles/race-sheet.css.md) |
 | styles/character/tab-profession.css | [Описание](styles/character/tab-profession.css.md) |
+
+## Представление предметов: сообщения, листы и служебные диалоги — TASK-0003.048
+
+| Файл | Карточка |
+| --- | --- |
+| styles/chat.css | [Описание](styles/chat.css.md) |
+| styles/item-header.css | [Описание](styles/item-header.css.md) |
+| styles/item-sheets.css | [Описание](styles/item-sheets.css.md) |
+| styles/container-sheet.css | [Описание](styles/container-sheet.css.md) |
+| styles/components-list.css | [Описание](styles/components-list.css.md) |
+| styles/substances.css | [Описание](styles/substances.css.md) |
+| styles/loot-sheet.css | [Описание](styles/loot-sheet.css.md) |
+| styles/repair.css | [Описание](styles/repair.css.md) |
+| styles/currency-converter.css | [Описание](styles/currency-converter.css.md) |
+| styles/rewards.css | [Описание](styles/rewards.css.md) |
+| templates/chat/item/item-description.hbs | [Описание](templates/chat/item/item-description.hbs.md) |
+| templates/chat/item/partials/item-description/alchemicals.hbs | [Описание](templates/chat/item/partials/item-description/alchemicals.hbs.md) |
+| templates/chat/item/partials/item-description/crafting-items.hbs | [Описание](templates/chat/item/partials/item-description/crafting-items.hbs.md) |
+| templates/chat/item/partials/item-description/description.hbs | [Описание](templates/chat/item/partials/item-description/description.hbs.md) |
+| templates/chat/item/partials/item-description/spell-description.hbs | [Описание](templates/chat/item/partials/item-description/spell-description.hbs.md) |
+| templates/chat/item/partials/item-description/tags.hbs | [Описание](templates/chat/item/partials/item-description/tags.hbs.md) |

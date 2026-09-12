@@ -82,3 +82,11 @@ JavaScript-функций нет. each components выводит количес�
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
 Полностью разобраны [RepairSystem](../../../../../../module/item/systems/repair.js), [costEditMixin](../../../../../../module/item/mixins/costEditMixin.js) и [диалог](../../../../../../templates/dialog/repair-dialog.hbs). Строки всегда required1, owned quantity0 получает missingQuantity1, но обычный guard не проверяет его ([issue-00104](../../../../../issues/potential/issue-00104.md)). showCost включён при artisan; canEditCost определяется GM. Цена — только отображение, платёж не выполняется. Настоящий обработчик подтвердил прежний NaN ([issue-00100](../../../../../issues/potential/issue-00100.md)) и глобальный поиск полей/первого total в условии двух DOM-контекстов ([issue-00106](../../../../../issues/potential/issue-00106.md)). Браузерная достижимость нескольких modal окон не проверена.
+
+## Дополнительная сверка TASK-0003.048
+
+2026-09-12, rusbar-main, ee24c2605f4db98fad1ff6db024d2b0c26883670; исходники не изменены.
+
+Полностью разобраны [styles/components-list.css](../../../../../../styles/components-list.css) и [styles/repair.css](../../../../../../styles/repair.css). Таблица и цена — отдельные области: components-price используется также сообщением ремонта. Группа 12 отрендерила текущий repair-dialog с настоящим partial. th:nth-child(n+2) в components-list.css не ограничен table.components-list — [docs/issues/potential/issue-00309.md](../../../../../issues/potential/issue-00309.md). Scroll/max-height задаёт .repair .components-list-container; расчёт/изменение цены остаются у costEditMixin.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.

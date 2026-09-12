@@ -48,7 +48,7 @@ Character и Monster получают weapons от _prepareWeapons общего 
 
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
-| WeaponData/weaponTypeData | [module/data/item/weaponData.js](../../../../../../../../../../module/data/item/weaponData.js); [module/data/item/templates/weaponTypeData.js](../../../../../../../../../../module/data/item/templates/weaponTypeData.js) | Поля/getters | type.text, reliable/maxReliability, damage, accuracy, equipped, canBeRepaired | type — SchemaField, text существует; отрицательная accuracy намеренно не попадает в ветку gt0 |
+| WeaponData/weaponTypeData | [module/data/item/weaponData.js](../../../../../../../../../../module/data/item/weaponData.js); [module/data/item/templates/weaponTypeData.js](../../../../../../../../../../module/data/item/templates/weaponTypeData.js) | Поля/getters | type.text, reliable/maxReliability, damage, accuracy, equipped, canBeRepaired | type — SchemaField, text существует; отрицательная accuracy не попадает в ветку gt0 по явному условию |
 | EnhancementData/itemEffect | [module/data/item/enhancementData.js](../../../../../../../../../../module/data/item/enhancementData.js); [module/data/item/templates/itemEffectData.js](../../../../../../../../../../module/data/item/templates/itemEffectData.js) | Вложенные Item | effects/statusEffect/percentage/name | Для свободного weapon-enhancement часть полей WeaponData отсутствует; HBS не конвертирует схему |
 | Подготовка ячеек | [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../../../module/actor/sheets/WitcherActorSheet.js) | Producer | _prepareWeapons дополняет enhancementItems пустыми объектами | Проблема обрезки прежней подготовки — issue-00166; здесь только разметка |
 | item-repair | [module/actor/sheets/WitcherCharacterSheet.js](../../../../../../../../../../module/actor/sheets/WitcherCharacterSheet.js) | Listener | _repairItem→Item.repair | У Monster такой listener не найден |
@@ -105,3 +105,11 @@ Character и Monster получают weapons от _prepareWeapons общего 
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. quantity остаётся текстовым inline-полем, без min. Новая issue-00217 касается прямого dismantle при сохранённом quantity='0'/'-1': материалы выдаются до удаления источника. Само редактирование и хранение quantity не исправлялись; блокирующая ошибка menu callback issue-00168 сохранена.
 
 Связи: [module/item/mixins/dismantlingMixin.js](../../../../../../module/item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.048
+
+2026-09-12, rusbar-main, ee24c2605f4db98fad1ff6db024d2b0c26883670; исходники не изменены.
+
+У [templates/chat/item/partials/item-description/tags.hbs](../../../../../../../../../../templates/chat/item/partials/item-description/tags.hbs) такое же условие accuracy>0, как в этой строке инвентаря. Группа 07 дала 0/0/1 тег при -2/0/+2; weaponAttack:190–198 включает отрицательную точность в формулу. Зарегистрирована [docs/issues/potential/issue-00307.md](../../../../../../../../../issues/potential/issue-00307.md). Прежнее слово «намеренно» не доказывало решения автора; заменено нейтральным описанием условия. Общая .item-tag использует ошибочное background-color в tab-inventory.css — [docs/issues/potential/issue-00310.md](../../../../../../../../../issues/potential/issue-00310.md); полный CSS остаётся в .049.
+
+[Сценарии, результаты и ограничения](../../../../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.

@@ -1,5 +1,72 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.048
+
+Дата: 2026-09-12. Ветка rusbar-main, коммит ee24c2605f4db98fad1ff6db024d2b0c26883670. Продолжение согласованной очереди по поручению пользователя; [задача](../../tasks/task-0003.048.md). Исходный срез TASK-0001 — 15da5b225535e34af4e132c701b5353ef4eb667f.
+
+Полностью разобраны 16 файлов / **920 логических строк**: шесть HBS (433 строки) и десять CSS (487 строк). Весь состав — таблица задачи и новые карточки в [docs/analytics/code-audit/files/README.md](files/README.md). Состав не расширялся; соседние определения и consumers проверены в пределах связи.
+
+### Методика и границы
+
+Локальный Node через stdin, без создания стенда. Реальные DataModel/TypeDataModel/fields и primitives Foundry 14.367.0 (/opt/foundryvtt/package.json), Node 24.16.0. Исполнялись настоящие модели 13 типов, Handlebars 4.7.9, системный registerHandelbarHelpers и core concat/localize из client/applications/handlebars.mjs, полный Localization из client/helpers/localization.mjs с expandObject/ru/en fallback. HBS компилировались из файлов без изменения текста, вложенные пять partial — настоящие. Методы _onItemMessage/_onSubstanceDisplay исполнялись из исходного itemMixin; импорты для VM заменены окружением.
+
+fromUuidSync — карта «доступный документ / null»; Actor/items, DOM event и ChatMessage.getSpeaker/create — фасады. Для модели не передавался поддельный parent. IDs UUID соответствуют схеме ядра (16 символов). Дополнительные service HBS использовали фасад selectOptions; панель веществ — явную замену вложенного component-list, а не полный второй аудит списка. Построение HTML проверялось parse5, CSS — PostCSS 8.5.12. PostCSS сохраняет AST, но не подтверждает допустимость значения CSS или конечный вид. Мир, браузер, computed styles, HTTP, БД, установка/сборка не запускались.
+
+### Сценарии — 16 успешных групп
+
+| № | Проверка | Фактический результат |
+| --- | --- | --- |
+| 01 | Defaults 13 реальных моделей, unknown | Все поддержанные типы рендерятся; unknown оставляет шапку/пустые контейнеры. Тип модели рецепта установлен по регистрации, не имени JS-файла. |
+| 02 | Зарегистрированный diagrams | Manifest/registerDataModels используют diagrams; описание, материалы и шесть тегов появляются. Незарегистрированный diagram проверен как отрицательный вход. |
+| 03 | Компоненты/подготовка/пустые требования | Доступный UUID → ResolvedName/resolved.png, quantity 0 сохраняется; недоступный → SavedUnknown без img. Schema удаляет исходный img. vitriol=2 показан, rebis=0/aether=-1 скрыты. Пустой рецепт оставляет заголовок из-за truthy alchemyComponents, строк 0. |
+| 04 | Сопротивления ArmorData | resistance.slashing/piercing/bludgeoning=true не создают три тега; плоский контроль создаёт. Новая 00306. |
+| 05 | Escaping текста | effect/minorMutation/location/description/sideEffect/liftRequirement с <b>RichText</b> дают &lt;b&gt; в HTML-строке. Нет вывода о невозможности последующего core enrichment @UUID/roll. |
+| 06 | 0/false/пустая строка | Условные числовые теги исчезают; Mount.dex Number 0 преобразуется StringField в '0' и виден, hp=0 скрыт. Container даёт четыре безусловных тега, даже при пустых значениях. |
+| 07 | Weapon accuracy и hands | -2/0/+2 → 0/0/1 тег точности; положительный содержит +2. hands='both' переводится через настоящий справочник. Новая 00307; отрицательное значение в формуле weaponAttack сверено статически. |
+| 08 | TypedObject effects улучшения | Словарь даёт bleeding/35%; процент 0 скрыт, name не печатается. Это itemEffect, не ActiveEffect.changes. |
+| 09 | Все статические и configured dynamic переводы | 66 ключей шести HBS: 65 доступны в ru, WITCHER.Weapon.Availability отсутствует и в ru, и в en. concat/capitalize с Inventory.Vitriol работают через core helper. Дополнена 00178. |
+| 10 | CSS AST/импорты/дочерние selectors | Все десять файлов имеют единственный прямой @import; 91 rule-узел / 216 declarations. Обе ветви chat.css:45 не достигают h4 из-за section; новая 00308. |
+| 11 | Полный producer сообщения | Настоящий _onItemMessage передаёт prepared Item/type='diagrams'/WITCHER; отрендеренный текст содержит актуальное имя компонента. getSpeaker получает OwnerName строкой; 00175 сохранена. Запись чата перехвачена. |
+| 12 | Ремонт/компоненты/таблицы | Реальный repair-dialog с components-list даёт обе таблицы/цену, repair-chat — две секции и кнопку запроса. Глобальный th:nth-child второй ветви components-list.css и более ранний table th сверены статически; новая 00309. |
+| 13 | Скрытые строки Loot/расследования | Все три настоящих row-partials сохраняют имя в HTML при isHidden=true; GM получает hidden-view, игрок — hidden-from-view. Видимость отделена от прав документа. |
+| 14 | Currency/Rewards | Четыре label полей конвертера, отдельная сетка остатков; результат currency-conversion без этого корня. Обе вкладки журнала дают одну logEntry для одной записи. |
+| 15 | Девять веществ | _onSubstanceDisplay формирует девять корректных update-путей pannels.<key>IsOpen. Каждый отдельный true даёт одну sub-open, девять иконок. PNG всех девяти веществ существуют; assets вне полного аудита. |
+| 16 | Заполненные реальные схемы | Число тегов: alchemical 6, mutagen 4, armor 3, component 6, container/valuable 4, diagrams 6, enhancement 4, mount 4, spell 5, hex 1, ritual 6, weapon 6. Разный состав моделей в общих ветвях сохранён. |
+
+Диагностические ошибки первоначального запуска (plain parent, короткий UUID и неверный контрольный hands='two') исправлены во входах изолированной проверки. Они не являются issues системы. В предварительной оценке ошибочно сопоставлялись diagram/diagrams и неверно складывались строки; окончательный результат сверен с manifest/registerDataModels и точным подсчётом: **diagrams корректен, 920 строк**. Документы задачи/исходники по этим предположениям не изменялись.
+
+### Полнота CSS и связи
+
+| Файл | Строки | Rule-узлы | Declarations |
+| --- | --- | --- | --- |
+| [styles/chat.css](../../../styles/chat.css) | 74 | 14 | 31 |
+| [styles/item-header.css](../../../styles/item-header.css) | 77 | 15 | 33 |
+| [styles/item-sheets.css](../../../styles/item-sheets.css) | 117 | 22 | 51 |
+| [styles/container-sheet.css](../../../styles/container-sheet.css) | 33 | 6 | 14 |
+| [styles/components-list.css](../../../styles/components-list.css) | 20 | 4 | 8 |
+| [styles/substances.css](../../../styles/substances.css) | 73 | 12 | 38 |
+| [styles/loot-sheet.css](../../../styles/loot-sheet.css) | 27 | 6 | 10 |
+| [styles/repair.css](../../../styles/repair.css) | 23 | 5 | 8 |
+| [styles/currency-converter.css](../../../styles/currency-converter.css) | 39 | 6 | 21 |
+| [styles/rewards.css](../../../styles/rewards.css) | 4 | 1 | 2 |
+| **Итого CSS** | **487** | **91** | **216** |
+
+Таблицы карточек сохраняют каждый selector/declaration, !important и вложенный scope. @import в главном CSS: currency 8, loot 11, item-sheets 15, substances 16, container 18, chat 19, item-header 20, repair 23, components 24, rewards 27. Глобальные item-table/hidden-view/item-tag и scoped item-header/.repair различены. Настоящий core sidebar/chat-message.hbs:1/24 задаёт .chat-message/.flavor-text. Классы editor могут создаваться helper; textarea само по себе не .editor.
+
+Не найдены текущие совпадения item-row/item-second-column; в панели веществ нет .substances/.substance-type-subheader и прямых .substances-section > span/table. Это не зарегистрировано как самостоятельная ошибка. substance-img также используется diagrams-sheet и alchemyCraftComponentsList. Loot CSS используется clue/obstacle/mystery. RewardsSheet — extended-sheet, собственный CSS не выполняет выдачу наград. .item-tag background-color в соседнем tab-inventory.css содержит '1px solid' перед цветом; 00310 зарегистрирована по статическому синтаксису, не по несуществующей браузерной проверке.
+
+### Перекрёстная сверка и issues
+
+Прочитаны и сопоставлены целиком, включая поздние уточнения, десять связанных карточек: itemMixin, DiagramData, ArmorData, components-list, item-header, substances, loot-item-display, inventory weapons, currencyConverter HBS и RewardsSheet. В них добавлены встречные ссылки/уточнения. У itemMixin ограничено прежнее утверждение о @UUID: первая HTML-строка и дальнейший ChatMessage.renderHTML/enrichHTML — разные стадии. У inventory weapons убрана недоказанная оценка намерения автора скрывать отрицательную accuracy.
+
+Реестр прежних 305 issues проверен перед регистрацией. Новые [00306](../../issues/potential/issue-00306.md), [00307](../../issues/potential/issue-00307.md), [00308](../../issues/potential/issue-00308.md), [00309](../../issues/potential/issue-00309.md), [00310](../../issues/potential/issue-00310.md) относятся к пяти конкретным наблюдениям. Дополнены [00175](../../issues/potential/issue-00175.md) и [00178](../../issues/potential/issue-00178.md). 00306 отделена от старого пути 00180; недоступное имя компонента в сообщении не повторяет ошибку листа 00095. Ссылки 00200/00029 и историческая общая сверка № 1 сохранены. Все **310 issues** остаются potential, open/closed пусты.
+
+### Итоговая формальная сверка
+
+16 новых карточек, 10 уточнённых; реестр **367 из 621**, не разобраны **254**. В пятой серии **57 из 77** проверены, **20** файлов в очереди .049–.050; **234** вне детализации. TASK-0003 остаётся in-progress, TASK-0004/0005 — draft. Следующая задача — [docs/tasks/task-0003.049.md](../../tasks/task-0003.049.md).
+
+Проверены состав/уникальность 621 пути, соответствие карточек статусам, все 50 подзадач/376 назначенных файлов, локальные ссылки/якоря, таблицы и сохранность исторических записей. Все 621 исходник сравнены с базовым срезом; контрольная сумма набора (path UTF-8 + NUL + bytes в сортировке) — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4. Метаданные mode/uid/gid/inode 1417 отслеживаемых файлов сверены с началом работы. Фактическая проверка завершена: 367 карточек соответствуют 367 строкам «Проверено»; 254 строки «Не начат» без карточек, 376 назначенных файлов уникальны. Проверены 17870 локальных ссылок/якорей — ошибок нет; 112 таблиц в 21 новом документе — без ошибок структуры. Изменены 23 прежних документа, созданы 16 карточек и пять issues; все изменения внутри docs. git diff --check прошёл. Mode/uid/gid/inode всех 1417 прежних отслеживаемых файлов сохранены; предыдущий журнал и общая сверка № 1 не изменены. Контрольная сумма всех 621 исходника совпала с приведённой выше.
+
 ## TASK-0003.047
 
 Дата: 2026-09-12. [Способности, эффекты и модификаторы: поля и оформление](../../tasks/task-0003.047.md). Ветка rusbar-main; HEAD 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c. Перед началом рабочее дерево чистое. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f; SHA-256 отсортированных UTF-8 путей + NUL + байтов файлов — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4.
