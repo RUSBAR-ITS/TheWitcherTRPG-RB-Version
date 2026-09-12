@@ -135,3 +135,13 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 [module/actor/mixins/rewardsMixin.js](../../../../module/actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../../module/actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../../module/app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Полностью описаны tab-inventory.css и tab-inventory-list.css: первый задаёт панели/ширины колонок, второй включает grid и оформляет текущие списки. При 9/10, 10/10, 11/10 настоящий HBS дал overweight=false/true/true. Неверный WebKit-селектор красного заполнения зарегистрирован отдельно как issue-00311; фон item-tag — прежняя issue-00310. Числовые значения, порог >=, экипировка и вычисление веса не изменялись. Раскрытие деталей меняет .invisible исходным itemMixin; внешние details в оружейном partial изначально open.
+
+Карточки CSS: [styles/tab-inventory.css](../../../../styles/tab-inventory.css.md), [styles/tab-inventory-list.css](../../../../styles/tab-inventory-list.css.md).
+
+[Методика и результаты](../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

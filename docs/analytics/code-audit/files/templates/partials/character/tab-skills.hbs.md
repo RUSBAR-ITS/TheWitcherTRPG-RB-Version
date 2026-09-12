@@ -107,3 +107,13 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 [module/actor/mixins/rewardsMixin.js](../../../module/actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../module/app/reward/reward.js.md), [templates/chat/rewards.hbs](../../chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Основные классы навыков оформляет character-header.css, а колонки/IP — tab-skills.css. Настоящий _prepareTabs с TABS обоих классов и HBS подтверждает active у IP только при выборе ip, четыре строки skillTraining и два disabled/readonly итога. Класс .char-skill из старого CSS относится к прежним таблицам монстра; наличие общего CSS не добавляет отсутствующие модели/обработчики IP монстру.
+
+Карточки CSS: [styles/tab-skills.css](../../../styles/tab-skills.css.md), [styles/character-header.css](../../../styles/character-header.css.md), [styles/monster-skill-tab.css](../../../styles/monster-skill-tab.css.md).
+
+[Методика и результаты](../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

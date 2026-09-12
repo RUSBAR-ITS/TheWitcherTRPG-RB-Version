@@ -99,3 +99,13 @@
 [module/actor/mixins/rewardsMixin.js](../../module/actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../module/actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../module/app/reward/reward.js.md), [templates/chat/rewards.hbs](../chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Полностью описаны character-header.css и общая сетка. Контейнер char-header-center получает позицию 2/1, а вложенные actions/button-list/death-counter — flex-правила. При useVerbalCombat=true настоящий HBS даёт шесть button-roll. HTML5-парсер по-прежнему восстанавливает дополнительные open-rewards из незакрытой ссылки (issue-00202); видимое смещение не измерялось.
+
+Карточки CSS: [styles/character-header.css](../../styles/character-header.css.md), [styles/character/sheet.css](../../styles/character/sheet.css.md).
+
+[Методика и результаты](../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

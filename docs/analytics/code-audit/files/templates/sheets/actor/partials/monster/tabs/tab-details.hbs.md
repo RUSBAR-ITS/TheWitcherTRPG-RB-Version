@@ -72,3 +72,13 @@ PARTS.details MonsterSheet. Внешняя группа primary/details, вну�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../../../../review-log.md#task-0003032) |
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Полностью описан monster/details.css. Настоящие TABS/_prepareTabs и HBS при notes/lore дают три section.tab, из которых две active при открытой внешней details. Вложенная неактивная секция адресуется display:none/visibility:hidden. show*-флаги знаний независимо дают 0/3 h1. У monster-knowledge сохраняются margin-top10/flex-basis380/flex-grow1 старого monster-sheet.css. Передача enriched остаётся предметом issue-00013, оформление её не исправляет.
+
+Карточки CSS: [styles/monster/details.css](../../../../../../styles/monster/details.css.md), [styles/monster-sheet.css](../../../../../../styles/monster-sheet.css.md), [styles/tab-background.css](../../../../../../styles/tab-background.css.md).
+
+[Методика и результаты](../../../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

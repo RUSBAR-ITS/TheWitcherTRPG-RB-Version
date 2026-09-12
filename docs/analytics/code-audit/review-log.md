@@ -1,5 +1,93 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.049
+
+2026-09-12; rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Выполнена [TASK-0003.049](../../tasks/task-0003.049.md): 13 CSS, 2178 логических строк. Все исходники совпадают со срезом TASK-0001. Внутренний порядок: общие вкладки → персонаж → монстр → общая сверка; старые шаблоны и текущие PARTS различены.
+
+### Состав и полнота
+
+| Файл | Строки | Правила | Объявления | Номер импорта |
+| --- | --- | --- | --- | --- |
+| [styles/character-header.css](files/styles/character-header.css.md) | 758 | 128 | 352 | 1 |
+| [styles/character/sheet.css](files/styles/character/sheet.css.md) | 29 | 6 | 11 | 28 |
+| [styles/tab-background.css](files/styles/tab-background.css.md) | 172 | 28 | 76 | 6 |
+| [styles/tab-inventory.css](files/styles/tab-inventory.css.md) | 297 | 48 | 147 | 7 |
+| [styles/tab-inventory-list.css](files/styles/tab-inventory-list.css.md) | 217 | 33 | 107 | 26 |
+| [styles/tab-skills.css](files/styles/tab-skills.css.md) | 154 | 26 | 75 | 9 |
+| [styles/monster-sheet.css](files/styles/monster-sheet.css.md) | 304 | 51 | 148 | 5 |
+| [styles/monster-skill-tab.css](files/styles/monster-skill-tab.css.md) | 42 | 7 | 22 | 10 |
+| [styles/monster/header.css](files/styles/monster/header.css.md) | 68 | 12 | 33 | 30 |
+| [styles/monster/sidebar.css](files/styles/monster/sidebar.css.md) | 59 | 9 | 34 | 33 |
+| [styles/monster/details.css](files/styles/monster/details.css.md) | 36 | 7 | 17 | 34 |
+| [styles/monster/inventory.css](files/styles/monster/inventory.css.md) | 15 | 4 | 4 | 31 |
+| [styles/monster/sheet.css](files/styles/monster/sheet.css.md) | 27 | 6 | 11 | 32 |
+| Всего | 2178 | 365 | 1037 | Все подключены один раз |
+
+Номер импорта — позиция среди @import, а не номер строки. Все 365 rule-узлов, внешняя вложенность и 1037 declarations включены в карточки, в том числе пустые правила и прежние утилиты. Названия файлов не использовались как доказательство области действия.
+
+### Метод и 15 успешных групп проверок
+
+Изолированный Node 24.16.0 через stdin, без записи стенда. Foundry 14.367.0 по /opt/foundryvtt/package.json; PostCSS 8.5.12, Handlebars 4.7.9 и parse5 из существующих зависимостей ядра. Настоящие системные helpers зарегистрированы из module/setup/handlebars.js; localize/concat и Localization взяты из установленного ядра. Использованы настоящие HBS и отдельно извлечённые методы ядра/системы. Статические контексты не объявлены полноценными Actor/Item.
+
+| № | Проверка | Фактический результат |
+| --- | --- | --- |
+| 1 | Полные AST и master | 13 CSS / 2178 строк, каждый import один раз |
+| 2 | Нагрузка 9/10, 10/10, 11/10 | overweight false/true/true; красный WebKit selector с одним двоеточием, обычный с двумя |
+| 3 | Реальная строка оружия | summary/chevron, details изначально open, скрытая .list-item-info, img затем span, equipped по bool |
+| 4 | Исходный itemMixin | _onItemDisplayInfo дважды меняет invisible; _onItemEquip запрашивает обратный bool |
+| 5 | Биография и заметки | Две карточки событий: открытая с input/textarea; старые/новые заметки имеют разные контролы |
+| 6 | Сверка общих вкладок | Настоящий _prepareTabs для Character/Monster: active IP только при выборе ip; четыре строки обучения, два readonly/disabled итога; проверены глобальные item-tag и правило ядра tab[data-tab] |
+| 7 | Характеристики и навыки | Три знака value относительно max; классы profession → pickup → learned; три checkbox редактора навыка |
+| 8 | Обе панели ресурсов | Без/с verbal четыре/пять шкал, max HP текущий, два соседних input + slider; adrenaline только у Character |
+| 9 | Заголовки | Шесть/пять кнопок Character/Monster с verbal; у Monster нет monster-header-center; прежний незакрытый reward anchor восстанавливается парсером |
+| 10 | Сверка блока персонажа | Реальные _initializeApplicationOptions/#mergeApplicationOptions конкатенируют actor+monster; MonsterConfiguration с extended-sheet, modifier configuration без него; более специфичный display:inherit |
+| 11 | Вложенные сведения монстра | При notes/lore три section.tab, две active при открытой details; знания дают ноль/три h1 по show-флагам |
+| 12 | Инвентарь монстра | Три секции и отдельная exportLoot; специализированный flex:none, полная ширина экспорта только внутри inventory |
+| 13 | Старые навыки монстра | isVisible влияет на старый partial; встроенная строка a без span, собственная a > span; текущий PARTS использует общий character/tab-skills |
+| 14 | Сверка монстра и каскада | Портрет 375×545 → 130×260, значок 75×75 → 48×48; часть свойств armor label сохраняется; два CSS повторяют одну grid-сетку |
+| 15 | DOM редактора ядра | Настоящий HTMLProseMirrorElement._buildElements создаёт .editor/.editor-content и toggle с фасадом базового элемента |
+
+В сценариях DOM/jQuery и item.update представлены ограниченными фасадами с перехватом вызова. formGroup/formInput/editor внутри HBS заменены маркерами; их содержимое не использовано как доказательство настоящей редакторной разметки. Группа 15 проверяет код ядра отдельно, без полного DOM-жизненного цикла. Модель, игровые броски, арифметика бонусов и сохранение в БД не проверялись этим прогоном.
+
+При настройке сценария были исправлены две ошибки ожидаемых данных: фактический красный цвет — #d04747, а details оружия изначально open. После чтения исходников ожидания скорректированы, весь прогон прошёл. Изменений системы для этого не делалось. Node сообщил обычное предупреждение MODULE_TYPELESS_PACKAGE_JSON; package.json не менялся.
+
+### Встречная сверка
+
+Полностью перечитаны восемь прежних карточек, включая поздние уточнения; внесены обратные ссылки и точные границы:
+
+- [styles/configurations/modifier-configuration.css](files/styles/configurations/modifier-configuration.css.md).
+- [templates/partials/character-header.hbs](files/templates/partials/character-header.hbs.md).
+- [templates/partials/character/tab-skills.hbs](files/templates/partials/character/tab-skills.hbs.md).
+- [templates/partials/character/tab-background.hbs](files/templates/partials/character/tab-background.hbs.md).
+- [templates/sheets/actor/partials/monster/header.hbs](files/templates/sheets/actor/partials/monster/header.hbs.md).
+- [templates/sheets/actor/partials/monster/sidebar.hbs](files/templates/sheets/actor/partials/monster/sidebar.hbs.md).
+- [templates/sheets/actor/partials/monster/tabs/tab-details.hbs](files/templates/sheets/actor/partials/monster/tabs/tab-details.hbs.md).
+- [templates/sheets/actor/tabs/tab-inventory.hbs](files/templates/sheets/actor/tabs/tab-inventory.hbs.md).
+
+Уточнено: ресурсы Monster sidebar оформляет character-header.css, специализированный sidebar CSS отвечает за фото/значок/броню. Наличие старого global CSS не равно отсутствию нынешних потребителей; отсутствие буквального .active/.editor в HBS не означает отсутствия этих классов в DOM. Встречная сверка не увеличивает число карточек.
+
+### Issues и пределы выводов
+
+Весь существующий реестр из 310 issues сопоставлен по месту, условию и пути данных; отдельно учтены прежние UI-наблюдения 00013/00018/00024/00030/00063/00177–00180/00187/00192/00198–00199/00202–00205/00209–00213 и CSS-наблюдения 00308–00310.
+
+Добавлена [issue-00311](../../issues/potential/issue-00311.md) — неверная форма WebKit selector перегруза. Уточнены [00309](../../issues/potential/issue-00309.md) и [00310](../../issues/potential/issue-00310.md) после полного разбора соседнего CSS. Новый дефект касается progress, прежний 00310 — background-color тегов: это разные элементы и причины. Всего 311 issues, все potential; подтверждение, исправление и закрытие не выполнялись.
+
+Форма vendor-псевдоэлемента сверена по [MDN: ::-webkit-progress-value](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-webkit-progress-value) и [MDN: ::-moz-progress-bar](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-moz-progress-bar), просмотр 2026-09-12. PostCSS подтверждает структуру, но не семантическую допустимость значений, принятие браузером или computed styles. Смешанные vendor-списки и старые классы отмечены с ограничениями; их визуальные последствия не заявляются проверенными.
+
+Браузер, нативные клики/hover/details, HTTP системы, мир, БД, сборка и установщики не запускались. Размещение нового monster-header без явной grid-позиции не объявлено ошибкой; автоматическая раскладка требует отдельного наблюдения.
+
+### Формальная сверка и итог
+
+- Реестр: 621 уникальный исходник; 380 карточек соответствуют статусу «Проверено», 241 файл — «Не начат». В 50 подзадачах 376 уникальных назначений без пересечений; очередь .050 — семь файлов, вне очереди 234.
+- Issues: 311 карточек и 311 строк реестра, все potential; open/closed пусты. Новая нумерация продолжает прежнюю.
+- Проверены 18 343 локальные ссылки, включая якоря Markdown: ошибок нет. Для 14 новых документов проверены 81 таблица и обязательные разделы: ошибок нет.
+- Все таблицы 13 новых CSS-карточек сопоставлены с полным AST: 365 строк правил, 1037 declarations, точные scopes, селекторы и значения совпали.
+- SHA-256 состава/содержимого 621 исходника: `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4` (сортированные пути UTF-8 + NUL + байты файлов). Git-сравнение с базовым срезом не выявило изменений исходников.
+- Сравнены mode, uid, gid и inode всех 1438 ранее отслеживаемых файлов: изменений метаданных нет. Существующие документы записаны на месте, права/владельцы не менялись.
+- Изменения ограничены docs: 13 новых карточек и одна issue, 21 прежний документ обновлён. Прошлая часть журнала сохранена побайтно; cross-check-0001 не изменялся. git diff --check прошёл; HEAD остаётся исходным, коммит агентом не создан.
+
+Покрытие — 380 из 621, остаток 241. В пятой серии 70 из 77 проверены, семь файлов в очереди; 234 требуют детализации. TASK-0003.049 — done, следующая [TASK-0003.050](../../tasks/task-0003.050.md) остаётся planned. TASK-0003 продолжается, TASK-0004/0005 остаются draft; историческая общая сверка и прошлые записи журнала сохранены.
+
 ## TASK-0003.048
 
 Дата: 2026-09-12. Ветка rusbar-main, коммит ee24c2605f4db98fad1ff6db024d2b0c26883670. Продолжение согласованной очереди по поручению пользователя; [задача](../../tasks/task-0003.048.md). Исходный срез TASK-0001 — 15da5b225535e34af4e132c701b5353ef4eb667f.

@@ -42,7 +42,7 @@ PARTS.sidebar; предзагрузка отдельным путём. Изоб�
 | helpers и переводы | [module/setup/handlebars.js](../../../../../../../../../module/setup/handlebars.js); [lang/en.json](../../../../../../../../../lang/en.json); [lang/ru.json](../../../../../../../../../lang/ru.json) | Handlebars/локализация | localize, concat, eq/gte, checked, selectOptions, formGroup/editor по месту | Системные helpers и core helpers сверены; DOM-элементы формы заменены |
 | stats/derivedStats/healthState/temporaryHpSum | [module/data/actor/templates/common/stats/statsData.js](../../../../../../../../../module/data/actor/templates/common/stats/statsData.js); [module/data/actor/templates/common/stats/derivedStatsData.js](../../../../../../../../../module/data/actor/templates/common/stats/derivedStatsData.js); [module/data/actor/commonActorData.js](../../../../../../../../../module/data/actor/commonActorData.js); [module/data/actor/templates/common/combatEffectsData.js](../../../../../../../../../module/data/actor/templates/common/combatEffectsData.js) | схема/подготовка | Пути ресурсов и флаги | База суммирует temporary HP; значения input/progress не включают сумму |
 | calculateStat/calculateDerivedStat | [module/actor/witcherActor.js](../../../../../../../../../module/actor/witcherActor.js) | расчёт/чтение ignored | healthState и текущие максимумы | Числовые методы выполнены изолированно |
-| CSS-селекторы | [styles/monster/sidebar.css](../../../../../../../../../styles/monster/sidebar.css) | оформление | .monster-sidebar/.img-view/ресурсы | Прочитаны нужные селекторы; полный CSS вне порции |
+| CSS-селекторы | [styles/monster/sidebar.css](../../../../../../../../../styles/monster/sidebar.css) | оформление | .monster-sidebar/.img-view/естественная броня | Прочитаны нужные селекторы; полный CSS вне порции |
 | editImage/FormDataExtended | Foundry 14.367.0 ActorSheetV2/DocumentSheetV2 | внешняя форма | Портрет и payload | Запись в БД/изменение изображения не выполнялись |
 
 ## Известные потребители
@@ -79,3 +79,13 @@ PARTS.sidebar; предзагрузка отдельным путём. Изоб�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003032) |
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Уточнена принадлежность стилей: monster/sidebar.css оформляет изображение, значок, wound-state и естественную броню; progress/optional/switch приходят из character-header.css. Глобальный monster-sheet.css продолжает участвовать: новые размеры фото 130×260 и значка 48×48 переопределяют прежние, но width90/bold/float у armor label сохраняются, margin меняется на0. Настоящий HBS дал 4/5 шкал без/с verbal, два input + slider; progress HP использует текущий max, unmodifiedMax относится к иконке состояния.
+
+Карточки CSS: [styles/monster/sidebar.css](../../../../../styles/monster/sidebar.css.md), [styles/monster-sheet.css](../../../../../styles/monster-sheet.css.md), [styles/character-header.css](../../../../../styles/character-header.css.md), [styles/monster/sheet.css](../../../../../styles/monster/sheet.css.md).
+
+[Методика и результаты](../../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

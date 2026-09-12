@@ -98,3 +98,13 @@ oldNotes не являются форм-полями Actor: inline-edit испо
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `12055fee62f01c6de49967044aedef9d7cfe0632`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003033) |
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Полностью разобран tab-background.css. Сетки general-section/life-events/character-notes имеют три колонки. Hover-скрытие .note-header > a касается только старых Item-заметок этого HBS: новые используют .flex, как и заметки монстра. Глобальная .editor относится и к DOM, создаваемому ядром; настоящий HTMLProseMirrorElement._buildElements отдельно подтвердил editor/editor-content с фасадом базового элемента. В HBS-проверке formGroup/editor заменены маркерами. Внутренний div.tab.body.background без data-tab не совпадает с .tab[data-tab]:not(.active) из ядра.
+
+Карточки CSS: [styles/tab-background.css](../../../styles/tab-background.css.md).
+
+[Методика и результаты](../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

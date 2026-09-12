@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.048 проверены описания **367 файлов**, для **254 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.049 проверены описания **380 файлов**, для **241 файла** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.048](review-log.md#task-0003048) выполнена на ee24c2605f4db98fad1ff6db024d2b0c26883670: все 621 исходник совпадают с базовым срезом. Добавлены 16 карточек HBS/CSS представления предметов; выполнены 16 групп локальных проверок и сверены зависимости/потребители. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
+Последняя [сверка TASK-0003.049](review-log.md#task-0003049) выполнена на 523c9b2616e19058b18f812ae0361c8a86366814: все 621 исходник совпадают с базовым срезом. Добавлены 13 карточек CSS Actor; выполнены 15 групп локальных проверок, сверены текущие/старые потребители, состояния и каскад. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -465,8 +465,8 @@
 | [styles/activeEffect.css](../../../styles/activeEffect.css) | Оформляет общий список ActiveEffect на листах Actor и в конфигурации Item: заголовки, строки, кнопки и скрываемое описание. | [Карточка](files/styles/activeEffect.css.md) | Проверено |
 | [styles/armor-sheet.css](../../../styles/armor-sheet.css) | Шесть глобальных правил оформления локаций, списка эффектов и строк SP старого инвентаря монстра. | [Карточка](files/styles/armor-sheet.css.md) | Проверено |
 | [styles/attack-sheet.css](../../../styles/attack-sheet.css) | Оформление таблиц и select в секции attack-sheet; дополнительно глобальные отступы изображений внутри h2. | [Карточка](files/styles/attack-sheet.css.md) | Проверено |
-| [styles/character-header.css](../../../styles/character-header.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/character/sheet.css](../../../styles/character/sheet.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/character-header.css](../../../styles/character-header.css) | Общие кнопки характеристик и навыков, заголовок персонажа, ресурсы и переключатели обоих Actor; также поля конфигурации и прежние боковые панели. | [Карточка](files/styles/character-header.css.md) | Проверено |
+| [styles/character/sheet.css](../../../styles/character/sheet.css) | Общая сетка основных листов Character и Monster: боковая панель, заголовок, навигация и содержимое вкладок. | [Карточка](files/styles/character/sheet.css.md) | Проверено |
 | [styles/character/tab-profession.css](../../../styles/character/tab-profession.css) | Уточняет оформление активной вкладки профессии Character и Monster: заголовки, расположение путей, поля навыков и расовые особенности. | [Карточка](files/styles/character/tab-profession.css.md) | Проверено |
 | [styles/chat.css](../../../styles/chat.css) | Оформление описания Item, запроса ремонта и отдельных фрагментов боевых сообщений: цвет исхода процентного воздействия, кнопки статусов/урона/оглушения и заголовки. | [Карточка](files/styles/chat.css.md) | Проверено |
 | [styles/components-list.css](../../../styles/components-list.css) | Таблица материалов ремонта и оформление итоговой цены, в том числе строки цены в сообщении ремонта. | [Карточка](files/styles/components-list.css.md) | Проверено |
@@ -478,13 +478,13 @@
 | [styles/item-header.css](../../../styles/item-header.css) | Общие размеры и расположение элементов шапки Item и шапки диалога ремонта; стили ограничены предком .item-header. | [Карточка](files/styles/item-header.css.md) | Проверено |
 | [styles/item-sheets.css](../../../styles/item-sheets.css) | Общие классы форм Item: опции, колонки, таблицы, поля воздействий, блоки магии и редактор описания. Некоторые глобальные правила также достигают Loot и расследований. | [Карточка](files/styles/item-sheets.css.md) | Проверено |
 | [styles/loot-sheet.css](../../../styles/loot-sheet.css) | Боковая область Loot, отображение скрытых предметов и ширины пустых крайних ячеек; общие классы переиспользованы расследованием. | [Карточка](files/styles/loot-sheet.css.md) | Проверено |
-| [styles/monster-sheet.css](../../../styles/monster-sheet.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/monster-skill-tab.css](../../../styles/monster-skill-tab.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/monster/details.css](../../../styles/monster/details.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/monster/header.css](../../../styles/monster/header.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/monster/inventory.css](../../../styles/monster/inventory.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/monster/sheet.css](../../../styles/monster/sheet.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/monster/sidebar.css](../../../styles/monster/sidebar.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/monster-sheet.css](../../../styles/monster-sheet.css) | Прежний полный интерфейс монстра и несколько общих правил, которые продолжают влиять на текущие PARTS монстра. | [Карточка](files/styles/monster-sheet.css.md) | Проверено |
+| [styles/monster-skill-tab.css](../../../styles/monster-skill-tab.css) | Прежние группы навыков монстра и общие таблицы старой вкладки магии. | [Карточка](files/styles/monster-skill-tab.css.md) | Проверено |
+| [styles/monster/details.css](../../../styles/monster/details.css) | Активная вкладка сведений монстра: вложенные вкладки, знания, заголовки и числовые пороги. | [Карточка](files/styles/monster/details.css.md) | Проверено |
+| [styles/monster/header.css](../../../styles/monster/header.css) | Оформление текущего заголовка монстра: имя, сведения о типе и угрозе, действия и счётчик смерти. | [Карточка](files/styles/monster/header.css.md) | Проверено |
+| [styles/monster/inventory.css](../../../styles/monster/inventory.css) | Специализация общих секций инвентаря монстра и кнопки экспорта добычи. | [Карточка](files/styles/monster/inventory.css.md) | Проверено |
+| [styles/monster/sheet.css](../../../styles/monster/sheet.css) | Сетка текущего листа монстра с размещением monster-sidebar на трёх строках. | [Карточка](files/styles/monster/sheet.css.md) | Проверено |
+| [styles/monster/sidebar.css](../../../styles/monster/sidebar.css) | Текущая боковая панель монстра: портрет, значок категории, состояние ранений и естественная броня. | [Карточка](files/styles/monster/sidebar.css.md) | Проверено |
 | [styles/profession-sheet.css](../../../styles/profession-sheet.css) | Задаёт общие карточки и цветовые ветки профессии, поля навыков, заметки и анимацию кнопки броска в Item и Actor. | [Карточка](files/styles/profession-sheet.css.md) | Проверено |
 | [styles/race-sheet.css](../../../styles/race-sheet.css) | Задаёт высоту150px содержимому редактора внутри расовой особенности; применяется также в расовом блоке Character. | [Карточка](files/styles/race-sheet.css.md) | Проверено |
 | [styles/repair.css](../../../styles/repair.css) | Выравнивание сводки ремонта и два независимых ограничения высоты прокручиваемых частей диалога. | [Карточка](files/styles/repair.css.md) | Проверено |
@@ -492,10 +492,10 @@
 | [styles/special-skill-table.css](../../../styles/special-skill-table.css) | Содержит оформление специального списка навыков и кнопок модификаторов; текущие HTML/JS-потребители этих классов не найдены. | [Карточка](files/styles/special-skill-table.css.md) | Проверено |
 | [styles/substances.css](../../../styles/substances.css) | Панель девяти алхимических веществ, активное состояние группы и общий размер иконок веществ в панели, рецепте и HTML списка алхимии. | [Карточка](files/styles/substances.css.md) | Проверено |
 | [styles/system-styles.css](../../../styles/system-styles.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/tab-background.css](../../../styles/tab-background.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/tab-inventory-list.css](../../../styles/tab-inventory-list.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/tab-inventory.css](../../../styles/tab-inventory.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/tab-skills.css](../../../styles/tab-skills.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/tab-background.css](../../../styles/tab-background.css) | Общие стили биографии, событий жизни, заметок и редакторов; часть правил применяется вне вкладки персонажа. | [Карточка](files/styles/tab-background.css.md) | Проверено |
+| [styles/tab-inventory-list.css](../../../styles/tab-inventory-list.css) | Общий каркас списков инвентаря и магии: раскрываемые заголовки, строки, детали Item, изображения и контролы. | [Карточка](files/styles/tab-inventory-list.css.md) | Проверено |
+| [styles/tab-inventory.css](../../../styles/tab-inventory.css) | Оформление инвентаря, нагрузки, валют, тегов Item, улучшений и содержимого контейнеров; общие правила используются также в сообщениях и Loot. | [Карточка](files/styles/tab-inventory.css.md) | Проверено |
+| [styles/tab-skills.css](../../../styles/tab-skills.css) | Общие блоки вкладки навыков и IP, элементы конфигурации и часть оформления прежних таблиц навыков монстра. | [Карточка](files/styles/tab-skills.css.md) | Проверено |
 | [styles/weapon-roll.css](../../../styles/weapon-roll.css) | Четыре правила размеров и выравнивания элементов внутри оружейного диалога. | [Карточка](files/styles/weapon-roll.css.md) | Проверено |
 | [styles/witcher-styles.css](../../../styles/witcher-styles.css) | Не установлено | Не подготовлено | Не начат |
 | [system.json](../../../system.json) | Манифест пакета: ресурсы, компедиумы, локализации и подтипы документов | [Карточка](files/system.json.md) | Проверено |

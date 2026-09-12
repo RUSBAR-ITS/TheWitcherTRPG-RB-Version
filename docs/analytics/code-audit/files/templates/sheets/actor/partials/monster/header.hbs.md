@@ -80,3 +80,13 @@ name сохраняет общая форма; счётчики и действ�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003032) |
+
+## Дополнительная сверка TASK-0003.049
+
+2026-09-12, rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Исходный файл не изменён.
+
+Полностью описаны monster/header.css и общие кнопки character-header.css. Настоящий HBS содержит monster-header; monster-header-center в нём отсутствует, поэтому явно заданная позиция старого имени из sheet CSS на этот узел не распространяется. Автоматическое размещение не объявлено ошибкой. При включённом verbal — пять button-roll. Экспорт из заголовка находится вне active inventory и не получает её width100%.
+
+Карточки CSS: [styles/monster/header.css](../../../../../styles/monster/header.css.md), [styles/character-header.css](../../../../../styles/character-header.css.md), [styles/monster/sheet.css](../../../../../styles/monster/sheet.css.md), [styles/monster/inventory.css](../../../../../styles/monster/inventory.css.md).
+
+[Методика и результаты](../../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.

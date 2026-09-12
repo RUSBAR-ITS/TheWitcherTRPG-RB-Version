@@ -330,3 +330,4 @@
 | [issue-00308](potential/issue-00308.md) | Селекторы заголовков описания Item не учитывают обёртки partial | `potential` |
 | [issue-00309](potential/issue-00309.md) | Стиль списка компонентов центрирует заголовки посторонних таблиц | `potential` |
 | [issue-00310](potential/issue-00310.md) | Цвет фона тегов Item задан значением с шириной и стилем рамки | `potential` |
+| [issue-00311](potential/issue-00311.md) | Красное заполнение индикатора перегруза использует неверный WebKit-селектор | `potential` |

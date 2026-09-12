@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.048 подготовлены и сверены 367 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.049 подготовлены и сверены 380 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -610,3 +610,21 @@
 | templates/chat/item/partials/item-description/description.hbs | [Описание](templates/chat/item/partials/item-description/description.hbs.md) |
 | templates/chat/item/partials/item-description/spell-description.hbs | [Описание](templates/chat/item/partials/item-description/spell-description.hbs.md) |
 | templates/chat/item/partials/item-description/tags.hbs | [Описание](templates/chat/item/partials/item-description/tags.hbs.md) |
+
+## Стили Actor: персонаж, монстр и общие вкладки — TASK-0003.049
+
+| Файл | Карточка |
+| --- | --- |
+| styles/character-header.css | [Описание](styles/character-header.css.md) |
+| styles/character/sheet.css | [Описание](styles/character/sheet.css.md) |
+| styles/tab-background.css | [Описание](styles/tab-background.css.md) |
+| styles/tab-inventory.css | [Описание](styles/tab-inventory.css.md) |
+| styles/tab-inventory-list.css | [Описание](styles/tab-inventory-list.css.md) |
+| styles/tab-skills.css | [Описание](styles/tab-skills.css.md) |
+| styles/monster-sheet.css | [Описание](styles/monster-sheet.css.md) |
+| styles/monster-skill-tab.css | [Описание](styles/monster-skill-tab.css.md) |
+| styles/monster/header.css | [Описание](styles/monster/header.css.md) |
+| styles/monster/sidebar.css | [Описание](styles/monster/sidebar.css.md) |
+| styles/monster/details.css | [Описание](styles/monster/details.css.md) |
+| styles/monster/inventory.css | [Описание](styles/monster/inventory.css.md) |
+| styles/monster/sheet.css | [Описание](styles/monster/sheet.css.md) |
