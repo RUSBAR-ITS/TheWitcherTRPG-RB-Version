@@ -4,15 +4,15 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.049 проверены описания **380 файлов**, для **241 файла** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.050 проверены описания **387 файлов**, для **234 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.049](review-log.md#task-0003049) выполнена на 523c9b2616e19058b18f812ae0361c8a86366814: все 621 исходник совпадают с базовым срезом. Добавлены 13 карточек CSS Actor; выполнены 15 групп локальных проверок, сверены текущие/старые потребители, состояния и каскад. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
+Последняя [сверка TASK-0003.050](review-log.md#task-0003050) выполнена на 3f78cbf0372e1da3d5a840e41b456d954c64e403: все 621 исходник совпадают с базовым срезом. Добавлены семь карточек ресурсов и инструментов компедиумов; выполнены 20 новых и 100 повторных групп проверок, итоговая сверка 77 файлов пятой серии с прежними 310 карточками. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
 | Файл | Краткое назначение | Подробное описание | Статус анализа |
 | --- | --- | --- | --- |
-| [build.json](../../../build.json) | Не установлено | Не подготовлено | Не начат |
+| [build.json](../../../build.json) | Список путей, передаваемых сценарием выпуска в zip при подготовке дистрибутива системы. | [Карточка](files/build.json.md) | Проверено |
 | [lang/de.json](../../../lang/de.json) | Не установлено | Не подготовлено | Не начат |
 | [lang/en.json](../../../lang/en.json) | Не установлено | Не подготовлено | Не начат |
 | [lang/es.json](../../../lang/es.json) | Не установлено | Не подготовлено | Не начат |
@@ -235,7 +235,7 @@
 | [module/setup/registerSheets.js](../../../module/setup/registerSheets.js) | Регистрирует общие и специализированные листы Actor/Item и заменяет стандартный редактор ActiveEffect. | [Карточка](files/module/setup/registerSheets.js.md) | Проверено |
 | [module/setup/settings.js](../../../module/setup/settings.js) | Регистрирует девять мировых настроек и формирует варианты выбора Item-компедиума травм. | [Карточка](files/module/setup/settings.js.md) | Проверено |
 | [module/setup/socketHook.js](../../../module/setup/socketHook.js) | Принимает сообщения системного сокета на активном GM и вызывает addItem или restoreReliability по UUID. | [Карточка](files/module/setup/socketHook.js.md) | Проверено |
-| [package.json](../../../package.json) | Не установлено | Не подготовлено | Не начат |
+| [package.json](../../../package.json) | Объявляет две зависимости разработки и две npm-команды для сборки и извлечения компедиумов. | [Карточка](files/package.json.md) | Проверено |
 | [packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json](../../../packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json](../../../packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json](../../../packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json) | Не установлено | Не подготовлено | Не начат |
@@ -474,7 +474,7 @@
 | [styles/container-sheet.css](../../../styles/container-sheet.css) | Расположение строк содержимого на отдельном листе контейнера и строки фактического веса/вместимости. | [Карточка](files/styles/container-sheet.css.md) | Проверено |
 | [styles/crit-wounds-table.css](../../../styles/crit-wounds-table.css) | Оформляет заголовки и поля критических травм в списке Actor и редакторе Item; также содержит правила прежней табличной разметки без найденных текущих элементов. | [Карточка](files/styles/crit-wounds-table.css.md) | Проверено |
 | [styles/currency-converter.css](../../../styles/currency-converter.css) | Сетка балансов и четырёх полей содержимого диалога конвертации валют. | [Карточка](files/styles/currency-converter.css.md) | Проверено |
-| [styles/dialog.css](../../../styles/dialog.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/dialog.css](../../../styles/dialog.css) | Сетка из двух равных колонок для четырёх флажков диалога отдыха. | [Карточка](files/styles/dialog.css.md) | Проверено |
 | [styles/item-header.css](../../../styles/item-header.css) | Общие размеры и расположение элементов шапки Item и шапки диалога ремонта; стили ограничены предком .item-header. | [Карточка](files/styles/item-header.css.md) | Проверено |
 | [styles/item-sheets.css](../../../styles/item-sheets.css) | Общие классы форм Item: опции, колонки, таблицы, поля воздействий, блоки магии и редактор описания. Некоторые глобальные правила также достигают Loot и расследований. | [Карточка](files/styles/item-sheets.css.md) | Проверено |
 | [styles/loot-sheet.css](../../../styles/loot-sheet.css) | Боковая область Loot, отображение скрытых предметов и ширины пустых крайних ячеек; общие классы переиспользованы расследованием. | [Карточка](files/styles/loot-sheet.css.md) | Проверено |
@@ -491,13 +491,13 @@
 | [styles/rewards.css](../../../styles/rewards.css) | Горизонтальное расположение одной записи журнала IP или валюты в окне RewardsSheet. | [Карточка](files/styles/rewards.css.md) | Проверено |
 | [styles/special-skill-table.css](../../../styles/special-skill-table.css) | Содержит оформление специального списка навыков и кнопок модификаторов; текущие HTML/JS-потребители этих классов не найдены. | [Карточка](files/styles/special-skill-table.css.md) | Проверено |
 | [styles/substances.css](../../../styles/substances.css) | Панель девяти алхимических веществ, активное состояние группы и общий размер иконок веществ в панели, рецепте и HTML списка алхимии. | [Карточка](files/styles/substances.css.md) | Проверено |
-| [styles/system-styles.css](../../../styles/system-styles.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/system-styles.css](../../../styles/system-styles.css) | Общие CSS-утилиты, оформление окон, инвентаря, магии, сообщений бросков и предметных заголовков; часть прежних селекторов не имеет установленного текущего потребителя. | [Карточка](files/styles/system-styles.css.md) | Проверено |
 | [styles/tab-background.css](../../../styles/tab-background.css) | Общие стили биографии, событий жизни, заметок и редакторов; часть правил применяется вне вкладки персонажа. | [Карточка](files/styles/tab-background.css.md) | Проверено |
 | [styles/tab-inventory-list.css](../../../styles/tab-inventory-list.css) | Общий каркас списков инвентаря и магии: раскрываемые заголовки, строки, детали Item, изображения и контролы. | [Карточка](files/styles/tab-inventory-list.css.md) | Проверено |
 | [styles/tab-inventory.css](../../../styles/tab-inventory.css) | Оформление инвентаря, нагрузки, валют, тегов Item, улучшений и содержимого контейнеров; общие правила используются также в сообщениях и Loot. | [Карточка](files/styles/tab-inventory.css.md) | Проверено |
 | [styles/tab-skills.css](../../../styles/tab-skills.css) | Общие блоки вкладки навыков и IP, элементы конфигурации и часть оформления прежних таблиц навыков монстра. | [Карточка](files/styles/tab-skills.css.md) | Проверено |
 | [styles/weapon-roll.css](../../../styles/weapon-roll.css) | Четыре правила размеров и выравнивания элементов внутри оружейного диалога. | [Карточка](files/styles/weapon-roll.css.md) | Проверено |
-| [styles/witcher-styles.css](../../../styles/witcher-styles.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/witcher-styles.css](../../../styles/witcher-styles.css) | Единственная CSS-точка входа манифеста: подключает все 35 остальных CSS, объявляет шрифт Thewitcher и общие классы сетки/раскрытия навыков. | [Карточка](files/styles/witcher-styles.css.md) | Проверено |
 | [system.json](../../../system.json) | Манифест пакета: ресурсы, компедиумы, локализации и подтипы документов | [Карточка](files/system.json.md) | Проверено |
 | [templates/chat/combat/defense/defense.hbs](../../../templates/chat/combat/defense/defense.hbs) | Базовый фрагмент сообщения защиты: локализованное название и пояснение основы формулы. | [Карточка](files/templates/chat/combat/defense/defense.hbs.md) | Проверено |
 | [templates/chat/combat/defense/defenseCrit.hbs](../../../templates/chat/combat/defense/defenseCrit.hbs) | Условный фрагмент критической защиты: название тяжести, маркер меню критической травмы и кнопка спасброска. | [Карточка](files/templates/chat/combat/defense/defenseCrit.hbs.md) | Проверено |
@@ -631,5 +631,5 @@
 | [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs) | Основная форма Item spell: стоимость, описание, вид знака, побочный эффект дара, параметры области и три независимых признака урона/щита/лечения. | [Карточка](files/templates/sheets/item/spell-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/valuable-sheet.hbs](../../../templates/sheets/item/valuable-sheet.hbs) | Основная форма категории, доступности, скрытности и описания предмета. | [Описание](files/templates/sheets/item/valuable-sheet.hbs.md) | Проверено |
 | [templates/sheets/item/weapon-sheet.hbs](../../../templates/sheets/item/weapon-sheet.hbs) | Основная форма оружия и боеприпасов с областью рецепта. | [Описание](files/templates/sheets/item/weapon-sheet.hbs.md) | Проверено |
-| [utils/extract.mjs](../../../utils/extract.mjs) | Не установлено | Не подготовлено | Не начат |
-| [utils/packs.mjs](../../../utils/packs.mjs) | Не установлено | Не подготовлено | Не начат |
+| [utils/extract.mjs](../../../utils/extract.mjs) | Извлекает каталоги packs в JSON с папками компедиума, предварительно удаляя корневые JSON и очищая три имени metadata-полей. | [Карточка](files/utils/extract.mjs.md) | Проверено |
+| [utils/packs.mjs](../../../utils/packs.mjs) | Последовательно компилирует каждый входной каталог packsJson в одноимённый LevelDB-каталог packs через Foundry CLI. | [Карточка](files/utils/packs.mjs.md) | Проверено |

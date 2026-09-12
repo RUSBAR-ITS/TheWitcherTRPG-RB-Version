@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.049 подготовлены и сверены 380 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.050 подготовлены и сверены 387 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -628,3 +628,15 @@
 | styles/monster/details.css | [Описание](styles/monster/details.css.md) |
 | styles/monster/inventory.css | [Описание](styles/monster/inventory.css.md) |
 | styles/monster/sheet.css | [Описание](styles/monster/sheet.css.md) |
+
+## Подключение ресурсов, базовые стили и инструменты компедиумов — TASK-0003.050
+
+| Файл | Карточка |
+| --- | --- |
+| styles/witcher-styles.css | [Описание](styles/witcher-styles.css.md) |
+| styles/system-styles.css | [Описание](styles/system-styles.css.md) |
+| styles/dialog.css | [Описание](styles/dialog.css.md) |
+| package.json | [Описание](package.json.md) |
+| build.json | [Описание](build.json.md) |
+| utils/packs.mjs | [Описание](utils/packs.mjs.md) |
+| utils/extract.mjs | [Описание](utils/extract.mjs.md) |

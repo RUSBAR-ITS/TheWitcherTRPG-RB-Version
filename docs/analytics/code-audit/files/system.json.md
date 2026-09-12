@@ -31,7 +31,7 @@
 | `relationships` — 131–140 | Обязательных модулей нет; statuscounter рекомендован. Polyglot здесь не объявлен, хотя точка входа слушает его событие. |
 | `socket`, `initiative`, `grid` — 141–146 | Разрешён системный сокет; инициатива 1d10; размер клетки 2 m. |
 | `primaryTokenAttribute`, `secondaryTokenAttribute` — 147–148 | Пути resources.health и resources.power для интерфейса токена. |
-| `url`, `manifest`, `download` — 149–151 | Заготовки URL выпуска; строка manifest заканчивается ACTIONn. Подстановка не исследована: .github исключён. |
+| `url`, `manifest`, `download` — 149–151 | Заготовки URL выпуска; строка manifest заканчивается ACTIONn. Потребитель подстановки установлен в TASK-0003.050 по release.yml как справочному источнику; фактический выпуск не запускался. |
 | `documentTypes` — 152–194 | Actor: character, monster, loot. Item: 18 типов от alchemical до weapon. ChatMessage: attack, defense, damage. ActiveEffect: temporaryItemImprovement. `htmlFields` заданы у monster, criticalWound, profession и race; это декларации полей, не содержимое их моделей. |
 
 | Документ | Объявленные типы | htmlFields |
@@ -50,7 +50,7 @@
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
 | Точка входа | [module/TheWitcherTRPG.js](../../../../module/TheWitcherTRPG.js) | ES-модуль | Поле esmodules, строка 22 | Путь существует; модуль полностью разобран в этой порции |
-| Главные стили | [styles/witcher-styles.css](../../../../styles/witcher-styles.css) | Ресурс CSS | Поле styles, строка 23 | Путь существует; содержательный разбор CSS вне порции |
+| Главные стили | [styles/witcher-styles.css](../../../../styles/witcher-styles.css) | Ресурс CSS | Поле styles, строка 23 | Путь существует; все 36 CSS полностью разобраны к TASK-0003.050, см. уточнение ниже |
 | en | [lang/en.json](../../../../lang/en.json) | Локализация | languages, строки 89–130 | Путь существует; полное описание словаря вне этапа |
 | es | [lang/es.json](../../../../lang/es.json) | Локализация | languages, строки 89–130 | Путь существует; полное описание словаря вне этапа |
 | ptbr | [lang/ptbr.json](../../../../lang/ptbr.json) | Локализация | languages, строки 89–130 | Путь существует; полное описание словаря вне этапа |
@@ -59,7 +59,7 @@
 | it | [lang/it.json](../../../../lang/it.json) | Локализация | languages, строки 89–130 | Путь существует; полное описание словаря вне этапа |
 | ru | [lang/ru.json](../../../../lang/ru.json) | Локализация | languages, строки 89–130 | Путь существует; полное описание словаря вне этапа |
 | pl | [lang/pl.json](../../../../lang/pl.json) | Локализация | languages, строки 89–130 | Путь существует; полное описание словаря вне этапа |
-| Данные семи компедиумов | `packs/combat.db`, `packs/criticalWounds.db`, `packs/character-generator.db`, `packs/character-generator-sub-tables.db`, `packs/witcher-lifepath.db`, `packs/lifepath.db`, `packs/style.db` | Объявленные пути | packs, строки 44–88 | Ни один из семи буквальных путей в checkout не существует; это не подтверждает ошибку релизной сборки или загрузчика |
+| Данные семи компедиумов | `packs/combat.db`, `packs/criticalWounds.db`, `packs/character-generator.db`, `packs/character-generator-sub-tables.db`, `packs/witcher-lifepath.db`, `packs/lifepath.db`, `packs/style.db` | Объявленные пути | packs, строки 44–88 | Буквальные пути с .db не существуют; в TASK-0003.050 проверено удаление суффикса ядром, нормализованные пути совпадают с выходами CLI |
 | Загрузка и типизация пакета | Foundry 14.367.0; `/opt/foundryvtt/common/packages/base-system.mjs` | Внешний API | Схема BaseSystem содержит documentTypes | Версия прочитана из package.json установленного ядра; запуск мира не проверен |
 
 ## Известные потребители
@@ -82,7 +82,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Не проверены выпуск, подстановка заготовок, интерпретация отсутствующих путей packs загрузчиком, загрузка мира и модулей. Для дополнительных типов выполнена сверка с локальными Document.TYPES, DocumentTypeField и DocumentSheetConfig ядра; создание этих типов в мире не воспроизводилось. Отсутствие собранных баз в checkout не приравнивается к дефекту кода.
+Файл прочитан полностью. Выпуск, загрузка мира и модулей не проверены. Потребитель подстановки заготовок и нормализация pack-путей установлены в TASK-0003.050 ниже; исполнение CI/серверной загрузки не проверялось. Для дополнительных типов выполнена сверка с локальными Document.TYPES, DocumentTypeField и DocumentSheetConfig ядра; создание этих типов в мире не воспроизводилось. Отсутствие собранных баз в checkout не приравнивается к дефекту кода.
 
 ## Связанные проблемы
 
@@ -160,3 +160,15 @@
 Первые две полные CSS-карточки: [attack-sheet.css](styles/attack-sheet.css.md) и [weapon-roll.css](styles/weapon-roll.css.md). Они подключены косвенно через witcher-styles.css (@import строки 3/17), не отдельными entries manifest.styles. Остальные ресурсы файла импорта не считаются полностью разобранными.
 
 [Сверка и ограничения](../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.050
+
+2026-09-12, rusbar-main, 3f78cbf0372e1da3d5a840e41b456d954c64e403; исходник не изменён.
+
+Маршрут styles:23 → [входной CSS](styles/witcher-styles.css.md) → 35 импортов теперь описан целиком: 36 CSS, 690 rule-узлов, 1708 declarations в правилах и два в @font-face. Все импорты уникальны, без дочерних циклов; единственный url — существующий исключённый шрифт.
+
+Pack paths: настоящий PackageCompendiumPacks._cleanElement в /opt/foundryvtt/common/packages/base-package.mjs:163–167 удаляет окончание .db. Отдельно исполнено его тело с фасадом базовой очистки для всех семи записей манифеста; нормализованные пути совпадают с cwd/packs/<pack> у [compile-скрипта](utils/packs.mjs.md). В текущем packs пять каталогов; combat/criticalWounds не найдены. Это наблюдение файловой системы без чтения DB и без доказательства неисправности запущенного мира; issue-00001/00002 остаются отдельными.
+
+[build.json](build.json.md) потребляется .github/workflows/get-includes.js → release.yml → zip. Workflow после сборки заменяет version/url/manifest/download манифеста; исходное ACTIONn не доказывает неправильный опубликованный URL. .github прочитан только как справочный потребитель, не добавлен в реестр. Выпуск и установка не запускались.
+
+[Перекрёстная сверка серии и пределы проверки](../review-log.md#task-0003050). Связанные файлы повторно в покрытие не засчитывались; серверная запись, браузер и HTTP системы не проверялись.

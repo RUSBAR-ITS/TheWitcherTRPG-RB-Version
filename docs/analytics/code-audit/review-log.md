@@ -1,5 +1,194 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.050
+
+2026-09-12; rusbar-main, 3f78cbf0372e1da3d5a840e41b456d954c64e403. Завершена [TASK-0003.050](../../tasks/task-0003.050.md): семь файлов, 582 логические строки. Исходники совпадают со срезом TASK-0001. Пятая серия завершена: все 77 файлов/7065 строк .041–.050 сопоставлены с документированными связями прежних 310 карточек. TASK-0004 остаётся draft; это вспомогательный материал для её дальнейшей детализации.
+
+### Состав и полнота порции
+
+| Файл и карточка | Строки | Результат полного разбора |
+| --- | --- | --- |
+| [styles/witcher-styles.css](files/styles/witcher-styles.css.md) | 77 | Все 35 импортов; 6 rule-узлов/16 declarations, @font-face с двумя свойствами |
+| [styles/system-styles.css](files/styles/system-styles.css.md) | 438 | Все 93 rule-узла/158 declarations; utilities, окна, текущие и прежние потребители |
+| [styles/dialog.css](files/styles/dialog.css.md) | 5 | Один rule-узел/три свойства, диалог отдыха |
+| [package.json](files/package.json.md) | 10 | Две devDependencies и две команды, cwd/argv и installed/locked distinction |
+| [build.json](files/build.json.md) | 13 | Все девять includes, реальный потребитель release и отсутствующий путь |
+| [utils/packs.mjs](files/utils/packs.mjs.md) | 11 | Верхнеуровневая последовательная компиляция, CLI, входы/выходы и ошибки |
+| [utils/extract.mjs](files/utils/extract.mjs.md) | 28 | Очистка, извлечение, folders/omitVolatile/replacer, отказ и обратная сборка |
+
+Все 100 rule-узлов/177 declarations трёх CSS, два свойства @font-face и порядок импортов включены в карточки. Общий CSS-массив серии: 36 файлов, 690 rule-узлов и 1710 declarations (1708 в правилах плюс два @font-face). Все 18 HBS серии разобраны Handlebars.parse; шесть буквальных включений HBS разрешаются. Динамический assets/images/{{key}} отмечен отдельно, его корректность сопоставлена с девятью substance-ключами в повторённой .048.
+
+### Методика и внешние источники
+
+Node 24.16.0; Foundry 14.367.0 по /opt/foundryvtt/package.json. PostCSS 8.5.12, Handlebars 4.7.9, parse5 из существующего окружения Foundry. Исходники читались через fs, скрипты проверок передавались в stdin; файлов стенда нет.
+
+CLI и prettier не установлены в checkout: createRequire.resolve для обоих вернул MODULE_NOT_FOUND. package-lock.json (справочный исключённый файл) фиксирует 3.0.3/3.3.3, package.json объявляет ^3.0.3/^3.3.3. Эти три состояния различены.
+
+Для проверки контракта прочитан в память [официальный опубликованный CLI 3.0.3](https://registry.npmjs.org/@foundryvtt/foundryvtt-cli/3.0.3): index.mjs, lib/package.mjs, package.json из npm tarball. Проверка SHA-512 совпала с lock integrity: sha512-byNLOrZ9ev6PfW+gflhonT5Y+Goq2aHERwVGWO3eYRKez+lzZJoqMY/YMEi54XYozzWWn8d6LuRbBsVPJ30haw==. Архив не распаковывался на диск, npm install/ci не запускались. Это внешний исходник конкретной версии, не проверка установленной зависимости.
+
+P-сценарии исполняли исходные тела utils без import-строк в Node vm; fs/promises, cwd и API подменены. Для P09–P13 использовано настоящее тело lib/package.mjs без import/export-деклараций, со встроенными fs/path/ClassicLevel-фасадами: файлы, папки, записи и batch существуют только в Map/Set памяти. relative path.resolve привязан к виртуальному /work. Ни один fs.rm/compile/extract из тестируемого кода не мог обратиться к настоящим файлам. Начальная неточность фасада относительных путей исправлена только в процессе проверки, не зарегистрирована как дефект системы.
+
+C-сценарии использовали исходные HBS и helpers, настоящие Localization/expandObject/fallback. DOM, документные контексты и непроверяемые поля редакторов представлены явно ограниченными фасадами. P14 использовал настоящее тело PackageCompendiumPacks._cleanElement с фасадом super._cleanElement. Отдельно прочитаны .github/workflows/get-includes.js/release.yml как потребители build.json; они не получили карточек и не расширили охват.
+
+### 14 проверок утилит и границы CLI
+
+| № | Сценарий | Фактический результат |
+| --- | --- | --- |
+| P01 | Два pack, .gitattributes и лишние argv | По одному последовательному compile; абсолютные пары путей; recursive:true; .gitattributes пропущен, argv не используется |
+| P02 | Пустой/отсутствующий packsJson | Ноль compile при пустом; ENOENT до компиляции при отсутствии |
+| P03 | Посторонний файл/первый rejected compile | Файл передан как src без isDirectory; после отказа следующий pack не запускается |
+| P04 | old.json, UP.JSON, keep.txt, nested/old.json | Удалены только два root JSON; сохранены текст/nested; затем вызван extract; replacer убрал три имени на любой глубине, сохранил версии |
+| P05 | Пустой packs / новый pack без dest | Пустой завершился; новый дал ENOENT до API-вызова, mkdir библиотеки недостижим |
+| P06 | Отказ подменённого extractPack | Прежний old.json уже удалён и не восстановлен |
+| P07 | Отказ второго rm | Первый JSON удалён, второй остался, extract не вызван |
+| P08 | Отсутствующий packs / посторонний .gitattributes | ENOENT; .gitattributes не пропускается в отличие от сборки |
+| P09 | Настоящий CLI, папка F, текущий N, старый nested O | Созданы _Folder.json/New_N.json; Old_O.json остался; обратная сборка вернула !tables!O в виртуальную DB |
+| P10 | Переименованный N с прежним nested filename | Старый/новый файл сохраняют один _key; compile выбросил already packed |
+| P11 | Реальный алгоритм CLI с отказом DB-фасада | tmp удалён finally, но предварительно удалённый JSON скриптом не восстановлен |
+| P12 | Только пять volatile-полей меняются; затем прежнего файла нет | При существующем JSON checkVolatile возвращает прежние данные; без него — новые; это сравнение, не удаление пяти полей |
+| P13 | .json, .JSON, nested .json, .yml | findSourceFiles recursive выбрал два lowercase .json; очистка системы отдельно удаляет и uppercase |
+| P14 | Семь manifest-путей через core _cleanElement | Суффикс .db удалён; нормализованные пути совпали с каталогами compile |
+
+### Шесть проверок ресурсов и представления
+
+| № | Сценарий | Фактический результат |
+| --- | --- | --- |
+| C01 | Манифест, полный CSS-граф, font URL | Все 36 CSS подключены по одному разу, 35 @import; дочерних импортов/циклов нет; единственный URL шрифта существует |
+| C02 | Настоящий ready, настройка шрифта и pack | true/успех даёт два witcher-style; false — ноль; отсутствие pack блокирует добавление (существующая issue-00002) |
+| C03 | Настоящий heal-rest.hbs | Одна сетка, четыре unchecked input с ожидаемыми ID и одна invisible-подсказка |
+| C04 | focus active/неактивен | Настоящий HBS содержит соответствующий класс, четыре focus-item и шесть focus-value; CSS явно задаёт none/flex |
+| C05 | Оружейный partial и общие CSS | Два текущих поля reliable-info/item-quantity, скрытые подробности; две записи transition:all 0.3 ease без единицы времени |
+| C06 | Исходный get-includes helper, package/build JSON | Девять includes соединены пробелом; из проверенных оснований путей отсутствует только template.json; команды npm совпали со скриптами |
+
+Грамматика невалидного transition сверена с [W3C CSS Transitions](https://www.w3.org/TR/css-transitions-1/#transition-shorthand-property). PostCSS не объявлен браузерным валидатором. Нормализация .db не является issue; отсутствующий template.json не доказывает полного отказа zip/CI. Реальная версия/код возврата zip не проверены.
+
+### Общая сверка пятой серии с прежними 310 карточками
+
+Охвачены ровно 77 различных файлов: 19 module JS, 18 HBS, 36 CSS и четыре файла конфигурации/инструментов сборки. Проверка состава сопоставила их со всеми ещё не разобранными до серии файлами этих категорий. Для 19 JS проверены 30 именованных/default связей импорта с существующими exports: 27 ведут в прежний массив, три — внутри серии. В каждой карточке импортируемого файла найдена обратная ссылка по имени потребителя; все выделенные статическим шаблоном имена определений присутствуют в собственных карточках. Проверка строковых имён сама не доказывает правильность аргументов или завершение Promise; эти границы рассмотрены ниже.
+
+| Блок / все файлы по задаче | Сопоставленные определения и потребители | Результат и предел новой проверки |
+| --- | --- | --- |
+| [.041 — атака, 4 файла](../../tasks/task-0003.041.md) | WitcherActor/Item, WeaponData, modifiers, profession, extendedRoll/RollConfig, AttackMessageData | Импорты/exports, HBS и обе CSS-карточки согласованы с журналом .041. Служебные options, расход до поздних отказов, накопление customDmg и schema cleaning остаются разными границами. 28 прежних сценариев здесь повторно не заявляются |
+| [.042 — защита, 5 файлов](../../tasks/task-0003.042.md) | defenseOptionMixin → defenseMixin → DefenseMessageData/Combat/status/effects | Отбор item/profession и передаваемые данные описаны с учётом полного потребителя .045. duration и critEffectModifier теряются на разных моделях; исходный объект нельзя приравнять к сохранённому сообщению |
+| [.043 — броня/локации, 3 файла](../../tasks/task-0003.043.md) | WitcherActor.getAllLocations, ArmorData/MonsterData, модификаторы EV, applyArmor, CastSpell | Карточки различают Actor.system и Item.system, естественную/надетую броню, source/prepared. Старые 25/26/32/83/254 и новые 277–283 не объединены по одному слову «броня» |
+| [.044 — урон/травмы, 9 файлов](../../tasks/task-0003.044.md) | Item damageUtil → DamageMessageData → DamageInstance → Actor.damageMixin → armor/status/criticalWound/Chat | По встречным определениям сопоставлены свойства, промежуточные экземпляры, shield/HP и выдача травмы. Полная обработка травмы не подменяется CSS или готовностью индекса; прежние непроверенные DB/рулбук-границы сохранены |
+| [.045 — чат/Combat/socket, 5 файлов](../../tasks/task-0003.045.md) | Hooks/entry point, core ContextMenu, messages, actual Actor methods, Socket.IO и socket receiver | Повторены все 28 групп с исходным кодом и прежними фасадами. Подтвердились регистрация, DOM-контракты, model cleaning и раннее завершение записей; настоящий disconnected Socket.IO проверялся без сети. Сокет обслуживает ремонт/передачу, не все атаки |
+| [.046 — словесный бой, 5 файлов](../../tasks/task-0003.046.md) | CONFIG действий, modifierMixin/extendedRoll/RollConfig, ChatMessageData, ContextMenu/Dialog | Повторены 26 групп: конфигурации, параметры, формы, очистка vcDamage, flags, Resolve, DOM/jQuery и ожидание. Старый Dialog callback поддерживается ядром; ошибку нельзя вывести только из имени API |
+| [.047 — фабрики/эффекты/CSS, 10 файлов](../../tasks/task-0003.047.md) | Три фабрики полей, DataModel, effect wizard/CommonItemData, PARTS race/profession/criticalWounds, core редактор | Повторены 15 групп. Фабрики не объявлены подключённой системой бонусов по сходству имени; строковые modifiers и отсутствие действующего потребителя сохранены в карточках. Проверены реальные HBS/классы и структура редактора |
+| [.048 — Item-представление, 16 файлов](../../tasks/task-0003.048.md) | 13 моделей Item, actor itemMixin, 6 HBS описаний, components/repair/loot/rewards/substances и 10 CSS | Повторены 16 групп: типы/поля, миграции/enrichment и plain/prepared, экранирование, локализация, фактическая вложенность HBS, области селекторов и состояния. Не восстановлены ранее отвергнутые выводы по одному буквальному locale lookup |
+| [.049 — Actor CSS, 13 файлов](../../tasks/task-0003.049.md) | Registered Actor/Monster PARTS/TABS, core class merge, HBS/handlers, active/open/checked, нынешний и прежний DOM | Повторены 15 групп, включая helper _prepareTabs, переключения, grid-сетки и ProseMirror _buildElements. Старые CSS остаются подключены, однако старый полный Monster HBS не объявлен текущим. Индикатор перегруза отдельно от Loot |
+| [.050 — инфраструктура, 7 файлов](../../tasks/task-0003.050.md) | system.json→36 CSS; package→utils→CLI→packsJson/packs; build→release helper→zip | 20 новых групп P01–P14/C01–C06; версии, границы записи, полная таблица CSS и нормализация путей. Уточнены три ранние карточки: system.json, entry point, heal-rest |
+
+Итого в этой задаче выполнены **20 новых групп и 100 повторных групп** из .045–.049. Повторные группы запускаются на тех же неизменных исходниках и не выдаются за 100 новых сквозных игровых сценариев. .041–.044 сверены по исходным определениям/потребителям, карточкам и доказательствам прежних журналов; полный повтор всех их тестов не заявлен.
+
+Матрица ниже фиксирует каждый файл серии по одному разу; содержательные результаты находятся в соответствующем блоке, полной карточке и исходном журнале порции.
+
+| Файл — полная карточка | Блок сверки |
+| --- | --- |
+| [module/actor/mixins/weaponAttackMixin.js](files/module/actor/mixins/weaponAttackMixin.js.md) | .041 |
+| [templates/dialog/combat/weapon-attack.hbs](files/templates/dialog/combat/weapon-attack.hbs.md) | .041 |
+| [styles/weapon-roll.css](files/styles/weapon-roll.css.md) | .041 |
+| [styles/attack-sheet.css](files/styles/attack-sheet.css.md) | .041 |
+| [module/actor/mixins/defenseMixin.js](files/module/actor/mixins/defenseMixin.js.md) | .042 |
+| [module/item/mixins/defenseOptionMixin.js](files/module/item/mixins/defenseOptionMixin.js.md) | .042 |
+| [templates/chat/combat/defense/defense.hbs](files/templates/chat/combat/defense/defense.hbs.md) | .042 |
+| [templates/chat/combat/defense/defenseCrit.hbs](files/templates/chat/combat/defense/defenseCrit.hbs.md) | .042 |
+| [templates/chat/combat/defense/defenseStun.hbs](files/templates/chat/combat/defense/defenseStun.hbs.md) | .042 |
+| [module/actor/mixins/armorMixin.js](files/module/actor/mixins/armorMixin.js.md) | .043 |
+| [module/actor/mixins/locationMixin.js](files/module/actor/mixins/locationMixin.js.md) | .043 |
+| [styles/armor-sheet.css](files/styles/armor-sheet.css.md) | .043 |
+| [module/item/mixins/damageUtilMixin.js](files/module/item/mixins/damageUtilMixin.js.md) | .044 |
+| [module/scripts/damageInstance.js](files/module/scripts/damageInstance.js.md) | .044 |
+| [templates/dialog/combat/variableDamage.hbs](files/templates/dialog/combat/variableDamage.hbs.md) | .044 |
+| [module/actor/mixins/damageMixin.js](files/module/actor/mixins/damageMixin.js.md) | .044 |
+| [module/actor/mixins/damageUtilMixin.js](files/module/actor/mixins/damageUtilMixin.js.md) | .044 |
+| [templates/chat/damage/damageToLocation.hbs](files/templates/chat/damage/damageToLocation.hbs.md) | .044 |
+| [templates/chat/damage/damageToAllLocations.hbs](files/templates/chat/damage/damageToAllLocations.hbs.md) | .044 |
+| [templates/chat/damage/shieldAbsorbs.hbs](files/templates/chat/damage/shieldAbsorbs.hbs.md) | .044 |
+| [templates/chat/damage/spAbsorbs.hbs](files/templates/chat/damage/spAbsorbs.hbs.md) | .044 |
+| [module/scripts/combat/combat.js](files/module/scripts/combat/combat.js.md) | .045 |
+| [module/scripts/combat/applyDamage.js](files/module/scripts/combat/applyDamage.js.md) | .045 |
+| [module/scripts/combat/generalCombatHook.js](files/module/scripts/combat/generalCombatHook.js.md) | .045 |
+| [templates/chat/combat/regeneration.hbs](files/templates/chat/combat/regeneration.hbs.md) | .045 |
+| [module/scripts/socket/socketMessage.js](files/module/scripts/socket/socketMessage.js.md) | .045 |
+| [module/actor/mixins/verbalCombatMixin.js](files/module/actor/mixins/verbalCombatMixin.js.md) | .046 |
+| [module/scripts/verbalCombat/verbalCombat.js](files/module/scripts/verbalCombat/verbalCombat.js.md) | .046 |
+| [module/scripts/verbalCombat/verbalCombatDefense.js](files/module/scripts/verbalCombat/verbalCombatDefense.js.md) | .046 |
+| [templates/dialog/verbal-combat.hbs](files/templates/dialog/verbal-combat.hbs.md) | .046 |
+| [templates/dialog/verbal-combat-defense.hbs](files/templates/dialog/verbal-combat-defense.hbs.md) | .046 |
+| [module/data/item/templates/effectDerivedStatData.js](files/module/data/item/templates/effectDerivedStatData.js.md) | .047 |
+| [module/data/item/templates/effectSkillData.js](files/module/data/item/templates/effectSkillData.js.md) | .047 |
+| [module/data/item/templates/effectStatData.js](files/module/data/item/templates/effectStatData.js.md) | .047 |
+| [styles/activeEffect.css](files/styles/activeEffect.css.md) | .047 |
+| [styles/configurations/modifier-configuration.css](files/styles/configurations/modifier-configuration.css.md) | .047 |
+| [styles/crit-wounds-table.css](files/styles/crit-wounds-table.css.md) | .047 |
+| [styles/profession-sheet.css](files/styles/profession-sheet.css.md) | .047 |
+| [styles/special-skill-table.css](files/styles/special-skill-table.css.md) | .047 |
+| [styles/race-sheet.css](files/styles/race-sheet.css.md) | .047 |
+| [styles/character/tab-profession.css](files/styles/character/tab-profession.css.md) | .047 |
+| [templates/chat/item/item-description.hbs](files/templates/chat/item/item-description.hbs.md) | .048 |
+| [templates/chat/item/partials/item-description/alchemicals.hbs](files/templates/chat/item/partials/item-description/alchemicals.hbs.md) | .048 |
+| [templates/chat/item/partials/item-description/crafting-items.hbs](files/templates/chat/item/partials/item-description/crafting-items.hbs.md) | .048 |
+| [templates/chat/item/partials/item-description/description.hbs](files/templates/chat/item/partials/item-description/description.hbs.md) | .048 |
+| [templates/chat/item/partials/item-description/spell-description.hbs](files/templates/chat/item/partials/item-description/spell-description.hbs.md) | .048 |
+| [templates/chat/item/partials/item-description/tags.hbs](files/templates/chat/item/partials/item-description/tags.hbs.md) | .048 |
+| [styles/chat.css](files/styles/chat.css.md) | .048 |
+| [styles/item-header.css](files/styles/item-header.css.md) | .048 |
+| [styles/item-sheets.css](files/styles/item-sheets.css.md) | .048 |
+| [styles/container-sheet.css](files/styles/container-sheet.css.md) | .048 |
+| [styles/components-list.css](files/styles/components-list.css.md) | .048 |
+| [styles/substances.css](files/styles/substances.css.md) | .048 |
+| [styles/loot-sheet.css](files/styles/loot-sheet.css.md) | .048 |
+| [styles/repair.css](files/styles/repair.css.md) | .048 |
+| [styles/currency-converter.css](files/styles/currency-converter.css.md) | .048 |
+| [styles/rewards.css](files/styles/rewards.css.md) | .048 |
+| [styles/character-header.css](files/styles/character-header.css.md) | .049 |
+| [styles/character/sheet.css](files/styles/character/sheet.css.md) | .049 |
+| [styles/tab-background.css](files/styles/tab-background.css.md) | .049 |
+| [styles/tab-inventory.css](files/styles/tab-inventory.css.md) | .049 |
+| [styles/tab-inventory-list.css](files/styles/tab-inventory-list.css.md) | .049 |
+| [styles/tab-skills.css](files/styles/tab-skills.css.md) | .049 |
+| [styles/monster-sheet.css](files/styles/monster-sheet.css.md) | .049 |
+| [styles/monster-skill-tab.css](files/styles/monster-skill-tab.css.md) | .049 |
+| [styles/monster/header.css](files/styles/monster/header.css.md) | .049 |
+| [styles/monster/sidebar.css](files/styles/monster/sidebar.css.md) | .049 |
+| [styles/monster/details.css](files/styles/monster/details.css.md) | .049 |
+| [styles/monster/inventory.css](files/styles/monster/inventory.css.md) | .049 |
+| [styles/monster/sheet.css](files/styles/monster/sheet.css.md) | .049 |
+| [styles/witcher-styles.css](files/styles/witcher-styles.css.md) | .050 |
+| [styles/system-styles.css](files/styles/system-styles.css.md) | .050 |
+| [styles/dialog.css](files/styles/dialog.css.md) | .050 |
+| [package.json](files/package.json.md) | .050 |
+| [build.json](files/build.json.md) | .050 |
+| [utils/packs.mjs](files/utils/packs.mjs.md) | .050 |
+| [utils/extract.mjs](files/utils/extract.mjs.md) | .050 |
+
+### Проблемы, расхождения и дубли
+
+Новые [00312](../../issues/potential/issue-00312.md)–[00316](../../issues/potential/issue-00316.md) зарегистрированы в potential по пункту 9 TASK-0003:
+
+| ID | Условие и отдельное основание |
+| --- | --- |
+| [00312](../../issues/potential/issue-00312.md) | Переход input без единицы времени; отличается от invalid background-color 00310 и vendor-селектора 00311 |
+| [00313](../../issues/potential/issue-00313.md) | Ошибка удаления/извлечения после предварительного удаления root JSON |
+| [00314](../../issues/potential/issue-00314.md) | Успешный extract сохраняет старые nested JSON; recursive compile возвращает документ/получает duplicate key |
+| [00315](../../issues/potential/issue-00315.md) | Первый extract нового pack с отсутствующим dest не достигает mkdir CLI |
+| [00316](../../issues/potential/issue-00316.md) | Девять includes содержат отсутствующий template.json; отказ всего zip не доказан |
+
+Все существовавшие ID сопоставлены с реестром; новые наблюдения проверены по месту ошибки и условию. 00313/00314/00315 описывают один инструмент, но различаются отказом операции, устаревшим успешным результатом и отсутствующим предусловием. Связаны совместным предложением безопасной синхронизации, однако решения об исправлении не приняты.
+
+[Промежуточный протокол № 1](cross-check-0001.md) сохранён как историческая сверка 310 файлов/258 issues. Дубль 00200/00029 остаётся отмеченным, обе карточки potential; новой закрывающей записи нет. Из связанных границ повторно учтены: 00006/00021/00022/00299 (trigger, потеря типа/модификатора и ожидание); 00257/00258 (разные очищаемые поля/модели); 00262/00273/00299/00304 (разные вызывающие цепочки с ранним завершением); 00087/00180/00306 (миграция/старый UI/текущий чат сопротивлений); 00308/00309/00310/00311/00312 (разные условия CSS).
+
+Уточнено раннее описание system.json: CSS теперь разобраны полностью; .db нормализуется ядром; потребитель release-подстановки установлен. Уточнения не превращают успешный изолированный callback в проверенную установку пакета. Новых противоречий в сверенных import/exports и обратных ссылках не найдено; это не заключение об отсутствии других проблем.
+
+### Покрытие, сохранность и пределы
+
+Покрытие после задачи — **387/621**, остаток **234**: 226 packsJson и восемь lang JSON. Все 50 подзадач .001–.050 завершены, их 376 файлов не пересекаются с 11 файлами TASK-0002. В пятой серии 77/77; запланированных неисполненных подзадач сейчас нет. TASK-0003 остаётся in-progress; TASK-0004/TASK-0005 — draft. TASK-0003.051 не создавалась.
+
+Финальная сверка: 621 строка реестра, 387 полных карточек, 234 строки «Не начат», 316 issues без пропусков (все potential). Проверены 18 685 локальных ссылок/якорей — ошибок нет; 52 таблицы двенадцати новых документов имеют согласованное число столбцов. У 100 rule-узлов трёх новых CSS каждое из 177 объявлений повторно сопоставлено с исходным AST; два свойства шрифта учтены отдельно. git diff --check — exit 0. Изменены 14 существующих Markdown-документов, созданы 12 (семь карточек и пять issues); изменений вне docs нет. Mode/uid/gid/inode всех 1452 первоначально отслеживаемых файлов сохранены. Все 621 исходник совпадают с TASK-0001; SHA-256 по сортированным путям UTF-8 + NUL + байтам — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4. Прежнее тело журнала сохранено побайтово.
+
+Мир, HTTP системы, браузер/computed styles, служба, установка зависимостей, настоящая сборка/извлечение, native LevelDB и многопользовательские записи не запускались. Изменены только Markdown анализа/указателей/issues. Исторические доказательства и их пределы сохранены; подтверждения проблем, исправления исходников, права и коммиты в поручение не добавлялись.
+
 ## TASK-0003.049
 
 2026-09-12; rusbar-main, 523c9b2616e19058b18f812ae0361c8a86366814. Выполнена [TASK-0003.049](../../tasks/task-0003.049.md): 13 CSS, 2178 логических строк. Все исходники совпадают со срезом TASK-0001. Внутренний порядок: общие вкладки → персонаж → монстр → общая сверка; старые шаблоны и текущие PARTS различены.
