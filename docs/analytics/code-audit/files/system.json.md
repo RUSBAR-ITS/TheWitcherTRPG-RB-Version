@@ -212,3 +212,11 @@ languages сохраняет все восемь объявлений. В тек
 Проверен зарегистрированный пакет Witcher_Lifepath_and_BG_Sub-tables: 41 RollTable / 321 result, путь packs/witcher-lifepath.db, каталог экспорта packsJson/witcher-lifepath. Из 95 исходящих ссылок 94 остаются внутри пакета, одна ведёт на Enemies: Gender из Life_Event_Sub-tables. Входящих ссылок из пяти Character-gen — 18; все ID, имена и типы согласованы. Содержание установленного пакета не проверено.
 
 [41 карточка биографии ведьмака](README.md#таблицы-биографии-ведьмака--task-0003055), [перекрёстная сверка и пределы](../review-log.md#task-0003055).
+
+## Уточнение TASK-0003.056
+
+2026-09-12, rusbar-main be1c48770219a6d2871259f12c30d93636aac646; исходник не изменён.
+
+Полностью разобраны пять RollTable-пакетов Character-gen, Character-gen_Sub-tables, Witcher_Lifepath_and_BG_Sub-tables, Life_Event_Sub-tables и Style_and_Values_Sub-tables: 117 JSON / 929 результатов. Все 252 documentUuid разрешены между ними; внешних входов из остальных packsJson не найдено. Это зарегистрированные таблицы, а не механизм создания Actor. Путь Character-gen остаётся packs/character-generator.db; манифест не изменён.
+
+[Основные генераторы](README.md#основные-генераторы-персонажа--task-0003056), [общая сверка пяти пакетов](../review-log.md#task-0003056).

@@ -159,3 +159,16 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-12 | cd2743d0548d5c129065c970d4aa5c43cc9632e2; полный файл и перечисленные связи | Первичная карточка по TASK-0003.055; [протокол](../../../review-log.md#task-0003055) |
+
+## Уточнение TASK-0003.056
+
+2026-09-12, rusbar-main be1c48770219a6d2871259f12c30d93636aac646; исходник сохранён. Завершён полный разбор основных генераторов. Ранее описанные входящие ссылки сопоставлены с новыми карточками и реальным рекурсивным выбором:
+
+| Генератор | ID его результата | Строка documentUuid / range |
+| --- | --- | --- |
+| [Witcher Lifepath: Cautious Decade](../character-generator/Witcher_Lifepath__Cautious_Decade_09MXduRik0BKuUqa.json.md) | `YVCSNqm0kMcDxKF3` | 100; [91,100] |
+| [Witcher Lifepath: Non-Neutral Decade](../character-generator/Witcher_Lifepath__Non_Neutral_Decade_obLsbuoNixBUbeAy.json.md) | `YVCSNqm0kMcDxKF3` | 100; [51,100] |
+| [Witcher Lifepath: Normal Decade](../character-generator/Witcher_Lifepath__Normal_Decade_dsvsdl2GfKCWKsEO.json.md) | `YVCSNqm0kMcDxKF3` | 100; [76,100] |
+| [Witcher Lifepath: Risky Decade](../character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json.md) | `YVCSNqm0kMcDxKF3` | 100; [26,100] |
+
+В общей сверке пяти пакетов проверены 117 JSON / 929 результатов, 252 ссылки и getHTML всех результатов. Все поля/тексты/UUID данной карточки сопоставлены с источником. Отдельные случайные комбинации не перебирались полностью; реальные пакеты, мир и права игроков не проверялись. [Протокол .056](../../../review-log.md#task-0003056).

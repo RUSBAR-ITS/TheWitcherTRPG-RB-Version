@@ -1,5 +1,159 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.056
+
+Дата: 2026-09-12. Ветка rusbar-main, HEAD be1c48770219a6d2871259f12c30d93636aac646; в начале рабочее дерево чистое, 1586 отслеживаемых файлов. [Задача](../../tasks/task-0003.056.md), [13 карточек](files/README.md#основные-генераторы-персонажа--task-0003056). Источники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f.
+
+### Пофайловой состав и внутренние сверки
+
+| Блок | Файлов / строк | Результатов | Проверенная особенность |
+| --- | --- | --- | --- |
+| Dwarves, Elves, Halfling, Human, RandomCharacter | 5 / 1172 | 43 | Расовые/региональные ветви, порядок составной выдачи и глубина |
+| Life Event Generator | 1 / 102 | 3 | Fortune/Misfortune/Romance, без автоматического повторения по возрасту |
+| Siblings Generator и Style and Values | 2 / 326 | 11 | Безусловные наборы из четырёх и семи подтаблиц |
+| Witcher Background Generator | 1 / 243 | 9 | Три возрастные ветви, отдельная школа, цепочка Trials |
+| Четыре Witcher Decade | 4 / 592 | 20 | Два исхода риска и обязательный Outcome после опасности |
+| Всего | 13 / 2435 | 86 | 26 text, 60 document |
+
+Прочитаны все корневые/вложенные поля, тексты, flags, _stats, иконки, formula/range/weight и UUID. Для каждого блока подготовлены индивидуальные карточки, сверены ID и источники/потребители. Все файлы имеют replacement=true, folder=null, sort=0; weights результатов равны 1, drawn=false. Различаются иконки, descriptions, displayRoll и flags better-rolltables: Human/Halfling содержат table-type=none и loot-amount-key="", Siblings — table-type=none, RandomCharacter только core. Стандартное ядро не использует эти параметры стороннего модуля при roll; его работа отдельно не проверялась.
+
+Все 86 собственных результатов достижимы штатными формулами. В текстах этой порции нет inline-вставок, текстовых UUID, URL или макросов; у вложенных таблиц они учтены общей проверкой. _stats.coreVersion=13.341 — сведения об экспорте; выполненные модели/обработчики относятся к установленному Foundry 14.367.0 / Node.js 24.16.0.
+
+### Общая сверка пяти компедиумов
+
+| Каталог | Файлов | Результатов | Исходящие documentUuid |
+| --- | --- | --- | --- |
+| style | 7 | 70 | 0 |
+| lifepath | 21 | 139 | 18 |
+| character-generator-sub-tables | 35 | 313 | 79 |
+| witcher-lifepath | 41 | 321 | 95 |
+| character-generator | 13 | 86 | 60 |
+| Всего | 117 | 929 | 252 |
+
+Общий объём — 25 127 логических строк, **677 text и 252 document**, 1046 ключей хранения с учётом пакета, 255 различных локальных ID результатов. Строгий JSON-разбор проверяет отсутствие повторных ключей; реальные модели приняли все документы. Иконки корней и результатов найдены в public установленного ядра. Все прежние 104 карточки содержат точные тексты/имена и ID своих 843 результатов, все 192 UUID; новых пропусков не найдено.
+
+Матрица фактических ссылок:
+
+| Пакет-источник | Пакет-цель | Записей |
+| --- | --- | --- |
+| character-generator | character-generator | 5 |
+| character-generator | character-generator-sub-tables | 27 |
+| character-generator | lifepath | 3 |
+| character-generator | style | 7 |
+| character-generator | witcher-lifepath | 18 |
+| character-generator-sub-tables | character-generator-sub-tables | 79 |
+| lifepath | lifepath | 18 |
+| witcher-lifepath | lifepath | 1 |
+| witcher-lifepath | witcher-lifepath | 94 |
+
+Все 252 цели найдены, имена/ID/тип RollTable согласованы, циклов нет. Из остальных 109 packsJson входящих documentUuid на эти пять пакетов не обнаружено; внешние миры/макросы этим не охвачены. 60 ссылок новых генераторов — пять внутренних RandomCharacter → Background и 55 внешних; последние ведут на 40 различных уже описанных таблиц. Во всех 40 прежних карточках входящие имена/ID/файлы уже присутствовали; теперь добавлены взаимные ссылки на полные карточки генераторов и текущий протокол.
+
+Из 13 основных генераторов по documentUuid достижимы 102 таблицы. Следующие 15 lifepath-таблиц остаются вне их дерева; это самостоятельные ветви, не автоматически ошибка или основание удаления:
+
+- [Allies__Closeness_IswiqefPmaHECa5X.json](files/packsJson/lifepath/Allies__Closeness_IswiqefPmaHECa5X.json.md)
+- [Allies__Gender_QFHhoiXtIBYkL8Rd.json](files/packsJson/lifepath/Allies__Gender_QFHhoiXtIBYkL8Rd.json.md)
+- [Allies__Generator_Va7NF10ETcMvndFo.json](files/packsJson/lifepath/Allies__Generator_Va7NF10ETcMvndFo.json.md)
+- [Allies__How_You_Met_BqAizN8u9r6nMSyK.json](files/packsJson/lifepath/Allies__How_You_Met_BqAizN8u9r6nMSyK.json.md)
+- [Allies__Position_5sroduMneFqG9INx.json](files/packsJson/lifepath/Allies__Position_5sroduMneFqG9INx.json.md)
+- [Allies__Where_Are_They__W19e7rtl3ycrMhQU.json](files/packsJson/lifepath/Allies__Where_Are_They__W19e7rtl3ycrMhQU.json.md)
+- [Allies_and_Enemies_Lp42vhkw20Ys973y.json](files/packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json.md)
+- [Enemies__Generator_7AXmeCSRkK3ktJ9Y.json](files/packsJson/lifepath/Enemies__Generator_7AXmeCSRkK3ktJ9Y.json.md)
+- [Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json](files/packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json.md)
+- [Enemies__Position_WeN4QhEHL468Ushx.json](files/packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json.md)
+- [Enemies__Power_9mYMTKkCuU2ElJdx.json](files/packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json.md)
+- [Enemies__The_Cause_U9R1ct2xP13y6R7j.json](files/packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json.md)
+- [Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json](files/packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json.md)
+- [Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json](files/packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json.md)
+- [Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json](files/packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json.md)
+
+Life Event Generator сразу выбирает Fortune/Misfortune/Romance и не вызывает Fortune or Misfortune либо Allies and Enemies. Генераторы числа братьев/сестёр возвращают текстовое число, не вызывая Siblings Generator. RandomCharacter не включает отдельные Style and Values, Life Event Generator или Witcher Decade. Эти связи проверены по всем exports, а не выведены из имён.
+
+### Вычисления, порядок выдачи и глубина
+
+| Прямой вход | Границы конечных text по графу | Максимальная глубина |
+| --- | --- | --- |
+| Dwarves / Elves | 7–9 | 4 |
+| Halfling | 8–11 | 5 |
+| Human | 6–11 | 5 |
+| RandomCharacter без учёта ограничения | 7–12 | 6 |
+| RandomCharacter: успешные пути при ограничении | 7–10; другие пути отклоняются | 5 |
+| Life Event Generator | 1–2 | 2 |
+| Siblings Generator | 4 | 1 |
+| Style and Values | 7 | 1 |
+| Witcher Background Generator | 6 | 4 |
+| Каждый Witcher Decade | 2–18 | 4 |
+
+Границы вычислены обходом всех диапазонов/ветвей. Отдельный обход с _depth>5 исключает отказавшие пути из успешных min/max; они не принимаются за нулевую выдачу. Это не полный перебор случайных сочетаний во время выполнения.
+
+RandomCharacter выбирает Human/Elf/Dwarf/Witcher/Halfling с долями 5/15, 2/15, 3/15, 1/15, 4/15. Для каждого исхода выводит текст расы и вызывает соответствующий Background. Dwarves/Elves имеют фиксированное происхождение; Human переключает регион, Halfling происхождение. При выборе всех совпадающих range сохраняется порядок JSON: общие профессия/число родственников могут оказаться раньше текста происхождения или судьбы семьи второй ветви.
+
+У Witcher Background возраст Infancy/Early Childhood/Late Childhood имеет доли 20/60/20%; возрастная formula=1d10 не содержит +2/−2. Модификатор представлен выбором варианта Early Training, а formula Trials задана в дочерней таблице. Наблюдение [issue-00321](../../issues/potential/issue-00321.md) из .055 не исправлено и не продублировано: оно относится к 16 ссылкам ниже этого корня.
+
+Четыре Decade имеют вероятность опасности 10/50/25/75% для Cautious/Non-Neutral/Normal/Risky. При опасности выполняются вводный текст, Dangers и Outcome, при отсутствии — вводный текст и Outcome. Реальные сценарии по обе стороны порогов 90/50/75/25 получили минимум 2 текста (ничего в Outcome) и максимум 18 (умерший враг плюс умерший союзник). Последовательность ветвей проверена трассами.
+
+Повторно воспроизведены четыре отказа RandomCharacter: Human/Northern, Human/Nilfgaard, Halfling/Human Lands и Halfling/Elderland Origin. Выбор Family and Parents=1, Parents=2, Parental Fate=2, Family Status=6 доходит до Most Influential Friend на глубине 6. В обоих происхождениях Halfling используется Family and Parents: Elderland. Прямые Human/Halfling на тех же гранях дали по 10 текстов при глубине 5. Пять контрольных ветвей RandomCharacter прошли: Human/Halfling с живыми родителями — 9, Elves/Dwarves с судьбой родителей — 10, Witcher — 7; все до глубины 5. [Issue-00320](../../issues/potential/issue-00320.md) дополнена, новых issues нет.
+
+### Реальные исполнители и действия пользователя
+
+Foundry client/documents/roll-table.mjs:264–342 проверяет _depth>5, создаёт Roll из собственной formula, выбирает все drawn=false диапазоны включительно и раскрывает дочерние documentUuid. Родительский модификатор, число повторений и отдельное сообщение ребёнка не передаются. normalize по weight создаёт другие диапазоны, но при заданной source.formula автоматически не требуется.
+
+roll и draw(displayChat:false) не обогащают descriptions; getHTML/toMessage вычисляют inline конечных текстов. Во всём наборе 26 inline-вставок в 23 результатах, включая ранее описанные пять денежных мест [issue-00319](../../issues/potential/issue-00319.md). Их x10/x100 по-прежнему имеет семантику explode; исправлений не было. Root description обрабатывается отдельно и не входит в число results.
+
+displayRoll выбирается корневой таблицей. У Witcher Background и четырёх Decade он true, у других восьми генераторов false. Прямой Witcher Background показал маркер основного броска; Witcher внутри RandomCharacter не включил его в родительское сообщение. Это не выключает inline дочерних текстов.
+
+Обычная ссылка проходит TextEditor.#onClickContentLink (:792–795) → fromUuid → ClientDocumentMixin._onClickDocumentLink (:422–423) → sheet.render(true). Подставленные листы всех 13 таблиц открылись без roll и сообщений. Кнопка собственного RollTableSheet.#onDrawResult (:428–440) сначала ожидает submit, блокирует кнопку, вызывает roll и передаёт его готовые results в draw — второй корневой roll не нужен. На 13 успешных вызовах получено по одному сообщению, кнопка включена снова. На воспроизведённом отказе RandomCharacter обработчик не достиг включения кнопки: фасад остался disabled, чат не создан. Настоящая форма, визуальное состояние браузера и последующий render не проверялись.
+
+Поиск 13 ID/имён и пространства пакета в module/templates/utils не нашёл прямых программных вызовов генераторов. Общий WitcherItem.checkIfItemHasRollTable:257–315 по совпадению Item.name остаётся возможным; он ожидает Item, а данный граф выдаёт text. Метод прочитан, заново с этими именами не исполнялся.
+
+WitcherCharacterSheet:133–137 готовит события, :154–156 выбирает существующие Items; backgroundData/lifeEventData и tab-background хранят ручные поля. Генераторы не создают Actor, Item, ActiveEffect, не записывают биографию, возраст, навыки, деньги или числовые lifepathModifiers. Указания «за десятилетие» не реализуют цикл.
+
+### Сценарии и фактические результаты
+
+Команды: `python3` и `node --input-type=module`, скрипты переданы через stdin. Файлы стенда/тестов не создавались. В основном запуске загружены настоящие DataModel/Document/EmbeddedCollection, BaseRollTable/BaseTableResult и клиентские RollTable/TableResult; настоящие Roll, Die, RollParser, grammar.pegjs; HBS result-details/table-result; _enrichInlineRolls/_createInlineRoll и Roll.toAnchor из /opt/foundryvtt.
+
+Фасады: ClientDocumentMixin, game/CONFIG/notifications, lookup UUID/pack по экспортам в памяти, ChatMessage.create/update, маркер render основного Roll, обход текстовых узлов и минимальные DOM-элементы. В отдельном UI-запуске исполнялись настоящие тела трёх обработчиков, а событие, кнопка, submit и sheet.render были фасадами. Реальных записей DB/мира, сервера и HTTP нет.
+
+| Проверка | Фактический результат |
+| --- | --- |
+| Полный прямой выбор 13 новых таблиц | 445 значений; все 86 result ID достигнуты, сравнение с raw range независимо от исполнителя |
+| Рекурсивные roll и повторные draw без чата | Все 445 основных значений; 890 повторных draw |
+| Таблицы без pack при replacement=true | По два draw, всего 26; drawn и документы не записаны |
+| normalize(save:false) | 13 клонов с одиночными диапазонами по weight; исходные модели сохранены |
+| Общая проверка 117 таблиц | 1527 штатных значений с recursive=false; 919 достижимых result ID |
+| Непопадающие строки | 10 строк вариантов Trials; сохранены в карточках, отдельно getHTML выполнен |
+| getHTML всего массива | 677 text + 252 document, 26 inline в 23 описаниях |
+| Основные сообщения | 445 рекурсивных + 13 нерекурсивных; число результатов, ссылки и displayRoll проверены |
+| Целевые успешные сценарии | 22: четыре прямых длинных пути, пять рас RandomCharacter, восемь Decade, три Life Event, Siblings и Style |
+| Отказы глубины | Четыре; сообщений и inline-вычислений до/после отказа не добавилось |
+| Дополнительное сравнение displayRoll | Прямой Witcher Background и тот же вход через RandomCharacter |
+| Всего ChatMessage в основном фасаде | 478; реальная запись не выполнялась |
+| Основной запуск | 8345 assertions, writes=0, snapshots всех 117 моделей сохранены |
+| UI-запуск | 68 assertions: 13 открытий, 13 успешных действий кнопки и один отказ |
+| Всего утверждений | 8413 |
+
+При подготовке основного сценария исправлены ошибки самого проверочного кода: вычисляемый ключ JS, неверно ожидавшаяся глубина 4 вместо 5 для живых родителей (Parents всё равно вызывает Family Status → Friend), выбор Romance=1 вместо 2 для Romantic Tragedy. После чтения соответствующих исходников полный запуск пройден заново. Эти ошибки не выданы за дефекты системы.
+
+### Документы, issues и сохранность
+
+Созданы 13 карточек, уточнены 40 прежних карточек целей и восемь карточек движка: system.json, utils/packs.mjs, utils/extract.mjs, backgroundData.js, lifeEventData.js, lifepathData.js, tab-background.hbs, WitcherCharacterSheet.js. Обновлены реестр, навигация, задачи, CHANGELOG; TASK-0004/TASK-0005 получили вспомогательные материалы и остаются draft. Две исторические заметки .054/.055 в задаче сохранены с датами и прежними пределами.
+
+Новых проблем не зарегистрировано. Issue-00320 дополнена; issue-00319/00321 остаются применимыми на описанных ветвях, без исправлений и смены статуса. Все 321 issue остаются potential; open/closed пусты. Самостоятельность 15 таблиц не объявлена дефектом или нарушением правил.
+
+Контрольные суммы: отсортированные строковые пути, UTF-8 path + NUL + байты файла.
+
+| Срез | SHA-256 |
+| --- | --- |
+| 13 character-generator | b137b15ac425ab110b46c437bc346aeda81d27901d36db109eb636fbb851c78d |
+| Все 117 таблиц пяти пакетов | 661483b99c825148da15604f1e522dd72e037cbbd86bfc34f7db35d34ebcae63 |
+| Текущие 615 исходников | 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c |
+| Исторические 621 исходник | 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4 |
+
+Итоговая сверка завершена: 615 строк реестра, 506 карточек, 109 файлов в очереди пяти задач .057–.061. Все 929 результатов сопоставлены с точными ID, текстами/именами и строками исходных записей; 252 ссылки согласованы в прямом и обратном направлениях, все 60 новых ссылок — с точными строками documentUuid. 445 наблюдаемых составных исходов попали в независимые границы графа с учётом предела ядра. Проверены 25 454 локальные ссылки и 614 таблиц Markdown затронутых документов, git diff --check — без ошибок.
+
+602 строки реестра вне порции, прежний текст журнала и исторические сведения .054/.055 в задаче сохранены. Права, владельцы, группы и inode всех 1586 ранее отслеживаемых файлов не изменились; содержимое файлов вне согласованного перечня сохранено. Исходники совпали со срезом Git и контрольными суммами текущих 615 и исторических 621 файлов.
+
+Изменены 62 существовавших документа, созданы только 13 карточек. Обновлена одна issue-00320, остальные 320 карточек проблем сохранены. Код, экспортные JSON, сборка/извлечение, служба, настоящие миры/БД и права не изменялись. HEAD, ветка и индекс сохранены; коммит не создавался. TASK-0003.056 завершена, TASK-0003 остаётся in-progress, TASK-0004/TASK-0005 — draft.
+
 ## TASK-0003.055
 
 Дата: 2026-09-12. Ветка rusbar-main, HEAD cd2743d0548d5c129065c970d4aa5c43cc9632e2; рабочее дерево в начале чистое, 1544 отслеживаемых файла. [Задача](../../tasks/task-0003.055.md), [41 карточка](files/README.md#таблицы-биографии-ведьмака--task-0003055). Источники не отличаются от TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f.

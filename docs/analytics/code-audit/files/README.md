@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.055 подготовлены 493 карточки, включая 104 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 122 JSON поставлены в очередь .056–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.056 подготовлены 506 карточек, включая 117 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 109 JSON поставлены в очередь .057–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath, 35 character-generator-sub-tables и 41 witcher-lifepath описаны ниже; 122 файла следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath, 35 character-generator-sub-tables, 41 witcher-lifepath и 13 character-generator описаны ниже. Общая сверка пяти пакетов охватывает 117 файлов; 109 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -783,3 +783,23 @@
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json](packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json.md) | Выбирает исход десятилетия с отказом от нейтралитета: преимущество, союзник, охота или отсутствие событий. |
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json](packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json.md) | Выбирает исход обычного десятилетия: преимущество, союзник, охота или отсутствие событий. |
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json.md) | Выбирает исход рискованного десятилетия: преимущество, союзник, охота или отсутствие событий. |
+
+## Основные генераторы персонажа — TASK-0003.056
+
+13 RollTable, 86 результатов; [задача](../../../tasks/task-0003.056.md), [общая сверка пяти пакетов](../review-log.md#task-0003056). Генераторы возвращают тексты, создание Actor не реализуют.
+
+| Файл | Назначение и карточка |
+| --- | --- |
+| [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json.md) | Собирает предысторию дворфа: фиксированное происхождение, семейную ветвь, число братьев/сестёр и профессию. |
+| [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json.md) | Собирает предысторию эльфа: фиксированное происхождение, семейную ветвь, число братьев/сестёр и профессию. |
+| [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json.md) | Выбирает происхождение полурослика и собирает семью, число братьев/сестёр и профессию. |
+| [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json.md) | Выбирает северное или нильфгаардское происхождение человека и собирает соответствующие биографические сведения. |
+| [packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json](packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json.md) | Выбирает текст расы и вызывает один из пяти генераторов предыстории. |
+| [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json.md) | Выбирает удачное, неудачное или романтическое событие жизни. |
+| [packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json](packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json.md) | Собирает описание одного брата или сестры из четырёх подтаблиц. |
+| [packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json](packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json.md) | Собирает семь текстовых аспектов стиля и ценностей. |
+| [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md) | Выбирает возраст начала обучения ведьмака, школу и цепочку обучения, испытаний и последующей биографии. |
+| [packsJson/character-generator/Witcher_Lifepath__Cautious_Decade_09MXduRik0BKuUqa.json](packsJson/character-generator/Witcher_Lifepath__Cautious_Decade_09MXduRik0BKuUqa.json.md) | Выбирает опасность осторожного десятилетия и всегда добавляет его исход. |
+| [packsJson/character-generator/Witcher_Lifepath__Non_Neutral_Decade_obLsbuoNixBUbeAy.json](packsJson/character-generator/Witcher_Lifepath__Non_Neutral_Decade_obLsbuoNixBUbeAy.json.md) | Выбирает опасность десятилетия с отказом от нейтралитета и всегда добавляет его исход. |
+| [packsJson/character-generator/Witcher_Lifepath__Normal_Decade_dsvsdl2GfKCWKsEO.json](packsJson/character-generator/Witcher_Lifepath__Normal_Decade_dsvsdl2GfKCWKsEO.json.md) | Выбирает опасность обычного десятилетия и всегда добавляет его исход. |
+| [packsJson/character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json](packsJson/character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json.md) | Выбирает опасность рискованного десятилетия и всегда добавляет его исход. |

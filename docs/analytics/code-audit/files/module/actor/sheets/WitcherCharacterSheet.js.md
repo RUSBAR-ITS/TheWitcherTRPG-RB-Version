@@ -178,3 +178,11 @@ PARTS.magic выбирает templates/partials/character/tab-magic.hbs. TABS.ma
 [templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Уточнение TASK-0003.056
+
+2026-09-12, rusbar-main be1c48770219a6d2871259f12c30d93636aac646; исходник не изменён.
+
+Сопоставлены _prepareCharacterData:154–156 (существующие Items profession/homeland/race) и подготовка lifeEvents:133–137 с 13 основными RollTable-генераторами. Найденного вызова генераторов/автоматического создания этих Items из их text нет. RandomCharacter и Background возвращают описания; Style and Values, Siblings Generator и жизненные события запускаются отдельно. В этом уточнении методы листа Actor не исполнялись повторно.
+
+[Основные генераторы](../../../README.md#основные-генераторы-персонажа--task-0003056), [общая сверка пяти пакетов](../../../../review-log.md#task-0003056).
