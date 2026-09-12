@@ -121,3 +121,11 @@ HP: цель — первая выбранная, только если applyOnT
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/templates/attackData.js](../../../../../../../module/data/chatMessage/templates/attackData.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [attackData.js](../../data/chatMessage/templates/attackData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+[weaponAttack](weaponAttackMixin.js.md) теперь разобран полностью. doProfessionWeaponAttackRoll передаёт две служебные настройки; getItemAttack ошибочно учитывает их в выборе клавиш для оружия с несколькими режимами (issue-00264). Замещение по-прежнему обходит helpers модификаторов (issue-00237). Пустой weapon воспроизведён на входе weaponAttack (issue-00242); дополнительная оружейная атака запрашивает STA−3, поэтому issue-00238 остаётся про прямую профессиональную атаку.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

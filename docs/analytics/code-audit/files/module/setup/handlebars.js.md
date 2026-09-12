@@ -395,3 +395,11 @@ preloadHandlebarsTemplates включает tab-magic, spell-type-list и ста
 [templates/partials/character/tab-magic.hbs](../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../templates/partials/character/tab-magic.hbs.md); [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../templates/sheets/actor/partials/character/spell-type-list.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/chat/combat/spellItem.hbs](../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../templates/chat/combat/spellItem.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+В [weapon-attack.hbs](../../templates/dialog/combat/weapon-attack.hbs.md) исходные eq/or исполнены настоящим Handlebars на всех 16 комбинациях типов: unavailable эквивалентно piercing=false (265). Причина в аргументах конкретного шаблона, не в ошибке общих helpers. localize/selectOptions в этих опытах были фасадами; вывод о корректности переводов/всего штатного helper не делается.
+
+[Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

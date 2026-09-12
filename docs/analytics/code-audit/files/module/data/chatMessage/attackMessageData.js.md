@@ -83,3 +83,11 @@ attack: attackOption, skill, alias, itemUuid. damage: itemUuid, formula, crit, s
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003040) |
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+[Полностью разобран производитель оружейной атаки](../../actor/mixins/weaponAttackMixin.js.md). Группа 27 передала сериализуемый снимок с валидными фиктивными UUID в настоящий AttackMessageData: attack.itemUuid/damage.itemUuid и damage.crit.critEffectModifier=2 сохранены; raw item/ammunition и вручную добавленный duration удалены. Документ ChatMessage, права, БД не запускались.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

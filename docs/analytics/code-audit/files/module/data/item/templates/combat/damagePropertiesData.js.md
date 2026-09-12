@@ -175,3 +175,11 @@ effects в castSpell читается через Object.values, что соот�
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../../../module/data/chatMessage/templates/damageData.js). Полные новые описания: [attackMessageData.js](../../../chatMessage/attackMessageData.js.md), [defenseMessageData.js](../../../chatMessage/defenseMessageData.js.md), [damageMessageData.js](../../../chatMessage/damageMessageData.js.md), [damageData.js](../../../chatMessage/templates/damageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+[mergeDamageProperties/addEffects в оружейной атаке](../../../../actor/mixins/weaponAttackMixin.js.md) проверены на настоящих моделях: effects при merge пропускается (69); ammo и enhancement меняют prepared effects, _source остаётся прежним (70). AP+AP даёт IAP и +3d6 (263, ожидаемая таблица требует правил). Два default defenseMultiplierCap=5 складываются до 10; числовая ветка не отличает default от явной добавки. Схема AttackMessageData очищает вручную добавленный duration; это прежняя 257.
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

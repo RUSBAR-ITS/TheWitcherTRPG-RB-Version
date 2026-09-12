@@ -148,3 +148,11 @@ Full profession direct attack передаёт addActiveEffects(attack.name), н
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+[constructBaseAttackFormula](weaponAttackMixin.js.md) действительно вызывает addActiveEffects и addAttackModifiers: REF5, skill3, AE+2, attack−2 дают '1d10+5+3 +2 -2[Penalty]-1'. Ветка skillReplacement REF5/level4 даёт '1d10+5+4-1', не вызывая helpers. Положительный attackModifier снова не разбирается настоящим Roll (issue-00033).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

@@ -80,3 +80,11 @@ rollTotal — результат защиты. criticalLevel/critdamage/bonusdam
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003040) |
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+[weaponAttack](../../actor/mixins/weaponAttackMixin.js.md) получает critEffectModifier от Item.createBaseDamageObject и передаёт его в AttackMessageData: значение 2 сохраняется. Отдельное создание настоящей DefenseMessageData снова очистило critEffectModifier (258). Полная prepareAndExecuteDefense не запускалась; её разбор — TASK-0003.042.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.040 подготовлены и сверены 310 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.041 подготовлены и сверены 314 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -513,3 +513,12 @@
 | module/data/chatMessage/templates/damageData.js | [Описание](module/data/chatMessage/templates/damageData.js.md) |
 | module/data/chatMessage/templates/locationData.js | [Описание](module/data/chatMessage/templates/locationData.js.md) |
 | module/scripts/chat.js | [Описание](module/scripts/chat.js.md) |
+
+## Оружейная атака — TASK-0003.041
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/weaponAttackMixin.js | [Описание](module/actor/mixins/weaponAttackMixin.js.md) |
+| templates/dialog/combat/weapon-attack.hbs | [Описание](templates/dialog/combat/weapon-attack.hbs.md) |
+| styles/weapon-roll.css | [Описание](styles/weapon-roll.css.md) |
+| styles/attack-sheet.css | [Описание](styles/attack-sheet.css.md) |

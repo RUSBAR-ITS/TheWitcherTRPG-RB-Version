@@ -1,5 +1,99 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.041
+
+| Поле | Результат |
+| --- | --- |
+| Дата / ветка | 2026-09-12 / rusbar-main |
+| Коммит проверки | d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; дерево на старте чистое |
+| Полный состав | weaponAttackMixin.js382, weapon-attack.hbs270, weapon-roll.css19, attack-sheet.css16 — четыре файла / 687 логических строк |
+| Версия источников | Все 621 файла совпадают с TASK-0001, 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Покрытие | 314 из 621;307 не разобраны; в пятой серии 4 из 77 выполнены,73 в очереди,234 вне очереди |
+| Проверки поведения | 28 групп изолированного запуска; итоговые assertions выполнены |
+| Связанные документы | Уточнены 19 прежних карточек и 14 прежних issues; новые potential issues 00259–00267 |
+| Сохранность | Только docs; исходники, данные и метаданные доступа 1329 ранее отслеживаемых файлов сохранены; коммит не создавался |
+
+### Состав, методы и границы
+
+[Задача](../../tasks/task-0003.041.md). Полные карточки: [weaponAttackMixin.js](files/module/actor/mixins/weaponAttackMixin.js.md), [weapon-attack.hbs](files/templates/dialog/combat/weapon-attack.hbs.md), [weapon-roll.css](files/styles/weapon-roll.css.md), [attack-sheet.css](files/styles/attack-sheet.css.md). Все четыре файла прочитаны целиком; учтены пять методов, вложенные callbacks, 20 полей формы, восемь CSS-правил/13 declarations.
+
+Проверены оба прямых потребителя weaponAttack (Actor.useItem и professionMixin), четыре helper, Item.getItemAttack/createBaseDamageObject, DamageProperties и расход, контекст/имена полей HBS, конфигурация, подключение CSS, schema сообщений и дальнейшие точки чтения. Соседние defenseMixin, Item.damageUtilMixin, scripts/combat/combat.js прочитаны до нужных методов, а не объявлены полностью разобранными.
+
+### Методика и окружение
+
+Node v24.16.0; Foundry 14.367.0 по /opt/foundryvtt/package.json. Одноразовый сценарий запускался через node --no-warnings --input-type=module с исходником в stdin; стенд, пакеты, постоянные тестовые файлы и игровой мир не создавались.
+
+Настоящие common DataModel/TypeDataModel/fields/primitives из /opt/foundryvtt; ES-модули WeaponData, DamageProperties, AttackMessageData, DefenseMessageData, ChatMessageData, modifierMixin, CONFIG.WITCHER. weaponAttackMixin исполнен из исходного текста в vm: заменены только import-связи и экспорт для доступа к объекту. getItemAttack, createBaseDamageObject и static getLocationObject извлечены без изменения тел; они выполнялись на фасадах владельцев. Полный WitcherActor/WitcherItem lifecycle не запускался.
+
+Настоящий Roll/parser/terms и грамматика /opt/foundryvtt/client/dice/grammar.pegjs (скомпилирована peggy в памяти) разбирали формулы; minimize давал фиксированные результаты. В большинстве групп extendedRoll был границей захвата, после которой отдельно проверялся Roll. Группа 26 исполнила настоящий extendedRoll с default RollConfig до подменённого toMessage; evaluate принудительно получал minimize. Это не проверка случайных бросков, реальной доставки, чат-рендера или БД.
+
+Настоящий Handlebars и исходные системные eq/or обрабатывали HBS. Фасад localize возвращал ключ; selectOptions возвращал экранированные ключи/labels из config в исходном порядке. Штатный selectOptions v14 делегирует createSelectInput; его полный DOM-путь не исполнялся. parse5 разбирал HTML; form.elements восстановлен из input/select и дополнен фиксированным выбором. Исходный prompt callback читал этот фасад. Actor.system/коллекция items/UI/getSpeaker/update/rollDamage на границах были контролируемыми фасадами; update/rollDamage Promise оставлялись pending без записи. Для случайной локации getRandomInt возвращал 1.
+
+Базовый вход: Actor REF5/DEX6, swordsmanship3/archery4, STA10, meleeBonus 2, critLocationModifier1/critEffectModifier2; WeaponData.damage2d6, quantity строка 1, melee/swordsmanship, slashing, torso/normal, ручные добавки 0. Группы ниже явно меняют эти значения. Базовые lifepath/combatEffects пусты — это свойство фикстуры, не доказательство defaults настоящего Actor.
+
+Модельная граница проверялась на сериализуемом снимке: документные ссылки Item/ammunition представлены простыми объектами; UUID заменены на валидные фиктивные шестнадцатисимвольные ID. effects.duration добавлен вручную после WeaponData, которая сама этот ключ не объявляет. Очистка реальной моделью не равна сохранению сервером.
+
+При подготовке сценария исправлены только входы/окружение проверки: ctrl/alt/shift вместо ctrlKey/altKey/shiftKey, передача plain object между realm, валидные UUID и пробел в inline CSS. Ошибки этих первых запусков не зарегистрированы как ошибки системы. Итоговый запуск содержит 28 успешных групп.
+
+### Фактические сценарии
+
+| Группа | Вход / действие | Результат |
+| --- | --- | --- |
+| 01 | Обычная melee: REF5, swordsmanship3, damage2d6, torso | Формула 1d10+5+3−1; урон 2d6; sender ACTOR, attacker/itemUuid присутствуют; critEffectModifier2. |
+| 02 | accuracy и meleeBonus: −2/0/+2 | Знаки сохранены в атаке и уроне; ноль не дописывается. |
+| 03 | Каждый из 12 checkbox отдельно | Получены −3/−3/+3/−3/−2/+4/−2/−3/+5/−5/−3/+2 согласно именам в карточке; real Roll minimize подтверждает суммы. |
+| 04 | ranged/archery: DEX6, skill4; шесть дальностей | none/close без добавки; pointBlank+5, medium−2, long−4, extreme−6. |
+| 05 | customAim/customAtt: −2/0/+2 | Aim−2 игнорируется; customAtt−2 даёт +-2, который настоящий Roll принимает. |
+| 06 | fast; customDmg0/2/−2/1d6 | Всегда два вызова; ноль не накапливается, остальные повторно дописываются ко второй формуле: 2d6+2 → 2d6+2+2. |
+| 07 | Все пять strike и девять location | fast2, остальные 1; strong/joint−3; head−6, torso−1, arms−3, legs−2, tailWing/random+0. Random принудительно 1, распределение не проверялось. |
+| 08 | displayRollsDetails=true; accuracy2, melee2, aim1, customAtt−2, customDmg2, medium,strong,ambush | Формулы с ключами-подписями принимает real Roll; минимальная атака 9, минимальный урон 6 до dmgMulti. |
+| 09 | Отмена, пустой skill, undefined weapon | Фасад закрытия отклоняет prompt до расходов; пустой skill → notification до окна; undefined weapon → TypeError до окна. |
+| 10 | Extra: STA2/3/10; update-Promise остаётся pending | STA2 — отказ;3→запрос 0;10→запрос 7; атака завершается до update. |
+| 11 | usingAmmo без isAmmo и с quantity 0/1 | noAmmo=1 не блокирует бросок;0→запрос−1;1→запрос 0. Сохранение не выполнялось. |
+| 12 | fast и ammo/throwable quantity 2 | Два броска, один запрос quantity 1 до цикла в каждой ветке; игровые правила кратности не проверены. |
+| 13 | Throwable ranged quantity 0 + extra + ammo1 | Сначала запросы STA7 и ammo0, затем return; бросков 0. Сочетание допускается моделью, игровое назначение не утверждается. |
+| 14 | unknown skill / unknown strike + extra + ammo | В обеих ветках два запроса update, затем TypeError, без броска; отсутствие/неизвестность skill — разные условия. |
+| 15 | rollOnlyDmg, fast, customDmg2; rollDamage-Promise pending | Два не ожидаемых вызова с одним объектом; его formula меняется с 2d6+2 на 2d6+2+2. |
+| 16 | Настоящие DamageProperties: AP+AP, AP+IAP, IAP+AP, none+AP | Первые три возвращают +3d6; AP+AP уже имеет IAP. none+AP без добавки. Default defenseMultiplierCap5+5=10. Ожидаемое сочетание по правилам не установлено. |
+| 17 | TypedObject effects при merge/ammo/enhancement | merge сохраняет только left.one; ammo.two и enhancement.three появляются в prepared properties, отсутствуют в _source. enhancementItems задан вручную, {},null пропущены. |
+| 18 | Профессиональное замещение и обычный контроль с AE+2/attack−2 | replacement REF5/level4 →1d10+5+4−1; обычный REF5/skill3 →1d10+5+3 +2 −2[Penalty]−1. |
+| 19 | Два режима оружия; options с профессиональными данными | skillReplacement оставляет attackOption undefined, а skill восстанавливает; ranged throwable не списывается. Только additionalDamageProperties → noAttackSkill. |
+| 20 | Четыре attackOptions и {},shift,alt,ctrl | Индексы 0/1/2/3 соответственно. spell default='spellcasting', alias undefined; itemUse без настроенного skill — отдельный старый контракт. |
+| 21 | lifepath.strong={value:2}; положительный attackModifier2 | Настоящий Roll отвергает [object Object] и строку положительного модификатора без оператора; старые 19/33. |
+| 22 | Monster-фасад addMeleeBonus=false, WeaponData.applyMeleeBonus=true, bonus2 | context.meleeBonus 2, displayDmgFormula2d6, damage.formula2d6; расширяет 244. |
+| 23 | Все 16 комбинаций четырёх типов, настоящий Handlebars и исходные eq/or | unavailable появляется ровно при piercing=false, в том числе рядом с slashing/bludgeoning/elemental. |
+| 24 | Имя ammo содержит закрывающий option и новый option FAKE | После Handlebars и parse5 два пункта AMMO/FAKE вместо одного Item; browser sanitization/XSS не проверялись. |
+| 25 | range/usingAmmo/isThrowable включены | 20 уникальных имён;9 location,5 strike,6 range; callback исходной функции читает восстановленные элементы. |
+| 26 | Настоящий extendedRoll/Roll с minimize; toMessage — фасад | Сумма 8, fumble extra1, rollTotal7; одно attack-сообщение. Реальный критический случай 10/взрывной RNG здесь не тестировался. |
+| 27 | Сериализуемый снимок производителя с валидными фиктивными UUID → реальные Attack/DefenseMessageData | В attack UUID и critEffectModifier2 сохраняются; item/ammunition и вручную добавленный effects.duration удалены. Defense отдельно удаляет critEffectModifier. |
+| 28 | CSS-исходники, классы HTML и inline customDmg | По 4 правила CSS; width:auto/max-width50% на customDmg; word-wrap:break-all найден, невалидность сверена с W3C. ComputedStyle не проверялся. |
+
+### Перекрёстная сверка и issues
+
+Исходящие связи примеси сопоставлены с определениями в Actor/Item, моделях, helpers, CONFIG/settings и сообщениях; обратные ссылки добавлены в 19 прежних карточек. getItemAttack уже описывал возможность truthy сторонних options: теперь установлен штатный источник professionMixin, поэтому создана issue 00264 с конкретным маршрутом. Предыдущие предупреждения о частичном чтении других примесей не считаются анализом этих файлов.
+
+Согласованы границы прежних issues:19/33 (формулы),32 (getAllLocations отдельно),64/66 (настройки оружия),69/70 (effects/prepared),182 (последующий fumble),237/238/242 (профессия),244 (оба preview),257/258 (очистка схемой). Эти 14 карточек дополнены. Issues61/65 проверены как уже описанные источники пустого/неизвестного skill, новой записи/повторного теста миграции нет. Дубль 00200/00029 из промежуточной сверки сохранён без смены статусов.
+
+- [issue-00259](../../issues/potential/issue-00259.md) — Ручная добавка к урону накапливается между ударами одной быстрой атаки.
+- [issue-00260](../../issues/potential/issue-00260.md) — Оружейная атака допускает отсутствующие и нулевые боеприпасы.
+- [issue-00261](../../issues/potential/issue-00261.md) — Оружейная атака запрашивает расход до поздних отказов и ошибок.
+- [issue-00262](../../issues/potential/issue-00262.md) — weaponAttack завершается до сохранения ресурсов и бросков rollOnlyDmg.
+- [issue-00263](../../issues/potential/issue-00263.md) — Слияние бронебойности одновременно повышает уровень свойства и добавляет 3d6.
+- [issue-00264](../../issues/potential/issue-00264.md) — Служебные options профессиональной атаки сбивают выбор режима оружия.
+- [issue-00265](../../issues/potential/issue-00265.md) — Вариант unavailable в типе урона зависит только от piercing.
+- [issue-00266](../../issues/potential/issue-00266.md) — Имя боеприпаса вставляется в select как необработанный HTML.
+- [issue-00267](../../issues/potential/issue-00267.md) — В стилях таблиц атаки задано недопустимое значение word-wrap.
+
+Все 267 issues остаются potential. Для 263 доказано фактическое сочетание AP/IAP, ожидаемая игровая таблица ещё требует подтверждения. Для 267 грамматика проверена по [W3C CSS Text Level3 §5.4](https://www.w3.org/TR/2026/CRD-css-text-3-20260814/#overflow-wrap-property); визуальный дефект не заявляется без браузера.
+
+### Формальная проверка и пределы результата
+
+Сверены 621 строка реестра,314 полных карточек,307 строк «Не начат», состав всех 50 подзадач, отсутствие пересечений и актуальные указатели. .041 завершена; .042–.050 planned, TASK-0003 in-progress, TASK-0004/TASK-0005 draft. Новые группы анализа не добавлялись в план.
+
+Проверены локальные ссылки и якоря, соответствие каждого issue реестру, git diff --check, изменения только docs. Все 621 исходника совпадают с исходным срезом; совокупный SHA256 по сортированным путям (путь UTF-8 + NUL + байты файла) — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4. Mode/uid/gid/inode всех 1329 ранее отслеживаемых файлов сохранены; прежнее содержимое журнала осталось ниже без изменения.
+
+Не проверены реальный Dialog/DOM/css layout, штатные локализация/fallback и selectOptions, права/запись/конкурентность Foundry, изменение подготовленных данных после update, полная защита/урон/лечение и допустимость игровых сочетаний. Проверенные карточки описывают код и границы, а не обещают исправность системы.
+
 ## Пересборка TASK-0003.041–TASK-0003.050
 
 | Поле | Результат |

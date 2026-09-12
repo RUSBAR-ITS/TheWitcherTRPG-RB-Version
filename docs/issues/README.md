@@ -278,3 +278,12 @@
 | [issue-00256](potential/issue-00256.md) | Лечение из чата передаёт отрицательные и нечисловые значения в HP | `potential` |
 | [issue-00257](potential/issue-00257.md) | Схема сообщений удаляет длительность эффектов из damage | `potential` |
 | [issue-00258](potential/issue-00258.md) | Сообщение защиты теряет модификатор тяжести критической травмы | `potential` |
+| [issue-00259](potential/issue-00259.md) | Ручная добавка к урону накапливается между ударами одной быстрой атаки | `potential` |
+| [issue-00260](potential/issue-00260.md) | Оружейная атака допускает отсутствующие и нулевые боеприпасы | `potential` |
+| [issue-00261](potential/issue-00261.md) | Оружейная атака запрашивает расход до поздних отказов и ошибок | `potential` |
+| [issue-00262](potential/issue-00262.md) | weaponAttack завершается до сохранения ресурсов и бросков rollOnlyDmg | `potential` |
+| [issue-00263](potential/issue-00263.md) | Слияние бронебойности одновременно повышает уровень свойства и добавляет 3d6 | `potential` |
+| [issue-00264](potential/issue-00264.md) | Служебные options профессиональной атаки сбивают выбор режима оружия | `potential` |
+| [issue-00265](potential/issue-00265.md) | Вариант unavailable в типе урона зависит только от piercing | `potential` |
+| [issue-00266](potential/issue-00266.md) | Имя боеприпаса вставляется в select как необработанный HTML | `potential` |
+| [issue-00267](potential/issue-00267.md) | В стилях таблиц атаки задано недопустимое значение word-wrap | `potential` |

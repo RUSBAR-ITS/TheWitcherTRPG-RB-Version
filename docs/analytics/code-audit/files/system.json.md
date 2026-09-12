@@ -152,3 +152,11 @@
 Сопоставленные исходники: [module/chatMessage/witcherChatMessage.js](../../../../module/chatMessage/witcherChatMessage.js), [module/data/chatMessage/baseMessageData.js](../../../../module/data/chatMessage/baseMessageData.js), [module/data/chatMessage/attackMessageData.js](../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../module/data/chatMessage/damageMessageData.js). Полные новые описания: [witcherChatMessage.js](module/chatMessage/witcherChatMessage.js.md), [baseMessageData.js](module/data/chatMessage/baseMessageData.js.md), [attackMessageData.js](module/data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](module/data/chatMessage/defenseMessageData.js.md), [damageMessageData.js](module/data/chatMessage/damageMessageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+Первые две полные CSS-карточки: [attack-sheet.css](styles/attack-sheet.css.md) и [weapon-roll.css](styles/weapon-roll.css.md). Они подключены косвенно через witcher-styles.css (@import строки 3/17), не отдельными entries manifest.styles. Остальные ресурсы файла импорта не считаются полностью разобранными.
+
+[Сверка и ограничения](../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

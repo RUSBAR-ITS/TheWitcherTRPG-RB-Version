@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.040 проверены описания **310 файлов**, для **311 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.041 проверены описания **314 файлов**, для **307 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.040](review-log.md#task-0003040) выполнена на `74322e91edac106c82668f4a47eef53ce1889dc1`: все исходники (621 файл) совпадают с базовым срезом. Добавлены десять карточек моделей/действий чата; выполнена общая сверка 63 файлов .031–.040 с прежними 247. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.041](review-log.md#task-0003041) выполнена на d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3: все исходники (621 файл) совпадают с базовым срезом. Добавлены четыре карточки оружейной атаки, диалога и стилей; выполнены 28 групп проверок и сверка связанных определений. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -42,7 +42,7 @@
 | [module/actor/mixins/skillMixin.js](../../../module/actor/mixins/skillMixin.js) | Броски встроенных и Item-навыков, социальная добавка и повышение за IP. | [Карточка](files/module/actor/mixins/skillMixin.js.md) | Проверено |
 | [module/actor/mixins/temporaryEffectMixin.js](../../../module/actor/mixins/temporaryEffectMixin.js) | Выбор оружия, передача временных улучшений и сообщение в чат. | [Описание](files/module/actor/mixins/temporaryEffectMixin.js.md) | Проверено |
 | [module/actor/mixins/verbalCombatMixin.js](../../../module/actor/mixins/verbalCombatMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/weaponAttackMixin.js](../../../module/actor/mixins/weaponAttackMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/weaponAttackMixin.js](../../../module/actor/mixins/weaponAttackMixin.js) | Пять методов Actor: подготовка оружейной атаки, диалог, формулы, объединение свойств урона и выпуск атаки в чат либо непосредственный вызов броска урона. | [Карточка](files/module/actor/mixins/weaponAttackMixin.js.md) | Проверено |
 | [module/actor/rewardsSheet.js](../../../module/actor/rewardsSheet.js) | Отдельное окно просмотра двух журналов персонажа: IP и валюты | [Карточка](files/module/actor/rewardsSheet.js.md) | Проверено |
 | [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js) | Общий лист Actor V2: контекст персонажа/монстра, 11 примесей, общие действия и глобальные Array.sum/cost. | [Карточка](files/module/actor/sheets/WitcherActorSheet.js.md) | Проверено |
 | [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js) | Не подключённый общий лист Actor V1: синхронный getData, 10 примесей, обработчики и отличия подготовки от V2. | [Карточка](files/module/actor/sheets/WitcherActorSheetV1.js.md) | Проверено |
@@ -464,7 +464,7 @@
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json) | Не установлено | Не подготовлено | Не начат |
 | [styles/activeEffect.css](../../../styles/activeEffect.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/armor-sheet.css](../../../styles/armor-sheet.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/attack-sheet.css](../../../styles/attack-sheet.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/attack-sheet.css](../../../styles/attack-sheet.css) | Оформление таблиц и select в секции attack-sheet; дополнительно глобальные отступы изображений внутри h2. | [Карточка](files/styles/attack-sheet.css.md) | Проверено |
 | [styles/character-header.css](../../../styles/character-header.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/character/sheet.css](../../../styles/character/sheet.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/character/tab-profession.css](../../../styles/character/tab-profession.css) | Не установлено | Не подготовлено | Не начат |
@@ -496,7 +496,7 @@
 | [styles/tab-inventory-list.css](../../../styles/tab-inventory-list.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/tab-inventory.css](../../../styles/tab-inventory.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/tab-skills.css](../../../styles/tab-skills.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/weapon-roll.css](../../../styles/weapon-roll.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/weapon-roll.css](../../../styles/weapon-roll.css) | Четыре правила размеров и выравнивания элементов внутри оружейного диалога. | [Карточка](files/styles/weapon-roll.css.md) | Проверено |
 | [styles/witcher-styles.css](../../../styles/witcher-styles.css) | Не установлено | Не подготовлено | Не начат |
 | [system.json](../../../system.json) | Манифест пакета: ресурсы, компедиумы, локализации и подтипы документов | [Карточка](files/system.json.md) | Проверено |
 | [templates/chat/combat/defense/defense.hbs](../../../templates/chat/combat/defense/defense.hbs) | Не установлено | Не подготовлено | Не начат |
@@ -527,7 +527,7 @@
 | [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs) | Содержимое модального окна профессиональной атаки без оружия:14полей поправок/локации/типа урона и справочная формула damage. | [Карточка](files/templates/dialog/combat/profession-attack.hbs.md) | Проверено |
 | [templates/dialog/combat/spell-attack.hbs](../../../templates/dialog/combat/spell-attack.hbs) | Тело модального окна сотворения магии: необязательная локация, признак дополнительной атаки, переменная STA, основной/второй фокус и пользовательский модификатор. | [Карточка](files/templates/dialog/combat/spell-attack.hbs.md) | Проверено |
 | [templates/dialog/combat/variableDamage.hbs](../../../templates/dialog/combat/variableDamage.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/dialog/combat/weapon-attack.hbs](../../../templates/dialog/combat/weapon-attack.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/dialog/combat/weapon-attack.hbs](../../../templates/dialog/combat/weapon-attack.hbs) | Полная форма выбора параметров оружейной атаки: тип повреждения, дальность, локация, удар, позиционные модификаторы, ручные добавки и боеприпас. | [Карточка](files/templates/dialog/combat/weapon-attack.hbs.md) | Проверено |
 | [templates/dialog/deprecations/lifepathModifiers.hbs](../../../templates/dialog/deprecations/lifepathModifiers.hbs) | Текст уведомления и имена Actor с прежними модификаторами биографии; внутренний вызов не найден. | [Карточка](files/templates/dialog/deprecations/lifepathModifiers.hbs.md) | Проверено |
 | [templates/dialog/deprecations/statSkillModifiers.hbs](../../../templates/dialog/deprecations/statSkillModifiers.hbs) | Текст уведомления и имена Actor с прежними модификаторами; внутренний вызов не найден. | [Карточка](files/templates/dialog/deprecations/statSkillModifiers.hbs.md) | Проверено |
 | [templates/dialog/heal/heal-rest.hbs](../../../templates/dialog/heal/heal-rest.hbs) | Содержимое диалога отдыха: четыре флага восстановления, итог HP и подсказка о стерилизации травм. | [Описание](files/templates/dialog/heal/heal-rest.hbs.md) | Проверено |

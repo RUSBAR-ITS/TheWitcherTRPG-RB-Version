@@ -144,3 +144,11 @@ castSpell задаёт RollConfig({showResult:false}) с threshold−1, зате
 Сопоставленные исходники: [module/data/chatMessage/baseMessageData.js](../../../../../../../module/data/chatMessage/baseMessageData.js), [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js). Полные новые описания: [baseMessageData.js](../../data/chatMessage/baseMessageData.js.md), [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../../data/chatMessage/defenseMessageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+[weaponAttack](../../actor/mixins/weaponAttackMixin.js.md) ожидает extendedRoll с default RollConfig; для fast — два последовательных вызова. Группа 26 исполнила настоящий helper с настоящим Roll, minimize и подменённым toMessage: первая сумма 8, fumble extra1, итог 7; message.system.rollTotal=7. Другие группы захватывали формулу на границе helper, что отдельно указано в журнале.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

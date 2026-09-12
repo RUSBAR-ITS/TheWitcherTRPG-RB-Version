@@ -190,3 +190,11 @@ displayRollsDetails читается castSpell при формировании �
 [module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+displayRollsDetails прочитан в [weaponAttack/constructBaseAttackFormula](../actor/mixins/weaponAttackMixin.js.md): включает подписи основы, модификаторов, места/удара/урона. Формулы с подписями разобраны настоящим Roll в группе 08; локализатор возвращал ключи, интерфейс выбора настройки не запускался.
+
+[Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.

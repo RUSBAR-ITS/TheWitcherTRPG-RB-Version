@@ -405,3 +405,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../module/data/chatMessage/damageMessageData.js), [module/scripts/chat.js](../../../../../../module/scripts/chat.js). Полные новые описания: [attackMessageData.js](../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../data/chatMessage/defenseMessageData.js.md), [damageMessageData.js](../data/chatMessage/damageMessageData.js.md), [chat.js](../scripts/chat.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.041
+
+2026-09-12, rusbar-main, d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; исходник не изменён.
+
+Полностью описана [примесь оружейной атаки](mixins/weaponAttackMixin.js.md): пять методов из import7/Object.assign442. useItem возвращает её Promise, но сам weaponAttack не ожидает update/rollDamage (issue-00262). Метод static getLocationObject исполнен для девяти вариантов с фиксированным getRandomInt=1; это не getAllLocations и не проверка распределения случайных локаций.
+
+[Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
