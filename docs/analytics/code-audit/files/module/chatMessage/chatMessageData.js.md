@@ -141,3 +141,11 @@ castSpell создаёт ChatMessageData(this, HBS, 'attack', {attacker,attack,d
 [Оружейный производитель](../actor/mixins/weaponAttackMixin.js.md) создаёт ChatMessageData(this,flavor,'attack',system) для каждого удара. this — Actor, а не Item.actor; getSpeaker в тесте — фасад. Группа 26 пропустила настоящий extendedRoll до подменённого toMessage: тип attack, rollTotal7 при детерминированном fumble. itemUuid сохраняется реальной AttackMessageData; raw item/ammunition очищаются.
 
 [Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[skillDefense](../actor/mixins/defenseMixin.js.md) создаёт основной flavor и append для crit/stun, затем отправляет один message. В каждом конструкторе передан Actor. HTML-контекст crit содержит только название тяжести; system.crit получает полный сырой объект и очищается позднее моделью. [Три фрагмента защиты](../../templates/chat/combat/defense/defense.hbs.md) теперь имеют полные карточки.
+
+[Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

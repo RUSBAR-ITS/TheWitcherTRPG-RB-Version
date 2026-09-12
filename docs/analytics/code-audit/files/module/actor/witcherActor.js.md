@@ -413,3 +413,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 Полностью описана [примесь оружейной атаки](mixins/weaponAttackMixin.js.md): пять методов из import7/Object.assign442. useItem возвращает её Promise, но сам weaponAttack не ожидает update/rollDamage (issue-00262). Метод static getLocationObject исполнен для девяти вариантов с фиксированным getRandomInt=1; это не getAllLocations и не проверка распределения случайных локаций.
 
 [Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Полная примесь защиты](mixins/defenseMixin.js.md) содержит 11 методов; Object.assign:443 заменяет addDefenseModifiers из modifierMixin. getList('shield') включает isStored, тогда как обычный getList — нет (274). applyStatus/removeStatus — собственные методы Actor, вызовы защиты их не ожидают; ошибка иммунитетов 31 не проверялась повторно. Критический query адресует примесь addAdrenaline, которая учитывает useOptionalAdrenaline.
+
+[Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

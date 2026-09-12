@@ -88,3 +88,11 @@ rollTotal — результат защиты. criticalLevel/critdamage/bonusdam
 [weaponAttack](../../actor/mixins/weaponAttackMixin.js.md) получает critEffectModifier от Item.createBaseDamageObject и передаёт его в AttackMessageData: значение 2 сохраняется. Отдельное создание настоящей DefenseMessageData снова очистило critEffectModifier (258). Полная prepareAndExecuteDefense не запускалась; её разбор — TASK-0003.042.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Полный producer](../../actor/mixins/defenseMixin.js.md) в группе 22 передал critEffectModifier=6; настоящая модель удаляет его (258). Группа 32 на выходе этого producer: native applyCritWound выбрал greater для raw и lesser для cleaned при фиксированном d6=1. В профессиональной ветке defense undefined, основа/заголовок работают через skillOverride; влияние на предметные fumble отдельно не тестировалось.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

@@ -152,3 +152,11 @@ castSpell задаёт RollConfig({showResult:false}) с threshold−1, зате
 [weaponAttack](../../actor/mixins/weaponAttackMixin.js.md) ожидает extendedRoll с default RollConfig; для fast — два последовательных вызова. Группа 26 исполнила настоящий helper с настоящим Roll, minimize и подменённым toMessage: первая сумма 8, fumble extra1, итог 7; message.system.rollTotal=7. Другие группы захватывали формулу на границе helper, что отдельно указано в журнале.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[skillDefense](../../actor/mixins/defenseMixin.js.md) передаёт showResult=false/defense=true/threshold=attack и затем сам вызывает roll.toMessage после crit/stun. Группа 19 настоящим helper проверила 10[Stun] против 10: options.success=true. stunSave использует reversal=true и defense=false: d10=1 при пороге 1 дал options.success=false. Остальные исходы тестов примеси заданы на границе helper, formulas разобраны настоящим Roll.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

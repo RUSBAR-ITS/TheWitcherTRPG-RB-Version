@@ -120,3 +120,11 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 [module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Wrapper](../../item/mixins/defenseOptionMixin.js.md) и [полный бросок защиты](../../actor/mixins/defenseMixin.js.md) испытаны с настоящей ProfessionData. Guard/ref/level=4/modifier=1 даёт 1d10+5+4+1 и заголовок Guard. skillName остаётся undefined, потому что skills/itemTypes пусты, а основа берётся через skillOverride. isDefense=false не исключает кнопку (71); defining-only не добавляется (72).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.041 подготовлены и сверены 314 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.042 подготовлены и сверены 319 карточек. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -522,3 +522,13 @@
 | templates/dialog/combat/weapon-attack.hbs | [Описание](templates/dialog/combat/weapon-attack.hbs.md) |
 | styles/weapon-roll.css | [Описание](styles/weapon-roll.css.md) |
 | styles/attack-sheet.css | [Описание](styles/attack-sheet.css.md) |
+
+## Защита — TASK-0003.042
+
+| Файл | Карточка |
+| --- | --- |
+| module/actor/mixins/defenseMixin.js | [Описание](module/actor/mixins/defenseMixin.js.md) |
+| module/item/mixins/defenseOptionMixin.js | [Описание](module/item/mixins/defenseOptionMixin.js.md) |
+| templates/chat/combat/defense/defense.hbs | [Описание](templates/chat/combat/defense/defense.hbs.md) |
+| templates/chat/combat/defense/defenseCrit.hbs | [Описание](templates/chat/combat/defense/defenseCrit.hbs.md) |
+| templates/chat/combat/defense/defenseStun.hbs | [Описание](templates/chat/combat/defense/defenseStun.hbs.md) |

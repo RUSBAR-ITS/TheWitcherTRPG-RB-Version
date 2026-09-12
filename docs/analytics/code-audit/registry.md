@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.041 проверены описания **314 файлов**, для **307 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.042 проверены описания **319 файлов**, для **302 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.041](review-log.md#task-0003041) выполнена на d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3: все исходники (621 файл) совпадают с базовым срезом. Добавлены четыре карточки оружейной атаки, диалога и стилей; выполнены 28 групп проверок и сверка связанных определений. Статус «Проверено» относится к документации и не означает отсутствие ошибок или проверку запуска Foundry.
+Последняя [сверка TASK-0003.042](review-log.md#task-0003042) выполнена на 16695cbfc7fec3e0de56660c7cab21bc0304e94b: все 621 исходник совпадают с базовым срезом. Добавлены пять карточек: примесь Actor, обёртка Item и три шаблона защиты. Выполнены 33 группы проверок и сверка определений с потребителями. Статус «Проверено» относится к анализу документации, а не к отсутствию ошибок или полному запуску Foundry.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -33,7 +33,7 @@
 | [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js) | Методы Actor для обмена валюты: получение курсов CONFIG, подготовка окна, расчёт комиссии/округления, одна запись двух остатков и сообщение чата | [Карточка](files/module/actor/mixins/currencyConverterMixin.js.md) | Проверено |
 | [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/damageUtilMixin.js](../../../module/actor/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/actor/mixins/defenseMixin.js](../../../module/actor/mixins/defenseMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/actor/mixins/defenseMixin.js](../../../module/actor/mixins/defenseMixin.js) | Одиннадцать методов Actor: выбор и бросок защиты, расход STA, критические результаты и локации, реакции на попадание/успех и спасбросок от оглушения. | [Карточка](files/module/actor/mixins/defenseMixin.js.md) | Проверено |
 | [module/actor/mixins/healMixin.js](../../../module/actor/mixins/healMixin.js) | Общие методы Actor для расчёта величины лечения с ограничением HP.max и формирования сообщения о лечении. Сам файл HP не записывает. | [Описание](files/module/actor/mixins/healMixin.js.md) | Проверено |
 | [module/actor/mixins/locationMixin.js](../../../module/actor/mixins/locationMixin.js) | Не установлено | Не подготовлено | Не начат |
 | [module/actor/mixins/modifierMixin.js](../../../module/actor/mixins/modifierMixin.js) | Фрагменты формул из модификаторов навыков, групп, атаки и защиты. | [Описание](files/module/actor/mixins/modifierMixin.js.md) | Проверено |
@@ -177,7 +177,7 @@
 | [module/item/mixins/consumeMixin.js](../../../module/item/mixins/consumeMixin.js) | Применение Item: лечение Actor, статусы, applySelf ActiveEffect и чат. | [Описание](files/module/item/mixins/consumeMixin.js.md) | Проверено |
 | [module/item/mixins/costEditMixin.js](../../../module/item/mixins/costEditMixin.js) | Слушатели цен компонентов и пересчёт дополнительной стоимости через глобальный DOM. | [Описание](files/module/item/mixins/costEditMixin.js.md) | Проверено |
 | [module/item/mixins/damageUtilMixin.js](../../../module/item/mixins/damageUtilMixin.js) | Не установлено | Не подготовлено | Не начат |
-| [module/item/mixins/defenseOptionMixin.js](../../../module/item/mixins/defenseOptionMixin.js) | Не установлено | Не подготовлено | Не начат |
+| [module/item/mixins/defenseOptionMixin.js](../../../module/item/mixins/defenseOptionMixin.js) | Обёртка Item: создаёт вариант защиты с именем предмета и дополнениями от модели system. | [Карточка](files/module/item/mixins/defenseOptionMixin.js.md) | Проверено |
 | [module/item/mixins/dismantlingMixin.js](../../../module/item/mixins/dismantlingMixin.js) | Примесь Item для разбора оружия или брони по связанному рецепту, выдачи компонентов, списания одной единицы и формирования сообщения. | [Описание](files/module/item/mixins/dismantlingMixin.js.md) | Проверено |
 | [module/item/mixins/repairMixin.js](../../../module/item/mixins/repairMixin.js) | Два входа Item: открытие процесса ремонта и делегирование восстановления модели. | [Описание](files/module/item/mixins/repairMixin.js.md) | Проверено |
 | [module/item/sheets/WitcherAlchemicalSheet.js](../../../module/item/sheets/WitcherAlchemicalSheet.js) | Лист алхимии с категориями и конфигурацией расходования. | [Описание](files/module/item/sheets/WitcherAlchemicalSheet.js.md) | Проверено |
@@ -499,9 +499,9 @@
 | [styles/weapon-roll.css](../../../styles/weapon-roll.css) | Четыре правила размеров и выравнивания элементов внутри оружейного диалога. | [Карточка](files/styles/weapon-roll.css.md) | Проверено |
 | [styles/witcher-styles.css](../../../styles/witcher-styles.css) | Не установлено | Не подготовлено | Не начат |
 | [system.json](../../../system.json) | Манифест пакета: ресурсы, компедиумы, локализации и подтипы документов | [Карточка](files/system.json.md) | Проверено |
-| [templates/chat/combat/defense/defense.hbs](../../../templates/chat/combat/defense/defense.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/combat/defense/defenseCrit.hbs](../../../templates/chat/combat/defense/defenseCrit.hbs) | Не установлено | Не подготовлено | Не начат |
-| [templates/chat/combat/defense/defenseStun.hbs](../../../templates/chat/combat/defense/defenseStun.hbs) | Не установлено | Не подготовлено | Не начат |
+| [templates/chat/combat/defense/defense.hbs](../../../templates/chat/combat/defense/defense.hbs) | Базовый фрагмент сообщения защиты: локализованное название и пояснение основы формулы. | [Карточка](files/templates/chat/combat/defense/defense.hbs.md) | Проверено |
+| [templates/chat/combat/defense/defenseCrit.hbs](../../../templates/chat/combat/defense/defenseCrit.hbs) | Условный фрагмент критической защиты: название тяжести, маркер меню критической травмы и кнопка спасброска. | [Карточка](files/templates/chat/combat/defense/defenseCrit.hbs.md) | Проверено |
+| [templates/chat/combat/defense/defenseStun.hbs](../../../templates/chat/combat/defense/defenseStun.hbs) | Условная кнопка спасброска от оглушающего свойства атаки с отображением модификатора. | [Карточка](files/templates/chat/combat/defense/defenseStun.hbs.md) | Проверено |
 | [templates/chat/combat/heal.hbs](../../../templates/chat/combat/heal.hbs) | Минимальный текст сообщения о величине лечения: локализованная подпись и heal. | [Описание](files/templates/chat/combat/heal.hbs.md) | Проверено |
 | [templates/chat/combat/regeneration.hbs](../../../templates/chat/combat/regeneration.hbs) | Не установлено | Не подготовлено | Не начат |
 | [templates/chat/combat/spellItem.hbs](../../../templates/chat/combat/spellItem.hbs) | HTML flavor результата сотворения: описание магического Item, показ стоимости/источника/длительности/компонентов и кнопки урона, щита, лечения, ссылки статусов. | [Карточка](files/templates/chat/combat/spellItem.hbs.md) | Проверено |

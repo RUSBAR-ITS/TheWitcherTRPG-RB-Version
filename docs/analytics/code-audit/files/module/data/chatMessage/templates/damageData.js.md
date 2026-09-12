@@ -84,3 +84,11 @@ UUID не ограничен Item и не проверяет существов�
 На данных [оружейной атаки](../../../actor/mixins/weaponAttackMixin.js.md) подтверждён контракт: itemUuid, formula, crit, strike, type, originalLocation, location, properties сохраняются; raw item/ammunition не входят в схему. Вручную добавленный duration в effects очищен настоящей AttackMessageData (257); сама оружейная примесь duration не создаёт.
 
 [Сверка и ограничения](../../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Защита](../../../actor/mixins/defenseMixin.js.md) читает damage.duration, которого в схеме нет. Группа 31 с настоящей AttackMessageData передала undefined на границу applyActiveEffectToActorViaId. itemUuid при этом сохранён; эффекты и получение Item не исполнялись. Эта проверка дополняет 257, не создаёт новую проблему.
+
+[Сверка и ограничения](../../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

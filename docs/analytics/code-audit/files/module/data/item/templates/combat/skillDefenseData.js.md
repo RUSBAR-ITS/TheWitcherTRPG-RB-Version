@@ -79,3 +79,11 @@ skillDefense() — default export, вызывается из professionSkill() �
 2026-09-10, `rusbar-main`, `c26eb64dd54cc434087f54c3c6b678b6092b15a2`. Полный [разбор ProfessionData](../../../../../../../../../module/data/item/professionData.js) повторно подтвердил issue-00071/00072: isDefense=false не исключил Guard, а defining-only защита не найдена. createDefenseOption корректно передаёт attack; получены modifier3 и skillOverride ref/2 через модель, WitcherItem и Actor до skillDefense. [Форма](../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) скрывает defendsAgainst/modifier при выключенном isDefense, не удаляя данные.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003019). Исходники не изменены; уточнение касается проверенных связей, не повторного полного разбора файла.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+Группа 04 полного [потребителя](../../../../actor/mixins/defenseMixin.js.md) вновь обнаружила isDefense=false как доступный Guard, если defendsAgainst содержит melee (71). Группа 06 исполнила skillOverride до сообщения с формулой 1d10+5+4+1. Поведение definingSkill проверено отдельно (72), редактор в этой порции не запускался.
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

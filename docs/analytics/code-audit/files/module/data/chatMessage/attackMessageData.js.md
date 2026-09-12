@@ -91,3 +91,11 @@ attack: attackOption, skill, alias, itemUuid. damage: itemUuid, formula, crit, s
 [Полностью разобран производитель оружейной атаки](../../actor/mixins/weaponAttackMixin.js.md). Группа 27 передала сериализуемый снимок с валидными фиктивными UUID в настоящий AttackMessageData: attack.itemUuid/damage.itemUuid и damage.crit.critEffectModifier=2 сохранены; raw item/ammunition и вручную добавленный duration удалены. Документ ChatMessage, права, БД не запускались.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+Группа 31 полного [потребителя защиты](../../actor/mixins/defenseMixin.js.md) очистила top-level damage.duration=4 и передала undefined в applyOnHit (257). Группа 33 изменила prepared damage.location исходного сообщения torso→leftLeg при random-крите; _source остался torso. Реальный persistence/повторные защиты не проверены; это разделено с постоянной записью.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

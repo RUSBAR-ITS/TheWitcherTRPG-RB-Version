@@ -156,3 +156,11 @@ Full profession direct attack передаёт addActiveEffects(attack.name), н
 [constructBaseAttackFormula](weaponAttackMixin.js.md) действительно вызывает addActiveEffects и addAttackModifiers: REF5, skill3, AE+2, attack−2 дают '1d10+5+3 +2 -2[Penalty]-1'. Ветка skillReplacement REF5/level4 даёт '1d10+5+4-1', не вызывая helpers. Положительный attackModifier снова не разбирается настоящим Roll (issue-00033).
 
 [Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[skillDefense](defenseMixin.js.md) использует собственное более позднее определение addDefenseModifiers. Группа 17 повторила положительную ошибку 33 и отрицательный контроль с AE+2; skillOverride сохраняет общие модификаторы защиты, но addActiveEffects получает undefined skillName и возвращает пустую строку. Это отличается от обхода обоих helper в профессиональной оружейной атаке.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

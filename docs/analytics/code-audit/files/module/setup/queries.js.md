@@ -144,3 +144,11 @@
 [module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[skillDefense](../actor/mixins/defenseMixin.js.md) отправляет {uuid:attacker,function:'addAdrenaline',data:[]} на TheWitcherTRPG.query при крите. Имя присутствует в callableEntityFunctions; принимающий handler не исполнялся в этой порции. Отправитель не ждёт query (273), отсутствие владельца — 185; прежние ограничения исполнения query из issue-00008 сохраняются.
+
+[Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

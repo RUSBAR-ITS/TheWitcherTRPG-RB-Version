@@ -147,3 +147,11 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полный dismantlingMixin явно допускает type='armor' и использует общую associatedDiagramUuid/quantity; нормы SP, resistances и надетости не читает. Полный runtime разбор в .034 выполнен с оружием; эквивалентная ветвь типа armor установлена статически, повторного сценария брони нет.
 
 Связи: [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+Полный [путь защиты](../../actor/mixins/defenseMixin.js.md) сохранил различие 85: дополнительный отбор не включает ArmorData, несмотря на defenseProperties. Штатный getList('shield') выбирает location='Shield', в том числе isStored=true (274); затем используется skill melee. При block изменяется reliability, при crushingForce износ удваивается. Отдельный parryThrown не получает shieldParryThrownBonus из-за регистра action (271).
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

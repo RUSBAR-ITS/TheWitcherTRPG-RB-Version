@@ -326,3 +326,11 @@ castSpell вызывает getItemAttack() без аргументов и create
 [Полный потребитель getItemAttack](../actor/mixins/weaponAttackMixin.js.md) подтвердил конкретный источник ранее отмеченных посторонних options: professionMixin передаёт skillReplacement/additionalDamageProperties. На двух attackOptions это оставляет option undefined (issue-00264); при замещённом навыке атака продолжается. {} и ctrl/alt/shift отдельно проверены на четырёх режимах. Неизвестный itemUseAttackSkill не выводится из фасадного теста: в штатной схеме это иной вопрос issue-00061.
 
 [Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[createDefenseOption wrapper](mixins/defenseOptionMixin.js.md) теперь разобран целиком: import:8/Object.assign:376. Имя Item задаёт label/value, поля модели переопределяют их; attack.attackOption передаётся корректно. Два одинаковых имени оружия дают одинаковый action и сворачиваются ядром DialogV2 (268).
+
+[Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

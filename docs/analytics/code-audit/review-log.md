@@ -1,5 +1,103 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.042
+
+| Поле | Результат |
+| --- | --- |
+| Дата / ветка | 2026-09-12 / rusbar-main |
+| Коммит | 16695cbfc7fec3e0de56660c7cab21bc0304e94b; рабочее дерево на старте чистое |
+| Состав | defenseMixin.js — 457, defenseOptionMixin.js — 9, defense.hbs — 2, defenseCrit.hbs — 6, defenseStun.hbs — 3: 5 файлов / 477 логических строк |
+| Покрытие | 319 из 621; 302 не разобраны; в пятой серии 9 из 77 выполнены, 68 в очереди; 234 вне очереди |
+| Проверки | 33 группы изолированного запуска; итоговые assertions выполнены |
+| Связанные документы | 21 прежняя карточка и 10 прежних issues уточнены; 9 новых potential issues 00268–00276 |
+| Сохранность | Только docs; 621 исходник и mode/uid/gid/inode всех 1342 ранее отслеживаемых файлов сохранены; коммит не создавался |
+
+### Состав и перекрёстные связи
+
+[Задача](../../tasks/task-0003.042.md). Полные карточки: [defenseMixin.js](files/module/actor/mixins/defenseMixin.js.md), [defenseOptionMixin.js](files/module/item/mixins/defenseOptionMixin.js.md), [defense.hbs](files/templates/chat/combat/defense/defense.hbs.md), [defenseCrit.hbs](files/templates/chat/combat/defense/defenseCrit.hbs.md), [defenseStun.hbs](files/templates/chat/combat/defense/defenseStun.hbs.md).
+
+Полностью прочитаны все пять файлов: 11 методов Actor, один Item wrapper, callbacks обоих окон, все три шаблона. В качестве связанных определений проверены Actor/Item prototype, модели Weapon/Armor/Profession/DefenseProperties, skillDefense/lifepath, CONFIG/settings, RollConfig/extendedRoll, сообщения, helper/queries и точки применения эффектов. Обратные связи внесены в 21 прежнюю карточку. Файлы combat.js, damageMixin.js, adrenalineMixin.js и styles/chat.css проверены только до нужных определений/селекторов; полного покрытия им не присвоено.
+
+Особенно сопоставлены: дополнительная модельная защита против штатного выбора щита; одинаковый addDefenseModifiers в двух примесях и порядок Object.assign; полный raw crit против HTML-контекста и schema сообщения; getInteractActor при клике против defender UUID; совпадение action с именем и свёртка кнопок ядром.
+
+### Методика и фиксированные входы
+
+Одноразовый Node v24.16.0 через node --no-warnings --input-type=module, код в stdin. Постоянный стенд/тестовые файлы, установка пакетов, сборка и игровой мир не создавались. Foundry 14.367.0 установлен по /opt/foundryvtt/package.json.
+
+Настоящие common DataModel/TypeDataModel/fields/primitives и модели WeaponData, ArmorData, ProfessionData, DamageProperties, AttackMessageData, DefenseMessageData. CONFIG.WITCHER, RollConfig, ChatMessageData/append и modifierMixin импортированы из системы. defenseMixin исполнялся исходным текстом в vm с заменой только импортируемых зависимостей/экспорта. DefenseOptionMixin импортирован как есть. getList/static getLocationObject/getActorOwner/applyCritWound и callback кнопок чата извлечены с неизменными телами.
+
+Настоящий Handlebars рендерил три HBS, parse5 разбирал HTML. localize возвращал ключ; настоящие expandObject/fallback не прогонялись. Окна wait/prompt и form.elements/selectedOptions были фасадами. Для конфликта action выполнен исходный DialogV2._initializeApplicationOptions из /opt/foundryvtt/client/applications/api/dialog.mjs; super и cleanHTML заменены фасадами. Поэтому доказана свёртка buttons, но не браузерная очистка и отрисовка окна.
+
+Настоящий Roll/parser/terms и грамматика grammar.pegjs (peggy в памяти) разбирали построенные строки. Roll.evaluate принудительно получал minimize; для боковой локации getRandomInt=1 либо 2. Большинство исходов extendedRoll задавались на границе функции: total=15, чтобы раздельно проверить ветви примеси. Эти исходы не выдаются за вычисленный настоящим helper бросок. Группа 19 использовала настоящий extendedRoll и проверила options.success: 10[Stun] против 10 успешно; d10=1 при пороге stunSave=1 провален. toMessage во всех случаях — фасад без документа/БД.
+
+Actor fixture: REF=5/DEX=6/WILL=7, dodge=3, swordsmanship=4, brawling=2, melee=1, athletics=4, resistmagic=5; STA=10, stun=7, shieldParryBonus=2, shieldParryThrownBonus=3; пустые statuses/effects/combatEffects. Damage: torso, originalLocation torso, critLocationModifier=0, critEffectModifier=6, действительные по формату фиктивные UUID, настоящая DamageProperties. Обычный defenseOptions=['dodge'], totalAttack=15; выбор первого пункта, extra=false, custom='0'. Отклонения перечислены в группах/карточках.
+
+Actor/Item документы, User/GM, UUID lookup, update/query/applyStatus/removeStatus и helper эффектов — фасады с журналом аргументов и pending Promise. Базовый статус full:false не проверяет свойства настоящего Roll.options: они проверены отдельно в группе 19. Каталог травм в группе 32 содержит две фиксированные torso/complex записи; fromUuid/addItem/ChatMessage.create заменены границами. Проверена функция выбора травмы, а не создание игрового документа.
+
+### Результаты групп
+
+| № | Сценарий | Наблюдение |
+| --- | --- | --- |
+| 01 | штатные варианты | dodge: 1d10+5+3; reposition: 1d10+6+4; magicResist: 1d10+7+5. |
+| 02 | block/parry/parryThrown с предметом | block: 1d10+5+4 и запрос износа; parry: 1d10+5+4−3 и staggered; parryThrown: 1d10+5+4−5, без этих реакций. |
+| 03 | парирующее оружие и модификаторы | Отрицательный штраф parry компенсирован, custom−2 принимается; положительный modifier=2 добавлен |
+| 04 | weapon/profession/armor sources | Доступны dodge, оружие Blade и навык профессии Guard с isDefense=false. ArmorData дополнительный вариант не дала. |
+| 05 | definingSkill не включён | Только dodge |
+| 06 | профессиональный skillOverride | Формула 1d10+5+4+1; defense остаётся undefined; thresholdDesc='Guard'. |
+| 07 | одинаковые имена кнопок ядро | 3 исходные кнопки → 2 после настоящего initializer; Same использует последний modifier=4 |
+| 08 | crushingForce отбор | Из исходных dodge/parry/parryThrown остались dodge и parryThrown. |
+| 09 | пустые/неизвестные options и пустой chooser | Пустой список, неизвестный option и parryThrown без предмета завершились исключениями до броска. |
+| 10 | отмена обоих окон | Оба отказа до расхода |
+| 11 | пустой/неизвестный skill оружия | Отказ в CONFIG.skillMap[skill].label при создании chooser |
+| 12 | stored предметы | Stored weapon — отдельная кнопка; stored shield — штатный parryThrown |
+| 13 | износ при block, crushing и равенстве | При начальной надёжности 3: обычный block запрашивает 2, crushingForce — 1; проверены weapon.reliable и armor.reliability. |
+| 14 | block голыми руками | Чат защиты создан, затем item.type на undefined |
+| 15 | shield lifepath case и знак | parry добавляет +2; штатный parryThrown не добавляет +3; контроль с parrythrown добавляет +3. |
+| 16 | extraDefense STA и поздний отказ | 0 отказ; 1→0; 10→9; пустой chooser parryThrown запрашивает STA=9 до TypeError |
+| 17 | положительный defenseModifier и AE | AE+2/penalty−2 допустимы; положительный+2 без оператора → ошибка Roll |
+| 18 | stun фиксация и resistmagic | dodge фиксирован 10; resistmagic сохраняет бросок |
+| 19 | реальное равенство defense и stunSave | Защита 10 против 10 успешна; stunSave d10=1 при пороге 1 провален: reversal strict < |
+| 20 | пороги критов | Разности 0/6: null; 7/9: simple, урон 3/бонус 5; 10/12: complex, 5/10; 13/14: difficult, 8/15; 15/20: deadly, 10/20. |
+| 21 | критическая локация все интервалы | Итоги 2/4/6/9/11/12: leftLeg/leftArm/torso/torso/head/head; critEffect отсутствует для конечностей, затем 1/6/1/6. Правая сторона проверена отдельно. |
+| 22 | крит полный путь, query и модель | Сырой crit: complex, torso, critdamage=5, bonusdamage=10, critEffectModifier=6. После DefenseMessageData последнее поле отсутствует. Зафиксированы query, applyOnHit и removeStatus. |
+| 23 | нет владельца/GM и удалён Actor | Ошибка до toMessage при обоих отсутствиях; активный OWNER предпочтён GM |
+| 24 | stun кнопка после успеха | При равенстве 15/15 кнопка stun=−2 остаётся; arms/tailWing без кнопки |
+| 25 | applyOnHit, remove stun, stagger и ожидания | При попадании applyOnHit/removeStatus; при parry запрос staggered с duration=1. Promise дочерних операций остаются pending |
+| 26 | stunSave ± и успех/провал | Порог 5/7/9; на провале applyStatus не ожидается; успех сам не снимает stun |
+| 27 | HBS ветви и экранирование | Условные crit-stun/stun; пустые ветви пусты; текст экранируется |
+| 28 | сырое имя chooser | Два исходных пункта brawling и swordsmanship превратились в три: HTML имени добавил fake без Item ID. |
+| 29 | сообщение/износ при сломанном предмете | Запрошен reliable−1; broken notification; фильтра неисправного предмета нет |
+| 30 | контекстные функции чата | Обычная кнопка читает attackWeaponProperties.stun, crit-stun вызывает без аргумента; event.target не используется |
+| 31 | duration граница attack → защита | Raw duration=4 очищен настоящей AttackMessageData; applyOnHit получает undefined, UUID сохраняется |
+| 32 | critEffectModifier и consumer травмы | При getRandomInt=1 сырой crit с модификатором +6 выбрал greater; тот же crit после очистки модели — lesser. |
+| 33 | подготовленная локация исходного сообщения | Критическая защита меняет prepared attack.damage.location torso→leftLeg; _source остаётся torso; DB не записывается |
+
+Группа 31 проверяет именно верхний damage.duration: после AttackMessageData он отсутствует; прежняя .041 дополнительно проверяла вложенный effects.duration. Группа 33 отделяет изменение prepared location от _source и БД. Последствия повторной защиты по тому же сообщению не воспроизведены и не зарегистрированы как отдельная доказанная ошибка.
+
+### Проблемы и сопоставление с прежним массивом
+
+Дополнены десять прежних issues: 31 (только связь вызова applyStatus, без повторного воспроизведения иммунитетов),33 (реальное определение defense modifier),71/72 (полный отбор профессии),79 (ошибка chooser),85 (отличие дополнительной защиты брони от штатного Shield),182 (граница отправителя, fumble-handler не повторён),185 (отсутствующий получатель),257 (duration),258 (critEffectModifier и выбор травмы). Прежние уточнения из общей промежуточной сверки учтены; дубль 00200/00029 и статусы оставлены прежними.
+
+- [issue-00268](../../issues/potential/issue-00268.md) — Совпадающие названия вариантов защиты объединяются в одну кнопку.
+- [issue-00269](../../issues/potential/issue-00269.md) — Выбор защиты не обрабатывает отсутствие пригодного варианта.
+- [issue-00270](../../issues/potential/issue-00270.md) — Успешный блок голыми руками обращается к отсутствующему предмету.
+- [issue-00271](../../issues/potential/issue-00271.md) — Бонус парирования метательного оружия щитом не находит штатный action.
+- [issue-00272](../../issues/potential/issue-00272.md) — Кнопка оглушения появляется после успешной защиты.
+- [issue-00273](../../issues/potential/issue-00273.md) — Защита не ожидает завершения расходов, запросов и применения статусов.
+- [issue-00274](../../issues/potential/issue-00274.md) — Защита предлагает предметы, помещённые на хранение.
+- [issue-00275](../../issues/potential/issue-00275.md) — Имя предмета защиты вставляется в chooser как необработанный HTML.
+- [issue-00276](../../issues/potential/issue-00276.md) — Дополнительная защита запрашивает STA до проверки выбранного навыка.
+
+В реестре 276 issues, все potential. Регистрация разрешена пунктом 9 TASK-0003; подтверждение, исправление и закрытие не выполнялись. Где вывод требует подтверждения правил (условие оглушения, доступность stored и последствия блока навыком), это записано отдельно от наблюдаемой ошибки исполнения.
+
+### Формальная сверка и пределы
+
+Реестр 621 файлов сопоставлен с 319 карточками и 302 строками «Не начат». Все 50 перечней подзадач проверены: 376 уникальных назначенных исходников; .001–.042 done, .043–.050 planned; 68 файлов в очереди, 234 вне неё. TASK-0003 in-progress; TASK-0004/TASK-0005 draft. Названия задач и первоначальные объёмы серий сохранены.
+
+Ссылки/якоря, новые Markdown-таблицы, реестр issues и git diff --check проверены. Изменения ограничены docs. Все 621 исходник совпадают с TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. Совокупный SHA256 (сортированные пути UTF-8 + NUL + байты файла) — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4. Метаданные доступа 1342 прежних файлов сохранены; прежнее содержимое журнала ниже не изменено.
+
+Не проверены полный Actor lifecycle, браузер/DOM/CSS, штатная локализация, права и таймауты query, реальная запись/создание эффектов, распределение случайных бросков, полный расчёт брони/HP и соответствие всех чисел рулбуку. Статус карточки «Проверено» означает выполненный пофайловый анализ с указанными пределами.
+
 ## TASK-0003.041
 
 | Поле | Результат |

@@ -113,3 +113,11 @@ API и версия statuscounter, реальные таймеры нескол�
 Сопоставленные исходники: [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js). Полные новые описания: [damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [damageData.js](../../data/chatMessage/templates/damageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Успешный parry](../../actor/mixins/defenseMixin.js.md) передаёт applyStatusEffectToActor(attacker,'staggered',1) без ожидания (группа 25/273). Stun спасброска использует другой путь — Actor.applyStatus, а не этот helper. Здесь повторно проверена только передача аргументов; statuscounter/права/создание эффекта не выполнялись.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

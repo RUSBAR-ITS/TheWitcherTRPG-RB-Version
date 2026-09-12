@@ -123,3 +123,11 @@ castSpell использует showResult:false и не меняет начал�
 [module/actor/mixins/castSpellMixin.js](../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[createDefenseRollConfig](../actor/mixins/defenseMixin.js.md) меняет showResult=false, defense=true, threshold/thresholdDesc; showCrit остаётся true. stunSave меняет showCrit=false, reversal=true, threshold, сохраняя defense=false и showResult=true. Поэтому равенство успешно только для защиты (группа 19). showSuccess=true в stunSave не отдельная проверка правила: ветвление успеха происходит в extendedRoll по threshold.
+
+[Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

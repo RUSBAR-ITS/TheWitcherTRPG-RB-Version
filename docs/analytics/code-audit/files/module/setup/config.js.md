@@ -564,3 +564,11 @@ WITCHER.magic сопоставляет 4 класса spell→spellcast, hex→h
 [Диалог оружия](../../templates/dialog/combat/weapon-attack.hbs.md) использует весь weapon.attacks: normal, fast, strong, joint, half. В [примеси](../actor/mixins/weaponAttackMixin.js.md) attackNumber=2 только для fast, attackPenality−3 для strong/joint; dmgMulti потребляет позднее Item.rollDamage. skillMap/statMap выбирают названия/характеристики, ошибочные служебные options не связаны с содержимым map.
 
 [Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Защита](../actor/mixins/defenseMixin.js.md) использует все шесть defenseOptions. block допускает brawling, но успешный износ требует Item (270). Штатный parryThrown не совпадает с lowercase-проверкой бонуса щита (271). Критическая таблица берёт из CONFIG только ключи названий critLevel; числовые пороги 7/10/13/15 и damage заданы в примеси.
+
+[Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

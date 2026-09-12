@@ -287,3 +287,12 @@
 | [issue-00265](potential/issue-00265.md) | Вариант unavailable в типе урона зависит только от piercing | `potential` |
 | [issue-00266](potential/issue-00266.md) | Имя боеприпаса вставляется в select как необработанный HTML | `potential` |
 | [issue-00267](potential/issue-00267.md) | В стилях таблиц атаки задано недопустимое значение word-wrap | `potential` |
+| [issue-00268](potential/issue-00268.md) | Совпадающие названия вариантов защиты объединяются в одну кнопку | `potential` |
+| [issue-00269](potential/issue-00269.md) | Выбор защиты не обрабатывает отсутствие пригодного варианта | `potential` |
+| [issue-00270](potential/issue-00270.md) | Успешный блок голыми руками обращается к отсутствующему предмету | `potential` |
+| [issue-00271](potential/issue-00271.md) | Бонус парирования метательного оружия щитом не находит штатный action | `potential` |
+| [issue-00272](potential/issue-00272.md) | Кнопка оглушения появляется после успешной защиты | `potential` |
+| [issue-00273](potential/issue-00273.md) | Защита не ожидает завершения расходов, запросов и применения статусов | `potential` |
+| [issue-00274](potential/issue-00274.md) | Защита предлагает предметы, помещённые на хранение | `potential` |
+| [issue-00275](potential/issue-00275.md) | Имя предмета защиты вставляется в chooser как необработанный HTML | `potential` |
+| [issue-00276](potential/issue-00276.md) | Дополнительная защита запрашивает STA до проверки выбранного навыка | `potential` |

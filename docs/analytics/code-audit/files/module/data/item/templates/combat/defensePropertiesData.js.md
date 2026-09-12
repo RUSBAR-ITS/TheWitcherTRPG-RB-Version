@@ -105,3 +105,11 @@ SpellData.isApplicableDefense делегирует проверку множес
 Сверенные карточки: [module/data/item/spellData.js](../../spellData.js.md).
 
 [Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+В [защите](../../../../actor/mixins/defenseMixin.js.md) defendsAgainst включает дополнительные варианты, modifier меняет формулу, parrying компенсирует отрицательный modifier лишь у штатных parry/parryThrown с выбранным предметом. Модель возвращает пустые skills/itemTypes; их дополняет WeaponData или обходит skillOverride профессии. CrushingForce исключает только action parry; решение о допустимых исключениях по правилам не принято.
+
+[Сверка и ограничения](../../../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.

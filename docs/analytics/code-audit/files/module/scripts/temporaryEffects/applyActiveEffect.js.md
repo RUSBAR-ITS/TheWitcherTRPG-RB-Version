@@ -127,3 +127,11 @@ castSpell фильтрует Item.effects по system.applySelf/applyOnTarget, �
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [damageData.js](../../data/chatMessage/templates/damageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Дополнительная сверка TASK-0003.042
+
+2026-09-12, rusbar-main, 16695cbfc7fec3e0de56660c7cab21bc0304e94b; исходники не изменены.
+
+[Проигранная защита](../../actor/mixins/defenseMixin.js.md) передаёт actor UUID, damage.itemUuid, applyOnHit и damage.duration. Группа 25 с raw duration=4 сохранила 4, группа 31 после AttackMessageData дала undefined (257). Вызов helper не ожидается (273); разрешение UUID, фильтр effects и удалённое создание заново не исполнялись.
+
+[Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
