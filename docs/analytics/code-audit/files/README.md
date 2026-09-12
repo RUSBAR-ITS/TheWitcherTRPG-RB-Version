@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.054 подготовлены 452 карточки, включая 63 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 163 JSON поставлены в очередь .055–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.055 подготовлены 493 карточки, включая 104 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 122 JSON поставлены в очередь .056–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath и 35 character-generator-sub-tables описаны ниже; 163 файла следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath, 35 character-generator-sub-tables и 41 witcher-lifepath описаны ниже; 122 файла следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -735,3 +735,51 @@
 | [packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json](packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json.md) | Уточняет, относится событие к отцу, матери или обоим родителям. |
 
 [Перекрёстная сверка](../review-log.md#task-0003054): 35 RollTable / 313 результатов, региональные варианты и предел рекурсии. Зарегистрирована [issue-00320](../../../issues/potential/issue-00320.md); исходники сохранены.
+
+## Таблицы биографии ведьмака — TASK-0003.055
+
+41 RollTable, 321 результат; [задача](../../../tasks/task-0003.055.md), [протокол](../review-log.md#task-0003055). Числа и тексты рулбуков не сверялись.
+
+| Файл | Назначение и карточка |
+| --- | --- |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json.md) | Вариант раннего обучения для входа с бонусом +2 к испытаниям: выбирает событие и следующую таблицу испытаний. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json.md) | Вариант раннего обучения для входа со штрафом −2 к испытаниям: выбирает событие и следующую таблицу испытаний. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json.md) | Основная таблица раннего обучения: выбирает событие и вариант испытаний без исходного возрастного модификатора. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_CDX4hqsxcxxovYz3.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_CDX4hqsxcxxovYz3.json.md) | Испытания ведьмака с формулой 1d10−2; выводит результат мутаций и продолжает важным событием. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json.md) | Испытания ведьмака с формулой 1d10+2; выводит результат мутаций и продолжает важным событием. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json.md) | Испытания ведьмака с формулой 1d10+4; выводит результат мутаций и продолжает важным событием. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_sY3qw9UfVyx1l9BF.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_sY3qw9UfVyx1l9BF.json.md) | Испытания ведьмака с формулой 1d10−4; выводит результат мутаций и продолжает важным событием. |
+| [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json](packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json.md) | Испытания ведьмака без модификатора; выводит результат мутаций и продолжает важным событием. |
+| [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | Выбирает текст школы ведьмака из пяти вариантов с описаниями особенностей. |
+| [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | Выбирает важное событие биографии и вслед за ним текущее положение ведьмака. |
+| [packsJson/witcher-lifepath/Witcher_Background__Where_Are_You_Now__w8GcZsTyPF85V5Rr.json](packsJson/witcher-lifepath/Witcher_Background__Where_Are_You_Now__w8GcZsTyPF85V5Rr.json.md) | Выбирает текст текущего положения ведьмака после важного события. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json.md) | Определяет, жив ли союзник; при смерти добавляет бросок причины смерти. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json.md) | Выбирает степень близости с союзником. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json.md) | Выбирает пол союзника. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json.md) | Собирает шесть аспектов союзника последовательными вложенными бросками. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_Did_They_Die_AMYeAxAXD3DMX6St.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_Did_They_Die_AMYeAxAXD3DMX6St.json.md) | Выбирает текст причины смерти союзника. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json.md) | Выбирает обстоятельства знакомства с союзником. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json.md) | Выбирает положение или занятие союзника. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json](packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json.md) | Выбирает регион нахождения союзника. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json](packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json.md) | Выбирает благоприятный исход десятилетия; часть текстов содержит вычисляемые вставки. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json](packsJson/witcher-lifepath/Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json.md) | Выбирает исход осторожного десятилетия: преимущество, союзник, охота или отсутствие заметных событий. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json.md) | Собирает семь аспектов врага, используя также таблицу пола из Life Event Sub-tables. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Are_They_Alive__eywzppppagpC4HYO.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Are_They_Alive__eywzppppagpC4HYO.json.md) | Определяет, жив ли враг; при смерти добавляет причину и встроенный бросок прошедших десятилетий. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__How_Did_They_Die__SwPXh5SRHrwfXyWP.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__How_Did_They_Die__SwPXh5SRHrwfXyWP.json.md) | Выбирает обстоятельства смерти врага; вычисляет число прошедших десятилетий при показе текста. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__How_Far_Has_It_Escalated__8iZB8b98GEbOQfBQ.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__How_Far_Has_It_Escalated__8iZB8b98GEbOQfBQ.json.md) | Выбирает степень обострения вражды. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Position_9m5zE1WyAI4xslyk.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Position_9m5zE1WyAI4xslyk.json.md) | Выбирает общественное положение врага. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Power_1QUG4e60Iqom24ac.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Power_1QUG4e60Iqom24ac.json.md) | Выбирает текстовый уровень силы врага от 1 до 10. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__The_Cause_FR7XLvWHdkOwUtnC.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__The_Cause_FR7XLvWHdkOwUtnC.json.md) | Выбирает причину вражды. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__What_Is_Their_Power__xxaxFJfMA29gLFOm.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__What_Is_Their_Power__xxaxFJfMA29gLFOm.json.md) | Выбирает источник силы врага. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json.md) | Выбирает опасное событие десятилетия; отдельные тексты содержат встроенные броски. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json](packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json.md) | Выбирает текст последствий ранения из десяти вариантов. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json](packsJson/witcher-lifepath/Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json.md) | Разветвляет опасность десятилетия на событие, ранение или генерацию врага. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json](packsJson/witcher-lifepath/Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json.md) | Собирает охоту: добычу, место, осложнение и исход. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___How_Did_It_End__n13vBwJk61euGPa1.json](packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___How_Did_It_End__n13vBwJk61euGPa1.json.md) | Выбирает текст исхода охоты. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Was_There_a_Twist__uLX85Bx2Jimqmx6o.json](packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Was_There_a_Twist__uLX85Bx2Jimqmx6o.json.md) | Определяет наличие осложнения охоты и при необходимости вызывает его подробную таблицу. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json](packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json.md) | Выбирает категорию добычи на охоте. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Twist__ZyRLAmxDu5SVt7rg.json](packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Twist__ZyRLAmxDu5SVt7rg.json.md) | Выбирает текст осложнения охоты. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Where_Was_the_Prey__PUVAGxwjXlFhXrhv.json](packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Where_Was_the_Prey__PUVAGxwjXlFhXrhv.json.md) | Выбирает место охоты. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json](packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json.md) | Выбирает исход десятилетия с отказом от нейтралитета: преимущество, союзник, охота или отсутствие событий. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json](packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json.md) | Выбирает исход обычного десятилетия: преимущество, союзник, охота или отсутствие событий. |
+| [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json.md) | Выбирает исход рискованного десятилетия: преимущество, союзник, охота или отсутствие событий. |
