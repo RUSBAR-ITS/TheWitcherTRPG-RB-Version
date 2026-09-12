@@ -106,3 +106,11 @@ isItemEffect предоставляется ядром при подготовк
 [activeEffect.css](../../styles/activeEffect.css.md) оформляет общий список effect-part, который открывает этот редактор через edit; его название не означает, что он задаёт core таблицу changes. Три [фабрики modifier-полей](../data/item/templates/effectStatData.js.md) не используются мастером. Группа 05 исполнила getStatSuggestions/getSkillSuggestions: пути system.stats.int.totalModifiers и system.skills.emp.charisma.activeEffectModifiers формируются отдельно. Существующий путь wizard → legacy changes → core cleanData → system.changes, уточнённый ранее, не переоценивался как ошибка из-за имени поля.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
+
+## Дополнительная сверка TASK-0003.051
+
+2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
+
+Системная вкладка добавляет id=systemSpecific к TABS.sheet и наследует ядровой labelPrefix=EFFECT.TABS; так возникает ключ EFFECT.TABS.systemSpecific, присутствующий в [en](../../lang/en.json.md) и [ru](../../lang/ru.json.md). _prepareContext передаёт systemFields, а system-specific.hbs запрашивает formGroup applyAfterCalculations с localize=true. У этой подписи нет ru-строки ([docs/issues/potential/issue-00318.md](../../../../../issues/potential/issue-00318.md)); настоящий localize возвращает английский fallback. Это не изменение мастера, фаз или сохранения.
+
+[Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.

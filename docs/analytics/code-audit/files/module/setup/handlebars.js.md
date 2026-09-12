@@ -403,3 +403,11 @@ preloadHandlebarsTemplates включает tab-magic, spell-type-list и ста
 В [weapon-attack.hbs](../../templates/dialog/combat/weapon-attack.hbs.md) исходные eq/or исполнены настоящим Handlebars на всех 16 комбинациях типов: unavailable эквивалентно piercing=false (265). Причина в аргументах конкретного шаблона, не в ошибке общих helpers. localize/selectOptions в этих опытах были фасадами; вывод о корректности переводов/всего штатного helper не делается.
 
 [Сверка и ограничения](../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.051
+
+2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
+
+localize в системных HBS предоставляет ядро Foundry, а не registerHandelbarHelpers. Исполнен исходный helper client/applications/handlebars.mjs: непустой options.hash передаётся _loc, обычный HBS-вывод экранирует строку. AST всех 132 HBS дал 1094 вызова localize: 1013 буквальных и 81 динамический; четыре hash-вызова относятся к DOCUMENT.* ядра. В en/ru только две строки с подстановками (currency, target/heal), их программные потребители проверены отдельно. Полные словари и точные упоминания: [en](../../lang/en.json.md), [ru](../../lang/ru.json.md).
+
+[Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.

@@ -46,7 +46,7 @@
 | --- | --- | --- | --- | --- |
 | ActiveEffectTypeDataModel / defineSchema | Foundry 14.367.0; common/data/active-effect.mjs | Наследование, super | changes и его схема/валидация | Исходное определение прочитано; использована настоящая модель |
 | foundry.data.fields.BooleanField | Foundry common/data/fields.mjs | Конструирование | Собственные флаги | Оригинальная схема и начальные значения выполнены |
-| Ключи WITCHER.Effect.* | [lang/en.json](../../../../../../../lang/en.json); [lang/ru.json](../../../../../../../lang/ru.json) | Локализация label | Все пять собственных полей имеют label | Ключи указаны в исходнике; наличие сверено |
+| Ключи WITCHER.Effect.* | [lang/en.json](../../../../../../../lang/en.json); [lang/ru.json](../../../../../../../lang/ru.json) | Локализация label | Все пять собственных полей имеют label | Ключи заданы в исходнике; в en присутствуют все пять, в ru нет applyAfterCalculations — уточнение TASK-0003.051 ниже |
 
 ## Известные потребители
 
@@ -111,3 +111,11 @@
 Группа 31 снова исполнила унаследованную схему: system.changes корректен, value — AnyField. Группа 35 связала ранее известную миграцию с [updateDerivedStat](../../actor/mixins/damageMixin.js.md): BaseActiveEffect.migrateData разбирает корневую JSON-строку value в объект; потребитель затем повторно JSON.parse-ит объект и прерывает расход HP (новая 294). Группа 13 также показала запрос applyOnDamage после полного поглощения SP (290). Это поведение потребителей, не ошибка объявления самого флага/поля.
 
 [Методика и пределы проверки](../../../../review-log.md#task-0003044). Уточнение связей не увеличивает покрытие; мир, браузер и БД не запускались.
+
+## Дополнительная сверка TASK-0003.051
+
+2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
+
+Уточнение прежней строки зависимостей: label заданы у пяти собственных полей, но все пять присутствуют только в en. Для applyAfterCalculations ключ WITCHER.Effect.applyAfterCalculations отсутствует в ru. Настоящий класс импортирован поверх ActiveEffectTypeDataModel ядра; label из schema.fields проверен настоящим Localization с fallback. [docs/issues/potential/issue-00318.md](../../../../../../issues/potential/issue-00318.md) описывает перевод, отдельно от issue-00043 о фазах/update. Полные словари: [en](../../../lang/en.json.md), [ru](../../../lang/ru.json.md).
+
+[Результаты и ограничения сверки](../../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.

@@ -136,3 +136,11 @@ Hex/Ritual используют обычную конфигурацию чере
 Сверенные карточки: [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](WitcherSpellConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
 
 [Результаты и пределы сверки](../../../../../review-log.md#task-0003021).
+
+## Дополнительная сверка TASK-0003.051
+
+2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
+
+_prepareContext передаёт CONFIG.WITCHER как context.config. general.hbs:37–38 и spellGeneral.hbs:47 используют options=config.damageTypes, localize=true; это подтверждает потребителя WITCHER.DamageType.silver в вариантах формы. В ru перевод находится по другому пути WITCHER.Damage.silver, поэтому настоящий Localization возвращает Silver из en ([docs/issues/potential/issue-00317.md](../../../../../../../issues/potential/issue-00317.md)). Полные описания [en](../../../../lang/en.json.md) и [ru](../../../../lang/ru.json.md) дополняют прежнюю точечную проверку. Полный DOM formGroup и сохранение Item не запускались.
+
+[Результаты и ограничения сверки](../../../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.

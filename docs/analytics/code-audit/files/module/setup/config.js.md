@@ -580,3 +580,11 @@ WITCHER.magic сопоставляет 4 класса spell→spellcast, hex→h
 Все 16 записей verbalCombat (1949–2060) сопоставлены с двумя producer и обоими HBS. [Матрица действий](../actor/mixins/verbalCombatMixin.js.md) отделяет характеристику навыка от dmgStat: Deceive бросает deceit/EMP, но урон использует INT; Study использует perception/EMP (Human Perception), Bribe — gambling/EMP. Девять записей имеют baseDmg; Counterargue не имеет skill/baseDmg. Общий диалог показывает все пять групп, защитный — четыре Defenses. Текст effect локализуется, но в этих файлах не исполняется. Группы 01/03/18/24 проверили формулы, модификаторы и en/ru; конфигурация не менялась.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Дополнительная сверка TASK-0003.051
+
+2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
+
+В [полном инвентаре en](../../lang/en.json.md) и [сопоставлении ru](../../lang/ru.json.md) перечислены ключи справочников и их строковые потребители. Настоящий мастер эффектов на config и реальной схеме damageTypeModification разрешил динамические группы; два label навыков с ошибочным регистром остаются issue-00016. Для damageTypes.silver label=WITCHER.DamageType.silver возвращает en Silver, поскольку ru содержит только WITCHER.Damage.silver; [docs/issues/potential/issue-00317.md](../../../../../issues/potential/issue-00317.md). 120 ключей label/description трёх состояний старого WITCHER.Crit отсутствуют в en/ru; прямого потребителя config.Crit в module/templates не найдено. Поэтому эти 120 ключей не объявлены 120 ошибками текущего UI.
+
+[Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
