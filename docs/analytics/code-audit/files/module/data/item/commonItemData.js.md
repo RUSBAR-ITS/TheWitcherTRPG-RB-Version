@@ -212,3 +212,11 @@ SpellData, HexData и RitualData наследуют общие 8 полей. Т�
 [Оружейная атака](../../actor/mixins/weaponAttackMixin.js.md) использует quantity:StringField через JS-вычитание. Настоящая WeaponData с ammo.quantity='0' дала запрос update quantity=-1; сохранение через сервер не запускалось. Это новая issue-00260, а не утверждение о добавленной числовой валидации модели.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Дополнительная сверка TASK-0003.047
+
+2026-09-12, rusbar-main, 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c; исходники не изменены.
+
+Проверены три самостоятельные фабрики [effectDerivedStat](templates/effectDerivedStatData.js.md), [effectSkill](templates/effectSkillData.js.md) и [modifierStat](templates/effectStatData.js.md). Их id/modifier/derivedStat|skill|stat не включены в CommonItemData или найденные регистрации. Группы 01–05 исполнили настоящие поля и отдельные контрольные DataModel: это возможность прямого использования фабрик, а не новый штатный слой Item. CommonItemData по-прежнему не задаёт changes/эффекты; отсутствие подключения не зарегистрировано проблемой.
+
+[Сценарии, результаты и ограничения](../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.

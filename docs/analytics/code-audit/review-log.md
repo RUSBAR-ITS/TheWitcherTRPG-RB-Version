@@ -1,5 +1,84 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.047
+
+Дата: 2026-09-12. [Способности, эффекты и модификаторы: поля и оформление](../../tasks/task-0003.047.md). Ветка rusbar-main; HEAD 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c. Перед началом рабочее дерево чистое. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f; SHA-256 отсортированных UTF-8 путей + NUL + байтов файлов — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4.
+
+### Состав и перекрёстная сверка
+
+| Полностью прочитанный файл | Строки | Предмет проверки |
+| --- | --- | --- |
+| [module/data/item/templates/effectDerivedStatData.js](files/module/data/item/templates/effectDerivedStatData.js.md) | 9 | effectDerivedStat: id/modifier/derivedStat; default modifier='0'; подключений не найдено |
+| [module/data/item/templates/effectSkillData.js](files/module/data/item/templates/effectSkillData.js.md) | 9 | effectSkill: id/modifier/skill; default modifier=''; подключений не найдено |
+| [module/data/item/templates/effectStatData.js](files/module/data/item/templates/effectStatData.js.md) | 9 | modifierStat: id/modifier/stat; default modifier='0'; подключений не найдено |
+| [styles/activeEffect.css](files/styles/activeEffect.css.md) | 96 | 17 rule-узлов / 35 declarations |
+| [styles/configurations/modifier-configuration.css](files/styles/configurations/modifier-configuration.css.md) | 5 | 2 rule-узлов / 1 declarations |
+| [styles/crit-wounds-table.css](files/styles/crit-wounds-table.css.md) | 134 | 26 rule-узлов / 52 declarations |
+| [styles/profession-sheet.css](files/styles/profession-sheet.css.md) | 240 | 44 rule-узлов / 106 declarations; @keyframes vibrate |
+| [styles/special-skill-table.css](files/styles/special-skill-table.css.md) | 51 | 8 rule-узлов / 27 declarations |
+| [styles/race-sheet.css](files/styles/race-sheet.css.md) | 3 | 1 rule-узлов / 1 declarations |
+| [styles/character/tab-profession.css](files/styles/character/tab-profession.css.md) | 105 | 22 rule-узлов / 35 declarations |
+| **Всего** | **661** | **Три фабрики полей и семь CSS;120 CSS rule-узлов и 257 declarations** |
+
+В каждой CSS-карточке перечислены все селекторы и declarations с исходной строкой и полной цепочкой вложенности. В счёт rule-узлов включены контейнеры вложенности без declarations и пять шагов keyframes. Семь файлов содержат один @keyframes и не содержат собственных @import/URL; их подключение находится в witcher-styles.css. special-skill-table.css имеет CRLF; исходные байты сохранены.
+
+Пути и имена трёх фабрик найдены только в собственных определениях. Проверены CommonItemData, registerDataModels, WitcherActiveEffectData, WitcherActiveEffect и мастер WitcherActiveEffectConfig/baseMixin: действующий маршрут использует system.changes и пути totalModifiers/activeEffectModifiers; он не собирается из этих трёх фабрик. Отсутствие вызова ограничено текущим репозиторием и не зарегистрировано проблемой.
+
+Селекторы сопоставлены с исходным HBS, JS-подключением и динамическими классами Foundry. Не считались HTML-потребителями совпадения имён partial/CSS-файлов. В частности, crit-wounds-table.hbs выводит ol/li без .crit-wounds-table; специальный special-skill список не имеет найденных элементов/обработчиков. Напротив, .editor-content и profession active создаются динамически и имеют действующие маршруты.
+
+Уточнены 10 прежних карточек: CommonItemData, WitcherActiveEffectSheet, WitcherModifiersConfiguration, WitcherProfessionSheet, WitcherRaceSheet, effect-part, crit-wounds-table, обе вкладки профессии и Actor activeEffectMixin. Учтены поздние уточнения об Item-раскрытии, legacy monster-sheet и дублях перенесённых улучшений; это проверка связей, не новый полный runtime-аудит прежних файлов. Общие styles/witcher-styles/system-styles/character-sheet и регистрации прочитаны в пределах подключений; собственные полные карточки им здесь не назначены.
+
+### Методика и выполненные проверки
+
+Изолированная команда node --input-type=module с кодом через stdin; файлы стенда не создавались. Импортированы настоящие фабрики, CommonItemData, baseMixin, activeEffectMixin, fields/DataModel/TypeDataModel и randomID установленного Foundry14.367.0. Временный subclass DataModel в памяти служил потребителем каждой фабрики; он не зарегистрирован системой. Счётчик оборачивал настоящий randomID, не заменял алгоритм генерации.
+
+PostCSS8.5.12 разобрал весь CSS в AST; Handlebars4.7.9 и parse5 — исходные шаблоны в структурный HTML. Данные Actor/Item/эффектов, selectOptions, editor, formInput/formGroup, локализация и jQuery представлены фасадами. Поэтому эти рендеры проверяют классы/ветви, не сохранение полей или полноту перевода.
+
+Отдельно извлечён и исполнен настоящий ApplicationV2._prepareTabs: /opt/foundryvtt/client/applications/api/application.mjs:704–717. Полный исходный HTMLProseMirrorElement из client/applications/elements/prosemirror-editor.mjs исполнен с заменёнными базовым InputElement, TextEditor и document.createElement; его настоящий constructor/_buildElements создал классы и дочерние элементы. Редактор ProseMirror/DOM lifecycle не запускался. Defaults StringField проверены по common/data/fields.mjs:160–174,1639–1725, а не выведены из коротких фабрик.
+
+| Группа | Сценарий | Результат |
+| --- | --- | --- |
+|01 | Два вызова каждой фабрики | Новые словари и 9 независимых пар StringField; randomID ещё не вызван |
+|02 | Два экземпляра каждой контрольной DataModel | Отложенные ID: два вызова генератора, разные 16-символьные строки; точные defaults modifier/цели |
+|03 | modifier0/−2/12/' /2 '/'2+3'/'wrong'/'' и неизвестная цель | Строки/trim/cast; нет арифметики, диапазона или choices |
+|04 | id='own'/''; modifier/цель=null; свойства StringField | Явные id сохраняются; null заменён initial; required=false, nullable=false, blank/trim=true, choices=undefined |
+|05 | CommonItemData и подсказки мастера | Нет полей фабрик в общей схеме; настоящий мастер выдаёт пути stats.int.totalModifiers и skills.emp.charisma.activeEffectModifiers |
+|06 | Все семь CSS через PostCSS | Структура/nesting сохранены; race1 rule/1 declaration; modifier2 rule/1 declaration; special-skill CRLF |
+|07 | Порядок импорта и конфликтующие declarations | Каждый CSS импортирован один раз; profession общий column против Actor row; modifier display:inherit после общей grid-сетки. Специфичность сопоставлена статически, не browser cascade |
+|08 | Анимация и состояния | Все пять шагов vibrate; две important-ширины травм; прямой ребёнок remove в hover специального навыка |
+|09 | Категории/partial эффекта | Четыре headers, одна row; имя p, не h4; description invisible; suppressed скрыт при actor и виден без него |
+|10 | Настоящий _onActiveEffectDisplayInfo | Непустой текст переключил invisible; пустой сохранил состояние. jQuery-фасад |
+|11 | Одна травма в текущей вкладке и Item-редакторе | Две строки/поля дней в tab-effects, одна пара в редакторе; классов crit-wounds-table/critwound-display нет |
+|12 | Настоящий _prepareTabs | profession active для выбранной вкладки, profession для невыбранной |
+|13 | Профессии Character/Monster/Item с заданными навыками |10 карточек и 10 кнопок Character;1 карточка Monster без трёх путей;10 карточек Item,0 кнопок и 3 skill-path-name |
+|14 | Раса Character/Item | По 4 perk; legacy editor-фасад у Character,4 prose-mirror-заглушки у Item |
+|15 | Настоящий HTMLProseMirrorElement._buildElements | Динамические editor/prosemirror/inactive, div.editor-content и button.icon.toggle |
+| **Итог** | **15 групп** | **PASS, exit0; Node24.16.0** |
+
+Дополнительно выполнены rg-поиск всех имён фабрик/классов, чтение текущих/legacy consumers и сопоставление @import с system.json. Отрицательный результат текстового поиска проверен по реальным class-атрибутам и источникам динамических классов. На этапе настройки сценария ожидание nullable=true было исправлено по фактическому DataField default=false и результату очистки null; для исполнения полного класса ядра добавлен отсутствовавший в VM CustomEvent. Это исправления окружения проверки, не системы.
+
+### Сверка каскада и границы
+
+activeEffect.css импортируется позже armor-sheet.css: его .effect-list margin0 заменяет margin-left10px, flex1 остаётся. system-styles .invisible скрывает описание независимо от отступов activeEffect.css. Правило .effect-name > h4 не адресует текущий p; само по себе это не доказанный сбой UI.
+
+Общее profession-sheet.css задаёт column/gap10 для profession-path; более поздний Actor/Monster-scope в character/tab-profession.css — row/gap0 только внутри активной вкладки. Основной Item этот scope не получает. У Monster HBS нет трёх путей/расы, хотя некоторые CSS-ветви их описывают. Фиксированные размеры и -webkit-fill-available перечислены как declarations, а не измеренная геометрия.
+
+modifier-configuration.css имеет более специфичный селектор, чем общая сетка Actor: заменяет только display на inherit; width520 находится в JS. race-sheet.css задаёт height150px внутреннему editor-content, не ширину 600 окна и не весь .perk. Источник --color-shadow-primary для тени травм найден в /opt/foundryvtt/public/css/foundry2.css:95/255; все пользовательские темы не обследованы.
+
+### Issues
+
+Новых issues нет. Уточнены [00054](../../issues/potential/issue-00054.md) (два списка травм создаёт HBS, не старые табличные стили) и [00056](../../issues/potential/issue-00056.md) (CSS не добавляет отсутствующее раскрытие Item). Остальные наблюдения о неподключённых фабриках/селекторах не превращены в требования удаления или новые задачи.
+
+Все 305 issues остаются potential; open/closed без карточек. [109](../../issues/potential/issue-00109.md) об enriched тексте и [165](../../issues/potential/issue-00165.md) о дублях улучшений не объявлены опровергнутыми рендером обычных данных этой порции. Подтверждение пользователем и исправления не выполнялись.
+
+### Формальная сверка и результат
+
+Реестр:351 из 621 файлов проверены,270 не начаты. В пятой серии 41 из 77 проверены,36 в очереди;234 требуют следующего планирования. Все 50 подзадач охватывают 376 уникальных файлов без пересечений. Десять новых карточек имеют обязательные разделы, ссылки на источники и сверку; проверены состав/статусы, 17 434 локальные ссылки/якоря по всему docs и структура 46 таблиц новых документов.
+
+Исходники совпадают с базовым срезом, изменена только документация; метаданные доступа 1407 существовавших tracked-путей (mode/uid/gid/inode) сохранены. Исторические записи review-log и cross-check-0001 сохранены; git diff --check выполнен. Полный браузер, вычисленные стили/раскладка, мир, HTTP-доступ службы, БД, сборка/извлечение компедиумов и установка зависимостей не запускались.
+
+[TASK-0003.047](../../tasks/task-0003.047.md) выполнена; следующая — [TASK-0003.048](../../tasks/task-0003.048.md). TASK-0003 остаётся in-progress, TASK-0004/0005 — draft. Материал дополняет будущую TASK-0004, не заменяет её.
+
 ## TASK-0003.046
 
 Дата: 2026-09-12. Порция: [Словесный бой: атака, защита, сообщения и Resolve](../../tasks/task-0003.046.md). Ветка rusbar-main; HEAD a69f11d2e4c4318cfbf635dabad97b0062c63c20. Перед началом рабочее дерево чистое. Все 621 исходник совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f; SHA-256 списка путей и содержимого — 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4 (отсортированный UTF-8 путь + NUL + байты файла).

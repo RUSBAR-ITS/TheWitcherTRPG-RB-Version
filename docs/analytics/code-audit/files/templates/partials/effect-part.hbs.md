@@ -99,3 +99,11 @@ Drag/drop, фактическая очистка description, разрешени
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Старый monster-sheet.hbs: 305 содержит literal partial этого файла, без кавычек вокруг пути; настоящий Handlebars успешно компилирует и рендерит его. Активный современный MonsterSheet использует character/tab-effects, поэтому старое подключение не объявлено текущим.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../module/actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.047
+
+2026-09-12, rusbar-main, 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c; исходники не изменены.
+
+[Полный CSS списка](../../styles/activeEffect.css.md) сопоставлен со всеми классами и вложенностью. Группа 09 повторила рендер четырёх категорий и одной строки: имя — p, поэтому .effect-name > h4 не имеет цели; description остаётся invisible. .effects-header — четыре колонки, .effect-first-row — две, внутренний .effect-display — три. Ранний .effect-list из armor-sheet даёт flex1; поздний margin0 из activeEffect.css сбрасывает его margin-left10px. Раскрытие Actor проверено отдельно (группа 10), Item остаётся [56](../../../../../issues/potential/issue-00056.md). Позднее уточнение .032 о старом monster-sheet учтено: это legacy inclusion, не текущий default.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.

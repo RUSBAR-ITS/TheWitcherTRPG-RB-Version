@@ -91,3 +91,11 @@ Default export extends HandlebarsApplicationMixin(ActorSheetV2). CharacterSheet 
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet action #openModifiers передаёт document/type/skillKey, preventDefault и render без ожидания. Это другое окно, чем WitcherMonsterConfigurationSheet; наличие обоих путей объясняет, почему настройка isVisible и повышение навыка относятся к разным обработчикам.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../WitcherMonsterSheet.js.md); [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.047
+
+2026-09-12, rusbar-main, 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c; исходники не изменены.
+
+Полностью разобран [CSS этого окна](../../../../styles/configurations/modifier-configuration.css.md). Его единственное свойство display:inherit у .window-content перекрывает более общую сетку Actor; width520 задаётся здесь в DEFAULT_OPTIONS, не в CSS. Классы witcher/sheet/actor/modifier-configuration сопоставлены с selector и :not(.extended-sheet). Порядок @import и специфичность установлены статически; реальное значение display родителя и геометрия окна не измерены.
+
+[Сценарии, результаты и ограничения](../../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.

@@ -4,9 +4,9 @@
 
 В реестре **621 файл** после [согласованных исключений](README.md#согласованные-исключения). Состав сверяется по самим путям с Git и фактическим деревом; результаты находятся в [журнале](review-log.md). Пути в первом столбце относительны корню репозитория и ведут к исходным файлам рабочего checkout; соответствие указанному коммиту подтверждено при инвентаризации.
 
-После TASK-0002, TASK-0003.001–TASK-0003.046 проверены описания **341 файла**, для **280 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
+После TASK-0002, TASK-0003.001–TASK-0003.047 проверены описания **351 файла**, для **270 файлов** разбор не начат. Назначения и ссылки заполнены только для прочитанных и сверенных файлов. «Не подготовлено» означает отсутствие карточки; просмотр отдельных определений в зависимостях не меняет статус их файлов.
 
-Последняя [сверка TASK-0003.046](review-log.md#task-0003046) выполнена на a69f11d2e4c4318cfbf635dabad97b0062c63c20: все 621 исходник совпадают с базовым срезом. Добавлены пять карточек словесного боя; выполнены 26 групп проверок и сверка зависимостей/потребителей. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
+Последняя [сверка TASK-0003.047](review-log.md#task-0003047) выполнена на 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c: все 621 исходник совпадают с базовым срезом. Добавлены десять карточек фабрик полей и CSS; выполнены 15 групп локальных проверок, перечислены все селекторы/свойства и сверены зависимости/потребители. Статус «Проверено» относится к пофайловому анализу с указанными пределами.
 
 [Правила статусов и оформления](README.md#реестр-и-карточки), [шаблон карточки](templates/file.md).
 
@@ -156,9 +156,9 @@
 | [module/data/item/templates/consumableData.js](../../../module/data/item/templates/consumableData.js) | Фабрика признака isConsumable и вложенных consumeProperties. | [Описание](files/module/data/item/templates/consumableData.js.md) | Проверено |
 | [module/data/item/templates/consumePropertiesData.js](../../../module/data/item/templates/consumePropertiesData.js) | Вложенная схема лечения и массивов добавляемых/снимаемых статусов. | [Описание](files/module/data/item/templates/consumePropertiesData.js.md) | Проверено |
 | [module/data/item/templates/craftingComponentData.js](../../../module/data/item/templates/craftingComponentData.js) | Фабрика строки материала рецепта с ID, именем, количеством и UUID. | [Описание](files/module/data/item/templates/craftingComponentData.js.md) | Проверено |
-| [module/data/item/templates/effectDerivedStatData.js](../../../module/data/item/templates/effectDerivedStatData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/effectSkillData.js](../../../module/data/item/templates/effectSkillData.js) | Не установлено | Не подготовлено | Не начат |
-| [module/data/item/templates/effectStatData.js](../../../module/data/item/templates/effectStatData.js) | Не установлено | Не подготовлено | Не начат |
+| [module/data/item/templates/effectDerivedStatData.js](../../../module/data/item/templates/effectDerivedStatData.js) | Не подключённая в исследуемом срезе фабрика трёх StringField: id, modifier и derivedStat; сама значения не вычисляет и модель не регистрирует. | [Карточка](files/module/data/item/templates/effectDerivedStatData.js.md) | Проверено |
+| [module/data/item/templates/effectSkillData.js](../../../module/data/item/templates/effectSkillData.js) | Не подключённая в исследуемом срезе фабрика трёх StringField: id, modifier и skill; сама значения не вычисляет и модель не регистрирует. | [Карточка](files/module/data/item/templates/effectSkillData.js.md) | Проверено |
+| [module/data/item/templates/effectStatData.js](../../../module/data/item/templates/effectStatData.js) | Не подключённая в исследуемом срезе фабрика трёх StringField: id, modifier и stat; сама значения не вычисляет и модель не регистрирует. | [Карточка](files/module/data/item/templates/effectStatData.js.md) | Проверено |
 | [module/data/item/templates/itemEffectData.js](../../../module/data/item/templates/itemEffectData.js) | Фабрика четырёх полей одной записи предметного воздействия. | [Описание](files/module/data/item/templates/itemEffectData.js.md) | Проверено |
 | [module/data/item/templates/perkData.js](../../../module/data/item/templates/perkData.js) | Фабрика имени и HTML-описания расовой особенности. | [Описание](files/module/data/item/templates/perkData.js.md) | Проверено |
 | [module/data/item/templates/profession/skillUsageData.js](../../../module/data/item/templates/profession/skillUsageData.js) | Модель использования способности и выбора получателя. | [Описание](files/module/data/item/templates/profession/skillUsageData.js.md) | Проверено |
@@ -462,17 +462,17 @@
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json) | Не установлено | Не подготовлено | Не начат |
 | [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](../../../packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json) | Не установлено | Не подготовлено | Не начат |
-| [styles/activeEffect.css](../../../styles/activeEffect.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/activeEffect.css](../../../styles/activeEffect.css) | Оформляет общий список ActiveEffect на листах Actor и в конфигурации Item: заголовки, строки, кнопки и скрываемое описание. | [Карточка](files/styles/activeEffect.css.md) | Проверено |
 | [styles/armor-sheet.css](../../../styles/armor-sheet.css) | Шесть глобальных правил оформления локаций, списка эффектов и строк SP старого инвентаря монстра. | [Карточка](files/styles/armor-sheet.css.md) | Проверено |
 | [styles/attack-sheet.css](../../../styles/attack-sheet.css) | Оформление таблиц и select в секции attack-sheet; дополнительно глобальные отступы изображений внутри h2. | [Карточка](files/styles/attack-sheet.css.md) | Проверено |
 | [styles/character-header.css](../../../styles/character-header.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/character/sheet.css](../../../styles/character/sheet.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/character/tab-profession.css](../../../styles/character/tab-profession.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/character/tab-profession.css](../../../styles/character/tab-profession.css) | Уточняет оформление активной вкладки профессии Character и Monster: заголовки, расположение путей, поля навыков и расовые особенности. | [Карточка](files/styles/character/tab-profession.css.md) | Проверено |
 | [styles/chat.css](../../../styles/chat.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/components-list.css](../../../styles/components-list.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/configurations/modifier-configuration.css](../../../styles/configurations/modifier-configuration.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/configurations/modifier-configuration.css](../../../styles/configurations/modifier-configuration.css) | Переопределяет display содержимого окна конфигурации модификаторов, исключая для него общую сетку листа Actor. | [Карточка](files/styles/configurations/modifier-configuration.css.md) | Проверено |
 | [styles/container-sheet.css](../../../styles/container-sheet.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/crit-wounds-table.css](../../../styles/crit-wounds-table.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/crit-wounds-table.css](../../../styles/crit-wounds-table.css) | Оформляет заголовки и поля критических травм в списке Actor и редакторе Item; также содержит правила прежней табличной разметки без найденных текущих элементов. | [Карточка](files/styles/crit-wounds-table.css.md) | Проверено |
 | [styles/currency-converter.css](../../../styles/currency-converter.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/dialog.css](../../../styles/dialog.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/item-header.css](../../../styles/item-header.css) | Не установлено | Не подготовлено | Не начат |
@@ -485,11 +485,11 @@
 | [styles/monster/inventory.css](../../../styles/monster/inventory.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/monster/sheet.css](../../../styles/monster/sheet.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/monster/sidebar.css](../../../styles/monster/sidebar.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/profession-sheet.css](../../../styles/profession-sheet.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/race-sheet.css](../../../styles/race-sheet.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/profession-sheet.css](../../../styles/profession-sheet.css) | Задаёт общие карточки и цветовые ветки профессии, поля навыков, заметки и анимацию кнопки броска в Item и Actor. | [Карточка](files/styles/profession-sheet.css.md) | Проверено |
+| [styles/race-sheet.css](../../../styles/race-sheet.css) | Задаёт высоту150px содержимому редактора внутри расовой особенности; применяется также в расовом блоке Character. | [Карточка](files/styles/race-sheet.css.md) | Проверено |
 | [styles/repair.css](../../../styles/repair.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/rewards.css](../../../styles/rewards.css) | Не установлено | Не подготовлено | Не начат |
-| [styles/special-skill-table.css](../../../styles/special-skill-table.css) | Не установлено | Не подготовлено | Не начат |
+| [styles/special-skill-table.css](../../../styles/special-skill-table.css) | Содержит оформление специального списка навыков и кнопок модификаторов; текущие HTML/JS-потребители этих классов не найдены. | [Карточка](files/styles/special-skill-table.css.md) | Проверено |
 | [styles/substances.css](../../../styles/substances.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/system-styles.css](../../../styles/system-styles.css) | Не установлено | Не подготовлено | Не начат |
 | [styles/tab-background.css](../../../styles/tab-background.css) | Не установлено | Не подготовлено | Не начат |

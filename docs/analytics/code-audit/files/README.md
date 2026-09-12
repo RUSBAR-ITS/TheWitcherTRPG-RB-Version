@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.046 подготовлена и сверена 341 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
+После TASK-0002 и TASK-0003.001–TASK-0003.047 подготовлена и сверена 351 карточка. Этот README служит указателем и не входит в подсчёт описанных файлов.
 
 | Файл | Карточка |
 | --- | --- |
@@ -574,3 +574,18 @@
 | module/scripts/verbalCombat/verbalCombatDefense.js | [Описание](module/scripts/verbalCombat/verbalCombatDefense.js.md) |
 | templates/dialog/verbal-combat.hbs | [Описание](templates/dialog/verbal-combat.hbs.md) |
 | templates/dialog/verbal-combat-defense.hbs | [Описание](templates/dialog/verbal-combat-defense.hbs.md) |
+
+## Способности, эффекты и модификаторы: поля и оформление — TASK-0003.047
+
+| Файл | Карточка |
+| --- | --- |
+| module/data/item/templates/effectDerivedStatData.js | [Описание](module/data/item/templates/effectDerivedStatData.js.md) |
+| module/data/item/templates/effectSkillData.js | [Описание](module/data/item/templates/effectSkillData.js.md) |
+| module/data/item/templates/effectStatData.js | [Описание](module/data/item/templates/effectStatData.js.md) |
+| styles/activeEffect.css | [Описание](styles/activeEffect.css.md) |
+| styles/configurations/modifier-configuration.css | [Описание](styles/configurations/modifier-configuration.css.md) |
+| styles/crit-wounds-table.css | [Описание](styles/crit-wounds-table.css.md) |
+| styles/profession-sheet.css | [Описание](styles/profession-sheet.css.md) |
+| styles/special-skill-table.css | [Описание](styles/special-skill-table.css.md) |
+| styles/race-sheet.css | [Описание](styles/race-sheet.css.md) |
+| styles/character/tab-profession.css | [Описание](styles/character/tab-profession.css.md) |

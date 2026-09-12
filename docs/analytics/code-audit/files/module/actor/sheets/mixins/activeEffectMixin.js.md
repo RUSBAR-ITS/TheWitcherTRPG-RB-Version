@@ -84,3 +84,11 @@ create передаёт name=DOCUMENT.New, legacy icon='icons/svg/aura.svg', ori
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Полностью разобраны оба caller: WitcherActorSheet._prepareContext и WitcherActorSheetV1.getData. Они concat allApplicableEffects() с effects не помещённых в контейнер Item, имеющими isAppliedTemporaryItemImprovement. Реальные core generator и prepareActiveEffectCategories вернули [e,e] для одного документа с transfer=true/isTransferred=true. Это issue-00165 об отображении, не доказательство двойного числового применения. В activeEffectListener поступает DOM: V2 html напрямую, V1 html[0].
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Дополнительная сверка TASK-0003.047
+
+2026-09-12, rusbar-main, 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c; исходники не изменены.
+
+Группы 09–10 повторно исполнили prepareActiveEffectCategories и _onActiveEffectDisplayInfo с исходным [partial](../../../../../../../../templates/partials/effect-part.hbs) и фасадом jQuery. Непустой текст переключает invisible, пустой не меняет класс. [CSS списка](../../../../styles/activeEffect.css.md) задаёт отступы/сетку, скрытие берётся из system-styles .invisible; сам CSS не включает этот listener на Item. Сведения .025 о дублировании перенесённых улучшений сохранены; новый тест с одним обычным эффектом не опровергает issue165.
+
+[Сценарии, результаты и ограничения](../../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.

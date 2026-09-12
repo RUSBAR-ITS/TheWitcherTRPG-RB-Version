@@ -98,3 +98,11 @@ isItemEffect предоставляется ядром при подготовк
 Подтверждён вход из [Item-конфигурации](../item/sheets/configurations/WitcherConfigurationSheet.js.md): action edit получает effect по ID текущего Item и вызывает effect.sheet.render(true), выбор класса обеспечен registerSheets. Создание FX в конфигурации и перенос FX в основной лист Item — разные маршруты: первое передаёт type/name/icon/origin/duration/disabled, второе использует core _onDropActiveEffect и object-копию при допустимом владельце. Сам мастер/автодополнение этим не менялись.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
+
+## Дополнительная сверка TASK-0003.047
+
+2026-09-12, rusbar-main, 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c; исходники не изменены.
+
+[activeEffect.css](../../styles/activeEffect.css.md) оформляет общий список effect-part, который открывает этот редактор через edit; его название не означает, что он задаёт core таблицу changes. Три [фабрики modifier-полей](../data/item/templates/effectStatData.js.md) не используются мастером. Группа 05 исполнила getStatSuggestions/getSkillSuggestions: пути system.stats.int.totalModifiers и system.skills.emp.charisma.activeEffectModifiers формируются отдельно. Существующий путь wizard → legacy changes → core cleanData → system.changes, уточнённый ранее, не переоценивался как ошибка из-за имени поля.
+
+[Сценарии, результаты и ограничения](../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.

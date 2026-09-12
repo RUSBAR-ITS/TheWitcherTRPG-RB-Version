@@ -79,3 +79,11 @@ JS-функций нет. if/unless, eq(stat,"none"), selectOptions(config.statT
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `b47ba02cdaebc6a66ad14a5638213b6eb24460b4`; полный файл | Первая карточка; [сверка порции](../../../../../../../review-log.md#task-0003038) |
+
+## Дополнительная сверка TASK-0003.047
+
+2026-09-12, rusbar-main, 2f94c6c29e298ccf73d67ccc2e5fb8fc358dae2c; исходники не изменены.
+
+[CSS в каталоге character](../../../../../../styles/character/tab-profession.css.md) явно включает .application.sheet.witcher.monster. Реальный core _prepareTabs даёт profession active; группа 13 получила один definingSkill и notes в monster-profession-flex, без profession-path/race-header. Поэтому правила трёх ветвей и расы сейчас не адресуют данный HBS, хотя общий CSS их содержит. [Общее правило](../../../../../../styles/profession-sheet.css.md) monster-profession-flex .profession-card задаёт width100/max:none и сильнее простой поздней карточки max400. Вывод основан на selectors/источниках; браузерная ширина не измерялась.
+
+[Сценарии, результаты и ограничения](../../../../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
