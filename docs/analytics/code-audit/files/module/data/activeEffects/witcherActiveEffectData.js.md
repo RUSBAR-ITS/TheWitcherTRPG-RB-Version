@@ -119,3 +119,11 @@
 Уточнение прежней строки зависимостей: label заданы у пяти собственных полей, но все пять присутствуют только в en. Для applyAfterCalculations ключ WITCHER.Effect.applyAfterCalculations отсутствует в ru. Настоящий класс импортирован поверх ActiveEffectTypeDataModel ядра; label из schema.fields проверен настоящим Localization с fallback. [docs/issues/potential/issue-00318.md](../../../../../../issues/potential/issue-00318.md) описывает перевод, отдельно от issue-00043 о фазах/update. Полные словари: [en](../../../lang/en.json.md), [ru](../../../lang/ru.json.md).
 
 [Результаты и ограничения сверки](../../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Все 17 эффектов Simple используют тип base и эту модель. Штатная миграция переносит 55 старых changes в system.changes, mode=2 преобразуется в add, строки значений — в числа, phase получает initial. applyAfterCalculations отсутствует в JSON и становится false.
+
+[Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

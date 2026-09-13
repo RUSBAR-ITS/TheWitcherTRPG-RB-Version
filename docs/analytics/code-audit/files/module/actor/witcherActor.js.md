@@ -437,3 +437,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 Настоящие static getLocationObject и helper.getRandomInt проверены на всех 10 гранях randomHuman и randomMonster. При randomMonster=9 выбран leftLeg, при10 tailWing. Таблица Monster Damage Location при9 возвращает два text (issue-00322), но static её не читает; независимость двух маршрутов подтверждена.
 
 [Карточки Combat](../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Реальные расчётные методы исполнены после core Actor.applyActiveEffects на CharacterData для каждого из 24 Simple Item. При базе 5 Cracked Ribs none даёт BODY.value=3, BODY.max=5, ENC=30, HP.max=20; оба исходных Sprained Leg дают SPD=1 и dodge.activeEffectModifiers=-4. Броня/вес заданы нулём. Повтор одноимённой левой ноги подтвердил запрос quantity=NaN до записи (issue-00288).
+
+[Карточки Simple](../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

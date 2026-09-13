@@ -222,3 +222,7 @@ ready:77–87 — фактический потребитель .witcher-style �
 ready:64–67 индексирует выбранный criticalWoundsPack по treatment/location/criticalLevel/lesserEffect. Combat при этом не вызывается. Настоящий applyCritWound проверен с экспортным индексом и фасадами записи; текстовые критические RollTable не участвуют в получении Item.
 
 [Карточки Combat](../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4. Ready:62–67 запрашивает четыре поля индекса criticalWounds. В [проверке Simple](../../review-log.md#task-0003058) восемь исходных вариантов выбраны настоящим applyCritWound из индекса-фасада, составленного по очищенным BaseItem/CriticalWoundData. Три Cracked Jaw получают lesserEffect=false в модели. Серверный индекс и callback ready здесь не исполнялись; результат не доказывает состояние установленного пакета. Исходник не менялся.

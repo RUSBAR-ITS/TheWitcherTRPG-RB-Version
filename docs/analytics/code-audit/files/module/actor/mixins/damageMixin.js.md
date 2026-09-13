@@ -156,3 +156,11 @@ system.changes — действующий путь, унаследованный
 applyCritWound исполнен на 16 положительных сочетаниях полей экспортных Item: difficult/deadly × head/torso × critEffect1/6 и четыре степени × leftLeg/rightLeg. Дополнительные четыре проверки complex/head/torso effect6 на прямом/обратном индексе выявили issue-00324. Item-пакет не читается через текстовые Combat-таблицы. Индекс/fromUuid/addItem/чат — фасады, полные Item-модели и DB не запускались.
 
 [Карточки Combat](../../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+applyCritWound проверен на индексе-фасаде из очищенных настоящих моделей 24 Simple Item. Восемь исходных вариантов выбраны по head/torso/четырём конечностям; head>4 выбирает Cracked Jaw с default lesserEffect=false. Серверный getIndex не воспроизводился. Леченая левая нога с location=leftArm (issue-00325) исключена из первичного выбора по treatment=treated.
+
+[Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

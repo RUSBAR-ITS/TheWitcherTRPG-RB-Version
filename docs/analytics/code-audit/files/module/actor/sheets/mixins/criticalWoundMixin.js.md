@@ -87,3 +87,11 @@ Named export criticalWoundMixin присоединяется Object.assign к Wi
 2026-09-11, `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20`. Оба общих листа копируют criticalWoundMixin через Object.assign и вызывают criticalWoundListener с DOM. Селекторы — .add-crit, .delete-crit и data-action=treatCriticalWound. V2 заранее ждёт enrichedText каждой травмы и кладёт description по UUID в context.criticalWounds; сами Item не преобразуются. Дубли строк tab-effects остаются issue-00054; этот поток лишь даёт обогащённое описание.
 
 Общие определения: [module/actor/sheets/WitcherActorSheet.js](../../../../../../../../module/actor/sheets/WitcherActorSheet.js) и [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../../module/actor/sheets/WitcherActorSheetV1.js). [Методика и перекрёстная сверка](../../../../../review-log.md#task-0003025). Это точечное уточнение связей; полный разбор новых соседних файлов не засчитывается.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Кнопка _onTreat адресует UUID конкретного Item; настоящий treat проверен на всех 24 Simple документах. Тип эффекта не вычисляется по имени травмы: следующий шаблон берётся из followUp. Pending create/delete сохраняют ранее описанную границу ожидания.
+
+[Карточки Simple](../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

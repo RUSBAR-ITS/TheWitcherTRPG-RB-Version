@@ -1,5 +1,79 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4. В начале рабочее дерево чистое, 1613 отслеживаемых файлов. Исходники совпадают со срезом TASK-0001. Работа ограничена документацией.
+
+### Область и структура
+
+Прочитаны все 25 файлов Simple / 2068 логических строк: 24 Item criticalWound и Folder kHSYUTn6UUJsIu4l. Проверены _id/_key, типы, folder, sort, ownership, flags, _stats, все поля system, HTML и вложенные эффекты. 17 ActiveEffect / 55 changes; семь Item без effects. По всем 98 экспортным документам criticalWounds проверено отсутствие коллизий корневых ID и правильность _key. Полные карточки остальных 73 файлов этим не создавались.
+
+Восемь семейств: Cracked Jaw, Cracked Ribs, Disfiguring Scar, Foreign Object, Sprained Arm Left/Right, Sprained Leg Left/Right. В каждом фактически найдены none → stabilized → treated; это вывод из данных, не предположение о контракте. Все 16 непустых followUp указывают на существующие Item Simple, без циклов; восемь конечных ссылок null. ID effects повторяются между разными Item, но не внутри одного Item.
+
+### Методы и границы исполнения
+
+Команды: чтение через rg и Python stdin; изолированный `node --input-type=module` через stdin, без сохранения тестового файла. Foundry 14.367.0, Node 24.16.0. Запуск мира, браузер, серверный индекс, HTTP, БД, compile/extract, установка зависимостей и операции с правами не выполнялись.
+
+Настоящие компоненты:
+
+- /opt/foundryvtt/common/documents/item.mjs, actor.mjs, folder.mjs, active-effect.mjs: BaseItem/BaseActor/BaseFolder/BaseActiveEffect, строгая валидация и штатная миграция.
+- /opt/foundryvtt/common/abstract/data.mjs, type-data.mjs; common/data/active-effect.mjs и fields.mjs: реальные DataModel, TypeDataModel, ActiveEffectTypeDataModel, DocumentUUIDField и NumberField.
+- [CriticalWoundData](../../../module/data/item/criticalWoundData.js), [WitcherActiveEffectData](../../../module/data/activeEffects/witcherActiveEffectData.js), [CharacterData](../../../module/data/actor/characterData.js) и её CommonActorData/вложенные модели импортированы как есть.
+- Весь клиентский класс /opt/foundryvtt/client/documents/active-effect.mjs загружен с заменой импортов окружения; настоящий [WitcherActiveEffect](../../../module/activeEffect/witcherActiveEffect.js) наследует его. Исполнены prepareBaseData, active/target, shouldApplyChange, getReplacementData, applyChange и NumberField.applyChange.
+- Из /opt/foundryvtt/client/documents/actor.mjs взяты точные тела allApplicableEffects и applyActiveEffects. Из [WitcherActor](../../../module/actor/witcherActor.js) — calculateStats, calculateStat, calculateFixedDerivedStats, calculateDerivedStats, calculateDerivedStat, calculateWeigthEncumbrance и addItem.
+- Из [damageMixin](../../../module/actor/mixins/damageMixin.js) взято точное тело applyCritWound; настоящий CriticalWoundData.treat/heal исполнен без замены логики.
+
+Фасады: минимальный ClientDocumentMixin, registry без работы таймера, Hooks, CONFIG/game/i18n и загрузка окружения; BaseItem вместо полного WitcherItem. Его migrateData/migrateSpells сопоставлены статически: условия Hexes/Rituals к Simple не относятся. getArmorEcumbrance/getTotalWeight возвращают 0. fromUuid читает Map настоящих загруженных Item, индекс составлен из их очищенных system; настоящий серверный getIndex не вызывался. addItem в сценариях выбора и ChatMessage перехватывают намерения. В сценариях treat/heal create/update/delete возвращают незавершаемые Promise, реальной записи нет.
+
+Подготовка вызвана явно: CommonActorData.prepareBaseData, подготовка Item/эффектов, initial-эффекты, calculateStats → calculateFixedDerivedStats → calculateStats → calculateDerivedStats, final-эффекты. Полный ClientDocument lifecycle, calculateAttackStats, клиентский refresh, _preCreate/_preUpdate, updateDuration и многоклиентская синхронизация не объявляются проверенными этим сценарием.
+
+### Результаты: 672 утверждения
+
+| Группа | Сценарий | Установленный результат |
+| --- | --- | --- |
+| 01 | Все 24 BaseItem с CriticalWoundData и Folder | strict=true проходит; типы и поля корректно очищены. У всех трёх Cracked Jaw отсутствующий lesserEffect становится false. system.htmlFields отсутствует в подготовленной схеме |
+| 02 | Все 17 effects / 55 changes | Старые верхнеуровневые changes → system.changes; mode=2 → type=add, отрицательные строки → числа, phase=initial. applyAfterCalculations=false по умолчанию |
+| 03 | Приоритеты и длительность | 51 null-приоритет → 20 при prepareBaseData; четыре явно заданных SPD priority=0 сохраняются. start=null; value=null/units=seconds/expiry=null/expired=false после очистки, value=Infinity после prepareBaseData |
+| 04 | Все 55 целевых путей | Настоящие NumberField в модели Actor; после initial сумма каждого поля равна соответствующему изменению. Final-фаза не применяет эти initial changes повторно |
+| 05 | BODY/SPD и производные | При базе всех характеристик 5, HP.value=25, весе/броне 0: Cracked Ribs none BODY=3, ENC=30, HP.max=20; stabilized BODY=4, ENC=40, HP.max=20; treated BODY=5, ENC=40, HP.max=25. BODY.max остаётся 5 |
+| 06 | Одна/две ноги | Левая none: SPD=3, RUN=9, LEAP=1; обе none: SPD=1, dodge.activeEffectModifiers=-4. Штрафы двух Item складываются |
+| 07 | Исключение источника | disabled=true, transfer=false, applySelf=true и новый Actor без Item дают SPD=5. Проверяется новая подготовка модели, не обновление интерфейса |
+| 08 | Все 24 вызова treat | У 16 непустых ссылок реальные адресаты следующего состояния: create → delete; await treat завершается при незавершённых вложенных Promise. У восьми null followUp только delete |
+| 09 | heal: шесть вариантов Foreign Object | treated с 0 днями: update до 1; новая стерилизация: +3 и delete при healingTime=3; уже отмеченная стерилизация даёт только +1; с 2 дней следующий день удаляет. none/stabilized с 0 дней инициируют update({}) из-за truthy Object.keys(updates), без смены состояния |
+| 10 | Восемь выборов applyCritWound | head≤4 Scar, head>4 Jaw; torso≤4 Foreign Object, torso>4 Ribs; четыре конечности дают свои исходные Item. После очистки Cracked Jaw участвует как lesserEffect=false |
+| 11 | Повторный addItem | Повтор Sprained Leg (Left) с тем же name/type направлен в update(system.quantity=NaN), create не вызывается. Перехват до очистки/записи; сохранение NaN не утверждается |
+| 12 | Несогласованная локация | f7NaW1AMnrSLGkd3 сохраняет leftArm после загрузки и является followUp левой ноги. Его SPD=-1 применяется независимо от location |
+| 13 | Origin и флаги | Origin всех эффектов сохранён; Compendium-origin разрешим внутри Simple. Мировые Item.gJltusZyJSkIIuXG и Item.1AxybnKTfdd6Tb8B не разрешались. Цель применения — владелец Item, не origin |
+| 14 | Граница HTML | Foreign Object (три формы) и исходные/стабилизированные руки (четыре Item) не имеют effects. HTML отображается, но CriticalWoundData не преобразует его текст в изменения; не объявлено дефектом соответствия правилам |
+
+В строках 01, 03, 05, 13 вместе с утверждениями перечислены наблюдения сериализованных моделей; число 672 относится к исполненным assert, а не числу строк таблицы. Поля duration после миграции и значения производных сохранены в выводе сценария. В окружении без регистрации statuscounter ядро очищает его flags; поведение установленного модуля этим не подтверждается.
+
+Все 55 изменений полностью перечислены в карточках владельцев с исходными значениями, строками key, приоритетами, подготовленной фазой и источником поля. Все 24 карточки содержат собственные результаты контрольного Actor; общая цифра проверок не подменяет индивидуальные значения.
+
+### Перекрёстные связи и issues
+
+Сопоставлены [system.json](../../../system.json), [packs.mjs](../../../utils/packs.mjs), [extract.mjs](../../../utils/extract.mjs), [package.json](../../../package.json), регистрация моделей/листов, настройка criticalWoundsPack, CriticalWoundData, WitcherItem, WitcherActiveEffect и поля Actor. Действия _onTreat/_onDropItem и recoverActor прослежены через [criticalWoundMixin](../../../module/actor/sheets/mixins/criticalWoundMixin.js), [WitcherCriticalWoundSheet](../../../module/item/sheets/WitcherCriticalWoundSheet.js), [редактор](../../../templates/sheets/item/criticalWound-sheet.hbs), [список](../../../templates/partials/crit-wounds-table.hbs) и [отдых](../../../module/actor/sheets/mixins/healMixin.js). Навыковые суммы читает addActiveEffects в [modifierMixin](../../../module/actor/mixins/modifierMixin.js). Полный бросок с травмой здесь не воспроизводился.
+
+[Обработчик ready](../../../module/TheWitcherTRPG.js):62–67 запрашивает у выбранного пакета getIndex с полями system.criticalLevel/location/lesserEffect/treatment. Это статически подтверждённый источник индексных полей; реальный серверный индекс не запускался.
+
+Таблица [Simple Critical](../../../packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json) содержит тексты, но не является читаемым источником Item в applyCritWound. Произвольные внешние потребители и реальный индекс не исключены; использование очищенного индекса-фасада не доказывает наполненность индексных полей в действующем мире.
+
+Добавлена [issue-00325](../../issues/potential/issue-00325.md): левая нога treated имеет location=leftArm. Подпись списка определяется шаблоном статически, браузер не проверялся. Это другой документ/механизм последствий, чем [issue-00324](../../issues/potential/issue-00324.md). Уточнены [00121](../../issues/potential/issue-00121.md), [00127](../../issues/potential/issue-00127.md), [00288](../../issues/potential/issue-00288.md) на реальных Simple Item; существующие карточки прочитаны и дубли не созданы. Все 325 остаются potential, open/closed пусты; решения пользователя о подтверждении/исправлении отсутствуют.
+
+### Итоговая проверка документов и сохранности
+
+Подтверждены все 25 новых карточек и 55 отдельных строк changes: значения, mode, приоритет, phase, типы полей и номера исходных key. Дополнительно сверены корневые и вложенные метаданные, все 16 followUp и 24 индивидуальных примера расчёта Actor. 590 остальных строк реестра не изменены; историческая часть review-log сохранена побайтно.
+
+Реестр содержит 542 проверенных / 73 не начатых из 615; карты и реестр взаимно однозначны. Все 604 файла TASK-0003 распределены без повторов, вместе с 11 TASK-0002 дают 615. .001–.058 выполнены, .059–.061 запланированы; родитель in-progress, TASK-0004/0005 draft. 325 potential issues соответствуют реестру, open/closed пусты; 321 прежняя карточка issue не менялась.
+
+Проверены локальные ссылки и якоря всего массива docs, таблицы и пробелы изменённых документов. Ошибок не осталось. Scope: 32 изменённых существующих Markdown, 25 новых карточек и один новый issue. HEAD, ветка и индекс Git не менялись, коммит не создавался.
+
+SHA-256 по отсортированным относительным путям, нулевому разделителю и содержимому: текущие 615 — `384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c`; исторические 621 — `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`. Оба среза совпали. У всех 1613 исходно отслеживаемых файлов сохранены mode/uid/gid/inode; хеши файлов вне разрешённого перечня не изменились.
+
+### Материал для следующих этапов
+
+Полные карточки Simple служат образцом проверки следующих трёх групп травм; .059–.061 остаются planned. Всего подготовлены 542/615 карточек, включая 153/226 экспортов. В очереди 73 файла; TASK-0003 продолжается. TASK-0004/TASK-0005 остаются draft; эта проверка — вспомогательное доказательство, не выполнение этих задач. Исследование соответствия контента рулбукам не проводилось.
+
 ## TASK-0003.057
 
 Дата: 2026-09-12. Ветка rusbar-main, HEAD 8573642b0136f80b8ae3456de51e1b7f637ec7f3; перед работой дерево чистое, 1599 отслеживаемых файлов. Исходники совпадают со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f. Выполняется [TASK-0003.057](../../tasks/task-0003.057.md), продолжение согласованного технического аудита. Полные карточки — [Combat](files/README.md#боевые-таблицы--task-0003057).

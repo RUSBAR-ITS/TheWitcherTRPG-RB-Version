@@ -338,6 +338,7 @@
 | [issue-00322](potential/issue-00322.md) | Monster Damage Location возвращает две локации при результате 9 | `potential` |
 | [issue-00323](potential/issue-00323.md) | Mounted Control Loss ссылается на отсутствующие UUID дочерних таблиц | `potential` |
 | [issue-00324](potential/issue-00324.md) | Minor Head Wound имеет location=torso и нарушает выбор сложной травмы | `potential` |
+| [issue-00325](potential/issue-00325.md) | Леченая травма левой ноги хранит локацию левой руки | `potential` |
 
 Статус соответствует каталогу карточки. При перемещении обновляются этот реестр и все ссылки на документ. Номер новой карточки определяется по реестру и файлам во всех трёх каталогах.
 
@@ -352,3 +353,7 @@
 ## Уточнения TASK-0003.057
 
 Добавлены potential issue-00322–00324; уточнены issue-00039, issue-00289 и issue-00319 (два расстояния с x2/x3, заголовок расширен). Всего 324 potential; open/closed пусты. [Протокол](../analytics/code-audit/review-log.md#task-0003057). Подтверждения и исправления не выполнялись.
+
+## Уточнения TASK-0003.058
+
+Добавлена potential issue-00325; уточнены issue-00121, issue-00127 и issue-00288 на реальных Simple Item. Всего 325 potential; open/closed пусты. [Протокол](../analytics/code-audit/review-log.md#task-0003058). Подтверждения и исправления не выполнялись.

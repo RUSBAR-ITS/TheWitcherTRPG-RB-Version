@@ -139,3 +139,11 @@ NumberField не задаёт ограничения диапазона и це�
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. В полном _getSkills конфигурации Monster использованы настоящие BooleanField.isVisible. Исходно isVisible=false; контролируемый awareness true→false отразился повторной подготовкой, но текущая строка навыка всё равно выводится. Поле.label/isVisible.label свежей модели остаются отдельной старой issue-00015.
 
 Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Все навыковые изменения Simple направлены в activeEffectModifiers настоящего NumberField. Spellcast/ritcraft/hexweave, социальные навыки, physique, dodge и athletics изменяются численно; исходное value навыка не переписывается. Потребитель формулы — modifierMixin.addActiveEffects; полный бросок не повторялся.
+
+[Карточки Simple](../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

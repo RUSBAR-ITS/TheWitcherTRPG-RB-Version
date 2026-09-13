@@ -114,3 +114,11 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Новые формы сохраняют unmodifiedMax, но показывают max; исходная база integer, value допускает дроби и общих min/max нет. UI не задаёт min/max. Проверены реальные FormDataExtended/updateSource и повторная подготовка; значения ресурса 0.5 допускают результат−0.5 у decrement.
 
 Сверенные источники: [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs); [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../../module/actor/sheets/mixins/statMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Simple Item адресуют totalModifiers BODY и SPD. Core ActiveEffect.applyChange получил настоящие NumberField; изменения учитываются calculateStat в value, базовый max остаётся прежним. Проверены отдельные состояния, две ноги вместе, disabled/transfer и удалённый источник на новом расчёте модели.
+
+[Карточки Simple](../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

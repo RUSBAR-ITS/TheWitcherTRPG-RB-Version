@@ -172,3 +172,11 @@ Full profession direct attack передаёт addActiveEffects(attack.name), н
 Оба [общих действия](verbalCombatMixin.js.md) и [обычная защита](../../scripts/verbalCombat/verbalCombatDefense.js.md) используют addActiveEffects(skill.name). Настоящий modifierMixin в группе 03 добавил прямой activeEffectModifiers3 и подходящий allSkills2 к характеристике 7/навыку 2/минимальному d10=1, получено 15. Counterargue без skill в общем action оставляет 1d10 и не вызывает helper. Эти файлы не вызывают addAttackModifiers/addDefenseModifiers: контекстные боевые надбавки из тех методов не приписываются словесной формуле.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Simple содержит числовые changes для activeEffectModifiers навыков; core-подготовка всех 55 изменений выполнена, затем источник суммы сопоставлен с addActiveEffects и сбором имён appliedEffects. Сам метод формирования формулы и полный бросок в .058 не исполнялись повторно.
+
+[Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

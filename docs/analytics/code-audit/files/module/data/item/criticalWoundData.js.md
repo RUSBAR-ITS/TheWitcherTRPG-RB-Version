@@ -123,3 +123,11 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 Модель Item criticalWound отделена от текстовых RollTable. В точечном индексном сравнении прочитаны treatment/location/criticalLevel/lesserEffect всех 94 экспортных Item; четыре Folder не включались в индекс. Отсутствующее исходное lesserEffect у Cracked Jaw не объявлено ошибкой: defineSchema:20–24 задаёт initial=false. Проверка .057 не заменяет полного разбора Item/эффектов .058–.061.
 
 [Карточки Combat](../../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Все 24 Simple Item прошли настоящую модель: 16 followUp разрешаются в следующий Item, у восьми treated followUp=null. При BODY.max=5 healingTime=3. Три Cracked Jaw получают lesserEffect=false по умолчанию; system.htmlFields удаляется очисткой. treat/heal воспроизведены с перехваченными pending-записями; это конкретизация issue-00121/00127.
+
+[Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

@@ -103,3 +103,11 @@ const DialogV2 захватывается при импорте. Named export he
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Сверен контракт кнопки header .heal-button и базового healListeners; сами методы лечения уже описаны в .020. В .031 проверены наличие/данные элементов и общая привязка, полный отдых/лечение заново не запускались.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../WitcherCharacterSheet.js.md); [templates/partials/character-header.hbs](../../../../templates/partials/character-header.hbs.md). [Методика и ограничения сверки](../../../../../review-log.md#task-0003031).
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+recoverActor:88 вызывает heal каждого criticalWound без ожидания. Настоящий heal проверен на Foreign Object: treated +1 день, новая стерилизация +2 дополнительно, достижение healingTime=3 инициирует удаление; none/stabilized направляют update({}) при нулевых днях. Внешний диалог отдыха/чат не запускались; issue-00127 уточнена.
+
+[Карточки Simple](../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

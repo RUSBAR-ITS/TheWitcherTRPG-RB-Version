@@ -199,3 +199,11 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. В Monster sidebar max99 присутствует только в input HP/STA; progress использует текущий max, сердце — unmodifiedMax. Форма general при customStat редактирует hp/sta/resolve.unmodifiedMax. Контролируемые max90/70/80 сохранены настоящим расчётом customStat.
 
 Связи: [templates/sheets/actor/partials/monster/sidebar.hbs](../../../../../../templates/sheets/actor/partials/monster/sidebar.hbs.md); [templates/sheets/actor/configuration/monster/general.hbs](../../../../../../templates/sheets/actor/configuration/monster/general.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.058
+
+2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4; исходник не изменён.
+
+Treated Cracked Ribs напрямую задаёт enc.totalModifiers=-10: при BODY.value=5 ENC=40. Исходные/стабилизированные рёбра меняют BODY.totalModifiers и через общие расчёты также влияют на ENC и HP.max. Это описание вычислений, без сравнения с книгами.
+
+[Карточки Simple](../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.

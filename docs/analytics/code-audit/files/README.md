@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.057 подготовлены 517 карточек, включая 128 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 98 JSON criticalWounds поставлены в очередь .058–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.058 подготовлены 542 карточки, включая 153 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 73 JSON criticalWounds поставлены в очередь .059–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Семь JSON style, 21 lifepath, 35 character-generator-sub-tables, 41 witcher-lifepath, 13 character-generator и 11 combat описаны ниже. Общая сверка шести RollTable-пакетов охватывает 128 файлов; 98 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Описаны 128 JSON шести RollTable-пакетов и 25 JSON Simple criticalWounds; 73 файла следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -821,3 +821,35 @@
 | [packsJson/combat/Scatter__Direction_and_Distance_qTOHZYKhe5GN3Ciw.json](packsJson/combat/Scatter__Direction_and_Distance_qTOHZYKhe5GN3Ciw.json.md) | Текстовое направление разброса и inline-бросок расстояния |
 | [packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json](packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json.md) | Текстовая таблица простых критических результатов по сумме 2d6 |
 | [packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json](packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json.md) | Текстовые последствия потери управления транспортом |
+
+## TASK-0003.058 — Простые критические травмы
+
+[Задача](../../../tasks/task-0003.058.md), [сверка](../review-log.md#task-0003058). 25 файлов / 2068 строк, 24 Item и Folder; 17 эффектов, 55 изменений и 16 переходов.
+
+| Файл | Назначение |
+| --- | --- |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw_UnWBI9Sgu4AJv1z1.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw_UnWBI9Sgu4AJv1z1.json.md) | Cracked Jaw: простая травма, состояние none, локация head; 1 эффект, 10 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Stabilized__h15wRehQQoIkxcf0.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Stabilized__h15wRehQQoIkxcf0.json.md) | Cracked Jaw (Stabilized): простая травма, состояние stabilized, локация head; 1 эффект, 10 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Treated__AODuTRNu2RtJJhLD.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Treated__AODuTRNu2RtJJhLD.json.md) | Cracked Jaw (Treated): простая травма, состояние treated, локация head; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs_7TzGQ2y4yZnG01im.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs_7TzGQ2y4yZnG01im.json.md) | Cracked Ribs: простая травма, состояние none, локация torso; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json.md) | Cracked Ribs (Stabilized): простая травма, состояние stabilized, локация torso; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Treated__oe4y6zxH2WUR9gSj.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Treated__oe4y6zxH2WUR9gSj.json.md) | Cracked Ribs (Treated): простая травма, состояние treated, локация torso; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar_8tqapNHVCmSwijJw.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar_8tqapNHVCmSwijJw.json.md) | Disfiguring Scar: простая травма, состояние none, локация head; 1 эффект, 6 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar__Stabilized__AJeuZeFF29nEI5fc.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar__Stabilized__AJeuZeFF29nEI5fc.json.md) | Disfiguring Scar (Stabilized): простая травма, состояние stabilized, локация head; 1 эффект, 6 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar__Treated__kbeASc2PnnkYc5SR.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar__Treated__kbeASc2PnnkYc5SR.json.md) | Disfiguring Scar (Treated): простая травма, состояние treated, локация head; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Stabilized__fnYssldrMLVqbF22.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Stabilized__fnYssldrMLVqbF22.json.md) | Foreign Object (Stabilized): простая травма, состояние stabilized, локация torso; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Treated__rgRGVfLBlHMwUvGy.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Treated__rgRGVfLBlHMwUvGy.json.md) | Foreign Object (Treated): простая травма, состояние treated, локация torso; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object_mylVzp10NMor44XR.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object_mylVzp10NMor44XR.json.md) | Foreign Object: простая травма, состояние none, локация torso; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left___Stabilized__01Seyu22NaDnctCi.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left___Stabilized__01Seyu22NaDnctCi.json.md) | Sprained Arm (Left - Stabilized): простая травма, состояние stabilized, локация leftArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left___Treated__q5vr9VLD2tEkL1ux.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left___Treated__q5vr9VLD2tEkL1ux.json.md) | Sprained Arm (Left - Treated): простая травма, состояние treated, локация leftArm; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left__quAixM7zp2bD9lXz.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left__quAixM7zp2bD9lXz.json.md) | Sprained Arm (Left): простая травма, состояние none, локация leftArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right___Stabilized__yGy3oWvmpX6WMm56.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right___Stabilized__yGy3oWvmpX6WMm56.json.md) | Sprained Arm (Right - Stabilized): простая травма, состояние stabilized, локация rightArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right___Treated__YiusbDXfFDhqwtQT.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right___Treated__YiusbDXfFDhqwtQT.json.md) | Sprained Arm (Right - Treated): простая травма, состояние treated, локация rightArm; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right__umPVfrJeNU65S48O.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right__umPVfrJeNU65S48O.json.md) | Sprained Arm (Right): простая травма, состояние none, локация rightArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json.md) | Sprained Leg (Left): простая травма, состояние none, локация leftLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json.md) | Sprained Leg (Left - Stabilized): простая травма, состояние stabilized, локация leftLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Treated__f7NaW1AMnrSLGkd3.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Treated__f7NaW1AMnrSLGkd3.json.md) | Sprained Leg (Left - Treated): простая травма, состояние treated, локация leftArm; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right__VhwzsUlv5csYSJTM.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right__VhwzsUlv5csYSJTM.json.md) | Sprained Leg (Right): простая травма, состояние none, локация rightLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json.md) | Sprained Leg (Right - Stabilized): простая травма, состояние stabilized, локация rightLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Treated__8qatuNeEROueRDcZ.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Treated__8qatuNeEROueRDcZ.json.md) | Sprained Leg (Right - Treated): простая травма, состояние treated, локация rightLeg; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md) | Папка Simple для 24 Item простых травм; группировка восьми цепочек лечения. |
