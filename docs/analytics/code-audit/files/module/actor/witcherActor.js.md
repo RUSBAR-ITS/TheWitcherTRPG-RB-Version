@@ -445,3 +445,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 Реальные расчётные методы исполнены после core Actor.applyActiveEffects на CharacterData для каждого из 24 Simple Item. При базе 5 Cracked Ribs none даёт BODY.value=3, BODY.max=5, ENC=30, HP.max=20; оба исходных Sprained Leg дают SPD=1 и dodge.activeEffectModifiers=-4. Броня/вес заданы нулём. Повтор одноимённой левой ноги подтвердил запрос quantity=NaN до записи (issue-00288).
 
 [Карточки Simple](../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+При базе 5 Broken Ribs none даёт BODY=3/REF=4/DEX=4 и HP.max=20; Minor Head Wound none даёт INT=WILL=4, STUN=3, HP.max=20. Две исходные Fractured Leg дают SPD=-1, RUN=-3, LEAP=-1 и dodge.activeEffectModifiers=-6. Числа — фактическая работа текущего кода, без принятия игровых минимумов. BODY.max=5 остаётся базовым; healingTime=7.
+
+[Карточки Complex](../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003059). Мир и БД не изменялись.

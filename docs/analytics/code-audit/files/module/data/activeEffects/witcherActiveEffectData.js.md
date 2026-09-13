@@ -127,3 +127,11 @@
 Все 17 эффектов Simple используют тип base и эту модель. Штатная миграция переносит 55 старых changes в system.changes, mode=2 преобразуется в add, строки значений — в числа, phase получает initial. applyAfterCalculations отсутствует в JSON и становится false.
 
 [Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Для Complex подтверждена наследуемая схема system.changes и defaults пяти bool-флагов; все 61 legacy changes стали add/initial с числовыми значениями. Внешние statuscounter flags в фасаде без модуля очищаются ядром; это не проверка поведения установленного модуля.
+
+[Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.

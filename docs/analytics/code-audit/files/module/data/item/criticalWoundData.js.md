@@ -131,3 +131,11 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 Все 24 Simple Item прошли настоящую модель: 16 followUp разрешаются в следующий Item, у восьми treated followUp=null. При BODY.max=5 healingTime=3. Три Cracked Jaw получают lesserEffect=false по умолчанию; system.htmlFields удаляется очисткой. treat/heal воспроизведены с перехваченными pending-записями; это конкретизация issue-00121/00127.
 
 [Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Все 24 Complex Item проверены настоящей моделью. При BODY.max=5 healingTime=7; 16 непустых followUp ведут к следующей форме Complex, восемь treated завершаются null. Исполнены все treat и семь вариантов heal на Lost Teeth с перехватом pending-записей. Эти документы подтверждают прежние границы issue-00121/00127.
+
+[Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.

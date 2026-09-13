@@ -164,3 +164,11 @@ applyCritWound исполнен на 16 положительных сочета�
 applyCritWound проверен на индексе-фасаде из очищенных настоящих моделей 24 Simple Item. Восемь исходных вариантов выбраны по head/torso/четырём конечностям; head>4 выбирает Cracked Jaw с default lesserEffect=false. Серверный getIndex не воспроизводился. Леченая левая нога с location=leftArm (issue-00325) исключена из первичного выбора по treatment=treated.
 
 [Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+applyCritWound исполнен в девяти сценариях на индексе-фасаде настоящих очищенных Complex моделей. Единственный head-кандидат Lost Teeth выбирается при critEffect4 и 6. При torso/6 прямой порядок индекса даёт Minor Head Wound, обратный — Ruptured Spleen (issue-00324). Все четыре конечности и lesser torso выбираются по ожидаемым полям. Серверный индекс не запускался.
+
+[Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.

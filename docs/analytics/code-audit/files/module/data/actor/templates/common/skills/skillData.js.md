@@ -147,3 +147,11 @@ NumberField не задаёт ограничения диапазона и це�
 Все навыковые изменения Simple направлены в activeEffectModifiers настоящего NumberField. Spellcast/ritcraft/hexweave, социальные навыки, physique, dodge и athletics изменяются численно; исходное value навыка не переписывается. Потребитель формулы — modifierMixin.addActiveEffects; полный бросок не повторялся.
 
 [Карточки Simple](../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Complex задаёт 30 изменений навыков в трёх Lost Teeth и 18 — в шести Fractured Leg; прочие changes адресуют характеристики/STUN. Все соответствующие activeEffectModifiers — реальные NumberField, не строки. Fractured Arm во всех шести формах содержит HTML и пустой effects.
+
+[Карточки Complex](../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003059). Мир и БД не изменялись.

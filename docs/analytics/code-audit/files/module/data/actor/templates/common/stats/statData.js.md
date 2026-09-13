@@ -122,3 +122,11 @@
 Simple Item адресуют totalModifiers BODY и SPD. Core ActiveEffect.applyChange получил настоящие NumberField; изменения учитываются calculateStat в value, базовый max остаётся прежним. Проверены отдельные состояния, две ноги вместе, disabled/transfer и удалённый источник на новом расчёте модели.
 
 [Карточки Simple](../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Complex изменяет totalModifiers у BODY/REF/DEX/SPD/INT/WILL. Все целевые поля проверены как NumberField. Две исходные Fractured Leg дают суммарный SPD.totalModifiers=-6 и SPD.value=-1 при unmodifiedMax=5; lower bound в этом расчёте не добавлялся.
+
+[Карточки Complex](../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003059). Мир и БД не изменялись.

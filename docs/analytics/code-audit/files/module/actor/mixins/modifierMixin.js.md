@@ -180,3 +180,11 @@ Full profession direct attack передаёт addActiveEffects(attack.name), н
 Simple содержит числовые changes для activeEffectModifiers навыков; core-подготовка всех 55 изменений выполнена, затем источник суммы сопоставлен с addActiveEffects и сбором имён appliedEffects. Сам метод формирования формулы и полный бросок в .058 не исполнялись повторно.
 
 [Карточки Simple](../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Настоящий addActiveEffects('dodge') при displayRollsDetails=true и реальном CONFIG.WITCHER дал для трёх правых Fractured Leg подписи +-3/+-2/+-3[Fractured Leg (Left)]. Имя эффекта взято из экспортного name; issue-00326 описывает ошибку стороны в подписи. appliedEffects — массив реальных активных эффектов контрольного Actor; полный Roll/чат не выполнялся.
+
+[Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.

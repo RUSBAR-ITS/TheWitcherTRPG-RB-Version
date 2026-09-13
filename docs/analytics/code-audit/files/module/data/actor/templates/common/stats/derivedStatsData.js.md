@@ -207,3 +207,11 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 Treated Cracked Ribs напрямую задаёт enc.totalModifiers=-10: при BODY.value=5 ENC=40. Исходные/стабилизированные рёбра меняют BODY.totalModifiers и через общие расчёты также влияют на ENC и HP.max. Это описание вычислений, без сравнения с книгами.
 
 [Карточки Simple](../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Новые прямые изменения Complex адресуют stun.totalModifiers. При базе 5 Minor Head Wound none получает STUN=3: floor((5+4)/2)=4, затем -1. Treated Ruptured Spleen получает STUN=3 из базовых 5 и модификатора -2. Изменения BODY/WILL также меняют REC/HP и другие производные; это отдельно отражено в карточках Item.
+
+[Карточки Complex](../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003059). Мир и БД не изменялись.

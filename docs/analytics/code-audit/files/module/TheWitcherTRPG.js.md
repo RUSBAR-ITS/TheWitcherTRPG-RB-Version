@@ -226,3 +226,11 @@ ready:64–67 индексирует выбранный criticalWoundsPack по 
 ## Уточнение TASK-0003.058
 
 2026-09-12; rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4. Ready:62–67 запрашивает четыре поля индекса criticalWounds. В [проверке Simple](../../review-log.md#task-0003058) восемь исходных вариантов выбраны настоящим applyCritWound из индекса-фасада, составленного по очищенным BaseItem/CriticalWoundData. Три Cracked Jaw получают lesserEffect=false в модели. Серверный индекс и callback ready здесь не исполнялись; результат не доказывает состояние установленного пакета. Исходник не менялся.
+
+## Уточнение TASK-0003.059
+
+2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a; исходник не изменён.
+
+Запрашиваемые ready индексные поля сопоставлены с 24 Complex Item. Очистка реальными моделями сохраняет torso у трёх Minor Head Wound; сценарий выбора на очищенном индексе-фасаде воспроизвёл issue-00324. Настоящий серверный getIndex не запускался.
+
+[Карточки Complex](../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../review-log.md#task-0003059). Мир и БД не изменялись.

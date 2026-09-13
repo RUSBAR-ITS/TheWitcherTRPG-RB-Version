@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.058 подготовлены 542 карточки, включая 153 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 73 JSON criticalWounds поставлены в очередь .059–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.059 подготовлены 567 карточек, включая 178 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 48 JSON criticalWounds поставлены в очередь .060–.061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -650,7 +650,7 @@
 
 ## Запланированный разбор компедиумов
 
-[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Описаны 128 JSON шести RollTable-пакетов и 25 JSON Simple criticalWounds; 73 файла следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
+[TASK-0003.052–TASK-0003.061](../../../tasks/task-0003-remaining-files.md#компедиумы-task-0003052task-0003061) охватывают 226 файлов packsJson. Описаны 128 JSON шести RollTable-пакетов и 50 JSON Simple/Complex criticalWounds; 48 файлов следующих порций пока не имеют карточек. Вложенные результаты и эффекты учитываются внутри карточки владельца.
 
 ## Таблицы стиля и ценностей — TASK-0003.052
 
@@ -853,3 +853,35 @@
 | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json.md) | Sprained Leg (Right - Stabilized): простая травма, состояние stabilized, локация rightLeg; 1 эффект, 3 изменений. |
 | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Treated__8qatuNeEROueRDcZ.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Treated__8qatuNeEROueRDcZ.json.md) | Sprained Leg (Right - Treated): простая травма, состояние treated, локация rightLeg; 1 эффект, 1 изменений. |
 | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json](packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md) | Папка Simple для 24 Item простых травм; группировка восьми цепочек лечения. |
+
+## TASK-0003.059 — Сложные критические травмы
+
+[Задача](../../../tasks/task-0003.059.md), [сверка](../review-log.md#task-0003059). 25 файлов / 2058 строк, 24 Item и Folder; 16 эффектов, 61 изменение, 16 переходов.
+
+| Файл | Назначение |
+| --- | --- |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs_VfgJzcV75cGqsjuF.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs_VfgJzcV75cGqsjuF.json.md) | Broken Ribs: complex/none/torso; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs__Stabilized__4LmC6nGwRM0PpNl7.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs__Stabilized__4LmC6nGwRM0PpNl7.json.md) | Broken Ribs (Stabilized): complex/stabilized/torso; 1 эффект, 2 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs__Treated__77evBMjaJOlKTaRv.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs__Treated__77evBMjaJOlKTaRv.json.md) | Broken Ribs (Treated): complex/treated/torso; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left__Z2L7diKDSE9L7E9d.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left__Z2L7diKDSE9L7E9d.json.md) | Fractured Arm (Left): complex/none/leftArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left___Stabilized__eCiJjDqfUyaXCW2z.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left___Stabilized__eCiJjDqfUyaXCW2z.json.md) | Fractured Arm (Left - Stabilized): complex/stabilized/leftArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left___Treated__kPIkW1AXuybKZPEh.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left___Treated__kPIkW1AXuybKZPEh.json.md) | Fractured Arm (Left - Treated): complex/treated/leftArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right__ZOyO6WlnMTDjzBj9.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right__ZOyO6WlnMTDjzBj9.json.md) | Fractured Arm (Right): complex/none/rightArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right___Stabilized__t9bcLB3zDGUX9Uuq.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right___Stabilized__t9bcLB3zDGUX9Uuq.json.md) | Fractured Arm (Right - Stabilized): complex/stabilized/rightArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right___Treated__djnBTcYyGVsykdoy.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right___Treated__djnBTcYyGVsykdoy.json.md) | Fractured Arm (Right - Treated): complex/treated/rightArm; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Stabilized__LF0C1HVgY4hNZOFE.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Stabilized__LF0C1HVgY4hNZOFE.json.md) | Fractured Leg (Left - Stabilized): complex/stabilized/leftLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Treated__nM9wqZXmrkFRRGTW.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Treated__nM9wqZXmrkFRRGTW.json.md) | Fractured Leg (Left - Treated): complex/treated/leftLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left__r34NuXwHfPGZCpTu.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left__r34NuXwHfPGZCpTu.json.md) | Fractured Leg (Left): complex/none/leftLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Stabilized__WNjcD3F3Hs5IdAaa.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Stabilized__WNjcD3F3Hs5IdAaa.json.md) | Fractured Leg (Right - Stabilized): complex/stabilized/rightLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Treated__Aa8wCz1OGM4gflmc.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Treated__Aa8wCz1OGM4gflmc.json.md) | Fractured Leg (Right - Treated): complex/treated/rightLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json.md) | Fractured Leg (Right): complex/none/rightLeg; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth_IMLpjhiZ0yg6hjKI.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth_IMLpjhiZ0yg6hjKI.json.md) | Lost Teeth: complex/none/head; 1 эффект, 10 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth__Stabilized__wccN560fe7WQgT0N.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth__Stabilized__wccN560fe7WQgT0N.json.md) | Lost Teeth (Stabilized): complex/stabilized/head; 1 эффект, 10 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth__Treated__yHU7iYTocbAok2wH.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth__Treated__yHU7iYTocbAok2wH.json.md) | Lost Teeth (Treated): complex/treated/head; 1 эффект, 10 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Stabilized__EnwgL7ApZTdHgMbD.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Stabilized__EnwgL7ApZTdHgMbD.json.md) | Minor Head Wound (Stabilized): complex/stabilized/torso; 1 эффект, 2 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json.md) | Minor Head Wound (Treated): complex/treated/torso; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound_wPRuwd7RdLWnWmnb.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound_wPRuwd7RdLWnWmnb.json.md) | Minor Head Wound: complex/none/torso; 1 эффект, 3 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen__Stabilized__d8uhnIErEmsGtf94.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen__Stabilized__d8uhnIErEmsGtf94.json.md) | Ruptured Spleen (Stabilized): complex/stabilized/torso; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen__Treated__kFcie7Io28kKittg.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen__Treated__kFcie7Io28kKittg.json.md) | Ruptured Spleen (Treated): complex/treated/torso; 1 эффект, 1 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen_rHrrGeB9A8bNCiC2.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen_rHrrGeB9A8bNCiC2.json.md) | Ruptured Spleen: complex/none/torso; 0 эффектов, 0 изменений. |
+| [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json](packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md) | Папка Complex для 24 Item сложных травм; восемь цепочек лечения. |
