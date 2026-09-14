@@ -69,7 +69,7 @@ create передаёт name=DOCUMENT.New, legacy icon='icons/svg/aura.svg', ori
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверены недействительные UUID/удалённые документы, drag/drop и реальные права нескольких клиентов. Сообщение об источнике не заменяет политику владения ядра. Отсутствующий обработчик раскрытия в Item-конфигурации относится к другому использованию общего partial.
+Невалидный/удалённый UUID и реальные права — [U005-01](../../../../../cross-check-0002.md#u005-01)/[U005-02](../../../../../cross-check-0002.md#u005-02). Нельзя переносить успешный Actor listener на Item-конфигурацию; повторные подписки и drag/drop остаются .013/.018.
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@ create передаёт name=DOCUMENT.New, legacy icon='icons/svg/aura.svg', ori
 Группы 09–10 повторно исполнили prepareActiveEffectCategories и _onActiveEffectDisplayInfo с исходным [partial](../../../../../../../../templates/partials/effect-part.hbs) и фасадом jQuery. Непустой текст переключает invisible, пустой не меняет класс. [CSS списка](../../../../styles/activeEffect.css.md) задаёт отступы/сетку, скрытие берётся из system-styles .invisible; сам CSS не включает этот listener на Item. Сведения .025 о дублировании перенесённых улучшений сохранены; новый тест с одним обычным эффектом не опровергает issue165.
 
 [Сценарии, результаты и ограничения](../../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Категории применяют isDisabled → непереданное улучшение → isTemporary → passive. Сам isSuppressed здесь не проверяется; Actor-контекст общего partial скрывает такую строку позже. create в этой примеси не задаёт тип улучшения, а Item-конфигурация задаёт type явно. Для существующего эффекта родитель разрешается по parentUuid; edit/toggle адресуют его документ, delete блокирует несовпадение caller.uuid. Только Actor listener раскрывает непустое описание. Наличие кнопок и списка не является проверкой core разрешений.
+
+Сопоставленные определения и потребители: [module/activeEffect/witcherActiveEffect.js](../../../activeEffect/witcherActiveEffect.js.md), [templates/partials/effect-part.hbs](../../../../templates/partials/effect-part.hbs.md), [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md), [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../item/sheets/configurations/WitcherConfigurationSheet.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-04](../../../../../cross-check-0002.md#r005-04), [R005-11](../../../../../cross-check-0002.md#r005-11). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

@@ -66,7 +66,7 @@ CSS не создаёт документы, не меняет значения �
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны все правила; непрочитанных частей файла нет. Не запускались мир, браузер, HTTP-загрузка, вычисление раскладки, смена темы, масштабирование и внешние модули. Размеры/цвета из declarations не объявлены измеренными пикселями интерфейса. Изменение оформления и удаление правил не согласовывались.
+Полное чтение и прежний AST/HTML-разбор .047 подтверждают структуру, а не computed style, hover или геометрию реального окна. UI/темы/ru-en — [U005-07](../../../cross-check-0002.md#u005-07); внешние producers неиспользуемых классов — [U005-08](../../../cross-check-0002.md#u005-08).
 
 ## Связанные проблемы
 
@@ -87,3 +87,13 @@ CSS не создаёт документы, не меняет значения �
 Карточки CSS: [styles/character/sheet.css](../character/sheet.css.md), [styles/monster/sheet.css](../monster/sheet.css.md).
 
 [Методика и результаты](../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Единственная declaration display:inherit адресует .application.sheet.witcher.actor.modifier-configuration:not(.extended-sheet) .window-content. Эти классы приходят из DEFAULT_OPTIONS WitcherModifiersConfiguration и оболочки ApplicationV2. Это геометрия окна; значения totalModifiers/changes и ширина520 из JS этим CSS не рассчитываются.
+
+Сопоставленные определения и потребители: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md), [styles/witcher-styles.css](../witcher-styles.css.md).
+
+[Протокол и границы](../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-13](../../../cross-check-0002.md#r005-13). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

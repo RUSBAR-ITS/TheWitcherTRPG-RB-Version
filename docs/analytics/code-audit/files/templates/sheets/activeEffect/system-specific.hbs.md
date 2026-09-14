@@ -67,7 +67,7 @@ PARTS.systemSpecific зарегистрирован WitcherActiveEffectConfig. �
 
 ## Непроверенные участки и открытые вопросы
 
-Проверка полного сохранения формы, частичных рендеров только systemSpecific и реальной локализации остаётся вне изолированного сценария.
+Partial render только systemSpecific, полный submit и навигация — [U005-01](../../../../cross-check-0002.md#u005-01); реальный ru/en экран — [U005-07](../../../../cross-check-0002.md#u005-07). Модель и шаблон не задают галочку потолка.
 
 ## Связанные проблемы
 
@@ -76,3 +76,13 @@ PARTS.systemSpecific зарегистрирован WitcherActiveEffectConfig. �
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.010 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+systemFields берётся из document.system.schema. Поле applyAfterCalculations выводится без условия; applySelf/Target зависят от isItemEffect, OnHit/OnDamage дополнительно исключаются для временного улучшения. В обычном полном рендере isItemEffect установлен core details и доступен через общий контекст частей. Отсутствующее поле temporary даёт ошибку formGroup и пустой фрагмент, а не доказанное падение всего окна. Отсутствующий русский label base — другая issue00318.
+
+Сопоставленные определения и потребители: [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js.md), [module/data/activeEffects/witcherActiveEffectData.js](../../../module/data/activeEffects/witcherActiveEffectData.js.md), [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-01](../../../../cross-check-0002.md#r005-01), [R005-03](../../../../cross-check-0002.md#r005-03), [R005-12](../../../../cross-check-0002.md#r005-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

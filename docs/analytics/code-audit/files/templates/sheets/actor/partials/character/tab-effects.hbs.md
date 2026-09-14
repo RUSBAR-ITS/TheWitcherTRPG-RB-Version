@@ -71,7 +71,7 @@ PARTS.effects в WitcherCharacterSheet и WitcherMonsterSheet используе
 
 ## Непроверенные участки и открытые вопросы
 
-Полное лечение/заживление, таблицы критических травм, drag/drop и работа листа в браузере остаются будущим порциям. Наличие кнопки не подтверждает корректность процесса лечения.
+Пофайловые карточки лечения/заживления уже завершены. Их сквозная проверка .012 и полные листы .013 — [U005-04](../../../../../../cross-check-0002.md#u005-04)/[U005-01](../../../../../../cross-check-0002.md#u005-01); вывод кнопок не равен успешному лечению.
 
 ## Связанные проблемы
 
@@ -110,3 +110,13 @@ PARTS.effects в WitcherCharacterSheet и WitcherMonsterSheet используе
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный MonsterSheet.PARTS.effects выбирает эту общую часть; контекст categories готовит базовый ActorSheet. Старый полный monster-sheet использует иной effect-part; оба маршрута явно разделены.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../../monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003032).
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Общий PARTS.effects Character/Monster сначала включает crit-wounds-table, затем выводит второй цикл тех же criticalWounds. Одна травма даёт две DOM-строки и два поля daysHealed; это не две записи Item и не доказанный двойной вызов treat. data-field принимает itemMixin._onItemInlineEdit, кнопки — criticalWoundMixin. В завершение включён effect-part с отдельными категориями ActiveEffect. tabs/critWound — контекстные имена, localize — helper.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../../../module/actor/sheets/mixins/itemMixin.js.md), [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../module/actor/sheets/mixins/criticalWoundMixin.js.md), [templates/partials/crit-wounds-table.hbs](../../../../partials/crit-wounds-table.hbs.md), [templates/partials/effect-part.hbs](../../../../partials/effect-part.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-11](../../../../../../cross-check-0002.md#r005-11), [R005-13](../../../../../../cross-check-0002.md#r005-13). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

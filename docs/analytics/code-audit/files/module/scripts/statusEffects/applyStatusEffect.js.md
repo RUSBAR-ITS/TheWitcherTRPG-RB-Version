@@ -80,7 +80,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-API и версия statuscounter, реальные таймеры нескольких клиентов и сохранение статуса в мире не проверены. Не утверждается, что ошибка пакетного export ломает штатный renderChatMessageHTML. Шаблон statusEffect.hbs из этой порции не содержит a.apply-status и не является источником команды применения.
+Сеть/получатель — [U005-02](../../../../cross-check-0002.md#u005-02), API statuscounter и его таймер — [U005-06](../../../../cross-check-0002.md#u005-06), реальные chat clicks — [U005-01](../../../../cross-check-0002.md#u005-01). Ограничение неиспользуемого bulk export не переносится на штатный одиночный listener.
 
 ## Связанные проблемы
 
@@ -121,3 +121,13 @@ API и версия statuscounter, реальные таймеры нескол�
 [Успешный parry](../../actor/mixins/defenseMixin.js.md) передаёт applyStatusEffectToActor(attacker,'staggered',1) без ожидания (группа 25/273). Stun спасброска использует другой путь — Actor.applyStatus, а не этот helper. Здесь повторно проверена только передача аргументов; statuscounter/права/создание эффекта не выполнялись.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Прямой renderChatMessageHTML использует chatMessageListeners с DOM; неиспользуемый внутренними callers пакетный export смешивает DOM/jQuery отдельно. Клик a.apply-status берёт getCurrentCharacter без guard; helper применения разрешает Actor, при отсутствии возвращается, иначе может отправить query владельцу. Локально guard читает appliedEffects, но toggleStatusEffect без active:true ищет и отключённый Actor.effects: такой вход удаляет эффект. Counter вызывается после toggle и до таймера иммунитета; известная ошибка массива прерывает именно эту позднюю ветвь. Уведомление statusEffect.hbs не производит a.apply-status.
+
+Сопоставленные определения и потребители: [module/scripts/helper.js](../helper.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md), [module/setup/queries.js](../../setup/queries.js.md), [module/setup/config.js](../../setup/config.js.md), [templates/chat/combat/statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-07](../../../../cross-check-0002.md#r005-07), [R005-10](../../../../cross-check-0002.md#r005-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

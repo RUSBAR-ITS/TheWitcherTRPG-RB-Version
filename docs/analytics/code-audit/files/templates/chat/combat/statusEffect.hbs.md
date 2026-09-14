@@ -67,7 +67,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полный боевой цикл, время срабатывания updateCombat и отображение сообщения в мире не запускались. Соседний generalCombatHook.js не получает карточку целиком от этой проверки. Допустимость всех произвольных status.name/img и внешних производителей данных не установлена.
+Полный Combat hook, сообщение/видимость и таймеры остаются [U005-03](../../../../cross-check-0002.md#u005-03)/[U005-04](../../../../cross-check-0002.md#u005-04); произвольные внешние name/img не проверены. generalCombatHook имеет завершённую пофайловую карточку, текущая связь не закрывает .010 целиком.
 
 ## Связанные проблемы
 
@@ -82,3 +82,13 @@
 2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e. Девять периодических изменений Difficult передают img/name внутри объекта turnStartEffects. Шаблон выводит только иконку и localize name, без amount: bleed/suffocation адресуют существующие ключи en/ru, Torn Stomach — обычное имя. Исходный ADD объекта не создаёт запись (issue-00328); в положительных диагностических копиях до шаблона дошли три записи. В сценарии renderTemplate/чат подменены, фактический рендер здесь не запускался.
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол](../../../../review-log.md#task-0003060).
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Единственный внутренний renderer — generalCombatHook.applyCombatEffect; он передаёт запись turnStartEffects как status непосредственно. img является HTML-тегом/полем, localize — helper; самостоятельного HBS-helper img нет. Шаблон только сообщает об обработке и не содержит a.apply-status, data-status или команды применения. Периодическая запись должна существовать до этого renderer; исходный ADD объекта SchemaField её не создаёт (00328).
+
+Сопоставленные определения и потребители: [module/scripts/combat/generalCombatHook.js](../../../module/scripts/combat/generalCombatHook.js.md), [module/data/actor/templates/common/combatEffectsData.js](../../../module/data/actor/templates/common/combatEffectsData.js.md), [module/scripts/statusEffects/applyStatusEffect.js](../../../module/scripts/statusEffects/applyStatusEffect.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-10](../../../../cross-check-0002.md#r005-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

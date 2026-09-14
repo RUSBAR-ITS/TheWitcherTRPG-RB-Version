@@ -81,7 +81,7 @@ isItemEffect предоставляется ядром при подготовк
 
 ## Непроверенные участки и открытые вопросы
 
-Не выполнялись реальная навигация/submit, динамические модули и несколько открытых окон; общий id datalist требует отдельной проверки в браузере. Неподдерживаемый type и parent=null не защищены, но штатный сценарий таких документов не устанавливался. Кнопка мастера и autocomplete предполагают наличие части changes.
+Прежний полный разбор мастера завершён в .010. Реальный submit, несколько окон, инициатор partial render, неизвестный type и неembedded-родитель остаются [U005-01](../../../cross-check-0002.md#u005-01)/[U005-05](../../../cross-check-0002.md#u005-05); .013/.018 должны различить штатный вызов и искусственный вход.
 
 ## Связанные проблемы
 
@@ -114,3 +114,13 @@ isItemEffect предоставляется ядром при подготовк
 Системная вкладка добавляет id=systemSpecific к TABS.sheet и наследует ядровой labelPrefix=EFFECT.TABS; так возникает ключ EFFECT.TABS.systemSpecific, присутствующий в [en](../../lang/en.json.md) и [ru](../../lang/ru.json.md). _prepareContext передаёт systemFields, а system-specific.hbs запрашивает formGroup applyAfterCalculations с localize=true. У этой подписи нет ru-строки ([docs/issues/potential/issue-00318.md](../../../../../issues/potential/issue-00318.md)); настоящий localize возвращает английский fallback. Это не изменение мастера, фаз или сохранения.
 
 [Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Полный путь формы сверён: core PARTS и actions дополнены systemSpecific и двумя примесями. Обычная кнопка addChange ядра читает FormDataExtended и submit; wizardAction системы берёт prepared system.changes, добавляет {key} и отправляет legacy changes без ожидания update. Core cleanData переносит его в system.changes до системного _preUpdate, поэтому имя старого поля само по себе не доказывает потерю записи. Мастер не задаёт значение, операцию или потолок. Автодополнение выбирает все модели по document.parent.documentName, тогда как фактический target зависит от transfer. Несохранённый ввод, фазу и повторный retained DOM описывают разные issues 00052/00043/00055.
+
+Сопоставленные определения и потребители: [module/activeEffect/mixins/baseMixin.js](mixins/baseMixin.js.md), [module/activeEffect/mixins/temporaryItemImprovementMixin.js](mixins/temporaryItemImprovementMixin.js.md), [module/activeEffect/witcherActiveEffect.js](witcherActiveEffect.js.md), [templates/dialog/activeEffects/wizard.hbs](../../templates/dialog/activeEffects/wizard.hbs.md), [templates/sheets/activeEffect/system-specific.hbs](../../templates/sheets/activeEffect/system-specific.hbs.md), [module/setup/registerSheets.js](../setup/registerSheets.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-01](../../../cross-check-0002.md#r005-01), [R005-02](../../../cross-check-0002.md#r005-02), [R005-03](../../../cross-check-0002.md#r005-03), [R005-12](../../../cross-check-0002.md#r005-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

@@ -76,7 +76,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Модель и зависимости прочитаны в указанном объёме; реальный клиент, пользовательские обновления и серверное хранение не запускались. Полные маршруты сетевой передачи, интерфейс и конкретные игровые эффекты не подтверждаются проверкой default-значений. Источник унаследованных полей зафиксирован для 14.367.0; другие версии не исследованы.
+Defaults/схема не доказывают весь submit и доставку; [U005-01](../../../../cross-check-0002.md#u005-01)/[U005-02](../../../../cross-check-0002.md#u005-02). Произвольные поля/версии ядра — [U005-05](../../../../cross-check-0002.md#u005-05), ru/en интерфейс — [U005-07](../../../../cross-check-0002.md#u005-07).
 
 ## Связанные проблемы
 
@@ -151,3 +151,13 @@
 [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): четыре исходных системных apply-флага false, applyAfterCalculations отсутствует и получает false. Наследуемая схема сохраняет мигрированные 43 changes в system.changes/initial. Всего 360 изменений пакета: 341 адресует NumberField, 16 — SchemaField, три динамических commonspeech не объявлены. Типизированная схема не делает ADD объекта созданием записи — [issue-00328](../../../../../../issues/potential/issue-00328.md).
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Модель base наследует changes ядра (key/type/value/phase/priority) и добавляет пять BooleanField. Флаги applySelf/Target/Hit/Damage читают suppression и вызывающие маршруты; applyAfterCalculations читается _preUpdate, а не автоматически вычислителем поля. На уровне changes здесь нет галочки потолка, лимита1–10 или общей операции «бонус характеристики». AnyField value допускает мигрированные объекты; их применение зависит от SchemaField/NumberField адресата. В ru отсутствует подпись applyAfterCalculations, core fallback en проверен отдельно (.051/00318).
+
+Сопоставленные определения и потребители: [module/activeEffect/witcherActiveEffect.js](../../activeEffect/witcherActiveEffect.js.md), [module/activeEffect/WitcherActiveEffectSheet.js](../../activeEffect/WitcherActiveEffectSheet.js.md), [templates/sheets/activeEffect/system-specific.hbs](../../../templates/sheets/activeEffect/system-specific.hbs.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-01](../../../../cross-check-0002.md#r005-01), [R005-03](../../../../cross-check-0002.md#r005-03), [R005-06](../../../../cross-check-0002.md#r005-06), [R005-12](../../../../cross-check-0002.md#r005-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

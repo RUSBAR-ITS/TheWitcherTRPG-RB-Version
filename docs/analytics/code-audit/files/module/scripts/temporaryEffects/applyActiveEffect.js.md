@@ -78,7 +78,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Сериализация реальных сетевых сообщений, права нескольких клиентов и отключение получателя не проверялись. Ошибка прямого toObject установлена для этой формы аргумента, а не для всех данных из query. Настоящее сохранение/истечение эффекта в мире и весь UI остаются непроверенными.
+Реальный transport, сериализация документов, доступность GM и результат записи — [U005-02](../../../../cross-check-0002.md#u005-02). Сценарии use/cast/hit/damage адресованы [U005-04](../../../../cross-check-0002.md#u005-04); actual start/expiry — [U005-03](../../../../cross-check-0002.md#u005-03).
 
 ## Связанные проблемы
 
@@ -135,3 +135,13 @@ castSpell фильтрует Item.effects по system.applySelf/applyOnTarget, �
 [Проигранная защита](../../actor/mixins/defenseMixin.js.md) передаёт actor UUID, damage.itemUuid, applyOnHit и damage.duration. Группа 25 с raw duration=4 сохранила 4, группа 31 после AttackMessageData дала undefined (257). Вызов helper не ожидается (273); разрешение UUID, фильтр effects и удалённое создание заново не исполнялись.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Прослежены обе принимающие query-ветви и прямые вызовы. ViaId разрешает Item и фильтрует system[applyWhen]; при отсутствующем Item пересылает те же аргументы activeGM без конечного условия. applyActiveEffectToActor мутирует prepared duration.rounds, затем клонирует обычные эффекты из source с четырьмя apply-флагами false. Реальный clone в .009 сохранял value5 при запросе0/2; remote payload отдельно не передаёт duration. Улучшения уходят отдельным списком/запросом, даже когда обычная ветвь ожидает createEmbeddedDocuments. ToTargets/ViaId и query не возвращают завершение вложенной записи. Потеря duration в типизированном damage сообщении (.040/00257) происходит раньше и имеет отдельную причину.
+
+Сопоставленные определения и потребители: [module/setup/queries.js](../../setup/queries.js.md), [module/scripts/helper.js](../helper.js.md), [module/actor/mixins/temporaryEffectMixin.js](../../actor/mixins/temporaryEffectMixin.js.md), [module/activeEffect/witcherActiveEffect.js](../../activeEffect/witcherActiveEffect.js.md), [module/item/mixins/consumeMixin.js](../../item/mixins/consumeMixin.js.md), [module/actor/mixins/castSpellMixin.js](../../actor/mixins/castSpellMixin.js.md), [module/actor/mixins/defenseMixin.js](../../actor/mixins/defenseMixin.js.md), [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-07](../../../../cross-check-0002.md#r005-07), [R005-08](../../../../cross-check-0002.md#r005-08), [R005-09](../../../../cross-check-0002.md#r005-09). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

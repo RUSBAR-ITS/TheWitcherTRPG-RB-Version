@@ -75,7 +75,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Модель и зависимости прочитаны в указанном объёме; реальный клиент, пользовательские обновления и серверное хранение не запускались. Полные маршруты сетевой передачи, интерфейс и конкретные игровые эффекты не подтверждаются проверкой default-значений. Источник унаследованных полей зафиксирован для 14.367.0; другие версии не исследованы.
+Полный Item lifecycle и scheduler — [U005-03](../../../../cross-check-0002.md#u005-03); формы и типовой submit — [U005-01](../../../../cross-check-0002.md#u005-01); внешние документы/ядра — [U005-05](../../../../cross-check-0002.md#u005-05).
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@
 [templates/sheets/activeEffect/system-specific.hbs](../../../../../../../templates/sheets/activeEffect/system-specific.hbs) показывает applySelf/applyOnTarget, скрывает onHit/onDamage для этого типа, но безусловно запрашивает отсутствующий applyAfterCalculations. Исходный core formGroup пишет console.error и возвращает пустой фрагмент — issue-00053; срыв всей формы не утверждается. Три пути [module/activeEffect/mixins/temporaryItemImprovementMixin.js](../../../../../../../module/activeEffect/mixins/temporaryItemImprovementMixin.js) разрешаются в StringField WeaponData; сам каталог не меняет схему эффекта.
 
 [Общая сверка первой серии](../../../../review-log.md) — TASK-0003.010. Полный клиент и БД не запускались.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Temporary-модель наследует ActiveEffectTypeDataModel напрямую, а не модель base. Собственные поля — applySelf, applyOnTarget и isTransferred; applyAfterCalculations/OnHit/OnDamage отсутствуют. Унаследованный changes корректен до потери при замене system в Actor-передатчике. system.isTransferred не равен core transfer и сам не задаёт start или duration. Безусловный formGroup applyAfterCalculations получает отсутствующее поле; остальные две формы продолжают рендериться.
+
+Сопоставленные определения и потребители: [module/actor/mixins/temporaryEffectMixin.js](../../actor/mixins/temporaryEffectMixin.js.md), [module/activeEffect/witcherActiveEffect.js](../../activeEffect/witcherActiveEffect.js.md), [templates/sheets/activeEffect/system-specific.hbs](../../../templates/sheets/activeEffect/system-specific.hbs.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-01](../../../../cross-check-0002.md#r005-01), [R005-08](../../../../cross-check-0002.md#r005-08), [R005-09](../../../../cross-check-0002.md#r005-09), [R005-12](../../../../cross-check-0002.md#r005-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

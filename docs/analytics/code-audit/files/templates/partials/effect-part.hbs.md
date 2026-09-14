@@ -70,7 +70,7 @@ description выводится как HTML без дополнительного
 
 ## Непроверенные участки и открытые вопросы
 
-Drag/drop, фактическая очистка description, разрешения UI и влияние сторонних модулей требуют полного разбора использующих листов/ядра. HTML списка не означает наличия обработчика любого клика во всех потребителях.
+Достижимость UI и права/удаление документа — [U005-01](../../../cross-check-0002.md#u005-01)/[U005-02](../../../cross-check-0002.md#u005-02). Фактическая обработка HTML description и внешние модули не подтверждены статическим поиском.
 
 ## Связанные проблемы
 
@@ -107,3 +107,13 @@ Drag/drop, фактическая очистка description, разрешени
 [Полный CSS списка](../../styles/activeEffect.css.md) сопоставлен со всеми классами и вложенностью. Группа 09 повторила рендер четырёх категорий и одной строки: имя — p, поэтому .effect-name > h4 не имеет цели; description остаётся invisible. .effects-header — четыре колонки, .effect-first-row — две, внутренний .effect-display — три. Ранний .effect-list из armor-sheet даёт flex1; поздний margin0 из activeEffect.css сбрасывает его margin-left10px. Раскрытие Actor проверено отдельно (группа 10), Item остаётся [56](../../../../../issues/potential/issue-00056.md). Позднее уточнение .032 о старом monster-sheet учтено: это legacy inclusion, не текущий default.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четыре категории и effect.* поступают из Actor/Item-контекста; section/effect в S-матрице — контекст each, не helpers. parentUuid определяет реальный embedded-документ для управления. Suppressed скрывается только при @root.actor. Действия create/edit/toggle/delete имеют разные регистрации Actor/Item; раскрытие effect-description с invisible реализовано у Actor, а у Item-конфигурации listener не найден. CSS задаёт сетку и отступы, не восполняет обработчик.
+
+Сопоставленные определения и потребители: [module/actor/sheets/mixins/activeEffectMixin.js](../../module/actor/sheets/mixins/activeEffectMixin.js.md), [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../module/item/sheets/configurations/WitcherConfigurationSheet.js.md), [templates/sheets/actor/partials/character/tab-effects.hbs](../sheets/actor/partials/character/tab-effects.hbs.md), [styles/activeEffect.css](../../styles/activeEffect.css.md).
+
+[Протокол и границы](../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-04](../../../cross-check-0002.md#r005-04), [R005-11](../../../cross-check-0002.md#r005-11), [R005-13](../../../cross-check-0002.md#r005-13). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

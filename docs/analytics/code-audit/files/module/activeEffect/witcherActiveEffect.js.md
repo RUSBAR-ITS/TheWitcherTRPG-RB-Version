@@ -48,7 +48,7 @@
 | Actor, Combat.getCombatantsByActor | Внешние foundry.documents.Actor и /opt/foundryvtt/client/documents/combat.mjs | instanceof, вызов метода | Поиск combatant по this.parent | Метод ожидает Actor или его ID; переданный Item не превращает в его Actor |
 | skillMap | [module/setup/config.js](../../../../../../module/setup/config.js) | Глобально через CONFIG.WITCHER | label, attribute.name и ключ навыка превращаются в system.skills.<группа>.<ключ>.activeEffectModifiers | 52 варианта в изолированном вызове; reduce индексирует по label |
 | DialogV2.prompt, renderTemplate, game.i18n.localize | Внешний Foundry API | UI и локализация | Выбор навыка; group локализуется как WITCHER.skills.name | Подменены в проверке, браузер не запускался |
-| Шаблон выбора | [templates/dialog/activeEffects/wizard.hbs](../../../../../../templates/dialog/activeEffects/wizard.hbs) | Путь renderTemplate | Контекст selects и поле path | Исходный шаблон принимает selectOptions; полный разбор отложен |
+| Шаблон выбора | [templates/dialog/activeEffects/wizard.hbs](../../../../../../templates/dialog/activeEffects/wizard.hbs) | Путь renderTemplate | Контекст selects и поле path | Исходный шаблон принимает selectOptions; полный разбор завершён в TASK-0003.010, сквозная связь — R005-02/03 |
 
 ## Известные потребители
 
@@ -85,7 +85,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не выполнялись создание/обновление в мире, полный клиентский жизненный цикл и истечение реальных длительностей. Родитель без system и неembedded-документы требуют отдельной проверки; допустимость таких документов в ядре не означает их корректную поддержку этим геттером. Поля wizard и возможность задания произвольной строки changes подробно проверяются в следующей порции.
+Мастер/шаблон уже разобраны в .010; ожидание следующей пофайловой порции снято. Полный lifecycle и истечение в мире — [U005-03](../../../cross-check-0002.md#u005-03), неembedded/неизвестные пути — [U005-05](../../../cross-check-0002.md#u005-05), реальный диалог — [U005-01](../../../cross-check-0002.md#u005-01).
 
 ## Связанные проблемы
 
@@ -168,3 +168,13 @@
 [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): 21 эффект, из них 20 active. У правой исходной ноги disabled=true на втором эффекте; isolated-контроль только этого флага восстанавливает два навыка ([issue-00329](../../../../../issues/potential/issue-00329.md)). Отдельные disabled/transfer/applySelf-контроли проверены на левой stabilized ноге. На всём пакете мигрированы 79 эффектов/360 changes: 78 активных; legacy mode→type, initial, 356 null priority становятся стандартными, четыре исходных priority=0 сохранены. Пустая duration и rounds=1 разобраны отдельно; полный таймер не имитировался.
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Класс расширяет lifecycle и признаки документа; сам applyChange/операции полей не переопределяет. core active читает disabled и isSuppressed, категории листа — иной isDisabled. transfer ядра выбирает перенос к Actor, system.isTransferred выбирает улучшения Item. _preUpdate назначает фазу только по флагу переданного payload и обращается к data.system?.changes.forEach; старое true на документе не подставляется. _preCreate меняет @skill в исходных changes после ожидаемого диалога и корректирует уже заданный combat start; для Item с start=null начало не создаётся. Приоритет0 сохраняется ядром через ??=; phases и конкретное поле проверяются отдельно от suppression.
+
+Сопоставленные определения и потребители: [module/data/activeEffects/witcherActiveEffectData.js](../data/activeEffects/witcherActiveEffectData.js.md), [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../data/activeEffects/witcherTemporaryItemImprovementData.js.md), [templates/dialog/activeEffects/wizard.hbs](../../templates/dialog/activeEffects/wizard.hbs.md), [module/actor/witcherActor.js](../actor/witcherActor.js.md), [module/item/witcherItem.js](../item/witcherItem.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-01](../../../cross-check-0002.md#r005-01), [R005-03](../../../cross-check-0002.md#r005-03), [R005-04](../../../cross-check-0002.md#r005-04), [R005-05](../../../cross-check-0002.md#r005-05), [R005-09](../../../cross-check-0002.md#r005-09). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

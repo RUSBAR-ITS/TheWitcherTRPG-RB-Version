@@ -73,7 +73,7 @@ HTML option строится строкой: value=weapon.id, data-itemId=weapon
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящая форма выбора, оформление чата, влияние модулей и запись документа в мире не проверялись. Назначение weapon.itemId и speaker.actor требует сверки при полном разборе UI/чат-механизма; здесь зафиксированы фактические аргументы. Не делается вывод о сбое всех Item-эффектов: проблема начала отсчёта воспроизведена для конкретного start=null.
+Итог серверной записи и доставка — [U005-02](../../../../cross-check-0002.md#u005-02); реальная форма/ChatMessage speaker и отсутствующее statusEffect.name — [U005-01](../../../../cross-check-0002.md#u005-01); scheduler для start=null — [U005-03](../../../../cross-check-0002.md#u005-03). weapon.itemId в data-атрибуте не используется callback, который читает option.value=weapon.id.
 
 ## Связанные проблемы
 
@@ -82,3 +82,13 @@ HTML option строится строкой: value=weapon.id, data-itemId=weapon
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.009 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.005
+
+2026-09-14; rusbar-main, 4686f913501b9c75082e79249364e40934f6a1da. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Actor-метод принимает общий список, оставляет temporaryItemImprovement и предлагает все weapon Items. После выбора копирует документ, но заменяет system тремя служебными флагами: modern system.changes теряется, модель получает []. origin указывает Actor, не выбранное оружие; start переносится без гарантии инициализации. createEmbeddedDocuments оружия не ожидается перед рендером/сообщением. Пустой принятый выбор без weapon приводит к чтению weapon.name; это отдельный вход от отмены prompt. Чат использует подготовленные temps, не подтверждённые созданные документы.
+
+Сопоставленные определения и потребители: [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../data/activeEffects/witcherTemporaryItemImprovementData.js.md), [module/item/witcherItem.js](../../item/witcherItem.js.md), [module/scripts/temporaryEffects/applyActiveEffect.js](../../scripts/temporaryEffects/applyActiveEffect.js.md), [templates/chat/item/appliedTemporaryItemImprovements.hbs](../../../templates/chat/item/appliedTemporaryItemImprovements.hbs.md), [module/setup/queries.js](../../setup/queries.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004005) — TASK-0004.005; процессы [R005-07](../../../../cross-check-0002.md#r005-07), [R005-08](../../../../cross-check-0002.md#r005-08), [R005-09](../../../../cross-check-0002.md#r005-09). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.
