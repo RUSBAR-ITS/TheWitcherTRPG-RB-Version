@@ -117,7 +117,7 @@ JSON не вводит собственных функций или обрабо
 
 ## Непроверенные участки и открытые вопросы
 
-Сценарий использует реальные BaseItem/BaseActor и системные модели, настоящий WitcherActiveEffect с фасадом ClientDocumentMixin/registry. Подготовка и фазы вызваны явно; полный клиентский lifecycle, updateDuration, _preCreate/_preUpdate, calculateAttackStats, браузер и сеть не запускались. fromUuid и индекс представлены Map/массивом настоящих документов; записи и чат перехватывались, броня и вес заданы нулём. Для подписи формулы список appliedEffects задан из реальных активных эффектов; полный бросок/чат не воспроизводился. Внешние модули, действующие packs/ и игровые правила не проверены. Прохождение локальных сценариев не доказывает сохранение в мире или HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. min1 срока отличается от отсутствия общего clamp характеристики; max/value/totalModifiers и priority сопоставлены. Остаются пользовательские изменения полей/приоритетов/фаз, другие сочетания эффектов и конкурентное heal до сохранения sterilized. Критерий: учитывать конкретный путь/фазу и prepared-поле, не сериализованный _source; новый порядок/потолок не вводится. Границы: [U012-04](../../../../cross-check-0002.md#u012-04) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -126,3 +126,17 @@ JSON не вводит собственных функций или обрабо
 ## История актуализации
 
 2026-09-13 — полная карточка в TASK-0003.059 на указанном коммите; исходник не изменён. [Протокол .059](../../../../review-log.md#task-0003059) содержит общие условия и индивидуальные проверки.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `nM9wqZXmrkFRRGTW` («Fractured Leg (Left - Treated)»): `complex/treated/leftLeg`; 1 ActiveEffect, 3 changes. Предшественник: `LF0C1HVgY4hNZOFE`; `followUp=null`: ручной `treat()` запрашивает удаление этого Item.
+
+Этот Item отсекается начальным фильтром `treatment=none`, но доступен через ссылку предыдущего состояния. При контрольном `BODY.max=5` срок 7 дней независимо от штрафов к `BODY.value`. Сверены адреса: `system.stats.spd.totalModifiers`, `skill.activeEffectModifiers`.
+
+Левая цепочка−3/−2/−1, правая−3/−2/−3 для SPD/dodge/athletics. Все три эффекта правой ноги названы Left; подпись формулы берётся из effect.name. Локация трёх правых Item корректна. Числовую асимметрию не исправляем по предположению.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Stabilized__LF0C1HVgY4hNZOFE.json](Fractured_Leg__Left___Stabilized__LF0C1HVgY4hNZOFE.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-15](../../../../cross-check-0002.md#r012-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

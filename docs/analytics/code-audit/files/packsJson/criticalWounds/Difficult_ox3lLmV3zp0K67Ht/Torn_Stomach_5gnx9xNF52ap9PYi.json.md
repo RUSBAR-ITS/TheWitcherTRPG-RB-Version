@@ -173,7 +173,7 @@ JSON-строка объекта успешно мигрирует; ADD прим
 
 ## Непроверенные участки и открытые вопросы
 
-Сценарий использует реальные BaseItem/BaseActor и системные модели, настоящий WitcherActiveEffect с фасадом ClientDocumentMixin/registry. Подготовка и фазы вызваны явно; полный клиентский lifecycle, updateDuration, _preCreate/_preUpdate, calculateAttackStats, браузер и сеть не запускались. fromUuid и индекс представлены Map/массивом настоящих документов; записи и чат перехватывались, броня и вес заданы нулём. Для подписи формулы список appliedEffects задан из реальных активных эффектов; полный бросок/чат не воспроизводился. У периодического обработчика настоящий DamageInstance, но Actor.applyDamage, получение torso и HTML/чат — фасады: конечные HP/броня не вычислялись. Внешние модули, действующие packs/ и игровые правила не проверены. Прохождение локальных сценариев не доказывает сохранение в мире или HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. ADD SchemaField, NumberField modifier, statuses и очередь начала хода различены. Исходные16 ADD объектов не достигают урона; override-копии только диагностические. Остаются одноимённые источники при удалении, start/expiry/updateDuration/registry, Combat/GM и конечные HP. .017/.018 сохраняют эти границы без исправления экспорта. Границы: [U012-05](../../../../cross-check-0002.md#u012-05) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -182,3 +182,17 @@ JSON-строка объекта успешно мигрирует; ADD прим
 ## История актуализации
 
 2026-09-13 — полная карточка в TASK-0003.060 на указанном коммите; исходник не изменён. [Протокол .060](../../../../review-log.md#task-0003060) содержит общие условия и индивидуальные проверки.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `5gnx9xNF52ap9PYi` («Torn Stomach»): `difficult/none/torso`; 1 ActiveEffect, 53 changes. Предшественник: нет; `followUp` ведёт к `EpF0FD1nFXJTJ5Tj` («Torn Stomach (Stabilized)», `stabilized/torso`).
+
+Этот Item участвует в исходных кандидатах индекса по сохранённой степени и локации. При контрольном `BODY.max=5` срок 10 дней независимо от штрафов к `BODY.value`. Сверены адреса: `skill.activeEffectModifiers`, `system.combatEffects.turnStartEffects.acid`.
+
+В каждом состоянии 52 адреса:51 объявленный навык получает−2/−2/−1, commonspeech отсутствует (настоящее поле commonsp). none дополнительно ADD объекта acid amount4/type acid/ignoreArmor строка true/spDamage строка 0. Миграция объекта не равна созданию записи; ADD блокируется 00328, а диагностический override достигал другой ошибки передачи type (смежная 00021). Общая связь periodic-записи с обработчиком разобрана в R012-24; status сам по себе не вызывает урон.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json](Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-19](../../../../cross-check-0002.md#r012-19), [R012-24](../../../../cross-check-0002.md#r012-24). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -65,7 +65,7 @@ JavaScript-функций и обработчиков файл не опреде
 
 ## Непроверенные участки и открытые вопросы
 
-Все 40 строк прочитаны. Не проверялись контекстное меню, реальный drag, перерисовка и конкурентное изменение двух полей одного Item.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. Producer, поля контекста и selectors сопоставлены; .013/.016 сводят листы, шаблоны, стили и en/ru. Остаются настоящий DialogV2, два одновременно открытых окна, inline-edit/drop и computedStyle/доставка чата. Старые DOM/HBS-фасады не доказывают браузерную доступность. Границы: [U012-03](../../../cross-check-0002.md#u012-03) и [U012-08](../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -108,3 +108,13 @@ lookup system.location:18 сопоставлен с двумя stabilized Diffic
 [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): location всех 22 Item совпадает со своей семьёй; семь цепочек имеют кнопочный маршрут treat через UUID, у Decapitation followUp=null. Сам treat не проверяет текст о невозможности стабилизации/лечения и в конечной ветви запрашивает delete. Весь пакет содержит пять переходов со сменой location ([issue-00325](../../../../../issues/potential/issue-00325.md)/[issue-00327](../../../../../issues/potential/issue-00327.md)); шаблон лишь выводит сохранённую локацию. Браузер и клики не запускались.
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Таблица читает documentsByType.criticalWound, локализует level/treatment/location, показывает daysHealed и disabled healingTime; кнопка несёт UUID, строка — локальный itemId. inline-edit передаёт значение поля Item.update. _onTreat вызывает fromUuidSync и system.treat без ожидания. Обработчик не вычисляет effects по имени/локации; отдельная регистрация отсутствующего remove-selector не доказывает доступный путь ошибки.
+
+Сопоставленные определения и потребители: [module/actor/sheets/mixins/criticalWoundMixin.js](../../module/actor/sheets/mixins/criticalWoundMixin.js.md), [module/data/item/criticalWoundData.js](../../module/data/item/criticalWoundData.js.md), [module/actor/sheets/mixins/itemMixin.js](../../module/actor/sheets/mixins/itemMixin.js.md), [templates/sheets/actor/partials/character/tab-effects.hbs](../sheets/actor/partials/character/tab-effects.hbs.md).
+
+[Протокол и границы](../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-04](../../../cross-check-0002.md#r012-04). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

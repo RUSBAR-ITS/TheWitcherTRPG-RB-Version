@@ -103,7 +103,7 @@ _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"co
 
 ## Непроверенные участки и открытые вопросы
 
-Полный клиент, браузер, серверный индекс, БД packs/, фактические записи/ошибки записи, все разновидности Actor и модули не проверены. В сценарии использован BaseItem с настоящей CriticalWoundData, не полный WitcherItem; его миграция сопоставлена статически. Реальный WitcherActiveEffect загружен с фасадом ClientDocumentMixin и registry; prepareBaseData и изменения выполнены, автоматический цикл подготовки/истечения клиента не запускался целиком. fromUuid, индекс, чат, create/update/delete и броня/вес представлены явно заданными фасадами. Игровые числа и формулировки не сверялись с книгами. Успешное локальное чтение не доказывает HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. HTML ограничения рук, зрения, спасбросков и протезов не исполняется автоматически. Наблюдаемые штрафы, повтор травмы, Deadly и лечебные бонусы не сверены с рулбуками; новая автоматизация и изменения условий требуют самостоятельного согласования. .017/.018 сохраняют технический охват. Границы: [U012-07](../../../../cross-check-0002.md#u012-07) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -112,3 +112,17 @@ _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"co
 ## История актуализации
 
 2026-09-12 — полное описание в TASK-0003.058 на указанном коммите; исходник не изменён. [Протокол TASK-0003.058](../../../../review-log.md#task-0003058) фиксирует доказательства и пределы проверки.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `rgRGVfLBlHMwUvGy` («Foreign Object (Treated)»): `simple/treated/torso`; 0 ActiveEffect, 0 changes. Предшественник: `fnYssldrMLVqbF22`; `followUp=null`: ручной `treat()` запрашивает удаление этого Item.
+
+Этот Item отсекается начальным фильтром `treatment=none`, но доступен через ссылку предыдущего состояния. При контрольном `BODY.max=5` срок 3 дней независимо от штрафов к `BODY.value`. Изменений числовых полей не задано; текст/статусы рассматриваются отдельно.
+
+Foreign Object описывает REC/лечение текстом и не содержит effects; none/stabilized рук тоже описывают ограничения без changes. Treated рук дают physique.activeEffectModifiers−1. Описание само не создаёт модификатор или условие выбора действия.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Stabilized__fnYssldrMLVqbF22.json](Foreign_Object__Stabilized__fnYssldrMLVqbF22.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-11](../../../../cross-check-0002.md#r012-11). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

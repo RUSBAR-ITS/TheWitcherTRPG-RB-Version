@@ -90,7 +90,7 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны все 107 строк. Жизненный цикл client Item, успешная запись followUp с эффектами, отказ серверных hooks, повторные клики/гонки и реальные компедиумы не запускались. Документ-ссылка может вести на любой Item; необходимость ограничения подтипом требует отдельного решения. Числа длительности описывают код, их соответствие рулбуку не оценивалось.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. Схема, fromUuid и запросы create/delete сопоставлены. Остаются существование мирового UUID, права/ошибки сервера, порядок сохранения, повторная подготовка Actor/AE и отдельно скопированные эффекты. Следующий критерий: отличать загруженный шаблон, запрос записи и подтверждённое состояние. Запуск мира или изменение доступа здесь не согласованы. Границы: [U012-01](../../../../cross-check-0002.md#u012-01) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -155,3 +155,25 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): 22 Item, семь цепочек из трёх состояний и конечная Decapitation; 14 followUp разрешаются. Исполнены все 22 treat: 14 create → delete и восемь только delete, с pending записями. Ветка deadly отсутствует в calculateHealingTime, экспортный 0 сохраняется. Восемь heal-сценариев подтверждают прирост дней treated и запрет автоматического treat для deadly даже при daysHealed=100; none/stabilized вызывают update({}). Ручной treat не проверяет возможность лечения по описанию. Повтор всего пакета: 94 Item, 62 перехода, пять смен location прежних Simple/Difficult, 31 тройная цепочка и один конечный none. [issue-00121](../../../../../../issues/potential/issue-00121.md)/[issue-00127](../../../../../../issues/potential/issue-00127.md) сохранены.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Девять полей: description HTML; criticalLevel/treatment/location — строки без choices в схеме; lesserEffect/sterilized — bool; daysHealed/healingTime — NumberField без min/integer; followUp — DocumentUUIDField типа Item. ID/имя/картинка/effects принадлежат Item ядра. htmlFields не объявлено и очищается. Тип UUID не проверяет существование адресата или subtype criticalWound.
+
+Индекс запрашивает четыре поля level/location/lesserEffect/treatment. Выбор none нужной степени/локации: единственный кандидат без развилки; несколько — first find lesserEffect по границе critEffect>4. Нет запроса RollTable. addItem при точном name/type вне storedItem без force создаёт запрос изменения quantity, которого у травмы нет; сброс treatment/days не реализован. Пустая выборка не защищена.
+
+При непустом followUp ожидается только загрузка; создание следующего Item и удаление текущего не ожидаются и не связаны успешным сохранением. Передаётся загруженный документ с его собственными effects, days и location. Пустая ссылка сразу удаляет Item, независимо от treatment/criticalLevel. Отказ fromUuid и разрешение в null имеют разные последующие пути; рабочий followUp не исправляет отсутствие ожидания.
+
+Срок берётся из BODY.max: Simple max(8−max,1), Complex max(12−max,1), Difficult max(15−max,1). Deadly/неизвестная степень отдельной ветви не имеют. Для standalone Item расчёт через Actor не выполняется. Минимум 1 относится к рассчитанному сроку этих трёх степеней, не является общим ограничением характеристик.
+
+Только treated увеличивает daysHealed на 1. Новая стерилизация при !this.sterilized добавляет ещё 2 и пишет sterilized=true. Сохранённый флаг предотвращает повторные +2 после следующей подготовки; переданные дни/флаг не переносятся автоматически между шаблонами treat. heal меняет prepared days до сохранения, но завершение update не ожидает.
+
+Проверка завершения находится вне treated-ветви: достаточные дни у none/stabilized тоже запускают treat. Else проверяет Object.keys(updates) как truthy-массив и может вызвать update({}). Deadly может накапливать дни treated, но автоматический treat запрещён независимо от 0/100 дней. Ручной treat остаётся доступен. Модель не ищет отдельно скопированные Actor.effects; исключение Item при следующей подготовке исключает его переносимые эффекты.
+
+HP ограничен min(value+totalRec,max), STA и Vigor устанавливаются в max. После этого все criticalWound получают текущий checkbox стерилизации без ожидания. recoverActor и callback не дают барьера сохранения всех дней/переходов, поскольку heal/treat не ожидают внутренние записи. Уведомление читает свежий isResting.
+
+Сопоставленные определения и потребители: [module/actor/sheets/mixins/criticalWoundMixin.js](../../actor/sheets/mixins/criticalWoundMixin.js.md), [module/actor/sheets/mixins/healMixin.js](../../actor/sheets/mixins/healMixin.js.md), [module/item/sheets/WitcherCriticalWoundSheet.js](../../item/sheets/WitcherCriticalWoundSheet.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/data/actor/templates/common/stats/statData.js](../actor/templates/common/stats/statData.js.md), [module/activeEffect/witcherActiveEffect.js](../../activeEffect/witcherActiveEffect.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-01](../../../../cross-check-0002.md#r012-01), [R012-03](../../../../cross-check-0002.md#r012-03), [R012-05](../../../../cross-check-0002.md#r012-05), [R012-06](../../../../cross-check-0002.md#r012-06), [R012-07](../../../../cross-check-0002.md#r012-07), [R012-08](../../../../cross-check-0002.md#r012-08), [R012-26](../../../../cross-check-0002.md#r012-26). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

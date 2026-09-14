@@ -113,7 +113,7 @@ origin указывает на существующий Item Simple по ID; с�
 
 ## Непроверенные участки и открытые вопросы
 
-Полный клиент, браузер, серверный индекс, БД packs/, фактические записи/ошибки записи, все разновидности Actor и модули не проверены. В сценарии использован BaseItem с настоящей CriticalWoundData, не полный WitcherItem; его миграция сопоставлена статически. Реальный WitcherActiveEffect загружен с фасадом ClientDocumentMixin и registry; prepareBaseData и изменения выполнены, автоматический цикл подготовки/истечения клиента не запускался целиком. fromUuid, индекс, чат, create/update/delete и броня/вес представлены явно заданными фасадами. Игровые числа и формулировки не сверялись с книгами. Успешное локальное чтение не доказывает HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. HTML ограничения рук, зрения, спасбросков и протезов не исполняется автоматически. Наблюдаемые штрафы, повтор травмы, Deadly и лечебные бонусы не сверены с рулбуками; новая автоматизация и изменения условий требуют самостоятельного согласования. .017/.018 сохраняют технический охват. Границы: [U012-07](../../../../cross-check-0002.md#u012-07) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -126,3 +126,17 @@ origin указывает на существующий Item Simple по ID; с�
 ## Уточнение TASK-0003.059
 
 2026-09-13 — исправлен номер строки корневого _id в таблице сущностей: ранее указывал на вложенный ActiveEffect. Сам ID, связи и выводы о поведении не изменены; исходный JSON сохранён. [Перекрёстная сверка](../../../../review-log.md#task-0003059).
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `oe4y6zxH2WUR9gSj` («Cracked Ribs (Treated)»): `simple/treated/torso`; 1 ActiveEffect, 1 changes. Предшественник: `2c4PbGjd0segbvmr`; `followUp=null`: ручной `treat()` запрашивает удаление этого Item.
+
+Этот Item отсекается начальным фильтром `treatment=none`, но доступен через ссылку предыдущего состояния. При контрольном `BODY.max=5` срок 3 дней независимо от штрафов к `BODY.value`. Сверены адреса: `system.derivedStats.enc.totalModifiers`.
+
+Jaw:10 навыковых штрафов−2→10×−1→3 магических×−1; lesserEffect отсутствует в source всех трёх и получает false. Ribs: BODY.totalModifiers−2/−1, treated ENC.totalModifiers−10. Scar:6 навыков−3/−1, treated seduction−1. BODY.value и BODY.max различены: срок Simple при max5 остаётся 3.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json](Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-10](../../../../cross-check-0002.md#r012-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

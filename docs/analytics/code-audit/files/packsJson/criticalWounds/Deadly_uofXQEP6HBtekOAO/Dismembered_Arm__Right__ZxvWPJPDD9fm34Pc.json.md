@@ -121,7 +121,7 @@ None содержит только эффект bleed; stabilized/treated не �
 
 ## Непроверенные участки и открытые вопросы
 
-Сценарий использует реальные BaseItem/BaseActor и системные модели, настоящий WitcherActiveEffect с фасадом ClientDocumentMixin/registry. Подготовка и фазы вызваны явно; полный клиентский lifecycle, updateDuration, _preCreate/_preUpdate, calculateAttackStats, браузер и сеть не запускались. fromUuid и индекс представлены Map/массивом настоящих документов; записи и чат перехватывались, броня и вес заданы нулём. Для подписи формулы список appliedEffects задан из реальных активных эффектов; полный бросок/чат не воспроизводился. У периодического обработчика настоящий DamageInstance, но Actor.applyDamage, получение torso и HTML/чат — фасады: конечные HP/броня не вычислялись. Внешние модули, действующие packs/ и игровые правила не проверены. Прохождение локальных сценариев не доказывает сохранение в мире или HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. HTML ограничения рук, зрения, спасбросков и протезов не исполняется автоматически. Наблюдаемые штрафы, повтор травмы, Deadly и лечебные бонусы не сверены с рулбуками; новая автоматизация и изменения условий требуют самостоятельного согласования. .017/.018 сохраняют технический охват. Границы: [U012-07](../../../../cross-check-0002.md#u012-07) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -130,3 +130,17 @@ None содержит только эффект bleed; stabilized/treated не �
 ## История актуализации
 
 2026-09-14 — полная карточка в TASK-0003.061 на указанном коммите; исходник не изменён. [Протокол .061](../../../../review-log.md#task-0003061) содержит общие условия и индивидуальные проверки.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `ZxvWPJPDD9fm34Pc` («Dismembered Arm (Right)»): `deadly/none/rightArm`; 1 ActiveEffect, 1 changes. Предшественник: нет; `followUp` ведёт к `hKgvgj4lJ74wPt8N` («Dismembered Arm (Right - Stabilized)», `stabilized/rightArm`).
+
+Этот Item участвует в исходных кандидатах индекса по сохранённой степени и локации. Расчёт срока оставляет экспортный `healingTime=0`; `heal` не завершает Deadly автоматически. Сверены адреса: `system.combatEffects.turnStartEffects.bleed`.
+
+Eye DEX−4/−2/−1, Awareness−5/−3/−1; change не содержит условия «зрение» из HTML. Руки содержат только bleed в none; остальные состояния без effects, ограничения/протезы текстовые. Три ADD bleed-объекта не создают записи. Нет автоматического завершения Deadly по дням; ручной переход доступен. Общая связь periodic-записи с обработчиком разобрана в R012-24; status сам по себе не вызывает урон.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Stabilized__hKgvgj4lJ74wPt8N.json](Dismembered_Arm__Right___Stabilized__hKgvgj4lJ74wPt8N.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-20](../../../../cross-check-0002.md#r012-20), [R012-24](../../../../cross-check-0002.md#r012-24). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

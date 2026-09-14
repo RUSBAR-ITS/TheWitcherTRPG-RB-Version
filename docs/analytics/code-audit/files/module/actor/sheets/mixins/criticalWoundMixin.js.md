@@ -70,7 +70,7 @@ Named export criticalWoundMixin присоединяется Object.assign к Wi
 
 ## Непроверенные участки и открытые вопросы
 
-Все 32 строки прочитаны. Браузерный порядок событий, перерисовка листа, повторные клики и разрешение UUID компедиума не проверялись. Отсутствующий _onCriticalWoundRemove описан как незавершённая ветвь без найденного текущего DOM-входа.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. 98 JSON и62 followUp проверены; состав установленного packs/ и серверный getIndex не читались. .017 сводит манифест/экспорты/таблицы, включая выбор кандидатов и пустые tailWing. Критерий: источник нужного Item и индексные поля подтверждены отдельно от текста RollTable и предположений по рулбуку. Границы: [U012-02](../../../../../cross-check-0002.md#u012-02) и [U012-08](../../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -95,3 +95,15 @@ Named export criticalWoundMixin присоединяется Object.assign к Wi
 Кнопка _onTreat адресует UUID конкретного Item; настоящий treat проверен на всех 24 Simple документах. Тип эффекта не вычисляется по имени травмы: следующий шаблон берётся из followUp. Pending create/delete сохраняют ранее описанную границу ожидания.
 
 [Карточки Simple](../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Индекс запрашивает четыре поля level/location/lesserEffect/treatment. Выбор none нужной степени/локации: единственный кандидат без развилки; несколько — first find lesserEffect по границе critEffect>4. Нет запроса RollTable. addItem при точном name/type вне storedItem без force создаёт запрос изменения quantity, которого у травмы нет; сброс treatment/days не реализован. Пустая выборка не защищена.
+
+Таблица читает documentsByType.criticalWound, локализует level/treatment/location, показывает daysHealed и disabled healingTime; кнопка несёт UUID, строка — локальный itemId. inline-edit передаёт значение поля Item.update. _onTreat вызывает fromUuidSync и system.treat без ожидания. Обработчик не вычисляет effects по имени/локации; отдельная регистрация отсутствующего remove-selector не доказывает доступный путь ошибки.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md), [module/actor/sheets/WitcherActorSheetV1.js](../WitcherActorSheetV1.js.md), [module/actor/sheets/mixins/itemMixin.js](itemMixin.js.md), [module/data/item/criticalWoundData.js](../../../data/item/criticalWoundData.js.md), [templates/partials/crit-wounds-table.hbs](../../../../templates/partials/crit-wounds-table.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-03](../../../../../cross-check-0002.md#r012-03), [R012-04](../../../../../cross-check-0002.md#r012-04). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -115,7 +115,7 @@ origin ссылается на мировой Item: его наличие не �
 
 ## Непроверенные участки и открытые вопросы
 
-Полный клиент, браузер, серверный индекс, БД packs/, фактические записи/ошибки записи, все разновидности Actor и модули не проверены. В сценарии использован BaseItem с настоящей CriticalWoundData, не полный WitcherItem; его миграция сопоставлена статически. Реальный WitcherActiveEffect загружен с фасадом ClientDocumentMixin и registry; prepareBaseData и изменения выполнены, автоматический цикл подготовки/истечения клиента не запускался целиком. fromUuid, индекс, чат, create/update/delete и броня/вес представлены явно заданными фасадами. Игровые числа и формулировки не сверялись с книгами. Успешное локальное чтение не доказывает HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. min1 срока отличается от отсутствия общего clamp характеристики; max/value/totalModifiers и priority сопоставлены. Остаются пользовательские изменения полей/приоритетов/фаз, другие сочетания эффектов и конкурентное heal до сохранения sterilized. Критерий: учитывать конкретный путь/фазу и prepared-поле, не сериализованный _source; новый порядок/потолок не вводится. Границы: [U012-04](../../../../cross-check-0002.md#u012-04) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -128,3 +128,17 @@ origin ссылается на мировой Item: его наличие не �
 ## Уточнение TASK-0003.059
 
 2026-09-13 — исправлен номер строки корневого _id в таблице сущностей: ранее указывал на вложенный ActiveEffect. Сам ID, связи и выводы о поведении не изменены; исходный JSON сохранён. [Перекрёстная сверка](../../../../review-log.md#task-0003059).
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `f7NaW1AMnrSLGkd3` («Sprained Leg (Left - Treated)»): `simple/treated/leftArm`; 1 ActiveEffect, 1 changes. Предшественник: `eblucqnyOS7lb5E5`; `followUp=null`: ручной `treat()` запрашивает удаление этого Item.
+
+Этот Item отсекается начальным фильтром `treatment=none`, но доступен через ссылку предыдущего состояния. При контрольном `BODY.max=5` срок 3 дней независимо от штрафов к `BODY.value`. Сверены адреса: `system.stats.spd.totalModifiers`.
+
+Штраф SPD−2/−1/−1, навыки−2/−1 в none/stabilized; четыре явных priority0 на SPD у stabilized/treated. Treated левой ноги хранит leftArm: список читает его, но SPD-change не зависит от location. Две исходные ноги при базе 5 дали SPD1 и навыки−4 в .058; общий clamp1 кодом не задан.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json](Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-12](../../../../cross-check-0002.md#r012-12). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

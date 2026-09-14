@@ -122,7 +122,7 @@ STA.max до initial равен 0 в этом свежем Actor; множите
 
 ## Непроверенные участки и открытые вопросы
 
-Сценарий использует реальные BaseItem/BaseActor и системные модели, настоящий WitcherActiveEffect с фасадом ClientDocumentMixin/registry. Подготовка и фазы вызваны явно; полный клиентский lifecycle, updateDuration, _preCreate/_preUpdate, calculateAttackStats, браузер и сеть не запускались. fromUuid и индекс представлены Map/массивом настоящих документов; записи и чат перехватывались, броня и вес заданы нулём. Для подписи формулы список appliedEffects задан из реальных активных эффектов; полный бросок/чат не воспроизводился. У периодического обработчика настоящий DamageInstance, но Actor.applyDamage, получение torso и HTML/чат — фасады: конечные HP/броня не вычислялись. Внешние модули, действующие packs/ и игровые правила не проверены. Прохождение локальных сценариев не доказывает сохранение в мире или HTTP-доступ службы.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. ADD SchemaField, NumberField modifier, statuses и очередь начала хода различены. Исходные16 ADD объектов не достигают урона; override-копии только диагностические. Остаются одноимённые источники при удалении, start/expiry/updateDuration/registry, Combat/GM и конечные HP. .017/.018 сохраняют эти границы без исправления экспорта. Границы: [U012-05](../../../../cross-check-0002.md#u012-05) и [U012-08](../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -131,3 +131,17 @@ STA.max до initial равен 0 в этом свежем Actor; множите
 ## История актуализации
 
 2026-09-14 — полная карточка в TASK-0003.061 на указанном коммите; исходник не изменён. [Протокол .061](../../../../review-log.md#task-0003061) содержит общие условия и индивидуальные проверки.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item `O8EM4quPU4A5VOHH` («Heart Damage (Stabilized)»): `deadly/stabilized/torso`; 1 ActiveEffect, 3 changes. Предшественник: `PVraD16y2VWkOH6J`; `followUp` ведёт к `Me9fgalLrB0i9Z2O` («Heart Damage (Treated)», `treated/torso`).
+
+Этот Item отсекается начальным фильтром `treatment=none`, но доступен через ссылку предыдущего состояния. Расчёт срока оставляет экспортный `healingTime=0`; `heal` не завершает Deadly автоматически. Сверены адреса: `system.stats.body.max`, `system.stats.spd.max`, `system.derivedStats.sta.max`.
+
+Heart none/stabilized: BODY/SPD.max×0.25/×0.5, STA.max тоже; calculateStat вычисляет value отдельно, calculateDerivedStat перезаписывает STA.max. Treated: числовой ADD2 к bleed.damage.modifier; при пустой карте запись не появляется, при существующей amount2 даёт modifier2 и запрос урона 4. Spetic: INT/WILL/REF/DEX−3/−1/нет, STA.max×0.25/×0.5, treated STA.totalModifiers−5; poison только none. Death save Heart задан текстом.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json](Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json.md), [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage_PVraD16y2VWkOH6J.json](Heart_Damage_PVraD16y2VWkOH6J.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-22](../../../../cross-check-0002.md#r012-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

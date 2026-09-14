@@ -80,7 +80,7 @@ const DialogV2 захватывается при импорте. Named export he
 
 ## Непроверенные участки и открытые вопросы
 
-Прочитаны все 123 строки. Само открытие окон Foundry, конфликт со сторонними окнами, полный отдых в мире, серверные отказы и доступ синтетических Actor не запускались. Игровая обоснованность бонусов +2/+3/+2 не проверялась по рулбуку.
+Текущая сверка охватила исходник, описанные поля и конкретных потребителей; прежние результаты выше сохраняют даты своих опытов. Producer, поля контекста и selectors сопоставлены; .013/.016 сводят листы, шаблоны, стили и en/ru. Остаются настоящий DialogV2, два одновременно открытых окна, inline-edit/drop и computedStyle/доставка чата. Старые DOM/HBS-фасады не доказывают браузерную доступность. Границы: [U012-03](../../../../../cross-check-0002.md#u012-03) и [U012-08](../../../../../cross-check-0002.md#u012-08).
 
 ## Связанные проблемы
 
@@ -111,3 +111,19 @@ const DialogV2 захватывается при импорте. Named export he
 recoverActor:88 вызывает heal каждого criticalWound без ожидания. Настоящий heal проверен на Foreign Object: treated +1 день, новая стерилизация +2 дополнительно, достижение healingTime=3 инициирует удаление; none/stabilized направляют update({}) при нулевых днях. Внешний диалог отдыха/чат не запускались; issue-00127 уточнена.
 
 [Карточки Simple](../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Сквозная сверка TASK-0004.012
+
+2026-09-14; rusbar-main, a853fc2ff721e5d33b2716081c657bd92d62d86b. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Старт totalRec=floor(REC.max/2); отдых заменяет на REC.max, стерилизация+2, Healing Hand+3, tent+2. Четыре фиксированных ID ищутся глобальным document, а не окном; listeners двух окон могут попадать в первое. Снятие флагов не сбрасывает dialogData.isResting/isSterilized; Hand/tent численно действуют, но флаги контекста не обновляются. CSS подсказки не исправляет состояние producer.
+
+HP ограничен min(value+totalRec,max), STA и Vigor устанавливаются в max. После этого все criticalWound получают текущий checkbox стерилизации без ожидания. recoverActor и callback не дают барьера сохранения всех дней/переходов, поскольку heal/treat не ожидают внутренние записи. Уведомление читает свежий isResting.
+
+В чат идёт потенциальный totalRec, не фактический прирост HP; постоянный daysHealed1 не итог каждого Item. actualWoundList отсутствует и блок дней скрыт. Старый isResting послеon→off даёт текст отдыха при уведомлении active. Шаблон выводит контекст, не ждёт документы и не рассчитывает лечение.
+
+Примесь Actor передаёт this.actor, хотя this уже Actor; отдых ищет game.actors.getName(this.actor.name). В первом случае возможен fallback на пользователя/токен, во втором — одноимённый документ вместо текущего. Текст actor.name в HBS не исправляет speaker. ChatMessage.create не ожидается.
+
+Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../data/item/criticalWoundData.js.md), [templates/dialog/heal/heal-rest.hbs](../../../../templates/dialog/heal/heal-rest.hbs.md), [templates/chat/heal/resting-status.hbs](../../../../templates/chat/heal/resting-status.hbs.md), [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md), [templates/partials/character-header.hbs](../../../../templates/partials/character-header.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-25](../../../../../cross-check-0002.md#r012-25), [R012-26](../../../../../cross-check-0002.md#r012-26), [R012-27](../../../../../cross-check-0002.md#r012-27), [R012-29](../../../../../cross-check-0002.md#r012-29). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
