@@ -1,0 +1,341 @@
+{
+  "purpose": "expected_examples_not_cli_execution",
+  "cases": [
+    {
+      "id": "EX-01",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "навык",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000007"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-02",
+      "iq": [
+        "IQ-01",
+        "IQ-02"
+      ],
+      "command": [
+        "find",
+        "value",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000004",
+          "ent-000009"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-03",
+      "iq": [
+        "IQ-02"
+      ],
+      "command": [
+        "find",
+        "activeEffectModifiers",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000012"
+        ],
+        "coverage": "partial",
+        "note": "В statData.js такого поля нет."
+      }
+    },
+    {
+      "id": "EX-04",
+      "iq": [
+        "IQ-02"
+      ],
+      "command": [
+        "show",
+        "ent-000004"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000004"
+        ],
+        "location": {
+          "source": "src-000090",
+          "symbol": "stat().value",
+          "line_start": 7,
+          "line_end": 7
+        },
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-05",
+      "iq": [
+        "IQ-03",
+        "IQ-05"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000018",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "relation_ids": [
+          "rel-000051"
+        ],
+        "from_ids": [
+          "ent-000032"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-06",
+      "iq": [
+        "IQ-04"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000016",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "relation_ids": [
+          "rel-000049",
+          "rel-000050"
+        ],
+        "to_ids": [
+          "ent-000009",
+          "ent-000012"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-07",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000012",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "relation_ids": [
+          "rel-000050"
+        ],
+        "reader_ids": [
+          "ent-000016"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-08",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000012",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000086"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope",
+        "coverage": "partial",
+        "note": "Область только места использования Skill; это не отсутствие писателей во всей системе."
+      }
+    },
+    {
+      "id": "EX-09",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "processes",
+        "ent-000016"
+      ],
+      "expected": {
+        "process_ids": [
+          "proc-000001"
+        ],
+        "step_ids": [
+          "proc-000001/read",
+          "proc-000001/return"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-10",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "processes",
+        "src-000047"
+      ],
+      "expected": {
+        "process_ids": [],
+        "empty_reason": "not_indexed",
+        "coverage": "not_indexed"
+      }
+    },
+    {
+      "id": "EX-11",
+      "iq": [
+        "IQ-08"
+      ],
+      "command": [
+        "details",
+        "ent-000010"
+      ],
+      "expected": {
+        "ref_paths": [
+          "docs/analytics/code-audit/files/module/data/actor/templates/common/skills/skillData.js.md",
+          "docs/issues/potential/issue-00015.md"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-12",
+      "iq": [
+        "IQ-08"
+      ],
+      "command": [
+        "show",
+        "ent-000035"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000035"
+        ],
+        "resolution": "dynamic",
+        "gaps": [
+          "unresolved_target"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-13",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "value",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000004"
+        ],
+        "total": 2,
+        "truncated": true,
+        "next_offset": 1,
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-14",
+      "iq": [
+        "IQ-04",
+        "IQ-08"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000032",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "relation_ids": [
+          "rel-000051",
+          "rel-000053"
+        ],
+        "to_ids": [
+          "ent-000018",
+          "ent-000034"
+        ],
+        "gaps": [
+          "external_boundary"
+        ],
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-15",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "process",
+        "proc-000002"
+      ],
+      "expected": {
+        "process_ids": [
+          "proc-000002"
+        ],
+        "process_coverage": "partial",
+        "exit_kind": "scope_boundary",
+        "coverage": "partial"
+      }
+    },
+    {
+      "id": "EX-16",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "__no_such_name__",
+        "--match",
+        "exact",
+        "--scope",
+        "src-000086"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope",
+        "coverage": "partial"
+      }
+    }
+  ]
+}

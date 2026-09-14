@@ -1,0 +1,59 @@
+{
+  "format_version": 1,
+  "dataset_id": "task-0006.001-seed",
+  "purpose": "proposal_examples",
+  "approval": "pending",
+  "snapshot": {
+    "date": "2026-09-14",
+    "branch": "rusbar-main",
+    "head": "bc0863c89f38833280caa2cfdb9a28b6ef80b965",
+    "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
+  },
+  "scope": {
+    "registry": "docs/analytics/code-audit/registry.md",
+    "registry_sha256": "f5ab0b1453d786ea13e84966f1a9f03950d3f2beb7d6dfb6f2a8ac009239ff28",
+    "source_count": 615,
+    "selected_sources": [
+      "src-000090",
+      "src-000086",
+      "src-000084"
+    ],
+    "semantic_scope": "Примеры трёх моделей; остальные источники только в каталоге.",
+    "global_coverage": "partial"
+  },
+  "parts": {
+    "sources": [
+      "sources.jsonl"
+    ],
+    "entities": [
+      "examples/entities.jsonl"
+    ],
+    "relations": [
+      "examples/relations.jsonl"
+    ],
+    "processes": [
+      "examples/processes.jsonl"
+    ]
+  },
+  "query_examples": "examples/queries.json",
+  "dependencies": {
+    "foundry": {
+      "version": "14.367.0",
+      "package_sha256": "cd5edf1856bdf4d66f00d2574aa03cd2ccdc3fc4df07f5fc9abf0411b917d4f5",
+      "observed_package_path": "/opt/foundryvtt/package.json",
+      "coverage": "boundary_only"
+    }
+  },
+  "reference_hashes": {
+    "docs/analytics/code-audit/cross-check-0002.md": "59eefefaba927f7c40562df488f138aac4458ae3b99a94c4d0130194dcfee382",
+    "docs/issues/potential/issue-00004.md": "f52e9d6151ef626dfde1f8a85cbd9a48bca1ee55a5f44f34a656660b7853d313",
+    "docs/issues/potential/issue-00015.md": "929d09b62873d79a5b642813712365406c3a489018b02262c4d4930ccaa45e9a"
+  },
+  "next_ids": {
+    "source": 616,
+    "entity": 36,
+    "relation": 54,
+    "process": 3
+  },
+  "retired_ids": []
+}
