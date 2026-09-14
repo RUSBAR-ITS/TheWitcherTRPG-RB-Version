@@ -70,7 +70,7 @@ SpellData и RitualData включают TemplateProperties через EmbeddedD
 
 ## Непроверенные участки и открытые вопросы
 
-Прочитаны все 13 строк. Интерпретация размера как радиуса/диаметра и правила длительности по книгам не определяются этой схемой. Миграции находятся в родительских моделях и отдельно описаны в .021.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Схема не определяет радиус/диаметр, бессрочность, целевые сцены и единицы текста duration; живое размещение/удаление не выполнялось. Остаток: [U009-04](../../../../../../cross-check-0002.md#u009-04), [U009-05](../../../../../../cross-check-0002.md#u009-05), [U009-07](../../../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -81,3 +81,13 @@ SpellData и RitualData включают TemplateProperties через EmbeddedD
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ef8117ba6e5a184989e65761d47a068381056e4a`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003022) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четыре поля templateProperties сопоставлены с переносом Spell/Ritual, актуальной формой Spell и устаревшими путями Ritual/общего конфигуратора. create/type/size управляют guard; размер идёт в геометрию, visualEffectDuration — в отдельный секундный таймер. flags.duration вычисляется другим путём из текста магии.
+
+Сопоставленные определения и потребители: [module/data/item/spellData.js](../../spellData.js.md), [module/data/item/ritualData.js](../../ritualData.js.md), [module/data/item/mixin/spellRegionMixin.js](../../mixin/spellRegionMixin.js.md), [module/item/sheets/WitcherSpellSheet.js](../../../../item/sheets/WitcherSpellSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](../../../../item/sheets/WitcherRitualSheet.js.md), [templates/sheets/item/spell-sheet.hbs](../../../../../templates/sheets/item/spell-sheet.hbs.md), [templates/sheets/item/ritual-sheet.hbs](../../../../../templates/sheets/item/ritual-sheet.hbs.md), [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-02](../../../../../../cross-check-0002.md#r009-02), [R009-15](../../../../../../cross-check-0002.md#r009-15), [R009-17](../../../../../../cross-check-0002.md#r009-17), [R009-21](../../../../../../cross-check-0002.md#r009-21). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

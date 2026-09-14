@@ -75,7 +75,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 56 строк прочитаны. Не проверялись сохранение/слияние поведения с существующей коллекцией, загрузка регионов из БД, несколько GM и фактический вызов пользовательских макросов.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Не проверены merge сохранённой коллекции RegionBehavior, живой query, права и реальное исполнение Macro; присланный массив не равен конечной коллекции. Остаток: [U009-04](../../../../../../cross-check-0002.md#u009-04), [U009-06](../../../../../../cross-check-0002.md#u009-06), [U009-08](../../../../../../cross-check-0002.md#u009-08). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -86,3 +86,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `ef8117ba6e5a184989e65761d47a068381056e4a`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003022) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Прослежены SchemaField→миграция→UUID adapter→GM payload behaviors. Присваивание прежнего tokenPreMove перезаписывает новый ключ; ошибка пустого behaviours перехватывается migrateDataSafe. Оба адаптера завершаются до завершения update/query. У player разрешённое имя находится глубже уровней поиска query, поэтому true не доказывает вызов.
+
+Сопоставленные определения и потребители: [module/data/item/templates/regions/regionBehavioursData.js](regionBehavioursData.js.md), [module/setup/queries.js](../../../../setup/queries.js.md), [module/data/item/spellData.js](../../spellData.js.md), [module/data/item/ritualData.js](../../ritualData.js.md), [module/data/item/mixin/spellRegionMixin.js](../../mixin/spellRegionMixin.js.md), [templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs](../../../../../templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs.md), [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-18](../../../../../../cross-check-0002.md#r009-18), [R009-19](../../../../../../cross-check-0002.md#r009-19), [R009-20](../../../../../../cross-check-0002.md#r009-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

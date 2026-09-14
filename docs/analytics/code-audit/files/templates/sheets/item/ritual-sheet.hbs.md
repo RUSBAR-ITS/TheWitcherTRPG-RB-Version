@@ -72,7 +72,7 @@ PARTS.main WitcherRitualSheet. Контекст содержит item.system и 
 
 ## Непроверенные участки и открытые вопросы
 
-Все 161 строка прочитана. Изменение массива в активном мире и взаимодействие нескольких окон не запускались.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Внешний UUID-кеш, несколько окон, запись массивов и региональная форма в живом клиенте не запускались. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-04](../../../../cross-check-0002.md#u009-04), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -93,3 +93,13 @@ PARTS.main WitcherRitualSheet. Контекст содержит item.system и 
 Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003022).
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Ritual HBS использует собственный header, цену/STA/preparation/DC, старые root-параметры области и два prepared component-list. Строки хранят component.item.uuid для blur/remove; fallback и дубликаты ломают ожидаемую идентичность. Текст components отделён от двух UUID-массивов; img не имеет editImage.
+
+Сопоставленные определения и потребители: [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [module/setup/settings.js](../../../module/setup/settings.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js.md), [module/item/sheets/WitcherRitualSheet.js](../../../module/item/sheets/WitcherRitualSheet.js.md), [module/data/item/ritualData.js](../../../module/data/item/ritualData.js.md), [module/data/item/templates/componentData.js](../../../module/data/item/templates/componentData.js.md), [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-03](../../../../cross-check-0002.md#r009-03), [R009-04](../../../../cross-check-0002.md#r009-04), [R009-05](../../../../cross-check-0002.md#r009-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

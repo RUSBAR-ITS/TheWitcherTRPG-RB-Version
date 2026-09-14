@@ -67,7 +67,7 @@ PARTS.main WitcherHexSheet. Контекст — item, selects.danger, showConfi
 
 ## Непроверенные участки и открытые вопросы
 
-Все 66 строк прочитаны. Фактическая запись/перерисовка, права и действие порчи не проверялись.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Реальный submit/перерисовка/FilePicker и снятие порчи не проверены. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-03](../../../../cross-check-0002.md#u009-03), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ PARTS.main WitcherHexSheet. Контекст — item, selects.danger, showConfi
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003021) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Hex HBS использует own header, text stamina, danger и описания effect/liftRequirement; у img нет editImage. Сопоставлены общий контекст, варианты Danger*, модель и дальнейший cast. Отображение требования снятия не вводит автоматического обработчика этого правила.
+
+Сопоставленные определения и потребители: [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [module/setup/settings.js](../../../module/setup/settings.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js.md), [module/item/sheets/WitcherHexSheet.js](../../../module/item/sheets/WitcherHexSheet.js.md), [module/data/item/hexData.js](../../../module/data/item/hexData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-03](../../../../cross-check-0002.md#r009-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

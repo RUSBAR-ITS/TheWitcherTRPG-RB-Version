@@ -71,7 +71,7 @@ PARTS.main WitcherSpellSheet загружает HBS, который включа
 
 ## Непроверенные участки и открытые вопросы
 
-Прочитан весь 125-строчный файл. Изменение checkbox и успешное сохранение в настоящем окне не проверены; полный процесс боя отдельно.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Настоящее сохранение checkbox/формул, живые Region/ресурсы и полный боевой цикл не проверены. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-02](../../../../cross-check-0002.md#u009-02), [U009-04](../../../../cross-check-0002.md#u009-04), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@ PARTS.main WitcherSpellSheet загружает HBS, который включа
 Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003022).
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Spell HBS подключает header и записывает вложенный templateProperties, в отличие от Ritual. Четыре независимых флага области/урона/щита/лечения открывают разные поля; default формулы в input не является валидацией выражения. Дальнейшее лечение/щит разобраны до кнопок и числового consumer.
+
+Сопоставленные определения и потребители: [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [module/setup/settings.js](../../../module/setup/settings.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js.md), [module/item/sheets/WitcherSpellSheet.js](../../../module/item/sheets/WitcherSpellSheet.js.md), [module/data/item/spellData.js](../../../module/data/item/spellData.js.md), [templates/partials/spell-header.hbs](../../partials/spell-header.hbs.md), [module/data/item/templates/regions/templatePropertiesData.js](../../../module/data/item/templates/regions/templatePropertiesData.js.md), [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-03](../../../../cross-check-0002.md#r009-03), [R009-12](../../../../cross-check-0002.md#r009-12). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -72,7 +72,7 @@ registerSheets регистрирует лист по умолчанию для 
 
 ## Непроверенные участки и открытые вопросы
 
-Все 65 строк прочитаны. Живой submit, FilePicker и регионы не запускались; дополнительные данные миров/модулей вне области поиска.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Не проверены живой submit/FilePicker, layout, создание Region и внешние расширения. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-04](../../../../cross-check-0002.md#u009-04), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -93,3 +93,13 @@ registerSheets регистрирует лист по умолчанию для 
 Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../data/item/templates/regions/templatePropertiesData.js.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003022).
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+SpellSheet связан с регистрацией spell, собственным конфигуратором и spell-sheet/header. createSelects содержит четыре class, уровни, источники, домены и пять типов области. Водный source Water имеет отдельный дефект en/ru; актуальные вложенные поля HBS сопоставлены с моделью и guard создания.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherItemSheet.js](WitcherItemSheet.js.md), [module/setup/config.js](../../setup/config.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](configurations/WitcherSpellConfigurationSheet.js.md), [templates/sheets/item/spell-sheet.hbs](../../../templates/sheets/item/spell-sheet.hbs.md), [module/data/item/spellData.js](../../data/item/spellData.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [templates/partials/spell-header.hbs](../../../templates/partials/spell-header.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-01](../../../../cross-check-0002.md#r009-01), [R009-03](../../../../cross-check-0002.md#r009-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

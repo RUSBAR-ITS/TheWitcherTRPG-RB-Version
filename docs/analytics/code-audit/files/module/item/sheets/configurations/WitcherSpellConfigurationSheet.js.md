@@ -63,7 +63,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 11 строк прочитаны. Полный браузерный рендер частей, сохранение и работы ActiveEffect не проверены заново.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Браузерные PARTS/submit, создание документов ActiveEffect и их доставку нельзя считать исполненными по вычисленным спискам вкладок. Остаток: [U009-01](../../../../../cross-check-0002.md#u009-01), [U009-03](../../../../../cross-check-0002.md#u009-03), [U009-04](../../../../../cross-check-0002.md#u009-04). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -74,3 +74,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003021) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Конфигуратор заменяет только PARTS.general на spellGeneral; остальные вкладки и CRUD воздействий наследует от PropertiesConfiguration. Поэтому ошибочный root createTemplate для region PART остаётся в родителе. Ключи target/ID HBS согласованы со словарями SpellData, отдельная вкладка Item.effects относится к ActiveEffect.
+
+Сопоставленные определения и потребители: [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](WitcherPropertiesConfigurationSheet.js.md), [module/item/sheets/configurations/WitcherConfigurationSheet.js](WitcherConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md), [module/data/item/spellData.js](../../../data/item/spellData.js.md), [module/item/sheets/WitcherSpellSheet.js](../WitcherSpellSheet.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-03](../../../../../cross-check-0002.md#r009-03), [R009-06](../../../../../cross-check-0002.md#r009-06). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

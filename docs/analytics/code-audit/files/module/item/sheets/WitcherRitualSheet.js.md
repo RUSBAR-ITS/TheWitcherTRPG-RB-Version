@@ -75,7 +75,7 @@ Drop/edit мутируют подготовленный массив самог�
 
 ## Непроверенные участки и открытые вопросы
 
-Все 82 строки прочитаны. Не установлено поведение конкурентных правок/пакетов и восстановление интерфейса после отказа записи. Запись игровых документов не выполнялась.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Реальные drop/submit, конкурентные окна, packs и восстановление при отказе записи не запускались. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -96,3 +96,13 @@ Drop/edit мутируют подготовленный массив самог�
 Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../data/item/templates/regions/templatePropertiesData.js.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003022).
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+RitualSheet связывает общий контекст, level/template selects и форму с двумя массивами компонентов. Сопоставлены DOM dataset, выбор main/alternate, drop любого Item, edit первого UUID и remove всех совпадений. prepared mutation до не ожидаемого update отделена от фактической записи; старые поля области принадлежат HBS.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherItemSheet.js](WitcherItemSheet.js.md), [module/setup/config.js](../../setup/config.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs.md), [module/data/item/ritualData.js](../../data/item/ritualData.js.md), [module/data/item/templates/componentData.js](../../data/item/templates/componentData.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-01](../../../../cross-check-0002.md#r009-01), [R009-03](../../../../cross-check-0002.md#r009-03), [R009-05](../../../../cross-check-0002.md#r009-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

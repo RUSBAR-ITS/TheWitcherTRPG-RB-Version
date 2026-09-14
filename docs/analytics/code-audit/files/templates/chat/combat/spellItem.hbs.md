@@ -74,7 +74,7 @@ selfEffects здесь ожидает массив {effect,statusEffect}; в а�
 
 ## Непроверенные участки и открытые вопросы
 
-Файлы порции прочитаны целиком. Проверка: Foundry 14.367.0, Node 24.16.0, реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9, expandObject и core Localization с fallback. Диалог, Application/DOM, вывод Roll.toAnchor, запись Actor/Item/ChatMessage, UUID resolver, создание/clone ActiveEffect, canvas и query заменены фасадами. Реальные браузер, HTTP, БД, компедиумы, сетевые клиенты и жизненный цикл эффекта не запускались. Текстовые формулы проверены как поведение кода, без выбора правил книг.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Полная карточка этого HBS и полный cast существуют с .039. Живое сообщение, повторные клики, изменение ресурсов/AE и DOM lifecycle не исполнялись заново. Остаток: [U009-02](../../../../cross-check-0002.md#u009-02), [U009-03](../../../../cross-check-0002.md#u009-03), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -93,3 +93,13 @@ selfEffects здесь ожидает массив {effect,statusEffect}; в а�
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../../module/data/chatMessage/damageMessageData.js), [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js), [module/scripts/chat.js](../../../../../../../module/scripts/chat.js). Полные новые описания: [attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js.md), [damageMessageData.js](../../../module/data/chatMessage/damageMessageData.js.md), [damageData.js](../../../module/data/chatMessage/templates/damageData.js.md), [chat.js](../../../module/scripts/chat.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Producer cast готовит HBS до броска; в сообщении видны formula/heal/shield и duration, но typed damageData хранит не все эти значения. Кнопки читают HTML-атрибуты, поэтому остаются и при fumble. Основные компоненты выводятся циклом, альтернативный массив — напрямую; selfEffects-display ожидает отдельный legacy-массив.
+
+Сопоставленные определения и потребители: [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js.md), [module/data/item/spellData.js](../../../module/data/item/spellData.js.md), [module/data/item/hexData.js](../../../module/data/item/hexData.js.md), [module/data/item/ritualData.js](../../../module/data/item/ritualData.js.md), [module/scripts/chat.js](../../../module/scripts/chat.js.md), [module/scripts/combat/combat.js](../../../module/scripts/combat/combat.js.md), [module/scripts/statusEffects/applyStatusEffect.js](../../../module/scripts/statusEffects/applyStatusEffect.js.md), [module/scripts/helper.js](../../../module/scripts/helper.js.md), [module/chatMessage/chatMessageData.js](../../../module/chatMessage/chatMessageData.js.md), [module/data/chatMessage/attackMessageData.js](../../../module/data/chatMessage/attackMessageData.js.md), [module/data/chatMessage/templates/damageData.js](../../../module/data/chatMessage/templates/damageData.js.md), [module/setup/config.js](../../../module/setup/config.js.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-11](../../../../cross-check-0002.md#r009-11), [R009-12](../../../../cross-check-0002.md#r009-12), [R009-13](../../../../cross-check-0002.md#r009-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

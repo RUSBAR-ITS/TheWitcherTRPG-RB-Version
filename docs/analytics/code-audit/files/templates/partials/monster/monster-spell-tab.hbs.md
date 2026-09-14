@@ -67,7 +67,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файлы порции прочитаны целиком. Проверка: Foundry 14.367.0, Node 24.16.0, реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9, expandObject и core Localization с fallback. Диалог, Application/DOM, вывод Roll.toAnchor, запись Actor/Item/ChatMessage, UUID resolver, создание/clone ActiveEffect, canvas и query заменены фасадами. Реальные браузер, HTTP, БД, компедиумы, сетевые клиенты и жизненный цикл эффекта не запускались. Текстовые формулы проверены как поведение кода, без выбора правил книг.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Не запускались прежний V1-лист, сохранение inline STA/pannels и реальные переключатели. Граница текущего потребителя установлена чтением. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-07](../../../../cross-check-0002.md#u009-07), [U009-08](../../../../cross-check-0002.md#u009-08). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `c598d74e34f4be51535de78b38f0601c286c5407`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003039) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Старый monster-spell-tab сопоставлен с literal включением монолитного monster-sheet и preload. Его шесть таблиц используют прежние pannels и inline-edit; текущий WitcherMonsterSheet выбирает общий tab-magic. Наличие HBS в preload не подтверждает, что этот путь активен у современного листа.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md), [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js.md), [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js.md), [module/data/actor/templates/character/pannelsData.js](../../../module/data/actor/templates/character/pannelsData.js.md), [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js.md), [module/data/actor/templates/common/focusData.js](../../../module/data/actor/templates/common/focusData.js.md), [module/data/item/spellData.js](../../../module/data/item/spellData.js.md), [module/data/item/hexData.js](../../../module/data/item/hexData.js.md), [module/data/item/ritualData.js](../../../module/data/item/ritualData.js.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [module/setup/registerSheets.js](../../../module/setup/registerSheets.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md), [templates/partials/character/tab-magic.hbs](../character/tab-magic.hbs.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-07](../../../../cross-check-0002.md#r009-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

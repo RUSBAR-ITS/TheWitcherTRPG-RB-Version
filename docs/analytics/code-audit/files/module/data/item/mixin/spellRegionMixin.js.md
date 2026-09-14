@@ -85,7 +85,7 @@ regionData задаёт color пользователя либо #ff0000, elevati
 
 ## Непроверенные участки и открытые вопросы
 
-Все 176 строк прочитаны. Не выполнялись реальное рисование, поворот мышью, сохранение Region/flags, сериализация Item/Roll, политика уровней сцены, перезагрузка таймеров, несколько клиентов и исполнение макросов. Сравнение геометрии устанавливает зависимость от сцены; игровой выбор радиуса/диаметра остаётся несогласованным.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Не выполнялись рисование/вращение, реальное создание, сериализация flags, уровни, частичное создание и перезагрузка таймеров. Политика сцен и радиуса/диаметра не определена. Остаток: [U009-04](../../../../../cross-check-0002.md#u009-04), [U009-05](../../../../../cross-check-0002.md#u009-05), [U009-06](../../../../../cross-check-0002.md#u009-06), [U009-07](../../../../../cross-check-0002.md#u009-07), [U009-08](../../../../../cross-check-0002.md#u009-08). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -106,3 +106,13 @@ regionData задаёт color пользователя либо #ff0000, elevati
 [module/actor/mixins/castSpellMixin.js](../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлена вся цепочка cast→guard→fromItem→behaviors→таймер. options/flagOptions расходятся; обычный preview начинается до отказа Promise.all(Promise), а эманация использует Scene/ID и сетку canvas для всех токенов. Возвращённый API void не отфильтрован. Таймер адресует текущую canvas.scene; player-ветка обращается к необъявленному item и отсутствующему маршруту. Payload и завершение создания/записи различены.
+
+Сопоставленные определения и потребители: [module/data/item/templates/regions/templatePropertiesData.js](../templates/regions/templatePropertiesData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](../templates/regions/regionPropertiesData.js.md), [module/setup/queries.js](../../../setup/queries.js.md), [module/data/item/spellData.js](../spellData.js.md), [module/data/item/ritualData.js](../ritualData.js.md), [module/actor/mixins/castSpellMixin.js](../../../actor/mixins/castSpellMixin.js.md), [module/scripts/regions/regionHooks.js](../../../scripts/regions/regionHooks.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-15](../../../../../cross-check-0002.md#r009-15), [R009-16](../../../../../cross-check-0002.md#r009-16), [R009-17](../../../../../cross-check-0002.md#r009-17), [R009-19](../../../../../cross-check-0002.md#r009-19), [R009-21](../../../../../cross-check-0002.md#r009-21). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

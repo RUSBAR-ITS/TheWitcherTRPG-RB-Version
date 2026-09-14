@@ -74,7 +74,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файлы порции прочитаны целиком. Проверка: Foundry 14.367.0, Node 24.16.0, реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9, expandObject и core Localization с fallback. Диалог, Application/DOM, вывод Roll.toAnchor, запись Actor/Item/ChatMessage, UUID resolver, создание/clone ActiveEffect, canvas и query заменены фасадами. Реальные браузер, HTTP, БД, компедиумы, сетевые клиенты и жизненный цикл эффекта не запускались. Текстовые формулы проверены как поведение кода, без выбора правил книг.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Сохранение новых Item, реальный contextmenu/DOM и активное отображение всех ветвей не запускались; .039 HBS/методы были изолированы. Остаток: [U009-01](../../../../../../cross-check-0002.md#u009-01), [U009-02](../../../../../../cross-check-0002.md#u009-02), [U009-07](../../../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -85,3 +85,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `c598d74e34f4be51535de78b38f0601c286c5407`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003039) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Partial получает spells/header/itemType/spellType от tab-magic, выводит summary и li.item с itemId; .spell-roll ведёт в _onItemRoll/useItem. Динамические подписи зависят от en/ru; эффекты здесь текстовые, альтернативные компоненты показывают имена без количества. Редактирование также связано с контекстным меню.
+
+Сопоставленные определения и потребители: [templates/partials/character/tab-magic.hbs](../../../../partials/character/tab-magic.hbs.md), [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](inventory/inventory-items-summary.hbs.md), [module/actor/sheets/WitcherActorSheet.js](../../../../../module/actor/sheets/WitcherActorSheet.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../../../module/actor/sheets/mixins/itemMixin.js.md), [module/actor/sheets/interactions/itemContextMenu.js](../../../../../module/actor/sheets/interactions/itemContextMenu.js.md), [module/data/item/spellData.js](../../../../../module/data/item/spellData.js.md), [module/data/item/hexData.js](../../../../../module/data/item/hexData.js.md), [module/data/item/ritualData.js](../../../../../module/data/item/ritualData.js.md), [module/actor/witcherActor.js](../../../../../module/actor/witcherActor.js.md), [module/actor/mixins/castSpellMixin.js](../../../../../module/actor/mixins/castSpellMixin.js.md), [module/setup/handlebars.js](../../../../../module/setup/handlebars.js.md), [lang/en.json](../../../../../lang/en.json.md), [lang/ru.json](../../../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-07](../../../../../../cross-check-0002.md#r009-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

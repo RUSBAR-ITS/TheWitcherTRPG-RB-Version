@@ -69,7 +69,7 @@ CONFIG.Item.dataModels.hex регистрируется в registerDataModels; W
 
 ## Непроверенные участки и открытые вопросы
 
-Все 29 строк прочитаны. Полный castSpell, снятие порчи, игровые правила и влияние ActiveEffect не исследованы этой карточкой.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Снятие порчи по игровым правилам и запись в живом клиенте не проверены; наличие текстового liftRequirement не доказывает автоматическое снятие. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-03](../../../../cross-check-0002.md#u009-03), [U009-07](../../../../cross-check-0002.md#u009-07), [U009-08](../../../../cross-check-0002.md#u009-08). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ CONFIG.Item.dataModels.hex регистрируется в registerDataModels; W
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md); [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/chat/combat/spellItem.hbs](../../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../../templates/chat/combat/spellItem.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+HexData связан с регистрацией hex, HexSheet и useItem→castSpell. getUsedSkill выбирает hexweave; danger/liftRequirement — поля модели и формы. В текущей схеме нет onCastEffects/области/attackOptions: при targets статусный helper после сообщения получает undefined; без targets эта ветвь возвращается раньше. Полный cast рассмотрен в .039 и сопоставлен здесь.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/combat/defenseOptionsData.js](templates/combat/defenseOptionsData.js.md), [module/setup/config.js](../../setup/config.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherHexSheet.js](../../item/sheets/WitcherHexSheet.js.md), [templates/sheets/item/hex-sheet.hbs](../../../templates/sheets/item/hex-sheet.hbs.md), [module/item/witcherItem.js](../../item/witcherItem.js.md), [module/actor/mixins/castSpellMixin.js](../../actor/mixins/castSpellMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-01](../../../../cross-check-0002.md#r009-01), [R009-02](../../../../cross-check-0002.md#r009-02), [R009-08](../../../../cross-check-0002.md#r009-08), [R009-14](../../../../cross-check-0002.md#r009-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

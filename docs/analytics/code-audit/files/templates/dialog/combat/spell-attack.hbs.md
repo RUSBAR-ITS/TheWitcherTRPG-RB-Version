@@ -66,7 +66,7 @@ JavaScript отсутствует. if включает условные поля
 
 ## Непроверенные участки и открытые вопросы
 
-Файлы порции прочитаны целиком. Проверка: Foundry 14.367.0, Node 24.16.0, реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9, expandObject и core Localization с fallback. Диалог, Application/DOM, вывод Roll.toAnchor, запись Actor/Item/ChatMessage, UUID resolver, создание/clone ActiveEffect, canvas и query заменены фасадами. Реальные браузер, HTTP, БД, компедиумы, сетевые клиенты и жизненный цикл эффекта не запускались. Текстовые формулы проверены как поведение кода, без выбора правил книг.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Реальные DialogV2/DOM/cancel не запускались; прежние .039 случаи использовали фасад формы при настоящем теле cast. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-02](../../../../cross-check-0002.md#u009-02). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -77,3 +77,13 @@ JavaScript отсутствует. if включает условные поля
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `c598d74e34f4be51535de78b38f0601c286c5407`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003039) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Контекст causeDamage/STA/foci определяет два–шесть полей prompt; callback cast читает те же имена. Цена и исходная сила расходятся после фокусов; отсутствие optional fields имеет fallback. Произвольные текстовые значения STA/customMod проходят отдельные проверки и приведения в cast.
+
+Сопоставленные определения и потребители: [module/actor/mixins/castSpellMixin.js](../../../module/actor/mixins/castSpellMixin.js.md), [module/data/actor/templates/common/focusData.js](../../../module/data/actor/templates/common/focusData.js.md), [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js.md), [module/data/item/spellData.js](../../../module/data/item/spellData.js.md), [module/data/item/ritualData.js](../../../module/data/item/ritualData.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-09](../../../../cross-check-0002.md#r009-09). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -67,7 +67,7 @@ PARTS.general WitcherSpellConfigurationSheet; использует контек�
 
 ## Непроверенные участки и открытые вопросы
 
-Все 49 строк прочитаны. Полный UI и работа целевых статусов/ActiveEffect в игровом процессе не проверены; действие inherited text='on' касается общего обработчика.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Фактический submit, inherited обработчики в браузере и доставка статусов/AE не исполнялись; data-target не доказывает сохранение всех полей модели. Остаток: [U009-01](../../../../../../cross-check-0002.md#u009-01), [U009-03](../../../../../../cross-check-0002.md#u009-03), [U009-07](../../../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ PARTS.general WitcherSpellConfigurationSheet; использует контек�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `a29234e7c42ef5f9d8095c2b5470e5e3c95824cc`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003021) |
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+spellGeneral связывает два keyed списка self/onCast со встроенными add/remove/edit обработчиками и statusEffect choices. UI редактирует не весь itemEffect, а документы ActiveEffect представлены другой вкладкой. attackOptions partial, damageType и defenseOptions описывают отдельные способности Spell.
+
+Сопоставленные определения и потребители: [module/item/sheets/configurations/WitcherSpellConfigurationSheet.js](../../../../../module/item/sheets/configurations/WitcherSpellConfigurationSheet.js.md), [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md), [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../../../module/item/sheets/configurations/WitcherConfigurationSheet.js.md), [module/data/item/spellData.js](../../../../../module/data/item/spellData.js.md), [module/data/item/templates/itemEffectData.js](../../../../../module/data/item/templates/itemEffectData.js.md), [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../partials/attackOptionsPart.hbs.md), [module/setup/config.js](../../../../../module/setup/config.js.md), [lang/en.json](../../../../../lang/en.json.md), [lang/ru.json](../../../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-06](../../../../../../cross-check-0002.md#r009-06). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -82,7 +82,7 @@ registerDataModels регистрирует ritual; WitcherItem.migrateSpells р
 
 ## Непроверенные участки и открытые вопросы
 
-Все 91 строка прочитана. Региональные модели/примесь полностью относятся к .022; расход компонентов и полный процесс castSpell здесь не устанавливаются. UUID-кеш и живой клиент не запускались.
+Исходник и указанные связи сопоставлены в TASK-0004.009. Региональные методы и полный cast уже разобраны в .022/.039. Не исследованы живой UUID-кеш, запись массива и игровые нормы расхода/DC. Остаток: [U009-01](../../../../cross-check-0002.md#u009-01), [U009-02](../../../../cross-check-0002.md#u009-02), [U009-03](../../../../cross-check-0002.md#u009-03), [U009-07](../../../../cross-check-0002.md#u009-07). Новых поведенческих запусков нет; прежние протоколы сохраняют даты и фасады.
 
 ## Связанные проблемы
 
@@ -113,3 +113,13 @@ castSpell выбирает ritcraft, показывает difficultyCheck и к�
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md); [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/dialog/combat/spell-attack.hbs](../../../../../../../templates/dialog/combat/spell-attack.hbs) — [карточка](../../../templates/dialog/combat/spell-attack.hbs.md); [templates/chat/combat/spellItem.hbs](../../../../../../../templates/chat/combat/spellItem.hbs) — [карточка](../../../templates/chat/combat/spellItem.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.009
+
+2026-09-14; rusbar-main, 7adc2362937779de0c03957aacf73ff2cf13e211. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+RitualData сопоставлена с регистрацией, RitualSheet/HBS, cast и регионами. Исходные UUID/quantity отделены от prepared-массивов; fallback сохраняет имя UUID, но не component.item.uuid. Настройки области вложенные, форма использует старые пути. difficultyCheck показывается в чате без порога RollConfig; onCastEffects отсутствует. Расход компонентов не обнаружен в этом пути cast.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/combat/defenseOptionsData.js](templates/combat/defenseOptionsData.js.md), [module/data/item/templates/componentData.js](templates/componentData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](templates/regions/regionPropertiesData.js.md), [module/data/item/templates/regions/templatePropertiesData.js](templates/regions/templatePropertiesData.js.md), [module/data/item/mixin/spellRegionMixin.js](mixin/spellRegionMixin.js.md), [module/setup/config.js](../../setup/config.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/witcherItem.js](../../item/witcherItem.js.md), [module/item/sheets/WitcherRitualSheet.js](../../item/sheets/WitcherRitualSheet.js.md), [templates/sheets/item/ritual-sheet.hbs](../../../templates/sheets/item/ritual-sheet.hbs.md), [module/actor/mixins/castSpellMixin.js](../../actor/mixins/castSpellMixin.js.md), [templates/chat/combat/spellItem.hbs](../../../templates/chat/combat/spellItem.hbs.md), [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../templates/sheets/actor/partials/character/spell-type-list.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004009) — TASK-0004.009; процессы [R009-01](../../../../cross-check-0002.md#r009-01), [R009-02](../../../../cross-check-0002.md#r009-02), [R009-04](../../../../cross-check-0002.md#r009-04), [R009-08](../../../../cross-check-0002.md#r009-08), [R009-13](../../../../cross-check-0002.md#r009-13), [R009-14](../../../../cross-check-0002.md#r009-14), [R009-15](../../../../cross-check-0002.md#r009-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
