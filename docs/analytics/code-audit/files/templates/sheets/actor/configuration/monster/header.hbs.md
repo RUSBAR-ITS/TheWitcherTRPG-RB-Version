@@ -55,7 +55,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-02](../../../../../../cross-check-0002.md#u013-02): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -66,3 +66,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003032) |
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Этот HBS — заголовок конфигурации с единственным localize WITCHER.Actor.settings.actor, а не main header Monster. Выбирается отдельным PARTS.header; новых сущностей данных/действий не вводит. Ключи en/ru и реальный render остаются в границах [U013-07](../../../../../../cross-check-0002.md#u013-07).
+
+Сопоставленные определения и потребители: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md), [templates/sheets/actor/configuration/monster/general.hbs](general.hbs.md), [module/setup/config.js](../../../../../module/setup/config.js.md), [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../partials/skillConfiguration.hbs.md), [templates/partials/character/skill-display.hbs](../../../../partials/character/skill-display.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-15](../../../../../../cross-check-0002.md#r013-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

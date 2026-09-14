@@ -61,7 +61,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Проверки выполнены в Node 24.16.0 с кодом Foundry 14.367.0, без мира, браузера, HTTP и записи в БД. Модели, методы системы, Handlebars и перечисленные в журнале функции ядра настоящие; Application/DOM и документные операции заменены фасадами. Сохранение через updateSource проверяет модель в памяти и не доказывает серверную запись, разрешение конфликтов или работу ProseMirror в браузере. Не проверено использование внешними модулями/макросами. Для подключения нужен отдельный согласованный разбор формы ApplicationV2 и пути имени; решение в этой задаче не принималось.
+Остаются [U013-06](../../../../cross-check-0002.md#u013-06): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -72,3 +72,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `12055fee62f01c6de49967044aedef9d7cfe0632`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003033) |
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Старая 8 строчная форма note имеет input item.name и textarea system.description. Выбора через PARTS/template/partial/preload не найдено; общий зарегистрированный ItemSheet с PARTS={} не выбирает её по типу. Изолированный render не объявлен ошибкой активного сохранения имени. Для вывода о работе формы нужен реальный consumer и согласованный разбор submit: [U013-06](../../../../cross-check-0002.md#u013-06).
+
+Сопоставленные определения и потребители: [module/data/item/noteData.js](../../../module/data/item/noteData.js.md), [templates/partials/character/tab-background.hbs](../../partials/character/tab-background.hbs.md), [templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs](../actor/partials/monster/tabs/partials/monster-notes.hbs.md), [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js.md), [module/setup/registerDataModels.js](../../../module/setup/registerDataModels.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js.md), [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js.md), [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-26](../../../../cross-check-0002.md#r013-26), [R013-28](../../../../cross-check-0002.md#r013-28). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

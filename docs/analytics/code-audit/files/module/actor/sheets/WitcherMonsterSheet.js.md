@@ -89,7 +89,7 @@ registerSheets импортирует default WitcherMonsterSheet и регис�
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-01](../../../../cross-check-0002.md#u013-01), [U013-08](../../../../cross-check-0002.md#u013-08), [U013-07](../../../../cross-check-0002.md#u013-07), [U013-04](../../../../cross-check-0002.md#u013-04), [U013-05](../../../../cross-check-0002.md#u013-05): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -156,3 +156,13 @@ PARTS.magic использует общий character/tab-magic.hbs с теми 
 [templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сверены Monster контекст/10 PARTS/четыре tab-группы, отдельная конфигурация, девять групп loots, lore и shared skills/stat/magic. Отсутствие totalStats и Character development отличается от флагов isVisible. Экспорт копирует полную сериализацию всех Items, ищет ActiveEffect-папку, не собирает Promise пересчёта и не валидирует multiplier. Payload не доказывает сохранённые ID/папку/права; продолжение Loot .014, RollTable .017. [U013-01](../../../../cross-check-0002.md#u013-01), [U013-04](../../../../cross-check-0002.md#u013-04), [U013-05](../../../../cross-check-0002.md#u013-05).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheet.js](WitcherActorSheet.js.md), [module/actor/sheets/WitcherActorSheetV1.js](WitcherActorSheetV1.js.md), [module/actor/sheets/WitcherCharacterSheet.js](WitcherCharacterSheet.js.md), [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](configurations/WitcherMonsterConfigurationSheet.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/actor/sheets/mixins/skillMixin.js](mixins/skillMixin.js.md), [module/actor/sheets/mixins/deathSaveMixin.js](mixins/deathSaveMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-01](../../../../cross-check-0002.md#r013-01), [R013-06](../../../../cross-check-0002.md#r013-06), [R013-09](../../../../cross-check-0002.md#r013-09), [R013-14](../../../../cross-check-0002.md#r013-14), [R013-16](../../../../cross-check-0002.md#r013-16), [R013-18](../../../../cross-check-0002.md#r013-18), [R013-20](../../../../cross-check-0002.md#r013-20), [R013-21](../../../../cross-check-0002.md#r013-21), [R013-22](../../../../cross-check-0002.md#r013-22), [R013-23](../../../../cross-check-0002.md#r013-23). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

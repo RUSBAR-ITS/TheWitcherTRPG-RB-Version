@@ -69,7 +69,7 @@ name сохраняет общая форма; счётчики и действ�
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-07](../../../../../../cross-check-0002.md#u013-07): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ name сохраняет общая форма; счётчики и действ�
 Карточки CSS: [styles/monster/header.css](../../../../../styles/monster/header.css.md), [styles/character-header.css](../../../../../styles/character-header.css.md), [styles/monster/sheet.css](../../../../../styles/monster/sheet.css.md), [styles/monster/inventory.css](../../../../../styles/monster/inventory.css.md).
 
 [Методика и результаты](../../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Текущий header редактирует name и показывает локализованные category/threat/difficulty без редакторов; bounty отсутствует. configure-actor открывает объект configuration, exportLoot — отдельный action Monster, death/init/crit/verbal приходят из базы/примесей. Редакторы классификации найдены только в старом HBS; не смешаны с текущим UI. [U013-01](../../../../../../cross-check-0002.md#u013-01), [U013-04](../../../../../../cross-check-0002.md#u013-04), [U013-07](../../../../../../cross-check-0002.md#u013-07).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md), [templates/sheets/actor/configuration/monster/general.hbs](../../configuration/monster/general.hbs.md), [module/data/actor/monsterData.js](../../../../../module/data/actor/monsterData.js.md), [module/setup/config.js](../../../../../module/setup/config.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-16](../../../../../../cross-check-0002.md#r013-16). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

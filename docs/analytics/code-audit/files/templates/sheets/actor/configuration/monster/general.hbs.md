@@ -67,7 +67,7 @@ PARTS.general конфигурации, tabs.general из единственно
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-02](../../../../../../cross-check-0002.md#u013-02), [U013-07](../../../../../../cross-check-0002.md#u013-07), [U013-08](../../../../../../cross-check-0002.md#u013-08): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ PARTS.general конфигурации, tabs.general из единственно
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003032) |
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+General конфигурации связана с MonsterData и derivedStats:10 полей, при customStat ещё 3 unmodifiedMax HP/STA/resolve; show-флаги имеют consumers в knowledge. Боевые опции/hasTailWing читают соседние методы, не сама форма; броня хвоста/крыла sidebar показывается независимо от hasTailWing. Классификация/оценка/награда здесь не редактируются. Документная запись/итоговый lifecycle — [U013-02](../../../../../../cross-check-0002.md#u013-02).
+
+Сопоставленные определения и потребители: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md), [templates/sheets/actor/configuration/monster/header.hbs](header.hbs.md), [module/setup/config.js](../../../../../module/setup/config.js.md), [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../partials/skillConfiguration.hbs.md), [templates/partials/character/skill-display.hbs](../../../../partials/character/skill-display.hbs.md), [templates/sheets/actor/partials/monster/header.hbs](../../partials/monster/header.hbs.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/data/actor/monsterData.js](../../../../../module/data/actor/monsterData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-15](../../../../../../cross-check-0002.md#r013-15), [R013-16](../../../../../../cross-check-0002.md#r013-16), [R013-18](../../../../../../cross-check-0002.md#r013-18). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

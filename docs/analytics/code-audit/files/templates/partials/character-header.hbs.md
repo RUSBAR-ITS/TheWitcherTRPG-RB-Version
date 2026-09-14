@@ -78,7 +78,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Не запускались полный браузерный лист, раскладка CSS, сетевые игровые действия, сохранение Actor.name в БД и пользовательские модули. Работа кнопок описана по сопоставлению с definitions/listeners; броски/лечение уже изучены в соседних порциях, полностью здесь не повторялись.
+Остаются [U013-02](../../../cross-check-0002.md#u013-02), [U013-07](../../../cross-check-0002.md#u013-07): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -109,3 +109,13 @@
 Карточки CSS: [styles/character-header.css](../../styles/character-header.css.md), [styles/character/sheet.css](../../styles/character/sheet.css.md).
 
 [Методика и результаты](../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Header получает имена race/profession и Item-родину с приоритетом над Actor.general.homeland; собственного HTML описаний не выводит. Name идёт в общую форму, общие/death/heal действия — в примеси, open-rewards открывает журнал. Незакрытый a даёт три ссылки при прежнем HTML5-разборе; видимая раскладка и клики не доказаны. [U013-01](../../../cross-check-0002.md#u013-01), [U013-07](../../../cross-check-0002.md#u013-07).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheet.js](../../module/actor/sheets/WitcherActorSheet.js.md), [module/actor/sheets/WitcherActorSheetV1.js](../../module/actor/sheets/WitcherActorSheetV1.js.md), [module/data/actor/templates/common/stats/statData.js](../../module/data/actor/templates/common/stats/statData.js.md), [module/actor/sheets/mixins/healMixin.js](../../module/actor/sheets/mixins/healMixin.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/actor/sheets/mixins/deathSaveMixin.js](../../module/actor/sheets/mixins/deathSaveMixin.js.md), [styles/character-header.css](../../styles/character-header.css.md).
+
+[Протокол и границы](../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-07](../../../cross-check-0002.md#r013-07), [R013-12](../../../cross-check-0002.md#r013-12). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

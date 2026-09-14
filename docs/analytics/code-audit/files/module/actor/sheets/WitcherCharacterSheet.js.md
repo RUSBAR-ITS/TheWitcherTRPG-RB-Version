@@ -105,7 +105,7 @@ registerSheets импортирует default WitcherCharacterSheet и назн�
 
 ## Непроверенные участки и открытые вопросы
 
-Браузер, реальный Document.update, частичный render, сетевые вызовы и все игровые ветви соседних классов не запускались. Сохранённые данные миров/компедиумов не исследовались. _alchemyCraft без адаптера останавливается на issue-00037; результаты ветвей 13–15 условные, пригодные для понимания кода после входной границы. Пустые подписи свежей модели (issue-00015) отличены от повторно загруженной модели с мигрированными label. Не установлена частота состояний, приводящих к пустым аннотациям эффектов. Разметка UI не считается проверенной в браузере. 49 буквальных переводимых ключей и три префикса проверены отдельно; другие языки/внешние переводы не проверялись.
+Остаются [U013-01](../../../../cross-check-0002.md#u013-01), [U013-03](../../../../cross-check-0002.md#u013-03), [U013-08](../../../../cross-check-0002.md#u013-08), [U013-04](../../../../cross-check-0002.md#u013-04), [U013-07](../../../../cross-check-0002.md#u013-07): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -186,3 +186,13 @@ PARTS.magic выбирает templates/partials/character/tab-magic.hbs. TABS.ma
 Сопоставлены _prepareCharacterData:154–156 (существующие Items profession/homeland/race) и подготовка lifeEvents:133–137 с 13 основными RollTable-генераторами. Найденного вызова генераторов/автоматического создания этих Items из их text нет. RandomCharacter и Background возвращают описания; Style and Values, Siblings Generator и жизненные события запускаются отдельно. В этом уточнении методы листа Actor не исполнялись повторно.
 
 [Основные генераторы](../../../README.md#основные-генераторы-персонажа--task-0003056), [общая сверка пяти пакетов](../../../../review-log.md#task-0003056).
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Полный Character-конвейер сведен с 9 системными PARTS, тремя группами tabs, наследуемыми и шестью собственными listeners. Различены 13 групп рецептов,9 веществ, unique Item/enrichedText, суммы и prepared lifeEvents. Штатный алхимический вход блокирует 00037; ошибка associatedItem201 воспроизведена раньше обычным Craft. Ручное отрицательное IP остаётся строкой:00029/00200 дубли одной причины. RewardsSheet — просмотр журнала, дальнейший consumer .014; условия/сохранение [U013-03](../../../../cross-check-0002.md#u013-03), [U013-04](../../../../cross-check-0002.md#u013-04), [U013-08](../../../../cross-check-0002.md#u013-08).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheet.js](WitcherActorSheet.js.md), [module/actor/sheets/WitcherActorSheetV1.js](WitcherActorSheetV1.js.md), [module/actor/sheets/WitcherMonsterSheet.js](WitcherMonsterSheet.js.md), [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](configurations/WitcherMonsterConfigurationSheet.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/actor/sheets/mixins/skillMixin.js](mixins/skillMixin.js.md), [module/actor/sheets/mixins/deathSaveMixin.js](mixins/deathSaveMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-01](../../../../cross-check-0002.md#r013-01), [R013-06](../../../../cross-check-0002.md#r013-06), [R013-08](../../../../cross-check-0002.md#r013-08), [R013-09](../../../../cross-check-0002.md#r013-09), [R013-10](../../../../cross-check-0002.md#r013-10), [R013-11](../../../../cross-check-0002.md#r013-11), [R013-12](../../../../cross-check-0002.md#r013-12), [R013-24](../../../../cross-check-0002.md#r013-24), [R013-25](../../../../cross-check-0002.md#r013-25). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

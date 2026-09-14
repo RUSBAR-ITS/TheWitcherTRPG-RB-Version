@@ -106,7 +106,7 @@ context.system — сериализованная копия actor.toObject(fals
 
 ## Непроверенные участки и открытые вопросы
 
-В репозитории не найден активный маршрут V1: прежний monster-sheet.hbs сам по себе не регистрирует этот класс. Контекст и методы исполнены на фасаде внешнего ActorSheet, с реальными TypeDataModel и перехваченными операциями. Изолированное исполнение не подтверждает совместимость полного V1-приложения с Foundry 14, браузером или внешними модулями. Полный разбор внешних примесей, кроме уже описанных ранее, отложен по плану. Методы getData/_prepare* собственно V1 синхронны; асинхронные новые override в гипотетическом наследнике не проверялись.
+Примеси и сравнение с V2 разобраны; активная регистрация V1 в репозитории не найдена. Остаются [U013-01](../../../../cross-check-0002.md#u013-01), [U013-02](../../../../cross-check-0002.md#u013-02), [U013-08](../../../../cross-check-0002.md#u013-08), [U013-06](../../../../cross-check-0002.md#u013-06): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -173,3 +173,13 @@ context.system — сериализованная копия actor.toObject(fals
 [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+V1 сопоставлен с V2 и регистрацией: getData синхронно готовит копию system при живых Item, пользуется Array.cost от импорта V2, иначе подготавливает броню и ожидает объект lifeEvents. Собственного template/регистрации V1 нет. Методы и примеси разобраны; прежнее ожидание их пофайлового чтения снято. Совместимость полного приложения 14 и сторонняя регистрация остаются [U013-01](../../../../cross-check-0002.md#u013-01), [U013-06](../../../../cross-check-0002.md#u013-06).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheet.js](WitcherActorSheet.js.md), [module/actor/sheets/WitcherCharacterSheet.js](WitcherCharacterSheet.js.md), [module/actor/sheets/WitcherMonsterSheet.js](WitcherMonsterSheet.js.md), [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](configurations/WitcherMonsterConfigurationSheet.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/data/actor/commonActorData.js](../../data/actor/commonActorData.js.md), [module/setup/settings.js](../../setup/settings.js.md), [module/actor/witcherActor.js](../witcherActor.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-01](../../../../cross-check-0002.md#r013-01), [R013-02](../../../../cross-check-0002.md#r013-02), [R013-03](../../../../cross-check-0002.md#r013-03), [R013-04](../../../../cross-check-0002.md#r013-04), [R013-05](../../../../cross-check-0002.md#r013-05), [R013-06](../../../../cross-check-0002.md#r013-06), [R013-07](../../../../cross-check-0002.md#r013-07), [R013-25](../../../../cross-check-0002.md#r013-25), [R013-28](../../../../cross-check-0002.md#r013-28). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -119,7 +119,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались Foundry-мир, настоящие листы в браузере, частичный рендер и повторные привязки на сохранённом DOM, доступ разных пользователей, запись в БД, полный бой и реальные dice/ChatMessage. Изолированно выполнялись неизменённые тела двух классов с заменёнными import/base/UI границами; настоящие модели, генератор Foundry и skillMixin импортированы/извлечены отдельно. Ошибки сборки первоначального фасада исправлены в памяти, исходники не изменялись. Полные Character и Monster описаны в TASK-0003.031/.032; полный Loot и ещё не описанные примеси остаются вне покрытия. SkillItemData и две skill-примеси описаны полностью в .029, ChatMessageData — в .028. Порядок и содержимое race/profession enrichment сверены до определения в дочернем классе; issue-00109 не исправлена.
+Пофайловый разбор Character/Monster/Loot и подключённых примесей завершён в TASK-0003; текущая сверка их связей отражена ниже. Остаются [U013-01](../../../../cross-check-0002.md#u013-01), [U013-02](../../../../cross-check-0002.md#u013-02), [U013-08](../../../../cross-check-0002.md#u013-08): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -232,3 +232,13 @@ _prepareSpells собирает spell по class Spells/Invocations/Witcher и l
 Полностью разобран [Actor.verbalCombat](../mixins/verbalCombatMixin.js.md). Общий лист вызывает его через _onVerbalCombat:295–296; кнопка зависит от useOptionalVerbalCombat, метод Actor эту настройку не проверяет. В .025 была проверена внешняя обёртка; группа 06 этой порции отдельно исполнила нижний метод: он возвращается после prompt при pending extendedRoll ([304](../../../../../../issues/potential/issue-00304.md)). Отмена prompt с rejectClose:true распространяется, но лист Promise не возвращает. Полный browser click не запускался; аналогичный вызов V1 проверен чтением.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сверен полный путь зарегистрированных наследников через V2: live system и Item, фильтры/суммы, spell/customSkill-группы, словарь HTML травм, категории эффектов и listeners. Подготовка оружия меняет prepared enhancementItems; повторное включение AE в список не доказывает повторного применения. Recover STA отличается от отдыха и не ограничивает итог REC значением max. Полный пофайловый разбор Loot/примесей уже завершён; здесь сняты устаревшие ожидания чтения, а динамические ограничения адресованы [U013-01](../../../../cross-check-0002.md#u013-01), [U013-02](../../../../cross-check-0002.md#u013-02), [U013-04](../../../../cross-check-0002.md#u013-04).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheetV1.js](WitcherActorSheetV1.js.md), [module/actor/sheets/WitcherCharacterSheet.js](WitcherCharacterSheet.js.md), [module/actor/sheets/WitcherMonsterSheet.js](WitcherMonsterSheet.js.md), [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](configurations/WitcherMonsterConfigurationSheet.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/data/actor/commonActorData.js](../../data/actor/commonActorData.js.md), [module/setup/settings.js](../../setup/settings.js.md), [module/actor/witcherActor.js](../witcherActor.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-01](../../../../cross-check-0002.md#r013-01), [R013-02](../../../../cross-check-0002.md#r013-02), [R013-03](../../../../cross-check-0002.md#r013-03), [R013-04](../../../../cross-check-0002.md#r013-04), [R013-05](../../../../cross-check-0002.md#r013-05), [R013-06](../../../../cross-check-0002.md#r013-06), [R013-07](../../../../cross-check-0002.md#r013-07), [R013-25](../../../../cross-check-0002.md#r013-25). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

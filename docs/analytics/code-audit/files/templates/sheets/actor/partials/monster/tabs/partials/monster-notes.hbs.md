@@ -66,7 +66,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-06](../../../../../../../../cross-check-0002.md#u013-06), [U013-08](../../../../../../../../cross-check-0002.md#u013-08): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -83,3 +83,13 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Полный разбор noteMixin и tab-background в .033 подтвердил общий контракт: Item.note через add-item/inline-edit/delete, Actor.notes через индексные name/target/delete-note. Внутренний each oldNotes правильно разрешает system.description. Индекс и ожидание массива описаны в issue-00211/00212; новый рендер этого monster HBS не выполнялся.
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](../../../../../../../module/actor/sheets/mixins/noteMixin.js.md); [module/data/item/noteData.js](../../../../../../../module/data/item/noteData.js.md); [templates/partials/character/tab-background.hbs](../../../../../../partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../../../review-log.md#task-0003033).
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Внутри each oldNotes system.description корректно принадлежит Item, inline-edit/delete работают по Item ID. Array notes имеет indexed name/target и delete-note, кнопка заголовка add-item создаёт другой формат. NoteData и noteMixin сверены целиком; отсутствие ожидания 211 и некорректный индекс 212 не доказывают гонку обычных окон. [U013-08](../../../../../../../../cross-check-0002.md#u013-08).
+
+Сопоставленные определения и потребители: [module/data/item/noteData.js](../../../../../../../module/data/item/noteData.js.md), [templates/partials/character/tab-background.hbs](../../../../../../partials/character/tab-background.hbs.md), [templates/sheets/item/note-sheet.hbs](../../../../../item/note-sheet.hbs.md), [module/data/item/commonItemData.js](../../../../../../../module/data/item/commonItemData.js.md), [module/setup/registerDataModels.js](../../../../../../../module/setup/registerDataModels.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js.md), [module/item/sheets/WitcherItemSheet.js](../../../../../../../module/item/sheets/WitcherItemSheet.js.md), [module/actor/sheets/mixins/noteMixin.js](../../../../../../../module/actor/sheets/mixins/noteMixin.js.md).
+
+[Протокол и границы](../../../../../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-26](../../../../../../../../cross-check-0002.md#r013-26), [R013-27](../../../../../../../../cross-check-0002.md#r013-27). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

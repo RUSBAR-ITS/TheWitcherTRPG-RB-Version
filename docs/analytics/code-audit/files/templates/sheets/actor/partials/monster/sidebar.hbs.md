@@ -68,7 +68,7 @@ PARTS.sidebar; предзагрузка отдельным путём. Изоб�
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-07](../../../../../../cross-check-0002.md#u013-07): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -89,3 +89,13 @@ PARTS.sidebar; предзагрузка отдельным путём. Изоб�
 Карточки CSS: [styles/monster/sidebar.css](../../../../../styles/monster/sidebar.css.md), [styles/monster-sheet.css](../../../../../styles/monster-sheet.css.md), [styles/character-header.css](../../../../../styles/character-header.css.md), [styles/monster/sheet.css](../../../../../styles/monster/sheet.css.md).
 
 [Методика и результаты](../../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Панель выбирает category+'.png' и actor.img, ресурсы и 4 поля естественной брони; нет luck/adrenaline. Temporary HP отдельной суммой, сердце по unmodifiedMax, progress по max, два ignored по system.healthState. Поля ресурсов, схемы и handlers сопоставлены; native constraint validation и игровой смысл сердца не доказаны. [U013-02](../../../../../../cross-check-0002.md#u013-02), [U013-07](../../../../../../cross-check-0002.md#u013-07).
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/character/sidebar.hbs](../character/sidebar.hbs.md), [module/data/actor/commonActorData.js](../../../../../module/data/actor/commonActorData.js.md), [module/data/actor/templates/common/stats/statData.js](../../../../../module/data/actor/templates/common/stats/statData.js.md), [module/actor/sheets/mixins/statMixin.js](../../../../../module/actor/sheets/mixins/statMixin.js.md), [lang/en.json](../../../../../lang/en.json.md), [lang/ru.json](../../../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-13](../../../../../../cross-check-0002.md#r013-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

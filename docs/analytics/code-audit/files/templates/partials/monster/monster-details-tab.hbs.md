@@ -56,7 +56,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Действующий маршрут старого полного шаблона не найден в module/templates; наличие предзагрузки само по себе его не создаёт. Текущая вкладка details разобрана отдельно в этой порции.
+Остаются [U013-06](../../../../cross-check-0002.md#u013-06): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -67,3 +67,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003032) |
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четыре строки whitespace, нет собственного контекста или действий. Явные consumers — preload и details старого монолитного HBS; зарегистрированный Monster использует другой tab-details с 4 partial. Пустой старый partial не доказывает пустую нынешнюю вкладку. Реальный внешний consumer старого HBS — [U013-06](../../../../cross-check-0002.md#u013-06).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js.md), [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md), [templates/sheets/item/note-sheet.hbs](../../sheets/item/note-sheet.hbs.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [templates/partials/monster/monster-skill-tab.hbs](monster-skill-tab.hbs.md), [templates/partials/monster/monster-inventory-tab.hbs](monster-inventory-tab.hbs.md), [templates/partials/monster/monster-spell-tab.hbs](monster-spell-tab.hbs.md), [templates/partials/effect-part.hbs](../effect-part.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-28](../../../../cross-check-0002.md#r013-28). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -61,7 +61,7 @@ PARTS.details MonsterSheet. Внешняя группа primary/details, вну�
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие.
+Остаются [U013-07](../../../../../../../cross-check-0002.md#u013-07): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -82,3 +82,13 @@ PARTS.details MonsterSheet. Внешняя группа primary/details, вну�
 Карточки CSS: [styles/monster/details.css](../../../../../../styles/monster/details.css.md), [styles/monster-sheet.css](../../../../../../styles/monster-sheet.css.md), [styles/tab-background.css](../../../../../../styles/tab-background.css.md).
 
 [Методика и результаты](../../../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+PARTS.details Monster собирает четыре partial: notes содержит status+notes, lore — info+knowledge. Внешняя primary/details и внутренняя detailTabs имеют самостоятельную активность; initial notes. Прежние core tabs/HBS опыты не доказывают переключение/геометрию браузера; данные дочерних partial сверены отдельно. [U013-01](../../../../../../../cross-check-0002.md#u013-01), [U013-07](../../../../../../../cross-check-0002.md#u013-07).
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs](partials/monster-info.hbs.md), [module/data/actor/monsterData.js](../../../../../../module/data/actor/monsterData.js.md), [styles/monster/details.css](../../../../../../styles/monster/details.css.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-17](../../../../../../../cross-check-0002.md#r013-17). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

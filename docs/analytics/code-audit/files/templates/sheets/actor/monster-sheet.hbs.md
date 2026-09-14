@@ -71,7 +71,7 @@ Disabled input не должны участвовать в обычной фор
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Мир, браузер, HTTP-доступ, Document.update и работа нескольких клиентов не запускались. Настоящие модели, Handlebars, core helpers и вычисления использовались с фасадами Application/DOM и перехватом записи; подробные границы — в журнале .032. CSS и ресурсы проверены только как зависимости, соседние файлы вне порции не засчитываются в покрытие. Поведение старых вложенных вкладок проверено только в пределах совместимости с данным шаблоном. Пустая profession/details не означает пустую текущую вкладку.
+Остаются [U013-06](../../../../cross-check-0002.md#u013-06): указанные там динамические границы и критерии дальнейшей сверки. Нынешняя проверка статическая; прежние изолированные опыты .025/.031/.032/.033 сохраняют даты и фасады. Полный браузерный лист, Document.create/update в БД, внешние модули и несколько клиентов не запускались.
 
 ## Связанные проблемы
 
@@ -82,3 +82,13 @@ Disabled input не должны участвовать в обычной фор
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `8b938d44a042749df027d8b58e28bb1d79638091`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003032) |
+
+## Сквозная сверка TASK-0004.013
+
+2026-09-14; rusbar-main, fc53038008e744b2e504d1b9c913045147c25a02. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Все 334 строки старого HBS сопоставлены с пятью partial, словарями/полями и нынешними PARTS. Это предзагружаемый монолит без найденной регистрации; прежние редакторы category/threat/difficulty/bounty не доступны из него автоматически.11 из 12pluralиконок отсутствуют, текущая sidebar использует другой путь. Пустые profession/details не описывают текущие вкладки. [U013-06](../../../../cross-check-0002.md#u013-06), [U013-07](../../../../cross-check-0002.md#u013-07).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheetV1.js](../../../module/actor/sheets/WitcherActorSheetV1.js.md), [templates/partials/monster/monster-details-tab.hbs](../../partials/monster/monster-details-tab.hbs.md), [templates/sheets/item/note-sheet.hbs](../item/note-sheet.hbs.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [templates/partials/monster/monster-skill-tab.hbs](../../partials/monster/monster-skill-tab.hbs.md), [templates/partials/monster/monster-inventory-tab.hbs](../../partials/monster/monster-inventory-tab.hbs.md), [templates/partials/monster/monster-spell-tab.hbs](../../partials/monster/monster-spell-tab.hbs.md), [templates/partials/effect-part.hbs](../../partials/effect-part.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004013) — TASK-0004.013; процессы [R013-28](../../../../cross-check-0002.md#r013-28). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
