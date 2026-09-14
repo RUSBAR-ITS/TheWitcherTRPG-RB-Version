@@ -4,7 +4,7 @@
 
 Путь карточки повторяет путь исходника относительно корня системы с добавлением `.md`: например, `module/TheWitcherTRPG.js` → `files/module/TheWitcherTRPG.js.md`.
 
-После TASK-0002 и TASK-0003.001–TASK-0003.060 подготовлены 592 карточки, включая 203 JSON компедиумов. Текущий реестр содержит 615 файлов; остальные 23 JSON Deadly criticalWounds поставлены в очередь .061. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
+После TASK-0002 и TASK-0003.001–TASK-0003.061 подготовлены все 615 карточек текущего реестра, включая 226 JSON семи компедиумов. Пофайловая очередь пуста, TASK-0003 завершена. Другие шесть языков и содержимое packs/ исключены. Этот README — указатель, не карточка исходного файла.
 
 | Файл | Карточка |
 | --- | --- |
@@ -917,3 +917,33 @@
 | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json](packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json.md) | Torn Stomach (Stabilized): difficult/stabilized/torso; эффектов: 1, изменений: 52. |
 | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Treated__Mg1jn99OitVPdvje.json](packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Treated__Mg1jn99OitVPdvje.json.md) | Torn Stomach (Treated): difficult/treated/torso; эффектов: 1, изменений: 52. |
 | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json](packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md) | Папка Difficult для 24 Item тяжёлых травм; восемь цепочек лечения. |
+
+## Смертельные критические травмы — TASK-0003.061
+
+23 JSON / 2131 строка: 22 Item и Folder, 21 эффект и 43 changes. [Общая сверка семи компедиумов](../review-log.md#task-0003061) охватывает 226 экспортов и завершает TASK-0003; TASK-0004/TASK-0005 остаются draft.
+
+| Файл | Карточка |
+| --- | --- |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Stabilized__LNy3P3HUw2Ja9DNu.json | [Damaged Eye (Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Stabilized__LNy3P3HUw2Ja9DNu.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Treated__XQeXSAhvjrQZNpAE.json | [Damaged Eye (Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Treated__XQeXSAhvjrQZNpAE.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye_zHK1XmZ77V8c26Xv.json | [Damaged Eye](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye_zHK1XmZ77V8c26Xv.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left__KQZRzczsSx1XY63m.json | [Dismembered Arm (Left)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left__KQZRzczsSx1XY63m.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Stabilized__vmRDG8kxeCu3sYQC.json | [Dismembered Arm (Left - Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Stabilized__vmRDG8kxeCu3sYQC.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Treated__8Z1iHJLXrFm2i3Fb.json | [Dismembered Arm (Left - Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Treated__8Z1iHJLXrFm2i3Fb.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right__ZxvWPJPDD9fm34Pc.json | [Dismembered Arm (Right)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right__ZxvWPJPDD9fm34Pc.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Stabilized__hKgvgj4lJ74wPt8N.json | [Dismembered Arm (Right - Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Stabilized__hKgvgj4lJ74wPt8N.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Treated__gPeOdwZ0OTVF9E3w.json | [Dismembered Arm (Right - Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Treated__gPeOdwZ0OTVF9E3w.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left__Us9OmoKhRydSqA8z.json | [Dismembered Leg (Left)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left__Us9OmoKhRydSqA8z.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Stabilized__lck0EEySmuLZXMrA.json | [Dismembered Leg (Left - Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Stabilized__lck0EEySmuLZXMrA.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Treated__eYEp1CPif98mDm2U.json | [Dismembered Leg (Left - Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Treated__eYEp1CPif98mDm2U.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right__Ssi9d4GQsAyYnt86.json | [Dismembered Leg (Right)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right__Ssi9d4GQsAyYnt86.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Stabilized__vYza9bpK13G36YRV.json | [Dismembered Leg (Right - Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Stabilized__vYza9bpK13G36YRV.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Treated__KFbDbrS3OCs0C1h4.json | [Dismembered Leg (Right - Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Treated__KFbDbrS3OCs0C1h4.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage_PVraD16y2VWkOH6J.json | [Heart Damage](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage_PVraD16y2VWkOH6J.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json | [Heart Damage (Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json | [Heart Damage (Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Separated_Spine_Decapitated_MvrwnSrEqsTRdaeY.json | [Separated Spine/Decapitated](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Separated_Spine_Decapitated_MvrwnSrEqsTRdaeY.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json | [Spetic Shock (Stabilized)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Treated__vkr5MXhnalPp8yJJ.json | [Spetic Shock (Treated)](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Treated__vkr5MXhnalPp8yJJ.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json | [Spetic Shock](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json.md) |
+| packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json | [Deadly](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) |

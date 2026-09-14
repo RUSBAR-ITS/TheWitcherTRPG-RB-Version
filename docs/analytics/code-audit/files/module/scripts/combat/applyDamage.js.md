@@ -114,3 +114,11 @@ Empty сохраняет текущую локацию. Остальные зн�
 В отдельном acid-контроле из Difficult реальный generalCombatHook → applyDamageFromStatus → DamageInstance дал initial damage=4 и type=undefined до перехваченного Actor.applyDamage. В модели записи перед обработчиком type=acid; это прежняя issue-00021. Контроль заменил ADD на override только в копии в памяти; исходная запись не создаётся (issue-00328).
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+Положительные контроли [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) достигли applyDamageFromStatus с подготовленной записью bleed/poison: в перехваченный Actor.applyDamage переданы 2/3, а Heart treated с исходным bleed — 4. Тип воздействия отсутствует после формирования DamageInstance — прежняя [issue-00021](../../../../../../issues/potential/issue-00021.md). Семь исходных ADD-объектов не доходят до этого метода ([issue-00328](../../../../../../issues/potential/issue-00328.md)); два разных участка не объединены в одну причину.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

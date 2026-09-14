@@ -160,3 +160,11 @@
 На 25 эффектах Difficult подтверждены active/target, миграция 201 changes и initial-фаза. Девять ADD объектов разрешаются в SchemaField и оставляют turnStartEffects пустым; это не ошибка парсинга JSON (issue-00328). Disabled/transfer/applySelf-контроли исключают эффект. У двух bleed rounds=1/start=null; updateDuration/lifecycle не исполнялись, прекращение через один раунд не утверждается.
 
 [Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): 21 эффект, из них 20 active. У правой исходной ноги disabled=true на втором эффекте; isolated-контроль только этого флага восстанавливает два навыка ([issue-00329](../../../../../issues/potential/issue-00329.md)). Отдельные disabled/transfer/applySelf-контроли проверены на левой stabilized ноге. На всём пакете мигрированы 79 эффектов/360 changes: 78 активных; legacy mode→type, initial, 356 null priority становятся стандартными, четыре исходных priority=0 сохранены. Пустая duration и rounds=1 разобраны отдельно; полный таймер не имитировался.
+
+[Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

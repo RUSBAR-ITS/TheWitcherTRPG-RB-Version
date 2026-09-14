@@ -165,3 +165,11 @@ Consumer [generalCombatHook](../../../../../../../../../module/scripts/combat/ge
 Девять Difficult changes адресуют SchemaField элемента TypedObjectField turnStartEffects. Legacy value мигрирует в объект, но SchemaField ADD возвращает прежнее значение и записи нет. В трёх диагностических копиях override создаёт bleed/suffocation/acid; ignoreArmor="true" становится boolean true, spDamage="0"/default — числом 0. Экспорт не изменялся; issue-00328.
 
 [Карточки Difficult](../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): семь ADD объектов (шесть bleed, один poison) адресуют SchemaField элемента TypedObjectField, мигрируют в объекты, но оставляют карту пустой ([issue-00328](../../../../../../../../issues/potential/issue-00328.md)). Heart treated — другой путь: NumberField bleed.damage.modifier; без bleed получает warning/undefined, с заранее подготовленной записью amount=2/модификатором 0 даёт modifier=2 и итог урона 4. Override-копии левой руки/Spetic в памяти создают запись с boolean ignoreArmor=true и spDamage=0.
+
+[Протокол и ограничения](../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

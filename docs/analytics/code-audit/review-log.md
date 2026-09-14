@@ -1,5 +1,132 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.061
+
+Дата: 2026-09-14. Ветка rusbar-main, HEAD `1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e`; до начала работы дерево чистое, 1692 отслеживаемых файла. [Задача](../../tasks/task-0003.061.md), [карточки Deadly](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md). Завершение согласованного пофайлового этапа и технической сверки семи компедиумов. Рулбуки, установленное содержимое packs/, мир, HTTP и сборка/извлечение не входят в проверки.
+
+### Последняя порция: Deadly
+
+Прочитаны полностью **23 JSON / 2131 строка: 22 Item и Folder uofXQEP6HBtekOAO, 21 эффект и 43 изменения**. Восемь none, семь stabilized, семь treated. Семь цепочек из трёх состояний и одна конечная Separated Spine/Decapitated; 14 followUp и восемь null-окончаний. Все UUID/типы/степени/состояния адресатов проверены, нет циклов, смен location или выходов из Deadly.
+
+Корневые поля, ownership/flags/_stats, вложенные ключи, origins, значения system и HTML описаны в каждой карточке. Root _id проверяется по корневой строке, а не по первому встреченному ID эффекта. Повтор встроенного ID между Item допустим; мировые origin не подтверждают существования мирового адресата и не перенаправляют transfer на другого Actor. Экспортная версия 13.351 в _stats отделена от реально проверенного Foundry 14.367.0. Statuscounter не зарегистрирован в фасаде, работа внешнего модуля не проверена.
+
+| Семейство | Состояния и изменения | Граница автоматизации / особенность |
+| --- | --- | --- |
+| Damaged Eye | DEX −4/−2/−1, Awareness −5/−3/−1; bleed только none | HTML говорит о зрении, change адресует общий activeEffectModifiers |
+| Dismembered Arm Left/Right | Только bleed в none; stabilized/treated без effects | Ограничение руки и протезы описаны текстом; у правой none имя/origin bleed относятся к левой |
+| Dismembered Leg Left/Right | None/stabilized: SPD.max, dodge.value, athletics.value ×0.25; none дополнительно bleed; treated без effects | У правого none второй эффект disabled=true; у остальных включён. Location правильные |
+| Heart Damage | None: BODY.max/SPD.max/STA.max ×0.25 и bleed; stabilized: ×0.5; treated: bleed.damage.modifier +2 | Немедленный Death save только HTML; treated требует существующей записи bleed |
+| Separated Spine/Decapitated | Единственное none; status dead, changes=[]; followUp=null | HP не меняется; ручной treat удаляет Item, специальных bool-запретов нет |
+| Spetic Shock | INT/WILL/REF/DEX −3/−1/нет; STA.max ×0.25/×0.5; treated STA.totalModifiers −5; poison только none | Написание имени сохранено из экспорта; poison без таймера |
+
+Все changes имеют priority=null в источнике Deadly; миграция даёт 20 multiply с priority=10 и 23 add с priority=20. Среди add 16 числовых и семь объектов; поля — 36 NumberField и семь SchemaField. Фаза всех изменений initial, applyAfterCalculations=false по умолчанию. 20 из 21 эффектов active; один disabled правой ноги. У шести bleed и dead duration.rounds=1, у оставшихся 14 эффектов duration пустая; подготовленная длительность соответственно 1 round и Infinity seconds. Без полного start/updateDuration/lifecycle исчезновение через раунд не установлено.
+
+### Настоящие модели и индивидуальные значения
+
+Использованы Foundry 14.367.0 из /opt/foundryvtt/package.json, Node 24.16.0, настоящие BaseActor/BaseItem/BaseFolder/BaseActiveEffect, CharacterData/CriticalWoundData/WitcherActiveEffectData, WitcherActiveEffect, методы core allApplicableEffects/applyActiveEffects и расчёты WitcherActor. Строгая валидация приняла все документы. Подготовка initial → расчёты → final вызывалась явно.
+
+Контрольные входы: unmodifiedMax восьми характеристик 5, dodge.value=athletics.value=8, HP.value=25, броня/вес=0. Значения ниже прочитаны непосредственно из prepared-полей; toObject сериализует источник и не является проверкой вычисленного результата. В каждой индивидуальной карточке также приведены RUN/LEAP/ENC/STUN/REC/HP/RESOLVE/FOCUS и каждое изменение.
+
+| Item | ID / treatment | BODY.max / SPD.max | INT / WILL / REF / DEX | STA.max | dodge / athletics | Awareness modifier | statuses |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| [Damaged Eye (Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Stabilized__LNy3P3HUw2Ja9DNu.json.md) | LNy3P3HUw2Ja9DNu / stabilized | 5 / 5 | 5 / 5 / 5 / 3 | 25 | 8 / 8 | -3 | нет |
+| [Damaged Eye (Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Treated__XQeXSAhvjrQZNpAE.json.md) | XQeXSAhvjrQZNpAE / treated | 5 / 5 | 5 / 5 / 5 / 4 | 25 | 8 / 8 | -1 | нет |
+| [Damaged Eye](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye_zHK1XmZ77V8c26Xv.json.md) | zHK1XmZ77V8c26Xv / none | 5 / 5 | 5 / 5 / 5 / 1 | 25 | 8 / 8 | -5 | bleed |
+| [Dismembered Arm (Left)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left__KQZRzczsSx1XY63m.json.md) | KQZRzczsSx1XY63m / none | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | bleed |
+| [Dismembered Arm (Left - Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Stabilized__vmRDG8kxeCu3sYQC.json.md) | vmRDG8kxeCu3sYQC / stabilized | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Dismembered Arm (Left - Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Treated__8Z1iHJLXrFm2i3Fb.json.md) | 8Z1iHJLXrFm2i3Fb / treated | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Dismembered Arm (Right)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right__ZxvWPJPDD9fm34Pc.json.md) | ZxvWPJPDD9fm34Pc / none | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | bleed |
+| [Dismembered Arm (Right - Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Stabilized__hKgvgj4lJ74wPt8N.json.md) | hKgvgj4lJ74wPt8N / stabilized | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Dismembered Arm (Right - Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Treated__gPeOdwZ0OTVF9E3w.json.md) | gPeOdwZ0OTVF9E3w / treated | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Dismembered Leg (Left)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left__Us9OmoKhRydSqA8z.json.md) | Us9OmoKhRydSqA8z / none | 5 / 1 | 5 / 5 / 5 / 5 | 25 | 2 / 2 | 0 | bleed |
+| [Dismembered Leg (Left - Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Stabilized__lck0EEySmuLZXMrA.json.md) | lck0EEySmuLZXMrA / stabilized | 5 / 1 | 5 / 5 / 5 / 5 | 25 | 2 / 2 | 0 | нет |
+| [Dismembered Leg (Left - Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Treated__eYEp1CPif98mDm2U.json.md) | eYEp1CPif98mDm2U / treated | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Dismembered Leg (Right)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right__Ssi9d4GQsAyYnt86.json.md) | Ssi9d4GQsAyYnt86 / none | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | bleed |
+| [Dismembered Leg (Right - Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Stabilized__vYza9bpK13G36YRV.json.md) | vYza9bpK13G36YRV / stabilized | 5 / 1 | 5 / 5 / 5 / 5 | 25 | 2 / 2 | 0 | нет |
+| [Dismembered Leg (Right - Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Treated__KFbDbrS3OCs0C1h4.json.md) | KFbDbrS3OCs0C1h4 / treated | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Heart Damage](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage_PVraD16y2VWkOH6J.json.md) | PVraD16y2VWkOH6J / none | 1 / 1 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | bleed |
+| [Heart Damage (Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json.md) | O8EM4quPU4A5VOHH / stabilized | 3 / 3 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Heart Damage (Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json.md) | Me9fgalLrB0i9Z2O / treated | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | нет |
+| [Separated Spine/Decapitated](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Separated_Spine_Decapitated_MvrwnSrEqsTRdaeY.json.md) | MvrwnSrEqsTRdaeY / none | 5 / 5 | 5 / 5 / 5 / 5 | 25 | 8 / 8 | 0 | dead |
+| [Spetic Shock (Stabilized)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json.md) | LM6Kkh0ib6ux4WQp / stabilized | 5 / 5 | 4 / 4 / 4 / 4 | 20 | 8 / 8 | 0 | нет |
+| [Spetic Shock (Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Treated__vkr5MXhnalPp8yJJ.json.md) | vkr5MXhnalPp8yJJ / treated | 5 / 5 | 5 / 5 / 5 / 5 | 20 | 8 / 8 | 0 | нет |
+| [Spetic Shock](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json.md) | tF3hsi4yZOMJ6xuW / none | 5 / 5 | 2 / 2 / 2 / 2 | 15 | 8 / 8 | 0 | poison |
+
+BODY.value/SPD.value во всех этих входах остаются 5. Heart Damage меняет max, но calculateStat считает value через unmodifiedMax+totalModifiers. В свежем Actor STA.max до initial=0, множитель оставляет 0; после calculateDerivedStats у Heart он 25. У Spetic Shock 15/20 выводятся из изменённого WILL.value, а treated даёт 20 через totalModifiers −5. Это подтверждает прежнюю [issue-00036](../../issues/potential/issue-00036.md), не отсутствие всех последствий max: LEAP.max и статически Death save при HP≤0 читают max.
+
+Проверки included/disabled/transfer/applySelf разделены. Копия правой исходной ноги с единственным изменением disabled=false даёт dodge/athletics=2, SPD.max=1, SPD.value=5; исходник оставляет 8/8, 5/5. Это [новая potential issue-00329](../../issues/potential/issue-00329.md). Статус dead Decapitation присутствует без изменения HP.value=25; подготовка без Item убирает этот статус.
+
+Для трёх Eye настоящий addActiveEffects('awareness') выдал « +-5[Damaged Eye]», « +-3[Damaged Eye]», « +-1[Damaged Eye]». Полного skillRoll и выбора зрения не было; в статически проверенных rollSkill/rollSkillCheck:42–84 такого условия нет. Изложение HTML не преобразуется в автоматическую проверку контекста.
+
+### Периодические воздействия и переходы
+
+У семи исходных Deadly ADD объектов real getFieldForProperty возвращает SchemaField, миграция JSON-строки успешна, запись в turnStartEffects отсутствует. Реальный applyCombatEffects не вызвал урон. Status bleed/poison сам по себе не заменяет эту запись. Это ещё семь источников прежней [issue-00328](../../issues/potential/issue-00328.md).
+
+Положительные контроли только в памяти: у левой исходной руки KQZRzczsSx1XY63m и Spetic Shock tF3hsi4yZOMJ6xuW mode=2 заменён на override=5. Подготовленная запись получила amount=2/3, ignoreArmor=true как boolean и spDamage=0. Настоящие generalCombatHook → applyDamageFromStatus → DamageInstance передали 2/3 в перехваченный Actor.applyDamage; type далее отсутствует ([issue-00021](../../issues/potential/issue-00021.md)). Это диагностические копии, не исправленные экспорты.
+
+Heart treated Me9fgalLrB0i9Z2O использует NumberField bleed.damage.modifier. При пустой карте поле undefined, core выдаёт предупреждение «must be a number», обработчик не вызывает урон. При исходной записи Actor.bleed с amount=2 настоящая схема создаёт modifier=0, эффект прибавляет 2, обработчик передаёт 4. Числовой модификатор готовой записи отделён от семи ADD объектов; восьмой источник сценария не увеличивает их количество.
+
+Все 22 treat исполнены с pending Promise вместо сохранения: 14 create адресата → delete исходного, восемь только delete. treat завершается до операций ([issue-00121](../../issues/potential/issue-00121.md)). Для deadly calculateHealingTime не имеет ветви, экспортный 0 сохраняется. Восемь heal-сценариев: treated Eye с 0 дней →1, с новой стерилизацией →3/true, с уже сохранённой →1; с 100 дней →101/103. Автоматического удаления нет из-за criticalLevel != deadly. Eye none/stabilized и Decapitation дают update({}); завершение раньше update — [issue-00127](../../issues/potential/issue-00127.md). Ручной treat доступен независимо от этого ограничения.
+
+Восемь исходных выборов Deadly проверены через настоящий applyCritWound: head Eye/Decapitation, torso Spetic/Heart, по одному Item на четыре конечности. Повторный addItem правой исходной ноги дал quantity=NaN без создания второй записи ([issue-00288](../../issues/potential/issue-00288.md)). Запись и чат перехвачены.
+
+### Общая сверка семи пакетов
+
+Повторно разобраны все 226 JSON / 36650 строк, их ID, вложенные ключи, принадлежность Folder и граф адресатов. Манифест сопоставлен с настоящим полем BasePackage.schema.get('packs'): очистка путей снимает .db у всех семи записей, имена каталогов согласованы с exports и packFolders. Compile/extract изучены статически, CLI не запускались. Одинаковый текстовый формат не заменяет проверку типа Item/RollTable.
+
+| Каталог packsJson | JSON | RollTable / Item / Folder | Результаты | Эффекты / changes | Строк |
+| --- | --- | --- | --- | --- | --- |
+| character-generator | 13 | 13 / 0 / 0 | 86 | 0 / 0 | 2435 |
+| character-generator-sub-tables | 35 | 35 / 0 / 0 | 313 | 0 / 0 | 8319 |
+| combat | 11 | 11 / 0 / 0 | 66 | 0 / 0 | 1915 |
+| criticalWounds | 98 | 0 / 94 / 4 | 0 | 79 / 360 | 9608 |
+| lifepath | 21 | 21 / 0 / 0 | 139 | 0 / 0 | 3845 |
+| style | 7 | 7 / 0 / 0 | 70 | 0 / 0 | 1820 |
+| witcher-lifepath | 41 | 41 / 0 / 0 | 321 | 0 / 0 | 8708 |
+
+Шесть RollTable-пакетов: 128 таблиц, 995 результатов, 254 documentUuid. Все 252 разрешимые цели присутствуют, две ссылки Mounted Control Loss отсутствуют — прежняя [issue-00323](../../issues/potential/issue-00323.md). Циклов разрешимых ссылок нет. Все тексты/name результатов, диапазоны, ссылки, корневые ключи и хеши повторно сопоставлены с 128 карточками; типовая запись [n,n] в style сверена с номером строки результата.
+
+Повтор настоящих RollTable/Roll/Die/TableResult/TextEditor и HBS охватил 1728 прямых исходов, 985 достижимых resultId, все 995 getHTML и 51 inline. Десять недостижимых результатов обучения остаются [issue-00321](../../issues/potential/issue-00321.md). Combat дополнительно: 201 исход, 402 повторных draw, 22 draw мировых копий в памяти, 100 перехваченных сообщений. normalize(save:false) не записывал источник. Пересечение Monster на 9 — [issue-00322](../../issues/potential/issue-00322.md); inline x2/x3 — [issue-00319](../../issues/potential/issue-00319.md). Прежние составные проверки глубины [issue-00320](../../issues/potential/issue-00320.md) остаются историческим доказательством .056; полный повтор всех 15420 вариантов глубины в .061 не выполнялся, исходники и хеш 128 таблиц совпадают.
+
+CriticalWounds: строгая повторная подготовка всех 94 Item/4 Folder, 79 эффектов/360 changes и 62 treat. В полях changes 341 NumberField, 16 SchemaField, три неизвестных commonspeech ([issue-00004](../../issues/potential/issue-00004.md)). В источниках 356 null priority и четыре явных 0; нулевой приоритет не заменён стандартным. Единственный disabled — новая issue-00329. Все 16 ADD объектов остаются без записи после initial: 13 bleed, poison, suffocation, acid. Числовой modifier Heart treated в эти 16 не входит.
+
+Общий граф лечения: 31 тройная цепочка и один конечный none; все 62 UUID разрешаются, циклов и переходов между степенями нет. Пять смен location — один переход Simple ([issue-00325](../../issues/potential/issue-00325.md)) и четыре Difficult ([issue-00327](../../issues/potential/issue-00327.md)). Отсутствие states у Decapitation не объявлено повреждением графа.
+
+Все 48 сочетаний степени/шести обычных локаций/critEffect 4 или 6 исполнены на очищенном индексе. Complex head>4 выбирает Lost Teeth, torso>4 зависит от порядка Minor Head Wound/Ruptured Spleen — [issue-00324](../../issues/potential/issue-00324.md). Четыре tailWing при пустом наборе дают TypeError до addItem ([issue-00289](../../issues/potential/issue-00289.md)). Проверка не определяет требуемые травмы монстров по рулбуку.
+
+Связи с движком повторно проверены в system.json, ready/getIndex/settings, compile/extract/package.json, applyCritWound/handleCritLocation, моделях/расчётах Actor/Item/ActiveEffect, treat/heal и редакторе. Текстовые Combat Critical не являются источником Item. checkIfItemHasRollTable:257–314 ищет точное имя в RollTable, затем ожидает предметный результат; прежние проверки текстовой выдачи не означают применение описанных травм. Произвольные мировые макросы и внешние динамические потребители не исключены статическим поиском.
+
+### Объём выполнения и пределы
+
+| Изолированный сценарий stdin | Утверждений | Исполненные действия |
+| --- | --- | --- |
+| Индивидуальная порция Deadly | 758 | Все модели, effects/changes, подготовленные значения, 22 treat, 8 heal, 8 выборов, повтор, подписи, контроли |
+| Периодический обработчик Deadly | 40 | Семь ADD объектов, отдельный modifier, два override-контроля, modifier существующей bleed |
+| Повтор criticalWounds | 3182 | 94 Item/4 Folder/79 effects/360 changes, 62 перехода, 48 выборов, четыре пустых tailWing, BasePackage |
+| Повтор шести RollTable-пакетов | 5223 | 128 таблиц/995 results, реальные броски, HTML/inline, Combat draw, normalize без записи |
+| **Всего** | **9203** | Все четыре сценария завершились exit 0 |
+
+Настоящими были определения моделей/полей и перечисленные методы. Фасадами — ClientDocumentMixin/registry, индекс/fromUuid из Map очищенных документов, DOM/обход текстовых узлов, Roll.render/отдельные клиентские действия, операции создания/удаления/обновления и чат. Броня/вес Actor заданы нулём; Actor.applyDamage и torso перехвачены, конечные HP/броня не проверены. Полный _preCreate/_preUpdate/updateDuration, таймеры Combat, мир, многопользовательская запись и браузер не запускались. Предупреждение Heart treated без bleed ожидаемо; предупреждение Node MODULE_TYPELESS_PACKAGE_JSON не исправлялось. Неустановленные связи сохранены в индивидуальных карточках.
+
+### Документы, issues и завершение TASK-0003
+
+Созданы 23 карточки и potential issue-00329. Дополнены 26 прежних карточек, семь прежних issues (00021/00036/00121/00127/00288/00289/00328), реестр и указатели. Всего 329 potential; open/closed пусты. Проверены существующие описания/уточнения относящихся issues и отсутствие дубля нового disabled; это не повторное независимое расследование всех 328 старых проблем. Ни одна проблема не подтверждена пользователем, не исправлена и не закрыта.
+
+В TASK-0003 устранены устаревшие текущие строки «.058–.061 planned», сохранены исторические результаты .051/предыдущих порций. Все 61 подзадача done: 604 различных файла плюс 11 TASK-0002 дают **615 карточек из 615**, в том числе 226/226 экспортов и 98/98 criticalWounds. TASK-0003 завершена; TASK-0004/TASK-0005 остаются draft. Этот итог и [промежуточная сверка №1](cross-check-0001.md) — вспомогательные материалы для их последующей детализации, а не выполнение этих этапов.
+
+Проверка документов завершилась без ошибок: 615 карточек совпадают с 615 строками реестра, очередь пуста, распределение 604 файлов по 61 подзадаче не содержит повторов и дополняется 11 файлами TASK-0002. Проверены 30 691 локальная ссылка/якорь и 453 Markdown-таблицы затронутых документов. Для всех 226 экспортов сверены ID/ключи/хеши, для 995 результатов — ID/текст/диапазоны, для 79 эффектов — ID/origin/владелец, для 360 changes — ключ, строка, mode/value/priority. Историческое тело журнала и 592 прежние строки реестра сохранены; 321 прежний issue не менялся. git diff --check — exit 0. Изменены только 46 существующих Markdown-документов в docs/, созданы 23 карточки и один issue. У всех 1692 первоначально отслеживаемых файлов сохранены mode/uid/gid/inode; байты 1646 файлов вне перечня правок не изменились. HEAD/ветка сохранены, staged-изменений и нового коммита нет.
+
+Контрольные суммы SHA-256: для каждого набора относительные пути сортируются как строки, затем последовательно добавляются UTF-8 путь, NUL и байты файла.
+
+| Набор | SHA-256 |
+| --- | --- |
+| 23 Deadly JSON | 674f05c51b1af1c104eaa2b86390e4792a82ddbd23414ba05ff36c64883a4107 |
+| Все 98 criticalWounds | bec654ced81a66e81f28dddf63f7394c4e69de1a2a25909302044e93a56c7752 |
+| Все 128 RollTable | b56b5f2faa334c898a0ada1ad496631cbb42bfb5864911101a0e89006a1c6b46 |
+| Все 226 packsJson | 23e9769b872532f51910c7890d41efe80a76fd623921cdabf8de2be406054e14 |
+| Все 615 текущих исходников | 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c |
+| Исторические 621 с шестью исключёнными языками | 52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4 |
+
 ## TASK-0003.060
 
 Дата: 2026-09-13. Ветка rusbar-main, HEAD `aef03ca01b0db5887653d2b1301a4fe814372a3e`; исходное дерево чистое, 1665 отслеживаемых файлов. [Задача](../../tasks/task-0003.060.md), [карточки Difficult](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md). Исследование ограничено техническим устройством экспортов; мир, packs/, HTTP, сборка/извлечение и игровые правила не проверяются.

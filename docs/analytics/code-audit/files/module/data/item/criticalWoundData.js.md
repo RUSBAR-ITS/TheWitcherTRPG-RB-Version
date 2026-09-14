@@ -147,3 +147,11 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 Все 24 Difficult Item прошли strict=true. При BODY.max=5 healingTime=10; выполнены 24 treat (16 create→delete, восемь delete) и семь heal Concussion. Pending записи не задерживают методы. followUp разрешаются, но у двух stabilized правых переломов сохраняются перепутанные location (issue-00327).
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): 22 Item, семь цепочек из трёх состояний и конечная Decapitation; 14 followUp разрешаются. Исполнены все 22 treat: 14 create → delete и восемь только delete, с pending записями. Ветка deadly отсутствует в calculateHealingTime, экспортный 0 сохраняется. Восемь heal-сценариев подтверждают прирост дней treated и запрет автоматического treat для deadly даже при daysHealed=100; none/stabilized вызывают update({}). Ручной treat не проверяет возможность лечения по описанию. Повтор всего пакета: 94 Item, 62 перехода, пять смен location прежних Simple/Difficult, 31 тройная цепочка и один конечный none. [issue-00121](../../../../../../issues/potential/issue-00121.md)/[issue-00127](../../../../../../issues/potential/issue-00127.md) сохранены.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

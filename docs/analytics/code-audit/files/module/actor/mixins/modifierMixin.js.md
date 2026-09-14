@@ -196,3 +196,11 @@ Simple содержит числовые changes для activeEffectModifiers н
 Реальный addActiveEffects('dodge') у правой treated Compound Leg Fracture возвращает +-2[Compound Leg Fracture (Left - Treated)] при displayRollsDetails=true. Это расширение issue-00326 на конкретный Difficult источник. У исходной правой ноги левое имя только у bleed-эффекта; такой фрагмент формулы для него не утверждается.
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): настоящий addActiveEffects('awareness') дал « +-5[Damaged Eye]», « +-3[Damaged Eye]», « +-1[Damaged Eye]» на трёх состояниях. Контекст зрения не аргумент этой функции. Множители ног меняют skill.value и не являются activeEffectModifiers. Список appliedEffects для подписи предоставлен из подготовленных активных эффектов; полный skillRoll/чат не исполнялся.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

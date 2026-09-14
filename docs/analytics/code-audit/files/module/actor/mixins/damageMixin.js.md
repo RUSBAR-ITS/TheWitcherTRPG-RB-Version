@@ -180,3 +180,11 @@ applyCritWound исполнен в девяти сценариях на инде
 Восемь applyCritWound на индексе-фасаде очищенных Difficult Item выбирают обе головы/torso по lesserEffect и все четыре конечности. Перепутанные location находятся только у stabilized, отсеиваемых первоначальным treatment=none. Пустой выбор issue-00289 в этой порции не повторялся.
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+Повторный applyCritWound на очищенном индексе всех 94 Item проверен для 48 сочетаний: четыре уровня × шесть обычных локаций × critEffect 4/6. В [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): head выбирает Eye/Decapitation, torso — Spetic/Heart; у четырёх конечностей одна исходная запись, lesserEffect не влияет. Для tailWing в каждом уровне пустой список заканчивается TypeError до addItem ([issue-00289](../../../../../../issues/potential/issue-00289.md)). Ошибочные Complex-кандидаты и зависимость torso от порядка индекса остались [issue-00324](../../../../../../issues/potential/issue-00324.md); это свойства данных/потребителя, а не чтение текстовых Combat Critical.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

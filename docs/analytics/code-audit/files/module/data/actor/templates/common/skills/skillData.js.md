@@ -163,3 +163,11 @@ Complex задаёт 30 изменений навыков в трёх Lost Teeth
 Difficult использует восемь multiply по dodge.value/athletics.value и 160 навыковых add (четыре treated-ног и 156 Torn Stomach). Из 156 Torn Stomach путей три commonspeech не объявлены моделью, остальные 153 изменяют activeEffectModifiers. Смешанный пример исходная левая+treated правая нога: dodge.value=2/modifier−2. Диагностический ADD+2 на том же value после ×0.5 даёт 6 из 8.
 
 [Карточки Difficult](../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): enabled-множители ног по 0.25 меняют dodge.value/athletics.value с 8 до 2. Единственный disabled правого none оставляет 8; его включение только в памяти восстанавливает 2 ([issue-00329](../../../../../../../../../issues/potential/issue-00329.md)). У Eye activeEffectModifiers Awareness −5/−3/−1, value остаётся 0. Весь пакет: три неизвестных пути commonspeech подтверждены отдельно от объявленного commonsp ([issue-00004](../../../../../../../../../issues/potential/issue-00004.md)); остальные найденные числовые поля типизированы.
+
+[Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

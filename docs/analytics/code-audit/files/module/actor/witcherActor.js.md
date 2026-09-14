@@ -461,3 +461,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 Difficult показывает разницу max/value: при базе 5 и ×0.25 SPD.max=1, SPD.value=5, RUN=15, LEAP.value=3/max=0. У stabilized ×0.5 max=3/value=5. Skills dodge/athletics.value=8 меняются на 2/4. Sucking Chest Wound none даёт BODY=SPD=2, STUN=REC=3, HP.max=15 при BODY.max=5/healingTime=10. Это фактические расчёты без нового ограничения/правила.
 
 [Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) добавляет проверки max/value для Heart Damage и Spetic Shock: первые меняют BODY.max/SPD.max, оставляя value=5; STA.max после initial заново вычисляется. При базовых 5 максимумы STA: Heart none/stabilized=25; Spetic none/stabilized/treated=15/20/20. Dismembered Leg влияет на skill.value, если эффект включён. Повторное addItem правой исходной ноги через совпадение name/type дал quantity=NaN без создания второй травмы ([issue-00288](../../../../../issues/potential/issue-00288.md)).
+
+[Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

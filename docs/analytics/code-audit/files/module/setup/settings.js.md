@@ -206,3 +206,11 @@ displayRollsDetails прочитан в [weaponAttack/constructBaseAttackFormula
 criticalWoundsPack:2–14 по умолчанию TheWitcherTRPG.criticalWounds; choices=getAllCompendia:86–95 фильтрует documentName='Item'. Combat зарегистрирован как RollTable и этим списком не предлагается. Настройка не переключает автоматические броски на одноимённые таблицы Combat.
 
 [Карточки Combat](../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+Настройка criticalWoundsPack сопоставлена со всеми 94 Item/4 Folder, включая [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md). Значение по умолчанию TheWitcherTRPG.criticalWounds соответствует имени манифеста; обращения ready/getIndex и applyCritWound используют этот ключ. Семь манифестных пакетов проверены через настоящее поле BasePackage, серверная настройка действующего мира и его индекс не читались.
+
+[Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

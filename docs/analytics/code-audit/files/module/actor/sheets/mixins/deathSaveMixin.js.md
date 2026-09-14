@@ -95,3 +95,11 @@ Export называется deathsaveMixin (строчная s), файл — de
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Новый header содержит death-roll/minus/plus с базовыми listeners. Новый счётчик печатает deathSaves числом, старый monster-sheet показывает девять пороговых значков. Это разница UI, не лимит счётчика; _removeDeathSaves по-прежнему reset в 0.
 
 Связи: [templates/sheets/actor/partials/monster/header.hbs](../../../../templates/sheets/actor/partials/monster/header.hbs.md); [templates/sheets/actor/monster-sheet.hbs](../../../../templates/sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003032).
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+В [Deadly](../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) описание Heart Damage требует немедленный Death save, но JSON не вызывает _onDeathSaveRoll. Этот обработчик запускается действием пользователя; при HP≤0 читает BODY.max/WILL.max, тогда как HP>0 использует STUN.value. Heart Damage уменьшает max при неизменном BODY.value; последствия для этого ручного маршрута нельзя исключать по одному value. Decapitation добавил status dead без изменения HP.value. Связь с этим обработчиком установлена статически, сам его бросок повторно не запускался.
+
+[Протокол и ограничения](../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

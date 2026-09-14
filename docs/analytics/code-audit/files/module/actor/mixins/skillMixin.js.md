@@ -101,3 +101,11 @@ levelUpSkill расходует IP через Log, но не открывает 
 [module/actor/mixins/rewardsMixin.js](rewardsMixin.js.md), [module/actor/rewardsSheet.js](../rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+Статическая сверка rollSkill/rollSkillCheck:42–84 с [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): Damaged Eye адресует awareness.activeEffectModifiers, HTML уточняет sight-based, но параметр вида восприятия код не передаёт. Изолированно исполнен только addActiveEffects всех трёх состояний; он включает общий штраф. Условие из описания автоматически не исполняется, полного броска с выбором зрения в этой порции не было.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

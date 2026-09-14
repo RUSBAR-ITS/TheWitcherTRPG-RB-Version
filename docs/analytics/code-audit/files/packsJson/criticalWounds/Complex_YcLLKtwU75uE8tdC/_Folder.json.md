@@ -101,3 +101,11 @@ JSON не вводит собственных функций или обрабо
 Соседняя Difficult проверена:25 JSON/25effects/201changes/16followUp. В отличие от 61 числового add Complex содержит 12 multiply и девять объектов; ADD объектов в Foundry14 не создаёт turnStartEffects. Срок Difficult=max(15−BODY.max,1), Complex=max(12−BODY.max,1). Прежние сценарии Complex повторно не исполнялись.
 
 [Карточки Difficult](../Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+После [Deadly](../Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершено чтение всех 98 JSON criticalWounds. Повтор строгих моделей/потребителей охватил 94 Item/4 Folder/79 эффектов/360 changes, 62 перехода и 48 выборов. Статическая сверка подтверждает 31 цепочку из трёх Item плюс конечную Decapitation, без циклов/отсутствующих UUID. Пять смен location относятся к прежним [issue-00325](../../../../../../issues/potential/issue-00325.md)/[issue-00327](../../../../../../issues/potential/issue-00327.md); Complex first-find — [issue-00324](../../../../../../issues/potential/issue-00324.md); единственный disabled относится к Deadly [issue-00329](../../../../../../issues/potential/issue-00329.md). Исторические итоги данной порции сохранены.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

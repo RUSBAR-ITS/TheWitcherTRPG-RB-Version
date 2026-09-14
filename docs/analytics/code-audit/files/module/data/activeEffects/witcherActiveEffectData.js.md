@@ -143,3 +143,11 @@
 201 Difficult changes штатно мигрируют: 12 multiply чисел, 180 add чисел и девять add объектов; initial, priority=10/20. applyAfterCalculations default=false. Схема не добавляет специальное сложение объекта turnStartEffects: core SchemaField ADD возвращает прежнее значение (issue-00328).
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): четыре исходных системных apply-флага false, applyAfterCalculations отсутствует и получает false. Наследуемая схема сохраняет мигрированные 43 changes в system.changes/initial. Всего 360 изменений пакета: 341 адресует NumberField, 16 — SchemaField, три динамических commonspeech не объявлены. Типизированная схема не делает ADD объекта созданием записи — [issue-00328](../../../../../../issues/potential/issue-00328.md).
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

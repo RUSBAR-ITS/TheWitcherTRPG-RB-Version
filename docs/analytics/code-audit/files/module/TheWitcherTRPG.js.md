@@ -242,3 +242,11 @@ ready:64–67 индексирует выбранный criticalWoundsPack по 
 Четыре запрашиваемых ready поля индекса сопоставлены с 24 Difficult Item. На очищенном индексе-фасаде выполнены восемь положительных выборов; неправильные location двух stabilized не включены первичным treatment=none. Серверный getIndex не запускался.
 
 [Карточки Difficult](../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+Весь criticalWounds сопоставлен с четырьмя полями ready/getIndex: criticalLevel/location/lesserEffect/treatment. Настоящие модели очищают 94 Item, значения по умолчанию учитываются; 48 фактических выборов applyCritWound исполнены через индекс-фасад. [Deadly](../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) содержит восемь none, семь stabilized и семь treated. Настоящий серверный getIndex не запускался; это не подтверждение содержимого установленного packs/.
+
+[Протокол и ограничения](../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

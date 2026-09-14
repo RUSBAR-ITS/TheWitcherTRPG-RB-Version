@@ -215,3 +215,11 @@ Treated Cracked Ribs напрямую задаёт enc.totalModifiers=-10: пр�
 Новые прямые изменения Complex адресуют stun.totalModifiers. При базе 5 Minor Head Wound none получает STUN=3: floor((5+4)/2)=4, затем -1. Treated Ruptured Spleen получает STUN=3 из базовых 5 и модификатора -2. Изменения BODY/WILL также меняют REC/HP и другие производные; это отдельно отражено в карточках Item.
 
 [Карточки Complex](../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): Heart Damage none/stabilized и Spetic Shock none/stabilized используют STA.max ×0.25/×0.5 в initial. В свежем Actor исходный STA.max=0; после initial он 0, после calculateDerivedStats — 25/25/15/20 соответственно. Spetic treated меняет STA.totalModifiers на −5 и даёт max=20. Примеры фиксируют порядок перезаписи, не сохранение первоначального множителя ([issue-00036](../../../../../../../../../issues/potential/issue-00036.md)).
+
+[Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

@@ -100,3 +100,11 @@ JavaScript-функций и обработчиков файл не опреде
 lookup system.location:18 сопоставлен с двумя stabilized Difficult: Compound Arm Fracture Right хранит rightLeg, Compound Leg Fracture Right — rightArm. Модели/treat сохраняют эти поля (issue-00327). Связь с неправильной подписью установлена по шаблону; браузер списка не запускался.
 
 [Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): location всех 22 Item совпадает со своей семьёй; семь цепочек имеют кнопочный маршрут treat через UUID, у Decapitation followUp=null. Сам treat не проверяет текст о невозможности стабилизации/лечения и в конечной ветви запрашивает delete. Весь пакет содержит пять переходов со сменой location ([issue-00325](../../../../../issues/potential/issue-00325.md)/[issue-00327](../../../../../issues/potential/issue-00327.md)); шаблон лишь выводит сохранённую локацию. Браузер и клики не запускались.
+
+[Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

@@ -228,3 +228,11 @@ languages сохраняет все восемь объявлений. В тек
 Combat зарегистрирован как RollTable с packs/combat.db на одном уровне с criticalWounds (Item) в Witcher TRPG System; родство папки не означает вызова одного пакета другим. Все 11 Combat JSON соотнесены с пакетом; общий набор шести RollTable-пакетов — 128 JSON, 995 TableResult, 254 documentUuid (252 разрешимых, два отсутствующих).
 
 [Карточки Combat](README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+Итог всех семи пакетов: 226 JSON / 36650 строк — 128 RollTable, 94 Item и четыре Folder; 995 результатов, 79 эффектов, 360 changes. Реальное поле BasePackage.schema.get('packs') Foundry 14 очистило семь путей .db до путей каталогов, соответствующих экспортам и packFolders. Compile/extract читают каталоги рекурсивно; CLI не запускались. 252 documentUuid разрешимы, две цели Mounted Control Loss отсутствуют ([issue-00323](../../../issues/potential/issue-00323.md)); 62 followUp разрешимы, циклов нет. [Deadly](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершает технический анализ экспортов, не проверку установленной БД.
+
+[Протокол и ограничения](../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.

@@ -101,3 +101,11 @@ Dead останавливает только регенерацию. Ветвь 
 Настоящий applyCombatEffects на девяти исходных Difficult Actor с turnStartEffects={} не вызвал урон, хотя семь имели bleed и один suffocation. Положительные копии с override вместо ADD дали три вызова до перехваченного Actor.applyDamage, amount=2/3/4. Acid теряет type в создаваемом damage — issue-00021; исходный ADD не доходит до этой ветви (issue-00328). UpdateCombat/таймеры не исполнялись.
 
 [Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Дополнительная сверка TASK-0003.061
+
+2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
+
+[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): вызов applyCombatEffects на семи источниках ADD объектов не вызвал урон, несмотря на bleed/poison statuses. Восьмой Item Heart treated при пустой карте также не вызывает урон; с заранее существующим bleed amount=2 его modifier=2 даёт 4. Override-копии левой руки/Spetic передали 2/3 в реальный нижний маршрут. Status dead Decapitation используется также в проверке applyMonsterRegeneration; наличие статуса не записывает HP=0. Общий Combat lifecycle не исполнялся.
+
+[Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
