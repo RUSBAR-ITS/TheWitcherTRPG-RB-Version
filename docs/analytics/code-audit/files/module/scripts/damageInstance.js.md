@@ -72,7 +72,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Внешние consumers не исследованы. Допустимость нечислового/отрицательного входа не ограничивается классом; правила нормализации не выбирались.
+Прежнее ожидание исследования внешних consumers снято: текущие пути прочитаны. .012/.017 продолжают достижимость периодики ([U011-04](../../../cross-check-0002.md#u011-04)); .018 сохраняет порядок реальных update ([U011-02](../../../cross-check-0002.md#u011-02)). Допустимость отрицательных/NaN и нормализация типа не выбирались ([U011-07](../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -99,3 +99,13 @@
 Положительные контроли [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) исполнили настоящий DamageInstance: instanceDamage=2/3/4, bypassesNaturalArmor/bypassesWornArmor=true, bypassesShield=false, spDamage=0. Instance.type и object.type не получили bleed/poison ([issue-00021](../../../../../issues/potential/issue-00021.md)). Actor.applyDamage, локация torso и чат перехвачены; фактическое изменение HP/брони не проверено.
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Все producers Item/chat/status/crit/oil/silver и локационные consumers сопоставлены. Класс хранит mutable значения и промежуточные стадии без валидации; setType/setSource возвращают этот же объект. AllLocations повторно использует общие экземпляры. Текстовые методы дают строки для одиночного HBS; raw result массива не получает их автоматически. setShielded не имеет найденного consumer.
+
+Сопоставленные определения и потребители: [module/actor/mixins/damageMixin.js](../actor/mixins/damageMixin.js.md), [module/actor/mixins/damageUtilMixin.js](../actor/mixins/damageUtilMixin.js.md), [module/scripts/combat/applyDamage.js](combat/applyDamage.js.md), [module/scripts/combat/generalCombatHook.js](combat/generalCombatHook.js.md), [templates/chat/damage/damageToLocation.hbs](../../templates/chat/damage/damageToLocation.hbs.md).
+
+[Протокол и границы](../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-10](../../../cross-check-0002.md#r011-10), [R011-12](../../../cross-check-0002.md#r011-12), [R011-13](../../../cross-check-0002.md#r011-13), [R011-14](../../../cross-check-0002.md#r011-14), [R011-15](../../../cross-check-0002.md#r011-15), [R011-16](../../../cross-check-0002.md#r011-16), [R011-22](../../../cross-check-0002.md#r011-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

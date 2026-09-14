@@ -65,7 +65,7 @@ BaseMessageData extends foundry.abstract.DataModel; это обычный DataMo
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Пути заполнения и чтения rollTotal установлены. Историческая проверка .040 не заменяет старую историю чата/запись/живой HTMLElement: .016/.018 — [U011-01](../../../../cross-check-0002.md#u011-01)/[U011-03](../../../../cross-check-0002.md#u011-03)/[U011-08](../../../../cross-check-0002.md#u011-08). Допустимость отрицательных/дробных чисел поля не выбирает игровые правила.
 
 ## Связанные проблемы
 
@@ -76,3 +76,13 @@ BaseMessageData extends foundry.abstract.DataModel; это обычный DataMo
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003040) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+BaseMessageData задаёт только rollTotal с default undefined. Attack/Defense.attackRoll читают его getter, extendedRoll заполняет перед toMessage. Обычный Item.rollDamage и verbal rollDamage пользуются Roll без этого присваивания; нанесение физического урона берёт .dice-total из HTML. Отсутствие rollTotal у такого сообщения само по себе не новая причина сбоя.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/attackMessageData.js](attackMessageData.js.md), [module/data/chatMessage/damageMessageData.js](damageMessageData.js.md), [module/data/chatMessage/defenseMessageData.js](defenseMessageData.js.md), [module/item/mixins/damageUtilMixin.js](../../item/mixins/damageUtilMixin.js.md), [module/scripts/combat/applyDamage.js](../../scripts/combat/applyDamage.js.md), [module/scripts/rolls/extendedRoll.js](../../scripts/rolls/extendedRoll.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-01](../../../../cross-check-0002.md#r011-01). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

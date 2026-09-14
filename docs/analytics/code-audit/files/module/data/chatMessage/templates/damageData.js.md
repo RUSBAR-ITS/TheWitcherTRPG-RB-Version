@@ -65,7 +65,7 @@ UUID не ограничен Item и не проверяет существов�
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Producers, очистка и rollDamage/applyDamage потребители сопоставлены. .012 продолжает duration/периодический AE ([U011-04](../../../../../cross-check-0002.md#u011-04)); .017/.018 сохраняют внешний UUID и реальную подготовку документа после update ([U011-01](../../../../../cross-check-0002.md#u011-01)). Не требуется новый пофайловый разбор боевых примесей.
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@ UUID не ограничен Item и не проверяет существов�
 [Защита](../../../actor/mixins/defenseMixin.js.md) читает damage.duration, которого в схеме нет. Группа 31 с настоящей AttackMessageData передала undefined на границу applyActiveEffectToActorViaId. itemUuid при этом сохранён; эффекты и получение Item не исполнялись. Эта проверка дополняет 257, не создаёт новую проблему.
 
 [Сверка и ограничения](../../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+damageData возвращает восемь полей, включая Embedded DamageProperties, строковую формулу и отдельные crit/location фабрики. Attack сохраняет этот Embedded тип, Damage переопределяет только properties. Ссылки raw Item/item properties до сообщения не равнозначны очищенной модели; duration/item/вложенные defenseOptions не объявлены.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/attackMessageData.js](../attackMessageData.js.md), [module/data/chatMessage/damageMessageData.js](../damageMessageData.js.md), [module/data/chatMessage/templates/critData.js](critData.js.md), [module/data/chatMessage/templates/locationData.js](locationData.js.md), [module/item/mixins/damageUtilMixin.js](../../../item/mixins/damageUtilMixin.js.md), [module/data/item/templates/combat/damagePropertiesData.js](../../item/templates/combat/damagePropertiesData.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-02](../../../../../cross-check-0002.md#r011-02), [R011-03](../../../../../cross-check-0002.md#r011-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

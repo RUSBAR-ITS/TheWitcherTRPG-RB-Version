@@ -56,7 +56,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Пофайловой очереди боевых примесей нет: модели и downstream прочитаны. Реальный клиентский WitcherChatMessage, старый чат/flags и серверная запись остаются .018 ([U011-01](../../../cross-check-0002.md#u011-01)/[U011-08](../../../cross-check-0002.md#u011-08)); .017 проверяет внешние UUID. Прежняя .040 использовала настоящий общий BaseChatMessage с фасадами game/CONFIG, а не запущенный мир.
 
 ## Связанные проблемы
 
@@ -67,3 +67,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../review-log.md#task-0003040) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Пустой subclass WitcherChatMessage зарегистрирован CONFIG.ChatMessage.documentClass; собственных hooks/очистки/отрисовки не добавляет. Выбор четырёх system-моделей происходит отдельно в registerDataModels. DTO ChatMessageData не является этим документом. Полный текущий consumer урона уже сопоставлен в .011.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/attackMessageData.js](../data/chatMessage/attackMessageData.js.md), [module/data/chatMessage/baseMessageData.js](../data/chatMessage/baseMessageData.js.md), [module/data/chatMessage/damageMessageData.js](../data/chatMessage/damageMessageData.js.md), [module/data/chatMessage/defenseMessageData.js](../data/chatMessage/defenseMessageData.js.md), [module/setup/registerDataModels.js](../setup/registerDataModels.js.md), [module/chatMessage/chatMessageData.js](chatMessageData.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-01](../../../cross-check-0002.md#r011-01). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

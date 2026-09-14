@@ -59,7 +59,7 @@ JS-функций нет. Два вложенных each и concat формир�
 
 ## Непроверенные участки и открытые вопросы
 
-Вся разметка прочитана (14 логических строк, завершающего newline нет). Не проверялись браузерная нормализация checked, клики label, CSS/расположение окна и сторонние группы CONFIG. Выбор начального действия и изменение механики не согласовывались.
+Producer и оба читающих radio метода установлены. .013/.016/.018 — нормализация checked браузером, изоляция окон, label/CSS и расширения CONFIG ([U011-03](../../../cross-check-0002.md#u011-03)). Автоматический выбор нового default и изменение словесных правил не согласованы ([U011-07](../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -70,3 +70,13 @@ JS-функций нет. Два вложенных each и concat формир�
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | a69f11d2e4c4318cfbf635dabad97b0062c63c20; полный файл | Первичная карточка; [перекрёстная сверка](../../../review-log.md#task-0003046) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+HBS перечисляет пять групп/16 действий CONFIG, задаёт каждому radio checked и общий name verbalCombat. Actor.verbalCombat и defense callback ищут этот name глобально, тогда как customModifiers берётся в текущем prompt. groupName существует в общем context, в отличие от defense-HBS.
+
+Сопоставленные определения и потребители: [module/actor/mixins/verbalCombatMixin.js](../../module/actor/mixins/verbalCombatMixin.js.md), [module/scripts/verbalCombat/verbalCombatDefense.js](../../module/scripts/verbalCombat/verbalCombatDefense.js.md), [templates/dialog/verbal-combat-defense.hbs](verbal-combat-defense.hbs.md), [module/setup/config.js](../../module/setup/config.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-24](../../../cross-check-0002.md#r011-24). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

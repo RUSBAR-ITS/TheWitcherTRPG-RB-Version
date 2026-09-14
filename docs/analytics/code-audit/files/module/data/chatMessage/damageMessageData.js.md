@@ -48,7 +48,7 @@ extends BaseMessageData; frozen metadata.type='damage'; регистрация C
 | --- | --- | --- | --- |
 | [module/setup/registerDataModels.js](../../../../../../../module/setup/registerDataModels.js) | класс и metadata.type | CONFIG.ChatMessage.dataModels[type]; документ через documentClass | registerDataModels:76–80. |
 | [module/item/mixins/damageUtilMixin.js](../../../../../../../module/item/mixins/damageUtilMixin.js) | type:damage; effects/applied | rollDamage отправляет обработанный массив через Roll.toMessage | Вычисляет applied до создания сообщения; отдельно пишет flags.damage. |
-| [module/scripts/combat/applyDamage.js](../../../../../../../module/scripts/combat/applyDamage.js) | damage, properties.isNonLethal | Выбирает ресурс hp/sta и передаёт damage в Actor.applyDamage | Полный боевой расчёт остаётся последующим задачам. |
+| [module/scripts/combat/applyDamage.js](../../../../../../../module/scripts/combat/applyDamage.js) | damage, properties.isNonLethal | Выбирает ресурс hp/sta и передаёт damage в Actor.applyDamage | Расчёт Actor разобран в .044/.045 и сопоставлен в .011; живой цикл ChatMessage/update остаётся непроверенным. |
 | [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) | properties.effects/applied и duration | Фильтрует статусные воздействия и применяет onDamage эффекты | applyDamage, вызов через applyDamage.js. |
 
 Область поиска: module/ и templates/ текущего checkout; прямые импорты и места вызова сверены отдельно от динамических обращений. Типы и листы сверены с system.json, module/setup/registerDataModels.js и module/setup/registerSheets.js. Внешние модули, макросы миров и действующие компедиумы не исследовались.
@@ -67,7 +67,7 @@ damage.itemUuid/formula/crit/strike/type/originalLocation/location наслед�
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Полный downstream уже разобран в .044/.045 и сопоставлен в .011; прежнее ожидание боевого расчёта снято. .012 проверяет duration/периодические эффекты ([U011-04](../../../../cross-check-0002.md#u011-04)), .018 — жизнь prepared location/oil/flags и сохранение после повторного действия ([U011-01](../../../../cross-check-0002.md#u011-01)/[U011-02](../../../../cross-check-0002.md#u011-02)). DOM-источник числа и реальное сообщение остаются [U011-03](../../../../cross-check-0002.md#u011-03).
 
 ## Связанные проблемы
 
@@ -102,3 +102,13 @@ damage.itemUuid/formula/crit/strike/type/originalLocation/location наслед�
 Дополнен другой producer: [общее словесное действие](../../actor/mixins/verbalCombatMixin.js.md) передаёт type:damage, system:{vcDamage}; extendedRoll добавляет rollTotal. Группа 07 на настоящей модели сохранила rollTotal10, удалила vcDamage и подготовила defaults damage. Следующий [onDamage](../../scripts/verbalCombat/verbalCombat.js.md) читает flags.damage.formula, а не system.vcDamage/system.damage; это отличается от боевого applyDamageFromMessage. Для этого маршрута удаление vcDamage не зарегистрировано как отдельная потеря используемых данных. Ожидание двух flags проверено отдельно (184); БД не запускалась.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Damage повторно использует damageData, но заменяет Embedded properties на SchemaField с effects:Array и applied. Поэтому готовый Damage не предоставляет getPreprocessedEffects, в отличие от Attack. Duration удаляется до onHit/onDamage; heal/shield читаются другими consumers из HTML. Item.rollDamage производит модель, applyDamage.js меняет её prepared location/oil по ссылке; число урона приходит из DOM. В словесном type=damage неизвестный vcDamage удаляется, фактические consumers используют flags.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/baseMessageData.js](baseMessageData.js.md), [module/data/chatMessage/templates/damageData.js](templates/damageData.js.md), [module/item/mixins/damageUtilMixin.js](../../item/mixins/damageUtilMixin.js.md), [module/scripts/combat/applyDamage.js](../../scripts/combat/applyDamage.js.md), [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md), [module/actor/mixins/verbalCombatMixin.js](../../actor/mixins/verbalCombatMixin.js.md), [module/data/item/templates/combat/damagePropertiesData.js](../item/templates/combat/damagePropertiesData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-01](../../../../cross-check-0002.md#r011-01), [R011-02](../../../../cross-check-0002.md#r011-02), [R011-03](../../../../cross-check-0002.md#r011-03), [R011-04](../../../../cross-check-0002.md#r011-04), [R011-11](../../../../cross-check-0002.md#r011-11), [R011-17](../../../../cross-check-0002.md#r011-17). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

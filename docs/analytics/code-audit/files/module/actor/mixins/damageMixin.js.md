@@ -125,7 +125,7 @@ system.changes — действующий путь, унаследованный
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитан файл; браузер, игровой мир, серверная запись, конкурентные клиенты и соответствие рулбуку не проверены. Входы фасадов update показывают запрос и ожидаемое локальное состояние, а не сохранение в БД. Пустые/невалидные каталог и UUID проверены контролируемыми подстановками. Состав реальных травм и включение их в RollTable остаются вне этой порции.
+Consumers и поздние экспорты прочитаны; прежнее ожидание их пофайлового разбора снято. В .012 — сохранение/снятие temporaryHP и переходы травмы ([U011-02](../../../../cross-check-0002.md#u011-02)/[U011-04](../../../../cross-check-0002.md#u011-04)/[U011-05](../../../../cross-check-0002.md#u011-05)), в .017 — индекс/UUID. .018 сохраняет живую очередь update, несколько клиентов и границы старых фасадов ([U011-08](../../../../cross-check-0002.md#u011-08)). Правила отрицательного урона/обхода не меняются ([U011-07](../../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -188,3 +188,13 @@ applyCritWound исполнен в девяти сценариях на инде
 Повторный applyCritWound на очищенном индексе всех 94 Item проверен для 48 сочетаний: четыре уровня × шесть обычных локаций × critEffect 4/6. В [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): head выбирает Eye/Decapitation, torso — Spetic/Heart; у четырёх конечностей одна исходная запись, lesserEffect не влияет. Для tailWing в каждом уровне пустой список заканчивается TypeError до addItem ([issue-00289](../../../../../../issues/potential/issue-00289.md)). Ошибочные Complex-кандидаты и зависимость torso от порядка индекса остались [issue-00324](../../../../../../issues/potential/issue-00324.md); это свойства данных/потребителя, а не чтение текстовых Combat Critical.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлена полная цепочка applyDamage: щит → oil/локации → SP/flat/множители → temporaryHP/ресурс → статусы и onDamage. Общие DamageInstance всех зон сохраняют общую мутацию; bypassesShield стоит после handleShield. Различены ожидание отдельных update и не ожидающие внешние wrappers. Критические команды и поиск Item-травмы проверены до addItem; повтор name/type не сбрасывает treatment. Одиночный и общий HBS получают разные контексты.
+
+Сопоставленные определения и потребители: [module/actor/mixins/damageUtilMixin.js](damageUtilMixin.js.md), [module/scripts/damageInstance.js](../../scripts/damageInstance.js.md), [module/scripts/combat/applyDamage.js](../../scripts/combat/applyDamage.js.md), [templates/chat/damage/damageToAllLocations.hbs](../../../templates/chat/damage/damageToAllLocations.hbs.md), [templates/chat/damage/damageToLocation.hbs](../../../templates/chat/damage/damageToLocation.hbs.md), [templates/chat/damage/shieldAbsorbs.hbs](../../../templates/chat/damage/shieldAbsorbs.hbs.md), [templates/chat/damage/spAbsorbs.hbs](../../../templates/chat/damage/spAbsorbs.hbs.md), [module/actor/mixins/armorMixin.js](armorMixin.js.md), [module/actor/witcherActor.js](../witcherActor.js.md), [module/data/item/criticalWoundData.js](../../data/item/criticalWoundData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-09](../../../../cross-check-0002.md#r011-09), [R011-12](../../../../cross-check-0002.md#r011-12), [R011-13](../../../../cross-check-0002.md#r011-13), [R011-14](../../../../cross-check-0002.md#r011-14), [R011-15](../../../../cross-check-0002.md#r011-15), [R011-16](../../../../cross-check-0002.md#r011-16), [R011-17](../../../../cross-check-0002.md#r011-17), [R011-18](../../../../cross-check-0002.md#r011-18), [R011-19](../../../../cross-check-0002.md#r011-19). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

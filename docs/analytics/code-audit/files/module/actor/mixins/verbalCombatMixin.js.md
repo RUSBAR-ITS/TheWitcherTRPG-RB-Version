@@ -110,7 +110,7 @@ Flavor: div.verbal-combat-attack-message с h2, уроном, локализов
 
 ## Непроверенные участки и открытые вопросы
 
-Все 101 строка прочитаны. Не запускались реальный Actor prepareData, браузерные окна/radio, владение документами, сохранение флагов в БД и полный бой нескольких пользователей. Соответствие игровых текстов правилам и желание их автоматизировать не определялись. Матрица описывает CONFIG текущего форка; например perception здесь Human Perception на EMP, а не произвольно выбранный навык INT.
+Метод и downstream словесного боя сопоставлены. .013/.016 сводят лист/CONFIG/радио и en/ru; реальный выбор в нескольких окнах остаётся [U011-03](../../../../cross-check-0002.md#u011-03). .018 сохраняет готовность flags и завершение Resolve/Actor после update ([U011-01](../../../../cross-check-0002.md#u011-01)/[U011-02](../../../../cross-check-0002.md#u011-02)); автоматизация текстовых эффектов и правила Counterargue не согласованы ([U011-07](../../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -121,3 +121,13 @@ Flavor: div.verbal-combat-attack-message с h2, уроном, локализов
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | a69f11d2e4c4318cfbf635dabad97b0062c63c20; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003046) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Пять групп CONFIG/16 действий связаны с радио HBS, prepared stat/skill, effects/group и RollConfig. customModifiers локален, выбор radio глобален. Общий бросок отправляет type=damage, неизвестное system.vcDamage очищается; кнопка читает отдельные flags. extendedRoll не ожидается, текстовые последствия не создают AE. Переключатель optional verbal управляет видимостью листа, а не guard метода.
+
+Сопоставленные определения и потребители: [templates/dialog/verbal-combat.hbs](../../../templates/dialog/verbal-combat.hbs.md), [module/scripts/verbalCombat/verbalCombat.js](../../scripts/verbalCombat/verbalCombat.js.md), [module/scripts/verbalCombat/verbalCombatDefense.js](../../scripts/verbalCombat/verbalCombatDefense.js.md), [module/data/chatMessage/damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [module/setup/config.js](../../setup/config.js.md), [module/scripts/rolls/extendedRoll.js](../../scripts/rolls/extendedRoll.js.md), [module/chatMessage/chatMessageData.js](../../chatMessage/chatMessageData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-24](../../../../cross-check-0002.md#r011-24), [R011-25](../../../../cross-check-0002.md#r011-25), [R011-28](../../../../cross-check-0002.md#r011-28). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

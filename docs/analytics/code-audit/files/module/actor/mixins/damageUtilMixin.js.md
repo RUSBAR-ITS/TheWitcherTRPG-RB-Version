@@ -65,7 +65,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитан файл; прямой UI-мастер и создание нового эффекта здесь не запускались. Соответствие правилу отрицательных бонусов/бронебойности требует отдельного решения.
+Связи с реальными consumers установлены. .012/.017 проверяют достижимость периодических записей, где type теряется до getter ([U011-04](../../../../cross-check-0002.md#u011-04)). Нормализация flat/multiplication/AP и отрицательных значений требует отдельного решения; .018 сохраняет эту границу ([U011-07](../../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -76,3 +76,13 @@
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 965132d5d7972a0edd73aaa62484a1b6ba15991f; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003044) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+getFlatDamageMod выбирает набор по внешнему damage.type, getMultiDamageMod — тот же набор и applyAP; при applyAP обращение к damageObject.damageProperties расходится со штатным properties. Flat добавляется только положительный после SP; multiplication используется armorMixin внутри сопротивлений. Тип DamageInstance и внешний тип damage могут отличаться.
+
+Сопоставленные определения и потребители: [module/actor/mixins/damageMixin.js](damageMixin.js.md), [module/scripts/damageInstance.js](../../scripts/damageInstance.js.md), [module/actor/mixins/armorMixin.js](armorMixin.js.md), [module/data/actor/templates/character/general/damage/damageTypeModificationData.js](../../data/actor/templates/character/general/damage/damageTypeModificationData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-12](../../../../cross-check-0002.md#r011-12), [R011-14](../../../../cross-check-0002.md#r011-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

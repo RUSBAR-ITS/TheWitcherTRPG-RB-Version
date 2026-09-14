@@ -69,7 +69,7 @@ rollTotal — результат защиты. criticalLevel/critdamage/bonusdam
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Границы crit/stun и текущий consumer сопоставлены. .012/.017 продолжают состояние Item/UUID/индекс ([U011-05](../../../../cross-check-0002.md#u011-05)), .018 — существование документов после загрузки истории ([U011-01](../../../../cross-check-0002.md#u011-01)). Реальное контекстное меню и helper выбора Actor — [U011-03](../../../../cross-check-0002.md#u011-03).
 
 ## Связанные проблемы
 
@@ -104,3 +104,13 @@ rollTotal — результат защиты. criticalLevel/critdamage/bonusdam
 Группа 23 выполнила [критический пункт меню](../../../../../../../module/scripts/combat/combat.js) с настоящей DefenseMessageData. Consumer передал actor.applyCritWound тот же model.crit, в котором critEffectModifier уже отсутствует. Это подтверждает последнюю границу issue258, без повторного создания травмы/выбора компедиума. Группы 03/05 отдельно подтвердили чтение attackWeaponProperties.stun и пять аргументов executeDefense; DOM/выбор Actor — фасады.
 
 [Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Defense определяет собственную crit.location со stun и Embedded attackWeaponProperties; это другая схема, чем damage.crit/location. critEffectModifier не объявлен и удаляется, criticalLevel/critdamage/bonusdamage/critEffect остаются. attackRoll — getter rollTotal. Combat callbacks выбирают текущего Actor, затем передают crit; defenderUUID не гарантирует этого адресата.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/baseMessageData.js](baseMessageData.js.md), [module/data/chatMessage/templates/critData.js](templates/critData.js.md), [module/data/chatMessage/templates/locationData.js](templates/locationData.js.md), [module/scripts/combat/combat.js](../../scripts/combat/combat.js.md), [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md), [module/data/item/templates/combat/damagePropertiesData.js](../item/templates/combat/damagePropertiesData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-01](../../../../cross-check-0002.md#r011-01), [R011-02](../../../../cross-check-0002.md#r011-02), [R011-09](../../../../cross-check-0002.md#r011-09). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

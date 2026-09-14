@@ -61,7 +61,7 @@ damageData создаёт crit:SchemaField(critData()); AttackMessageData и Dam
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Различия схем и consumer выбора травмы установлены. .012/.017 проверяют переходы Item и индекс/tailWing ([U011-05](../../../../../cross-check-0002.md#u011-05)); .018 — загрузку истории/UUID ([U011-01](../../../../../cross-check-0002.md#u011-01)). Распределение случайного выбора и соответствие правилам не проверялись.
 
 ## Связанные проблемы
 
@@ -72,3 +72,13 @@ damageData создаёт crit:SchemaField(critData()); AttackMessageData и Dam
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003040) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Фабрика critData задаёт два модификатора damage.crit; source — parent.system.attackStats при формировании урона Item. DefenseMessageData имеет самостоятельную crit-схему и не включает critEffectModifier, который читает выбор lesser/greater травмы. Тезис об одной общей crit-схеме для сообщений неверен.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/templates/damageData.js](damageData.js.md), [module/data/chatMessage/defenseMessageData.js](../defenseMessageData.js.md), [module/item/mixins/damageUtilMixin.js](../../../item/mixins/damageUtilMixin.js.md), [module/actor/mixins/damageMixin.js](../../../actor/mixins/damageMixin.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-02](../../../../../cross-check-0002.md#r011-02), [R011-09](../../../../../cross-check-0002.md#r011-09). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

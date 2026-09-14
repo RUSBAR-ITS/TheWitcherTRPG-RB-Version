@@ -87,7 +87,7 @@ extendedRoll с defense=true принимает равенство threshold з�
 
 ## Непроверенные участки и открытые вопросы
 
-Все 118 строк прочитаны. Скрытое меню 302 не исправлено; проверки методов напрямую не доказывают рабочий сценарий UI. Не проверены полный Dialog/браузерные radio, сохранение messages/flags, права, несколько клиентов и правила контраргумента по книге. Поддерживаемый legacy Dialog не объявлен сломанным по имени API.
+Сверены обе стороны Dialog/CONFIG/extendedRoll; data-group шаблона не используется callback и отдельным сбоем не объявлен. .016/.018 — реальные окна/радио/меню ([U011-03](../../../../cross-check-0002.md#u011-03)), .018 — завершение сообщения и ресурсов ([U011-02](../../../../cross-check-0002.md#u011-02)). Правила контраргумента/текстовых последствий вне аудита ([U011-07](../../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -98,3 +98,13 @@ extendedRoll с defense=true принимает равенство threshold з�
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | a69f11d2e4c4318cfbf635dabad97b0062c63c20; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003046) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Defense context-menu получает HTMLElement, но использует .length/.find; нижний executeDefense открывает поддерживаемый legacy Dialog с jQuery callback. При этом radio ищется глобально. Counterargue отдельно запускает Actor.verbalCombat, остальные формируют RollConfig; числовой vcSkill не имеет .label, thresholdDesc undefined, defense comparison остаётся >=. customModifiers выражение проверяется иначе, чем customModifiers общего броска.
+
+Сопоставленные определения и потребители: [module/actor/mixins/verbalCombatMixin.js](../../actor/mixins/verbalCombatMixin.js.md), [module/scripts/verbalCombat/verbalCombat.js](verbalCombat.js.md), [templates/dialog/verbal-combat-defense.hbs](../../../templates/dialog/verbal-combat-defense.hbs.md), [module/scripts/rolls/extendedRoll.js](../rolls/extendedRoll.js.md), [module/scripts/rollConfig.js](../rollConfig.js.md), [module/setup/config.js](../../setup/config.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-26](../../../../cross-check-0002.md#r011-26), [R011-27](../../../../cross-check-0002.md#r011-27). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

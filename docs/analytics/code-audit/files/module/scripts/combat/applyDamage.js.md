@@ -95,7 +95,7 @@ Empty сохраняет текущую локацию. Остальные зн�
 
 ## Непроверенные участки и открытые вопросы
 
-Все 124 строки разобраны. Не проверены sanitization/реальный DOM, права на выбранного Actor, асинхронная загрузка сообщений, реальный отказ update и взаимодействие клиентов. Связанные ошибки расчёта щита, SP и временных HP не исправлены; успешный вызов этой обёртки не доказывает успешную запись.
+Сумма DOM, cancel/reject и текущие consumers установлены. .012 — достижимость status-повреждения и восстановление ([U011-04](../../../../cross-check-0002.md#u011-04)); .016/.018 — настоящий DOM/радио/доступ к сообщению ([U011-03](../../../../cross-check-0002.md#u011-03)). Реальная запись и следующий prepared state остаются [U011-02](../../../../cross-check-0002.md#u011-02).
 
 ## Связанные проблемы
 
@@ -122,3 +122,13 @@ Empty сохраняет текущую локацию. Остальные зн�
 Положительные контроли [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) достигли applyDamageFromStatus с подготовленной записью bleed/poison: в перехваченный Actor.applyDamage переданы 2/3, а Heart treated с исходным bleed — 4. Тип воздействия отсутствует после формирования DamageInstance — прежняя [issue-00021](../../../../../../issues/potential/issue-00021.md). Семь исходных ADD-объектов не доходят до этого метода ([issue-00328](../../../../../../issues/potential/issue-00328.md)); два разных участка не объединены в одну причину.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Menu marker/.dice-total, Actor helper, диалог, prepared damage и DamageInstance связаны до Actor.applyDamage. HP/STA выбирается отдельно от типа экземпляра. Empty/oil=false не отменяют прошлую мутацию prepared; wrapper не возвращает/ожидает внутренний Promise. Status-вход пропускает диалог и берёт type из объекта, который periodic producer не заполняет.
+
+Сопоставленные определения и потребители: [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md), [module/data/chatMessage/damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [module/scripts/damageInstance.js](../damageInstance.js.md), [module/scripts/combat/generalCombatHook.js](generalCombatHook.js.md), [module/scripts/helper.js](../helper.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-10](../../../../cross-check-0002.md#r011-10), [R011-11](../../../../cross-check-0002.md#r011-11), [R011-12](../../../../cross-check-0002.md#r011-12), [R011-22](../../../../cross-check-0002.md#r011-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

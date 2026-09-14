@@ -90,7 +90,7 @@ createBaseDamageObject не делает копию properties: последую
 
 ## Непроверенные участки и открытые вопросы
 
-Все строки прочитаны. Диалог и браузерный lifecycle сообщений, реальная запись флага, разрешение UUID и очистка HTML не запускались. Повторный rollDamage на уже готовом damage-сообщении со SchemaField properties не является найденным штатным путём: он не имеет getPreprocessedEffects. Отрицательная/невалидная формула и неизвестная локация не нормализуются этим методом.
+Штатный путь Attack→rollDamage и plain Damage downstream различены; ошибка повторного rollDamage на готовой SchemaField не объявлена найденным штатным вызовом. .012 — duration/статусы ([U011-04](../../../../cross-check-0002.md#u011-04)), .016/.018 — dialog/HTML ([U011-03](../../../../cross-check-0002.md#u011-03)), .018 — flags/prepared mutations/запись ([U011-01](../../../../cross-check-0002.md#u011-01)/[U011-02](../../../../cross-check-0002.md#u011-02)).
 
 ## Связанные проблемы
 
@@ -111,3 +111,13 @@ createBaseDamageObject не делает копию properties: последую
 [onDamage](../../../../../../../module/scripts/combat/combat.js) теперь полностью описан: выбирает Item по message.system.attack.itemUuid и передаёт исходный system.damage в rollDamage, не ожидая Promise. В действующем Hook получает HTMLElement; старый addAttackChatListeners не имеет найденных вызовов и передаёт jQuery несовместимому listener. [Menu consumer](../../../../../../../module/scripts/combat/applyDamage.js) читает первый DOM .dice-total из сообщения урона, а не system.rollTotal. Полный rollDamage повторно не исполнялся, прежняя граница модели/serialized properties (297) сохраняется.
 
 [Проверки, результаты и ограничения](../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлены raw properties/Item/parent.attackStats → Roll → DamageMessageData → кнопка/Actor. Метод getPreprocessedEffects нужен на входе, а на выходе effects:Array. Статус разрешается в CONFIG до Roll; applied и ручная кнопка имеют разные условия. Обычный Roll не записывает rollTotal; flag damage устанавливается после toMessage без await. VariableDamage/HBS и malformed div — отдельные контракты представления.
+
+Сопоставленные определения и потребители: [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md), [module/data/chatMessage/damageMessageData.js](../../data/chatMessage/damageMessageData.js.md), [module/data/chatMessage/templates/damageData.js](../../data/chatMessage/templates/damageData.js.md), [module/scripts/combat/applyDamage.js](../../scripts/combat/applyDamage.js.md), [templates/dialog/combat/variableDamage.hbs](../../../templates/dialog/combat/variableDamage.hbs.md), [module/data/item/templates/combat/damagePropertiesData.js](../../data/item/templates/combat/damagePropertiesData.js.md), [module/item/witcherItem.js](../witcherItem.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-03](../../../../cross-check-0002.md#r011-03), [R011-04](../../../../cross-check-0002.md#r011-04), [R011-05](../../../../cross-check-0002.md#r011-05), [R011-17](../../../../cross-check-0002.md#r011-17). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

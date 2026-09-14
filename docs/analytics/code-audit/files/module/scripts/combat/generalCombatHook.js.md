@@ -82,7 +82,7 @@ Dead останавливает только регенерацию. Ветвь 
 
 ## Непроверенные участки и открытые вопросы
 
-Все 87 строк разобраны. Реальные Hooks нескольких клиентов, очередь документов Foundry, повторное получение/снятие ActiveEffect, восстановление prepared-данных после update, серверная запись и её отказ не запускались. Наблюдения о dead/отрицательной регенерации/нулевом amount — описание существующих guards, а не автоматическое решение об изменении правил. Вероятность потери записей в конкретном мире не измерялась.
+Регистрация/модель/consumer и поздний ADD-барьер установлены. .012/.017 проверяют создание/снятие периодических записей ([U011-04](../../../../cross-check-0002.md#u011-04)); .018 — настоящие Hooks, смену activeGM и очередь HP ([U011-02](../../../../cross-check-0002.md#u011-02)/[U011-06](../../../../cross-check-0002.md#u011-06)). Отрицательная регенерация/dead/нулевой amount описаны как guards, не выбранные новые правила ([U011-07](../../../../cross-check-0002.md#u011-07)).
 
 ## Связанные проблемы
 
@@ -109,3 +109,13 @@ Dead останавливает только регенерацию. Ветвь 
 [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): вызов applyCombatEffects на семи источниках ADD объектов не вызвал урон, несмотря на bleed/poison statuses. Восьмой Item Heart treated при пустой карте также не вызывает урон; с заранее существующим bleed amount=2 его modifier=2 даёт 4. Override-копии левой руки/Spetic передали 2/3 в реальный нижний маршрут. Status dead Decapitation используется также в проверке applyMonsterRegeneration; наличие статуса не записывает HP=0. Общий Combat lifecycle не исполнялся.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+activeGM guard не ограничивает updateCombat сменой хода; отсутствующий combatant.actor не защищён. Регенерация и status loop запущены без общего ожидания. TurnStartEffects самостоятельны относительно statuses. Periodic damage теряет type, передаёт amount+modifier и raw bypass/spDamage; wrapper не ждёт Actor. Heal игнорирует modifier. ADD-барьер исходных AE может остановить путь раньше расчёта.
+
+Сопоставленные определения и потребители: [module/scripts/combat/applyDamage.js](applyDamage.js.md), [module/scripts/damageInstance.js](../damageInstance.js.md), [templates/chat/combat/regeneration.hbs](../../../templates/chat/combat/regeneration.hbs.md), [module/setup/hooks.js](../../setup/hooks.js.md), [module/data/actor/templates/common/combatEffectsData.js](../../data/actor/templates/common/combatEffectsData.js.md), [module/setup/config.js](../../setup/config.js.md), [templates/chat/combat/statusEffect.hbs](../../../templates/chat/combat/statusEffect.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-20](../../../../cross-check-0002.md#r011-20), [R011-21](../../../../cross-check-0002.md#r011-21), [R011-22](../../../../cross-check-0002.md#r011-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

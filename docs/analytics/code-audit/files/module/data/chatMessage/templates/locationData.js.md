@@ -61,7 +61,7 @@ damageData вызывает locationData при создании SchemaField. De
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Обе схемы и локационные consumers установлены. .017 проверяет таблицы/индекс tailWing ([U011-05](../../../../../cross-check-0002.md#u011-05)), .018 — жизнь prepared объекта при повторе/после update ([U011-01](../../../../../cross-check-0002.md#u011-01)/[U011-02](../../../../../cross-check-0002.md#u011-02)). Случайное распределение попаданий не проверялось.
 
 ## Связанные проблемы
 
@@ -72,3 +72,13 @@ damageData вызывает locationData при создании SchemaField. De
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003040) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+damage location содержит name/alias/formula/modifier, где modifier — строка. Defense.crit.location отдельно использует числовой modifier и critEffect. Actor.getLocationObject при нанесении может заменить prepared location целиком; Empty оставляет ранее выбранное значение. В allLocations внешний damage.location меняется по очереди, но общие порции остаются общими.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/templates/damageData.js](damageData.js.md), [module/data/chatMessage/defenseMessageData.js](../defenseMessageData.js.md), [module/scripts/combat/applyDamage.js](../../../scripts/combat/applyDamage.js.md), [module/actor/mixins/damageMixin.js](../../../actor/mixins/damageMixin.js.md), [module/actor/mixins/locationMixin.js](../../../actor/mixins/locationMixin.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-02](../../../../../cross-check-0002.md#r011-02). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

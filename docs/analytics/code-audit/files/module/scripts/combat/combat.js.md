@@ -86,7 +86,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 96 строк прочитаны. Реальные нажатия в браузере, права, удаление документов, повторный рендер клиента, сохранение чата и полный многоклиентский бой не проверены. Получение Item по UUID и Actor через helper представлены явно заданными результатами. Отмена выбора helper описана прежней .028; в .045 проверено отсутствие Actor и отклонение окна нанесения урона, без повторного запуска всех вариантов выбора.
+Producers/models/actions сопоставлены с обеих сторон. .012/.017 — травма/UUID ([U011-05](../../../../cross-check-0002.md#u011-05)), .016/.018 — реальный повторный render/меню/выбор Actor ([U011-03](../../../../cross-check-0002.md#u011-03)); .018 — история сообщений и завершение update ([U011-01](../../../../cross-check-0002.md#u011-01)/[U011-02](../../../../cross-check-0002.md#u011-02)).
 
 ## Связанные проблемы
 
@@ -105,3 +105,13 @@
 addCritMessageContextOptions:85–92 передаёт system.crit в Actor.applyCritWound. Этот маршрут получает Item из criticalWounds по фильтрам, не бросает Simple/Complex/Difficult/Deadly Critical из Combat. Таблицы и их результаты описаны отдельно; callback контекстного меню заново не исполнялся.
 
 [Карточки Combat](../../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+renderChatMessageHTML подключает HTMLElement listeners, а контекстные команды читают message.system и заново выбирают Actor. Item UUID не гарантирован существующим; damage/defense/stun/crit команды не передают полное ожидание нижнего метода. Для crit выбранный Actor не выводится автоматически из defenderUUID. Legacy callback разрешён текущим ядром; старые массовые .find/.each helpers не найдены на штатном пути.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [module/data/chatMessage/defenseMessageData.js](../../data/chatMessage/defenseMessageData.js.md), [module/data/chatMessage/templates/attackData.js](../../data/chatMessage/templates/attackData.js.md), [module/data/chatMessage/templates/critData.js](../../data/chatMessage/templates/critData.js.md), [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md), [module/item/mixins/damageUtilMixin.js](../../item/mixins/damageUtilMixin.js.md), [module/scripts/helper.js](../helper.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-06](../../../../cross-check-0002.md#r011-06), [R011-09](../../../../cross-check-0002.md#r011-09), [R011-18](../../../../cross-check-0002.md#r011-18). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

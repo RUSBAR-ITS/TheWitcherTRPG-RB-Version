@@ -73,7 +73,7 @@ TheWitcherTRPG.js вызывает Chat.chatMessageListeners(message,html) в re
 
 ## Непроверенные участки и открытые вопросы
 
-Действия исполнены через callbacks реального chatMessageListeners; HTML разобран parse5, вместо браузерного DOM использован адаптер. Настоящие модели/методы ремонта на указанных границах; цели, коллекции, DialogV2, update, ChatMessage.create и UUID resolver заменены. Полномочия сервера, конкурентные клики и успешный полный ремонт в мире не проверены.
+Callbacks/HBS и полная граница поиска ремонтируемого Item установлены. .013/.016 — реальные dataset/DOM ([U011-03](../../../cross-check-0002.md#u011-03)), .018 — конкурентные клики, сохранение HP/shield и права/доставка ремонта ([U011-02](../../../cross-check-0002.md#u011-02)/[U011-06](../../../cross-check-0002.md#u011-06)). Старые фасады не доказывают успешный ремонт в мире.
 
 ## Связанные проблемы
 
@@ -84,3 +84,13 @@ TheWitcherTRPG.js вызывает Chat.chatMessageListeners(message,html) в re
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `74322e91edac106c82668f4a47eef53ce1889dc1`; полный файл | Первая карточка; [сверка порции](../../../review-log.md#task-0003040) |
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Установлены три самостоятельных действия: shield заменяет поле источника строкой; heal выбирает target/controlled/character и parseInt с верхним cap; repair выбирает мастера helper и owner/item через dataset. Отсутствующий source Actor проверен не везде, а owner.items читается до guard. Ни создание сообщения, ни update heal/shield не ожидаются. RepairSystem и GM sender имеют отдельные этапы.
+
+Сопоставленные определения и потребители: [module/scripts/socket/socketMessage.js](socket/socketMessage.js.md), [module/scripts/combat/combat.js](combat/combat.js.md), [module/scripts/helper.js](helper.js.md), [module/item/systems/repair.js](../item/systems/repair.js.md), [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-06](../../../cross-check-0002.md#r011-06), [R011-07](../../../cross-check-0002.md#r011-07), [R011-08](../../../cross-check-0002.md#r011-08), [R011-23](../../../cross-check-0002.md#r011-23). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -72,7 +72,7 @@ attack: attackOption, skill, alias, itemUuid. damage: itemUuid, formula, crit, s
 
 ## Непроверенные участки и открытые вопросы
 
-Локальные Foundry 14.367.0 и Node 24.16.0. Ядро полей, DataModel и общий BaseChatMessage настоящие; game/CONFIG и соседние документы представлены минимальными фасадами. Браузерный WitcherChatMessage, серверная запись, загрузка старой истории и несколько клиентов не запускались. Область итоговой сверки серии не заменяет полный разбор оставшихся боевых примесей.
+Сопоставлены producers и listeners атаки/защиты/урона; ожидание разбора остальных примесей снято. .017/.018 оставляют существование UUID, перезагрузку старого сообщения и поле после update ([U011-01](../../../../cross-check-0002.md#u011-01)/[U011-08](../../../../cross-check-0002.md#u011-08)). Настоящие кнопки и повторное назначение Actor через helper остаются клиентской границей [U011-03](../../../../cross-check-0002.md#u011-03).
 
 ## Связанные проблемы
 
@@ -99,3 +99,13 @@ attack: attackOption, skill, alias, itemUuid. damage: itemUuid, formula, crit, s
 Группа 31 полного [потребителя защиты](../../actor/mixins/defenseMixin.js.md) очистила top-level damage.duration=4 и передала undefined в applyOnHit (257). Группа 33 изменила prepared damage.location исходного сообщения torso→leftLeg при random-крите; _source остался torso. Реальный persistence/повторные защиты не проверены; это разделено с постоянной записью.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.011
+
+2026-09-14; rusbar-main, 55e56567f42ed2da8850d913f28d727113ebdbd3. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Attack расширяет Base: attacker UUID, attackSchema, damageSchema и отдельный Set defenseOptions. damage.properties сохраняет Embedded DamageProperties/getPreprocessedEffects; это важно для rollDamage после нажатия кнопки. Getter attackRoll возвращает prepared rollTotal. UUIDField не подтверждает существование Item, а defenseOptions не ограничивает произвольные строки enum.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/baseMessageData.js](baseMessageData.js.md), [module/data/chatMessage/templates/attackData.js](templates/attackData.js.md), [module/data/chatMessage/templates/damageData.js](templates/damageData.js.md), [module/item/mixins/damageUtilMixin.js](../../item/mixins/damageUtilMixin.js.md), [module/scripts/combat/combat.js](../../scripts/combat/combat.js.md), [module/data/item/templates/combat/defenseOptionsData.js](../item/templates/combat/defenseOptionsData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004011) — TASK-0004.011; процессы [R011-01](../../../../cross-check-0002.md#r011-01), [R011-02](../../../../cross-check-0002.md#r011-02). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
