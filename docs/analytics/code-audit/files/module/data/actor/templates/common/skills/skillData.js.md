@@ -155,3 +155,11 @@ NumberField не задаёт ограничения диапазона и це�
 Complex задаёт 30 изменений навыков в трёх Lost Teeth и 18 — в шести Fractured Leg; прочие changes адресуют характеристики/STUN. Все соответствующие activeEffectModifiers — реальные NumberField, не строки. Fractured Arm во всех шести формах содержит HTML и пустой effects.
 
 [Карточки Complex](../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Difficult использует восемь multiply по dodge.value/athletics.value и 160 навыковых add (четыре treated-ног и 156 Torn Stomach). Из 156 Torn Stomach путей три commonspeech не объявлены моделью, остальные 153 изменяют activeEffectModifiers. Смешанный пример исходная левая+treated правая нога: dodge.value=2/modifier−2. Диагностический ADD+2 на том же value после ×0.5 даёт 6 из 8.
+
+[Карточки Difficult](../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003060). Мир и БД не менялись.

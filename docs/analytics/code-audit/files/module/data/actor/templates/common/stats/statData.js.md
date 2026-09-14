@@ -130,3 +130,11 @@ Simple Item адресуют totalModifiers BODY и SPD. Core ActiveEffect.apply
 Complex изменяет totalModifiers у BODY/REF/DEX/SPD/INT/WILL. Все целевые поля проверены как NumberField. Две исходные Fractured Leg дают суммарный SPD.totalModifiers=-6 и SPD.value=-1 при unmodifiedMax=5; lower bound в этом расчёте не добавлялся.
 
 [Карточки Complex](../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+189 Difficult changes адресуют числовые поля модели Actor, из них четыре множителя SPD.max. max целочисленный: Math.round(5×0.25)=1 и Math.round(5×0.5)=3. calculateStat читает unmodifiedMax+totalModifiers, поэтому SPD.value остаётся 5; issue-00036 подтверждена этим источником.
+
+[Карточки Difficult](../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003060). Мир и БД не менялись.

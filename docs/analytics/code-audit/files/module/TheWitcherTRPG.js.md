@@ -234,3 +234,11 @@ ready:64–67 индексирует выбранный criticalWoundsPack по 
 Запрашиваемые ready индексные поля сопоставлены с 24 Complex Item. Очистка реальными моделями сохраняет torso у трёх Minor Head Wound; сценарий выбора на очищенном индексе-фасаде воспроизвёл issue-00324. Настоящий серверный getIndex не запускался.
 
 [Карточки Complex](../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Четыре запрашиваемых ready поля индекса сопоставлены с 24 Difficult Item. На очищенном индексе-фасаде выполнены восемь положительных выборов; неправильные location двух stabilized не включены первичным treatment=none. Серверный getIndex не запускался.
+
+[Карточки Difficult](../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../review-log.md#task-0003060). Мир и БД не менялись.

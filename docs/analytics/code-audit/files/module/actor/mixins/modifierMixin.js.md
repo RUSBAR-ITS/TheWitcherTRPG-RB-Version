@@ -188,3 +188,11 @@ Simple содержит числовые changes для activeEffectModifiers н
 Настоящий addActiveEffects('dodge') при displayRollsDetails=true и реальном CONFIG.WITCHER дал для трёх правых Fractured Leg подписи +-3/+-2/+-3[Fractured Leg (Left)]. Имя эффекта взято из экспортного name; issue-00326 описывает ошибку стороны в подписи. appliedEffects — массив реальных активных эффектов контрольного Actor; полный Roll/чат не выполнялся.
 
 [Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Реальный addActiveEffects('dodge') у правой treated Compound Leg Fracture возвращает +-2[Compound Leg Fracture (Left - Treated)] при displayRollsDetails=true. Это расширение issue-00326 на конкретный Difficult источник. У исходной правой ноги левое имя только у bleed-эффекта; такой фрагмент формулы для него не утверждается.
+
+[Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.

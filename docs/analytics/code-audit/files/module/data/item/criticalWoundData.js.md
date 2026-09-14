@@ -139,3 +139,11 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 Все 24 Complex Item проверены настоящей моделью. При BODY.max=5 healingTime=7; 16 непустых followUp ведут к следующей форме Complex, восемь treated завершаются null. Исполнены все treat и семь вариантов heal на Lost Teeth с перехватом pending-записей. Эти документы подтверждают прежние границы issue-00121/00127.
 
 [Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Все 24 Difficult Item прошли strict=true. При BODY.max=5 healingTime=10; выполнены 24 treat (16 create→delete, восемь delete) и семь heal Concussion. Pending записи не задерживают методы. followUp разрешаются, но у двух stabilized правых переломов сохраняются перепутанные location (issue-00327).
+
+[Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.

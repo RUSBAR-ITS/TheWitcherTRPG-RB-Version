@@ -172,3 +172,11 @@ applyCritWound проверен на индексе-фасаде из очище
 applyCritWound исполнен в девяти сценариях на индексе-фасаде настоящих очищенных Complex моделей. Единственный head-кандидат Lost Teeth выбирается при critEffect4 и 6. При torso/6 прямой порядок индекса даёт Minor Head Wound, обратный — Ruptured Spleen (issue-00324). Все четыре конечности и lesser torso выбираются по ожидаемым полям. Серверный индекс не запускался.
 
 [Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Восемь applyCritWound на индексе-фасаде очищенных Difficult Item выбирают обе головы/torso по lesserEffect и все четыре конечности. Перепутанные location находятся только у stabilized, отсеиваемых первоначальным treatment=none. Пустой выбор issue-00289 в этой порции не повторялся.
+
+[Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.

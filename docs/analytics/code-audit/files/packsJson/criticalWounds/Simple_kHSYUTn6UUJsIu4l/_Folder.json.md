@@ -103,3 +103,11 @@
 Соседняя группа Complex проверена полностью: 25 JSON, 24 Item, 16 effects/61 changes, 16 переходов. Общая структурная сверка 50 файлов Simple/Complex сохранила границы папок. В 14 карточках Simple уточнены номера строк корневого _id; сами ID/UUID и исходники не менялись.
 
 [Карточки Complex](../Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Завершено чтение соседней Difficult: 25 JSON / 25 effects / 201 changes, в отличие от числовых add Simple/Complex есть multiply и объекты turnStartEffects. Общая область ID/_key criticalWounds проверена, цепочки Difficult не выходят из папки. Прежние сценарии Simple повторно не исполнялись.
+
+[Карточки Difficult](../Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.

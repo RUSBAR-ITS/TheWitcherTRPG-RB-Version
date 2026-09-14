@@ -92,3 +92,11 @@ JavaScript-функций и обработчиков файл не опреде
 Конкретный потребляемый случай: Sprained Leg (Left - Treated) f7NaW1AMnrSLGkd3 хранит leftArm, поэтому lookup подписи использует левую руку. Имя Item не исправляет значение локации; это issue-00325. Связь установлена статически, вывод браузера не воспроизводился.
 
 [Карточки Simple](../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json.md), [протокол, методы и ограничения](../../../review-log.md#task-0003058). Реальные записи в мир не выполнялись; состояния issues не менялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+lookup system.location:18 сопоставлен с двумя stabilized Difficult: Compound Arm Fracture Right хранит rightLeg, Compound Leg Fracture Right — rightArm. Модели/treat сохраняют эти поля (issue-00327). Связь с неправильной подписью установлена по шаблону; браузер списка не запускался.
+
+[Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.

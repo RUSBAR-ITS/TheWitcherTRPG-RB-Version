@@ -135,3 +135,11 @@
 Для Complex подтверждена наследуемая схема system.changes и defaults пяти bool-флагов; все 61 legacy changes стали add/initial с числовыми значениями. Внешние statuscounter flags в фасаде без модуля очищаются ядром; это не проверка поведения установленного модуля.
 
 [Карточки Complex](../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+201 Difficult changes штатно мигрируют: 12 multiply чисел, 180 add чисел и девять add объектов; initial, priority=10/20. applyAfterCalculations default=false. Схема не добавляет специальное сложение объекта turnStartEffects: core SchemaField ADD возвращает прежнее значение (issue-00328).
+
+[Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.

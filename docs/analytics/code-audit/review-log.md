@@ -1,5 +1,119 @@
 # Журнал перекрёстных сверок
 
+## TASK-0003.060
+
+Дата: 2026-09-13. Ветка rusbar-main, HEAD `aef03ca01b0db5887653d2b1301a4fe814372a3e`; исходное дерево чистое, 1665 отслеживаемых файлов. [Задача](../../tasks/task-0003.060.md), [карточки Difficult](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md). Исследование ограничено техническим устройством экспортов; мир, packs/, HTTP, сборка/извлечение и игровые правила не проверяются.
+
+### Состав и статическая сверка
+
+Полностью прочитаны **25 JSON / 3351 строк: 24 Item, Folder, 25 ActiveEffect, 201 changes**. Все корневые ID/_key проверены в общей области 98 экспортов criticalWounds; ID эффектов уникальны внутри своего Item, _key содержит владельца. Повторения embedded ID между Item не названы коллизиями. Folder ox3lLmV3zp0K67Ht, type=Item, folder=null; все 24 документа — прямые дети difficult.
+
+Восемь цепочек none → stabilized → treated, 16 существующих followUp, восемь null-концов, циклов и выходов из папки нет. Тип Item, состояние и UUID адресатов проверены по реальным моделям. Ниже фиксируются последовательности воздействия, а не предписанные значения правил.
+
+| Семейство | none → stabilized → treated | Особенность |
+| --- | --- | --- |
+| Compound Arm Fracture Left / Right | bleed → нет effects → bleed | amount=2 в обеих none и treated; использование руки ограничено HTML |
+| Compound Leg Fracture Left / Right | bleed + ×0.25 → ×0.5 → −2 | Множители адресуют SPD.max/dodge.value/athletics.value; treated — SPD.totalModifiers и skill.activeEffectModifiers |
+| Concussion | INT/REF/DEX −2 → −1 → INT/DEX −1 | Только исходный HTML содержит Stun save каждые 1d6 раундов |
+| Skull Fracture | INT/DEX −1 + bleed → INT/DEX −1 → нет effects | Все три HTML упоминают ×4 урон в голову, поле множителя не меняется |
+| Sucking Chest Wound | BODY/SPD −3 + suffocation → −2 → −1 | amount=3 только у none |
+| Torn Stomach | 52 навыковых адреса −2 + acid → 52 адреса −2 → 52 адреса −1 | amount=4/type=acid только у none; commonspeech не соответствует полю commonsp |
+
+Два дефектных адресата: NHNctAuhsapGZXiP (правая рука stabilized) хранит rightLeg; QCugb1JqpiFyBEN4 (правая нога stabilized) — rightArm. Это четыре перехода со сменой location: вход в stabilized и возврат в treated. Исходные кандидаты treatment=none правильны, все восемь выборов проверены отдельно.
+
+### Типы, режимы и поля
+
+Все эффекты type=base, disabled=false, transfer=true; четыре экспортных apply-флага false, applyAfterCalculations отсутствует и получает false. Все изменения initial. Экспортный priority=null становится 10 у multiply и 20 у add. 12 числовых изменений mode=1 → multiply; 180 числовых mode=2 → add; девять строк с JSON-объектом mode=2 → add. Объекты мигрируют штатно, отсутствие записи урона возникает позже.
+
+189 из 201 путей соответствуют NumberField. Из остальных девять адресуют SchemaField записи turnStartEffects, три — несуществующий commonspeech.activeEffectModifiers. Нет ошибки парсинга объектов: SchemaField._applyChangeAdd в Foundry 14.367.0 возвращает прежнее значение, поэтому при исходном {} записи отсутствуют. У Torn Stomach остальные 51 навыковое поле получает штраф; commonsp.activeEffectModifiers остаётся 0, а по неизвестному пути создаётся динамическое свойство.
+
+У двух исходных переломов ноги bleed-эффекты имеют rounds=1; миграция даёт duration.value=1, units=rounds, expiry=turnStart, start=null, expired=false. Остальные 23 эффекта после prepareBaseData имеют value=Infinity/units=seconds/expiry=null. Core _preCreate задаёт start непосредственно Actor-owned эффектам; полный lifecycle вложенного эффекта и updateDuration/registry не запускались. Наличие rounds=1 не объявлено доказательством удаления статуса через один раунд. В фасаде без модуля statuscounter его flags очищаются; установленный модуль не проверен.
+
+### Настоящее исполнение и фасады
+
+Два сценария через `node --input-type=module` и stdin, без файлов стенда: **1748 + 43 = 1791 утверждение**, exit=0. Node 24.16.0, установленные Foundry 14.367.0 классы:
+
+- /opt/foundryvtt/common/abstract/data.mjs, type-data.mjs; common/data/fields.mjs, active-effect.mjs.
+- common/documents/item.mjs, actor.mjs, folder.mjs, active-effect.mjs; штатная миграция legacy changes/duration и strict=true.
+- client/documents/active-effect.mjs: prepareBaseData/applyChange/applyChangeField; actor.mjs: allApplicableEffects/applyActiveEffects и сортировка.
+- Реальные CriticalWoundData, CharacterData/CommonActorData и вложенные схемы, WitcherActiveEffectData, WitcherActiveEffect, методы WitcherActor, applyCritWound и modifierMixin.addActiveEffects.
+- Периодическая цепочка: настоящие applyCombatEffects/applyCombatEffect из generalCombatHook.js, applyDamageFromStatus из applyDamage.js, DamageInstance.
+
+Загрузчик @common, CONFIG/game/Hooks, ClientDocumentMixin/registry и интерфейс — явные фасады. prepareBaseData, initial effects, расчёты Actor и final effects вызваны явно; полный prepareData/calculateAttackStats/клиентский lifecycle не воспроизводился. Восемь характеристик unmodifiedMax=5, HP.value=25, dodge.value=athletics.value=8 до эффектов, броня/вес=0. Итоговые численные поля прочитаны напрямую: сериализация DataModel/toObject возвращает источник и не доказывает применённые значения. Такое различие учтено до итоговых утверждений.
+
+fromUuid — Map настоящих Item; индекс — массив настоящих очищенных моделей. createEmbeddedDocuments/update/delete перехвачены и возвращают pending Promise. Методы treat/heal завершаются при незавершённых записях; серверный отказ не имитировался. Подпись формулы получена из реального метода с реальным skillMap и appliedEffects из реальных активных эффектов; полный Roll/чат не запускался. Предупреждение Node о неуказанном type:module в package.json не препятствует исполнению; package.json не менялся.
+
+### Индивидуальные числовые результаты
+
+Во всех строках BODY.max=5 и healingTime=max(15−5,1)=10. Полные изменённые пути, сырой/подготовленный формат и метаданные каждого эффекта находятся в карточке его Item.
+
+| Item | INT / REF / DEX / BODY / SPD.value | SPD.max | dodge.value / modifier | RUN / LEAP.value / LEAP.max | STUN / REC / HP.max |
+| --- | --- | --- | --- | --- | --- |
+| [Compound Arm Fracture (Left - Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Left___Stabilized__tdcGSOZGCUhNArDc.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Compound Arm Fracture (Left - Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Left___Treated__zaKPfDQFGTR8FKju.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Compound Arm Fracture (Left)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Left__saPd4IMUCv5qZE60.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Compound Arm Fracture (Right - Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Right___Stabilized__NHNctAuhsapGZXiP.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Compound Arm Fracture (Right - Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Right___Treated__ujz1IMKCXoJF9w91.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Compound Arm Fracture (Right)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Right__c3H8Xx7WYCcM37k6.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Compound Leg Fracture (Left - Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Left___Stabilized__NiGtzaHs4dUj8Pmd.json.md) | 5 / 5 / 5 / 5 / 5 | 3 | 4 / 0 | 15 / 3 / 1 | 5 / 5 / 25 |
+| [Compound Leg Fracture (Left - Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Left___Treated__kfyfxEVsMRUDDk1A.json.md) | 5 / 5 / 5 / 5 / 3 | 5 | 8 / -2 | 9 / 1 / 3 | 5 / 5 / 25 |
+| [Compound Leg Fracture (Left)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Left__flpxY7FVPGevwfcg.json.md) | 5 / 5 / 5 / 5 / 5 | 1 | 2 / 0 | 15 / 3 / 0 | 5 / 5 / 25 |
+| [Compound Leg Fracture (Right)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right__Rf0m4mGjeHEl0PxP.json.md) | 5 / 5 / 5 / 5 / 5 | 1 | 2 / 0 | 15 / 3 / 0 | 5 / 5 / 25 |
+| [Compound Leg Fracture (Right - Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Stabilized__QCugb1JqpiFyBEN4.json.md) | 5 / 5 / 5 / 5 / 5 | 3 | 4 / 0 | 15 / 3 / 1 | 5 / 5 / 25 |
+| [Compound Leg Fracture (Right - Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Treated__3SwpPbi2ddEJkebh.json.md) | 5 / 5 / 5 / 5 / 3 | 5 | 8 / -2 | 9 / 1 / 3 | 5 / 5 / 25 |
+| [Concussion](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion_IK7pM8p3NcM4thcz.json.md) | 3 / 3 / 3 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Concussion (Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion__Stabilized__AFkm8KjxkwYxOCQo.json.md) | 4 / 4 / 4 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Concussion (Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion__Treated__ItXAMwWil2A7IqRv.json.md) | 4 / 5 / 4 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Skull Fracture](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Skull_Fracture_UImIh794nOy21jg2.json.md) | 4 / 5 / 4 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Skull Fracture (Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Skull_Fracture__Stabilized__ikv3qioEgGJG6Olw.json.md) | 4 / 5 / 4 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Skull Fracture (Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Skull_Fracture__Treated__v4RVIshohh1PPuAu.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / 0 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Sucking Chest Wound (Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Sucking_Chest_Wound__Stabilized__cfQ2OHPNVVKMDsDo.json.md) | 5 / 5 / 5 / 3 / 3 | 5 | 8 / 0 | 9 / 1 / 3 | 4 / 4 / 20 |
+| [Sucking Chest Wound (Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Sucking_Chest_Wound__Treated__wFul3Zr7mMaKjA5I.json.md) | 5 / 5 / 5 / 4 / 4 | 5 | 8 / 0 | 12 / 2 / 3 | 4 / 4 / 20 |
+| [Sucking Chest Wound](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Sucking_Chest_Wound_tiVrEesPSzZ64HpZ.json.md) | 5 / 5 / 5 / 2 / 2 | 5 | 8 / 0 | 6 / 1 / 3 | 3 / 3 / 15 |
+| [Torn Stomach](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach_5gnx9xNF52ap9PYi.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / -2 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Torn Stomach (Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / -2 | 15 / 3 / 3 | 5 / 5 / 25 |
+| [Torn Stomach (Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Treated__Mg1jn99OitVPdvje.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / -1 | 15 / 3 / 3 | 5 / 5 / 25 |
+
+Положительное применение множителей: у исходных ног 8×0.25=2 в dodge/athletics; у stabilized 8×0.5=4. SPD.max округляется NumberField(integer=true): 5×0.25→1, 5×0.5→3, но SPD.value=5, поскольку calculateStat читает unmodifiedMax+totalModifiers. Это прежняя [issue-00036](../../issues/potential/issue-00036.md), включая расхождение LEAP.value/max.
+
+Совместный контроль исходной левой ноги flpxY7FVPGevwfcg и treated правой 3SwpPbi2ddEJkebh дал dodge.value=2/modifier=−2, SPD.value=3/max=1. Отдельный диагностический контроль **того же** skill.value: к копии левой stabilized NiGtzaHs4dUj8Pmd добавлена в памяти ADD +2; реальный порядок multiply(10) → add(20) дал 8×0.5+2=6. Это фактический порядок текущего движка, новое правило вычислений не вводилось. В трёх независимых контролях disabled=true, transfer=false и applySelf=true эффект исключался; без Item dodge.value=8.
+
+### Лечение, выбор и повтор
+
+Все 24 treat реально вызваны: 16 переходов дают create адресата → delete исходника, восемь null — только delete. Адресаты имеют правильный тип и следующий treatment; неверные location сохраняются.
+
+На Concussion (Treated), ItXAMwWil2A7IqRv, при healingTime=10: дни0 без стерилизации → update(days=1); новая стерилизация → update(days=3,sterilized=true); повторная стерилизация → только days=1. Дни9 без новой стерилизации и дни7 с новой → delete. Исходная IK7pM8p3NcM4thcz и stabilized AFkm8KjxkwYxOCQo при днях0 вызывают update({}). Всего семь сценариев; полный отдых не запускался.
+
+Восемь applyCritWound: head/4 → IK7pM8p3NcM4thcz, head/6 → UImIh794nOy21jg2; torso/4 → tiVrEesPSzZ64HpZ, torso/6 → 5gnx9xNF52ap9PYi; leftArm/6 → saPd4IMUCv5qZE60, rightArm/6 → c3H8Xx7WYCcM37k6, leftLeg/6 → flpxY7FVPGevwfcg, rightLeg/6 → Rf0m4mGjeHEl0PxP. Настоящая БД/серверный индекс не использовались; пустая выборка issue-00289 в этой порции не повторялась.
+
+Повтор точного name/type исходной правой ноги Rf0m4mGjeHEl0PxP реальным addItem дал запрос quantity=NaN и не вызвал create. Вывод ограничен этим совпадением; сброс состояния любых форм не утверждается. addActiveEffects('dodge') у правой treated 3SwpPbi2ddEJkebh вернул ` +-2[Compound Leg Fracture (Left - Treated)]`.
+
+### Периодические воздействия: отрицательный и положительный контроли
+
+Девять исходных Item: saPd4IMUCv5qZE60, zaKPfDQFGTR8FKju, c3H8Xx7WYCcM37k6, ujz1IMKCXoJF9w91, flpxY7FVPGevwfcg, Rf0m4mGjeHEl0PxP, UImIh794nOy21jg2, tiVrEesPSzZ64HpZ, 5gnx9xNF52ap9PYi. У каждого turnStartEffects={}, настоящий applyCombatEffects не вызывает damage. Семь Actor имеют bleed, один suffocation, Torn Stomach не задаёт статуса.
+
+Положительные диагностические копии только в памяти: saPd4IMUCv5qZE60/bleed, tiVrEesPSzZ64HpZ/suffocation, 5gnx9xNF52ap9PYi/acid; только mode объекта заменён 2→5. Те же модели создали по одной записи: amount=2/3/4, ignoreArmor=true (boolean), spDamage=0 (number), acid сохранил type до обработчика. Реальные generalCombatHook → applyDamageFromStatus → DamageInstance дошли до перехваченного Actor.applyDamage; получены три вызова с amount=2/3/4, derivedStat=hp, bypassesWornArmor/NaturalArmor=true. Тип DamageInstance в acid-контроле отсутствует, потому что generalCombatHook не передаёт damage.type — [issue-00021](../../issues/potential/issue-00021.md).
+
+У этих контролей ChatMessage/renderTemplate и getLocationObject('torso') — фасады, Actor.applyDamage только записывает аргументы. Урон после брони/сопротивления, конечные HP, updateCombat и таймеры не исполнялись. Никакой режим или данные в репозитории не изменены. Контроль override не является согласованным решением совмещения одноимённых записей.
+
+### Перекрёстные связи и issues
+
+Манифест/compilePack/extractPack сопоставлены с Folder/Item; ready/settings/applyCritWound — с полями выбора. CriticalWoundData и листы лечения — с system/followUp; схемы характеристик, навыков, combatEffectsData и AE — с каждым changes. Обратные ссылки дополняют ранее проверенные карточки определений и потребителей. Текстовая Difficult Critical из combat не загружается applyCritWound как Item.
+
+Сравнение с ранее разобранными Simple/Complex: там суммарно 50 файлов, 33 эффекта и 116 числовых add; в Difficult добавлены множители и объекты. Во всех трёх группах общая модель treatment/followUp; отличие сроков: max(8/12/15−BODY.max,1). Проверены принадлежность/ID текущих данных; прежние сценарии .058/.059 не объявлены повторно исполненными. Сквозная проверка всех семи пакетов остаётся частью .061.
+
+Новые potential: [issue-00327](../../issues/potential/issue-00327.md) — локации двух stabilized правых переломов; [issue-00328](../../issues/potential/issue-00328.md) — ADD объекта урона. Уточнены прежние issue-00004/00021/00036/00121/00127/00288/00326. Новых дублей по commonspeech, max/value, имени эффекта и ожиданию записей не создано. Возврат bleed в treated рук и границы HTML-автоматизации сохранены в карточках без оценки правил. Регистрация разрешена TASK-0003, подтверждения пользователя и исправления не выполнялись.
+
+### Итоговая сверка документов
+
+Проверены все 25 новых карточек: 201 строка changes с mode/value/priority, мигрированными type/phase, соответствием полю и номерами key. Корневые и вложенные метаданные, system каждого Item, 16 followUp и индивидуальные числовые результаты сверены с исходниками и настоящими моделями. Номера строк корневого _id проверены во всех 75 карточках Simple/Complex/Difficult; исправлений этих номеров не потребовалось.
+
+Реестр и карточки взаимно однозначны: 592 проверенных / 23 не начатых из 615. Все 604 файла TASK-0003 распределены без повторов; 581 описан, 23 ожидают .061; вместе с 11 TASK-0002 дают 615. .001–.060 done, .061 planned, родитель in-progress, TASK-0004/0005 draft. 328 potential соответствуют реестру, open/closed пусты; 319 прежних issue-карточек не менялись. Остальные 590 строк файлового реестра и историческая часть review-log сохранены. Устаревший текущий абзац реестра задач о .058–.061 planned согласован с таблицей.
+
+Локальные ссылки/Markdown-якоря всего docs, таблицы и пробелы изменённых документов проверены без ошибок. Уточнены 19 прежних карточек определений/потребителей и семь issues. Область правок: 39 существующих Markdown, 25 новых карточек и два новых issue. HEAD/ветка/индекс Git сохранены; коммит не создавался.
+
+Все 615 текущих исходников и исторические 621 совпадают с исходным срезом. SHA-256 (отсортированные пути + нулевой разделитель + байты): `384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c` и `52701d3d0a5f054319886ac2a9d45b42c26c80098858d02518579c6a1edfaec4`. У всех 1665 исходно отслеживаемых файлов сохранены mode/uid/gid/inode; хеши 1626 файлов вне перечня правок не изменились. Исходники/экспорты, мир/БД, службы и права не менялись.
+
 ## TASK-0003.059
 
 2026-09-13; rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a. В начале рабочее дерево чистое, 1639 отслеживаемых файлов. Исходники системы не изменились относительно .058 и среза TASK-0001; работа ограничена документацией.

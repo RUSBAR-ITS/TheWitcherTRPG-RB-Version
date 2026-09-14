@@ -453,3 +453,11 @@ useItem(itemId,options) возвращает castSpell для spell/hex/ritual �
 При базе 5 Broken Ribs none даёт BODY=3/REF=4/DEX=4 и HP.max=20; Minor Head Wound none даёт INT=WILL=4, STUN=3, HP.max=20. Две исходные Fractured Leg дают SPD=-1, RUN=-3, LEAP=-1 и dodge.activeEffectModifiers=-6. Числа — фактическая работа текущего кода, без принятия игровых минимумов. BODY.max=5 остаётся базовым; healingTime=7.
 
 [Карточки Complex](../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Difficult показывает разницу max/value: при базе 5 и ×0.25 SPD.max=1, SPD.value=5, RUN=15, LEAP.value=3/max=0. У stabilized ×0.5 max=3/value=5. Skills dodge/athletics.value=8 меняются на 2/4. Sucking Chest Wound none даёт BODY=SPD=2, STUN=REC=3, HP.max=15 при BODY.max=5/healingTime=10. Это фактические расчёты без нового ограничения/правила.
+
+[Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.

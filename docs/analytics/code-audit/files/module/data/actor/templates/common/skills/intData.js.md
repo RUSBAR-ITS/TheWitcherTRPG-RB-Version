@@ -100,3 +100,11 @@
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Конфигурация монстра строит путь по ключу skillMap.commonspeech, а модель хранит commonsp: запись есть, поле isVisible отсутствует, core formGroup выводит предупреждение и ничего не рисует. В общем количестве 52 записей остаётся 51 checkbox; прежняя issue-00004 не исправлена.
 
 Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003032).
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Все три Torn Stomach содержат commonspeech.activeEffectModifiers вместо объявленного commonsp. После реальной подготовки по неизвестному пути создаётся динамический штраф −2/−2/−1, commonsp.activeEffectModifiers=0. Остальные 51 навыковое поле каждого Item изменяется. Это прежняя issue-00004.
+
+[Карточки Difficult](../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003060). Мир и БД не менялись.

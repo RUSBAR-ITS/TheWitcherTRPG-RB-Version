@@ -83,3 +83,11 @@
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 965132d5d7972a0edd73aaa62484a1b6ba15991f; полный файл | Первичная карточка; [перекрёстная сверка](../../../review-log.md#task-0003044) |
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Для трёх диагностических periodic записей выполнены реальные create/setType через applyDamageFromStatus: damage=2/3/4, отсутствующий type. У acid до generalCombatHook тип был задан, потеря находится выше конструктора (issue-00021). Actor.applyDamage перехвачен, итоговые HP и резисты не вычислялись.
+
+[Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.

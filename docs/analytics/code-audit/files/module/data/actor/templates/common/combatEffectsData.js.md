@@ -157,3 +157,11 @@ applyGeneralCombatHooks вызывает асинхронные регенера
 Consumer [generalCombatHook](../../../../../../../../../module/scripts/combat/generalCombatHook.js) полностью описан. Настоящая схема группы 18 сохранила type/modifier и flags: урон 5+2 передан как 7, type потерян, heal3+2 исполнен как 3. Группа 29 прошла настоящие методы расчёта: отсутствие fire пропускает flat.fire4, даёт урон 5 против 9 в контроле с типом. Группа 30 с двумя статусами 3/4 изHP100 подготовила 97/96 до сохранения, что уточняет риск последовательности (299). Нулевой amount с положительным modifier не запускается; положительный amount с отрицательным modifier может дать отрицательный damage и увеличить shield (291). Это данные и наблюдаемые guards; новое правило расчёта не выбрано.
 
 [Проверки, результаты и ограничения](../../../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Девять Difficult changes адресуют SchemaField элемента TypedObjectField turnStartEffects. Legacy value мигрирует в объект, но SchemaField ADD возвращает прежнее значение и записи нет. В трёх диагностических копиях override создаёт bleed/suffocation/acid; ignoreArmor="true" становится boolean true, spDamage="0"/default — числом 0. Экспорт не изменялся; issue-00328.
+
+[Карточки Difficult](../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../review-log.md#task-0003060). Мир и БД не менялись.

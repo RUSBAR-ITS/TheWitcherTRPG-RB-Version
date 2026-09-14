@@ -152,3 +152,11 @@
 16 эффектов Complex / 61 изменение проходят штатную миграцию, получают type=add, число, phase=initial и priority=20. Реальный класс применяет их к владельцу; мировые origin остаются мировыми и не разрешались. Неверное name правой ноги влияет на подпись формулы (issue-00326), но не на числовое применение.
 
 [Карточки Complex](../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003059). Мир и БД не изменялись.
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+На 25 эффектах Difficult подтверждены active/target, миграция 201 changes и initial-фаза. Девять ADD объектов разрешаются в SchemaField и оставляют turnStartEffects пустым; это не ошибка парсинга JSON (issue-00328). Disabled/transfer/applySelf-контроли исключают эффект. У двух bleed rounds=1/start=null; updateDuration/lifecycle не исполнялись, прекращение через один раунд не утверждается.
+
+[Карточки Difficult](../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../review-log.md#task-0003060). Мир и БД не менялись.

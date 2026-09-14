@@ -93,3 +93,11 @@ Dead останавливает только регенерацию. Ветвь 
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 20ce99a1218a82bf46c84570e55587253d0cfbc3; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003045) |
+
+## Уточнение TASK-0003.060
+
+2026-09-13; rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e; исходник не изменён.
+
+Настоящий applyCombatEffects на девяти исходных Difficult Actor с turnStartEffects={} не вызвал урон, хотя семь имели bleed и один suffocation. Положительные копии с override вместо ADD дали три вызова до перехваченного Actor.applyDamage, amount=2/3/4. Acid теряет type в создаваемом damage — issue-00021; исходный ADD не доходит до этой ветви (issue-00328). UpdateCombat/таймеры не исполнялись.
+
+[Карточки Difficult](../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../review-log.md#task-0003060). Мир и БД не менялись.
