@@ -77,7 +77,7 @@ content содержит ссылки на исходные документы, 
 
 ## Непроверенные участки и открытые вопросы
 
-Все 43 строки прочитаны. Не выполнялись загрузка/сохранение коллекций, восстановление источника, реальное перемещение документов или правила вместимости TRPG. _source и БД не объявлены изменёнными только из-за мутации prepared-данных.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-02](../../../../cross-check-0002.md#u006-02); [U006-05](../../../../cross-check-0002.md#u006-05). Self/cycle не рекурсивны; carry — показанный максимум без ограничения помещения.
 
 ## Связанные проблемы
 
@@ -94,3 +94,13 @@ content содержит ссылки на исходные документы, 
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современная строка valuable.type=container читает prepared itemContent/storedWeight/carry: две единицы по3 дают progress6/max12. Вложенный details имеет полный UUID в data-item-id, но не класс .item, не предоставляет отдельного редактора количества. Это снимок, а не встроенный документ; обращений к UUID сам HBS не выполняет.
 
 Связанные шаблоны: [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../../../../templates/sheets/actor/tabs/tab-inventory.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Одиннадцать полей, включая строковый массив UUID content. Подготовка обнуляет storedWeight/itemContent и считает только непосредственные quantity×weight; дочерний storedWeight не включён. Missing/холодный индекс прерывает с частичным результатом. Self/cycle не рекурсивны; carry — показанный максимум без ограничения помещения.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs.md), [templates/sheets/item/container-sheet.hbs](../../../templates/sheets/item/container-sheet.hbs.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-13](../../../../cross-check-0002.md#r006-13), [R006-14](../../../../cross-check-0002.md#r006-14). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

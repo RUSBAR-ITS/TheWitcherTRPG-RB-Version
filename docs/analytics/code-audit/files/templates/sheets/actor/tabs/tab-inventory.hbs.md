@@ -92,7 +92,7 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Проверены данные рендера и существенные границы, перечисленные выше. Не запускались браузер, серверная запись, DragDrop, реальные броски/производство/ремонт/экспорт или полноценные листы Actor. CSS проверен только до селекторов. Реальный Foundry Document и UI представлены ограниченными фасадами; фактическая регистрация проверена статически. Полные файлы Character/Monster/MountData, валюта/награды и производство остаются за дальнейшими порциями.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../cross-check-0002.md#u006-01); [U006-04](../../../../../cross-check-0002.md#u006-04); [U006-07](../../../../../cross-check-0002.md#u006-07). Кнопки валюты/наград и изготовление имеют внешние handlers; подписи Carry остаются литералами.
 
 ## Связанные проблемы
 
@@ -145,3 +145,13 @@ WitcherCharacterSheet.PARTS.inventory передаёт контекст обще
 Карточки CSS: [styles/tab-inventory.css](../../../../styles/tab-inventory.css.md), [styles/tab-inventory-list.css](../../../../styles/tab-inventory-list.css.md).
 
 [Методика и результаты](../../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Главная вкладка Character собирает восемь списков, вещества и семь валютных полей. Число строк определяется producer-фильтрами, а carried/stored влияют на показ/вес разными путями. Overweight включается при totalWeight>=ENC. Кнопки валюты/наград и изготовление имеют внешние handlers; подписи Carry остаются литералами.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](../partials/character/inventory/inventory-items-summary.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../partials/character/inventory/tab-inventory-alchemical.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../partials/character/inventory/tab-inventory-armors.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](../partials/character/inventory/tab-inventory-components.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-17](../../../../../cross-check-0002.md#r006-17), [R006-18](../../../../../cross-check-0002.md#r006-18), [R006-20](../../../../../cross-check-0002.md#r006-20). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

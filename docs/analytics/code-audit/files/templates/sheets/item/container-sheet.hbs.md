@@ -67,7 +67,7 @@ JavaScript-функций нет. Partial добавляет общие поля
 
 ## Непроверенные участки и открытые вопросы
 
-Все 39 строк прочитаны. Браузерный рендер, доступ наблюдателя, сохранение carry/description, загрузка изображений и доступность HTTP не проверялись. Собственной ошибки пути data/system или потерянного UUID в корректно подготовленной строке не обнаружено.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-02](../../../../cross-check-0002.md#u006-02); [U006-05](../../../../cross-check-0002.md#u006-05). Поля содержимого disabled; форма сама не разрешает UUID и не переносит документы.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ JavaScript-функций нет. Partial добавляет общие поля
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `66cd03705dbc398eba0026284a298b5fbe337035`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003024) |
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Container HBS получает data=item.system, корректно выводит carry/storedWeight и prepared itemContent. Remove берёт полный UUID из data-uuid, а не локальный Item ID. Поля содержимого disabled; форма сама не разрешает UUID и не переносит документы.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js.md), [module/data/item/containerData.js](../../../module/data/item/containerData.js.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../actor/partials/character/inventory/tab-inventory-valuables.hbs.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-13](../../../../cross-check-0002.md#r006-13), [R006-14](../../../../cross-check-0002.md#r006-14). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

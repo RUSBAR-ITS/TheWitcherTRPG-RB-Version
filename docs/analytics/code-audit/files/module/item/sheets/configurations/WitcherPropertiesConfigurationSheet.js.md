@@ -78,7 +78,7 @@ Default export WitcherPropertiesConfigurationSheet extends WitcherConfigurationS
 
 ## Непроверенные участки и открытые вопросы
 
-UI сохранения, цикл частичного рендера при смене активной вкладки, сетевые ошибки update и сторонние подмены моделей не проверялись. Область поиска — module/, templates/, текущие определения ядра. Регионы создающими методами не запускались.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../cross-check-0002.md#u006-01); [U006-03](../../../../../cross-check-0002.md#u006-03); [U006-06](../../../../../cross-check-0002.md#u006-06). Флаги silver/stamina управляют видимостью, не подтверждают расчёт.
 
 ## Связанные проблемы
 
@@ -113,3 +113,13 @@ WitcherSpellConfigurationSheet сохраняет PARTS/TABS/обработчи�
 Связанные карточки: [module/data/item/templates/regions/templatePropertiesData.js](../../../data/item/templates/regions/templatePropertiesData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](../../../data/item/templates/regions/regionPropertiesData.js.md).
 
 [Результаты и пределы сверки](../../../../../review-log.md#task-0003022).
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Расширение добавляет damage/defense/region PARTS и CRUD предметных воздействий. Tabs и parts региона проверяют разные пути: regionProperties существует, устаревший system.createTemplate отсутствует. Ошибка отсутствующего createRegionFromTemplate внутри HBS независима. Флаги silver/stamina управляют видимостью, не подтверждают расчёт.
+
+Сопоставленные определения и потребители: [module/data/item/templates/itemEffectData.js](../../../data/item/templates/itemEffectData.js.md), [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs.md), [templates/sheets/item/armor-sheet.hbs](../../../../templates/sheets/item/armor-sheet.hbs.md), [templates/sheets/item/enhancement-sheet.hbs](../../../../templates/sheets/item/enhancement-sheet.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-04](../../../../../cross-check-0002.md#r006-04), [R006-06](../../../../../cross-check-0002.md#r006-06), [R006-07](../../../../../cross-check-0002.md#r006-07). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

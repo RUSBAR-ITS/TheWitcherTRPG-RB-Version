@@ -69,7 +69,7 @@ JavaScript-функций нет. Шаблон вычисляет условия
 
 ## Непроверенные участки и открытые вопросы
 
-Все 45 строк прочитаны. Полноценные select/multi-select контролы и сохранение Set через браузер не исполнялись; исходник formGroup и поля использованы, DOM построения поля заменён. Расширенные свойства конкретных Item и профессиональные атаки остаются будущим порциям.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../cross-check-0002.md#u006-01); [U006-03](../../../../../../cross-check-0002.md#u006-03); [U006-07](../../../../../../cross-check-0002.md#u006-07). Расширенные свойства выведены другими PARTS, defaults и выбор режима принадлежат модели/Item.
 
 ## Связанные проблемы
 
@@ -96,3 +96,13 @@ JavaScript-функций нет. Шаблон вычисляет условия
 2026-09-10, `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f`. Рендер с настоящими схемами [RaceData](../../../../../../../../../module/data/item/raceData.js) и [HomelandData](../../../../../../../../../module/data/item/homelandData.js) не вывел именованных полей: attack/damage/defense в обеих отсутствуют. Это не отсутствие всей конфигурации: отдельная вкладка effects остаётся доступна через WitcherConfigurationSheet и содержит четыре категории. Оба листа выводят configureItem при showConfig.
 
 [Перекрёстная сверка](../../../../../../review-log.md#task-0003018). Исходники не изменены; это уточнение проверенных связей, а не повторный полный разбор файла.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+General подключает attackOptions и ветки melee/ranged/spell, условно damageType/defenseOptions. ItemUseAttackSkill отсутствует; spell ошибочно подписан ranged. Расширенные свойства выведены другими PARTS, defaults и выбор режима принадлежат модели/Item.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/attackOptionsData.js](../../../../../module/data/item/templates/combat/attackOptionsData.js.md), [module/data/item/templates/combat/skillAttackData.js](../../../../../module/data/item/templates/combat/skillAttackData.js.md), [module/item/witcherItem.js](../../../../../module/item/witcherItem.js.md), [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../partials/attackOptionsPart.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-05](../../../../../../cross-check-0002.md#r006-05), [R006-20](../../../../../../cross-check-0002.md#r006-20). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

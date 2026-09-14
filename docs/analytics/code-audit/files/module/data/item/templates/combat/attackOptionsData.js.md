@@ -77,7 +77,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полный цикл атаки и специализированные редакторы остаются последующим порциям. Не проверялись внешние изменения CONFIG, миграция реальных packs/миров и сохранение форм. Область поиска потребителей: текущие module/ и templates/, прямые импорты всей системы.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../../cross-check-0002.md#u006-03); [U006-05](../../../../../../cross-check-0002.md#u006-05). spellcasting не совпадает со spellcast, itemUseAttackSkill отсутствует в двух общих формах, applyRangedMeleeBonus не имеет найденного расчётного consumer.
 
 ## Связанные проблемы
 
@@ -136,3 +136,13 @@
 [Оружейный потребитель](../../../../actor/mixins/weaponAttackMixin.js.md) использует Item.getItemAttack(options). Проверены ctrl/alt/shift и служебные options профессиональной атаки: при нескольких режимах последние могут оставлять attackOption undefined (264). applyRangedMeleeBonus в потребителе не читается (66). Пустой/неизвестный skill сохраняют разные пути отказа.
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003041). Уточнение связи не увеличивает пофайловое покрытие; исправления не выполнялись.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Фабрика вводит Set режимов и четыре поля навыков. Legacy attackSkill не доживает до defaults полной модели; явные новые поля сохраняются. spellcasting не совпадает со spellcast, itemUseAttackSkill отсутствует в двух общих формах, applyRangedMeleeBonus не имеет найденного расчётного consumer.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/skillAttackData.js](skillAttackData.js.md), [module/item/witcherItem.js](../../../../item/witcherItem.js.md), [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md), [templates/sheets/item/configuration/tabs/general.hbs](../../../../../templates/sheets/item/configuration/tabs/general.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-05](../../../../../../cross-check-0002.md#r006-05). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

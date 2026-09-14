@@ -65,7 +65,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полная логика select и fallback в weapon-attack.hbs здесь не воспроизводилась. Лист оружия — TASK-0003.013. Отсутствие типов из общего справочника само по себе не объявляется ошибкой или нарушением правил.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../cross-check-0002.md#u006-03); [U006-07](../../../../../cross-check-0002.md#u006-07). Поля используются оружейным диалогом, отсутствие остальных типов здесь не объявлено нарушением правил.
 
 ## Связанные проблемы
 
@@ -86,3 +86,13 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Современный weapon partial читает именно weapon.system.type.text, а не преобразует type в строку; реальный WeaponData с text=Sword вывел Sword. Флаги slashing/piercing/bludgeoning/elemental этого поля непосредственно в таблице не читаются.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs). [Проверки и ограничения](../../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Weapon type содержит text и четыре независимых Bool. Sheet пересобирает text из локализованных отмеченных типов; общий CONFIG.damageTypes шире и не читается фабрикой. Поля используются оружейным диалогом, отсутствие остальных типов здесь не объявлено нарушением правил.
+
+Сопоставленные определения и потребители: [module/data/item/weaponData.js](../weaponData.js.md), [module/item/sheets/WitcherWeaponSheet.js](../../../item/sheets/WitcherWeaponSheet.js.md), [templates/sheets/item/weapon-sheet.hbs](../../../../templates/sheets/item/weapon-sheet.hbs.md), [module/data/item/templates/associatedDiagramData.js](associatedDiagramData.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-08](../../../../../cross-check-0002.md#r006-08). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

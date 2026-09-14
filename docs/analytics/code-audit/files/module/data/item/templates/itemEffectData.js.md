@@ -72,7 +72,7 @@ Default export function itemEffect() каждый раз возвращает н
 
 ## Непроверенные участки и открытые вопросы
 
-Файл не определяет вероятность срабатывания и игровые последствия каждого ID. Полные потребители заклинаний/употребления и бросков будут разобраны отдельно; текущие выводы ограничены схемой и указанными связями.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../cross-check-0002.md#u006-03); [U006-04](../../../../../cross-check-0002.md#u006-04). Это не документ ActiveEffect.
 
 ## Связанные проблемы
 
@@ -121,3 +121,13 @@ Default export function itemEffect() каждый раз возвращает н
 [module/actor/mixins/castSpellMixin.js](../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Фабрика задаёт четыре поля записи предметного воздействия; ID хранится ключом TypedObject. StatusEffect — строка/nullable, percentage ограничен0–100 моделью. CRUD, миграция и потребители отделены: each умеет словарь, Actor.flat и generic weapon merge — нет. Это не документ ActiveEffect.
+
+Сопоставленные определения и потребители: [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs.md), [templates/sheets/item/armor-sheet.hbs](../../../../templates/sheets/item/armor-sheet.hbs.md), [templates/sheets/item/enhancement-sheet.hbs](../../../../templates/sheets/item/enhancement-sheet.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-04](../../../../../cross-check-0002.md#r006-04). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

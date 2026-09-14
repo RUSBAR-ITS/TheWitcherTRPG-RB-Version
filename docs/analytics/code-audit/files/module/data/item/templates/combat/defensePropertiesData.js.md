@@ -74,7 +74,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не исполнялся полный выбор предмета, штрафы парирования и применение результата защиты. Отсутствие метода у ArmorData фиксируется как граница контракта; её специализированный UI и сценарий полного цикла остаются TASK-0003.014. Поиск зависимостей — module/ и templates/.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../../cross-check-0002.md#u006-03). Weapon/Profession делают это по-разному; наличие поля у Armor не добавляет метод автоматически.
 
 ## Связанные проблемы
 
@@ -113,3 +113,13 @@ SpellData.isApplicableDefense делегирует проверку множес
 В [защите](../../../../actor/mixins/defenseMixin.js.md) defendsAgainst включает дополнительные варианты, modifier меняет формулу, parrying компенсирует отрицательный modifier лишь у штатных parry/parryThrown с выбранным предметом. Модель возвращает пустые skills/itemTypes; их дополняет WeaponData или обходит skillOverride профессии. CrushingForce исключает только action parry; решение о допустимых исключениях по правилам не принято.
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+DefendsAgainst.has определяет применимость по строке attackOption; createDefenseOption возвращает modifier и пустые skills/itemTypes. Item wrapper добавляет label/value, модель владельца должна делегировать. Weapon/Profession делают это по-разному; наличие поля у Armor не добавляет метод автоматически.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/defenseOptionsData.js](defenseOptionsData.js.md), [module/data/item/templates/combat/skillDefenseData.js](skillDefenseData.js.md), [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs.md), [module/data/item/professionData.js](../../professionData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-07](../../../../../../cross-check-0002.md#r006-07). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

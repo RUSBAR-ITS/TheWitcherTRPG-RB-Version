@@ -72,7 +72,7 @@ WitcherMonsterSheet.PARTS.inventory, TABS.primary.inventory. Корневые ta
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Проверены данные рендера и существенные границы, перечисленные выше. Не запускались браузер, серверная запись, DragDrop, реальные броски/производство/ремонт/экспорт или полноценные листы Actor. CSS проверен только до селекторов. Реальный Foundry Document и UI представлены ограниченными фасадами; фактическая регистрация проверена статически. Полные файлы Character/Monster/MountData, валюта/награды и производство остаются за дальнейшими порциями.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../../cross-check-0002.md#u006-01); [U006-02](../../../../../../../cross-check-0002.md#u006-02); [U006-04](../../../../../../../cross-check-0002.md#u006-04). Подготовку добычи/экспорт выполняет MonsterSheet; ремонтные controls общих списков не имеют здесь отдельного обработчика.
 
 ## Связанные проблемы
 
@@ -99,3 +99,13 @@ WitcherMonsterSheet.PARTS.inventory, TABS.primary.inventory. Корневые ta
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../../../../module/actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../../../../module/actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../../../../chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Действующий PARTS Monster включает три общих списка, кнопку data-action=exportLoot и не использует старый monster inventory. Подготовку добычи/экспорт выполняет MonsterSheet; ремонтные controls общих списков не имеют здесь отдельного обработчика.
+
+Сопоставленные определения и потребители: [templates/partials/monster/monster-inventory-tab.hbs](../../../../../partials/monster/monster-inventory-tab.hbs.md), [templates/partials/item-image.hbs](../../../../../partials/item-image.hbs.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../../../../module/actor/sheets/WitcherMonsterSheet.js.md), [templates/sheets/actor/monster-sheet.hbs](../../../monster-sheet.hbs.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-19](../../../../../../../cross-check-0002.md#r006-19). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

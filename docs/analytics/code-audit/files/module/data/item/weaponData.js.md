@@ -93,7 +93,7 @@ repair посылает update родительскому документу, н
 
 ## Непроверенные участки и открытые вопросы
 
-Полный бой и ремонт относятся к отдельным порциям. Не проверялись все комбинации экипировки/улучшений, запись/копирование Item мира и цепочка сетевого ремонта. Поиск зависимостей выполнен в текущих module/ и templates/; динамические сторонние изменения не учитывались.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-03](../../../../cross-check-0002.md#u006-03); [U006-05](../../../../cross-check-0002.md#u006-05). Смешанные old/new ID дублируются; подготовленные изменения не равны source копии.
 
 ## Связанные проблемы
 
@@ -160,3 +160,13 @@ repair посылает update родительскому документу, н
 [Полный выбор защиты](../../actor/mixins/defenseMixin.js.md) исполнил isApplicableDefense/createDefenseOption с настоящей WeaponData: skills с пустым/неизвестным ключом падают в построении chooser (79). Оружие isStored=true остаётся в дополнительных вариантах (274). Стандартный parry отменяет отрицательный штраф при defenseProperties.parrying; itemId получается во втором chooser, а не из модельного дополнительного option.
 
 [Сверка и ограничения](../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Модель связывает CommonItemData, type, боевые фабрики, улучшения и UUID рецепта. Prepared enhancementItems требуют Actor при непустых ID. Защита останавливается на пустом meleeAttackSkill; repair передаёт правильный максимум, но не ждёт update. Смешанные old/new ID дублируются; подготовленные изменения не равны source копии.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/attackOptionsData.js](templates/combat/attackOptionsData.js.md), [module/data/item/templates/combat/skillAttackData.js](templates/combat/skillAttackData.js.md), [module/item/witcherItem.js](../../item/witcherItem.js.md), [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-05](../../../../cross-check-0002.md#r006-05), [R006-07](../../../../cross-check-0002.md#r006-07), [R006-08](../../../../cross-check-0002.md#r006-08), [R006-11](../../../../cross-check-0002.md#r006-11). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

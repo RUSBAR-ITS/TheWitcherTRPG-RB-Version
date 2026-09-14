@@ -66,7 +66,7 @@ PARTS.general WitcherArmorConfigurationSheet. Нужны tabs.general.cssClass, 
 
 ## Непроверенные участки и открытые вопросы
 
-Все 20 строк проверены. Полная сериализация формы и обновление Item через браузер не выполнялись; наличие скрытых SP у щита не объявлено ошибкой.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../cross-check-0002.md#u006-01); [U006-07](../../../../../../cross-check-0002.md#u006-07). Четыре limb hint отсутствуют только в ru; это не перестановка ног в armorPartsInfo.
 
 ## Связанные проблемы
 
@@ -77,3 +77,13 @@ PARTS.general WitcherArmorConfigurationSheet. Нужны tabs.general.cssClass, 
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.014 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Двенадцать formGroup адресуют текущие stoppingPower/maxStoppingPower шести SpData; пары локаций верны и не фильтруются по Shield. Четыре limb hint отсутствуют только в ru; это не перестановка ног в armorPartsInfo.
+
+Сопоставленные определения и потребители: [module/data/item/armorData.js](../../../../../module/data/item/armorData.js.md), [module/item/sheets/WitcherArmorSheet.js](../../../../../module/item/sheets/WitcherArmorSheet.js.md), [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../../../../module/item/sheets/configurations/WitcherArmorConfigurationSheet.js.md), [templates/sheets/item/armor-sheet.hbs](../../armor-sheet.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-09](../../../../../../cross-check-0002.md#r006-09), [R006-20](../../../../../../cross-check-0002.md#r006-20). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

@@ -74,7 +74,7 @@ Default export SpData extends foundry.abstract.DataModel. ArmorData включа
 
 ## Непроверенные участки и открытые вопросы
 
-Броня, улучшения и их редакторы будут полностью разобраны в TASK-0003.014; ремонт — TASK-0003.017. Не проверялись ActiveEffect по persisted:false путям, сетевое сохранение и повреждение нескольких слоёв. Поиск — module/ и templates/.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../cross-check-0002.md#u006-01); [U006-03](../../../../../../cross-check-0002.md#u006-03). Повторный derived без base не равен полному lifecycle.
 
 ## Связанные проблемы
 
@@ -103,3 +103,13 @@ Default export SpData extends foundry.abstract.DataModel. ArmorData включа
 Полный [расчёт Actor](../../../../../../../../../module/actor/mixins/armorMixin.js) использует modifiedMaxStoppingPower>0 для покрытия и modifiedStoppingPower для величины SP. Группа 03 подтвердила независимость этого отбора от строкового location; группа 14 — сохранение сопротивления при current=0/max>0. Группы 15–16 повторили границу [83](../../../../../../../../issues/potential/issue-00083.md) через вызывающую примесь. Исходное/подготовленное значения и запрос записи отделены; новые проблемы сочетания слоёв описаны в [279](../../../../../../../../issues/potential/issue-00279.md).
 
 [Методика и пределы проверки](../../../../../../review-log.md#task-0003043). Уточнение связей не увеличивает покрытие. Статусы issues остаются potential; подтверждение и исправления не выполнялись.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Базовые stoppingPower/maxStoppingPower отделены от persisted:false modified полей. Base сбрасывает вычисленные значения, derived добавляет stopping улучшений при max≠0. Armor вызывает обе фазы и пишет повреждение в базу; helper и Actor читают modified. Повторный derived без base не равен полному lifecycle.
+
+Сопоставленные определения и потребители: [module/data/item/armorData.js](../../armorData.js.md), [module/data/item/templates/armor/resistanceData.js](resistanceData.js.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs.md), [module/actor/witcherActor.js](../../../../actor/witcherActor.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-10](../../../../../../cross-check-0002.md#r006-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

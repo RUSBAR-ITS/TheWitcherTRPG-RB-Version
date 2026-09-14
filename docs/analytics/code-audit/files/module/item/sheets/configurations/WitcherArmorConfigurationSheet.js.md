@@ -60,7 +60,7 @@ Default export WitcherArmorConfigurationSheet extends WitcherPropertiesConfigura
 
 ## Непроверенные участки и открытые вопросы
 
-Проверен весь файл, собственных вычислений кроме PARTS нет. Полный родительский документный submit и боевой диалог здесь не выполнялись.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../cross-check-0002.md#u006-01); [U006-03](../../../../../cross-check-0002.md#u006-03). Двенадцать controls вводят базовые SP всех частей даже для Shield; сама конфигурация не подключает ArmorData к дополнительной защите Actor.
 
 ## Связанные проблемы
 
@@ -71,3 +71,13 @@ Default export WitcherArmorConfigurationSheet extends WitcherPropertiesConfigura
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.014 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
 
 Отдельно установлено отсутствие четырёх русских подсказок в armorGeneral.hbs: [issue-00090](../../../../../../../issues/potential/issue-00090.md). Это не меняет правильную привязку полей к сторонам.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Специализация заменяет только PARTS.general на armorGeneral. Наследует TABS, activeEffects и defenseProperties. Двенадцать controls вводят базовые SP всех частей даже для Shield; сама конфигурация не подключает ArmorData к дополнительной защите Actor.
+
+Сопоставленные определения и потребители: [module/data/item/armorData.js](../../../data/item/armorData.js.md), [module/item/sheets/WitcherArmorSheet.js](../WitcherArmorSheet.js.md), [templates/sheets/item/armor-sheet.hbs](../../../../templates/sheets/item/armor-sheet.hbs.md), [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-09](../../../../../cross-check-0002.md#r006-09), [R006-07](../../../../../cross-check-0002.md#r006-07). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

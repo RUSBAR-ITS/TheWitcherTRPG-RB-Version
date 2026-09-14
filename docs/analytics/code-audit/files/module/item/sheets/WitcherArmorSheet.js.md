@@ -76,7 +76,7 @@ Default export WitcherArmorSheet extends WitcherItemSheet; зарегистри�
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверены реальная геометрия drop, сетевое обновление, последовательное открытие других листов после изменения CONFIG. Общий обработчик Actor/Folder не входит в специализированную обработку рецепта.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-05](../../../../cross-check-0002.md#u006-05). Контекст формы использует prepared resistance и базовые SP.
 
 ## Связанные проблемы
 
@@ -91,3 +91,13 @@ Default export WitcherArmorSheet extends WitcherItemSheet; зарегистри�
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
 
 Полностью описаны [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) и [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs). Допустимость armor/elderfolk-armor задаёт caller; модель раскрытия ссылки не проверяет категорию. Клик удаления вызывает update associatedDiagramUuid='', не удаляет рецепт. Подсказка этого клика в partial ошибочно использует actions.add; описание читает неверный путь. Ранее выявленный offsetParent остаётся issue-00080.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Основной лист брони регистрирует armor-sheet, специализирует configuration и передаёт общий CONFIG с типами/пятью локациями. Recipe drop делегирует associatedDiagramMixin с armor/elderfolk-armor; метод не возвращает его Promise. Контекст формы использует prepared resistance и базовые SP.
+
+Сопоставленные определения и потребители: [module/data/item/armorData.js](../../data/item/armorData.js.md), [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](configurations/WitcherArmorConfigurationSheet.js.md), [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs.md), [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-09](../../../../cross-check-0002.md#r006-09). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

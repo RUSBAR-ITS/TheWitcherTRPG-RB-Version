@@ -69,7 +69,7 @@ PARTS.main WitcherWeaponSheet. Требует item, config и inherited showConf
 
 ## Непроверенные участки и открытые вопросы
 
-Полная отправка формы, доступность controls для разных владельцев и геометрия Drop не проверены. Из чтения шаблона не следует работа внешнего ремонта или броска. Поиск потребителей — module/ и templates/.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-03](../../../../cross-check-0002.md#u006-03); [U006-05](../../../../cross-check-0002.md#u006-05). Type.text пересобирается кодом; ремонт, атака и UUID разрешаются внешними consumers.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ PARTS.main WitcherWeaponSheet. Требует item, config и inherited showConf
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.013 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Основной HBS оружия отправляет именованные поля в WeaponData, а четыре .damage-type checkbox в собственный listener. IsAmmo скрывает часть controls, но сохраняет тип урона и область рецепта. Type.text пересобирается кодом; ремонт, атака и UUID разрешаются внешними consumers.
+
+Сопоставленные определения и потребители: [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js.md), [module/data/item/weaponData.js](../../../module/data/item/weaponData.js.md), [module/item/sheets/WitcherWeaponSheet.js](../../../module/item/sheets/WitcherWeaponSheet.js.md), [module/data/item/templates/associatedDiagramData.js](../../../module/data/item/templates/associatedDiagramData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-08](../../../../cross-check-0002.md#r006-08). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

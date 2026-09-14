@@ -77,7 +77,7 @@ data-field=system.quantity относится к ближайшей .item, вв�
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Проверены данные рендера и существенные границы, перечисленные выше. Не запускались браузер, серверная запись, DragDrop, реальные броски/производство/ремонт/экспорт или полноценные листы Actor. CSS проверен только до селекторов. Реальный Foundry Document и UI представлены ограниченными фасадами; фактическая регистрация проверена статически. Полные файлы Character/Monster/MountData, валюта/награды и производство остаются за дальнейшими порциями.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../../cross-check-0002.md#u006-01); [U006-04](../../../../../../../cross-check-0002.md#u006-04). Подтип передан partial-контекстом, но отсутствует в summary dataset; ручной add создаёт общий component.
 
 ## Связанные проблемы
 
@@ -94,3 +94,13 @@ data-field=system.quantity относится к ближайшей .item, вв�
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Теперь полностью описан верхний substances: все девять вызовов передают components, itemType=component, subtype, header и hasQuantity. Полный рендер дал десять строк по девяти группам, stored исключён producer. Подтип доходит в summary-контекст, но не в DOM-кнопку (issue-00173).
 
 Связи: [templates/partials/character/substances.hbs](../../../../../partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../../../../review-log.md#task-0003034).
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Компоненты выводят type/rarity/forage/quantityObtainable/location, общий quantity и item-chat. Строковый '0' отличается по truthiness от числового0. Подтип передан partial-контекстом, но отсутствует в summary dataset; ручной add создаёт общий component.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](inventory-items-summary.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](tab-inventory-alchemical.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](tab-inventory-armors.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs](tab-inventory-mounts.hbs.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-17](../../../../../../../cross-check-0002.md#r006-17), [R006-18](../../../../../../../cross-check-0002.md#r006-18). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

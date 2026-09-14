@@ -102,7 +102,7 @@ Drop сначала может удалить уникальные Item и сб�
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались мир, браузер, права разных клиентов, реальный серверный порядок записей, полный бой/изготовление, настоящий socket/query. Сортировка проверена как выбор ветви и передача Item в _onSortItem; тело сортировки Foundry прочитано, DOM и updateEmbeddedDocuments не исполнялись. Отмена выбора улучшения моделировалась возвратом null без callback; базовый rejectClose=false проверен статически. Точка .item-show есть в item-image.hbs, подключённом только прежним monster-inventory-tab.hbs; текущие PARTS её не используют (issue-00063). Для .weapon-list-display вход в templates не найден. Это не исключает внешние вызовы. Полный разбор дочерних листов, чата и внешних действий остаётся по плану.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../cross-check-0002.md#u006-01); [U006-02](../../../../../cross-check-0002.md#u006-02); [U006-04](../../../../../cross-check-0002.md#u006-04); [U006-08](../../../../../cross-check-0002.md#u006-08). Служебные actions и запись stack независимы.
 
 ## Связанные проблемы
 
@@ -181,3 +181,13 @@ WitcherLootSheet Object.assign174 подключает itemMixin и вызыва
 Полностью разобраны [templates/chat/item/item-description.hbs](../../../../../../../../templates/chat/item/item-description.hbs) и пять дочерних partial. Группа 11 выполнила настоящий _onItemMessage: передан prepared Item с type='diagrams' и config=WITCHER; разрешённое имя материала дошло до HTML. Manifest и registerDataModels подтверждают diagrams, не diagram. getSpeaker по-прежнему получает actor.name — [docs/issues/potential/issue-00175.md](../../../../../../../issues/potential/issue-00175.md). Группа 15 проверила девять путей pannels и sub-open. Двойные скобки экранируют markup на стадии шаблона, но core ChatMessage.renderHTML затем вызывает enrichHTML: прежнее утверждение о @UUID относится только к первой HTML-строке. Полный клиент не исполнялся.
 
 [Сценарии, результаты и ограничения](../../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Drop проверяет owner и сортирует собственный Item; уникальная замена ждёт обёртку, не фактическое удаление. Monster equipped меняется в prepared, addItem читает source. 23 listener сопоставлены с нынешними HBS: броня без data-type выбирает armor/glyph через else, inline dtype не обрабатывается, subtype summary теряется. Служебные actions и запись stack независимы.
+
+Сопоставленные определения и потребители: [module/data/item/armorData.js](../../../data/item/armorData.js.md), [module/data/item/enhancementData.js](../../../data/item/enhancementData.js.md), [module/data/item/weaponData.js](../../../data/item/weaponData.js.md), [module/item/sheets/WitcherEnhancementSheet.js](../../../item/sheets/WitcherEnhancementSheet.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-11](../../../../../cross-check-0002.md#r006-11), [R006-12](../../../../../cross-check-0002.md#r006-12), [R006-17](../../../../../cross-check-0002.md#r006-17), [R006-18](../../../../../cross-check-0002.md#r006-18). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

@@ -70,7 +70,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Область поиска: module/ и templates/. Полный список кнопок и поведение неизвестного ключа в живом клиенте не проверялись; отсутствие choices описано как свойство схемы. Внешние расширения CONFIG не исследованы.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../../cross-check-0002.md#u006-03); [U006-06](../../../../../../cross-check-0002.md#u006-06). Choices у элемента нет: принятие неизвестного ключа схемой не гарантирует кнопку/consumer.
 
 ## Связанные проблемы
 
@@ -107,3 +107,13 @@ Direct профессиональный message передаёт skill.skillAtta
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../../../module/data/chatMessage/attackMessageData.js). Полные новые описания: [attackMessageData.js](../../../chatMessage/attackMessageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+SetField получает шесть разрешённых в CONFIG вариантов по initial, явный пустой Set сохраняется. Это разрешения способов защиты против атаки, отдельные от DefenseProperties предмета. Choices у элемента нет: принятие неизвестного ключа схемой не гарантирует кнопку/consumer.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/defensePropertiesData.js](defensePropertiesData.js.md), [module/data/item/templates/combat/skillDefenseData.js](skillDefenseData.js.md), [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs.md), [module/data/item/professionData.js](../../professionData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-07](../../../../../../cross-check-0002.md#r006-07). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

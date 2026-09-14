@@ -64,7 +64,7 @@ skillDefense() — default export, вызывается из professionSkill() �
 
 ## Непроверенные участки и открытые вопросы
 
-Полный UI definingSkill и всего листа профессии остаётся TASK-0003.019. Для примера definingSkill данные переданы модели напрямую; наличие конкретного пользовательского сценария редактирования этой защиты не заявляется. Поиск — module/ и templates/.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../../cross-check-0002.md#u006-03). DefiningSkill и три пути не считаются одинаковыми участниками отбора; дальнейшую сверку продолжает .008.
 
 ## Связанные проблемы
 
@@ -87,3 +87,13 @@ skillDefense() — default export, вызывается из professionSkill() �
 Группа 04 полного [потребителя](../../../../actor/mixins/defenseMixin.js.md) вновь обнаружила isDefense=false как доступный Guard, если defendsAgainst содержит melee (71). Группа 06 исполнила skillOverride до сообщения с формулой 1d10+5+4+1. Поведение definingSkill проверено отдельно (72), редактор в этой порции не запускался.
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Флаг isDefense и вложенная DefenseProperties сохраняются в навыке профессии. UI прячет настройки при false, а ProfessionData проверяет defendsAgainst без этого флага. DefiningSkill и три пути не считаются одинаковыми участниками отбора; дальнейшую сверку продолжает .008.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/defenseOptionsData.js](defenseOptionsData.js.md), [module/data/item/templates/combat/defensePropertiesData.js](defensePropertiesData.js.md), [templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs](../../../../../templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs.md), [module/data/item/professionData.js](../../professionData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-07](../../../../../../cross-check-0002.md#r006-07). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

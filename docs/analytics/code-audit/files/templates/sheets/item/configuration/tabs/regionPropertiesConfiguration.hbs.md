@@ -69,7 +69,7 @@ JS-функций нет. Пять безусловных formGroup(localize=tru
 
 ## Непроверенные участки и открытые вопросы
 
-Не создавались зоны и behaviours, не запускались executeMacro или взаимодействие нескольких клиентов. Модели регионов прочитаны в пределах используемых полей/миграции, не получают статуса полного разбора в этой порции. Не предполагается, что устранение одного UI-разрыва исправляет весь процесс регионов.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../cross-check-0002.md#u006-01); [U006-03](../../../../../../cross-check-0002.md#u006-03); [U006-06](../../../../../../cross-check-0002.md#u006-06). До формы обычно мешает отдельная фильтрация PARTS по устаревшему createTemplate.
 
 ## Связанные проблемы
 
@@ -88,3 +88,13 @@ JS-функций нет. Пять безусловных formGroup(localize=tru
 Связанные карточки: [module/data/item/templates/regions/regionBehavioursData.js](../../../../../module/data/item/templates/regions/regionBehavioursData.js.md), [module/data/item/templates/regions/regionPropertiesData.js](../../../../../module/data/item/templates/regions/regionPropertiesData.js.md).
 
 [Результаты и пределы сверки](../../../../../../review-log.md#task-0003022).
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Региональная форма запрашивает несуществующий createRegionFromTemplate и четыре существующих Macro-поля behaviours. Core formGroup пропускает отсутствующее поле с console.error; весь рендер этим не обязательно прерывается. До формы обычно мешает отдельная фильтрация PARTS по устаревшему createTemplate.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/damagePropertiesData.js](../../../../../module/data/item/templates/combat/damagePropertiesData.js.md), [module/data/migrations/damagePropertiesMigration.js](../../../../../module/data/migrations/damagePropertiesMigration.js.md), [module/data/item/spellData.js](../../../../../module/data/item/spellData.js.md), [module/actor/mixins/weaponAttackMixin.js](../../../../../module/actor/mixins/weaponAttackMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-06](../../../../../../cross-check-0002.md#r006-06). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

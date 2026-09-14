@@ -90,7 +90,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 184 строки и 15 методов прочитаны. Полный файл dismantlingMixin, socketMessage и шаблоны чата не засчитаны: здесь проверены вызываемые определения, а не вся отдельная задача этих подсистем. Правила обмена предметами, подтверждение GM, удаление связанных effects/content/IDs, нескольких пользователей и реальная сериализация socket не исследовались до выполнения. Нарушение серверных прав не установлено. Удаление связано с legacy callback корректно; переписывать все четыре callback по одному шаблону без проверки нельзя.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-02](../../../../../cross-check-0002.md#u006-02); [U006-04](../../../../../cross-check-0002.md#u006-04); [U006-06](../../../../../cross-check-0002.md#u006-06). Consume допускает quantity0, gift не ждёт получения и включает отправителя.
 
 ## Связанные проблемы
 
@@ -141,3 +141,13 @@ WitcherLootSheet импортирует itemContextMenu1, присоединяе
 [emitForGM](../../../../../../../../module/scripts/socket/socketMessage.js) полностью описан. Группы 24–28 подтвердили guards, envelope, receiver activeGM и отсутствие прикладного результата даже после await sender/receiver. Отключённый настоящий Socket.IO4.8.3 буферизовал события; сети не было. giftItem по-прежнему отдельно запускает removeItem после отправки, как описано в 169. Тело giftItem не исполнялось повторно, вывод связан с новым доказательством sender/receiver.
 
 [Проверки, результаты и ограничения](../../../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Меню связано с .item/data-item-id. Edit и consume используют onClick(event,target), delete — корректный legacy callback(target); три остальных callback переставляют аргументы. Прямые gift/снятие/разборка не подтверждают достижимость через меню. Consume допускает quantity0, gift не ждёт получения и включает отправителя.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs](../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs.md), [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-15](../../../../../cross-check-0002.md#r006-15), [R006-16](../../../../../cross-check-0002.md#r006-16). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

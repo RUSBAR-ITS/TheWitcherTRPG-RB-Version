@@ -80,7 +80,7 @@ EnhancementData extends CommonItemData, default export, CONFIG.Item.dataModels.e
 
 ## Непроверенные участки и открытые вопросы
 
-Не выполнялись реальная установка/снятие через контекстное меню, разделение стека quantity, запись в БД и полная атака. Поля, обе миграции и входящие/исходящие связи прочитаны полностью.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-02](../../../../cross-check-0002.md#u006-02); [U006-03](../../../../cross-check-0002.md#u006-03). Установка меняет два документа и иногда создаёт остаток через forcecreate.
 
 ## Связанные проблемы
 
@@ -111,3 +111,13 @@ WitcherLootSheet фильтрует getList('enhancement') по !system.applied.
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Улучшение — отдельный Actor Item с applied/type/stopping/тремя сопротивлениями и TypedObject effects. Его IDs хранят weapon/armor; тексты и проценты HBS не являются применением ActiveEffect. Миграция массива сохраняет записи, в отличие от Armor. Установка меняет два документа и иногда создаёт остаток через forcecreate.
+
+Сопоставленные определения и потребители: [module/data/item/templates/itemEffectData.js](templates/itemEffectData.js.md), [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](../../../templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs.md), [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-04](../../../../cross-check-0002.md#r006-04), [R006-11](../../../../cross-check-0002.md#r006-11). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

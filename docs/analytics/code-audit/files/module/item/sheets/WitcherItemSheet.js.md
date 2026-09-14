@@ -109,7 +109,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Не исполнялись полный ApplicationV2/DocumentSheetV2, FormDataExtended в браузере, запись документов и внешние модули. Не моделировались отказы DB и одновременные формы/обновления; ручные методы не имеют собственного catch. Результаты копирования данных на стороне сервера и жизненный цикл второго окна требуют полноценного клиента. Условия legacy defaultOptions не переносились на API V14 по одному названию.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-06](../../../../cross-check-0002.md#u006-06). Собственный Drop обходит core hook, ActiveEffect оставляет core handler; отсутствие общего Item handler не распространяется на контейнерную специализацию.
 
 ## Связанные проблемы
 
@@ -199,3 +199,13 @@
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](../../data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Общий ItemSheet имеет пустые PARTS/TABS, data=item.system, общий config и отдельную configuration. Ручной CRUD работает с data-target/id и не ждёт update; имя on ошибочно трактуется как checkbox. Собственный Drop обходит core hook, ActiveEffect оставляет core handler; отсутствие общего Item handler не распространяется на контейнерную специализацию.
+
+Сопоставленные определения и потребители: [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs.md), [templates/partials/item-image.hbs](../../../templates/partials/item-image.hbs.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/data/item/templates/itemEffectData.js](../../data/item/templates/itemEffectData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-02](../../../../cross-check-0002.md#r006-02), [R006-04](../../../../cross-check-0002.md#r006-04). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

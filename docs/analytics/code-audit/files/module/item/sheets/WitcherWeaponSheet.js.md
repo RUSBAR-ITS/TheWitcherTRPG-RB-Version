@@ -76,7 +76,7 @@ Drop рецепта меняет associatedDiagramUuid; соответствую
 
 ## Непроверенные участки и открытые вопросы
 
-Реальная форма, браузерная геометрия Drop, повторные быстрые переключения до завершения update и сетевое сохранение не проверялись. Поиск потребителей — module/ и templates/. Общие Drop Actor/Folder относятся к существующей issue-00058.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-05](../../../../cross-check-0002.md#u006-05). Shared CONFIG.attackSkills и отдельные recipe listeners не добавляют автоматического сохранения prepared данных.
 
 ## Связанные проблемы
 
@@ -91,3 +91,13 @@ Drop рецепта меняет associatedDiagramUuid; соответствую
 2026-09-10, `53f74994011383cb544cabac96285430f00cb38a`; исходник неизменен. [Перекрёстная сверка](../../../../review-log.md#task-0003016).
 
 Полный разбор [module/item/sheets/mixins/associatedDiagramMixin.js](../../../../../../../module/item/sheets/mixins/associatedDiagramMixin.js) подтвердил контракт _onDropDiagram(event,item,'weapon','elderfolk-weapon') и удаления пустой строкой. Части [templates/partials/associated-diagram.hbs](../../../../../../../templates/partials/associated-diagram.hbs) не имеют собственного picker: добавление происходит через drop. Новый [module/item/sheets/WitcherDiagramSheet.js](../../../../../../../module/item/sheets/WitcherDiagramSheet.js) на стороне рецепта отдельно пишет UUID результата; это не создание двусторонней связи. Геометрия offsetParent в браузере по-прежнему не проверена.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Weapon sheet подключает основной HBS, properties configuration и associatedDiagramMixin. Четыре checkbox без name обрабатываются change.damage-type: переключается сохранённый Bool и обновляется type целиком. Shared CONFIG.attackSkills и отдельные recipe listeners не добавляют автоматического сохранения prepared данных.
+
+Сопоставленные определения и потребители: [module/data/item/templates/weaponTypeData.js](../../data/item/templates/weaponTypeData.js.md), [module/data/item/weaponData.js](../../data/item/weaponData.js.md), [templates/sheets/item/weapon-sheet.hbs](../../../templates/sheets/item/weapon-sheet.hbs.md), [module/data/item/templates/associatedDiagramData.js](../../data/item/templates/associatedDiagramData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-08](../../../../cross-check-0002.md#r006-08). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

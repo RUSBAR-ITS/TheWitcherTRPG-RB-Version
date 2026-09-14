@@ -100,7 +100,7 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 
 ## Непроверенные участки и открытые вопросы
 
-Не выполнялись полная атака, реальные ремонты/копирование документов, браузерное снятие улучшения и миграция БД. Регистрация, поля, все собственные методы и три миграционных функции прочитаны целиком. Механика временных ActiveEffect-улучшений остаётся отдельным ранее разобранным маршрутом.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-03](../../../../cross-check-0002.md#u006-03); [U006-05](../../../../cross-check-0002.md#u006-05). Дополнительная защита не делегируется; штатный Shield проверяется отдельно.
 
 ## Связанные проблемы
 
@@ -171,3 +171,13 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 [templates/chat/item/partials/item-description/tags.hbs](../../../../../../../templates/chat/item/partials/item-description/tags.hbs) читает три устаревших плоских сопротивления. Группа 04 с настоящей ArmorData и тремя resistance=true получила только тип Light, без сопротивлений; flat-контроль показал все три. Зарегистрирована [docs/issues/potential/issue-00306.md](../../../../../../issues/potential/issue-00306.md): это действующее описание Item, отдельное от старого инвентаря монстра в issue-00180. Сама модель/расчёт сопротивлений не менялись.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Шесть вложенных SP и resistance подготовлены после разрешения локальных ID; location реально StringField из-за повторного ключа. Различены исходный/modified SP, freeEnhancements и effects словарь. Повреждение сверх остатка пропускается; old effects удаляются, смешанные SP/resistance перезаписывают новые поля. Дополнительная защита не делегируется; штатный Shield проверяется отдельно.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherArmorSheet.js](../../item/sheets/WitcherArmorSheet.js.md), [module/item/sheets/configurations/WitcherArmorConfigurationSheet.js](../../item/sheets/configurations/WitcherArmorConfigurationSheet.js.md), [templates/sheets/item/armor-sheet.hbs](../../../templates/sheets/item/armor-sheet.hbs.md), [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-09](../../../../cross-check-0002.md#r006-09), [R006-10](../../../../cross-check-0002.md#r006-10), [R006-11](../../../../cross-check-0002.md#r006-11). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

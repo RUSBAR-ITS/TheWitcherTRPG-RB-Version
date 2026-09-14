@@ -80,7 +80,7 @@ JavaScript-функций нет. Шаблон вычисляет условия
 
 ## Непроверенные участки и открытые вопросы
 
-Все 71 строка прочитана. Не исполнялись полноценный FormDataExtended, FilePicker и серверное сохранение. Неизвестно влияние внешних модулей на schema/clickableImage. Отдельная картинка item-image.hbs обслуживает инвентарь и не включена этой шапкой; два действия просмотра/редактирования изображения не смешиваются.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../cross-check-0002.md#u006-01); [U006-06](../../../cross-check-0002.md#u006-06). EditImage шапки и item-show прежнего инвентаря — разные действия.
 
 ## Связанные проблемы
 
@@ -127,3 +127,13 @@ JavaScript-функций нет. Шаблон вычисляет условия
 Полный [styles/item-header.css](../../../../../../styles/item-header.css) содержит 15 rule-узлов / 33 declarations. Все конечные selectors сопоставлены с шапкой: вложенные itemname/input/configure-item, img, теги itemimage/general, information и строки таблицы. .itemname text-align приходит из [styles/item-sheets.css](../../../../../../styles/item-sheets.css), flex и отступы добавляет более поздний item-header. Тот же CSS обслуживает spell/hex/ritual/repair. Элементы race/profession вне .item-header не становятся потребителями этого scoped CSS от совпадения внутренних классов.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Шапка показывает name/img/configureItem и общие quantity/weight/cost/sourcebook; для mutagen type заменяет cost. Dtype формы не меняет StringField quantity. Checkbox clickableImage не поддержан моделью. EditImage шапки и item-show прежнего инвентаря — разные действия.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherItemSheet.js](../../module/item/sheets/WitcherItemSheet.js.md), [templates/partials/item-image.hbs](item-image.hbs.md), [module/setup/registerSheets.js](../../module/setup/registerSheets.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-02](../../../cross-check-0002.md#r006-02). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

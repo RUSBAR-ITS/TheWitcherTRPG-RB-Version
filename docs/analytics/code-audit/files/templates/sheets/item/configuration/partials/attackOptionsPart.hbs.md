@@ -64,7 +64,7 @@ JS-функций нет. Семь formGroup, три условия if с helper
 
 ## Непроверенные участки и открытые вопросы
 
-Настройка заклинания и реальное сохранение выбранных навыков не запускались. Изолированный рендер не создаёт новый тип Item или новое правило атаки.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../cross-check-0002.md#u006-01); [U006-03](../../../../../../cross-check-0002.md#u006-03). Существование поля applyRangedMeleeBonus не доказывает consumer формулы.
 
 ## Связанные проблемы
 
@@ -83,3 +83,13 @@ JS-функций нет. Семь formGroup, три условия if с helper
 Сверенные карточки: [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../tabs/spellGeneral.hbs.md).
 
 [Результаты и пределы сверки](../../../../../../review-log.md#task-0003021).
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Partial привязывает семь schema-controls к melee/ranged/spell и общему Set attackOptions. ItemUseAttackSkill не выводится, хотя вариант разрешён; в отличие от general.hbs заголовок spell правильный. Существование поля applyRangedMeleeBonus не доказывает consumer формулы.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/attackOptionsData.js](../../../../../module/data/item/templates/combat/attackOptionsData.js.md), [module/data/item/templates/combat/skillAttackData.js](../../../../../module/data/item/templates/combat/skillAttackData.js.md), [module/item/witcherItem.js](../../../../../module/item/witcherItem.js.md), [templates/sheets/item/configuration/tabs/general.hbs](../tabs/general.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-05](../../../../../../cross-check-0002.md#r006-05). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

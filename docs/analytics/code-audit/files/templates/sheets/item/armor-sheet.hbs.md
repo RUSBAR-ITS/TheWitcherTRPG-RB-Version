@@ -80,7 +80,7 @@ Checkbox сопротивления читает вычисленное знач
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверено сохранение через полный DocumentSheetV2/FormDataExtended в браузере, динамическая геометрия recipe-drop, HTTP-доступ и внешний CSS. Все 175 строк прочитаны и сопоставлены с моделями/обработчиками.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-03](../../../../cross-check-0002.md#u006-03). Возможное закрепление бонусного сопротивления подтверждено моделью формы, не полноценной браузерной записью.
 
 ## Связанные проблемы
 
@@ -97,3 +97,13 @@ Checkbox сопротивления читает вычисленное знач
 Полностью разобран [связанный CSS](../../../../../../../styles/armor-sheet.css). Группа 29 повторно отрендерила основной HBS с фасадами helpers/partials: .location-table присутствует для FullCover и отсутствует для Shield. Классы sp/sp-table/icon-spacer в этой форме не используются; system.effects по-прежнему таблица, а .effect-list принадлежит общему ActiveEffect partial. CSS не связывает редактируемые базовые числа с суммарным SP Actor; этот расчёт теперь описан в [armorMixin](../../../../../../../module/actor/mixins/armorMixin.js).
 
 [Методика и пределы проверки](../../../../review-log.md#task-0003043). Уточнение связей не увеличивает покрытие. Статусы issues остаются potential; подтверждение и исправления не выполнялись.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Форма брони вводит базовые SP выбранных зон, Shield reliability и prepared resistance, а воздействия редактирует ручными actions по TypedObject ID. Read-only enhancementsEffects — отдельный each. Возможное закрепление бонусного сопротивления подтверждено моделью формы, не полноценной браузерной записью.
+
+Сопоставленные определения и потребители: [module/data/item/templates/itemEffectData.js](../../../module/data/item/templates/itemEffectData.js.md), [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](configuration/tabs/damagePropertiesConfiguration.hbs.md), [templates/sheets/item/enhancement-sheet.hbs](enhancement-sheet.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-04](../../../../cross-check-0002.md#r006-04), [R006-09](../../../../cross-check-0002.md#r006-09), [R006-10](../../../../cross-check-0002.md#r006-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

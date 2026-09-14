@@ -73,7 +73,7 @@ PARTS.main WitcherEnhancementSheet; section.scrollable, item-header partial. К�
 
 ## Непроверенные участки и открытые вопросы
 
-Не выполнено полноценное редактирование и переоткрытие Item в клиенте. Границы категории glyph и применения процентных сопротивлений не подменены предположениями о правилах.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../cross-check-0002.md#u006-01); [U006-02](../../../../cross-check-0002.md#u006-02); [U006-03](../../../../cross-check-0002.md#u006-03). Процент очищает модель; редактирование и установка на оружие/броню — разные операции.
 
 ## Связанные проблемы
 
@@ -82,3 +82,13 @@ PARTS.main WitcherEnhancementSheet; section.scrollable, item-header partial. К�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.014 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четыре type выбираются из контекста листа; stopping/три сопротивления доступны только type=armor. Effects — словарь с ручными add/edit/remove, статус выбирается weapon/rune либо armor/glyph. Процент очищает модель; редактирование и установка на оружие/броню — разные операции.
+
+Сопоставленные определения и потребители: [module/data/item/templates/itemEffectData.js](../../../module/data/item/templates/itemEffectData.js.md), [module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs](configuration/tabs/damagePropertiesConfiguration.hbs.md), [templates/sheets/item/armor-sheet.hbs](armor-sheet.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-04](../../../../cross-check-0002.md#r006-04), [R006-11](../../../../cross-check-0002.md#r006-11). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

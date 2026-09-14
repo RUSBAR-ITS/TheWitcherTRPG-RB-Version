@@ -64,7 +64,7 @@ true переносится, false не переносится; пустые [] 
 
 ## Непроверенные участки и открытые вопросы
 
-Миграция записей реального мира/компедиумов не запускалась. Поведение malformed primitive/null как целого source не является штатным сценарием и не тестировалось. Исправление приоритетов требует отдельно согласованного решения.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-05](../../../../cross-check-0002.md#u006-05). После очистки старых полей новое updateSource false сохраняется: бесконечного перекрытия на каждом обновлении не доказано.
 
 ## Связанные проблемы
 
@@ -89,3 +89,13 @@ SpellData.migrateData вызывает перенос до миграции сл
 Сверенные карточки: [module/data/item/spellData.js](../item/spellData.js.md).
 
 [Результаты и пределы сверки](../../../../review-log.md#task-0003021).
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Функция копирует truthy root armorPiercing/improvedArmorPiercing/ablating/crushingForce/effects во вложенный damageProperties до core migration. Пустой старый массив truthy и может стереть новый словарь. После очистки старых полей новое updateSource false сохраняется: бесконечного перекрытия на каждом обновлении не доказано.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/damagePropertiesData.js](../item/templates/combat/damagePropertiesData.js.md), [module/data/item/spellData.js](../item/spellData.js.md), [module/actor/mixins/weaponAttackMixin.js](../../actor/mixins/weaponAttackMixin.js.md), [module/actor/mixins/damageMixin.js](../../actor/mixins/damageMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-06](../../../../cross-check-0002.md#r006-06). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

@@ -87,7 +87,7 @@ preloadHandlebarsTemplates загружает его и старый monster-she
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Проверены данные рендера и существенные границы, перечисленные выше. Не запускались браузер, серверная запись, DragDrop, реальные броски/производство/ремонт/экспорт или полноценные листы Actor. CSS проверен только до селекторов. Реальный Foundry Document и UI представлены ограниченными фасадами; фактическая регистрация проверена статически. Полные файлы Character/Monster/MountData, валюта/награды и производство остаются за дальнейшими порциями.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-06](../../../../cross-check-0002.md#u006-06). Item-image и export-loot без data-action ограничены этой веткой.
 
 ## Связанные проблемы
 
@@ -104,3 +104,13 @@ preloadHandlebarsTemplates загружает его и старый monster-she
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полностью описан старый внешний monster-sheet.hbs: 296 и отсутствие его регистрации. Прежняя issue-00180 об устаревших полях брони сохраняется в пределах старого маршрута; новый MonsterSheet использует другой tab-inventory.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md); [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Прежний шаблон использует tbody.item/_id и плоские SP/resistance, которых нет в текущей ArmorData; Shield reliability остаётся совместимым. Preload и включение старым monster-sheet не являются действующей регистрацией. Item-image и export-loot без data-action ограничены этой веткой.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../../sheets/actor/partials/monster/tabs/tab-inventory.hbs.md), [templates/partials/item-image.hbs](../item-image.hbs.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md), [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-19](../../../../cross-check-0002.md#r006-19). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

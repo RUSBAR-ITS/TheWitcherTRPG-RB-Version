@@ -71,7 +71,7 @@ Default export skillAttack() вызывается внутри professionSkill()
 
 ## Непроверенные участки и открытые вопросы
 
-Полная профессия и её редактор — TASK-0003.019; бой — следующие порции. Поведение всех inherited полей не выводится из одного факта включения в схему. Три настройки урона, помеченные переводами как not functional, описаны в DamageProperties. Поиск потребителей: module/ и templates/.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-03](../../../../../../cross-check-0002.md#u006-03). Profession передаёт skillReplacement/additionalDamageProperties оружию; именно эти поля способны сбить выбор режима и потерять TypedObject effects при merge.
 
 ## Связанные проблемы
 
@@ -96,3 +96,13 @@ Direct attack использует damageFormulaOverride, applyMeleeBonus, damag
 [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+SkillAttack включается в professionSkillData и объединяет isAttack/usesWeapon/damageFormulaOverride с общими вариантами атаки/защиты и DamageProperties. Profession передаёт skillReplacement/additionalDamageProperties оружию; именно эти поля способны сбить выбор режима и потерять TypedObject effects при merge.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/attackOptionsData.js](attackOptionsData.js.md), [module/item/witcherItem.js](../../../../item/witcherItem.js.md), [templates/sheets/item/configuration/partials/attackOptionsPart.hbs](../../../../../templates/sheets/item/configuration/partials/attackOptionsPart.hbs.md), [templates/sheets/item/configuration/tabs/general.hbs](../../../../../templates/sheets/item/configuration/tabs/general.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-05](../../../../../../cross-check-0002.md#r006-05), [R006-06](../../../../../../cross-check-0002.md#r006-06). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

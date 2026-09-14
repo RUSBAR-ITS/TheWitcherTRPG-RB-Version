@@ -78,7 +78,7 @@ has* задают наличие подписей, не фильтруют ст�
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Проверены данные рендера и существенные границы, перечисленные выше. Не запускались браузер, серверная запись, DragDrop, реальные броски/производство/ремонт/экспорт или полноценные листы Actor. CSS проверен только до селекторов. Реальный Foundry Document и UI представлены ограниченными фасадами; фактическая регистрация проверена статически. Полные файлы Character/Monster/MountData, валюта/награды и производство остаются за дальнейшими порциями.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../../../cross-check-0002.md#u006-01); [U006-04](../../../../../../../cross-check-0002.md#u006-04). Создание выполняет общий itemMixin.
 
 ## Связанные проблемы
 
@@ -105,3 +105,13 @@ Consumer spell-type-list передаёт header/itemType/subtype; spellType б�
 [templates/sheets/actor/partials/character/spell-type-list.hbs](../../../../../../../../../../templates/sheets/actor/partials/character/spell-type-list.hbs) — [карточка](../spell-type-list.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Summary выводит header и условные колонки/плюсик. Data-itemType/data-spellType становятся dataset.itemtype/spelltype; subtype нигде не записывается. HasQuantity управляет подписью, а восемь строковых partial независимо показывают quantity. Создание выполняет общий itemMixin.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](tab-inventory-alchemical.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs](tab-inventory-armors.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](tab-inventory-components.hbs.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs](tab-inventory-mounts.hbs.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-17](../../../../../../../cross-check-0002.md#r006-17), [R006-18](../../../../../../../cross-check-0002.md#r006-18). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

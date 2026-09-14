@@ -82,7 +82,7 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 
 ## Непроверенные участки и открытые вопросы
 
-Весь исходник прочитан. Не проверены полноценный submit, одновременное открытие основного листа и конфигурации, внешние listeners, стили и сетевые ошибки. Действие над исчезнувшим effect предполагает его наличие; штатный браузерный сценарий такой гонки не моделировался. Настоящее сохранение duration/defaults не выводится из перехваченного payload.
+Исходник и текущие связи сопоставлены в TASK-0004.006. Прежние ссылки на будущий пофайловый разбор TASK-0003 больше не являются очередью: он завершён. Остались конкретные границы сквозной проверки: [U006-01](../../../../../cross-check-0002.md#u006-01); [U006-06](../../../../../cross-check-0002.md#u006-06). Её core Drop/drag отличается от override главного WitcherItemSheet.
 
 ## Связанные проблемы
 
@@ -144,3 +144,13 @@ Hex/Ritual используют обычную конфигурацию чере
 _prepareContext передаёт CONFIG.WITCHER как context.config. general.hbs:37–38 и spellGeneral.hbs:47 используют options=config.damageTypes, localize=true; это подтверждает потребителя WITCHER.DamageType.silver в вариантах формы. В ru перевод находится по другому пути WITCHER.Damage.silver, поэтому настоящий Localization возвращает Silver из en ([docs/issues/potential/issue-00317.md](../../../../../../../issues/potential/issue-00317.md)). Полные описания [en](../../../../lang/en.json.md) и [ru](../../../../lang/ru.json.md) дополняют прежнюю точечную проверку. Полный DOM formGroup и сохранение Item не запускались.
 
 [Результаты и ограничения сверки](../../../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
+
+## Сквозная сверка TASK-0004.006
+
+2026-09-14; rusbar-main, a176c4f18879f2e5a63b93bc15345fc26d9f535a. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Конфигурация — самостоятельный наследник ItemSheetV2 для того же Item. Передаёт systemFields/подготовленные данные, categorizes по disabled и isTemporary/type; создаёт, редактирует, выключает и удаляет встроенные ActiveEffect. Её core Drop/drag отличается от override главного WitcherItemSheet.
+
+Сопоставленные определения и потребители: [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md), [templates/sheets/item/configuration/tabs/header.hbs](../../../../templates/sheets/item/configuration/tabs/header.hbs.md), [templates/partials/effect-part.hbs](../../../../templates/partials/effect-part.hbs.md), [module/activeEffect/witcherActiveEffect.js](../../../activeEffect/witcherActiveEffect.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-03](../../../../../cross-check-0002.md#r006-03), [R006-05](../../../../../cross-check-0002.md#r006-05). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.
