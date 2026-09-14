@@ -1,0 +1,3643 @@
+{
+  "purpose": "Предложение очереди для обсуждения; не часть формата индекса и не созданные задачи",
+  "status": "proposal",
+  "date": "2026-09-14",
+  "source_head": "0c09df13984e021c24073926150dfd7a336b6ac5",
+  "index_dataset": "task-0006.004-pilot",
+  "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
+  "registry": "docs/analytics/code-audit/registry.md",
+  "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
+  "blocks": [
+    {
+      "id": "B01",
+      "name": "Запуск, реестры, hooks, настройки, миграции и упаковка",
+      "files": [
+        {
+          "source": "src-000001",
+          "path": "build.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000004",
+          "path": "module/TheWitcherTRPG.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000156",
+          "path": "module/data/migrations/damagePropertiesMigration.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000204",
+          "path": "module/scripts/socket/socketMessage.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000209",
+          "path": "module/setup/config.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000210",
+          "path": "module/setup/deprecations.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000211",
+          "path": "module/setup/handlebars.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000212",
+          "path": "module/setup/hooks.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000213",
+          "path": "module/setup/queries.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000214",
+          "path": "module/setup/registerDataModels.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000215",
+          "path": "module/setup/registerSheets.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000216",
+          "path": "module/setup/settings.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000217",
+          "path": "module/setup/socketHook.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000218",
+          "path": "package.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000481",
+          "path": "system.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000511",
+          "path": "templates/dialog/deprecations/lifepathModifiers.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000512",
+          "path": "templates/dialog/deprecations/statSkillModifiers.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000614",
+          "path": "utils/extract.mjs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000615",
+          "path": "utils/packs.mjs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B02",
+      "name": "Эффекты: редактор, применение, статусы и временные улучшения",
+      "files": [
+        {
+          "source": "src-000005",
+          "path": "module/activeEffect/WitcherActiveEffectSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000006",
+          "path": "module/activeEffect/mixins/baseMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000007",
+          "path": "module/activeEffect/mixins/temporaryItemImprovementMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000008",
+          "path": "module/activeEffect/witcherActiveEffect.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000023",
+          "path": "module/actor/mixins/temporaryEffectMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000036",
+          "path": "module/actor/sheets/mixins/activeEffectMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000052",
+          "path": "module/data/activeEffects/witcherActiveEffectData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000053",
+          "path": "module/data/activeEffects/witcherTemporaryItemImprovementData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000092",
+          "path": "module/data/actor/templates/common/temporaryEffectsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000139",
+          "path": "module/data/item/templates/effectDerivedStatData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000140",
+          "path": "module/data/item/templates/effectSkillData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000141",
+          "path": "module/data/item/templates/effectStatData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000142",
+          "path": "module/data/item/templates/itemEffectData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000205",
+          "path": "module/scripts/statusEffects/applyStatusEffect.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000206",
+          "path": "module/scripts/temporaryEffects/applyActiveEffect.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000445",
+          "path": "styles/activeEffect.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000488",
+          "path": "templates/chat/combat/statusEffect.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000495",
+          "path": "templates/chat/item/appliedTemporaryItemImprovements.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000506",
+          "path": "templates/dialog/activeEffects/wizard.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000531",
+          "path": "templates/partials/effect-part.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000541",
+          "path": "templates/sheets/activeEffect/system-specific.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000562",
+          "path": "templates/sheets/actor/partials/character/tab-effects.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000589",
+          "path": "templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B03",
+      "name": "Характеристики, навыки, модификаторы и общий бросок",
+      "files": [
+        {
+          "source": "src-000019",
+          "path": "module/actor/mixins/modifierMixin.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000022",
+          "path": "module/actor/mixins/skillMixin.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000032",
+          "path": "module/actor/sheets/configurations/WitcherModifiersConfiguration.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000040",
+          "path": "module/actor/sheets/mixins/customSkillMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000045",
+          "path": "module/actor/sheets/mixins/skillMixin.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000046",
+          "path": "module/actor/sheets/mixins/statMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000047",
+          "path": "module/actor/witcherActor.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000055",
+          "path": "module/data/actor/commonActorData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000080",
+          "path": "module/data/actor/templates/common/skills/bodyData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000081",
+          "path": "module/data/actor/templates/common/skills/craData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000082",
+          "path": "module/data/actor/templates/common/skills/dexData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000083",
+          "path": "module/data/actor/templates/common/skills/empData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000084",
+          "path": "module/data/actor/templates/common/skills/intData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000085",
+          "path": "module/data/actor/templates/common/skills/refData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000086",
+          "path": "module/data/actor/templates/common/skills/skillData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000087",
+          "path": "module/data/actor/templates/common/skills/skillsData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000088",
+          "path": "module/data/actor/templates/common/skills/willData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000089",
+          "path": "module/data/actor/templates/common/stats/derivedStatsData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000090",
+          "path": "module/data/actor/templates/common/stats/statData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000091",
+          "path": "module/data/actor/templates/common/stats/statsData.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000124",
+          "path": "module/data/item/skillItemData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000178",
+          "path": "module/item/sheets/WitcherSkillItemSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000198",
+          "path": "module/scripts/helper.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000201",
+          "path": "module/scripts/rollConfig.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000202",
+          "path": "module/scripts/rolls/extendedRoll.js",
+          "pilot_role": "primary"
+        },
+        {
+          "source": "src-000453",
+          "path": "styles/configurations/modifier-configuration.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000462",
+          "path": "styles/monster-skill-tab.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000472",
+          "path": "styles/special-skill-table.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000478",
+          "path": "styles/tab-skills.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000521",
+          "path": "templates/partials/character/custom-skill-display.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000522",
+          "path": "templates/partials/character/skill-display.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000527",
+          "path": "templates/partials/character/tab-skills.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000528",
+          "path": "templates/partials/character/tab-stats.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000534",
+          "path": "templates/partials/monster/monster-custom-skill-display.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000537",
+          "path": "templates/partials/monster/monster-skill-display.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000538",
+          "path": "templates/partials/monster/monster-skill-tab.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000542",
+          "path": "templates/sheets/actor/configuration/app/edit-skills.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000543",
+          "path": "templates/sheets/actor/configuration/app/edit-stats.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000544",
+          "path": "templates/sheets/actor/configuration/app/partials/stats-block.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000547",
+          "path": "templates/sheets/actor/configuration/partials/skillConfiguration.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000610",
+          "path": "templates/sheets/item/skill-item-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "name": "Модели и листы Actor, заметки и инвентарь",
+      "files": [
+        {
+          "source": "src-000027",
+          "path": "module/actor/sheets/WitcherActorSheet.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000028",
+          "path": "module/actor/sheets/WitcherActorSheetV1.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000029",
+          "path": "module/actor/sheets/WitcherCharacterSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000030",
+          "path": "module/actor/sheets/WitcherLootSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000031",
+          "path": "module/actor/sheets/WitcherMonsterSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000033",
+          "path": "module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000034",
+          "path": "module/actor/sheets/interactions/itemContextMenu.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000043",
+          "path": "module/actor/sheets/mixins/itemMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000044",
+          "path": "module/actor/sheets/mixins/noteMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000054",
+          "path": "module/data/actor/characterData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000056",
+          "path": "module/data/actor/lootData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000057",
+          "path": "module/data/actor/monsterData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000064",
+          "path": "module/data/actor/templates/character/general/detailsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000068",
+          "path": "module/data/actor/templates/character/generalData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000071",
+          "path": "module/data/actor/templates/character/pannelsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000076",
+          "path": "module/data/actor/templates/common/focusData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000078",
+          "path": "module/data/actor/templates/common/noteData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000079",
+          "path": "module/data/actor/templates/common/reputationData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000093",
+          "path": "module/data/actor/templates/valueLabelData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000448",
+          "path": "styles/character-header.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000449",
+          "path": "styles/character/sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000460",
+          "path": "styles/loot-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000461",
+          "path": "styles/monster-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000463",
+          "path": "styles/monster/details.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000464",
+          "path": "styles/monster/header.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000465",
+          "path": "styles/monster/inventory.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000466",
+          "path": "styles/monster/sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000467",
+          "path": "styles/monster/sidebar.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000520",
+          "path": "templates/partials/character-header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000535",
+          "path": "templates/partials/monster/monster-details-tab.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000536",
+          "path": "templates/partials/monster/monster-inventory-tab.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000545",
+          "path": "templates/sheets/actor/configuration/monster/general.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000546",
+          "path": "templates/sheets/actor/configuration/monster/header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000549",
+          "path": "templates/sheets/actor/loot-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000550",
+          "path": "templates/sheets/actor/monster-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000551",
+          "path": "templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000556",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000557",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000558",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000560",
+          "path": "templates/sheets/actor/partials/character/sidebar.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000563",
+          "path": "templates/sheets/actor/partials/loot/loot-item-display.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000564",
+          "path": "templates/sheets/actor/partials/monster/header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000565",
+          "path": "templates/sheets/actor/partials/monster/sidebar.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000566",
+          "path": "templates/sheets/actor/partials/monster/tabs/partials/monster-info.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000567",
+          "path": "templates/sheets/actor/partials/monster/tabs/partials/monster-knowledge.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000568",
+          "path": "templates/sheets/actor/partials/monster/tabs/partials/monster-notes.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000569",
+          "path": "templates/sheets/actor/partials/monster/tabs/partials/monster-status.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000570",
+          "path": "templates/sheets/actor/partials/monster/tabs/tab-details.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000571",
+          "path": "templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000576",
+          "path": "templates/sheets/actor/tabs/tab-inventory.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B05",
+      "name": "Основы Item, конфигурация и расходуемые предметы",
+      "files": [
+        {
+          "source": "src-000102",
+          "path": "module/data/dataUtils.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000109",
+          "path": "module/data/item/commonItemData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000111",
+          "path": "module/data/item/containerData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000114",
+          "path": "module/data/item/enhancementData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000118",
+          "path": "module/data/item/mountData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000119",
+          "path": "module/data/item/mutagenData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000120",
+          "path": "module/data/item/noteData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000136",
+          "path": "module/data/item/templates/consumableData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000137",
+          "path": "module/data/item/templates/consumePropertiesData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000154",
+          "path": "module/data/item/valuableData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000157",
+          "path": "module/item/mixins/consumeMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000158",
+          "path": "module/item/mixins/costEditMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000166",
+          "path": "module/item/sheets/WitcherContainerSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000169",
+          "path": "module/item/sheets/WitcherEnhancementSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000172",
+          "path": "module/item/sheets/WitcherItemSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000173",
+          "path": "module/item/sheets/WitcherMountSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000174",
+          "path": "module/item/sheets/WitcherMutagenSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000180",
+          "path": "module/item/sheets/WitcherValuableSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000183",
+          "path": "module/item/sheets/configurations/WitcherConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000184",
+          "path": "module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000186",
+          "path": "module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000192",
+          "path": "module/item/witcherItem.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000454",
+          "path": "styles/container-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000458",
+          "path": "styles/item-header.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000459",
+          "path": "styles/item-sheets.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000473",
+          "path": "styles/substances.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000476",
+          "path": "styles/tab-inventory-list.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000477",
+          "path": "styles/tab-inventory.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000496",
+          "path": "templates/chat/item/consume.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000498",
+          "path": "templates/chat/item/item-description.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000501",
+          "path": "templates/chat/item/partials/item-description/description.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000503",
+          "path": "templates/chat/item/partials/item-description/tags.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000519",
+          "path": "templates/partials/associated-item.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000523",
+          "path": "templates/partials/character/substances.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000532",
+          "path": "templates/partials/item-header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000533",
+          "path": "templates/partials/item-image.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000591",
+          "path": "templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000594",
+          "path": "templates/sheets/item/configuration/tabs/general.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000595",
+          "path": "templates/sheets/item/configuration/tabs/header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000598",
+          "path": "templates/sheets/item/container-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000601",
+          "path": "templates/sheets/item/enhancement-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000604",
+          "path": "templates/sheets/item/mount-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000605",
+          "path": "templates/sheets/item/mutagen-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000606",
+          "path": "templates/sheets/item/note-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000612",
+          "path": "templates/sheets/item/valuable-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B06",
+      "name": "Бой: атака, защита, урон, броня и сообщения",
+      "files": [
+        {
+          "source": "src-000009",
+          "path": "module/actor/mixins/adrenalineMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000010",
+          "path": "module/actor/mixins/armorMixin.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000014",
+          "path": "module/actor/mixins/damageMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000015",
+          "path": "module/actor/mixins/damageUtilMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000016",
+          "path": "module/actor/mixins/defenseMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000018",
+          "path": "module/actor/mixins/locationMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000025",
+          "path": "module/actor/mixins/weaponAttackMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000050",
+          "path": "module/chatMessage/chatMessageData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000051",
+          "path": "module/chatMessage/witcherChatMessage.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000058",
+          "path": "module/data/actor/templates/character/attackData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000059",
+          "path": "module/data/actor/templates/character/attackStatsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000062",
+          "path": "module/data/actor/templates/character/general/damage/damageModificationData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000063",
+          "path": "module/data/actor/templates/character/general/damage/damageTypeModificationData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000073",
+          "path": "module/data/actor/templates/common/adrenalineData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000074",
+          "path": "module/data/actor/templates/common/combatEffectsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000094",
+          "path": "module/data/chatMessage/attackMessageData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000095",
+          "path": "module/data/chatMessage/baseMessageData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000096",
+          "path": "module/data/chatMessage/damageMessageData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000097",
+          "path": "module/data/chatMessage/defenseMessageData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000098",
+          "path": "module/data/chatMessage/templates/attackData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000099",
+          "path": "module/data/chatMessage/templates/critData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000100",
+          "path": "module/data/chatMessage/templates/damageData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000101",
+          "path": "module/data/chatMessage/templates/locationData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000108",
+          "path": "module/data/item/armorData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000126",
+          "path": "module/data/item/templates/armor/resistanceData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000127",
+          "path": "module/data/item/templates/armor/spData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000129",
+          "path": "module/data/item/templates/combat/attackOptionsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000130",
+          "path": "module/data/item/templates/combat/damagePropertiesData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000131",
+          "path": "module/data/item/templates/combat/defenseOptionsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000132",
+          "path": "module/data/item/templates/combat/defensePropertiesData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000133",
+          "path": "module/data/item/templates/combat/skillAttackData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000134",
+          "path": "module/data/item/templates/combat/skillDefenseData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000153",
+          "path": "module/data/item/templates/weaponTypeData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000155",
+          "path": "module/data/item/weaponData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000159",
+          "path": "module/item/mixins/damageUtilMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000160",
+          "path": "module/item/mixins/defenseOptionMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000164",
+          "path": "module/item/sheets/WitcherArmorSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000181",
+          "path": "module/item/sheets/WitcherWeaponSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000182",
+          "path": "module/item/sheets/configurations/WitcherArmorConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000193",
+          "path": "module/scripts/chat.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000194",
+          "path": "module/scripts/combat/applyDamage.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000195",
+          "path": "module/scripts/combat/combat.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000196",
+          "path": "module/scripts/combat/generalCombatHook.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000197",
+          "path": "module/scripts/damageInstance.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000203",
+          "path": "module/scripts/rolls/fumble.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000446",
+          "path": "styles/armor-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000447",
+          "path": "styles/attack-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000451",
+          "path": "styles/chat.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000479",
+          "path": "styles/weapon-roll.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000482",
+          "path": "templates/chat/combat/defense/defense.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000483",
+          "path": "templates/chat/combat/defense/defenseCrit.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000484",
+          "path": "templates/chat/combat/defense/defenseStun.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000490",
+          "path": "templates/chat/damage/damageToAllLocations.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000491",
+          "path": "templates/chat/damage/damageToLocation.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000492",
+          "path": "templates/chat/damage/shieldAbsorbs.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000493",
+          "path": "templates/chat/damage/spAbsorbs.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000509",
+          "path": "templates/dialog/combat/variableDamage.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000510",
+          "path": "templates/dialog/combat/weapon-attack.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000553",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000559",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000583",
+          "path": "templates/sheets/item/armor-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000585",
+          "path": "templates/sheets/item/configuration/partials/attackOptionsPart.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000590",
+          "path": "templates/sheets/item/configuration/tabs/armorGeneral.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000592",
+          "path": "templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000593",
+          "path": "templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000613",
+          "path": "templates/sheets/item/weapon-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B07",
+      "name": "Критические травмы, лечение, восстановление и смерть",
+      "files": [
+        {
+          "source": "src-000017",
+          "path": "module/actor/mixins/healMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000038",
+          "path": "module/actor/sheets/mixins/criticalWoundMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000041",
+          "path": "module/actor/sheets/mixins/deathSaveMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000042",
+          "path": "module/actor/sheets/mixins/healMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000112",
+          "path": "module/data/item/criticalWoundData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000167",
+          "path": "module/item/sheets/WitcherCriticalWoundSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000455",
+          "path": "styles/crit-wounds-table.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000485",
+          "path": "templates/chat/combat/heal.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000486",
+          "path": "templates/chat/combat/regeneration.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000494",
+          "path": "templates/chat/heal/resting-status.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000513",
+          "path": "templates/dialog/heal/heal-rest.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000530",
+          "path": "templates/partials/crit-wounds-table.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000599",
+          "path": "templates/sheets/item/criticalWound-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B08",
+      "name": "Магия, заклинания и регионы",
+      "files": [
+        {
+          "source": "src-000011",
+          "path": "module/actor/mixins/castSpellMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000115",
+          "path": "module/data/item/hexData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000117",
+          "path": "module/data/item/mixin/spellRegionMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000123",
+          "path": "module/data/item/ritualData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000125",
+          "path": "module/data/item/spellData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000149",
+          "path": "module/data/item/templates/regions/regionBehavioursData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000150",
+          "path": "module/data/item/templates/regions/regionPropertiesData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000151",
+          "path": "module/data/item/templates/regions/templatePropertiesData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000170",
+          "path": "module/item/sheets/WitcherHexSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000177",
+          "path": "module/item/sheets/WitcherRitualSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000179",
+          "path": "module/item/sheets/WitcherSpellSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000187",
+          "path": "module/item/sheets/configurations/WitcherSpellConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000200",
+          "path": "module/scripts/regions/regionHooks.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000487",
+          "path": "templates/chat/combat/spellItem.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000502",
+          "path": "templates/chat/item/partials/item-description/spell-description.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000508",
+          "path": "templates/dialog/combat/spell-attack.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000525",
+          "path": "templates/partials/character/tab-magic.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000539",
+          "path": "templates/partials/monster/monster-spell-tab.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000540",
+          "path": "templates/partials/spell-header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000561",
+          "path": "templates/sheets/actor/partials/character/spell-type-list.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000596",
+          "path": "templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000597",
+          "path": "templates/sheets/item/configuration/tabs/spellGeneral.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000602",
+          "path": "templates/sheets/item/hex-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000609",
+          "path": "templates/sheets/item/ritual-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000611",
+          "path": "templates/sheets/item/spell-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B09",
+      "name": "Ремесло, алхимия, рецепты, разборка и ремонт",
+      "files": [
+        {
+          "source": "src-000012",
+          "path": "module/actor/mixins/craftingMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000037",
+          "path": "module/actor/sheets/mixins/alchemyMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000107",
+          "path": "module/data/item/alchemicalData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000110",
+          "path": "module/data/item/componentData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000113",
+          "path": "module/data/item/diagramData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000128",
+          "path": "module/data/item/templates/associatedDiagramData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000135",
+          "path": "module/data/item/templates/componentData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000138",
+          "path": "module/data/item/templates/craftingComponentData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000161",
+          "path": "module/item/mixins/dismantlingMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000162",
+          "path": "module/item/mixins/repairMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000163",
+          "path": "module/item/sheets/WitcherAlchemicalSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000165",
+          "path": "module/item/sheets/WitcherComponentSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000168",
+          "path": "module/item/sheets/WitcherDiagramSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000190",
+          "path": "module/item/sheets/mixins/associatedDiagramMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000191",
+          "path": "module/item/systems/repair.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000452",
+          "path": "styles/components-list.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000470",
+          "path": "styles/repair.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000497",
+          "path": "templates/chat/item/dismantle.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000499",
+          "path": "templates/chat/item/partials/item-description/alchemicals.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000500",
+          "path": "templates/chat/item/partials/item-description/crafting-items.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000504",
+          "path": "templates/chat/item/repair.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000515",
+          "path": "templates/dialog/repair-dialog.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000518",
+          "path": "templates/partials/associated-diagram.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000529",
+          "path": "templates/partials/components-list.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000552",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000554",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000555",
+          "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000582",
+          "path": "templates/sheets/item/alchemical-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000584",
+          "path": "templates/sheets/item/component-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000600",
+          "path": "templates/sheets/item/diagrams-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B10",
+      "name": "Раса, профессия, происхождение и биография",
+      "files": [
+        {
+          "source": "src-000020",
+          "path": "module/actor/mixins/professionMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000061",
+          "path": "module/data/actor/templates/character/general/backgroundData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000065",
+          "path": "module/data/actor/templates/character/general/homelandData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000066",
+          "path": "module/data/actor/templates/character/general/lifeEventData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000067",
+          "path": "module/data/actor/templates/character/general/lifeEventsData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000077",
+          "path": "module/data/actor/templates/common/lifepathData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000116",
+          "path": "module/data/item/homelandData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000121",
+          "path": "module/data/item/professionData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000122",
+          "path": "module/data/item/raceData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000143",
+          "path": "module/data/item/templates/perkData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000144",
+          "path": "module/data/item/templates/profession/skillUsageData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000145",
+          "path": "module/data/item/templates/profession/temporaryHealthData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000146",
+          "path": "module/data/item/templates/profession/thresholdData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000147",
+          "path": "module/data/item/templates/professionPathData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000148",
+          "path": "module/data/item/templates/professionSkillData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000152",
+          "path": "module/data/item/templates/socialStandingData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000171",
+          "path": "module/item/sheets/WitcherHomelandSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000175",
+          "path": "module/item/sheets/WitcherProfessionSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000176",
+          "path": "module/item/sheets/WitcherRaceSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000185",
+          "path": "module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000450",
+          "path": "styles/character/tab-profession.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000468",
+          "path": "styles/profession-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000469",
+          "path": "styles/race-sheet.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000475",
+          "path": "styles/tab-background.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000507",
+          "path": "templates/dialog/combat/profession-attack.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000524",
+          "path": "templates/partials/character/tab-background.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000526",
+          "path": "templates/partials/character/tab-profession.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000572",
+          "path": "templates/sheets/actor/partials/monster/tabs/tab-profession.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000586",
+          "path": "templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000587",
+          "path": "templates/sheets/item/configuration/partials/profession/skillPathPart.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000588",
+          "path": "templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000603",
+          "path": "templates/sheets/item/homeland-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000607",
+          "path": "templates/sheets/item/profession-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000608",
+          "path": "templates/sheets/item/race-sheet.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B11",
+      "name": "Валюта, награды, IP и журналы",
+      "files": [
+        {
+          "source": "src-000013",
+          "path": "module/actor/mixins/currencyConverterMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000021",
+          "path": "module/actor/mixins/rewardsMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000026",
+          "path": "module/actor/rewardsSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000039",
+          "path": "module/actor/sheets/mixins/currencyConverterMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000049",
+          "path": "module/app/reward/reward.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000060",
+          "path": "module/data/actor/templates/character/currencyLogData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000069",
+          "path": "module/data/actor/templates/character/ipLogData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000070",
+          "path": "module/data/actor/templates/character/logData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000072",
+          "path": "module/data/actor/templates/character/skillTrainingData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000075",
+          "path": "module/data/actor/templates/common/currencyData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000456",
+          "path": "styles/currency-converter.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000471",
+          "path": "styles/rewards.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000489",
+          "path": "templates/chat/currency-conversion.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000505",
+          "path": "templates/chat/rewards.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000548",
+          "path": "templates/sheets/actor/currencyConverter/currencyConverter.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000573",
+          "path": "templates/sheets/actor/rewards/currency.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000574",
+          "path": "templates/sheets/actor/rewards/header.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000575",
+          "path": "templates/sheets/actor/rewards/ip.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B12",
+      "name": "Расследование и словесный бой",
+      "files": [
+        {
+          "source": "src-000024",
+          "path": "module/actor/mixins/verbalCombatMixin.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000035",
+          "path": "module/actor/sheets/investigation/WitcherMysterySheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000103",
+          "path": "module/data/investigation/clueData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000104",
+          "path": "module/data/investigation/mysteryActorData.js",
+          "pilot_role": "neighbor"
+        },
+        {
+          "source": "src-000105",
+          "path": "module/data/investigation/obstacleData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000106",
+          "path": "module/data/investigation/templates/complexityData.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000188",
+          "path": "module/item/sheets/investigation/WitcherClueSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000189",
+          "path": "module/item/sheets/investigation/WitcherObstacleSheet.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000199",
+          "path": "module/scripts/investigation/rollClue.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000207",
+          "path": "module/scripts/verbalCombat/verbalCombat.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000208",
+          "path": "module/scripts/verbalCombat/verbalCombatDefense.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000514",
+          "path": "templates/dialog/investigation/chooseEvidenceSkill.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000516",
+          "path": "templates/dialog/verbal-combat-defense.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000517",
+          "path": "templates/dialog/verbal-combat.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000577",
+          "path": "templates/sheets/investigation/clue-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000578",
+          "path": "templates/sheets/investigation/mystery-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000579",
+          "path": "templates/sheets/investigation/obstacle-sheet.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000580",
+          "path": "templates/sheets/investigation/partials/clue-display.hbs",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000581",
+          "path": "templates/sheets/investigation/partials/obstacle-display.hbs",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B13",
+      "name": "Локализации en/ru и общие средства отображения",
+      "files": [
+        {
+          "source": "src-000002",
+          "path": "lang/en.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000003",
+          "path": "lang/ru.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000048",
+          "path": "module/app/htmlUtils.js",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000457",
+          "path": "styles/dialog.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000474",
+          "path": "styles/system-styles.css",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000480",
+          "path": "styles/witcher-styles.css",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B14",
+      "name": "Экспорт компедиума character-generator",
+      "files": [
+        {
+          "source": "src-000254",
+          "path": "packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000255",
+          "path": "packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000256",
+          "path": "packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000257",
+          "path": "packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000258",
+          "path": "packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000259",
+          "path": "packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000260",
+          "path": "packsJson/character-generator/Siblings_Generator_Lem0B3XxmJeEVQms.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000261",
+          "path": "packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000262",
+          "path": "packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000263",
+          "path": "packsJson/character-generator/Witcher_Lifepath__Cautious_Decade_09MXduRik0BKuUqa.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000264",
+          "path": "packsJson/character-generator/Witcher_Lifepath__Non_Neutral_Decade_obLsbuoNixBUbeAy.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000265",
+          "path": "packsJson/character-generator/Witcher_Lifepath__Normal_Decade_dsvsdl2GfKCWKsEO.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000266",
+          "path": "packsJson/character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B15",
+      "name": "Экспорт компедиума character-generator-sub-tables",
+      "files": [
+        {
+          "source": "src-000219",
+          "path": "packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000220",
+          "path": "packsJson/character-generator-sub-tables/Elf_Profession_zEykV0pe3YUlaDTd.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000221",
+          "path": "packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000222",
+          "path": "packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000223",
+          "path": "packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000224",
+          "path": "packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000225",
+          "path": "packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000226",
+          "path": "packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000227",
+          "path": "packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000228",
+          "path": "packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000229",
+          "path": "packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000230",
+          "path": "packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000231",
+          "path": "packsJson/character-generator-sub-tables/Most_Influential_Friend__Elderland_eATe1gk2PaKG1K9r.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000232",
+          "path": "packsJson/character-generator-sub-tables/Most_Influential_Friend__Nilfgaard_8R2zAqegJcbDr4xB.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000233",
+          "path": "packsJson/character-generator-sub-tables/Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000234",
+          "path": "packsJson/character-generator-sub-tables/Nilfgaard_Vassal_Origin_IEPMPHNGahrfyCWI.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000235",
+          "path": "packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000236",
+          "path": "packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000237",
+          "path": "packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000238",
+          "path": "packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000239",
+          "path": "packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000240",
+          "path": "packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000241",
+          "path": "packsJson/character-generator-sub-tables/Parental_Fate__Northern_FQEyr6n57ae1ySLC.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000242",
+          "path": "packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000243",
+          "path": "packsJson/character-generator-sub-tables/Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000244",
+          "path": "packsJson/character-generator-sub-tables/Parents__Northern_SGuXziIZzzst1LVJ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000245",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Age_0PcW1kFO5g40cELc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000246",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000247",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Elves_6QuZTatyIKElcCKz.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000248",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Feelings_About_You_ACf1JfCfVtJWw5DG.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000249",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Gender_QbkrG0W11fREICK8.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000250",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000251",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000252",
+          "path": "packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000253",
+          "path": "packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B16",
+      "name": "Экспорт компедиума lifepath",
+      "files": [
+        {
+          "source": "src-000376",
+          "path": "packsJson/lifepath/Allies__Closeness_IswiqefPmaHECa5X.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000377",
+          "path": "packsJson/lifepath/Allies__Gender_QFHhoiXtIBYkL8Rd.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000378",
+          "path": "packsJson/lifepath/Allies__Generator_Va7NF10ETcMvndFo.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000379",
+          "path": "packsJson/lifepath/Allies__How_You_Met_BqAizN8u9r6nMSyK.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000380",
+          "path": "packsJson/lifepath/Allies__Position_5sroduMneFqG9INx.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000381",
+          "path": "packsJson/lifepath/Allies__Where_Are_They__W19e7rtl3ycrMhQU.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000382",
+          "path": "packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000383",
+          "path": "packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000384",
+          "path": "packsJson/lifepath/Enemies__Generator_7AXmeCSRkK3ktJ9Y.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000385",
+          "path": "packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000386",
+          "path": "packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000387",
+          "path": "packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000388",
+          "path": "packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000389",
+          "path": "packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000390",
+          "path": "packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000391",
+          "path": "packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000392",
+          "path": "packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000393",
+          "path": "packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000394",
+          "path": "packsJson/lifepath/Romance_CDgdx129wZvINn16.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000395",
+          "path": "packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000396",
+          "path": "packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B17",
+      "name": "Экспорт компедиума witcher-lifepath",
+      "files": [
+        {
+          "source": "src-000404",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000405",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000406",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000407",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_CDX4hqsxcxxovYz3.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000408",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000409",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000410",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_sY3qw9UfVyx1l9BF.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000411",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000412",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000413",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000414",
+          "path": "packsJson/witcher-lifepath/Witcher_Background__Where_Are_You_Now__w8GcZsTyPF85V5Rr.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000415",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000416",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000417",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000418",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000419",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_Did_They_Die_AMYeAxAXD3DMX6St.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000420",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000421",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000422",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000423",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000424",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000425",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000426",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Are_They_Alive__eywzppppagpC4HYO.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000427",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__How_Did_They_Die__SwPXh5SRHrwfXyWP.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000428",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__How_Far_Has_It_Escalated__8iZB8b98GEbOQfBQ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000429",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Position_9m5zE1WyAI4xslyk.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000430",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__Power_1QUG4e60Iqom24ac.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000431",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__The_Cause_FR7XLvWHdkOwUtnC.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000432",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies__What_Is_Their_Power__xxaxFJfMA29gLFOm.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000433",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000434",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000435",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000436",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000437",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___How_Did_It_End__n13vBwJk61euGPa1.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000438",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Was_There_a_Twist__uLX85Bx2Jimqmx6o.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000439",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000440",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Twist__ZyRLAmxDu5SVt7rg.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000441",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Where_Was_the_Prey__PUVAGxwjXlFhXrhv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000442",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000443",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000444",
+          "path": "packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B18",
+      "name": "Экспорт компедиума style",
+      "files": [
+        {
+          "source": "src-000397",
+          "path": "packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000398",
+          "path": "packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000399",
+          "path": "packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000400",
+          "path": "packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000401",
+          "path": "packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000402",
+          "path": "packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000403",
+          "path": "packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B19",
+      "name": "Экспорт компедиума combat",
+      "files": [
+        {
+          "source": "src-000267",
+          "path": "packsJson/combat/Complex_Critical_p3EAPCnu8RDawpWR.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000268",
+          "path": "packsJson/combat/Deadly_Critical_GoXapMH54rEUWaZn.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000269",
+          "path": "packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000270",
+          "path": "packsJson/combat/Human_Damage_Location_jKFIdFvv4P49JXPU.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000271",
+          "path": "packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000272",
+          "path": "packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000273",
+          "path": "packsJson/combat/Mounted_Control_Loss__Mount_XRdHZOmutZ3yzGRe.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000274",
+          "path": "packsJson/combat/Mounted_Control_Loss__Personal_KWLoKiOHKXXnq5E4.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000275",
+          "path": "packsJson/combat/Scatter__Direction_and_Distance_qTOHZYKhe5GN3Ciw.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000276",
+          "path": "packsJson/combat/Simple_Critical_SkHR3GrB2e3Tz1v4.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000277",
+          "path": "packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    },
+    {
+      "id": "B20",
+      "name": "Экспорт компедиума criticalWounds",
+      "files": [
+        {
+          "source": "src-000278",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs_VfgJzcV75cGqsjuF.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000279",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs__Stabilized__4LmC6nGwRM0PpNl7.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000280",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Broken_Ribs__Treated__77evBMjaJOlKTaRv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000281",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left__Z2L7diKDSE9L7E9d.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000282",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left___Stabilized__eCiJjDqfUyaXCW2z.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000283",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Left___Treated__kPIkW1AXuybKZPEh.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000284",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right__ZOyO6WlnMTDjzBj9.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000285",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right___Stabilized__t9bcLB3zDGUX9Uuq.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000286",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Arm__Right___Treated__djnBTcYyGVsykdoy.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000287",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Stabilized__LF0C1HVgY4hNZOFE.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000288",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left___Treated__nM9wqZXmrkFRRGTW.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000289",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Left__r34NuXwHfPGZCpTu.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000290",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Stabilized__WNjcD3F3Hs5IdAaa.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000291",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Treated__Aa8wCz1OGM4gflmc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000292",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000293",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth_IMLpjhiZ0yg6hjKI.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000294",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth__Stabilized__wccN560fe7WQgT0N.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000295",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Lost_Teeth__Treated__yHU7iYTocbAok2wH.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000296",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Stabilized__EnwgL7ApZTdHgMbD.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000297",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000298",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound_wPRuwd7RdLWnWmnb.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000299",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen__Stabilized__d8uhnIErEmsGtf94.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000300",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen__Treated__kFcie7Io28kKittg.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000301",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen_rHrrGeB9A8bNCiC2.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000302",
+          "path": "packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/_Folder.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000303",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Stabilized__LNy3P3HUw2Ja9DNu.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000304",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye__Treated__XQeXSAhvjrQZNpAE.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000305",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Damaged_Eye_zHK1XmZ77V8c26Xv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000306",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left__KQZRzczsSx1XY63m.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000307",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Stabilized__vmRDG8kxeCu3sYQC.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000308",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Left___Treated__8Z1iHJLXrFm2i3Fb.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000309",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right__ZxvWPJPDD9fm34Pc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000310",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Stabilized__hKgvgj4lJ74wPt8N.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000311",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Arm__Right___Treated__gPeOdwZ0OTVF9E3w.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000312",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left__Us9OmoKhRydSqA8z.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000313",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Stabilized__lck0EEySmuLZXMrA.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000314",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left___Treated__eYEp1CPif98mDm2U.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000315",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right__Ssi9d4GQsAyYnt86.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000316",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Stabilized__vYza9bpK13G36YRV.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000317",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Right___Treated__KFbDbrS3OCs0C1h4.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000318",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage_PVraD16y2VWkOH6J.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000319",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000320",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000321",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Separated_Spine_Decapitated_MvrwnSrEqsTRdaeY.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000322",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000323",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Treated__vkr5MXhnalPp8yJJ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000324",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000325",
+          "path": "packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000326",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Left___Stabilized__tdcGSOZGCUhNArDc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000327",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Left___Treated__zaKPfDQFGTR8FKju.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000328",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Left__saPd4IMUCv5qZE60.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000329",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Right___Stabilized__NHNctAuhsapGZXiP.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000330",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Right___Treated__ujz1IMKCXoJF9w91.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000331",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Arm_Fracture__Right__c3H8Xx7WYCcM37k6.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000332",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Left___Stabilized__NiGtzaHs4dUj8Pmd.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000333",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Left___Treated__kfyfxEVsMRUDDk1A.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000334",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Left__flpxY7FVPGevwfcg.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000335",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right__Rf0m4mGjeHEl0PxP.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000336",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Stabilized__QCugb1JqpiFyBEN4.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000337",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Treated__3SwpPbi2ddEJkebh.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000338",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion_IK7pM8p3NcM4thcz.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000339",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion__Stabilized__AFkm8KjxkwYxOCQo.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000340",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion__Treated__ItXAMwWil2A7IqRv.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000341",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Skull_Fracture_UImIh794nOy21jg2.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000342",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Skull_Fracture__Stabilized__ikv3qioEgGJG6Olw.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000343",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Skull_Fracture__Treated__v4RVIshohh1PPuAu.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000344",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Sucking_Chest_Wound__Stabilized__cfQ2OHPNVVKMDsDo.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000345",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Sucking_Chest_Wound__Treated__wFul3Zr7mMaKjA5I.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000346",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Sucking_Chest_Wound_tiVrEesPSzZ64HpZ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000347",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach_5gnx9xNF52ap9PYi.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000348",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000349",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Treated__Mg1jn99OitVPdvje.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000350",
+          "path": "packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000351",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw_UnWBI9Sgu4AJv1z1.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000352",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Stabilized__h15wRehQQoIkxcf0.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000353",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Treated__AODuTRNu2RtJJhLD.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000354",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs_7TzGQ2y4yZnG01im.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000355",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000356",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Treated__oe4y6zxH2WUR9gSj.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000357",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar_8tqapNHVCmSwijJw.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000358",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar__Stabilized__AJeuZeFF29nEI5fc.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000359",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Disfiguring_Scar__Treated__kbeASc2PnnkYc5SR.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000360",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Stabilized__fnYssldrMLVqbF22.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000361",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object__Treated__rgRGVfLBlHMwUvGy.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000362",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Foreign_Object_mylVzp10NMor44XR.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000363",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left___Stabilized__01Seyu22NaDnctCi.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000364",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left___Treated__q5vr9VLD2tEkL1ux.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000365",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left__quAixM7zp2bD9lXz.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000366",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right___Stabilized__yGy3oWvmpX6WMm56.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000367",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right___Treated__YiusbDXfFDhqwtQT.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000368",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Right__umPVfrJeNU65S48O.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000369",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000370",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000371",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Treated__f7NaW1AMnrSLGkd3.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000372",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right__VhwzsUlv5csYSJTM.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000373",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000374",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Treated__8qatuNeEROueRDcZ.json",
+          "pilot_role": "catalog_only"
+        },
+        {
+          "source": "src-000375",
+          "path": "packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/_Folder.json",
+          "pilot_role": "catalog_only"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "entity": "ent-000033",
+      "kind": "external",
+      "expression": "foundry.abstract.DataModel",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000034",
+      "kind": "external",
+      "expression": "super.migrateData(source)",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000035",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/intData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000036",
+      "kind": "external",
+      "expression": "foundry.abstract.TypeDataModel",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000037",
+      "kind": "external",
+      "expression": "foundry.data.ActiveEffectTypeDataModel",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000038",
+      "kind": "external",
+      "expression": "ActiveEffectTypeDataModel.defineSchema",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000073",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/bodyData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000084",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/craData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000093",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/dexData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000107",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/empData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000119",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/refData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000130",
+      "kind": "dynamic",
+      "expression": "source[skillName].label",
+      "source": "module/data/actor/templates/common/skills/willData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000278",
+      "kind": "external",
+      "expression": "Actor",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000291",
+      "kind": "external",
+      "expression": "Actor.prepareDerivedData",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000292",
+      "kind": "external",
+      "expression": "Actor.temporaryEffects",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000293",
+      "kind": "dynamic",
+      "expression": "item.system.calcWeight?.()",
+      "source": "module/actor/witcherActor.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000294",
+      "kind": "external",
+      "expression": "Actor.toggleStatusEffect",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000312",
+      "kind": "external",
+      "expression": "ActiveEffect",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000320",
+      "kind": "external",
+      "expression": "ActiveEffect._preCreate",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000321",
+      "kind": "external",
+      "expression": "ActiveEffect._preUpdate",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000322",
+      "kind": "dynamic",
+      "expression": "change.key",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000323",
+      "kind": "external",
+      "expression": "foundry.applications.api.DialogV2.prompt",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000324",
+      "kind": "dynamic",
+      "expression": "this._source.system.changes",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000325",
+      "kind": "dynamic",
+      "expression": "data.system?.changes",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000326",
+      "kind": "dynamic",
+      "expression": "change.phase",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000327",
+      "kind": "dynamic",
+      "expression": "data.system?.applyAfterCalculations",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000330",
+      "kind": "external",
+      "expression": "Hooks.init",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000331",
+      "kind": "dynamic",
+      "expression": "this.system.customStat",
+      "source": "module/actor/witcherActor.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000332",
+      "kind": "dynamic",
+      "expression": "this.system.attackStats.meleeBonus/punch.value/kick.value",
+      "source": "module/actor/witcherActor.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000333",
+      "kind": "dynamic",
+      "expression": "this.reputation",
+      "source": "module/data/actor/commonActorData.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000334",
+      "kind": "dynamic",
+      "expression": "this.system.reputation",
+      "source": "module/actor/witcherActor.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000335",
+      "kind": "external",
+      "expression": "Actor.applyActiveEffects",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000336",
+      "kind": "external",
+      "expression": "ActiveEffect.applyChange",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000337",
+      "kind": "external",
+      "expression": "Actor.appliedEffects",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000338",
+      "kind": "dynamic",
+      "expression": "e.system.changes",
+      "source": "module/actor/mixins/modifierMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000339",
+      "kind": "dynamic",
+      "expression": "CONFIG.WITCHER[modifier.group]",
+      "source": "module/actor/mixins/modifierMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000340",
+      "kind": "dynamic",
+      "expression": "item.type == 'armor' && item.system.equipped; item.system.encumb",
+      "source": "module/actor/mixins/armorMixin.js",
+      "review_area": "B06"
+    },
+    {
+      "entity": "ent-000359",
+      "kind": "external",
+      "expression": "ChatMessage.getSpeaker",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000362",
+      "kind": "external",
+      "expression": "game.settings.get",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000363",
+      "kind": "dynamic",
+      "expression": "skillMapEntry.attribute/name/rollLabel/label",
+      "source": "module/actor/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000364",
+      "kind": "dynamic",
+      "expression": "this.system.dontAddAttr",
+      "source": "module/actor/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000365",
+      "kind": "dynamic",
+      "expression": "this.system.dontAddAttr",
+      "source": "module/actor/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000366",
+      "kind": "dynamic",
+      "expression": "this.system.general.socialStanding",
+      "source": "module/actor/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000367",
+      "kind": "dynamic",
+      "expression": "this.items.find(item => item.id == event.currentTarget.closest('.item').dataset.itemId)",
+      "source": "module/actor/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000368",
+      "kind": "dynamic",
+      "expression": "customSkill.system.modifiers",
+      "source": "module/actor/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000372",
+      "kind": "external",
+      "expression": "Roll",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000373",
+      "kind": "external",
+      "expression": "Roll.evaluate",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000374",
+      "kind": "external",
+      "expression": "Roll.toMessage",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000375",
+      "kind": "external",
+      "expression": "ChatMessage.setFlag",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000376",
+      "kind": "dynamic",
+      "expression": "messageData.system.rollTotal",
+      "source": "module/scripts/rolls/extendedRoll.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000377",
+      "kind": "dynamic",
+      "expression": "evaluatedRoll.options.rollOver/success",
+      "source": "module/scripts/rolls/extendedRoll.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000378",
+      "kind": "dynamic",
+      "expression": "evaluatedRoll.messageData",
+      "source": "module/scripts/rolls/extendedRoll.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000379",
+      "kind": "dynamic",
+      "expression": "jQuery = $(html)",
+      "source": "module/actor/sheets/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000380",
+      "kind": "dynamic",
+      "expression": "system.pannels.${section.dataset.skilltype}IsOpen",
+      "source": "module/actor/sheets/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000381",
+      "kind": "external",
+      "expression": "Actor.update",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000384",
+      "kind": "dynamic",
+      "expression": "thisActor._onProfessionRoll(event)",
+      "source": "module/actor/sheets/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000386",
+      "kind": "dynamic",
+      "expression": "this.skillMap",
+      "source": "module/actor/sheets/mixins/skillMixin.js",
+      "review_area": "B03"
+    },
+    {
+      "entity": "ent-000396",
+      "kind": "external",
+      "expression": "Combat.getCombatantsByActor",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000397",
+      "kind": "external",
+      "expression": "ActiveEffect.updateSource",
+      "source": null,
+      "review_area": "external_contract"
+    },
+    {
+      "entity": "ent-000398",
+      "kind": "dynamic",
+      "expression": "this.parent.system.isActive / this.parent.system.equipped",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000399",
+      "kind": "dynamic",
+      "expression": "this.disabled || !(this.parent?.system?.equipped ?? true)",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    },
+    {
+      "entity": "ent-000400",
+      "kind": "dynamic",
+      "expression": "this.type",
+      "source": "module/activeEffect/witcherActiveEffect.js",
+      "review_area": "B02"
+    }
+  ]
+}

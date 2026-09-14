@@ -1,0 +1,673 @@
+{
+  "dataset": "task-0006.004-pilot",
+  "verified_at_head": "0c09df13984e021c24073926150dfd7a336b6ac5",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "A01",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "НАВЫК",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000007"
+        ]
+      },
+      "basis": "skillData.js:3 — класс Skill; alias «навык» задан явно."
+    },
+    {
+      "id": "A02",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "характеристика",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000001"
+        ]
+      },
+      "basis": "statData.js:3 — фабрика stat, не класс конкретной характеристики."
+    },
+    {
+      "id": "A03",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "skillMixin",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000299",
+          "ent-000305"
+        ]
+      },
+      "basis": "actor/mixins/skillMixin.js:6 и actor/sheets/mixins/skillMixin.js:1 — разные объекты."
+    },
+    {
+      "id": "A04",
+      "iq": [
+        "IQ-01",
+        "IQ-02"
+      ],
+      "command": [
+        "find",
+        "activeEffectModifiers",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000012",
+          "ent-000188"
+        ]
+      },
+      "basis": "skillData.js:9 и skillItemData.js:10; statData.js этого поля не определяет."
+    },
+    {
+      "id": "A05",
+      "iq": [
+        "IQ-02"
+      ],
+      "command": [
+        "show",
+        "ent-000012"
+      ],
+      "expected": {
+        "owner": "ent-000007",
+        "location": [
+          "src-000086",
+          9
+        ]
+      },
+      "basis": "Skill.defineSchema; это поле встроенного навыка."
+    },
+    {
+      "id": "A06",
+      "iq": [
+        "IQ-02"
+      ],
+      "command": [
+        "show",
+        "ent-000188"
+      ],
+      "expected": {
+        "owner": "ent-000182",
+        "location": [
+          "src-000124",
+          10
+        ]
+      },
+      "basis": "SkillItemData.defineSchema; самостоятельная модель Item."
+    },
+    {
+      "id": "A07",
+      "iq": [
+        "IQ-03"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000308",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000389",
+          "ent-000392",
+          "ent-000395"
+        ],
+        "locations": [
+          [
+            "src-000027",
+            234
+          ],
+          [
+            "src-000028",
+            212
+          ],
+          [
+            "src-000032",
+            51
+          ]
+        ]
+      },
+      "basis": "Вызовы this.skillListener в двух ActorSheet и WitcherModifiersConfiguration; полный путь регистрации листов вне пилота."
+    },
+    {
+      "id": "A08",
+      "iq": [
+        "IQ-03"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000277",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000329"
+        ],
+        "locations": [
+          [
+            "src-000004",
+            33
+          ]
+        ]
+      },
+      "basis": "TheWitcherTRPG.js:27/33 — Hook init назначает CONFIG.Actor.documentClass."
+    },
+    {
+      "id": "A09",
+      "iq": [
+        "IQ-03"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000308",
+        "--direction",
+        "out",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000307",
+          "ent-000382",
+          "ent-000383",
+          "ent-000385"
+        ],
+        "locations": [
+          [
+            "src-000045",
+            31
+          ],
+          [
+            "src-000045",
+            32
+          ],
+          [
+            "src-000045",
+            35
+          ],
+          [
+            "src-000045",
+            39
+          ]
+        ]
+      },
+      "basis": "skillListener:31–39 устанавливает четыре listener; вызов броска находится внутри callback."
+    },
+    {
+      "id": "A10",
+      "iq": [
+        "IQ-04"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000302",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000296",
+          "ent-000303",
+          "ent-000310",
+          "ent-000360",
+          "ent-000362",
+          "ent-000369"
+        ],
+        "locations": [
+          [
+            "src-000022",
+            55
+          ],
+          [
+            "src-000022",
+            65
+          ],
+          [
+            "src-000022",
+            67
+          ],
+          [
+            "src-000022",
+            69
+          ],
+          [
+            "src-000022",
+            76
+          ],
+          [
+            "src-000022",
+            82
+          ]
+        ]
+      },
+      "basis": "rollSkillCheck:46–83: settings.get, три метода Actor, getCustomModifier, extendedRoll."
+    },
+    {
+      "id": "A11",
+      "iq": [
+        "IQ-04"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000302",
+        "--direction",
+        "out",
+        "--relation",
+        "constructs"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000341",
+          "ent-000352"
+        ],
+        "locations": [
+          [
+            "src-000022",
+            57
+          ],
+          [
+            "src-000022",
+            78
+          ]
+        ]
+      },
+      "basis": "new ChatMessageData и new RollConfig — конструирование, отдельно от calls."
+    },
+    {
+      "id": "A12",
+      "iq": [
+        "IQ-05"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000302",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000301",
+          "ent-000382"
+        ],
+        "locations": [
+          [
+            "src-000022",
+            43
+          ],
+          [
+            "src-000045",
+            35
+          ]
+        ]
+      },
+      "basis": "Прямой rollSkill:43 и callback клика:35; установка listener сама не бросает."
+    },
+    {
+      "id": "A13",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000012",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000016",
+          "ent-000296"
+        ],
+        "locations": [
+          [
+            "src-000086",
+            17
+          ],
+          [
+            "src-000019",
+            10
+          ],
+          [
+            "src-000019",
+            20
+          ],
+          [
+            "src-000019",
+            21
+          ]
+        ]
+      },
+      "basis": "Getter складывает value + activeEffectModifiers; helper читает число отдельно и формирует строку."
+    },
+    {
+      "id": "A14",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000004",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000282",
+          "ent-000284"
+        ],
+        "locations": [
+          [
+            "src-000047",
+            106
+          ],
+          [
+            "src-000047",
+            127
+          ],
+          [
+            "src-000047",
+            130
+          ],
+          [
+            "src-000047",
+            134
+          ],
+          [
+            "src-000047",
+            139
+          ],
+          [
+            "src-000047",
+            143
+          ],
+          [
+            "src-000047",
+            146
+          ]
+        ],
+        "context_contains": "Подготовленные данные Actor"
+      },
+      "basis": "Присваивания calculateStat/calculateFixedDerivedStats; общий schema-field value, конкретные paths сохранены в payload. Это не сохранение в БД."
+    },
+    {
+      "id": "A15",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "processes",
+        "ent-000281"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000004"
+        ],
+        "step_ids": [
+          "proc-000004/stats-first",
+          "proc-000004/stats-second"
+        ]
+      },
+      "basis": "witcherActor.js:49/51 — два отдельных вызова calculateStats."
+    },
+    {
+      "id": "A16",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "process",
+        "proc-000012",
+        "--offset",
+        "16",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "output"
+        ],
+        "total": 23,
+        "truncated": true,
+        "next_offset": 17,
+        "next_steps": [
+          "publish",
+          "defer"
+        ],
+        "outside_page": true
+      },
+      "basis": "extendedRoll.js:85–95 — showResult выбирает публикацию либо отложенный messageData."
+    },
+    {
+      "id": "A17",
+      "iq": [
+        "IQ-08"
+      ],
+      "command": [
+        "details",
+        "ent-000304"
+      ],
+      "expected": {
+        "includes_ref_paths": [
+          "docs/analytics/code-audit/files/module/actor/mixins/skillMixin.js.md",
+          "docs/issues/potential/issue-00190.md",
+          "docs/analytics/code-audit/cross-check-0002.md"
+        ],
+        "includes_anchors": [
+          "r004-07"
+        ]
+      },
+      "basis": "issue-00190 полностью прочитан; R004-07 различает текущий UI и прямой custom roll, сохраняет историческое доказательство."
+    },
+    {
+      "id": "A18",
+      "iq": [
+        "IQ-08"
+      ],
+      "command": [
+        "details",
+        "ent-000319"
+      ],
+      "expected": {
+        "includes_ref_paths": [
+          "docs/issues/potential/issue-00043.md",
+          "docs/analytics/code-audit/cross-check-0002.md"
+        ],
+        "includes_anchors": [
+          "уточнение-task-0003010",
+          "r005-03"
+        ]
+      },
+      "basis": "_preUpdate:110–118; issue-00043 имеет позднее уточнение пути мастера."
+    },
+    {
+      "id": "A19",
+      "iq": [
+        "IQ-02",
+        "IQ-06"
+      ],
+      "command": [
+        "show",
+        "ent-000326"
+      ],
+      "expected": {
+        "boundary_kind": "dynamic",
+        "expression": "change.phase",
+        "includes_gaps": [
+          "unresolved_target"
+        ],
+        "location": [
+          "src-000008",
+          117
+        ]
+      },
+      "basis": "Цель внутри входного массива changes; data.system?.applyAfterCalculations определяет phase. Поле экземпляра не разрешено фиктивно в статический объект."
+    },
+    {
+      "id": "A20",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000346",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope",
+        "coverage": "partial"
+      },
+      "basis": "showSuccess задаётся конфигу, но extendedRoll его не читает; отсутствие внесённых читателей не означает полного анализа всех callers."
+    },
+    {
+      "id": "A21",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "processes",
+        "src-000002"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "not_indexed",
+        "coverage": "not_indexed"
+      },
+      "basis": "lang/en.json есть в реестре, процессов/сущностей ключей ещё нет."
+    },
+    {
+      "id": "A22",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "processes",
+        "ent-000012",
+        "--scope",
+        "src-000022"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope",
+        "coverage": "partial"
+      },
+      "basis": "rollSkillCheck:65 вызывает helper; сам числовое activeEffectModifiers не читает. Scope — место шага; транзитивного включения нет."
+    },
+    {
+      "id": "A23",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "value",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000004"
+        ],
+        "total": 4,
+        "truncated": true,
+        "next_offset": 1
+      },
+      "basis": "Четыре отдельные декларации: stat:7, Skill:6, CommonActorData.skillGroupModifiers:44, SkillItemData:7."
+    },
+    {
+      "id": "A24",
+      "iq": [
+        "IQ-04"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000302",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--depth",
+        "1"
+      ],
+      "expected": {
+        "depth_limited": true,
+        "total": 6
+      },
+      "basis": "Методы из rollSkillCheck имеют собственные calls, оставшиеся за depth=1; это ограничение обхода, не страницы."
+    },
+    {
+      "id": "A25",
+      "iq": [
+        "IQ-01"
+      ],
+      "command": [
+        "find",
+        "Value",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope",
+        "coverage": "partial"
+      },
+      "basis": "Точное имя value чувствительно к регистру; alias-нормализация не переписывает символы кода."
+    },
+    {
+      "id": "A26",
+      "iq": [
+        "IQ-02"
+      ],
+      "command": [
+        "show",
+        "ent-000312"
+      ],
+      "expected": {
+        "boundary_kind": "external",
+        "includes_gaps": [
+          "external_boundary"
+        ]
+      },
+      "basis": "WitcherActiveEffect extends ActiveEffect; реализация базового класса относится к Foundry."
+    }
+  ]
+}
