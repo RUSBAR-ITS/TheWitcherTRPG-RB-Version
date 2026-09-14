@@ -64,7 +64,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Отправка и очистка модели проверены изолированно; не запускался браузерный submit. Этот результат не означает, что все производные поля игнорируются: показаны различающиеся ветви.
+Сверены producer контекста, HBS и именованные поля. Реальная обработка FormDataExtended из .030 — изолированное историческое доказательство; браузер, права и серверный submit не запускались. Точный остаток — [U003-04](../../../../../../../cross-check-0002.md#u003-04).
 
 ## Связанные проблемы
 
@@ -75,3 +75,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `aa6af106e86a9c75fe050d599f961c8fadb74f1b`; полный файл | Первая карточка; [сверка порции](../../../../../../../review-log.md#task-0003030) |
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Input показывает details.max, но name адресует system.<type>.<stat>.unmodifiedMax; репутация имеет то же несовпадение. Общая submitOnChange-форма включает соседние enabled поля: .030 дала luck-базу12 из max12 при прежней базе8 (00194). Ввод99 для STUN/RUN перезаписывается расчётом в обоих customStat-режимах; HP40/99 и Vigor99 различаются (00195). Нельзя переносить вывод об игнорировании на все derived.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/configuration/app/edit-stats.hbs](../edit-stats.hbs.md), [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md), [module/data/actor/commonActorData.js](../../../../../../module/data/actor/commonActorData.js.md), [module/actor/witcherActor.js](../../../../../../module/actor/witcherActor.js.md), [module/data/actor/monsterData.js](../../../../../../module/data/actor/monsterData.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-10](../../../../../../../cross-check-0002.md#r003-10). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

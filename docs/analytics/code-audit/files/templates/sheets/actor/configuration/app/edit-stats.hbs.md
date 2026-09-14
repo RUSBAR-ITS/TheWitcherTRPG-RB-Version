@@ -60,7 +60,7 @@ PARTS.stats WitcherModifiersConfiguration; контекст type/system. type='s
 
 ## Непроверенные участки и открытые вопросы
 
-Wrapper сам не исправляет различие max/unmodifiedMax или игнорируемых вычисляемых параметров. Все свойства числового ввода описаны в дочерней карточке.
+Сверены producer контекста, HBS и именованные поля. Реальная обработка FormDataExtended из .030 — изолированное историческое доказательство; браузер, права и серверный submit не запускались. Точный остаток — [U003-04](../../../../../../cross-check-0002.md#u003-04).
 
 ## Связанные проблемы
 
@@ -71,3 +71,13 @@ Wrapper сам не исправляет различие max/unmodifiedMax ил
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `aa6af106e86a9c75fe050d599f961c8fadb74f1b`; полный файл | Первая карточка; [сверка порции](../../../../../../review-log.md#task-0003030) |
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Wrapper выбирает system.stats либо system.derivedStats по type и дважды ссылается на один partial. Только обычная ветвь передаёт reputation; @root.type остаётся адресатом динамического name. Wrapper не рассчитывает max, не ограничивает поля и не устраняет max→unmodifiedMax у дочернего partial.
+
+Сопоставленные определения и потребители: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md), [templates/sheets/actor/configuration/app/partials/stats-block.hbs](partials/stats-block.hbs.md), [module/data/actor/commonActorData.js](../../../../../module/data/actor/commonActorData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-10](../../../../../../cross-check-0002.md#r003-10). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

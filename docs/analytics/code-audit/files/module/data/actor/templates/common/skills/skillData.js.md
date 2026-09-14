@@ -100,7 +100,7 @@ NumberField не задаёт ограничения диапазона и це�
 
 ## Непроверенные участки и открытые вопросы
 
-Создание реального Actor через клиент/сервер и повторные миграции при сохранении не воспроизводились: наблюдение свежей CommonActorData нельзя приравнивать к окончательному виду созданного документа. Не проверены применение ActiveEffect к Actor, DOM, полные процессы боя/изготовления и сторонние модули. Соседние файлы прочитаны в пределах связей и не получают статус полного разбора.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -171,3 +171,13 @@ Difficult использует восемь multiply по dodge.value/athletics.
 [Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): enabled-множители ног по 0.25 меняют dodge.value/athletics.value с 8 до 2. Единственный disabled правого none оставляет 8; его включение только в памяти восстанавливает 2 ([issue-00329](../../../../../../../../../issues/potential/issue-00329.md)). У Eye activeEffectModifiers Awareness −5/−3/−1, value остаётся 0. Весь пакет: три неизвестных пути commonspeech подтверждены отдельно от объявленного commonsp ([issue-00004](../../../../../../../../../issues/potential/issue-00004.md)); остальные найденные числовые поля типизированы.
 
 [Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Skill — вложенная DataModel с семью полями и getter modifiedValue=value+activeEffectModifiers; он не включает stat/group/social modifiers. Внешний EmbeddedDataField.label не передаётся аргументом defineSchema. N01 снова различил 52 пустые label свежей CharacterData и 52 заполненные после реконструкции из toObject; это не два этапа доказанного Actor.create. Метаданные isVisible и значение label остаются разными уровнями (00015).
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../../commonActorData.js.md), [module/data/actor/templates/common/skills/skillsData.js](skillsData.js.md), [module/actor/mixins/skillMixin.js](../../../../../actor/mixins/skillMixin.js.md), [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-04](../../../../../../../cross-check-0002.md#r003-04). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

@@ -62,7 +62,7 @@ note():4–9 без аргументов возвращает title/details. И�
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверены работа HTML-редактора и формы в браузере, безопасность/обогащение текста, конкурентное редактирование и преобразование старых Item.note. Изолированная обработка индексных полей массива проверена в TASK-0003.033 (см. уточнение ниже). Отсутствие .add-note фиксируется как ограничение доступного пути, без самостоятельного решения об удалении одного из форматов.
+Сопоставлены схема и фактические контексты/поля листов, включая поздние проверки .031–.033. Не проверены браузерный редактор, внешние TextEditor/UUID и конкурентное сохранение. Остаток — [U003-04](../../../../../../cross-check-0002.md#u003-04); отсутствие внутреннего потребителя не означает ненужность поля.
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ note():4–9 без аргументов возвращает title/details. И�
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Группы 03–06 и 12 проверили полную noteMixin и текущий tab-background: title/details остаются строками массива, editor получает исходный details, Item.note не преобразуется в массив. FormDataExtended/_processFormData и CharacterData.updateSource сохранили изменение второй записи; после удаления первой её индекс стал 0. DOM/ProseMirror и БД подменены; новые ограничения ожидания/индекса — issue-00211/00212.
 
 Связи: [module/actor/sheets/mixins/noteMixin.js](../../../../actor/sheets/mixins/noteMixin.js.md); [templates/partials/character/tab-background.hbs](../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003033).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Массив system.notes содержит title/details и отличается от embedded Item.note. noteMixin меняет массив через push/splice до update; текущая кнопка добавления создаёт Item, найденного UI producer для .add-note нет. .033 проверяла indexed form/updateSource записей; это не браузерная синхронизация и не миграция всех форматов заметок.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/actor/sheets/mixins/noteMixin.js](../../../../actor/sheets/mixins/noteMixin.js.md), [module/data/item/noteData.js](../../../item/noteData.js.md), [module/actor/sheets/WitcherActorSheet.js](../../../../actor/sheets/WitcherActorSheet.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-09](../../../../../../cross-check-0002.md#r003-09). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

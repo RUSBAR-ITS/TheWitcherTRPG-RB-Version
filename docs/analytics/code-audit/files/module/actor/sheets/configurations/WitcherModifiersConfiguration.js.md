@@ -74,7 +74,7 @@ Default export extends HandlebarsApplicationMixin(ActorSheetV2). CharacterSheet 
 
 ## Непроверенные участки и открытые вопросы
 
-Полный Foundry Application/SheetConfig, permissions и живые повторные рендеры не исполнялись. Изменение CONFIG.statLabels само по себе не признано дефектом. Политика допустимых полей редактора не выбиралась.
+Сверены producer контекста, HBS и именованные поля. Реальная обработка FormDataExtended из .030 — изолированное историческое доказательство; браузер, права и серверный submit не запускались. Точный остаток — [U003-04](../../../../../cross-check-0002.md#u003-04).
 
 ## Связанные проблемы
 
@@ -99,3 +99,13 @@ Default export extends HandlebarsApplicationMixin(ActorSheetV2). CharacterSheet 
 Полностью разобран [CSS этого окна](../../../../styles/configurations/modifier-configuration.css.md). Его единственное свойство display:inherit у .window-content перекрывает более общую сетку Actor; width520 задаётся здесь в DEFAULT_OPTIONS, не в CSS. Классы witcher/sheet/actor/modifier-configuration сопоставлены с selector и :not(.extended-sheet). Порядок @import и специфичность установлены статически; реальное значение display родителя и геометрия окна не измерены.
 
 [Сценарии, результаты и ограничения](../../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Конструктор хранит type/skillKey, оба PARTS существуют одновременно; type выбирает содержимое edit-stats, skillKey — edit-skills. _prepareContext передаёт живой document.system и изменяет CONFIG.statLabels. submitOnChange запускает общий сбор формы в core; stats-block показывает max в именованном поле unmodifiedMax. .030 проверяла реальную сериализацию формы/модели: соседний изменённый максимум попадает в базу (00194), отдельные производные перезаписываются расчётом (00195).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../WitcherCharacterSheet.js.md), [module/actor/sheets/mixins/skillMixin.js](../mixins/skillMixin.js.md), [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../../templates/sheets/actor/configuration/app/edit-stats.hbs.md), [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-10](../../../../../cross-check-0002.md#r003-10). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

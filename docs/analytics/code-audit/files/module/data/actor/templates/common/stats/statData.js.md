@@ -80,7 +80,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Весь файл прочитан. Игровые требования к пределам, порядок всех эффектов и поведение внешних модулей этой порцией не определяются. Схема и собственные методы Reputation разобраны в TASK-0003.003, дополнительная сверка приведена ниже. Полный жизненный цикл Actor/ActiveEffect остаётся за пределами этой карточки.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -146,3 +146,13 @@ Complex изменяет totalModifiers у BODY/REF/DEX/SPD/INT/WILL. Все ц�
 [Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): множители 0.25/0.5 адресуют max как целочисленный NumberField — 5 становится 1/3; value после calculateStat остаётся 5. Это относится к SPD ног и BODY/SPD Heart Damage. Случай правой исходной ноги отдельно блокируется disabled; включение диагностической копии не исправляет расхождение max/value ([issue-00036](../../../../../../../../../issues/potential/issue-00036.md)/[issue-00329](../../../../../../../../../issues/potential/issue-00329.md)).
 
 [Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Фабрика создаёт четыре NumberField и label: max/unmodifiedMax/totalModifiers целочисленные, value допускает дробь. Общего min1/max10 нет; toxicity отдельно передаёт initial100. Эта форма используется Stats, DerivedStats и Reputation, но не задаёт единый способ их вычисления. Ограничение STUN находится у потребителей и предшествует прибавлению его модификатора; редактор передаёт max в другое поле unmodifiedMax.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../../commonActorData.js.md), [module/actor/witcherActor.js](../../../../../actor/witcherActor.js.md), [module/data/actor/templates/common/stats/statsData.js](statsData.js.md), [module/data/actor/templates/common/stats/derivedStatsData.js](derivedStatsData.js.md), [module/data/actor/templates/common/reputationData.js](../reputationData.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../../../../cross-check-0002.md#r003-01), [R003-02](../../../../../../../cross-check-0002.md#r003-02), [R003-10](../../../../../../../cross-check-0002.md#r003-10). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

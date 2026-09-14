@@ -148,7 +148,7 @@ Default export `DerivedStats extends foundry.abstract.DataModel`. [module/data/a
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных частей файла нет. Полный цикл Actor/ActiveEffect, все ветви customStat, сохранение ресурсов и влияние реальных данных мира будут проверяться отдельно. Отсутствие миграции остальных шести показателей само по себе не признано ошибкой: назначение и происхождение их исходных значений различаются.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -223,3 +223,13 @@ Treated Cracked Ribs напрямую задаёт enc.totalModifiers=-10: пр�
 [Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): Heart Damage none/stabilized и Spetic Shock none/stabilized используют STA.max ×0.25/×0.5 в initial. В свежем Actor исходный STA.max=0; после initial он 0, после calculateDerivedStats — 25/25/15/20 соответственно. Spetic treated меняет STA.totalModifiers на −5 и даёт max=20. Примеры фиксируют порядок перезаписи, не сохранение первоначального множителя ([issue-00036](../../../../../../../../../issues/potential/issue-00036.md)).
 
 [Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Двенадцать записей имеют общую форму stat; миграция затрагивает только stun/run/leap/enc/woundTreshold/vigor. Формулы располагаются в CommonActorData и Actor, собственного prepareBaseData здесь нет. HP/STA при !customStat перезаписывают unmodifiedMax и max, ресурсы value не восстанавливаются; shield не рассчитывается этим проходом. .060/.061 показывают свежий STA.max0 до initial, в отличие от подготовленного40 в .007. N01 подтверждает reset и зависимость focus-базы от подготовленных WILL/INT.value.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/common/stats/statData.js](statData.js.md), [module/data/actor/commonActorData.js](../../../commonActorData.js.md), [module/actor/witcherActor.js](../../../../../actor/witcherActor.js.md), [module/data/actor/monsterData.js](../../../monsterData.js.md), [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../../../../cross-check-0002.md#r003-01), [R003-02](../../../../../../../cross-check-0002.md#r003-02), [R003-03](../../../../../../../cross-check-0002.md#r003-03), [R003-10](../../../../../../../cross-check-0002.md#r003-10). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

@@ -126,7 +126,7 @@ prepareBaseData, calcCurrencyWeight и три метода миграции на
 
 ## Непроверенные участки и открытые вопросы
 
-Файл полностью прочитан. UI/БД, регенерация в настоящем бою, все варианты сопротивлений и влияние внешних модулей не запускались. Старый monster-sheet не приравнен к текущему PARTS. Разбор mystery и всего Actor остаётся вне четырёх файлов этой порции; соседние методы просмотрены только для установления связей.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -197,3 +197,13 @@ prepareBaseData, calcCurrencyWeight и три метода миграции на
 [templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+53 поля получаются из 19 общих и 34 собственных; customStat объявлен здесь, а персонажные general/logs/magic/skillTraining отсутствуют. N01 подтвердил отсутствие поля logs; наличие общего IP-шаблона не создаёт схему. hasTailWing и statusEffectImmunities доходят до отдельных ветвей Actor: wrapper теряет this при перечислении зон, applyStatus обращается к неопределённому statusEffectId при непустом массиве. enrichedText последовательно готовит три HTML-блока.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](commonActorData.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../../actor/sheets/WitcherMonsterSheet.js.md), [module/actor/mixins/locationMixin.js](../../actor/mixins/locationMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../cross-check-0002.md#r003-01), [R003-03](../../../../cross-check-0002.md#r003-03), [R003-06](../../../../cross-check-0002.md#r003-06), [R003-12](../../../../cross-check-0002.md#r003-12). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

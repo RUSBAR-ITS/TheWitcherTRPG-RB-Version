@@ -68,7 +68,7 @@ static defineSchema():4–13 возвращает одно поле temporaryHp 
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались профессия/её бросок, перенос через сеть, создание настоящего ActiveEffect, миграция формы changes и его истечение. Таймеры и применение фаз эффектов требуют полного разбора соответствующих файлов. Словарь не следует смешивать с Item типа temporaryItemImprovement или Actor.temporaryEffects.
+Сверены определение и перечисленные потребители; прежнее ожидание их пофайлового разбора снято. Полный клиент, сохранение/истечение эффектов и внешние расширения не запускались. Остаток — [U003-02](../../../../../../cross-check-0002.md#u003-02)/04/08.
 
 ## Связанные проблемы
 
@@ -93,3 +93,13 @@ static defineSchema():4–13 возвращает одно поле temporaryHp 
 [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Модель содержит только TypedObject temporaryHp{name,value}; это не getter Actor.temporaryEffects и не Item.temporaryItemImprovement. CommonActorData включает её внутри combatEffects. Профессия создаёт changes источника, лист вычисляет temporaryHpSum в prepared, расход временных HP изменяет changes эффекта. Сохранённые в source записи и внесённые эффектом записи имеют разное происхождение; фабрика не удаляет их по длительности.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/common/combatEffectsData.js](combatEffectsData.js.md), [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [module/actor/mixins/temporaryEffectMixin.js](../../../../actor/mixins/temporaryEffectMixin.js.md), [module/actor/sheets/WitcherActorSheet.js](../../../../actor/sheets/WitcherActorSheet.js.md), [module/actor/witcherActor.js](../../../../actor/witcherActor.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-09](../../../../../../cross-check-0002.md#r003-09). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

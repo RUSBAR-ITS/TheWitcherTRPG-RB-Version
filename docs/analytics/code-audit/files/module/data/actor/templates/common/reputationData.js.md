@@ -73,7 +73,7 @@ min/max диапазона фабрика stat не задаёт. Наличие
 
 ## Непроверенные участки и открытые вопросы
 
-Импорт старых Actor, браузерные режимы броска, полная последовательность фаз эффектов и поддерживаемая история форматов не проверялись. Вопрос, какие поля репутации должны модифицироваться эффектами, требует отдельного согласования правил.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -100,3 +100,13 @@ min/max диапазона фабрика stat не задаёт. Наличие
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. statMixin использует reputation.value для обоих бросков, save с reversal и порогом, face-down с WILL.value. Редактор берёт reputation.max в input unmodifiedMax. Текущий tab-stats ошибочно повторяет value в span.max, хотя разница рассчитана с max; при равенстве value/max это незаметно.
 
 Сверенные источники: [module/actor/sheets/mixins/statMixin.js](../../../../../../../../../module/actor/sheets/mixins/statMixin.js); [templates/partials/character/tab-stats.hbs](../../../../../../../../../templates/partials/character/tab-stats.hbs); [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Числовая system.reputation отличается от текстовой general.reputation. Guard миграции ==0 имеет ту же границу отсутствующего поля (00011), CommonActorData копирует базу в max, Actor дважды присваивает value=max. Фабрике передан отсутствующий в en/ru ключ WITCHER.Actor.DerStat.Rep (00014); основной HBS использует другой ключ. Раздельное prepared value3/max8 выявляет ошибку span.max (00198), но обычный calculateStats временно скрывает различие.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/common/stats/statData.js](stats/statData.js.md), [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/actor/witcherActor.js](../../../../actor/witcherActor.js.md), [templates/partials/character/tab-stats.hbs](../../../../../templates/partials/character/tab-stats.hbs.md), [module/activeEffect/WitcherActiveEffectSheet.js](../../../../activeEffect/WitcherActiveEffectSheet.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../../../cross-check-0002.md#r003-01), [R003-02](../../../../../../cross-check-0002.md#r003-02), [R003-11](../../../../../../cross-check-0002.md#r003-11). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

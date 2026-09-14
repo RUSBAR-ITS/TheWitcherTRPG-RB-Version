@@ -80,7 +80,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью; соседние файлы проверены только в пределах описанных связей. Мир, браузер, реальное сохранение и полный жизненный цикл Actor/листов не запускались. Подмены и исполнявшийся сценарий приведены в журнале; успешная проверка карточки не подтверждает исправность всей системы. Дальнейшие роли сохранённых punch/kick.value и применение эффектов разных фаз остаются предметом последующих порций. Обнуление исходного meleeBonus и отсутствие найденных читателей punch/kick зафиксированы без автоматического объявления ошибок.
+Сопоставлены источники чисел и исходные обработчики; исполнения Roll/формы из .028–.031 остаются историческими. Реальный клиент, произвольные входы внешних модулей и доставка сообщений не проверены. Точный остаток — [U003-03](../../../../../../cross-check-0002.md#u003-03)/04/05.
 
 ## Связанные проблемы
 
@@ -101,3 +101,13 @@
 2026-09-10, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f`. WitcherActor.calculateAttackStats:191–196 завершает собственную подготовку: C=ceil((BODY.value−6)/2)×2, meleeBonus+=C, punch/kick строятся из C. Это отдельный расчёт от modifierMixin.addAttackModifiers: последний только превращает combatEffects.attackModifier в строку и имеет issue-00033.
 
 Карточки: [WitcherActor](../../../../actor/witcherActor.js.md), [modifierMixin](../../../../actor/mixins/modifierMixin.js.md). [Сверка TASK-0003.007](../../../../../../review-log.md#task-0003007).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Пять полей включают числовой meleeBonus, punch/kick и два crit-модификатора. CommonActorData обнуляет truthy исходный meleeBonus при миграции, Actor прибавляет вычисленный BODY-бонус в prepared. N01 после reset снова дал meleeBonus2, без утверждения о повторном начислении в мире. weaponAttack/profession читают meleeBonus и передают critLocationModifier/critEffectModifier дальше в боевые данные.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/character/attackData.js](attackData.js.md), [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/actor/witcherActor.js](../../../../actor/witcherActor.js.md), [module/actor/mixins/weaponAttackMixin.js](../../../../actor/mixins/weaponAttackMixin.js.md), [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-05](../../../../../../cross-check-0002.md#r003-05). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

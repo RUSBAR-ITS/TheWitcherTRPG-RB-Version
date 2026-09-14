@@ -81,7 +81,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных частей файла нет. Отсутствие найденного потребителя general.reputation не классифицировано как ошибка: поле может быть оставлено для данных или внешних средств. На момент TASK-0003.001 полный разбор generalData и листа персонажа оставался следующим порциям; generalData затем разобрана в TASK-0003.004, см. дополнение ниже.
+Сопоставлены схема и фактические контексты/поля листов, включая поздние проверки .031–.033. Не проверены браузерный редактор, внешние TextEditor/UUID и конкурентное сохранение. Остаток — [U003-04](../../../../../cross-check-0002.md#u003-04); отсутствие внутреннего потребителя не означает ненужность поля.
 
 ## Связанные проблемы
 
@@ -97,3 +97,13 @@
 2026-09-10, `17eeb6ae9efccf7474b9ca1845b9ab6370671a26`. Полностью разобраны оба прямых потребителя: [detailsData.js](character/general/detailsData.js.md) и [generalData.js](character/generalData.js.md). Реальный CharacterData подтвердил семь пар details и текстовую general.reputation; label хранится в данных. Потребитель details — динамические inputs tab-background:27–33. Явное чтение general.reputation по-прежнему не найдено в module/templates/packsJson. Полный разбор листа остаётся следующей порции.
 
 [Перекрёстная сверка TASK-0003.004](../../../../../review-log.md#task-0003004).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Два StringField(value,label) используются в семи подробностях и текстовой general.reputation; переданный label становится initial данных, отдельно от метаданных поля. Числовая reputation создаётся stat() и не зависит от этой фабрики. Сопоставлены восемь ключей en/ru и пути редактирования .value; сама фабрика не пишет Actor.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/character/generalData.js](character/generalData.js.md), [module/data/actor/templates/character/general/detailsData.js](character/general/detailsData.js.md), [module/data/actor/templates/common/reputationData.js](common/reputationData.js.md), [templates/partials/character/tab-background.hbs](../../../../templates/partials/character/tab-background.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-06](../../../../../cross-check-0002.md#r003-06). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

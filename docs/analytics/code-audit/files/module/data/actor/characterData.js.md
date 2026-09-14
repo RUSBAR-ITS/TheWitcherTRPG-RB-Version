@@ -94,7 +94,7 @@ defineSchema собирает определения; значения созд�
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Browser UI, работа formGroup/TextEditor, запись в БД и актуальность старых игровых документов не проверены. Изолированный enrichment проверяет структуру возврата и пути, не визуальное представление. Механика расы/профессии и правила начисления опыта здесь не определяются.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -163,3 +163,13 @@ CharacterData задаёт improvementPoints20, magic.magicImprovementPoints22 �
 [templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+CharacterData наследует все 19 общих полей и добавляет десять, включая general, четыре skillTraining, обычный/магический IP и EmbeddedDataField(Log). N01 подтвердил 29 полей и 52 Skill; первое создание из {} и реконструкция из toObject отличаются заполнением label. enrichedText возвращает отдельный блок general.background; преобразование lifeEvents в массив выполняет лист, не эта модель. История и баланс обновляются потребителями.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](commonActorData.js.md), [module/data/actor/templates/character/logData.js](templates/character/logData.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md), [module/data/dataUtils.js](../dataUtils.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../cross-check-0002.md#r003-01), [R003-04](../../../../cross-check-0002.md#r003-04), [R003-06](../../../../cross-check-0002.md#r003-06), [R003-07](../../../../cross-check-0002.md#r003-07). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

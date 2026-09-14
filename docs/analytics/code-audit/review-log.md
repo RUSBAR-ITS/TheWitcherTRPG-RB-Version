@@ -1,5 +1,137 @@
 # Журнал перекрёстных сверок
 
+## TASK-0004.003
+
+Дата: 2026-09-14; rusbar-main, HEAD b4aeecb967caf97700cc565a670d6347b933619f. Перед началом рабочее дерево чистое, 1735 отслеживаемых файлов. Foundry 14.367.0, Node v24.16.0. [Задача](../../tasks/task-0004.003.md), [матрицы и 13 процессов](cross-check-0002.md#результаты-task-0004003).
+
+Сверены **52 основных файла / 1974 строки**, 107 групп S с 158 местами в исходниках, 93 выбранные связи D и 42 группы Q. Все 26 назначенных issues прочитаны целиком с поздними дополнениями. Две карточки issues (00012/00015) получили новое доказательство N01; новых проблем не зарегистрировано. Все 329 остаются potential, из них в предметных блоках .002/.003 сопоставлены 44. 70/615 файлов прошли сквозную сверку; 545 файлов и 285 issues остаются следующим блокам.
+
+### Три внутренних этапа и перекрёстная проверка
+
+| Этап | Сопоставленные определения и потребители | Итог и предел |
+| --- | --- | --- |
+| Схемы и композиция | Все 41 основные JS из module/data: типы, фабрики, Stats/DerivedStats/Reputation/Skill/Log, текст и контейнеры → регистрация и поля потребителей | Установлены 19 общих полей, 29 Character, 53 Monster, 3 Loot; 52 Skill. Наследование не создаёт персонажные журналы у монстра. Миграция, defaults и prepared различены; N01 проверяет модели в памяти. |
+| Actor и расчёты | WitcherActor/modifierMixin → core ClientDocument/Actor, armor/defense/skill/weapon/AE и модельные поля | Сверены все собственные методы, 17 подключений примесей и окончательное определение addDefenseModifiers. Установлены initial/final и два прохода stats; числовые примеры прежних протоколов не выданы за новый запуск. |
+| Редактор и потребители | 4 основных JS действий/конфигурации и 5 HBS → producer Character/Monster, RollConfig/extendedRoll, core общий submit | max→input.value и unmodifiedMax→name сопоставлены; saved/prepared/запрос update различены. Уточнены значения для Death save, STUN и инициативы, отсутствие producer двух предупреждений. Browser submit не выполнялся. |
+
+Полные списки исходников находятся в задаче и матрице F. Повторное чтение смежного файла не добавляет его в основной охват. 52 карточки получили содержательный итог и актуальные ограничения; бывшее «соседний файл будет разобран в TASK-0003» больше не считается текущим препятствием. S содержит также поля контекста HBS: stat/details/reputation/tabs/totalStats отличены от вызываемых helpers. D сохраняет исторические цитаты, результат сверки находится в отдельном столбце.
+
+### Источники и применимость прежних доказательств
+
+615 исходников побайтно сохраняют срез TASK-0001; SHA-256 по отсортированным путям, NUL и байтам: 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c. Повторно проверены все 158 мест S по актуальной строке и существование адресованных ресурсов/определений. Полный граф не заявляется по выборке 93 D.
+
+| Протокол / дата | Что используется в .003 | Граница прежнего доказательства |
+| --- | --- | --- |
+| [.001](#task-0003001), [.002](#task-0003002), [.003](#task-0003003), [.004](#task-0003004), [.005](#task-0003005), [.006](#task-0003006), [.007](#task-0003007), 2026-09-10 | Настоящие схемы/defaults/миграции, поля Skill, Log, маршруты боевых контейнеров и собственные расчёты Actor | Указанные там методы/модели с фасадами. Первоначальный AE-пример .007 заранее готовил STA.max40; он не описывает initial свежей модели. |
+| [.029](#task-0003029), [.030](#task-0003030), [.031](#task-0003031), [.032](#task-0003032), [.033](#task-0003033), 2026-09-11 | Поля форм, реальные Roll/FormDataExtended/updateSource, тип Actor, prepared-массив биографии, fresh Skill и модификаторы | DOM/Application/update и отправка сообщений подменены. В .030 исправлен поиск dotted-переводов через expandObject; отзыв семи ошибочных пропусков00193 сохранён. |
+| [.037](#task-0003037), [.038](#task-0003038), [.039](#task-0003039), 2026-09-11 | Log/награждение, временные HP/профессия, слоты focus и стоимость STA | Удержанные Promise и фасады не определяют серверный порядок/баланс. В .003 эти действия не исполнялись заново. |
+| [.041](#task-0003041), [.042](#task-0003042), [.043](#task-0003043), [.044](#task-0003044), [.045](#task-0003045), 2026-09-12 | Парсер боевых строк, выбор зон, EV/перегруз, properties/AP/flat/multiplication, потерянный damage.type, лечение | .043 отдельно использовала фиксированный penalty1; это не повтор прежнего расчёта веса81. .045 прошла конкретный fire.flat-маршрут, не все сочетания сопротивлений. |
+| [.060](#task-0003060), 2026-09-13; [.061](#task-0003061), 2026-09-14 | Мигрированные экспортные источники, max/value и integer округление, fresh STA.max0, диагностические override | Исходные ADD-объекты00328 блокируются до consumer. Override-входы отмечены отдельно; перехват Actor.applyDamage не означает вычисленные HP/броню. |
+| [Сверка №1](cross-check-0001.md), 2026-09-11; [TASK-0004.002](#task-0004002), 2026-09-14 | Дубль00029/00200, корректировка00017, регистрации и ранний пакетный барьер00001 | .003 не закрывает/объединяет issues и не исправляет загрузку системы; локальный импорт модели не означает запуск службы. |
+
+Дополнительно целиком прочитаны00017/00029/00193, чтобы учесть конфликтующие запросы Log, установленный дубль и отозванную локализационную часть. Основная принадлежность этих карточек остаётся у их следующих блоков; повторно в44 не добавлены.
+
+Сверенные участки ядра: ClientDocument._initialize:60–67, _safePrepareData/prepareData:276–319, DataModel.reset:524–526, Actor.prepareData/prepareBaseData/prepareEmbeddedDocuments:428–473; DataField.clean и EmbeddedDataField.initialize; ApplicationV2._onSubmitForm/_onChangeForm:2134–2161; DocumentSheet._processFormData/_processSubmitData:507–530. Общий submit создаёт FormDataExtended для формы; normal update документа отличается от локального updateSource.
+
+| Файл относительно /opt/foundryvtt | SHA-256 |
+| --- | --- |
+| <code>package.json</code> | cd5edf1856bdf4d66f00d2574aa03cd2ccdc3fc4df07f5fc9abf0411b917d4f5 |
+| <code>common/abstract/data.mjs</code> | 11bb7f848c707803607accfa9f6b946c7cbfe8b17781ff562b468bdc77b934e5 |
+| <code>common/abstract/type-data.mjs</code> | c63bbcfb576a90a3b9880a28dc7a66e5bd90d33dad0da12559cdc7a631e9b2c7 |
+| <code>common/data/fields.mjs</code> | efa8e3ccdf553ca826580e60bfbfc97db57bdeadaa954a50f6a55e0ab52c3e01 |
+| <code>client/documents/abstract/client-document.mjs</code> | a007180e3cf8d465dffe43b11272f289b4cf77a9e301c7d431f48267dfad8e9e |
+| <code>client/documents/actor.mjs</code> | e82580bf9cef39d934c972dee859a3b9ba7ab5f3ebdc7502319dfed1bc214bb3 |
+| <code>client/applications/api/application.mjs</code> | b5aef80d3e042a4a856be9dd875c72a5224988d62046ba770f25376f4291faa0 |
+| <code>client/applications/api/document-sheet.mjs</code> | 7925d81900eeea0d5e79606e12ce43539ae00714f50d8452c7305fe81394aa01 |
+
+### N01 — модели, reset и подготовленные значения
+
+Один новый сценарий через stdin, без тестового файла. Использованы настоящие DataModel/TypeDataModel/fields/primitives, CharacterData/MonsterData/LootData, собственные методы WitcherActor и исходный armorMixin.getArmorEcumbrance. Обёртки import/export сняты только для vm-загрузки класса; Object.assign остальных примесей не исполняются. Родитель Actor — минимальный класс, items=[], statuses=Set, WITCHER.armorEffects=[]; это явно заданное окружение здорового персонажа без предметов.
+
+Две итерации используют system.prepareBaseData, явно заданные prepared totalModifiers2/5 и оригинальный Actor.prepareDerivedData, между ними — настоящий DataModel.reset. Эффекты, core Actor.prepareData, серверный Document.reset/create/update, DOM, Roll, сеть и БД не исполнялись. Отдельный третий вызов только CommonActorData.prepareBaseData поверх уже рассчитанных value нужен для различения входных состояний; он не выдаётся за штатный цикл после обновления.
+
+| Проверка | Фактический результат |
+| --- | --- |
+| Число полей Character/Monster/Loot | 29 / 53 / 3 |
+| Свежие Skill.label / реконструкция из toObject | 52 undefined / 0 undefined; не окончательный Actor.create |
+| Отсутствующие поля другого типа | Monster.schema.getField('logs') и Loot.schema.getField('stats') — undefined |
+| Первый проход и проход после reset | REF8; HP.max40; luck.max12 при базе8 и модификаторе2; toxicity.max110 при базе100 и модификаторе5; meleeBonus2 |
+| Focus после каждого reset-прохода | unmodifiedMax0 из исходных WILL/INT.value0; max24 после расчёта из value8 |
+| Только базовая подготовка поверх prepared | focus.unmodifiedMax48, focus.max24; luck.max снова8 |
+| Источник модели | toObject() после всех проверок совпадает с первоначальным снимком |
+
+Контрольные assertions прошли. Разница focusBase0/48 объясняется точным чтением value в CommonActorData; сама по себе не объявлена новым дефектом или результатом полного повторного Actor lifecycle. Числовые примеры source/initial/multiply/итог из .007/.060/.061 повторно не исполнялись: их входы и места чтения сверены, достаточные границы сохранены.
+
+Команда из корня системы:
+
+```bash
+node --input-type=module <<'JS'
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+await import('/opt/foundryvtt/common/primitives/_module.mjs');
+const fields=await import('/opt/foundryvtt/common/data/fields.mjs');
+const {default:DataModel}=await import('/opt/foundryvtt/common/abstract/data.mjs');
+const {default:TypeDataModel}=await import('/opt/foundryvtt/common/abstract/type-data.mjs');
+globalThis.foundry={data:{fields},abstract:{DataModel,TypeDataModel}};
+const {default:CharacterData}=await import('./module/data/actor/characterData.js');
+const {default:MonsterData}=await import('./module/data/actor/monsterData.js');
+const {default:LootData}=await import('./module/data/actor/lootData.js');
+let text=fs.readFileSync('module/actor/witcherActor.js','utf8');
+text=text.slice(text.indexOf('export default class'),text.indexOf('Object.assign(')).replace('export default ','');
+const ctx=vm.createContext({Actor:class{prepareDerivedData(){}},WITCHER:{armorEffects:[]},Math});
+vm.runInContext(text+';globalThis.ModelActor=WitcherActor;',ctx);
+const armor=fs.readFileSync('module/actor/mixins/armorMixin.js','utf8').replace('export let ','let ');
+vm.runInContext(armor+';globalThis.armor=armorMixin;',ctx);
+const keys=['int','ref','dex','body','spd','emp','cra','will','luck'];
+const source={stats:Object.fromEntries(keys.map(k=>[k,{unmodifiedMax:8}])),derivedStats:{hp:{value:40}}};
+const result={schema:{character:Object.keys(CharacterData.schema.fields).length,monster:Object.keys(MonsterData.schema.fields).length,loot:Object.keys(LootData.schema.fields).length}};
+assert.deepEqual(result.schema,{character:29,monster:53,loot:3});
+const fresh=new CharacterData({});
+const skills=Object.values(fresh.skills).flatMap(group=>Object.values(group));
+assert.equal(skills.length,52);assert.equal(skills.filter(s=>s.label===undefined).length,52);
+const reloaded=new CharacterData(fresh.toObject());
+assert.equal(Object.values(reloaded.skills).flatMap(g=>Object.values(g)).filter(s=>s.label===undefined).length,0);
+assert.equal(new MonsterData({}).schema.getField('logs'),undefined);
+assert.equal(new LootData({}).schema.getField('stats'),undefined);
+result.labels={freshMissing:52,reconstructedMissing:0};
+const system=new CharacterData(source);const before=JSON.stringify(system.toObject());
+const actor=new ctx.ModelActor();actor.type='character';actor.system=system;actor.items=[];actor.statuses=new Set();
+actor.getArmorEcumbrance=ctx.armor.getArmorEcumbrance;
+function run(){
+ system.prepareBaseData();
+ system.stats.luck.totalModifiers=2;system.stats.toxicity.totalModifiers=5;
+ actor.prepareDerivedData();
+ return {ref:system.stats.ref.value,hpMax:system.derivedStats.hp.max,luckMax:system.stats.luck.max,toxicityMax:system.stats.toxicity.max,melee:system.attackStats.meleeBonus,focusBase:system.derivedStats.focus.unmodifiedMax,focusMax:system.derivedStats.focus.max};
+}
+result.first=run();system.reset();result.afterReset=run();
+assert.deepEqual(result.first,result.afterReset);
+assert.deepEqual(result.first,{ref:8,hpMax:40,luckMax:12,toxicityMax:110,melee:2,focusBase:0,focusMax:24});
+assert.equal(JSON.stringify(system.toObject()),before);
+const statsBefore=JSON.stringify(system.toObject(false));
+system.prepareBaseData();
+result.baseAfterPrepared={focusBase:system.derivedStats.focus.unmodifiedMax,focusMax:system.derivedStats.focus.max,luckMax:system.stats.luck.max};
+assert.equal(result.baseAfterPrepared.focusBase,48);assert.equal(result.baseAfterPrepared.luckMax,8);
+assert.notEqual(JSON.stringify(system.toObject(false)),statsBefore);
+assert.equal(JSON.stringify(system.toObject()),before);
+result.limits='DataModel.reset and system prepare, real WitcherActor own methods/armor helper; Actor parent, items, statuses supplied; no ActiveEffect, UI, network, database or core Actor lifecycle';
+console.log(JSON.stringify(result,null,2));
+JS
+```
+
+Node вывел прежнее MODULE_TYPELESS_PACKAGE_JSON; package.json не менялся. Новых фасадных адаптаций алгоритма или установок не потребовалось.
+
+### Issues, оставшиеся вопросы и итоговая сверка
+
+В матрице issues обновлены26 основных строк;00012/00015 дополнены N01.00036 сохраняет позднее уточнение: изменённый max может влиять на LEAP.max/Death save даже при неизменном value; свежий STA.max0 не приравнен к прежнему40.00021 отделена от раннего отказа00328;00194/00195/00198 не объединены в одну причину. Все potential, подтверждение пользователем и исправления отсутствуют.
+
+[U003-01–08](cross-check-0002.md#остаток-после-003) содержат точный непроверенный вопрос, влияние на вывод, владельца и следующий критерий. Остались полный lifecycle, AE/происхождение ключей, Roll/развитие, UI/submit, Combat/лечение, Items, баланс и прочие контейнеры. Перенос вопроса не является обещанием доступа к миру или разрешением менять правила.
+
+Итоговая формальная проверка .003: 615 строк F и неизменных строк исходного реестра, 1596 S, 1198 D, 277 Q, 329 issues и 62 исторических протокола согласованы. В .003 обновлены ровно 52 F / 107 S / 93 D / 42 Q / 26 issues. Проверены 60 685 локальных ссылок и 412 таблиц изменённых документов; ошибок ссылок/якорей, ширины таблиц и git diff --check нет. Изменены 65 существующих MD, новых файлов и staged-изменений нет. Для всех 1735 отслеживаемых файлов mode/uid/gid/inode совпали с начальным снимком; байты 1670 файлов вне разрешённого перечня сохранены. Исторический журнал до .003 и исторический хвост TASK-0004 сохранены побайтно, TASK-0003 done/TASK-0005 draft и 329 potential не изменились.
+
+.003 — done; TASK-0004 — in-progress; следующая — [TASK-0004.004](../../tasks/task-0004.004.md). .004–.018 остаются planned, TASK-0005 draft. Исходники и игровые данные не менялись; коммит/индекс, служба, мир, install/build/compile/extract и метаданные доступа не изменялись.
+
+
 ## TASK-0004.002
 
 2026-09-14; rusbar-main, HEAD cfb19daf6185331f5e00b7c5073f526396ce25a7. Перед началом дерево чистое, 1735 отслеживаемых файлов. Выполнена [TASK-0004.002](../../tasks/task-0004.002.md): 18 основных файлов, 18 назначенных issues с полными поздними дополнениями; [матрицы и 13 процессов](cross-check-0002.md#результаты-task-0004002). Исходники совпали с TASK-0001; SHA-256 текущих 615 файлов (sorted path UTF-8 + NUL + bytes) — 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c.

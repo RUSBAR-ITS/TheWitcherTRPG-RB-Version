@@ -62,7 +62,7 @@ focus():4–9 без аргументов возвращает поля name/val
 
 ## Непроверенные участки и открытые вопросы
 
-Полный castSpell, DOM выбора двух фокусов, допустимость сочетаний, предметы-фокусы и игровые правила не проверялись. Изолированная проверка этой карточки подтверждает схему и независимость слотов.
+Сверены определение и перечисленные потребители; прежнее ожидание их пофайлового разбора снято. Полный клиент, сохранение/истечение эффектов и внешние расширения не запускались. Остаток — [U003-02](../../../../../../cross-check-0002.md#u003-02)/04/08.
 
 ## Связанные проблемы
 
@@ -88,3 +88,13 @@ focus():4–9 без аргументов возвращает поля name/val
 [module/actor/mixins/castSpellMixin.js](../../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../../actor/mixins/castSpellMixin.js.md); [templates/partials/character/tab-magic.hbs](../../../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../../../templates/partials/character/tab-magic.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/dialog/combat/spell-attack.hbs](../../../../../../../../../templates/dialog/combat/spell-attack.hbs) — [карточка](../../../../../templates/dialog/combat/spell-attack.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четыре независимые пары focus1–4.name/value создаются CommonActorData. castSpell предлагает только положительные value, считывает два выбранных значения и уменьшает стоимость STA; сами слоты при этом не расходуются. derivedStats.focus — отдельный ресурс, не сумма этих четырёх слотов.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/data/actor/templates/common/stats/derivedStatsData.js](stats/derivedStatsData.js.md), [module/actor/mixins/castSpellMixin.js](../../../../actor/mixins/castSpellMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-09](../../../../../../cross-check-0002.md#r003-09). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

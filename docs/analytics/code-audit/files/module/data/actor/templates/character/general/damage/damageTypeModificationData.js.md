@@ -88,7 +88,7 @@ Getter flat вызывается для общего damage.type, а не каж
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитан исходник и точечно проверены определения и потребители перечисленных связей. Мир, браузер, сохранение форм и применение реального ActiveEffect не запускались. Полный анализ соседних файлов остаётся их порциям; просмотр связи не повышает их статус в реестре. Отсутствие silver в этой фиксированной схеме при наличии в CONFIG.damageTypes зафиксировано как различие. Для признания его проблемой нужно определить предусмотренную поддержку модификаторов серебра; отдельная issue на этом основании не создана.
+Схема и конкретные адреса чтения сопоставлены; поздние проверки .043–.045/.060–.061 учитываются только с их фасадами и входами. Конечный бой/БД и все комбинации эффектов не выполнялись. Остаток — [U003-02](../../../../../../../../cross-check-0002.md#u003-02)/05; назначение коэффициентов по правилам требует отдельного решения.
 
 ## Связанные проблемы
 
@@ -109,3 +109,13 @@ Getter flat вызывается для общего damage.type, а не каж
 2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. Схема свойств источника разобрана в [DamageProperties](../../../../../../../../../../../module/data/item/templates/combat/damagePropertiesData.js). Тип конкретного повреждения находится в damage.type, а свойства — в damage.properties; поле Item.system.damageProperties имеет другое положение. Наличие одного общего класса не исправляет ошибочный путь getMultiDamageMod при applyAP: уточнена [issue-00025](../../../../../../../../../../issues/potential/issue-00025.md). Флаги AP по-прежнему вызывают ранний выход calculateArmorResistances.
 
 Результат и границы — [сверка TASK-0003.012](../../../../../../../../review-log.md#task-0003012).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Семь фиксированных типов лежат в system.damageTypeModification, хотя файл находится под character/general/damage. CommonActorData включает их и у monster, LootData — нет. Список не строится из CONFIG.damageTypes; отсутствие silver/acid не является автоматически новым дефектом. Потерянный turnStartEffects.damage.type выбирает fallback0/1 в getters; .045 проверяла конкретное влияние flat, а .060/.061 — отдельные диагностические override-входы.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../../../commonActorData.js.md), [module/data/actor/templates/character/general/damage/damageModificationData.js](damageModificationData.js.md), [module/actor/mixins/damageUtilMixin.js](../../../../../../actor/mixins/damageUtilMixin.js.md), [module/scripts/combat/generalCombatHook.js](../../../../../../scripts/combat/generalCombatHook.js.md), [module/activeEffect/mixins/baseMixin.js](../../../../../../activeEffect/mixins/baseMixin.js.md).
+
+[Протокол и границы](../../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-08](../../../../../../../../cross-check-0002.md#r003-08). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

@@ -67,7 +67,7 @@ JavaScript-функций, partial-вызовов и именованных inpu
 
 ## Непроверенные участки и открытые вопросы
 
-Сравнение по переводам само по себе не признано дефектом для штатных labels. Внешние модули могут добавлять контекст/переводы; не исследованы. Семь ошибочно объявленных отсутствующими подписей прошлого этапа исправлены с учётом expandObject.
+Сверены producer контекста, HBS и именованные поля. Реальная обработка FormDataExtended из .030 — изолированное историческое доказательство; браузер, права и серверный submit не запускались. Точный остаток — [U003-04](../../../../cross-check-0002.md#u003-04).
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ JavaScript-функций, partial-вызовов и именованных inpu
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Текущий MonsterSheet.PARTS.stats по-прежнему выбирает этот HBS. Полный контекст не содержит totalStats, хотя расчёт для проверенного Actor даёт 72 (issue-00199). Наличие producer у Character не означает его наследования Monster.
 
 Связи: [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Общий HBS читает prepared label/value/max, девять обычных и шесть показанных derived-параметров; фильтры сравнивают локализованные label, а не только ключ. openModifiers передаёт type в окно редактора. Luck показывается по value, её saving throw использует max; репутация видна при isGM или displayRep, span.max ошибочно читает value (00198). totalStats должен дать producer, сам HBS сумму не считает; отсутствие у Monster ранее оформлено00199.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md), [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-10](../../../../cross-check-0002.md#r003-10), [R003-11](../../../../cross-check-0002.md#r003-11). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

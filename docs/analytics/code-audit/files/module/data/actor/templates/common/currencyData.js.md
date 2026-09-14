@@ -71,7 +71,7 @@ currency():3–13 возвращает семь NumberField. Курсы, ком�
 
 ## Непроверенные участки и открытые вопросы
 
-Браузерная валидация, конкурирующие покупки, фактическая запись и журнал, полная экономика и корректность курсов по правилам не проверялись.
+Сопоставлены форма записи, настоящее Log и вызывающие методы. Удержанные Promise и dryRun в .005/.029/.037 не доказывают итоговый серверный баланс. Остаток — [U003-03](../../../../../../cross-check-0002.md#u003-03)/07; поддержка опыта других типов Actor не выбрана.
 
 ## Связанные проблемы
 
@@ -129,3 +129,13 @@ Rewards.currencyRewardDialog перечисляет семь CONFIG.WITCHER.curr
 [module/actor/mixins/rewardsMixin.js](../../../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Семь NumberField баланса используются CommonActorData и LootData. Оба calcCurrencyWeight суммируют количество всех семи монет, включая falsecoin, и умножают на0.001; ceil применяет Actor к общему весу. CONFIG.currencyRates содержит шесть курсов и исключает falsecoin из конвертера; фабрика курсов и журнала не содержит.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/data/actor/lootData.js](../../lootData.js.md), [module/actor/witcherActor.js](../../../../actor/witcherActor.js.md), [module/setup/config.js](../../../../setup/config.js.md), [module/actor/mixins/currencyConverterMixin.js](../../../../actor/mixins/currencyConverterMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-07](../../../../../../cross-check-0002.md#r003-07). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

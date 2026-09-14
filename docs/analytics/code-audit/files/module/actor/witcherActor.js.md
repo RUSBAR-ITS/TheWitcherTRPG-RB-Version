@@ -180,7 +180,7 @@ getList/addItem сравнивают тип/имя, не ID источника �
 
 ## Непроверенные участки и открытые вопросы
 
-Файл полностью прочитан. Не выполнены полный жизненный цикл Foundry Document, мир, БД, браузер, сетевые Queries, наследуемые операции токенов и все боевые методы примесей. Полная инвентарная модель и миграции/редактор ActiveEffect остаются TASK-0003.008–010 и последующим порциям. Наличие max и value не трактуется как согласованный новый алгоритм характеристик. Поведение raw objects и неожиданных ID описано по ветвям кода, не исчерпывающему перебору входов.
+Собственные методы и передача данных сопоставлены; N01 подменяет базовый Actor, коллекции и окружение, не исполняет AE/сеть/БД. Полный lifecycle — [U003-01](../../../cross-check-0002.md#u003-01)/02, бой — [U003-05](../../../cross-check-0002.md#u003-05), операции предметов — [U003-06](../../../cross-check-0002.md#u003-06). Старые ожидания TASK-0003.008–.010 сняты; принятого нового алгоритма характеристик нет.
 
 ## Связанные проблемы
 
@@ -469,3 +469,13 @@ Difficult показывает разницу max/value: при базе 5 и ×
 [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) добавляет проверки max/value для Heart Damage и Spetic Shock: первые меняют BODY.max/SPD.max, оставляя value=5; STA.max после initial заново вычисляется. При базовых 5 максимумы STA: Heart none/stabilized=25; Spetic none/stabilized/treated=15/20/20. Dismembered Leg влияет на skill.value, если эффект включён. Повторное addItem правой исходной ноги через совпадение name/type дал quantity=NaN без создания второй травмы ([issue-00288](../../../../../issues/potential/issue-00288.md)).
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сверены 19 собственных определений и 17 Object.assign: addDefenseModifiers окончательно берётся из defenseMixin. Порядок расчётов stats→fixed→stats→derived→attacks сохранён; initial/final находятся в ядре. Восемь value используют unmodifiedMax, а перегруз и часть производных/Death save читают max. N01 после reset повторил REF8, HP.max40, luck.max12, toxicity.max110, meleeBonus2 при базах8 и заданных добавках2/5; source сохранён. Это не повторный полный Actor lifecycle. addItem/removeItem ожидают свои записи; removeItemsOfType и consumable-ветка useItem теряют ожидание. Список зон и выбор отдельной tailWing имеют разные контракты.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../data/actor/commonActorData.js.md), [module/data/actor/monsterData.js](../data/actor/monsterData.js.md), [module/activeEffect/witcherActiveEffect.js](../activeEffect/witcherActiveEffect.js.md), [module/actor/mixins/armorMixin.js](mixins/armorMixin.js.md), [module/actor/mixins/defenseMixin.js](mixins/defenseMixin.js.md), [module/actor/mixins/locationMixin.js](mixins/locationMixin.js.md), [module/actor/sheets/mixins/itemMixin.js](sheets/mixins/itemMixin.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-02](../../../cross-check-0002.md#r003-02), [R003-03](../../../cross-check-0002.md#r003-03), [R003-05](../../../cross-check-0002.md#r003-05), [R003-11](../../../cross-check-0002.md#r003-11), [R003-12](../../../cross-check-0002.md#r003-12). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

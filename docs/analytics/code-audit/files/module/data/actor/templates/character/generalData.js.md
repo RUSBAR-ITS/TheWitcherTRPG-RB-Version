@@ -83,7 +83,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитан исходник и точечно проверены определения и потребители перечисленных связей. Мир, браузер, сохранение форм и применение реального ActiveEffect не запускались. Полный анализ соседних файлов остаётся их порциям; просмотр связи не повышает их статус в реестре. Полные правила социальных модификаторов и назначение неиспользуемых строк остаются за рамками этой порции.
+Сопоставлены схема и фактические контексты/поля листов, включая поздние проверки .031–.033. Не проверены браузерный редактор, внешние TextEditor/UUID и конкурентное сохранение. Остаток — [U003-04](../../../../../../cross-check-0002.md#u003-04); отсутствие внутреннего потребителя не означает ненужность поля.
 
 ## Связанные проблемы
 
@@ -122,3 +122,13 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. В полном tab-background прослежены homeland/details/age/socialStanding/background и lifeEvents. Родина из Item скрывает редакторы Actor; семь details и остальные видимые пути формы сопоставлены со схемами. isOpened меняется отдельным toggle, counter влияет на видимость, не удаляет записи.
 
 Связи: [templates/partials/character/tab-background.hbs](../../../../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003033).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Девять полей general объединяют текст/подробности/родину/события; damageTypeModification подключён непосредственно CommonActorData и сюда не входит. Текстовая general.reputation отличается от числовой system.reputation. addSocialStanding читает general.socialStanding только для character; отображение расы использует Item.race, а не general.race. Ненайденный внутренний consumer name/race/general.reputation не означает разрешение удалять поля.
+
+Сопоставленные определения и потребители: [module/data/actor/characterData.js](../../characterData.js.md), [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/data/actor/templates/common/reputationData.js](../common/reputationData.js.md), [module/actor/mixins/skillMixin.js](../../../../actor/mixins/skillMixin.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../../../actor/sheets/WitcherCharacterSheet.js.md), [templates/partials/character/tab-background.hbs](../../../../../templates/partials/character/tab-background.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-06](../../../../../../cross-check-0002.md#r003-06). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

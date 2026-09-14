@@ -79,7 +79,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полный жизненный цикл документов, применение ActiveEffect, браузер, БД и соответствие механик рулбуку не проверялись. Указанные потребители просмотрены в пределах обращений к навыкам. Путь system.skills не следует смешивать с отдельными Item.skill или выбранными профессиональными умениями.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -108,3 +108,13 @@
 Все три Torn Stomach содержат commonspeech.activeEffectModifiers вместо объявленного commonsp. После реальной подготовки по неизвестному пути создаётся динамический штраф −2/−2/−1, commonsp.activeEffectModifiers=0. Остальные 51 навыковое поле каждого Item изменяется. Это прежняя issue-00004.
 
 [Карточки Difficult](../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/_Folder.json.md), [протокол и ограничения](../../../../../../../review-log.md#task-0003060). Мир и БД не менялись.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Intelligence задаёт 13 EmbeddedDataField(Skill) под группой int; миграция меняет label только существующих записей, не уровень навыка. Сверены адреса подписей: commonsp→commonSpeech, eldersp→elderSpeech, dwarven→dwarvenSpeech, monster→monsterLore, socialetq→socialEtiquette, wilderness→wildernessSurvival. Опция label внешнего поля не становится аргументом Skill.defineSchema; fresh/reconstructed различие проверено N01 для всех52 навыков. Поля и getter принадлежат вложенным Skill, формулы броска — внешним потребителям.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/common/skills/skillData.js](skillData.js.md), [module/data/actor/templates/common/skills/skillsData.js](skillsData.js.md), [module/setup/config.js](../../../../../setup/config.js.md), [module/actor/mixins/skillMixin.js](../../../../../actor/mixins/skillMixin.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-04](../../../../../../../cross-check-0002.md#r003-04). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

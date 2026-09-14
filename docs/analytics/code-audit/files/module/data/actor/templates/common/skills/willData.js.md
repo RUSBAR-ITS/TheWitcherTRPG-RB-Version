@@ -73,7 +73,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полный жизненный цикл документов, применение ActiveEffect, браузер, БД и соответствие механик рулбуку не проверялись. Указанные потребители просмотрены в пределах обращений к навыкам. Путь system.skills не следует смешивать с отдельными Item.skill или выбранными профессиональными умениями.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@ castSpell прямо индексирует system.skills.will[usedSkill.name].v
 [module/actor/mixins/castSpellMixin.js](../../../../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../../../../actor/mixins/castSpellMixin.js.md).
 
 [Сценарии, методика и пределы проверки](../../../../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Will задаёт 7 EmbeddedDataField(Skill) под группой will; миграция меняет label только существующих записей, не уровень навыка. Сверены адреса подписей: hexweave→hexWeaving, spellcast→spellCasting, resistmagic→resistMagic, resistcoerc→resistCoercion, ritcraft→ritualCrafting. Опция label внешнего поля не становится аргументом Skill.defineSchema; fresh/reconstructed различие проверено N01 для всех52 навыков. Поля и getter принадлежат вложенным Skill, формулы броска — внешним потребителям.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/common/skills/skillData.js](skillData.js.md), [module/data/actor/templates/common/skills/skillsData.js](skillsData.js.md), [module/setup/config.js](../../../../../setup/config.js.md), [module/actor/mixins/skillMixin.js](../../../../../actor/mixins/skillMixin.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-04](../../../../../../../cross-check-0002.md#r003-04). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

@@ -83,7 +83,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Сам файл прочитан полностью. Не проверялись DOM-обогащение, разрешение реальных UUID, редакторы в браузере, пользовательские реализации TextEditor и сохранение полей. Отсутствие переданных опций не объявлено ошибкой без конкретного требуемого сценария.
+Сопоставлены схема и фактические контексты/поля листов, включая поздние проверки .031–.033. Не проверены браузерный редактор, внешние TextEditor/UUID и конкурентное сохранение. Остаток — [U003-04](../../../cross-check-0002.md#u003-04); отсутствие внутреннего потребителя не означает ненужность поля.
 
 ## Связанные проблемы
 
@@ -147,3 +147,13 @@
 2026-09-11, `12055fee62f01c6de49967044aedef9d7cfe0632`. Для general.background цепочка createEnrichedText → CharacterData.enrichedText → tab-background передаёт raw value и enriched правильно. Массив notes.details и Item.note.description этим helper в проверенном маршруте не обогащаются. Проверка дошла до core formGroup/HTMLField.toInput с фасадом создания редактора.
 
 Связи: [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md). [Результаты и пределы проверки](../../../review-log.md#task-0003033).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+createEnrichedText сначала ожидает TextEditor.implementation.enrichHTML(field), затем возвращает {enriched,value,systemField: schema.getField(fieldPath)}. CharacterData использует один background, MonsterData — три последовательных lore-поля; helper также импортируют модели Item. Исходный аргумент сохраняется в value, update не вызывается; ошибка обогащения прекращает вызов до getField.
+
+Сопоставленные определения и потребители: [module/data/actor/characterData.js](actor/characterData.js.md), [module/data/actor/monsterData.js](actor/monsterData.js.md), [module/data/item/raceData.js](item/raceData.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-06](../../../cross-check-0002.md#r003-06). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

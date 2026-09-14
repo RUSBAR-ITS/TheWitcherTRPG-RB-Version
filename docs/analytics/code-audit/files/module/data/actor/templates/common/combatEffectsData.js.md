@@ -110,7 +110,7 @@ applyGeneralCombatHooks вызывает асинхронные регенера
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверены реальная передача изменений от эффекта в Actor, обработка нескольких клиентов, длительности, сопротивления/броня и итоговый боевой цикл. Возможные гонки асинхронных записей требуют отдельного воспроизведения; здесь они не объявляются доказанным результатом. Прочтение методов вне фабрики не меняет статус их файлов.
+Схема и конкретные адреса чтения сопоставлены; поздние проверки .043–.045/.060–.061 учитываются только с их фасадами и входами. Конечный бой/БД и все комбинации эффектов не выполнялись. Остаток — [U003-02](../../../../../../cross-check-0002.md#u003-02)/05; назначение коэффициентов по правилам требует отдельного решения.
 
 ## Связанные проблемы
 
@@ -173,3 +173,13 @@ Consumer [generalCombatHook](../../../../../../../../../module/scripts/combat/ge
 [Deadly](../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): семь ADD объектов (шесть bleed, один poison) адресуют SchemaField элемента TypedObjectField, мигрируют в объекты, но оставляют карту пустой ([issue-00328](../../../../../../../../issues/potential/issue-00328.md)). Heart treated — другой путь: NumberField bleed.damage.modifier; без bleed получает warning/undefined, с заранее подготовленной записью amount=2/модификатором 0 даёт modifier=2 и итог урона 4. Override-копии левой руки/Spetic в памяти создают запись с boolean ignoreArmor=true и spDamage=0.
 
 [Протокол и ограничения](../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Три TypedObjectField содержат attackModifier/defenseModifier/turnStartEffects, дополнительно EmbeddedDataField TemporaryEffects. Числа могут прийти из source или AE; наличие поля не доказывает создание записи конкретным change. generalCombatHook проверяет amount>0, передаёт damage.amount+modifier и nonLethal→sta, но теряет type и игнорирует heal.modifier (00021/22). Поздняя00328 блокирует исходные ADD-объекты критических травм раньше этого consumer; результаты диагностического override нельзя приписывать исходному ADD.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](../../commonActorData.js.md), [module/data/actor/templates/common/temporaryEffectsData.js](temporaryEffectsData.js.md), [module/scripts/combat/generalCombatHook.js](../../../../scripts/combat/generalCombatHook.js.md), [module/scripts/combat/applyDamage.js](../../../../scripts/combat/applyDamage.js.md), [module/actor/mixins/healMixin.js](../../../../actor/mixins/healMixin.js.md), [module/actor/mixins/modifierMixin.js](../../../../actor/mixins/modifierMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-08](../../../../../../cross-check-0002.md#r003-08), [R003-09](../../../../../../cross-check-0002.md#r003-09). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

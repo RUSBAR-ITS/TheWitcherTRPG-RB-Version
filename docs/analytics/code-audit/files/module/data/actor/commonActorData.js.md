@@ -137,7 +137,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Схема и все шесть собственных методов прочитаны полностью. Полный Actor, эффекты, работа листов и серверное сохранение остаются последующим порциям. Не сделан вывод о правилах ограничения характеристик. Порядок ядра установлен по локальной версии 14.367.0, его расширения внешними модулями не проверялись.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -227,3 +227,13 @@ currency:SchemaField(currency())20 — источник баланса Character
 [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) — [карточка](../../actor/mixins/castSpellMixin.js.md); [templates/partials/character/tab-magic.hbs](../../../../../../../templates/partials/character/tab-magic.hbs) — [карточка](../../../templates/partials/character/tab-magic.hbs.md); [templates/partials/monster/monster-spell-tab.hbs](../../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../../templates/partials/monster/monster-spell-tab.hbs.md); [templates/dialog/combat/spell-attack.hbs](../../../../../../../templates/dialog/combat/spell-attack.hbs) — [карточка](../../../templates/dialog/combat/spell-attack.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+19 полей общей TypeDataModel включают три вложенные модели Stats/DerivedStats/Reputation, семь групп Skill и фабрики контейнеров. CommonActorData сама копирует unmodifiedMax в max; методы одноимённых вложенных DataModel не вызываются рекурсивно. Core вызывает системную базовую подготовку перед initial и расчёт Actor перед final. Миграция обнуляет девять stat.totalModifiers и meleeBonus, но не toxicity.totalModifiers; guard ==0 не покрывает отсутствующий unmodifiedMax. N01 различает reset модели и вызов поверх prepared: focus.unmodifiedMax 0 после reset, 48 поверх value8, при focus.max24; source неизменён.
+
+Сопоставленные определения и потребители: [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/data/actor/characterData.js](characterData.js.md), [module/data/actor/monsterData.js](monsterData.js.md), [module/data/actor/templates/common/stats/statData.js](templates/common/stats/statData.js.md), [module/activeEffect/witcherActiveEffect.js](../../activeEffect/witcherActiveEffect.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../cross-check-0002.md#r003-01), [R003-02](../../../../cross-check-0002.md#r003-02), [R003-03](../../../../cross-check-0002.md#r003-03). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

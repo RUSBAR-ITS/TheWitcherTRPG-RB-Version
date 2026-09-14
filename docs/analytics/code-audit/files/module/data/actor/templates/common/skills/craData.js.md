@@ -73,7 +73,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полный жизненный цикл документов, применение ActiveEffect, браузер, БД и соответствие механик рулбуку не проверялись. Указанные потребители просмотрены в пределах обращений к навыкам. Путь system.skills не следует смешивать с отдельными Item.skill или выбранными профессиональными умениями.
+В .003 сверены схема, миграции и потребители; прежние этапы TASK-0003 завершены. N01 проверяет модели в памяти и сброс к source, не Actor.create в клиенте. Полный lifecycle и фазы — [U003-01](../../../../../../../cross-check-0002.md#u003-01)/02; отображение и сохранение формы — [U003-04](../../../../../../../cross-check-0002.md#u003-04). Игровые пределы не выбирались.
 
 ## Связанные проблемы
 
@@ -94,3 +94,13 @@
 2026-09-11, `928ce4e537c6a3fdc34f8b6fa3fcfdb5a669f68d`. Character._craftingCraft читает CRA.value/crafting.value/label/modifiers и craftingDC. _alchemyCraft использует alchemy, но при !isAlchemicalCraft меняет числовой навык на crafting, сохраняя alchemy skillName/modifiers/DC; этот путь проверен только с явным адаптером отсутствующего API в fixture.
 
 Связи: [module/actor/sheets/WitcherCharacterSheet.js](../../../../../actor/sheets/WitcherCharacterSheet.js.md). [Методика и ограничения сверки](../../../../../../../review-log.md#task-0003031).
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Craft задаёт 7 EmbeddedDataField(Skill) под группой cra; миграция меняет label только существующих записей, не уровень навыка. Сверены адреса подписей: firstaid/picklock/trapcraft используют существующие lower-case ключи; внешние firstAid/pickLock/trapCrafting расходятся с en/ru (00016), миграция здесь не причина пропуска. Опция label внешнего поля не становится аргументом Skill.defineSchema; fresh/reconstructed различие проверено N01 для всех52 навыков. Поля и getter принадлежат вложенным Skill, формулы броска — внешним потребителям.
+
+Сопоставленные определения и потребители: [module/data/actor/templates/common/skills/skillData.js](skillData.js.md), [module/data/actor/templates/common/skills/skillsData.js](skillsData.js.md), [module/setup/config.js](../../../../../setup/config.js.md), [module/actor/mixins/skillMixin.js](../../../../../actor/mixins/skillMixin.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-04](../../../../../../../cross-check-0002.md#r003-04). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.

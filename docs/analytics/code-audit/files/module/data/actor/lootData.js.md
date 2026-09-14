@@ -79,7 +79,7 @@ stats, derivedStats, healthState, attackStats, notes, logs и другие по�
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Не проверены покупки, перенос предметов, сохранение формы и содержимое миров. Отсутствие прямого потребителя description в текущей форме не объявлено ошибкой. Динамические обращения внешних модулей не исследованы.
+Сверены границы схемы и наследования; покупка, перенос и награды не исполнены заново. Остаток — [U003-06](../../../../cross-check-0002.md#u003-06)/07; ограничения прав/остатка на реальном сервере не утверждаются.
 
 ## Связанные проблемы
 
@@ -130,3 +130,13 @@ stats, derivedStats, healthState, attackStats, notes, logs и другие по�
 [module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/actor/rewardsSheet.js](../../actor/rewardsSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md).
 
 [Перекрёстная сверка и ограничения](../../../../review-log.md#task-0003037). Связанные файлы повторно в покрытие не добавлялись; исходники и статусы issues не менялись.
+
+## Сквозная сверка TASK-0004.003
+
+2026-09-14; rusbar-main, b4aeecb967caf97700cc565a670d6347b933619f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+LootData напрямую наследует TypeDataModel и объявляет только maxWeight, description, currency; N01 подтвердил три поля и отсутствие stats. WitcherActor пропускает расчёты характеристик для loot, но методы предметов наследуются. Масса монет считается теми же семью ключами и коэффициентом 0.001, общий ceil выполняет Actor. Общие методы наград/профессии не получают logs/skills от такого наследования.
+
+Сопоставленные определения и потребители: [module/data/actor/commonActorData.js](commonActorData.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [module/app/reward/reward.js](../../app/reward/reward.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004003) — TASK-0004.003; процессы [R003-01](../../../../cross-check-0002.md#r003-01), [R003-07](../../../../cross-check-0002.md#r003-07), [R003-12](../../../../cross-check-0002.md#r003-12). Новое исполнение N01 протокола ограничено моделями и собственными расчётами Actor; остальные перечисленные опыты относятся к прежним порциям.
