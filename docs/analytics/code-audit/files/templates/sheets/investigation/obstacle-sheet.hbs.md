@@ -68,7 +68,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 20 строки прочитаны. Из отсутствующих вкладок не выводится отказ V1-формы. Реальное редактирование через multi-select и Item.update не проверено.
+Все 20 строк прочитаны. Нативная форма/multi-select — [U015-02](../../../../cross-check-0002.md#u015-02); server normalization/сохранение — [U015-03](../../../../cross-check-0002.md#u015-03); внешний consumer последствий — [U015-08](../../../../cross-check-0002.md#u015-08). Отсутствующие вкладки не объявлены причиной отказа.
 
 ## Связанные проблемы
 
@@ -79,3 +79,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Named поля редактируют name/type/dc/skillsUsed/successDamage/failDamage; selected использует item.system.skillsUsed, как ожидает отдельный V1-редактор. Здесь нет isHidden и кнопки броска. Модель хранит последствия строками, а лист не запускает их вычисление. Сходство списка skillsUsed с уликой не означает наличие её rollClue-пути у obstacle.
+
+Сопоставленные определения и потребители: [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../module/item/sheets/investigation/WitcherObstacleSheet.js.md), [module/data/investigation/obstacleData.js](../../../module/data/investigation/obstacleData.js.md), [templates/sheets/investigation/partials/obstacle-display.hbs](partials/obstacle-display.hbs.md), [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-04](../../../../cross-check-0002.md#r015-04), [R015-14](../../../../cross-check-0002.md#r015-14), [R015-15](../../../../cross-check-0002.md#r015-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

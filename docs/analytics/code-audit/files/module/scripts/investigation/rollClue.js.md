@@ -74,7 +74,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 44 строки прочитаны. На этапе .023 helper и skillMixin были проверены точечно; теперь helper описан полностью в .028, skillMixin — в .029. Правила автоматического ущерба/времени и содержимое миров не проверялись.
+Все 44 строки и определения вызываемой цепочки сопоставлены. Выбор/отмена/совместимость Actor — [U015-04](../../../../cross-check-0002.md#u015-04); native select/DC и произвольные навыки — [U015-05](../../../../cross-check-0002.md#u015-05); getCustomModifier, поздний отказ и реальный чат — [U015-06](../../../../cross-check-0002.md#u015-06); внешние последствия — [U015-08](../../../../cross-check-0002.md#u015-08). Прежний фасад финального броска .023 не объявлен полным сеансом.
 
 ## Связанные проблемы
 
@@ -103,3 +103,13 @@
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Итоговая сверка третьей серии завершила полные карточки helper/skillMixin и общих roll-конфигураций. DC по-прежнему не передаётся в rollSkill; этот пропуск не исправлен. Отрицательный порог общего обработчика теперь дополнительно проверен на state-save consumers, не считается автоматическим правилом расследования.
 
 Сверенные источники: [module/scripts/rolls/extendedRoll.js](../../../../../../../module/scripts/rolls/extendedRoll.js); [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Связь полностью доведена от action MysterySheet через getInteractActor и словарь skillMap до rollSkill/rollSkillCheck, RollConfig, ChatMessageData и extendedRoll. Выбор Actor предшествует нулевому списку навыков; один навык передаётся напрямую, несколько — через options без фильтра undefined. Отмена input выбора Actor и cancel/null выбора навыка — разные границы. Произвольная строка skillsUsed не вызывает rollCustomSkill. Единственный аргумент rollSkill оставляет threshold=-1 независимо от clue.dc; последствия и идентификаторы расследования этому сообщению не передаются. Внутренний Roll не ожидается/не возвращается, а _onRollClue также теряет Promise. Поздние .028–.030 и текущая .004 уже описывают общую цепочку; ожидания будущего пофайлового разбора к текущему состоянию не относятся.
+
+Сопоставленные определения и потребители: [module/actor/sheets/investigation/WitcherMysterySheet.js](../../actor/sheets/investigation/WitcherMysterySheet.js.md), [module/data/investigation/clueData.js](../../data/investigation/clueData.js.md), [templates/dialog/investigation/chooseEvidenceSkill.hbs](../../../templates/dialog/investigation/chooseEvidenceSkill.hbs.md), [module/scripts/helper.js](../helper.js.md), [module/setup/config.js](../../setup/config.js.md), [module/actor/mixins/skillMixin.js](../../actor/mixins/skillMixin.js.md), [module/scripts/rollConfig.js](../rollConfig.js.md), [module/chatMessage/chatMessageData.js](../../chatMessage/chatMessageData.js.md), [module/scripts/rolls/extendedRoll.js](../rolls/extendedRoll.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-08](../../../../cross-check-0002.md#r015-08), [R015-09](../../../../cross-check-0002.md#r015-09), [R015-10](../../../../cross-check-0002.md#r015-10), [R015-11](../../../../cross-check-0002.md#r015-11), [R015-12](../../../../cross-check-0002.md#r015-12), [R015-13](../../../../cross-check-0002.md#r015-13), [R015-14](../../../../cross-check-0002.md#r015-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

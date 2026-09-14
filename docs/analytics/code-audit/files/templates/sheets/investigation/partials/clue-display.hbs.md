@@ -77,7 +77,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 37 строк прочитаны. Отдельный вызов partial вне each требует собственного system-контекста; такого потребителя в module/templates не найдено. Скрытие по CSS не описывается как разграничение доступа к данным.
+Все 37 строк прочитаны. Вызов partial вне each не найден; native render/selection — [U015-02](../../../../../cross-check-0002.md#u015-02); запись inline — [U015-03](../../../../../cross-check-0002.md#u015-03); колонки/hidden/полномочия — [U015-07](../../../../../cross-check-0002.md#u015-07); завершение броска — [U015-06](../../../../../cross-check-0002.md#u015-06). CSS не является механизмом разграничения доступа.
 
 ## Связанные проблемы
 
@@ -88,3 +88,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Partial вызывается внутри each clue, поэтому selected=system.skillsUsed получает текущий Item; item.id задаёт адрес для edit/delete/hide/inline/rollClue. Inline-данные идут в общий обработчик MysterySheet с преобразованием false/true/checked. isHidden меняет CSS, не удаляет данные. Строка содержит 13 td при 12 заголовочных; GM меняет содержимое служебной ячейки, а кнопка броска отдельна и вне if isGM. Этот action запускает выбранного Actor, не применяет clue.dc/последствия.
+
+Сопоставленные определения и потребители: [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../../module/actor/sheets/investigation/WitcherMysterySheet.js.md), [templates/sheets/investigation/mystery-sheet.hbs](../mystery-sheet.hbs.md), [module/data/investigation/clueData.js](../../../../module/data/investigation/clueData.js.md), [module/scripts/investigation/rollClue.js](../../../../module/scripts/investigation/rollClue.js.md), [styles/loot-sheet.css](../../../../styles/loot-sheet.css.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-03](../../../../../cross-check-0002.md#r015-03), [R015-05](../../../../../cross-check-0002.md#r015-05), [R015-06](../../../../../cross-check-0002.md#r015-06), [R015-07](../../../../../cross-check-0002.md#r015-07), [R015-11](../../../../../cross-check-0002.md#r015-11), [R015-14](../../../../../cross-check-0002.md#r015-14), [R015-15](../../../../../cross-check-0002.md#r015-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

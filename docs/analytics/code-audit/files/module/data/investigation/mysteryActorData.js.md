@@ -67,7 +67,7 @@ registerDataModels присваивает CONFIG.Actor.dataModels.mystery. На�
 
 ## Непроверенные участки и открытые вопросы
 
-Все 12 строк прочитаны. Отсутствие типа в манифесте не обходилось. Поведение иных фаз Actor и активных эффектов на тайне целиком этой моделью не проверяется.
+Все 12 строк и потребители прочитаны. Реальные TYPES/создание — [U015-01](../../../../cross-check-0002.md#u015-01); отправка формы — [U015-02](../../../../cross-check-0002.md#u015-02); совместимость иных фаз Actor, внешние изменения сложности и последствия — [U015-08](../../../../cross-check-0002.md#u015-08). Наличие schema и листа не подтверждает сеанс расследования в мире.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ registerDataModels присваивает CONFIG.Actor.dataModels.mystery. На�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+MysteryActorData хранит только goal и вложенный SchemaField(complexity()); common Actor stats/skills сюда не включены. WitcherActor.prepareDerivedData выходит для mystery после super, но это не гарантирует совместимость всех методов Actor. Лист берёт getList clue/obstacle и использует actor.system для named полей; обычный бросок выполняет выбранный helper Actor, не автоматически родитель Mystery. Ни модель, ни rollClue не изменяют complexity по результату. Отдельно сопоставлен барьер отсутствующего documentTypes.Actor.mystery.
+
+Сопоставленные определения и потребители: [module/data/investigation/templates/complexityData.js](templates/complexityData.js.md), [module/actor/sheets/investigation/WitcherMysterySheet.js](../../actor/sheets/investigation/WitcherMysterySheet.js.md), [templates/sheets/investigation/mystery-sheet.hbs](../../../templates/sheets/investigation/mystery-sheet.hbs.md), [module/scripts/investigation/rollClue.js](../../scripts/investigation/rollClue.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [system.json](../../../system.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-01](../../../../cross-check-0002.md#r015-01), [R015-02](../../../../cross-check-0002.md#r015-02), [R015-03](../../../../cross-check-0002.md#r015-03), [R015-14](../../../../cross-check-0002.md#r015-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

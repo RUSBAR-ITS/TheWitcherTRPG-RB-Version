@@ -82,7 +82,7 @@ getList возвращает документы, а не копии и не то
 
 ## Непроверенные участки и открытые вопросы
 
-Все 115 строк прочитаны. Не проверялись браузерный submitOnChange, повторный рендер, фактический доступ observer/owner к API и сохранение встроенных Items. Унаследованная внешняя форма и собственный <form> в PARTS отмечены как структура: сбой отправки из этого факта не выводится.
+Полный native lifecycle V2, вложенные form и повторный render — [U015-02](../../../../../cross-check-0002.md#u015-02); создание недекларированного типа — [U015-01](../../../../../cross-check-0002.md#u015-01); серверное приведение inline/CRUD и права — [U015-03](../../../../../cross-check-0002.md#u015-03); hidden/колонки — [U015-07](../../../../../cross-check-0002.md#u015-07). Текущая цепочка броска сопоставлена с helper/skillMixin; её сквозное завершение остаётся [U015-06](../../../../../cross-check-0002.md#u015-06).
 
 ## Связанные проблемы
 
@@ -93,3 +93,13 @@ getList возвращает документы, а не копии и не то
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлены полный V2-лист, регистрации и пять actions с основной формой и обоими partial. Импорты в registerSheets:9–11 и регистрации:118–129 ведут к трём листам; отсутствие documentTypes остаётся отдельным барьером. Контекст сочетает живой Actor, сериализованную system и getList с сортировкой/исключением isStored. create получает parent Actor, add/delete ожидаются, inline возвращает update, hide и вызов rollClue не возвращают завершение. Inline преобразует false/true/checked в Boolean для текстовых полей. Строка улики запускает обычный навык другого выбранного Actor, DC и последствия не передаёт; отдельного броска obstacle нет. CSS isHidden не исключает документ из данных и не задаёт полномочия.
+
+Сопоставленные определения и потребители: [module/scripts/investigation/rollClue.js](../../../scripts/investigation/rollClue.js.md), [templates/sheets/investigation/mystery-sheet.hbs](../../../../templates/sheets/investigation/mystery-sheet.hbs.md), [templates/sheets/investigation/partials/clue-display.hbs](../../../../templates/sheets/investigation/partials/clue-display.hbs.md), [templates/sheets/investigation/partials/obstacle-display.hbs](../../../../templates/sheets/investigation/partials/obstacle-display.hbs.md), [module/setup/registerSheets.js](../../../setup/registerSheets.js.md), [module/setup/registerDataModels.js](../../../setup/registerDataModels.js.md), [system.json](../../../../system.json.md), [module/actor/witcherActor.js](../../witcherActor.js.md), [module/actor/mixins/skillMixin.js](../../mixins/skillMixin.js.md), [styles/loot-sheet.css](../../../../styles/loot-sheet.css.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-01](../../../../../cross-check-0002.md#r015-01), [R015-03](../../../../../cross-check-0002.md#r015-03), [R015-04](../../../../../cross-check-0002.md#r015-04), [R015-05](../../../../../cross-check-0002.md#r015-05), [R015-06](../../../../../cross-check-0002.md#r015-06), [R015-07](../../../../../cross-check-0002.md#r015-07), [R015-13](../../../../../cross-check-0002.md#r015-13), [R015-14](../../../../../cross-check-0002.md#r015-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

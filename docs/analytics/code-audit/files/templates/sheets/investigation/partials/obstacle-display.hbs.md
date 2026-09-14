@@ -73,7 +73,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Все 28 строк прочитаны. Отдельный вызов partial вне each требует собственного system-контекста; такого потребителя в module/templates не найдено. Скрытие по CSS не описывается как разграничение доступа к данным.
+Все 28 строк прочитаны. Отдельный вызов partial вне each не найден; native multi-select/render — [U015-02](../../../../../cross-check-0002.md#u015-02); приведение inline и сохранение — [U015-03](../../../../../cross-check-0002.md#u015-03); CSS/полномочия — [U015-07](../../../../../cross-check-0002.md#u015-07); внешний consumer последствий — [U015-08](../../../../../cross-check-0002.md#u015-08).
 
 ## Связанные проблемы
 
@@ -84,3 +84,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Partial вызывается внутри each obstacle и сохраняет текущий Item для selected=system.skillsUsed. item._id адресует документ так же, как id в соседней строке. edit/delete/hide/inline сходятся в MysterySheet; отдельного roll-action нет. Восемь td совпадают с восемью заголовками. isHidden меняет класс строки, GM условие — содержимое служебной ячейки. successDamage/failDamage передаются как редактируемый текст, не как исполнение Roll.
+
+Сопоставленные определения и потребители: [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../../module/actor/sheets/investigation/WitcherMysterySheet.js.md), [templates/sheets/investigation/mystery-sheet.hbs](../mystery-sheet.hbs.md), [module/data/investigation/obstacleData.js](../../../../module/data/investigation/obstacleData.js.md), [templates/sheets/investigation/obstacle-sheet.hbs](../obstacle-sheet.hbs.md), [styles/loot-sheet.css](../../../../styles/loot-sheet.css.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-03](../../../../../cross-check-0002.md#r015-03), [R015-05](../../../../../cross-check-0002.md#r015-05), [R015-06](../../../../../cross-check-0002.md#r015-06), [R015-07](../../../../../cross-check-0002.md#r015-07), [R015-14](../../../../../cross-check-0002.md#r015-14), [R015-15](../../../../../cross-check-0002.md#r015-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

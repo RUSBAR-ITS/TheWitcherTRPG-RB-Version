@@ -70,7 +70,7 @@ WitcherMysterySheet.PARTS.header загружает файл; module/setup/handl
 
 ## Непроверенные участки и открытые вопросы
 
-Все 55 строк прочитаны. Вложенность form указана как факт структуры; отказ сохранения из одного этого факта не утверждается. Реальное отображение и обработка прав в браузере не проверялись.
+Все 55 строк прочитаны. Реальное внешнее/вложенное form, submit и повторный render — [U015-02](../../../../cross-check-0002.md#u015-02); видимые колонки/права/en/ru — [U015-07](../../../../cross-check-0002.md#u015-07); сохранение и внешнее применение complexity — [U015-03](../../../../cross-check-0002.md#u015-03)/[U015-08](../../../../cross-check-0002.md#u015-08). Структура HBS не заменяет браузерную проверку.
 
 ## Связанные проблемы
 
@@ -81,3 +81,13 @@ WitcherMysterySheet.PARTS.header загружает файл; module/setup/handl
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Основная форма читает живой actor.system для goal/complexity, создаёт clue/obstacle через actions и передаёт каждую строку в соответствующий partial. isGM/skills передаются из родительского контекста, текущий Item сохраняется. Улик заголовок содержит 12 ячеек против 13 в строке с броском; препятствий 8/8. Goal/Difficulty/Complexity — буквальные английские подписи без localize; начальное Easy задаёт модель. Форма не считает успех/прогресс тайны.
+
+Сопоставленные определения и потребители: [module/actor/sheets/investigation/WitcherMysterySheet.js](../../../module/actor/sheets/investigation/WitcherMysterySheet.js.md), [module/data/investigation/mysteryActorData.js](../../../module/data/investigation/mysteryActorData.js.md), [module/data/investigation/templates/complexityData.js](../../../module/data/investigation/templates/complexityData.js.md), [templates/sheets/investigation/partials/clue-display.hbs](partials/clue-display.hbs.md), [templates/sheets/investigation/partials/obstacle-display.hbs](partials/obstacle-display.hbs.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-03](../../../../cross-check-0002.md#r015-03), [R015-04](../../../../cross-check-0002.md#r015-04), [R015-05](../../../../cross-check-0002.md#r015-05), [R015-14](../../../../cross-check-0002.md#r015-14), [R015-15](../../../../cross-check-0002.md#r015-15), [R015-16](../../../../cross-check-0002.md#r015-16). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

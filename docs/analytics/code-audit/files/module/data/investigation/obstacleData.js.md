@@ -71,7 +71,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Прочитаны все 17 строк. Правила выбора навыков и применения последствий не изменялись. Отсутствие автоматизации текстовых полей не объявлено само по себе ошибкой.
+Все 17 строк прочитаны; модели и оба редактора сопоставлены. Доступность типа — [U015-01](../../../../cross-check-0002.md#u015-01); форма и native multi-select — [U015-02](../../../../cross-check-0002.md#u015-02); фактическое сохранение — [U015-03](../../../../cross-check-0002.md#u015-03); внешний consumer успеха/провала и объём автоматизации — [U015-08](../../../../cross-check-0002.md#u015-08).
 
 ## Связанные проблемы
 
@@ -82,3 +82,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `538dbac9bb9432c123fe4f3c00ab788b58517afb`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003023) |
+
+## Сквозная сверка TASK-0004.015
+
+2026-09-14; rusbar-main, 7e0d53944f3089cd61667670377aa6770fabc8cf. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Все шесть полей сопоставлены с отдельной формой и obstacle-display: isHidden/type/dc/skillsUsed/successDamage/failDamage. ArrayField строк не ограничивает names, а строки последствий не оцениваются как Roll. В отличие от строки clue, obstacle-display не содержит roll-action; форма сохраняет данные через V1 submit либо inline MysterySheet. Ошибки неизвестного навыка и потерянного DC в rollClue не объявляются исполненными у препятствия только из-за сходства полей. Тип obstacle зарегистрирован, но не объявлен в манифесте.
+
+Сопоставленные определения и потребители: [module/item/sheets/investigation/WitcherObstacleSheet.js](../../item/sheets/investigation/WitcherObstacleSheet.js.md), [templates/sheets/investigation/obstacle-sheet.hbs](../../../templates/sheets/investigation/obstacle-sheet.hbs.md), [templates/sheets/investigation/partials/obstacle-display.hbs](../../../templates/sheets/investigation/partials/obstacle-display.hbs.md), [module/actor/sheets/investigation/WitcherMysterySheet.js](../../actor/sheets/investigation/WitcherMysterySheet.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [system.json](../../../system.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004015) — TASK-0004.015; процессы [R015-01](../../../../cross-check-0002.md#r015-01), [R015-02](../../../../cross-check-0002.md#r015-02), [R015-09](../../../../cross-check-0002.md#r015-09), [R015-14](../../../../cross-check-0002.md#r015-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
