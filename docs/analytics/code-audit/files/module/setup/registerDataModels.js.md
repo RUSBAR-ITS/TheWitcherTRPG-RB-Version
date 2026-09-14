@@ -124,7 +124,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Схемы и поведение самих моделей/листов за пределами проверки определений не анализировались полностью. Мир не запускался, окна не открывались, сохранённые настройки листов и создание незаявленных типов не проверялись.
+Полный пофайловой анализ моделей уже завершён в TASK-0003; здесь повторно проверена регистрационная граница. Настоящее создание/сохранение документов и миграции мира не выполнялись. Подготовка Actor — .003, эффекты — .005, необъявленные расследовательские типы — .015.
 
 ## Связанные проблемы
 
@@ -303,3 +303,13 @@
 Сопоставленные исходники: [module/chatMessage/witcherChatMessage.js](../../../../../../module/chatMessage/witcherChatMessage.js), [module/data/chatMessage/baseMessageData.js](../../../../../../module/data/chatMessage/baseMessageData.js), [module/data/chatMessage/attackMessageData.js](../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../module/data/chatMessage/defenseMessageData.js), [module/data/chatMessage/damageMessageData.js](../../../../../../module/data/chatMessage/damageMessageData.js). Полные новые описания: [witcherChatMessage.js](../chatMessage/witcherChatMessage.js.md), [baseMessageData.js](../data/chatMessage/baseMessageData.js.md), [attackMessageData.js](../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../data/chatMessage/defenseMessageData.js.md), [damageMessageData.js](../data/chatMessage/damageMessageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+33 импорта разрешены в определения: 32 регистрации моделей (Actor 4, Item 22, ActiveEffect 2, ChatMessage 4) и класс WitcherChatMessage. Все объявленные в манифесте специальные типы имеют модель. Actor.mystery и Item.clue/obstacle/skill отсутствуют в documentTypes; дополнительный Item.base не объявляется доступным типом создания. Запись CONFIG.*.dataModels не расширяет Document.TYPES: ядро получает список из game.model. Ошибка неизвестного типа зависит от strict/fallback, а не от одного наличия класса.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md), [module/setup/registerSheets.js](registerSheets.js.md), [module/data/actor/monsterData.js](../data/actor/monsterData.js.md), [module/chatMessage/witcherChatMessage.js](../chatMessage/witcherChatMessage.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-02](../../../cross-check-0002.md#r002-02). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

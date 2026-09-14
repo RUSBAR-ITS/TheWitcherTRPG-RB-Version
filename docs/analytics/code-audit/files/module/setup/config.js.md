@@ -320,7 +320,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Не сверялись числа с рулбуками, полнота всех локализаций и применение каждого статуса в Foundry. Внутренние алгоритмы перечисленных потребителей разобраны только в местах связи. Отсутствие прямого потребителя Crit ограничено выполненным поиском; это не доказательство недостижимости при динамическом доступе. Строковые формулы здесь не дают основания утверждать порядок или ограничения фактического расчёта.
+Декларации changes и формул не определяют сами порядок вычислений. Их подготовка/применение остаются предметом .003/.004/.005/.010. Числа с рулбуками не сравниваются; динамический доступ сторонних макросов к Crit и API Polyglot/statuscounter не установлен. Локализации рассматриваются только en/ru.
 
 ## Связанные проблемы
 
@@ -588,3 +588,13 @@ WITCHER.magic сопоставляет 4 класса spell→spellcast, hex→h
 В [полном инвентаре en](../../lang/en.json.md) и [сопоставлении ru](../../lang/ru.json.md) перечислены ключи справочников и их строковые потребители. Настоящий мастер эффектов на config и реальной схеме damageTypeModification разрешил динамические группы; два label навыков с ошибочным регистром остаются issue-00016. Для damageTypes.silver label=WITCHER.DamageType.silver возвращает en Silver, поскольку ru содержит только WITCHER.Damage.silver; [docs/issues/potential/issue-00317.md](../../../../../issues/potential/issue-00317.md). 120 ключей label/description трёх состояний старого WITCHER.Crit отсутствуют в en/ru; прямого потребителя config.Crit в module/templates не найдено. Поэтому эти 120 ключей не объявлены 120 ошибками текущего UI.
 
 [Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Все 2431 строки — декларации WITCHER, 36 свойств, без вычисляющего обработчика. Присваивание CONFIG.WITCHER/statusEffects сохраняет ссылки на справочники. Сверены границы commonspeech→commonsp (00004), массива statusEffects→querySelector интеграции (00003), armorEffects→applyStatus (00089) и block.skills=['brawling']→обработчик износа без Item (00270). Прямого runtime-потребителя WITCHER.Crit в module/templates не найдено; текущая выдача травм читает индекс Item-пакета. Поиск строки локализации WITCHER.Crit не является использованием одноимённого объекта.
+
+Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md), [module/activeEffect/witcherActiveEffect.js](../activeEffect/witcherActiveEffect.js.md), [module/scripts/statusEffects/applyStatusEffect.js](../scripts/statusEffects/applyStatusEffect.js.md), [module/actor/witcherActor.js](../actor/witcherActor.js.md), [module/actor/mixins/defenseMixin.js](../actor/mixins/defenseMixin.js.md), [module/actor/mixins/damageMixin.js](../actor/mixins/damageMixin.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-02](../../../cross-check-0002.md#r002-02), [R002-08](../../../cross-check-0002.md#r002-08), [R002-09](../../../cross-check-0002.md#r002-09). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

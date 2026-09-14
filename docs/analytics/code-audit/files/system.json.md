@@ -82,7 +82,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Выпуск, загрузка мира и модулей не проверены. Потребитель подстановки заготовок и нормализация pack-путей установлены в TASK-0003.050 ниже; исполнение CI/серверной загрузки не проверялось. Для дополнительных типов выполнена сверка с локальными Document.TYPES, DocumentTypeField и DocumentSheetConfig ядра; создание этих типов в мире не воспроизводилось. Отсутствие собранных баз в checkout не приравнивается к дефекту кода.
+Проверка загрузчика локализовала отказ выбранного метода, но не запускала сканирование пакетов службой. Состав установленного мира, HTTP-доступ ресурсов и выпуск архива не установлены. Владельцы остатка: .012/.017 для индексов и .018 для внешней загрузки.
 
 ## Связанные проблемы
 
@@ -236,3 +236,13 @@ Combat зарегистрирован как RollTable с packs/combat.db на �
 Итог всех семи пакетов: 226 JSON / 36650 строк — 128 RollTable, 94 Item и четыре Folder; 995 результатов, 79 эффектов, 360 changes. Реальное поле BasePackage.schema.get('packs') Foundry 14 очистило семь путей .db до путей каталогов, соответствующих экспортам и packFolders. Compile/extract читают каталоги рекурсивно; CLI не запускались. 252 documentUuid разрешимы, две цели Mounted Control Loss отсутствуют ([issue-00323](../../../issues/potential/issue-00323.md)); 62 followUp разрешимы, циклов нет. [Deadly](packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершает технический анализ экспортов, не проверку установленной БД.
 
 [Протокол и ограничения](../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+ID TheWitcherTRPG и имя каталога RB-Version не проходят проверку fromManifestPath ядра 14.367. Манифест объявляет 3 Actor, 18 Item, 3 ChatMessage и один специальный ActiveEffect; базовые типы ядра учитываются отдельно. Единственные входы — module/TheWitcherTRPG.js и styles/witcher-styles.css; семь pack-путей после штатного удаления .db соответствуют семи каталогам packsJson. Это сопоставление деклараций, без чтения действующей БД.
+
+Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](module/TheWitcherTRPG.js.md), [module/setup/registerDataModels.js](module/setup/registerDataModels.js.md), [module/setup/registerSheets.js](module/setup/registerSheets.js.md), [module/setup/settings.js](module/setup/settings.js.md), [styles/witcher-styles.css](styles/witcher-styles.css.md), [utils/packs.mjs](utils/packs.mjs.md).
+
+[Протокол и границы](../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-01](../cross-check-0002.md#r002-01), [R002-02](../cross-check-0002.md#r002-02), [R002-03](../cross-check-0002.md#r002-03), [R002-05](../cross-check-0002.md#r002-05), [R002-07](../cross-check-0002.md#r002-07), [R002-13](../cross-check-0002.md#r002-13). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

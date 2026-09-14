@@ -100,7 +100,7 @@ createMacro формирует строку `actor = fromUuidSync(...); actor.us
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Не проверялись реальная загрузка мира, выполнение шаблонов, обработка DOM в браузере, запуск созданного макроса и Polyglot. Внутренние алгоритмы импортированных документов и обработчиков вне этой порции не объявляются изученными. Отказ предварительной загрузки шаблонов, замена game.api и неполный вход createMacro требуют отдельного сценария, если станет необходимо установить их пользовательское влияние.
+Проверенные init/ready-переходы условны относительно успешной загрузки системы; issue-00001 относится к более ранней серверной границе. Выполнение Macro, Polyglot, настоящих DOM-событий и нескольких клиентов не воспроизводилось. Доставка — .011, DOM — .016, награды/API — .014.
 
 ## Связанные проблемы
 
@@ -250,3 +250,13 @@ ready:64–67 индексирует выбранный criticalWoundsPack по 
 Весь criticalWounds сопоставлен с четырьмя полями ready/getIndex: criticalLevel/location/lesserEffect/treatment. Настоящие модели очищают 94 Item, значения по умолчанию учитываются; 48 фактических выборов applyCritWound исполнены через индекс-фасад. [Deadly](../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) содержит восемь none, семь stabilized и семь treated. Настоящий серверный getIndex не запускался; это не подтверждение содержимого установленного packs/.
 
 [Протокол и ограничения](../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлены все 21 импорт и экспортируемые определения. registerHooks и registerHandelbarHelpers вызываются при выполнении модуля; init последовательно назначает CONFIG/game.api и вызывает модели → листы → preload без await → настройки → queries. ready ожидает индекс до hotbarDrop, шрифта и сокета. Новый вызов настоящего callback показал: pending удерживает последующие регистрации, успешно полученный пустой индекс пропускает их, rejected индекс прерывает. Регистрация пяти обработчиков renderChatMessageHTML и шести context menu не равна выполнению их действий; пустой renderActiveEffectConfig ничего не добавляет.
+
+Сопоставленные определения и потребители: [system.json](../system.json.md), [module/setup/hooks.js](setup/hooks.js.md), [module/setup/handlebars.js](setup/handlebars.js.md), [module/setup/settings.js](setup/settings.js.md), [module/setup/socketHook.js](setup/socketHook.js.md), [module/actor/mixins/damageMixin.js](actor/mixins/damageMixin.js.md), [module/scripts/chat.js](scripts/chat.js.md).
+
+[Протокол и границы](../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-01](../../cross-check-0002.md#r002-01), [R002-02](../../cross-check-0002.md#r002-02), [R002-03](../../cross-check-0002.md#r002-03), [R002-04](../../cross-check-0002.md#r002-04), [R002-05](../../cross-check-0002.md#r002-05), [R002-06](../../cross-check-0002.md#r002-06), [R002-07](../../cross-check-0002.md#r002-07), [R002-10](../../cross-check-0002.md#r002-10), [R002-11](../../cross-check-0002.md#r002-11). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

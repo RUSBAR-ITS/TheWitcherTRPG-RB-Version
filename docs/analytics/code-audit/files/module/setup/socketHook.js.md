@@ -68,7 +68,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Реальный Socket.IO, несколько клиентов, права записи и восстановление надёжности не выполнялись. Наличие listener зависит от прохождения предыдущих шагов ready. Поведение при неизвестном type не означает потерю всей дальнейшей подписки.
+Реальный отключённый Socket.IO уже использован в .045; это не сетевой обмен. Новое исполнение receiver не требовалось. Acknowledgement, права и фактическое завершение записи между клиентами не подтверждены; адресат — .011.
 
 ## Связанные проблемы
 
@@ -97,3 +97,13 @@
 Полностью описан [sender](../../../../../../module/scripts/socket/socketMessage.js). Реальный отключённый Socket.IO4.8.3 подтвердил return Socket и отсутствие acknowledgement: await emit не подтверждает addItem. Группы 26–28 исполнили этот receiver с activeGM/другими users; оба штатных type вызывают нужный документ, malformed message/data/UUID отклоняют текущий callback, после чего корректный запрос ещё работает. Pending document Promise не ожидается. Все пользователи/документы представлены фасадами, autoConnect:false исключает сетевой обмен.
 
 [Проверки, результаты и ограничения](../../../review-log.md#task-0003045). Связанные файлы не засчитываются повторно в покрытии.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сокет регистрируется только после ready.getIndex, если есть game.socket/game.user. Envelope emitForGM {type,data:[uuid,...args]} и канал system.TheWitcherTRPG совпадают с receiver. Только объект activeGM обрабатывает addItem/restoreReliability; shift меняет массив, Promise цели не ожидается. Неизвестное имя вызывает ошибку текущего callback, но не доказывает удаление listener (00010; .045, группы 26–28). Лексический S0655 ошибочно относил строку канала к полю system; её смысл уточнён в матрице.
+
+Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md), [module/scripts/socket/socketMessage.js](../scripts/socket/socketMessage.js.md), [module/actor/witcherActor.js](../actor/witcherActor.js.md), [module/item/mixins/repairMixin.js](../item/mixins/repairMixin.js.md), [system.json](../../system.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-05](../../../cross-check-0002.md#r002-05), [R002-11](../../../cross-check-0002.md#r002-11). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

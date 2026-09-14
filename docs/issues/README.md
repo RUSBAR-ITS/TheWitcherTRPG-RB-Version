@@ -14,7 +14,7 @@
 
 | ID | Описание | Статус |
 | --- | --- | --- |
-| [issue-00001](potential/issue-00001.md) | Возможное несоответствие регистрации системы в Foundry | `potential` |
+| [issue-00001](potential/issue-00001.md) | Имя каталога системы не проходит проверку ID в загрузчике Foundry | `potential` |
 | [issue-00002](potential/issue-00002.md) | Отсутствие выбранного компедиума прерывает обработчик ready | `potential` |
 | [issue-00003](potential/issue-00003.md) | Интеграция statuscounter вызывает querySelector у массива статусов | `potential` |
 | [issue-00004](potential/issue-00004.md) | Несогласованные commonspeech/commonsp нарушают обращения к общему языку | `potential` |

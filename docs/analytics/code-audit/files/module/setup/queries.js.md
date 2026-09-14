@@ -77,7 +77,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Сетевой обмен и фактические разрешения User.query не тестировались. Подтверждена маршрутизация в изоляции, не успешность игровых действий. Источники эффектов/моделей проверены только в пределах связей. Фактический контракт true требует отдельного решения.
+Прежние .007/.009/.022/.030 и полный текст issue-00008 учтены без повторного запуска. User.query/права/UUID и настоящая запись нескольких клиентов не проверялись. Сетевая доставка — .011, методы регионов — .009, применение эффектов — .005.
 
 ## Связанные проблемы
 
@@ -152,3 +152,13 @@
 [skillDefense](../actor/mixins/defenseMixin.js.md) отправляет {uuid:attacker,function:'addAdrenaline',data:[]} на TheWitcherTRPG.query при крите. Имя присутствует в callableEntityFunctions; принимающий handler не исполнялся в этой порции. Отправитель не ждёт query (273), отсутствие владельца — 185; прежние ограничения исполнения query из issue-00008 сохраняются.
 
 [Сверка и ограничения](../../../review-log.md#task-0003042). Уточнение связей не увеличивает покрытие. Код и статусы issues не исправлялись; подтверждение пользователя не получено.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+В init назначаются два точных ключа TheWitcherTRPG.query и TheWitcherTRPG.applyTemporaryItemImprovements. Сопоставлены три callableFunctions и пять методов whitelist с экспортами/примесями документов и отправителями. Общий handler независимо пробует entity и entity.system; до system.regionProperties.addBehaviorsToRegionUuids не доходит. deleteSpellVisualEffect отсутствует в списке, а отправитель сначала читает неопределённый item. return true не ждёт вызванный Promise и возможен без вызова метода (00008/00009); штатный ремонт использует отдельный сокетный маршрут.
+
+Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md), [module/scripts/temporaryEffects/applyActiveEffect.js](../scripts/temporaryEffects/applyActiveEffect.js.md), [module/scripts/statusEffects/applyStatusEffect.js](../scripts/statusEffects/applyStatusEffect.js.md), [module/data/item/templates/regions/regionPropertiesData.js](../data/item/templates/regions/regionPropertiesData.js.md), [module/data/item/mixin/spellRegionMixin.js](../data/item/mixin/spellRegionMixin.js.md), [module/item/systems/repair.js](../item/systems/repair.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-10](../../../cross-check-0002.md#r002-10). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

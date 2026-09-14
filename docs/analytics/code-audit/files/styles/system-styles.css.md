@@ -207,7 +207,7 @@ JavaScript-функций нет; селекторы и каскад обраб�
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных частей файла нет. Браузер, HTTP-загрузка шрифта, computedStyle, размеры/переполнение, реальное переключение вкладок, hover и поддержка nesting/light-dark в конкретном клиенте не проверялись. Локальное существование ресурса не доказывает доступ службы Foundry.
+C03–C05 .050 и предыдущие проверки корневых классов сохраняют свои границы. Новый браузерный прогон не выполнялся; итоговый каскад/nesting/light-dark/hover переданы .016.
 
 ## Связанные проблемы
 
@@ -218,3 +218,13 @@ JavaScript-функций нет; селекторы и каскад обраб�
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 3f78cbf0372e1da3d5a840e41b456d954c64e403; полный файл | Первичная карточка; [перекрёстная сверка](../../review-log.md#task-0003050) |
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Импорт №4 из witcher-styles.css подключает общие селекторы. Текущий оружейный partial создаёт input.reliable-info/item-quantity; две декларации transition:all 0.3 ease остаются без единицы времени (00312). .tab.magic-info/.active соответствует общей вкладке магии, .invisible используется диалогом отдыха/инвентарём. CSS меняет представление, не поля Actor/Item; совпадение имени класса само по себе не доказывает текущий PARTS.
+
+Сопоставленные определения и потребители: [styles/witcher-styles.css](witcher-styles.css.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs](../templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs.md), [templates/partials/character/tab-magic.hbs](../templates/partials/character/tab-magic.hbs.md), [templates/dialog/heal/heal-rest.hbs](../templates/dialog/heal/heal-rest.hbs.md).
+
+[Протокол и границы](../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-07](../../cross-check-0002.md#r002-07). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

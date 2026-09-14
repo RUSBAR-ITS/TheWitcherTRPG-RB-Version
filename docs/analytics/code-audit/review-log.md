@@ -1,5 +1,127 @@
 # Журнал перекрёстных сверок
 
+## TASK-0004.002
+
+2026-09-14; rusbar-main, HEAD cfb19daf6185331f5e00b7c5073f526396ce25a7. Перед началом дерево чистое, 1735 отслеживаемых файлов. Выполнена [TASK-0004.002](../../tasks/task-0004.002.md): 18 основных файлов, 18 назначенных issues с полными поздними дополнениями; [матрицы и 13 процессов](cross-check-0002.md#результаты-task-0004002). Исходники совпали с TASK-0001; SHA-256 текущих 615 файлов (sorted path UTF-8 + NUL + bytes) — 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c.
+
+### Этап 1 — манифест, типы, модели и листы
+
+Сопоставлены system.json, TheWitcherTRPG.js, registerDataModels.js и registerSheets.js с определениями и локальным ядром. Проверены 21 импорт точки входа, 33 импорта моделей/класса сообщения и 26 импортов листов. Объявленные 3 Actor/18 Item/3 ChatMessage/1 специальный ActiveEffect имеют модели; базовые ActiveEffect/ChatMessage учитываются отдельно. Actor.mystery и Item.clue/obstacle/skill не объявлены в documentTypes; Item.base не объявляется доступным самостоятельным типом.
+
+Прочитаны Document.TYPES (/opt/foundryvtt/common/abstract/document.mjs:237), DocumentTypeField (common/data/fields.mjs:4174–4200), Game.setupPackages (client/game.mjs:615–628) и DocumentSheetConfig (client/applications/apps/document-sheet-config.mjs:366–465). CONFIG.dataModels не расширяет TYPES, который читает game.model. Strict/fallback имеют значение; прежняя .023 (2026-09-11) проверяла clue/spell настоящим полем с заданным списком, а не созданием документа мира. На init регистрации листов попадают в очередь; сохранённый выбор пользователя участвует в default.
+
+21 Item/4 Actor/1 ActiveEffect регистрации различены. В 26 классах найдены 49 буквальных template/return-ссылок: 41 системная и 8 ядра, 43 уникальных пути; все существуют. Первичная попытка искать core HBS под public/ была ошибкой вспомогательного поиска: правильный корень /opt/foundryvtt/templates. После уточнения корня пропусков нет; это не issue системы. note получает общий PARTS={}, его отдельный HBS не подключён — прежняя 00057, отдельно от необъявленных типов 00005.
+
+Новый N01 локализовал issue-00001 в getPackages → fromManifestPath: id сравнивается с именем каталога, текущий путь даёт null до конструктора. Контроль с согласованным путём в памяти проходит лишь эту проверку. Каталог и манифест не изменялись; сканер службы не запускался.
+
+**Сверка этапа:** R002-01–04 связали декларацию, регистрацию, тип/лист и ранний серверный барьер. Причина 00001 уточнена; 00005/00057 не объединены. Служба/создание документов/сохранённый лист — U01/U02.
+
+### Этап 2 — hooks, helpers, ресурсы и обработчики
+
+Сверены config.js, handlebars.js, hooks.js, queries.js, socketHook.js, deprecations.js, три CSS и вызовы entry. Все 2431 строки config — декларации 36 свойств. Проверены потребители skillMap/commonsp, statusEffects/querySelector, armorEffects/applyStatus и defenseOptions/brawling. Прямого runtime-потребителя WITCHER.Crit в module/templates не найдено; одноимённая локализация не является чтением объекта. Отсутствие динамических внешних потребителей не утверждается.
+
+59 уникальных preload-путей и 35 CSS-импортов существуют. Три asset-адреса config проверены только на наличие; assets остаётся исключённой категорией. Из 17 helpers девять регистрируются по имени и восемь объектом. sum определён при импорте WitcherActorSheet, findNeededComponent — в craftingMixin. Core loadTemplates возвращает Promise.all; getTemplate получает HTML через game.socket.emit('template', path, callback), компилирует и кеширует partial (client/applications/handlebars.mjs:29–49/80–85). Это не установленный здесь HTTP-запрос шаблона.
+
+Сопоставлены updateCombat → generalCombatHook/regionHooks, два query и socket → emitForGM/callers/цели документов. User.query ядра проверяет имя, QUERY_USER и активность адресата до userQuery; возвращает value ответа или выбрасывает rejected reason. Это не ожидание операций, которые handler не связал со своим Promise. Пять чат-listeners и шесть context menu проверены как регистрации и непосредственные вызовы; DOM-события здесь не исполнялись. deprecationWarnings/renderActiveEffectConfig пусты.
+
+| Прежнее доказательство | Что использовано и где предел |
+| --- | --- |
+| [TASK-0002](review-log.md#task-0002--итоговая-перекрёстная-сверка), 2026-09-10, 3252300787c348e11f95098c345a6af7704b690c | Исходные ready/регистрации/helpers/query/hooks/socket с фасадами, не клиент |
+| [.009](review-log.md#task-0003009), 2026-09-10 | Полные effect/status helpers, ранние Promise/statuscounter; без сети и настоящего внешнего модуля |
+| [.014](review-log.md#task-0003014), 2026-09-10; [.027](review-log.md#task-0003027), 2026-09-11 | Подписи ног и armorEffects→applyStatus; фасады статусов/контекста, сопротивление не превращается автоматически во вредоносный статус |
+| [.022](review-log.md#task-0003022), 2026-09-11 | RegionProperties/whitelist и countdown, группы 15–20; регион/запись подменены |
+| [.033](review-log.md#task-0003033), 2026-09-11, группа 11 | CharacterData counter=21 → настоящий контекст/HBS → пустая карточка/toggle TypeError; браузерная min/max-валидация не запускалась |
+| [.042](review-log.md#task-0003042), 2026-09-12, группа 14 | block/brawling → успех без Item → item.type TypeError; Roll задан, сообщение/запись подменены |
+| [.045](review-log.md#task-0003045), 2026-09-12, 20ce99a1218a82bf46c84570e55587253d0cfbc3, группы 13/24–28 | Combat без фильтра; Socket.IO 4.8.3 autoConnect:false, emit/acks/sendBuffer; настоящие sender/receiver с документными фасадами, без соединения |
+| [.050](review-log.md#task-0003050), 2026-09-12, 3f78cbf0372e1da3d5a840e41b456d954c64e403, C01–C05 | CSS-граф/font/ready и HBS отдыха/магии/оружия; PostCSS 8.5.12/Handlebars 4.7.9/parse5, без computedStyle |
+| [.060](review-log.md#task-0003060), 2026-09-13 | Три Torn Stomach после настоящей подготовки дают динамическое commonspeech при неизменном commonsp; 00004 уже шире раннего поиска строки |
+
+**Сверка этапа:** R002-06–11 устанавливают входы, первые барьеры и действия. S0655 ошибочно относил имя канала к system-полю: классификация исправлена. 00003/00004/00006/00007/00008/00009/00010/00089/00213/00270/00312 сопоставлены с полными поздними текстами. Старые опыты не запускались повторно. Сеть, DOM, модули и динамические поля — U04–U06.
+
+### Этап 3 — настройки, пакеты, CLI и выпуск
+
+Девять настроек связаны с чтениями и getSetting/includes; все 16 буквальных name/hint найдены в en/ru. criticalWoundsPack допускает любой Item-pack. ready индексирует четыре поля, applyCritWound позже читает текущую настройку и pack.index; onChange/requiresReload нет. N02 уточнил pending/пустой/rejected индекс. Пустой индекс пропускает ready; отказ выбора возникает позже — прежняя .044 (2026-09-12, группы 28/36), issue-00289. Issue-00002 дополнена без объединения причин.
+
+Семь каталогов packsJson соответствуют manifest после нормализации .db; packs/ не читался. 226 JSON уже полностью описаны .052–.061, устаревшие текущие ожидания карточек сняты. Сверены package/scripts, build/includes и оба utils. Lock фиксирует CLI 3.0.3/prettier 3.3.3; диапазон, lock, опубликованный исходник и установленная зависимость различены. Дополнительная read-only проверка createRequire от package.json дала MODULE_NOT_FOUND для обоих имён: в текущем checkout они также не разрешаются. Установка не выполнялась.
+
+Использованы .050 P01–P14/C06: исходные utils и CLI 3.0.3, virtual fs/path/ClassicLevel, Node 24.16.0; опубликованный tarball был проверен по lock integrity. В .002 скачивания/установки не было. P06/P07/P11 устанавливают удаление root JSON до успеха; P09/P10 — stale nested/дубликат _key при compile; P05 — ENOENT до mkdir CLI. C06 передавал includes в zip и обнаружил отсутствие template.json, но не запускал архиватор. .github остаётся прежним справочным потребителем вне охвата.
+
+**Сверка этапа:** R002-05/12/13 связали настройку, индекс, потребителя и подготовку дистрибутива. 00002/00313–00316 прочитаны полностью; причины сохранены раздельно. Настоящий индекс/смена настройки — U03, native DB/CI/zip — U07.
+
+### Новые исполнения N01/N02
+
+Два новых ограниченных сценария переданы в stdin: node --input-type=module из корня checkout. Ни стенда/тестовых файлов, ни временных пакетов/каталогов, ни документов мира не создавалось. N01 исполняет выбранный неизменённый метод, N02 — выбранную регистрацию ready, не сервер/entry целиком. Ожидания заданы отдельно через assert.
+
+N01: /opt/foundryvtt/dist/packages/package.mjs, SHA-256 e77779bc83a740e7e9fa0903d5c83d4f5e5a7ef9112e552d1de9bfd40ea259ec; fromManifestPath начинается с байта 4266, фрагмент 1563 символа. Foundry 14.367.0, Node v24.16.0. Для текущего пути — null, 0 конструкторов и error-warning; согласованный путь в памяти вызывает фасад конструктора один раз. Пределы прямо перечислены в сценарии.
+
+```js
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+const sourcePath='/opt/foundryvtt/dist/packages/package.mjs';
+const source=fs.readFileSync(sourcePath,'utf8');
+const start=source.indexOf('static fromManifestPath(');
+const end=source.indexOf('static loadLocalManifest(',start);
+assert(start>0&&end>start);
+const method=source.slice(start,end);
+const manifest=JSON.parse(fs.readFileSync('system.json','utf8'));
+const calls={warnings:[],errors:[],constructed:[]};
+const context={
+ path,URL,
+ config:{logger:{error:e=>calls.errors.push(String(e))}},
+ packages:{warnings:{add:(id,data)=>calls.warnings.push({id,...data}),has:()=>false}},
+ global:{options:{debug:false}},
+ loadInput:e=>({manifestPath:e,manifestData:structuredClone(manifest)}),
+ track:x=>calls.constructed.push(x)
+};
+const cls=vm.runInNewContext('(class t {static type="system";static #t(){throw Error("signature boundary must not be reached");} static loadLocalManifest(e){return loadInput(e)} constructor(data,options){track({data,options});this.validationFailures={fields:null};this._unknownKeys=[];this.id=data.id;} '+method+'})',context);
+const current=path.resolve('system.json');
+const rejected=cls.fromManifestPath(current);
+assert.equal(rejected,null);assert.equal(calls.constructed.length,0);
+assert.equal(calls.warnings.length,1);
+assert.equal(calls.warnings[0].message,'Invalid system "TheWitcherTRPG" detected in directory "TheWitcherTRPG-RB-Version"');
+const accepted=cls.fromManifestPath('/memory/only/TheWitcherTRPG/system.json');
+assert(accepted);assert.equal(calls.constructed.length,1);
+console.log(JSON.stringify({corePackage:JSON.parse(fs.readFileSync('/opt/foundryvtt/package.json','utf8')).version,node:process.version,source:sourcePath,sha256:crypto.createHash('sha256').update(source).digest('hex'),methodStartByte:Buffer.byteLength(source.slice(0,start)),methodChars:method.length,currentPath:current,result:rejected,warning:calls.warnings[0],alignedPathPassedGate:true,limits:['loadLocalManifest returns actual JSON with supplied in-memory path','logger/warnings/signature/constructor are facades','positive control only passes id/directory gate; no full package validation or server scan']}));
+```
+
+N02: настоящий ready из module/TheWitcherTRPG.js:62–92. Пока индекс pending, последующие регистрации не достигнуты. resolve([]) даёт getIndex → hotbarDrop → socket → deprecations. reject оставляет только getIndex и отклоняет callback. Шрифт false в фасаде настроек; DOM/CSS этим новым сценарием не испытывались.
+
+```js
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const s=fs.readFileSync('module/TheWitcherTRPG.js','utf8');
+const start=s.indexOf("Hooks.once('ready'");
+const end=s.indexOf("Hooks.once('polyglot.init'",start);
+assert(start>=0 && end>start);
+const fragment=s.slice(start,end);
+async function scenario(reject) {
+ let fn,release,fail,fields,settled=false;
+ const events=[];
+ const pack={index:[],getIndex(options){fields=options.fields;events.push('getIndex');return new Promise((resolve,rejection)=>{release=resolve;fail=rejection})}};
+ const context={Hooks:{once:(name,cb)=>{assert.equal(name,'ready');fn=cb},on:(name)=>events.push(name)},game:{settings:{get:(namespace,key)=>key==='criticalWoundsPack'?'chosen':false},packs:{get:()=>pack}},registerSocketListeners:()=>events.push('socket'),deprecationWarnings:()=>events.push('deprecations')};
+ vm.runInNewContext(fragment,context);
+ const promise=fn();promise.then(()=>{settled=true},()=>{settled=true});
+ await Promise.resolve();assert.deepEqual(events,['getIndex']);assert.equal(settled,false);
+ if(reject){fail(new Error('Index unavailable'));await assert.rejects(promise,/Index unavailable/);assert.deepEqual(events,['getIndex'])}
+ else {release(pack.index);await promise;assert.deepEqual(events,['getIndex','hotbarDrop','socket','deprecations'])}
+ assert.deepEqual(Array.from(fields),['system.criticalLevel','system.location','system.lesserEffect','system.treatment']);
+ return {case:reject?'index rejects':'pending then empty index',events,settled,indexSize:pack.index.length,fields:Array.from(fields)};
+}
+console.log(JSON.stringify({source:'module/TheWitcherTRPG.js:62-92',method:'unchanged ready registration/callback',results:[await scenario(false),await scenario(true)],limits:'Hooks/settings/pack/index/socket/deprecations are facades; no Foundry startup, HTTP, DB, CSS or Macro execution'}));
+```
+
+### Итог сверки документов
+
+Все 18 карточек получили содержательные уточнения связи и текущих ограничений. Оценены 18 F, 197 S, 34 D, 18 issue-строк и 15 Q; добавлены 13 процессов и 7 границ с владельцами. Начальные 1596 S/1198 D не объявляются исчерпывающим графом. Сверка №1 и исторические записи журнала сохранены.
+
+Новых issues нет: 329 potential, 0 open/closed. Уточнены 00001/00002; подтверждение пользователем, исправление и закрытие не приписаны исследованию. .002 done, TASK-0004 in-progress; следующая .003, .003–.018 planned; TASK-0003 done, TASK-0005 draft.
+
+Формальная проверка завершена: 615 строк реестра и их хеши сохранены; матрицы содержат 615 F/329 issues/1596 S/1198 D/277 Q/62 EJ без повторов ID. Проверены 59682 локальные ссылки/якоря и 188 Markdown-таблиц затронутых материалов; git diff --check — exit 0. .001/.002 done, .003–.018 planned, родитель in-progress; историческое тело журнала и хвост родителя сохранены. Изменены только 31 существующий Markdown-документ, новых файлов нет. У всех 1735 ранее отслеживаемых файлов совпадают mode/uid/gid/inode; содержимое 1704 файлов вне разрешённого перечня неизменно. Ветка/HEAD сохранены, staged-изменений и нового коммита нет. Запуск службы/мира, запись БД, install/build/compile/extract и изменение доступа не выполнялись.
+
 ## TASK-0004.001
 
 Дата: 2026-09-14. Ветка rusbar-main, HEAD `8ca5dd1b7ee383cda3f938d472ff4d168d2d10c1`; перед началом рабочее дерево чистое, 1734 отслеживаемых файла. [Задача](../../tasks/task-0004.001.md), [срез и матрицы](cross-check-0002.md). Выполнена подготовка сквозной сверки; предметные блоки .002–.017 и итог .018 ещё не выполнены.

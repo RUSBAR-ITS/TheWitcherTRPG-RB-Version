@@ -112,7 +112,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Схемы и поведение самих моделей/листов за пределами проверки определений не анализировались полностью. Мир не запускался, окна не открывались, сохранённые настройки листов и создание незаявленных типов не проверялись.
+Локальное существование HBS не доказывает его рендер или сохранение формы. Сохранённый выбор листа учитывается ядром; makeDefault не гарантирует его замену. Состояния листов — .013/.015/.016; отдельного запуска браузера здесь нет.
 
 ## Связанные проблемы
 
@@ -283,3 +283,13 @@ WitcherLootSheet (import3, Actors.registerSheet113–116) и WitcherMountSheet (
 [templates/partials/monster/monster-spell-tab.hbs](../../../../../../templates/partials/monster/monster-spell-tab.hbs) — [карточка](../../templates/partials/monster/monster-spell-tab.hbs.md).
 
 [Сценарии, методика и пределы проверки](../../../review-log.md#task-0003039). Соседние определения проверены в пределах связи; это не расширяет состав шести полностью разобранных файлов.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Все 26 импортов ведут к существующим классам. 21 регистрация Item (общая и 20 специальных), 4 Actor и один ActiveEffect передаются API ядра; namespace witcher допустим и не заменяет ID пакета. На init регистрации попадают в очередь DocumentSheetConfig; явный types позволяет зарегистрировать лист даже без добавления типа в game.model. note получает общий WitcherItemSheet с PARTS={}, несмотря на существующий отдельный HBS (issue-00057). В 26 импортированных классах сверены 49 буквальных ссылок template/return: 41 системная и 8 ядра, 43 уникальных пути, все существуют.
+
+Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md), [system.json](../../system.json.md), [module/item/sheets/WitcherItemSheet.js](../item/sheets/WitcherItemSheet.js.md), [templates/sheets/item/note-sheet.hbs](../../templates/sheets/item/note-sheet.hbs.md), [module/actor/sheets/WitcherCharacterSheet.js](../actor/sheets/WitcherCharacterSheet.js.md), [module/activeEffect/WitcherActiveEffectSheet.js](../activeEffect/WitcherActiveEffectSheet.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-02](../../../cross-check-0002.md#r002-02), [R002-03](../../../cross-check-0002.md#r002-03), [R002-06](../../../cross-check-0002.md#r002-06). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.

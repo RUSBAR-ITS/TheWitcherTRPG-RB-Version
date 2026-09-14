@@ -192,7 +192,7 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящий движок Handlebars и HTML листов не рендерились, запросы шаблонов по HTTP не выполнялись. Зависимость sum проверена по источнику определения, а не посредством реального импорта всех листов. eachLimit за границей массива описан как поведение; достижимость такого входа через текущую модель lifeEvents отдельно не установлена.
+Прежние рендеры настоящим Handlebars (.033/.050) и поздние карточки учтены; исходное ожидание полного разбора уже снято. Не проверены загрузка template через живой сокет, порядок сторонних helper-регистраций и computedStyle. Представление и локализация — .016, биография — .013.
 
 ## Связанные проблемы
 
@@ -411,3 +411,13 @@ preloadHandlebarsTemplates включает tab-magic, spell-type-list и ста
 localize в системных HBS предоставляет ядро Foundry, а не registerHandelbarHelpers. Исполнен исходный helper client/applications/handlebars.mjs: непустой options.hash передаётся _loc, обычный HBS-вывод экранирует строку. AST всех 132 HBS дал 1094 вызова localize: 1013 буквальных и 81 динамический; четыре hash-вызова относятся к DOCUMENT.* ядра. В en/ru только две строки с подстановками (currency, target/heal), их программные потребители проверены отдельно. Полные словари и точные упоминания: [en](../../lang/en.json.md), [ru](../../lang/ru.json.md).
 
 [Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
+
+## Сквозная сверка TASK-0004.002
+
+2026-09-14; rusbar-main, cfb19daf6185331f5e00b7c5073f526396ce25a7. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+59 уникальных preload-путей существуют; 17 helpers регистрируются синхронно внутри async-функции без await. Настоящий loadTemplates ядра возвращает Promise.all, getTemplate получает HTML через game.socket.emit('template', path, callback), компилирует и кеширует partial. getOwnedComponentCount связан с craftingMixin.findNeededComponent и Array.prototype.sum, определённым при импорте WitcherActorSheet. eachLimit→CharacterData.lifeEventCounter→background HBS→toggle уже воспроизведён в .033 (issue-00213); перепутанные подписи ног armorPartsInfo относятся к issue-00007.
+
+Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](../TheWitcherTRPG.js.md), [module/actor/mixins/craftingMixin.js](../actor/mixins/craftingMixin.js.md), [module/actor/sheets/WitcherActorSheet.js](../actor/sheets/WitcherActorSheet.js.md), [module/data/actor/characterData.js](../data/actor/characterData.js.md), [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md).
+
+[Протокол и границы](../../../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-06](../../../cross-check-0002.md#r002-06), [R002-08](../../../cross-check-0002.md#r002-08). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.
