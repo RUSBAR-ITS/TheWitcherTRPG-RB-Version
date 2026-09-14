@@ -146,9 +146,7 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 
 ## Непроверенные участки и открытые вопросы
 
-Установленные packs/LevelDB, сборка/извлечение, HTTP, визуальная отрисовка, клики, права реальных игроков, полный DOM enrichHTML, сторонние модули и запись мира не проверялись. Наличие schemaVersion=13.341 в истории экспорта не заменяет проверенную совместимость методов ядра 14.367.0. Нет утверждения о соответствии вероятностей, текстов, названий и бонусов рулбукам.
-
-Связанные ещё не разобранные Character-gen-файлы прочитаны и вызваны лишь для перечисленных переходов; полный аудит остаётся в [TASK-0003.056](../../../../../tasks/task-0003.056.md). Точки выбора пользователем не заменялись предполагаемой автоматизацией.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-04](../../../cross-check-0002.md#u017-04); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -172,3 +170,13 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 | [Witcher Lifepath: Risky Decade](../character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json.md) | `OAW3DJizEEzA919s` | 124; [26,100] |
 
 В общей сверке пяти пакетов проверены 117 JSON / 929 результатов, 252 ссылки и getHTML всех результатов. Все поля/тексты/UUID данной карточки сопоставлены с источником. Отдельные случайные комбинации не перебирались полностью; реальные пакеты, мир и права игроков не проверялись. [Протокол .056](../../../review-log.md#task-0003056).
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Witcher Lifepath: Risky Outcome: 1d10, возможные totals 1…10; 7 результатов (4 text / 3 document), replacement=true, displayRoll=false. Рекурсивные переходы: Witcher Lifepath: Benefit Outcome; Witcher Lifepath: Allies - Generator; Witcher Lifepath: Hunt Generator. По разрешимому графу от этого прямого входа 1–8 конечных текстов, максимальная глубина 3; входящих файлов 1. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json](../character-generator/Witcher_Lifepath__Risky_Decade_6zn78Gj7lZtJfS90.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json](Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json](Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json](Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-19](../../../cross-check-0002.md#r017-19). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

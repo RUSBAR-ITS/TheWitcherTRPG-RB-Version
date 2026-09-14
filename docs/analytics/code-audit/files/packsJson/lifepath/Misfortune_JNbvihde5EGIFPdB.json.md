@@ -115,9 +115,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались мир, полный клиент, сборка/извлечение и запись БД. Полный enrichHTML с настоящим DOM и интерфейс inline-roll не исполнялись: выполнены реальные методы inline-обработки/бросков поверх фасадов строк и DOM-элементов. Перехват ChatMessage не подтверждает сохранённое сообщение или права игроков. Совпадение экспортов с установленными packs не проверялось.
-
-Соответствие текстов/чисел рулбукам, переводы и литературная редактура исключены. Полные карточки внешних генераторов относятся к .055/.056; проверенные здесь входящие связи не увеличивают покрытие этих файлов.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады. Inline xN имеет семантику explode, не умножения (00319); границы x2/x3 отличаются от недостижимых x10/x100. Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-07](../../../cross-check-0002.md#u017-07), [U017-03](../../../cross-check-0002.md#u017-03); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -136,3 +134,13 @@
 | [Life Event Generator](../character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json.md) | `nzF8eW0BGLhTGpdM` | 54; [5,7] |
 
 В общей сверке пяти пакетов проверены 117 JSON / 929 результатов, 252 ссылки и getHTML всех результатов. Все поля/тексты/UUID данной карточки сопоставлены с источником. Отдельные случайные комбинации не перебирались полностью; реальные пакеты, мир и права игроков не проверялись. [Протокол .056](../../../review-log.md#task-0003056).
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Misfortune: 1d10, возможные totals 1…10; 10 результатов (10 text / 0 document), replacement=true, displayRoll=false. Листовая выдача текста без documentUuid. По разрешимому графу от этого прямого входа 1–1 конечных текстов, максимальная глубина 0; входящих файлов 2. В description 10 inline: 1d10x100, 1d10; вычисление относится к getHTML, не к roll.  Inline xN имеет семантику explode, не умножения (00319); границы x2/x3 отличаются от недостижимых x10/x100.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json.md), [packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json](Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json.md), [module/data/actor/templates/character/general/lifeEventData.js](../../module/data/actor/templates/character/general/lifeEventData.js.md), [module/data/actor/templates/character/general/lifeEventsData.js](../../module/data/actor/templates/character/general/lifeEventsData.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-09](../../../cross-check-0002.md#r017-09), [R017-05](../../../cross-check-0002.md#r017-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

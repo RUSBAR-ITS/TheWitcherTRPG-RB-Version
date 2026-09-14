@@ -112,9 +112,7 @@ JSON хранит RollTable и вложенные TableResult. После пря
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались мир, полный браузер, HTTP, compile/extract, установка пакетов или запись БД. Настоящие модели/методы/формулы и HBS исполнены с фасадами ClientDocumentMixin, UUID-хранилища, enrichHTML, document anchor, Roll.render и ChatMessage.create. Результат фасада не доказывает внешний вид интерфейса, установленное содержимое pack и права игроков.
-
-Соответствие текстов/чисел рулбукам, переводы и литературная редактура исключены. Пять прямых внешних генераторов и RandomCharacter точечно проверены как потребители; полные карточки этих файлов остаются TASK-0003.056. Внешние модули и макросы могут добавлять обработку.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-04](../../../cross-check-0002.md#u017-04); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -123,3 +121,13 @@ JSON хранит RollTable и вложенные TableResult. После пря
 ## История актуализации
 
 - 2026-09-12 — полный технический разбор в TASK-0003.054: структура, все результаты, индивидуальные отличия, зависимости и перекрёстная сверка; JSON сохранён.
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Which Parent: 1d10, возможные totals 1…10; 3 результатов (3 text / 0 document), replacement=true, displayRoll=true. Листовая выдача текста без documentUuid. По разрешимому графу от этого прямого входа 1–1 конечных текстов, максимальная глубина 0; входящих файлов 3. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json.md), [packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json](Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json.md), [packsJson/character-generator-sub-tables/Parental_Fate__Northern_FQEyr6n57ae1ySLC.json](Parental_Fate__Northern_FQEyr6n57ae1ySLC.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-10](../../../cross-check-0002.md#r017-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

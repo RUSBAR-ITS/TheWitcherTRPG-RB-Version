@@ -145,9 +145,7 @@ draw с показом чата вызывает ChatMessage.create и може�
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверялись действующие packs/LevelDB, compile/extract, HTTP, полное DOM enrichHTML, внешний вид, права игроков, настоящее сохранение форм/мира, макросы и better-rolltables. Случайные сочетания, не входящие в перечисленные сценарии, описаны по графу с явным пределом проверки. Соответствие контента и чисел книгам исключено.
-
-Общая сверка охватывает все 117 файлов пяти пакетов, включая 15 lifepath-таблиц вне дерева этих 13 генераторов; они доступны отдельно и не объявлены ненужными. Другие компедиумы разбираются в следующих порциях.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-04](../../../cross-check-0002.md#u017-04); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -160,3 +158,13 @@ draw с показом чата вызывает ChatMessage.create и може�
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | be1c48770219a6d2871259f12c30d93636aac646; полный файл и перечисленные связи | Первичная карточка; [протокол TASK-0003.056](../../../review-log.md#task-0003056) |
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Background Generator: Halfling: 1d2, возможные totals 1…2; 8 результатов (2 text / 6 document), replacement=true, displayRoll=false. Рекурсивные переходы: Origin: Human Lands; Family and Parents: Elderland; Siblings: Dwarves/Halflings; Dwarf / Gnome Profession; Origin: Elderland. По разрешимому графу от этого прямого входа 8–11 конечных текстов, максимальная глубина 5; входящих файлов 1. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json](Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json.md), [packsJson/character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json](../character-generator-sub-tables/Origin__Human_Lands_de64KicDG5R7FFO9.json.md), [packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json](../character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md), [packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json](../character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json.md), [packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json](../character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json.md), [packsJson/character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json](../character-generator-sub-tables/Origin__Elderland_f17QrlT4P5u8m65o.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-12](../../../cross-check-0002.md#r017-12), [R017-13](../../../cross-check-0002.md#r017-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

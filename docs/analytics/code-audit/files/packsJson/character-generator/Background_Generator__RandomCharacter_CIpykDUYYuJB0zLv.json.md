@@ -148,9 +148,7 @@ draw с показом чата вызывает ChatMessage.create и може�
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверялись действующие packs/LevelDB, compile/extract, HTTP, полное DOM enrichHTML, внешний вид, права игроков, настоящее сохранение форм/мира, макросы и better-rolltables. Случайные сочетания, не входящие в перечисленные сценарии, описаны по графу с явным пределом проверки. Соответствие контента и чисел книгам исключено.
-
-Общая сверка охватывает все 117 файлов пяти пакетов, включая 15 lifepath-таблиц вне дерева этих 13 генераторов; они доступны отдельно и не объявлены ненужными. Другие компедиумы разбираются в следующих порциях.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады. С учётом _depth≤5 успешная выдача 7–10 текстов, часть семейных маршрутов отклоняется на 6 (00320). Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-04](../../../cross-check-0002.md#u017-04); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -163,3 +161,13 @@ draw с показом чата вызывает ChatMessage.create и може�
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | be1c48770219a6d2871259f12c30d93636aac646; полный файл и перечисленные связи | Первичная карточка; [протокол TASK-0003.056](../../../review-log.md#task-0003056) |
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Background Generator: RandomCharacter: 1d15, возможные totals 1…15; 10 результатов (5 text / 5 document), replacement=true, displayRoll=false. Рекурсивные переходы: Background Generator: Human; Background Generator: Elves; Background Generator: Dwarves; Witcher Background Generator; Background Generator: Halfling. По разрешимому графу от этого прямого входа 7–12 конечных текстов, максимальная глубина 6; входящих файлов 0. Inline-выражений в результатах нет.  С учётом _depth≤5 успешная выдача 7–10 текстов, часть семейных маршрутов отклоняется на 6 (00320).
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](Background_Generator__Human_g9I3DpPOi5CfOFBz.json.md), [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](Background_Generator__Elves_L8o8Rz85um05VUW4.json.md), [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json.md), [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md), [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-13](../../../cross-check-0002.md#r017-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

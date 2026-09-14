@@ -143,9 +143,7 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 
 ## Непроверенные участки и открытые вопросы
 
-Установленные packs/LevelDB, сборка/извлечение, HTTP, визуальная отрисовка, клики, права реальных игроков, полный DOM enrichHTML, сторонние модули и запись мира не проверялись. Наличие schemaVersion=13.341 в истории экспорта не заменяет проверенную совместимость методов ядра 14.367.0. Нет утверждения о соответствии вероятностей, текстов, названий и бонусов рулбукам.
-
-Связанные ещё не разобранные Character-gen-файлы прочитаны и вызваны лишь для перечисленных переходов; полный аудит остаётся в [TASK-0003.056](../../../../../tasks/task-0003.056.md). Точки выбора пользователем не заменялись предполагаемой автоматизацией.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-07](../../../cross-check-0002.md#u017-07); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -158,3 +156,13 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-12 | cd2743d0548d5c129065c970d4aa5c43cc9632e2; полный файл и перечисленные связи | Первичная карточка по TASK-0003.055; [протокол](../../../review-log.md#task-0003055) |
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Witcher Lifepath: Hunt Generator: 1d1, возможные totals 1…1; 4 результатов (0 text / 4 document), replacement=true, displayRoll=false. Рекурсивные переходы: Witcher Lifepath: Hunt - What Was the Prey?; Witcher Lifepath: Hunt - Where Was the Prey?; Witcher Lifepath: Hunt - Was There a Twist?; Witcher Lifepath: Hunt - How Did It End?. По разрешимому графу от этого прямого входа 4–5 конечных текстов, максимальная глубина 2; входящих файлов 4. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json](Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json](Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json](Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json](Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Where_Was_the_Prey__PUVAGxwjXlFhXrhv.json](Witcher_Lifepath__Hunt___Where_Was_the_Prey__PUVAGxwjXlFhXrhv.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___Was_There_a_Twist__uLX85Bx2Jimqmx6o.json](Witcher_Lifepath__Hunt___Was_There_a_Twist__uLX85Bx2Jimqmx6o.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___How_Did_It_End__n13vBwJk61euGPa1.json](Witcher_Lifepath__Hunt___How_Did_It_End__n13vBwJk61euGPa1.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-18](../../../cross-check-0002.md#r017-18). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

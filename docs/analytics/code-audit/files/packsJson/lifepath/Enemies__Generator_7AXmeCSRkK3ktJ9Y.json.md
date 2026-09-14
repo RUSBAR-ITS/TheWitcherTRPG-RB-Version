@@ -117,9 +117,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались мир, полный клиент, сборка/извлечение и запись БД. Полный enrichHTML с настоящим DOM и интерфейс inline-roll не исполнялись: выполнены реальные методы inline-обработки/бросков поверх фасадов строк и DOM-элементов. Перехват ChatMessage не подтверждает сохранённое сообщение или права игроков. Совпадение экспортов с установленными packs не проверялось.
-
-Соответствие текстов/чисел рулбукам, переводы и литературная редактура исключены. Полные карточки внешних генераторов относятся к .055/.056; проверенные здесь входящие связи не увеличивают покрытие этих файлов.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-07](../../../cross-check-0002.md#u017-07); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -128,3 +126,13 @@
 ## История актуализации
 
 - 2026-09-12 — полный технический разбор в TASK-0003.053; исходник сохранён, выполнена перекрёстная сверка с моделью, потребителями и экспортами соседних пакетов.
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Enemies: Generator: 1d1, возможные totals 1…1; 7 результатов (0 text / 7 document), replacement=true, displayRoll=false. Рекурсивные переходы: Enemies: Gender; Enemies: Position; Enemies: The Cause; Enemies: Who Was Wronged; Enemies: Power; Enemies: How Far Has It Escalated?; Enemies: What Is Their Power?. По разрешимому графу от этого прямого входа 7–7 конечных текстов, максимальная глубина 1; входящих файлов 1. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json](Allies_and_Enemies_Lp42vhkw20Ys973y.json.md), [packsJson/lifepath/Enemies__Gender_FMondgMHlPLSy3cq.json](Enemies__Gender_FMondgMHlPLSy3cq.json.md), [packsJson/lifepath/Enemies__Position_WeN4QhEHL468Ushx.json](Enemies__Position_WeN4QhEHL468Ushx.json.md), [packsJson/lifepath/Enemies__The_Cause_U9R1ct2xP13y6R7j.json](Enemies__The_Cause_U9R1ct2xP13y6R7j.json.md), [packsJson/lifepath/Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json](Enemies__Who_Was_Wronged_cz5KlvgE7I7QV57H.json.md), [packsJson/lifepath/Enemies__Power_9mYMTKkCuU2ElJdx.json](Enemies__Power_9mYMTKkCuU2ElJdx.json.md), [packsJson/lifepath/Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json](Enemies__How_Far_Has_It_Escalated__BLiqJBssahtqPqVf.json.md), [packsJson/lifepath/Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json](Enemies__What_Is_Their_Power__sH1XIFHObBFdbjTI.json.md), [module/actor/sheets/WitcherCharacterSheet.js](../../module/actor/sheets/WitcherCharacterSheet.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-08](../../../cross-check-0002.md#r017-08). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

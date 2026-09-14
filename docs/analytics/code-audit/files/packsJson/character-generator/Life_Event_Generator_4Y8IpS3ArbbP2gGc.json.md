@@ -137,9 +137,7 @@ draw с показом чата вызывает ChatMessage.create и може�
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверялись действующие packs/LevelDB, compile/extract, HTTP, полное DOM enrichHTML, внешний вид, права игроков, настоящее сохранение форм/мира, макросы и better-rolltables. Случайные сочетания, не входящие в перечисленные сценарии, описаны по графу с явным пределом проверки. Соответствие контента и чисел книгам исключено.
-
-Общая сверка охватывает все 117 файлов пяти пакетов, включая 15 lifepath-таблиц вне дерева этих 13 генераторов; они доступны отдельно и не объявлены ненужными. Другие компедиумы разбираются в следующих порциях.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-07](../../../cross-check-0002.md#u017-07); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -152,3 +150,13 @@ draw с показом чата вызывает ChatMessage.create и може�
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | be1c48770219a6d2871259f12c30d93636aac646; полный файл и перечисленные связи | Первичная карточка; [протокол TASK-0003.056](../../../review-log.md#task-0003056) |
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Life Event Generator: 1d10, возможные totals 1…10; 3 результатов (0 text / 3 document), replacement=true, displayRoll=false. Рекурсивные переходы: Fortune; Misfortune; Romance. По разрешимому графу от этого прямого входа 1–2 конечных текстов, максимальная глубина 2; входящих файлов 0. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json](../lifepath/Fortune_Z0eeWQI3R8v4YNLd.json.md), [packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json](../lifepath/Misfortune_JNbvihde5EGIFPdB.json.md), [packsJson/lifepath/Romance_CDgdx129wZvINn16.json](../lifepath/Romance_CDgdx129wZvINn16.json.md), [module/data/actor/templates/character/general/lifeEventData.js](../../module/data/actor/templates/character/general/lifeEventData.js.md), [module/data/actor/templates/character/general/lifeEventsData.js](../../module/data/actor/templates/character/general/lifeEventsData.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-09](../../../cross-check-0002.md#r017-09). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -116,7 +116,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Не выполнялись сборка/извлечение, установка зависимостей, открытие packs, запуск мира, браузер, HTTP и сохранение документов. Не проверены фактические права игроков, состояние индексов действующих пакетов, внешние better-rolltables/custom enrichers и макросы, статистика RNG или соответствие контента правилам. Реальная очистка HTML в DOM не запускалась. Прямые связи с генератором подлежат повторной сверке в .056/.057.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-07](../../../cross-check-0002.md#u017-07); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -137,3 +137,13 @@
 | [Style and Values](../character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json.md) | `O4kO4Ec9Zjr1F3Qm` | 150; [1,1] |
 
 В общей сверке пяти пакетов проверены 117 JSON / 929 результатов, 252 ссылки и getHTML всех результатов. Все поля/тексты/UUID данной карточки сопоставлены с источником. Отдельные случайные комбинации не перебирались полностью; реальные пакеты, мир и права игроков не проверялись. [Протокол .056](../../../review-log.md#task-0003056).
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Values: Ideals: 1d10, возможные totals 1…10; 10 результатов (10 text / 0 document), replacement=true, displayRoll=true. Листовая выдача текста без documentUuid. По разрешимому графу от этого прямого входа 1–1 конечных текстов, максимальная глубина 0; входящих файлов 1. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json](../character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json.md), [module/data/actor/templates/character/general/detailsData.js](../../module/data/actor/templates/character/general/detailsData.js.md), [templates/partials/character/tab-background.hbs](../../templates/partials/character/tab-background.hbs.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-07](../../../cross-check-0002.md#r017-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

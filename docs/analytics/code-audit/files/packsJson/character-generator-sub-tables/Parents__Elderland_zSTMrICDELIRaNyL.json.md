@@ -118,9 +118,7 @@ JSON хранит RollTable и вложенные TableResult. После пря
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались мир, полный браузер, HTTP, compile/extract, установка пакетов или запись БД. Настоящие модели/методы/формулы и HBS исполнены с фасадами ClientDocumentMixin, UUID-хранилища, enrichHTML, document anchor, Roll.render и ChatMessage.create. Результат фасада не доказывает внешний вид интерфейса, установленное содержимое pack и права игроков.
-
-Соответствие текстов/чисел рулбукам, переводы и литературная редактура исключены. Пять прямых внешних генераторов и RandomCharacter точечно проверены как потребители; полные карточки этих файлов остаются TASK-0003.056. Внешние модули и макросы могут добавлять обработку.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-04](../../../cross-check-0002.md#u017-04); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -140,3 +138,13 @@ JSON хранит RollTable и вложенные TableResult. После пря
 | [Background Generator: Elves](../character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json.md) | `VySuFOPm5I8jY8r9` | 76; [1,1] |
 
 В общей сверке пяти пакетов проверены 117 JSON / 929 результатов, 252 ссылки и getHTML всех результатов. Все поля/тексты/UUID данной карточки сопоставлены с источником. Отдельные случайные комбинации не перебирались полностью; реальные пакеты, мир и права игроков не проверялись. [Протокол .056](../../../review-log.md#task-0003056).
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Parents: Elderland: 1d2, возможные totals 1…2; 4 результатов (2 text / 2 document), replacement=true, displayRoll=true. Рекурсивные переходы: Family Status: Elderland; Parental Fate: Elderland. По разрешимому графу от этого прямого входа 3–5 конечных текстов, максимальная глубина 3; входящих файлов 3. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json](Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md), [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json.md), [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json.md), [packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md), [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-10](../../../cross-check-0002.md#r017-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

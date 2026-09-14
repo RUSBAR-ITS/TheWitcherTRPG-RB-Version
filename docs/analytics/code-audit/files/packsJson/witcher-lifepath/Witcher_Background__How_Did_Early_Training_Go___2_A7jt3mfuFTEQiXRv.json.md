@@ -171,9 +171,7 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 
 ## Непроверенные участки и открытые вопросы
 
-Установленные packs/LevelDB, сборка/извлечение, HTTP, визуальная отрисовка, клики, права реальных игроков, полный DOM enrichHTML, сторонние модули и запись мира не проверялись. Наличие schemaVersion=13.341 в истории экспорта не заменяет проверенную совместимость методов ядра 14.367.0. Нет утверждения о соответствии вероятностей, текстов, названий и бонусов рулбукам.
-
-Связанные ещё не разобранные Character-gen-файлы прочитаны и вызваны лишь для перечисленных переходов; полный аудит остаётся в [TASK-0003.056](../../../../../tasks/task-0003.056.md). Точки выбора пользователем не заменялись предполагаемой автоматизацией.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады. Восемь обычных переходов ведут к Trials без модификатора; специальные грани 4/7 имеют отдельные цели (00321). Имя таблицы не передаёт модификатор в Roll. Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-08](../../../cross-check-0002.md#u017-08); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -196,3 +194,13 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 | [Witcher Background Generator](../character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md) | `VaBMiBo9HQjCGHT1` | 219; [9,10] |
 
 В общей сверке пяти пакетов проверены 117 JSON / 929 результатов, 252 ссылки и getHTML всех результатов. Все поля/тексты/UUID данной карточки сопоставлены с источником. Отдельные случайные комбинации не перебирались полностью; реальные пакеты, мир и права игроков не проверялись. [Протокол .056](../../../review-log.md#task-0003056).
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Witcher Background: How Did Early Training Go? +2: 1d10, возможные totals 1…10; 20 результатов (10 text / 10 document), replacement=true, displayRoll=false. Рекурсивные переходы: Witcher Background: How Did Your Trials Go?; Witcher Background: How Did Your Trials Go? +4. По разрешимому графу от этого прямого входа 4–4 конечных текстов, максимальная глубина 3; входящих файлов 1. Inline-выражений в результатах нет.  Восемь обычных переходов ведут к Trials без модификатора; специальные грани 4/7 имеют отдельные цели (00321). Имя таблицы не передаёт модификатор в Roll.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](../character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json](Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json](Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-14](../../../cross-check-0002.md#r017-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

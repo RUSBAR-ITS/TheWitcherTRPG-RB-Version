@@ -190,9 +190,7 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 
 ## Непроверенные участки и открытые вопросы
 
-Установленные packs/LevelDB, сборка/извлечение, HTTP, визуальная отрисовка, клики, права реальных игроков, полный DOM enrichHTML, сторонние модули и запись мира не проверялись. Наличие schemaVersion=13.341 в истории экспорта не заменяет проверенную совместимость методов ядра 14.367.0. Нет утверждения о соответствии вероятностей, текстов, названий и бонусов рулбукам.
-
-Связанные ещё не разобранные Character-gen-файлы прочитаны и вызваны лишь для перечисленных переходов; полный аудит остаётся в [TASK-0003.056](../../../../../tasks/task-0003.056.md). Точки выбора пользователем не заменялись предполагаемой автоматизацией.
+Сверка TASK-0004.017 завершила граф всех 128 RollTable, связи основных генераторов и границу с уже разобранными Item-травмами (.012). Прежние .052–.057/.061 сохраняют даты и фасады.  Остаток: [U017-01](../../../cross-check-0002.md#u017-01), [U017-02](../../../cross-check-0002.md#u017-02), [U017-07](../../../cross-check-0002.md#u017-07); конкретные вопросы и критерии сведёт TASK-0004.018. Действующие packs/мир, HTTP, полный DOM, пользовательские права и внешние модули/макросы не проверялись. Соответствие контента рулбукам исключено.
 
 ## Связанные проблемы
 
@@ -205,3 +203,13 @@ Actor, Item, ActiveEffect, кошелёк, лечение, возраст и о�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-12 | cd2743d0548d5c129065c970d4aa5c43cc9632e2; полный файл и перечисленные связи | Первичная карточка по TASK-0003.055; [протокол](../../../review-log.md#task-0003055) |
+
+## Сквозная сверка TASK-0004.017
+
+2026-09-14; rusbar-main, cdb7bcb08835c62eb84efdfe7356c4eec90aa2e8. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Witcher Background: What Was Your Most Important Event: 1d10, возможные totals 1…10; 20 результатов (10 text / 10 document), replacement=true, displayRoll=false. Рекурсивные переходы: Witcher Background: Where Are You Now?. По разрешимому графу от этого прямого входа 2–2 конечных текстов, максимальная глубина 1; входящих файлов 5. Inline-выражений в результатах нет.
+
+Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_CDX4hqsxcxxovYz3.json](Witcher_Background__How_Did_Your_Trials_Go___2_CDX4hqsxcxxovYz3.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json](Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json](Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_sY3qw9UfVyx1l9BF.json](Witcher_Background__How_Did_Your_Trials_Go___4_sY3qw9UfVyx1l9BF.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json](Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json.md), [packsJson/witcher-lifepath/Witcher_Background__Where_Are_You_Now__w8GcZsTyPF85V5Rr.json](Witcher_Background__Where_Are_You_Now__w8GcZsTyPF85V5Rr.json.md), [module/data/actor/templates/character/general/backgroundData.js](../../module/data/actor/templates/character/general/backgroundData.js.md), [module/data/item/professionData.js](../../module/data/item/professionData.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-16](../../../cross-check-0002.md#r017-16). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
