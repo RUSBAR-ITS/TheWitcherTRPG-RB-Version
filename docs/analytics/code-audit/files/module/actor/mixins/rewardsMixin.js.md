@@ -62,7 +62,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Изолированные вызовы исполняют настоящий код, модели и Handlebars 4.7.9 на Foundry 14.367.0 / Node 24.16.0; Application, DOM и Actor.update/ChatMessage.create — фасады. Браузерное отображение/валидация, доступ службы по HTTP, серверные права, БД и несколько клиентов не проверялись. Реальные макросы миров и сторонние модули не исследовались.
+API и схемы сопоставлены; реальный GM UI, stale UUID, совместимость сторонних Actor и исход частичных записей остаются [U014-05](../../../../cross-check-0002.md#u014-05). Отсутствие return/await доказано кодом, окончательная БД не проверена.
 
 ## Связанные проблемы
 
@@ -73,3 +73,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003037) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Оба async wrapper передают [this] в опубликованный game.api.rewards и завершаются без ожидания результата API. GM gate и форма находятся в Rewards.handout*, а Log отвечает за историю/остаток. Наличие метода у любого WitcherActor не гарантирует logs у его модели; Monster/Loot требуют отдельной проверки совместимости, уже описанной issue00233.
+
+Сопоставленные определения и потребители: [module/app/reward/reward.js](../../app/reward/reward.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md), [module/actor/witcherActor.js](../witcherActor.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../sheets/WitcherCharacterSheet.js.md), [module/data/actor/templates/character/logData.js](../../data/actor/templates/character/logData.js.md), [module/data/actor/characterData.js](../../data/actor/characterData.js.md), [module/data/actor/monsterData.js](../../data/actor/monsterData.js.md), [module/data/actor/lootData.js](../../data/actor/lootData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-17](../../../../cross-check-0002.md#r014-17), [R014-19](../../../../cross-check-0002.md#r014-19), [R014-20](../../../../cross-check-0002.md#r014-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

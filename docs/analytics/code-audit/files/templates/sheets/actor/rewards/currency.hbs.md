@@ -63,7 +63,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Изолированные вызовы исполняют настоящий код, модели и Handlebars 4.7.9 на Foundry 14.367.0 / Node 24.16.0; Application, DOM и Actor.update/ChatMessage.create — фасады. Браузерное отображение/валидация, доступ службы по HTTP, серверные права, БД и несколько клиентов не проверялись. Реальные макросы миров и сторонние модули не исследовались.
+Просмотр не начисляет наград. Native вкладка/localize/lookup и соответствие истории подтверждённому кошельку — [U014-06](../../../../../cross-check-0002.md#u014-06); unknown type и серверное применение — [U014-05](../../../../../cross-check-0002.md#u014-05).
 
 ## Связанные проблемы
 
@@ -74,3 +74,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; полный файл | Первая карточка; [сверка порции](../../../../../review-log.md#task-0003037) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+В фактическом HBS each читает system.logs.currencyLog; amount/label берутся из строки, lookup ../config.currency[type] передаёт ключ localize. Таблица не использует rates и не пересчитывает баланс, в ней нет имён полей. Unknown type — отдельная граница producer/модели; Boolean IP к этой вкладке не относится.
+
+Сопоставленные определения и потребители: [module/actor/rewardsSheet.js](../../../../module/actor/rewardsSheet.js.md), [templates/sheets/actor/rewards/header.hbs](header.hbs.md), [templates/sheets/actor/rewards/ip.hbs](ip.hbs.md), [module/actor/sheets/WitcherCharacterSheet.js](../../../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/data/actor/templates/character/logData.js](../../../../module/data/actor/templates/character/logData.js.md), [module/data/actor/templates/character/ipLogData.js](../../../../module/data/actor/templates/character/ipLogData.js.md), [module/data/actor/templates/character/currencyLogData.js](../../../../module/data/actor/templates/character/currencyLogData.js.md), [module/setup/config.js](../../../../module/setup/config.js.md), [styles/rewards.css](../../../../styles/rewards.css.md), [module/app/reward/reward.js](../../../../module/app/reward/reward.js.md), [module/data/actor/templates/common/currencyData.js](../../../../module/data/actor/templates/common/currencyData.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-22](../../../../../cross-check-0002.md#r014-22), [R014-23](../../../../../cross-check-0002.md#r014-23). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

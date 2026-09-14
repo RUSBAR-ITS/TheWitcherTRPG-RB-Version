@@ -67,7 +67,7 @@ description/quantity/sourcebook текст, cost/weight числовые, hidden
 
 ## Непроверенные участки и открытые вопросы
 
-Исполнены настоящие методы системы и модели Foundry 14.367.0 в изолированном Node 24.16.0. Коллекции документов, окна, запись и базовый Application — фасады; HBS — настоящий Handlebars 4.7.9, разбор HTML — parse5. Полный клиент, DOM-события, сервер, права реальной БД, сетевые гонки и сохранение мира не проверялись. Пути systems/TheWitcherTRPG сохранены как в исходниках; доступ по HTTP здесь не проверялся. Общие свойства относятся к контракту Item, не к правилам верхового боя. Поля dex/control/speed могут содержать текст; автоматически объявлять это ошибкой нельзя.
+Mount — Item; связь с Actor животного в текущем коде не найдена. Полный UI submit/reset, сохранение описания, сторонние макросы и автоматизация верхового боя не проверены ([U014-07](../../../../cross-check-0002.md#u014-07)).
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ description/quantity/sourcebook текст, cost/weight числовые, hidden
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003035) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Схема mount расширяет CommonItemData: всего 12 полей, dex/control/speed — String, hp — Number. Продажа/перенос используют quantity/cost/weight и общий Actor.addItem; специальные поля не связывают Item с Actor животного. Текстовые характеристики и отрицательный/дробный HP допустимы технически; это не самостоятельное заключение о правилах.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/item/sheets/WitcherItemSheet.js](../../item/sheets/WitcherItemSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md), [module/data/item/commonItemData.js](commonItemData.js.md), [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-01](../../../../cross-check-0002.md#r014-01), [R014-07](../../../../cross-check-0002.md#r014-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

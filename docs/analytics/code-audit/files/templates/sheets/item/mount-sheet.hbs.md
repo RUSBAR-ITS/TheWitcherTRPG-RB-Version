@@ -65,7 +65,7 @@ JS-функций нет. partial и localize — основные операц�
 
 ## Непроверенные участки и открытые вопросы
 
-Исполнены настоящие методы системы и модели Foundry 14.367.0 в изолированном Node 24.16.0. Коллекции документов, окна, запись и базовый Application — фасады; HBS — настоящий Handlebars 4.7.9, разбор HTML — parse5. Полный клиент, DOM-события, сервер, права реальной БД, сетевые гонки и сохранение мира не проверялись. Пути systems/TheWitcherTRPG сохранены как в исходниках; доступ по HTTP здесь не проверялся.
+Схема и связи header/main установлены; нативный submit/reset, textarea.value, FilePicker и реальные сохранённые типы — [U014-07](../../../../cross-check-0002.md#u014-07). Верховой бой не моделировался.
 
 ## Связанные проблемы
 
@@ -76,3 +76,13 @@ JS-функций нет. partial и localize — основные операц�
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003035) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Mount PARTS.main и inherited ItemSheet context сопоставлены с общим header и пятью полями description/dex/control/speed/hp. HP использует Number dtype, dex/control/speed текстовые; схема и UI не определяют автоматику верхового боя. В отличие от изображения Loot, общий header содержит data-action=editImage.
+
+Сопоставленные определения и потребители: [module/data/item/mountData.js](../../../module/data/item/mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../../module/item/sheets/WitcherMountSheet.js.md), [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js.md), [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js.md), [templates/partials/item-header.hbs](../../partials/item-header.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-07](../../../../cross-check-0002.md#r014-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

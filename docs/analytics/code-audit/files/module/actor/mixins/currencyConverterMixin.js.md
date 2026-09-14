@@ -79,7 +79,7 @@ WitcherActor импортирует currencyConverterMixin:17 и Object.assign.p
 
 ## Непроверенные участки и открытые вопросы
 
-Проверены локальные исходники Foundry 14.367.0, Node 24.16.0, настоящие модели/методы/HBS и отдельные core-функции. Dialog, базовые приложения, коллекции и запись документов подменены; EventTarget настоящий Node, не браузерный DOM. Мир, сеть, права и транзакции реальной БД не запускались. HTML min/max/step не выдаются за серверную валидацию. Курсы и экономические правила не менялись. Прямые вызовы на Character/Monster/Loot проверены с реальными моделями. Наличие метода у Actor не означает кнопку у каждого листа. Имена source/target должны рассматриваться как технические ключи; экономическая политика округления и same currency не выбиралась.
+Текущий код и прежние .036 сверены; не доказаны native constraints, полный Dialog/DOM и серверный invalid payload ([U014-03](../../../../cross-check-0002.md#u014-03)), замена модели, конкурентные балансы и доставка чата ([U014-04](../../../../cross-check-0002.md#u014-04)). Технические формулы зафиксированы без выбора экономических правил.
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ WitcherActor импортирует currencyConverterMixin:17 и Object.assign.p
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003036) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлены три отдельных шага: форма с options/currencies, расчёт на захваченной currencyData и await одного Actor.update перед сообщением. Шесть rates и исключение falsecoin относятся только к обмену. Совпавшие from/to оставляют второй ключ; диапазоны/ставки/свежесть исходных чисел не проверяются. Actor adapter возвращает Promise обмена, но ChatMessage.create внутри не ожидается; покупки и Log этот метод не вызывает.
+
+Сопоставленные определения и потребители: [module/actor/sheets/mixins/currencyConverterMixin.js](../sheets/mixins/currencyConverterMixin.js.md), [module/actor/witcherActor.js](../witcherActor.js.md), [module/actor/sheets/WitcherActorSheet.js](../sheets/WitcherActorSheet.js.md), [templates/sheets/actor/tabs/tab-inventory.hbs](../../../templates/sheets/actor/tabs/tab-inventory.hbs.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../../../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [module/setup/config.js](../../setup/config.js.md), [module/data/actor/templates/common/currencyData.js](../../data/actor/templates/common/currencyData.js.md), [templates/chat/currency-conversion.hbs](../../../templates/chat/currency-conversion.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-12](../../../../cross-check-0002.md#r014-12), [R014-13](../../../../cross-check-0002.md#r014-13), [R014-14](../../../../cross-check-0002.md#r014-14), [R014-15](../../../../cross-check-0002.md#r014-15), [R014-16](../../../../cross-check-0002.md#r014-16). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -61,7 +61,7 @@ registerSheets import25, регистрация Item mount88–91 makeDefault:tr
 
 ## Непроверенные участки и открытые вопросы
 
-Исполнены настоящие методы системы и модели Foundry 14.367.0 в изолированном Node 24.16.0. Коллекции документов, окна, запись и базовый Application — фасады; HBS — настоящий Handlebars 4.7.9, разбор HTML — parse5. Полный клиент, DOM-события, сервер, права реальной БД, сетевые гонки и сохранение мира не проверялись. Пути systems/TheWitcherTRPG сохранены как в исходниках; доступ по HTTP здесь не проверялся.
+Регистрация и inherited form установлены; полные merge/lifecycle, FilePicker, сохранение textarea и внешние расширения остаются [U014-07](../../../../cross-check-0002.md#u014-07). Существование PARTS не доказывает HTTP-доступ.
 
 ## Связанные проблемы
 
@@ -72,3 +72,13 @@ registerSheets import25, регистрация Item mount88–91 makeDefault:tr
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `1d29f681ffed1c46b9c05b0eff09935300c3bf7d`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003035) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Регистрация mount выбирает этот класс, PARTS.main выбирает mount-sheet; ширина600 дополняет inherited DEFAULT_OPTIONS. WitcherItemSheet готовит item/data/systemFields/config/showConfig, общий header обслуживает изображение и свойства Item. Собственных бросков/записей характеристик Actor у класса нет.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [module/data/item/mountData.js](../../data/item/mountData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/item/sheets/WitcherItemSheet.js](WitcherItemSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md), [module/data/item/commonItemData.js](../../data/item/commonItemData.js.md), [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-01](../../../../cross-check-0002.md#r014-01), [R014-07](../../../../cross-check-0002.md#r014-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

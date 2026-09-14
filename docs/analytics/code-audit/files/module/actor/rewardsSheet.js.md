@@ -72,7 +72,7 @@ WitcherCharacterSheet импортирует класс и создаёт reward
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Изолированные вызовы исполняют настоящий код, модели и Handlebars 4.7.9 на Foundry 14.367.0 / Node 24.16.0; Application, DOM и Actor.update/ChatMessage.create — фасады. Браузерное отображение/валидация, доступ службы по HTTP, серверные права, БД и несколько клиентов не проверялись. Реальные макросы миров и сторонние модули не исследовались.
+Пофайловый и сквозной разбор завершены. Нативный render/tabs, переводы/видимое оформление и согласование показанной истории с подтверждённой записью — [U014-06](../../../cross-check-0002.md#u014-06).
 
 ## Связанные проблемы
 
@@ -91,3 +91,13 @@ WitcherCharacterSheet импортирует класс и создаёт reward
 Полный [styles/rewards.css](../../../../../../styles/rewards.css) содержит одно правило .logEntry: flex/space-around. Группа 14 отрендерила обе настоящие вкладки ip/currency с одной записью: по одной logEntry и по три label. CSS не рассчитывает баланс/итоги. .extended-sheet исключает правила основного Actor-листа; глобальный selector logEntry имеет только два найденных HBS-потребителя.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Переход Character.rewards → _renderRewards → четыре PARTS сопоставлен с system.logs/config/tabs. Окно читает массивы, не начисляет и не редактирует историю: собственные HBS не имеют имён полей, несмотря на submitOnChange. Initial ip и локализованные tab labels предоставляет ядро; Log не вычисляет текущий баланс из истории.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/rewards/currency.hbs](../../templates/sheets/actor/rewards/currency.hbs.md), [templates/sheets/actor/rewards/header.hbs](../../templates/sheets/actor/rewards/header.hbs.md), [templates/sheets/actor/rewards/ip.hbs](../../templates/sheets/actor/rewards/ip.hbs.md), [module/actor/sheets/WitcherCharacterSheet.js](sheets/WitcherCharacterSheet.js.md), [module/data/actor/templates/character/logData.js](../data/actor/templates/character/logData.js.md), [module/data/actor/templates/character/ipLogData.js](../data/actor/templates/character/ipLogData.js.md), [module/data/actor/templates/character/currencyLogData.js](../data/actor/templates/character/currencyLogData.js.md), [module/setup/config.js](../setup/config.js.md), [styles/rewards.css](../../styles/rewards.css.md).
+
+[Протокол и границы](../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-22](../../../cross-check-0002.md#r014-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

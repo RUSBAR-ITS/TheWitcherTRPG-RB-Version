@@ -84,7 +84,7 @@ main.init публикует ссылки game.api.rewards.ip/currency. Оба h
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Изолированные вызовы исполняют настоящий код, модели и Handlebars 4.7.9 на Foundry 14.367.0 / Node 24.16.0; Application, DOM и Actor.update/ChatMessage.create — фасады. Браузерное отображение/валидация, доступ службы по HTTP, серверные права, БД и несколько клиентов не проверялись. Реальные макросы миров и сторонние модули не исследовались.
+Нативная форма/multi-checkbox, fromUuidSync, server permissions/запись и несколько клиентов — [U014-05](../../../../cross-check-0002.md#u014-05); видимый чат и en/ru — [U014-06](../../../../cross-check-0002.md#u014-06). Прежний перехват отказов выполнялся фасадом теста, не обработчиком системы.
 
 ## Связанные проблемы
 
@@ -95,3 +95,13 @@ main.init публикует ссылки game.api.rewards.ip/currency. Оба h
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `639fde4bad4a7ba4c538d3b08ddc5cfd846ca75e`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003037) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Разделены GM handout, форма, повторное разрешение UUID, вызов Log и показ сообщения. hasPlayerOwner не гарантирует Character.logs; missing UUID/Monster/Loot прерывают цикл после уже начатых записей. Log push/update, handout forEach, Actor wrapper и ChatMessage не образуют общий ожидаемый результат. IP/magic идут в разные пулы. Currency payload содержит amount/type без currency-флага HBS; оба amount-перевода отсутствуют в en/ru. Unknown type проверялся как программный ответ, не штатный select. Курсы конвертера здесь не используются.
+
+Сопоставленные определения и потребители: [module/actor/mixins/rewardsMixin.js](../../actor/mixins/rewardsMixin.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md), [module/app/htmlUtils.js](../htmlUtils.js.md), [module/setup/config.js](../../setup/config.js.md), [module/data/actor/templates/character/logData.js](../../data/actor/templates/character/logData.js.md), [module/data/actor/characterData.js](../../data/actor/characterData.js.md), [module/data/actor/monsterData.js](../../data/actor/monsterData.js.md), [module/data/actor/lootData.js](../../data/actor/lootData.js.md), [templates/chat/rewards.hbs](../../../templates/chat/rewards.hbs.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [templates/sheets/actor/rewards/currency.hbs](../../../templates/sheets/actor/rewards/currency.hbs.md), [module/data/actor/templates/character/currencyLogData.js](../../data/actor/templates/character/currencyLogData.js.md), [module/data/actor/templates/common/currencyData.js](../../data/actor/templates/common/currencyData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-17](../../../../cross-check-0002.md#r014-17), [R014-18](../../../../cross-check-0002.md#r014-18), [R014-19](../../../../cross-check-0002.md#r014-19), [R014-20](../../../../cross-check-0002.md#r014-20), [R014-21](../../../../cross-check-0002.md#r014-21), [R014-23](../../../../cross-check-0002.md#r014-23). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -69,7 +69,7 @@ HBS не изменяет модель. Для пустого loot рендер�
 
 ## Непроверенные участки и открытые вопросы
 
-Исполнены настоящие методы системы и модели Foundry 14.367.0 в изолированном Node 24.16.0. Коллекции документов, окна, запись и базовый Application — фасады; HBS — настоящий Handlebars 4.7.9, разбор HTML — parse5. Полный клиент, DOM-события, сервер, права реальной БД, сетевые гонки и сохранение мира не проверялись. Пути systems/TheWitcherTRPG сохранены как в исходниках; доступ по HTTP здесь не проверялся.
+Полный клиентский render, скрытие/редактирование картинки и права — [U014-01](../../../../cross-check-0002.md#u014-01); завершение покупки/записи — [U014-02](../../../../cross-check-0002.md#u014-02). Доступ по старому systems/TheWitcherTRPG пути не проверялся через HTTP.
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ HBS не изменяет модель. Для пустого loot рендер�
 Карточки процесса: [module/actor/mixins/currencyConverterMixin.js](../../../module/actor/mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/currencyConverterMixin.js](../../../module/actor/sheets/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](currencyConverter/currencyConverter.hbs.md), [templates/chat/currency-conversion.hbs](../../chat/currency-conversion.hbs.md).
 
 [Проверки и перекрёстная сверка](../../../../review-log.md#task-0003036). Связанный файл повторно в покрытии не учитывается; правок системы нет.
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Все шесть each подключают один partial с item/isGM; add-item есть для пяти специальных категорий. Форма редактирует maxWeight и семь валют напрямую. Вес подготовлен LootSheet, totalCost нет. loot-img[data-edit] не имеет editImage action. Покупка не конвертирует валюту и не вызывает журнал наград; эти отдельные маршруты сверены в этой порции.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherLootSheet.js](../../../module/actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](partials/loot/loot-item-display.hbs.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/setup/registerDataModels.js](../../../module/setup/registerDataModels.js.md), [module/data/actor/lootData.js](../../../module/data/actor/lootData.js.md), [module/data/item/commonItemData.js](../../../module/data/item/commonItemData.js.md), [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js.md), [module/actor/sheets/interactions/itemContextMenu.js](../../../module/actor/sheets/interactions/itemContextMenu.js.md), [styles/loot-sheet.css](../../../styles/loot-sheet.css.md), [templates/partials/item-header.hbs](../../partials/item-header.hbs.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/item/witcherItem.js](../../../module/item/witcherItem.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-02](../../../../cross-check-0002.md#r014-02), [R014-03](../../../../cross-check-0002.md#r014-03), [R014-04](../../../../cross-check-0002.md#r014-04), [R014-05](../../../../cross-check-0002.md#r014-05), [R014-24](../../../../cross-check-0002.md#r014-24). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

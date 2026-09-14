@@ -66,7 +66,7 @@ JS определений нет. if/else/each-context задают строку
 
 ## Непроверенные участки и открытые вопросы
 
-Исполнены настоящие методы системы и модели Foundry 14.367.0 в изолированном Node 24.16.0. Коллекции документов, окна, запись и базовый Application — фасады; HBS — настоящий Handlebars 4.7.9, разбор HTML — parse5. Полный клиент, DOM-события, сервер, права реальной БД, сетевые гонки и сохранение мира не проверялись. Пути systems/TheWitcherTRPG сохранены как в исходниках; доступ по HTTP здесь не проверялся.
+Контракты действий, inline полей и core drag установлены; реальная нативная привязка/видимость/права остаются [U014-01](../../../../../../cross-check-0002.md#u014-01), полный итог покупки — [U014-02](../../../../../../cross-check-0002.md#u014-02).
 
 ## Связанные проблемы
 
@@ -85,3 +85,13 @@ JS определений нет. if/else/each-context задают строку
 Полный [styles/loot-sheet.css](../../../../../../../../../styles/loot-sheet.css) подтвердил silver для table tr.hidden-view и display:none для hidden-from-view. Группа 13 повторила реальные Loot/clue/obstacle partial: скрытый Item остаётся в HTML; isGM меняет CSS-класс. Это представление, не проверка прав доступа. Размеры боковой области Loot и крайних ячеек mystery описаны в CSS-карточке; данные/методы покупки не переисполнялись.
 
 [Сценарии, результаты и ограничения](../../../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Строка остаётся в HTML при isHidden; GM меняет класс и получает кнопку hideItem. Действия buy/hide идут через DEFAULT_OPTIONS, edit/delete/inline — через itemMixin. quantity/weight/cost передаются строковым value до модельного приведения. img.dragable[data-id] не соответствует core .draggable/dataset.itemId, даже при нативном draggable=true.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherLootSheet.js](../../../../../module/actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../loot-sheet.hbs.md), [module/actor/witcherActor.js](../../../../../module/actor/witcherActor.js.md), [module/setup/registerDataModels.js](../../../../../module/setup/registerDataModels.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../../../module/actor/sheets/mixins/itemMixin.js.md), [module/actor/sheets/interactions/itemContextMenu.js](../../../../../module/actor/sheets/interactions/itemContextMenu.js.md), [styles/loot-sheet.css](../../../../../styles/loot-sheet.css.md), [templates/partials/item-header.hbs](../../../../partials/item-header.hbs.md), [module/data/item/commonItemData.js](../../../../../module/data/item/commonItemData.js.md), [module/data/actor/templates/common/currencyData.js](../../../../../module/data/actor/templates/common/currencyData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-02](../../../../../../cross-check-0002.md#r014-02), [R014-04](../../../../../../cross-check-0002.md#r014-04), [R014-05](../../../../../../cross-check-0002.md#r014-05), [R014-09](../../../../../../cross-check-0002.md#r014-09). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

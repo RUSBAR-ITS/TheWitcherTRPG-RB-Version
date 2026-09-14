@@ -65,7 +65,7 @@ HTML не меняет Actor. Обычный начальный набор FormD
 
 ## Непроверенные участки и открытые вопросы
 
-Проверены локальные исходники Foundry 14.367.0, Node 24.16.0, настоящие модели/методы/HBS и отдельные core-функции. Dialog, базовые приложения, коллекции и запись документов подменены; EventTarget настоящий Node, не браузерный DOM. Мир, сеть, права и транзакции реальной БД не запускались. HTML min/max/step не выдаются за серверную валидацию. Курсы и экономические правила не менялись. Пустые options, unknown key и altered CONFIG исполнялись как контролируемые случаи; штатная конфигурация предоставляет шесть известных валют. Общие балансы не обновляются реактивно в открытом диалоге.
+Контракт options и полей установлен; HTML constraints и нативный partial render не приравнены проверке метода ([U014-03](../../../../../cross-check-0002.md#u014-03)); баланс во время окна и серверный результат — [U014-04](../../../../../cross-check-0002.md#u014-04).
 
 ## Связанные проблемы
 
@@ -84,3 +84,13 @@ HTML не меняет Actor. Обычный начальный набор FormD
 Полный [styles/currency-converter.css](../../../../../../../../styles/currency-converter.css) содержит 6 правил/21 declaration: auto-fit сетка балансов и фиксированные четыре колонки полей. Группа 14 подтверждает четыре label и отсутствие класса currency-converter в отдельном результате [templates/chat/currency-conversion.hbs](../../../../../../../../templates/chat/currency-conversion.hbs). Светлый/тёмный вариант задаёт light-dark в окружении темы, CSS не определяет собственный color-scheme. В этой порции selectOptions — фасад; прежняя проверка настоящего helper/формы .036 сохраняется.
 
 [Сценарии, результаты и ограничения](../../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Сопоставлены шесть options, значения currencyData и Number-поля amount/fee с defaults crown/oren и 1/0. Два select допускают одинаковый ключ. min/max/step — атрибуты формы, не валидация метода. Строковый HBS проходит core cleanHTML, script/inline handlers здесь нет; открытый список балансов сам не обновляется.
+
+Сопоставленные определения и потребители: [module/actor/mixins/currencyConverterMixin.js](../../../../module/actor/mixins/currencyConverterMixin.js.md), [module/setup/config.js](../../../../module/setup/config.js.md), [module/data/actor/templates/common/currencyData.js](../../../../module/data/actor/templates/common/currencyData.js.md), [templates/chat/currency-conversion.hbs](../../../chat/currency-conversion.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-13](../../../../../cross-check-0002.md#r014-13), [R014-14](../../../../../cross-check-0002.md#r014-14), [R014-15](../../../../../cross-check-0002.md#r014-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -61,7 +61,7 @@ JS-методов нет. localize обрабатывает title/from/to/fee/re
 
 ## Непроверенные участки и открытые вопросы
 
-Проверены локальные исходники Foundry 14.367.0, Node 24.16.0, настоящие модели/методы/HBS и отдельные core-функции. Dialog, базовые приложения, коллекции и запись документов подменены; EventTarget настоящий Node, не браузерный DOM. Мир, сеть, права и транзакции реальной БД не запускались. HTML min/max/step не выдаются за серверную валидацию. Курсы и экономические правила не менялись. Способ доставки/отказ сообщения не тестировался в сети. Формула экономического обмена полностью находится в producer.
+Формула и HBS сопоставлены; сетевое создание/отказ/порядок ChatMessage после денежного update не исполнялись ([U014-04](../../../cross-check-0002.md#u014-04)).
 
 ## Связанные проблемы
 
@@ -72,3 +72,13 @@ JS-методов нет. localize обрабатывает title/from/to/fee/re
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `32d8fdd029ce4c6401db25f0d9645445ac0f8ca2`; полный файл | Первая карточка; [сверка порции](../../../review-log.md#task-0003036) |
+
+## Сквозная сверка TASK-0004.014
+
+2026-09-14; rusbar-main, 8256dd3473347494fefb30524700fe7ca1daf75d. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Контекст producer после await update содержит amount/from/to/fee/result и неиспользуемое имя actor. HBS выводит данные и localize валют; формулу/запись не выполняет. Speaker установлен в ChatMessage отдельно, create не ожидается. Неуспешный update не достигает этого рендера, отсутствие сообщения не откатывает деньги.
+
+Сопоставленные определения и потребители: [module/actor/mixins/currencyConverterMixin.js](../../module/actor/mixins/currencyConverterMixin.js.md), [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../sheets/actor/currencyConverter/currencyConverter.hbs.md), [module/setup/config.js](../../module/setup/config.js.md), [module/data/actor/templates/common/currencyData.js](../../module/data/actor/templates/common/currencyData.js.md), [module/actor/witcherActor.js](../../module/actor/witcherActor.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004014) — TASK-0004.014; процессы [R014-14](../../../cross-check-0002.md#r014-14), [R014-16](../../../cross-check-0002.md#r014-16). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
