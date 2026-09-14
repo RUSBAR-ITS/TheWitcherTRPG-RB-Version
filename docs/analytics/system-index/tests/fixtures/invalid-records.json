@@ -1,0 +1,29 @@
+{
+  "purpose": "Искусственные повреждения временного набора; не сведения о системе.",
+  "cases": [
+    {"name": "duplicate-id", "action": "duplicate_entity", "code": "duplicate_id"},
+    {"name": "duplicate-key", "action": "duplicate_key", "code": "duplicate_key"},
+    {"name": "invalid-json", "action": "invalid_json", "code": "invalid_json"},
+    {"name": "missing-part", "action": "missing_part", "code": "load_error"},
+    {"name": "duplicate-part", "target": "manifest", "path": ["parts", "relations"], "value": ["entities.jsonl"], "code": "duplicate_part"},
+    {"name": "unknown-format", "target": "manifest", "path": ["format_version"], "value": 2, "code": "unsupported_version"},
+    {"name": "missing-endpoint", "target": "rel-000049", "path": ["to"], "value": "ent-999999", "code": "unknown_endpoint"},
+    {"name": "missing-owner", "target": "ent-000004", "path": ["owner"], "value": "ent-999999", "code": "invalid_owner"},
+    {"name": "owner-cycle", "target": "ent-000007", "path": ["owner"], "value": "ent-000008", "code": "owner_cycle"},
+    {"name": "missing-transition", "target": "proc-000002", "path": ["steps", 1, "next", 0, "step"], "value": "missing", "code": "unknown_transition"},
+    {"name": "invalid-line", "target": "ent-000004", "path": ["location", "line_start"], "value": 0, "code": "invalid_location"},
+    {"name": "out-of-file", "target": "ent-000004", "path": ["location", "line_end"], "value": 9999, "code": "invalid_location", "freshness": true},
+    {"name": "unknown-kind", "target": "ent-000004", "path": ["kind"], "value": "not-a-kind", "code": "invalid_kind"},
+    {"name": "unknown-relation", "target": "rel-000049", "path": ["kind"], "value": "not-a-relation", "code": "invalid_relation"},
+    {"name": "false-complete", "target": "src-000086", "path": ["coverage", "relations", "state"], "value": "complete", "code": "invalid_coverage"},
+    {"name": "unlisted-relation", "target": "src-000086", "path": ["coverage", "relations", "included"], "value": [], "code": "coverage_mismatch"},
+    {"name": "invalid-hash", "target": "src-000086", "path": ["sha256"], "value": "wrong", "code": "invalid_hash"},
+    {"name": "path-escape", "target": "src-000086", "path": ["path"], "value": "../outside.js", "code": "path_escape"},
+    {"name": "unknown-source", "target": "ent-000004", "path": ["location", "source"], "value": "src-999999", "code": "unknown_source"},
+    {"name": "wrong-alias-shape", "target": "ent-000004", "path": ["aliases"], "value": null, "code": "invalid_field"},
+    {"name": "broken-ref", "target": "ent-000010", "path": ["refs", 0, "path"], "value": "docs/missing.md", "code": "unversioned_ref"},
+    {"name": "broken-anchor", "target": "proc-000001", "path": ["refs", 0, "anchor"], "value": "missing-anchor", "code": "unknown_anchor", "freshness": true},
+    {"name": "reused-next-id", "target": "manifest", "path": ["next_ids", "entity"], "value": 35, "code": "invalid_next_id"},
+    {"name": "invalid-boundary", "target": "ent-000034", "path": ["boundary", "dependency"], "value": [], "code": "invalid_boundary"}
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "format_version": 1,
   "dataset_id": "task-0006.001-seed",
-  "purpose": "proposal_examples",
-  "approval": "pending",
+  "purpose": "seed_examples",
+  "approval": "approved",
   "snapshot": {
     "date": "2026-09-14",
     "branch": "rusbar-main",
