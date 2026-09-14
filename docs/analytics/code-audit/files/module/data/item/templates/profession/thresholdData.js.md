@@ -65,7 +65,7 @@ Threshold extends DataModel; professionSkill включает экземпляр
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Изолированно использованы настоящие модели Foundry и системные методы; UI, TextEditor, Actor, Roll, запись и query частично заменены фасадами. Браузер, мир, БД и реальные броски не запускались. Связанные Actor-файлы прочитаны в пределах конкретных потребителей, не объявлены полностью разобранными.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-06, R008-11, R008-20; оставшиеся границы: [U008-01](../../../../../../cross-check-0002.md#u008-01), [U008-06](../../../../../../cross-check-0002.md#u008-06). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -84,3 +84,13 @@ Threshold extends DataModel; professionSkill включает экземпляр
 [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+hasThresholds и словарь порогов описывают данные, которые UI заполняет по ID. Runtime автоматически выбирает единственный элемент, открывает выбор при нуле/нескольких; пустой результат не проверяет. Label hasThresholds модели и два заголовка name/thresholdValue шаблона отсутствуют в ru; это отделено от ошибки пустого выбора.
+
+Сопоставленные определения и потребители: [lang/en.json](../../../../../lang/en.json.md), [lang/ru.json](../../../../../lang/ru.json.md), [module/data/item/templates/professionSkillData.js](../professionSkillData.js.md), [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../../item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md), [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md), [module/actor/mixins/professionMixin.js](../../../../actor/mixins/professionMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-06](../../../../../../cross-check-0002.md#r008-06), [R008-11](../../../../../../cross-check-0002.md#r008-11), [R008-20](../../../../../../cross-check-0002.md#r008-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -83,7 +83,7 @@ Race.socialStanding не копируется в Actor.system.general.socialStan
 
 ## Непроверенные участки и открытые вопросы
 
-Все 31 строки и 4 импорта прочитаны; схема, helper и связи установлены. Foundry 14.367/Node 24.16. UI, TextEditor, запись, инвентарь и операции Actor частично представлены фасадами; реальный мир, ссылки UUID и серверный HTML-фильтр не запускались. Класс WitcherItem в опыте наследует common BaseItem, не клиентский Item. Полный аудит листа Actor/бросков/packsJson остаётся другим порциям.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-01, R008-02, R008-05; оставшиеся границы: [U008-01](../../../../cross-check-0002.md#u008-01), [U008-02](../../../../cross-check-0002.md#u008-02), [U008-06](../../../../cross-check-0002.md#u008-06), [U008-07](../../../../cross-check-0002.md#u008-07). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -114,3 +114,13 @@ Race.socialStanding не копируется в Actor.system.general.socialStan
 [module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четыре perk и пять региональных строк описывают расу; их текст сам не создаёт числовые изменения. enrichedText готовит четыре perk, Item-форма использует результат, а Character-HBS читает raw HTML. Общие переносимые эффекты принадлежат отдельному механизму Item.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/perkData.js](templates/perkData.js.md), [module/data/item/templates/socialStandingData.js](templates/socialStandingData.js.md), [module/data/dataUtils.js](../dataUtils.js.md), [system.json](../../../system.json.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherItemSheet.js](../../item/sheets/WitcherItemSheet.js.md), [module/item/sheets/WitcherRaceSheet.js](../../item/sheets/WitcherRaceSheet.js.md), [templates/sheets/item/race-sheet.hbs](../../../templates/sheets/item/race-sheet.hbs.md), [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md), [templates/partials/character/tab-profession.hbs](../../../templates/partials/character/tab-profession.hbs.md), [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-01](../../../../cross-check-0002.md#r008-01), [R008-02](../../../../cross-check-0002.md#r008-02), [R008-05](../../../../cross-check-0002.md#r008-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

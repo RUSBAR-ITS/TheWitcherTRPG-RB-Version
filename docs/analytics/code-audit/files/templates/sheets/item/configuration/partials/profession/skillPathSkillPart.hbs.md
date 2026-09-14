@@ -74,7 +74,7 @@ removeEffectDamageProperties не зарегистрировано под эти
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Системные классы листов настоящие, ItemSheetV2/HandlebarsApplicationMixin работают поверх DocumentSheet-фасада. Рендер проверяет контекст/поля и маршруты; реальный браузер, права, сохранение Item и работа нескольких клиентов не проверены.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-06, R008-07, R008-11, R008-12, R008-15, R008-16, R008-20; оставшиеся границы: [U008-01](../../../../../../../cross-check-0002.md#u008-01), [U008-02](../../../../../../../cross-check-0002.md#u008-02), [U008-03](../../../../../../../cross-check-0002.md#u008-03). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -83,3 +83,13 @@ removeEffectDamageProperties не зарегистрировано под эти
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.019 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Вложенный partial отображает атаку/защиту/usage/пороги по флагам навыка. Формовые пути используют slot, но CRUD строк передаёт data-target имени и data-id записи; removeEffectDamageProperties не зарегистрирован под таким именем. applySelf присутствует в форме, но runtime не использует его как условие цели.
+
+Сопоставленные определения и потребители: [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](skillPathPart.hbs.md), [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md), [module/data/item/templates/professionSkillData.js](../../../../../../module/data/item/templates/professionSkillData.js.md), [module/data/item/templates/profession/skillUsageData.js](../../../../../../module/data/item/templates/profession/skillUsageData.js.md), [module/data/item/templates/profession/temporaryHealthData.js](../../../../../../module/data/item/templates/profession/temporaryHealthData.js.md), [module/data/item/templates/profession/thresholdData.js](../../../../../../module/data/item/templates/profession/thresholdData.js.md), [module/data/item/templates/combat/skillAttackData.js](../../../../../../module/data/item/templates/combat/skillAttackData.js.md), [module/data/item/templates/combat/skillDefenseData.js](../../../../../../module/data/item/templates/combat/skillDefenseData.js.md), [module/data/item/templates/combat/damagePropertiesData.js](../../../../../../module/data/item/templates/combat/damagePropertiesData.js.md), [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](profAttackOptionsPart.hbs.md), [module/setup/config.js](../../../../../../module/setup/config.js.md), [lang/en.json](../../../../../../lang/en.json.md), [lang/ru.json](../../../../../../lang/ru.json.md), [module/setup/handlebars.js](../../../../../../module/setup/handlebars.js.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-06](../../../../../../../cross-check-0002.md#r008-06), [R008-07](../../../../../../../cross-check-0002.md#r008-07), [R008-11](../../../../../../../cross-check-0002.md#r008-11), [R008-12](../../../../../../../cross-check-0002.md#r008-12), [R008-15](../../../../../../../cross-check-0002.md#r008-15), [R008-16](../../../../../../../cross-check-0002.md#r008-16), [R008-20](../../../../../../../cross-check-0002.md#r008-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

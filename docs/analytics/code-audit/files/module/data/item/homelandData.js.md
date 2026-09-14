@@ -76,7 +76,7 @@ value/otherValue являются данными этого Item. Одноимё
 
 ## Непроверенные участки и открытые вопросы
 
-Все 14 строк прочитаны. Серверная регистрация, реальный submit/удаление, компедиумы и автоматическое именование Item не проверены. Наличие arbitrary строки при отсутствии option — свойство схемы/формы, не согласованная ошибка или новое ограничение. Новых числовых/игровых действий нет.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-01, R008-03; оставшиеся границы: [U008-01](../../../../cross-check-0002.md#u008-01), [U008-07](../../../../cross-check-0002.md#u008-07). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -105,3 +105,13 @@ value/otherValue являются данными этого Item. Одноимё
 Таблицы происхождения из character-generator-sub-tables не содержат documentUuid на Item homeland; их ссылки ведут к другим RollTable, а конечные результаты имеют type=text. Найденный в тексте +1 к навыку не создаёт effect и не меняет value/otherValue. WitcherCharacterSheet:155 получает первый уже принадлежащий Actor предмет homeland; это отдельный путь от генерации биографии.
 
 [35 карточек подтаблиц](../../../README.md#подтаблицы-создания-персонажа--task-0003054), [перекрёстная сверка и пределы](../../../../review-log.md#task-0003054).
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Два StringField принадлежат самостоятельному TypeDataModel, без CommonItemData. Item-родина имеет приоритет в Character header/background, но не обновляет Actor.general.homeland; unknown и скрытый otherValue не очищаются моделью.
+
+Сопоставленные определения и потребители: [system.json](../../../system.json.md), [module/setup/config.js](../../setup/config.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherHomelandSheet.js](../../item/sheets/WitcherHomelandSheet.js.md), [templates/sheets/item/homeland-sheet.hbs](../../../templates/sheets/item/homeland-sheet.hbs.md), [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md), [templates/partials/character/tab-background.hbs](../../../templates/partials/character/tab-background.hbs.md), [templates/partials/character-header.hbs](../../../templates/partials/character-header.hbs.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-01](../../../../cross-check-0002.md#r008-01), [R008-03](../../../../cross-check-0002.md#r008-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

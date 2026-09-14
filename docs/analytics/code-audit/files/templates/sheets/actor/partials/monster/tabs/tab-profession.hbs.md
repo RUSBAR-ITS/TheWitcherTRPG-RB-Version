@@ -68,7 +68,7 @@ JS-функций нет. if/unless, eq(stat,"none"), selectOptions(config.statT
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитан файл; соседние определения проверены в пределах вызовов. 24 группы изолированных сценариев: реальные модели/методы, Roll/extendedRoll, Handlebars 4.7.9 и отдельные функции ядра Foundry 14.367.0 на Node24.16.0. Dialog, DOM/Application, ActiveEffect-конструктор, запись Actor/Item/ChatMessage и query — фасады. Core миграция ActiveEffect выполнена отдельно на payload. Браузерные события/валидация/сохранение, полный жизненный цикл эффекта, HTTP, БД и несколько клиентов не запускались. Игровые требования сверх кода не выбирались.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-05, R008-09, R008-20; оставшиеся границы: [U008-01](../../../../../../../cross-check-0002.md#u008-01), [U008-06](../../../../../../../cross-check-0002.md#u008-06). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -87,3 +87,13 @@ JS-функций нет. if/unless, eq(stat,"none"), selectOptions(config.statT
 [CSS в каталоге character](../../../../../../styles/character/tab-profession.css.md) явно включает .application.sheet.witcher.monster. Реальный core _prepareTabs даёт profession active; группа 13 получила один definingSkill и notes в monster-profession-flex, без profession-path/race-header. Поэтому правила трёх ветвей и расы сейчас не адресуют данный HBS, хотя общий CSS их содержит. [Общее правило](../../../../../../styles/profession-sheet.css.md) monster-profession-flex .profession-card задаёт width100/max:none и сильнее простой поздней карточки max400. Вывод основан на selectors/источниках; браузерная ширина не измерялась.
 
 [Сценарии, результаты и ограничения](../../../../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Monster-HBS показывает только definingSkill и notes. Три inline поля и единственная кнопка используют общий listener; stat=none скрывает кнопку. Его Sheet не производит enriched профессии, поэтому raw HTML отделён от неиспользованного enriched в Character.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherMonsterSheet.js](../../../../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js.md), [module/data/item/professionData.js](../../../../../../module/data/item/professionData.js.md), [module/data/item/templates/professionSkillData.js](../../../../../../module/data/item/templates/professionSkillData.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../../../../module/actor/sheets/mixins/itemMixin.js.md), [module/actor/sheets/mixins/skillMixin.js](../../../../../../module/actor/sheets/mixins/skillMixin.js.md), [module/actor/mixins/professionMixin.js](../../../../../../module/actor/mixins/professionMixin.js.md), [module/setup/config.js](../../../../../../module/setup/config.js.md), [module/setup/handlebars.js](../../../../../../module/setup/handlebars.js.md), [lang/en.json](../../../../../../lang/en.json.md), [lang/ru.json](../../../../../../lang/ru.json.md), [styles/profession-sheet.css](../../../../../../styles/profession-sheet.css.md), [styles/character/tab-profession.css](../../../../../../styles/character/tab-profession.css.md).
+
+[Протокол и границы](../../../../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-05](../../../../../../../cross-check-0002.md#r008-05), [R008-09](../../../../../../../cross-check-0002.md#r008-09), [R008-20](../../../../../../../cross-check-0002.md#r008-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -89,7 +89,7 @@ Default class WitcherProfessionConfigurationSheet extends WitcherConfigurationSh
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Системные классы листов настоящие, ItemSheetV2/HandlebarsApplicationMixin работают поверх DocumentSheet-фасада. Рендер проверяет контекст/поля и маршруты; реальный браузер, права, сохранение Item и работа нескольких клиентов не проверены.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-06, R008-07, R008-18; оставшиеся границы: [U008-01](../../../../../cross-check-0002.md#u008-01), [U008-08](../../../../../cross-check-0002.md#u008-08). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -98,3 +98,13 @@ Default class WitcherProfessionConfigurationSheet extends WitcherConfigurationSh
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.019 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Пять вкладок general/skillPath1–3/activeEffects дают механические поля девяти навыков. CRUD effects/thresholds использует data-target имени и data-id строки, ищет первое совпадение и не ожидает update. Имена action для удаления расходятся, нижний remove читает currentTarget. Эти причины отделены от отсутствующей настройки definingSkill.
+
+Сопоставленные определения и потребители: [module/item/sheets/configurations/WitcherConfigurationSheet.js](WitcherConfigurationSheet.js.md), [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs.md), [module/data/item/professionData.js](../../../data/item/professionData.js.md), [module/data/item/templates/professionPathData.js](../../../data/item/templates/professionPathData.js.md), [module/data/item/templates/professionSkillData.js](../../../data/item/templates/professionSkillData.js.md), [module/data/item/templates/combat/damagePropertiesData.js](../../../data/item/templates/combat/damagePropertiesData.js.md), [module/data/item/templates/itemEffectData.js](../../../data/item/templates/itemEffectData.js.md), [module/data/item/templates/profession/thresholdData.js](../../../data/item/templates/profession/thresholdData.js.md), [module/setup/config.js](../../../setup/config.js.md), [module/item/sheets/WitcherProfessionSheet.js](../WitcherProfessionSheet.js.md), [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md), [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md), [templates/sheets/item/configuration/tabs/general.hbs](../../../../templates/sheets/item/configuration/tabs/general.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-06](../../../../../cross-check-0002.md#r008-06), [R008-07](../../../../../cross-check-0002.md#r008-07), [R008-18](../../../../../cross-check-0002.md#r008-18). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

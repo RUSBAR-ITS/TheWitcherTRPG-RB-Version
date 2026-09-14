@@ -69,7 +69,7 @@ PARTS.main класса WitcheProfessionSheet. Получает item,systemField
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Системные классы листов настоящие, ItemSheetV2/HandlebarsApplicationMixin работают поверх DocumentSheet-фасада. Рендер проверяет контекст/поля и маршруты; реальный браузер, права, сохранение Item и работа нескольких клиентов не проверены.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-04, R008-05, R008-06, R008-20; оставшиеся границы: [U008-01](../../../../cross-check-0002.md#u008-01), [U008-06](../../../../cross-check-0002.md#u008-06). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -78,3 +78,13 @@ PARTS.main класса WitcheProfessionSheet. Получает item,systemField
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.019 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Основная форма редактирует десять слотов, три имени пути, notes и Set базовых навыков. Статистика берётся из statTypes с none, одиннадцать HTMLField получают value/enriched. Дополнительные механики находятся в отдельной configuration и доступны лишь девяти навыкам путей.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherProfessionSheet.js](../../../module/item/sheets/WitcherProfessionSheet.js.md), [module/item/sheets/WitcherItemSheet.js](../../../module/item/sheets/WitcherItemSheet.js.md), [module/data/item/professionData.js](../../../module/data/item/professionData.js.md), [module/data/item/templates/professionPathData.js](../../../module/data/item/templates/professionPathData.js.md), [module/data/item/templates/professionSkillData.js](../../../module/data/item/templates/professionSkillData.js.md), [module/setup/config.js](../../../module/setup/config.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [styles/profession-sheet.css](../../../styles/profession-sheet.css.md), [styles/character/tab-profession.css](../../../styles/character/tab-profession.css.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-04](../../../../cross-check-0002.md#r008-04), [R008-05](../../../../cross-check-0002.md#r008-05), [R008-06](../../../../cross-check-0002.md#r008-06), [R008-20](../../../../cross-check-0002.md#r008-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -71,7 +71,7 @@ Default export класса с фактическим именем WitcheProfess
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Системные классы листов настоящие, ItemSheetV2/HandlebarsApplicationMixin работают поверх DocumentSheet-фасада. Рендер проверяет контекст/поля и маршруты; реальный браузер, права, сохранение Item и работа нескольких клиентов не проверены.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-01, R008-04, R008-06, R008-20; оставшиеся границы: [U008-01](../../../../cross-check-0002.md#u008-01), [U008-06](../../../../cross-check-0002.md#u008-06). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -88,3 +88,13 @@ Default export класса с фактическим именем WitcheProfess
 Полностью разобраны [общие стили профессии](../../../styles/profession-sheet.css.md) и [дополнительный Actor-scope](../../../styles/character/tab-profession.css.md). Группа 13 отрисовала основной HBS:10 карточек и 3 skill-path-name, без profession-roll. Item использует общий profession-path column/gap10; row/gap0 требует внешнего actor/monster и active-вкладки. У formInput возникают prose-mirror; настоящий метод ядра _buildElements отдельно подтвердил динамический .editor (группа 15). Helper HBS в этой порции заменён; прежняя проверка 47 полей/модели .019 не выдаётся за повторённую.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003047). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Default-класс WitcheProfessionSheet подключает отдельную profession configuration, главный HBS и 52 варианта professionSkills. Стандартная форма охватывает десять слотов; механическая конфигурация — девять. Имя класса и имя импортируемого default-экспорта не требуют совпадения.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherItemSheet.js](WitcherItemSheet.js.md), [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](configurations/WitcherProfessionConfigurationSheet.js.md), [templates/sheets/item/profession-sheet.hbs](../../../templates/sheets/item/profession-sheet.hbs.md), [module/setup/config.js](../../setup/config.js.md), [module/data/item/professionData.js](../../data/item/professionData.js.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/actor/sheets/mixins/itemMixin.js](../../actor/sheets/mixins/itemMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-01](../../../../cross-check-0002.md#r008-01), [R008-04](../../../../cross-check-0002.md#r008-04), [R008-06](../../../../cross-check-0002.md#r008-06), [R008-20](../../../../cross-check-0002.md#r008-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

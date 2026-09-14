@@ -72,7 +72,7 @@ Default function professionSkill создаёт поля для definingSkill и
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Изолированно использованы настоящие модели Foundry и системные методы; UI, TextEditor, Actor, Roll, запись и query частично заменены фасадами. Браузер, мир, БД и реальные броски не запускались. Связанные Actor-файлы прочитаны в пределах конкретных потребителей, не объявлены полностью разобранными.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-04, R008-08, R008-10; оставшиеся границы: [U008-01](../../../../../cross-check-0002.md#u008-01), [U008-03](../../../../../cross-check-0002.md#u008-03), [U008-07](../../../../../cross-check-0002.md#u008-07). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -91,3 +91,13 @@ Default function professionSkill создаёт поля для definingSkill и
 [module/actor/mixins/professionMixin.js](../../../actor/mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Одинаковая восьмиполевая структура используется у definingSkill и девяти навыков путей. Поддержка attack/defense/usage/threshold схемой шире их настройки/отбора в UI и consumer. Свободный stat и уровень0 не проверяются как подходящий контекст броска.
+
+Сопоставленные определения и потребители: [module/data/item/templates/combat/skillDefenseData.js](combat/skillDefenseData.js.md), [module/data/item/templates/combat/skillAttackData.js](combat/skillAttackData.js.md), [module/data/item/templates/profession/skillUsageData.js](profession/skillUsageData.js.md), [module/data/item/templates/profession/thresholdData.js](profession/thresholdData.js.md), [module/data/item/professionData.js](../professionData.js.md), [module/data/item/templates/professionPathData.js](professionPathData.js.md), [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md), [templates/sheets/item/profession-sheet.hbs](../../../../templates/sheets/item/profession-sheet.hbs.md), [module/actor/mixins/professionMixin.js](../../../actor/mixins/professionMixin.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-04](../../../../../cross-check-0002.md#r008-04), [R008-08](../../../../../cross-check-0002.md#r008-08), [R008-10](../../../../../cross-check-0002.md#r008-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

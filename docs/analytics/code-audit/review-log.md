@@ -1,5 +1,111 @@
 # Журнал перекрёстных сверок
 
+## TASK-0004.008
+
+2026-09-14. [TASK-0004.008](../../tasks/task-0004.008.md), rusbar-main, HEAD f96434101e0e827838c2e6a3e09da8933a9801ef. На старте дерево чистое, 1735 отслеживаемых файлов. Основной охват — 24 файла / 1940 строк; три внутренних этапа завершены. Код и данные не изменены.
+
+### Этап 1 — раса, родина и профессия как данные
+
+Прочитаны 13 основных исходников / 546 строк: модели, фабрики, три основных листа и три Item-шаблона. Сопоставлены назначения, условия, зависимости/потребители, доказательства и поздние уточнения их карточек. Полностью прочитаны issues00072/00109/00116 с поздними дополнениями. Определения и вызовы registerDataModels/registerSheets, CommonItemData/dataUtils, Character-контекст, Drop и дополнительная защита сопоставлены на границах.
+
+Раса имеет четыре текстовые особенности и пять строк социального положения; родина — отдельную двухполевую модель. Item-родина и Actor.general.homeland, региональные строки расы и Actor.general.socialStanding не синхронизируются автоматически. Эффекты Item подключаются общим процессом .005, а текст perk сам changes не создаёт. Профессия имеет definingSkill и девять навыков путей, обычные professionSkills хранятся отдельным Set строк. Drop сбрасывает флаги базовых навыков перед поиском выбранных и может построить undefined-путь. Защита модели перебирает только девять навыков путей; definingSkill не входит.
+
+Протокол .018 от 2026-09-10 (14 групп) перечитан; начата сверка .019 той же даты. Прежние настоящие модели/BaseItem/методы/HBS использовали TextEditor, DOM, Actor/update и действия как явно описанные фасады. Текущая сверка статическая; нового исполнения и утверждения о сохранении в БД нет. В собственной Item-форме enriched передаётся, а Actor-представление отдельно проверяется на этапе2. Старые ожидания полного разбора .038 сопоставлены с уже выполненным протоколом на этапах 2–3.
+
+### Этап 2 — выбор и настройка профессионального навыка
+
+Прочитаны девять основных исходников / 816 строк: три модели использования/HP/порогов, configuration, три её partial и две Actor-вкладки. Сопоставлены их карточки и полные issues00110–00112/00118–00120. Перечитан протокол .019 от 2026-09-10 (19 групп), включая настоящие модели, HBS/helpers, извлечённый core-dispatcher и pending update-фасады; это прежние исполнения, не новые тесты.
+
+Основная форма редактирует десять имён/stat/level/definition, конфигурация — только девять навыков путей. Пять вкладок и общий ActiveEffect-редактор не дают механические поля definingSkill. CRUD воздействий/порогов адресует навык по имени и строку по ID; повторяющиеся/пустые имена неоднозначны. RemoveEffectDamageProperties не совпадает с зарегистрированным removeEffect, а прямой нижний remove использует currentTarget. Все шесть методов update возвращаются раньше записи; _onChangeForm вызывает и super, и специальную ветвь.
+
+Character показывает десять кнопок навыков, Monster только defining; none скрывает кнопку, пустой stat и level0 — нет. Inline data-field меняет Item; бросок получает data-name, не путь. Actor-HBS берёт raw HTML, хотя Character готовит enriched; Monster не готовит enriched профессии. Три подписи thresholds отсутствуют в ru, en содержит значения; изолированный fallback относится к поздней .038.
+
+Противоречия между исторической и текущей оговоркой в issues00072/00109 уточнены: полные формы и .038 уже разобраны, браузерное сохранение остаётся непроверенным. Причины проблем и статусы не меняются. Числовые правила или новую адресацию навыка этот этап не проектирует.
+
+### Этап 3 — профессиональное действие и результат
+
+Прочитаны professionMixin.js и profession-attack.hbs: два основных файла / 578 строк, их карточки и все оставшиеся назначенные issues. Итого прочитаны все 22 issue с поздними дополнениями. Перечитан протокол .038 от 2026-09-11 (24 группы); более поздние результаты .041/.042/.044/.045 сверены по датированным дополнениям issues и действующим определениям weaponAttack, defense, onDamage и updateDerivedStat. Новых поведенческих запусков нет.
+
+Сопоставлены dispatcher, обычный бросок, порог, HP-ветвь, прямая и оружейная атаки. Установлены разные границы applySelf/applyOnTarget, stat.max/stat.value, rollOver>0, JSON/длительности, legacy ActiveEffect и query/clone/createEmbeddedDocuments. Проверены определения ChatMessageData/AttackMessageData, getSpeaker и BaseActiveEffect.migrateData установленного ядра 14.367.0. Миграция JSON не вычисляет повреждённое выражение и не переносит icon; consumer временных HP отдельно ожидает JSON.parse. Реальные клиентские создание, передача и сохранение эффекта не исполнялись.
+
+77 групп исходных связей / 477 мест совпали с текущими строками; все 52 внешние относительно основного набора цели карточек существуют. Совокупный SHA-256 615 исходников совпал со срезом .001: 384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c. 48 D и 11 Q сопоставлены с текстами и границами процесса. Итоговый формальный контроль приведён ниже.
+
+### Итог связей и контрольных случаев
+
+[20 процессов и восемь границ](cross-check-0002.md#результаты-task-0004008) сопоставляют producer и consumer. Обновлены все 24 основные карточки; соседние определения прочитаны в пределах связей, полная повторная проверка 52 соседних файлов не заявляется. Матрицы изменены в 182 назначенных строках: 24 F, 77 S, 48 D, 11 Q и 22 I. Общие размеры 615 F / 1596 S / 1198 D / 277 Q / 329 I не изменены.
+
+| Основная карточка | Процессы |
+| --- | --- |
+| [module/actor/mixins/professionMixin.js](files/module/actor/mixins/professionMixin.js.md) | [R008-09](cross-check-0002.md#r008-09), [R008-10](cross-check-0002.md#r008-10), [R008-11](cross-check-0002.md#r008-11), [R008-12](cross-check-0002.md#r008-12), [R008-13](cross-check-0002.md#r008-13), [R008-14](cross-check-0002.md#r008-14), [R008-15](cross-check-0002.md#r008-15), [R008-16](cross-check-0002.md#r008-16), [R008-17](cross-check-0002.md#r008-17), [R008-18](cross-check-0002.md#r008-18), [R008-19](cross-check-0002.md#r008-19) |
+| [module/data/item/homelandData.js](files/module/data/item/homelandData.js.md) | [R008-01](cross-check-0002.md#r008-01), [R008-03](cross-check-0002.md#r008-03) |
+| [module/data/item/professionData.js](files/module/data/item/professionData.js.md) | [R008-01](cross-check-0002.md#r008-01), [R008-04](cross-check-0002.md#r008-04), [R008-05](cross-check-0002.md#r008-05), [R008-08](cross-check-0002.md#r008-08) |
+| [module/data/item/raceData.js](files/module/data/item/raceData.js.md) | [R008-01](cross-check-0002.md#r008-01), [R008-02](cross-check-0002.md#r008-02), [R008-05](cross-check-0002.md#r008-05) |
+| [module/data/item/templates/perkData.js](files/module/data/item/templates/perkData.js.md) | [R008-02](cross-check-0002.md#r008-02), [R008-05](cross-check-0002.md#r008-05) |
+| [module/data/item/templates/profession/skillUsageData.js](files/module/data/item/templates/profession/skillUsageData.js.md) | [R008-06](cross-check-0002.md#r008-06), [R008-12](cross-check-0002.md#r008-12), [R008-14](cross-check-0002.md#r008-14) |
+| [module/data/item/templates/profession/temporaryHealthData.js](files/module/data/item/templates/profession/temporaryHealthData.js.md) | [R008-06](cross-check-0002.md#r008-06), [R008-12](cross-check-0002.md#r008-12), [R008-13](cross-check-0002.md#r008-13), [R008-14](cross-check-0002.md#r008-14) |
+| [module/data/item/templates/profession/thresholdData.js](files/module/data/item/templates/profession/thresholdData.js.md) | [R008-06](cross-check-0002.md#r008-06), [R008-11](cross-check-0002.md#r008-11), [R008-20](cross-check-0002.md#r008-20) |
+| [module/data/item/templates/professionPathData.js](files/module/data/item/templates/professionPathData.js.md) | [R008-04](cross-check-0002.md#r008-04) |
+| [module/data/item/templates/professionSkillData.js](files/module/data/item/templates/professionSkillData.js.md) | [R008-04](cross-check-0002.md#r008-04), [R008-08](cross-check-0002.md#r008-08), [R008-10](cross-check-0002.md#r008-10) |
+| [module/data/item/templates/socialStandingData.js](files/module/data/item/templates/socialStandingData.js.md) | [R008-02](cross-check-0002.md#r008-02), [R008-20](cross-check-0002.md#r008-20) |
+| [module/item/sheets/WitcherHomelandSheet.js](files/module/item/sheets/WitcherHomelandSheet.js.md) | [R008-01](cross-check-0002.md#r008-01), [R008-03](cross-check-0002.md#r008-03), [R008-20](cross-check-0002.md#r008-20) |
+| [module/item/sheets/WitcherProfessionSheet.js](files/module/item/sheets/WitcherProfessionSheet.js.md) | [R008-01](cross-check-0002.md#r008-01), [R008-04](cross-check-0002.md#r008-04), [R008-06](cross-check-0002.md#r008-06), [R008-20](cross-check-0002.md#r008-20) |
+| [module/item/sheets/WitcherRaceSheet.js](files/module/item/sheets/WitcherRaceSheet.js.md) | [R008-01](cross-check-0002.md#r008-01), [R008-02](cross-check-0002.md#r008-02), [R008-20](cross-check-0002.md#r008-20) |
+| [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](files/module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md) | [R008-06](cross-check-0002.md#r008-06), [R008-07](cross-check-0002.md#r008-07), [R008-18](cross-check-0002.md#r008-18) |
+| [templates/dialog/combat/profession-attack.hbs](files/templates/dialog/combat/profession-attack.hbs.md) | [R008-15](cross-check-0002.md#r008-15), [R008-17](cross-check-0002.md#r008-17), [R008-19](cross-check-0002.md#r008-19), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/partials/character/tab-profession.hbs](files/templates/partials/character/tab-profession.hbs.md) | [R008-05](cross-check-0002.md#r008-05), [R008-09](cross-check-0002.md#r008-09), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](files/templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md) | [R008-05](cross-check-0002.md#r008-05), [R008-09](cross-check-0002.md#r008-09), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs](files/templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs.md) | [R008-06](cross-check-0002.md#r008-06), [R008-15](cross-check-0002.md#r008-15), [R008-16](cross-check-0002.md#r008-16), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](files/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs.md) | [R008-06](cross-check-0002.md#r008-06), [R008-07](cross-check-0002.md#r008-07), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](files/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs.md) | [R008-06](cross-check-0002.md#r008-06), [R008-07](cross-check-0002.md#r008-07), [R008-11](cross-check-0002.md#r008-11), [R008-12](cross-check-0002.md#r008-12), [R008-15](cross-check-0002.md#r008-15), [R008-16](cross-check-0002.md#r008-16), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/item/homeland-sheet.hbs](files/templates/sheets/item/homeland-sheet.hbs.md) | [R008-03](cross-check-0002.md#r008-03), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/item/profession-sheet.hbs](files/templates/sheets/item/profession-sheet.hbs.md) | [R008-04](cross-check-0002.md#r008-04), [R008-05](cross-check-0002.md#r008-05), [R008-06](cross-check-0002.md#r008-06), [R008-20](cross-check-0002.md#r008-20) |
+| [templates/sheets/item/race-sheet.hbs](files/templates/sheets/item/race-sheet.hbs.md) | [R008-02](cross-check-0002.md#r008-02), [R008-05](cross-check-0002.md#r008-05), [R008-20](cross-check-0002.md#r008-20) |
+
+Произвольные/повторные/пустые имена различены в R008-07/09/13; неизвестные stat и professionSkills — в R008-04/10. applySelf/нет цели — R008-12, отмена и ранний Promise — R008-18, недостаточный ресурс оружия и отсутствие guard прямой атаки — R008-19. Поле без UI — R008-06; UI без чтения флага — R008-08/12/15. ID строки effects/thresholds не подменяет путь профессионального навыка.
+
+Новых игровых методов/моделей или HBS в .008 не исполняли. Текущее чтение сопоставлено с .018 (14 групп, 2026-09-10), .019 (19 групп, 2026-09-10), .038 (24 группы, 2026-09-11). В .018/.019 TextEditor/DOM/запись/Actor и отдельные действия были фасадами; в .019 временный Roll возвращал заданный результат. В .038 реальные Roll/extendedRoll и модели сочетались с Dialog/DOM/Application/ActiveEffect/query/запись-фасадами, а core миграция исполнялась отдельно. Поздние .041/.042/.044/.045 относятся к 2026-09-12 и расширяют конкретные границы, указанные в полных issues. Ни один из этих результатов не объявлен единым клиентским прохождением процесса.
+
+Установленное ядро прочитано локально: /opt/foundryvtt/package.json содержит 14.367.0; BaseActiveEffect.migrateData и ChatMessage.getSpeaker сопоставлены с payload/вызовом системы. Версии и фасады старых опытов сохранены, текущая сверка не запускает их заново. Барьер issue00001, права реальных пользователей, несколько клиентов, создание/миграция/удаление в БД, реальные UUID, браузерные события и истечение эффектов не проверены.
+
+### Сверка issues
+
+Все 22 назначенных документа прочитаны целиком, включая поздние дополнения. Дубликатов для установленных причин не создано. Разделены isDefense71/defining72/UI112, имя117/арифметика240/object после миграции294, диспетчер8/CRUD120/профессиональная цепочка241, модификаторы237/стоимость238/ожидание STA262. Смежные issues сохраняют владельцев своей очереди. В 00072/00109 уточнены только устаревшие ожидания завершённого чтения; подтверждение пользователем, исправление и закрытие не получены.
+
+| Issue | Результат и граница |
+| --- | --- |
+| [issue-00072](../../issues/potential/issue-00072.md) | definingSkill поддерживает skillDefense в схеме, но отбор ProfessionData рассматривает только девять навыков путей. Отсутствие редактора механики установлено отдельно в112; устаревшая оговорка об ещё не изученном UI снята. .042 проверяла полный chooser на фасадах. |
+| [issue-00109](../../issues/potential/issue-00109.md) | Item-формы передают enriched, Character-HBS использует raw HTML всех15 editor; Monster не готовит enriched профессии. Полный пофайловый разбор уже завершён, что уточнено в issue. Сохранение и реальные UUID не проверены. |
+| [issue-00110](../../issues/potential/issue-00110.md) | CRUD ищет первое совпадение имени среди девяти навыков, Actor сначала проверяет definingSkill. ID строки effects/thresholds не является ID навыка; inline data-field и бросок data-name различены. |
+| [issue-00111](../../issues/potential/issue-00111.md) | HBS action removeEffectDamageProperties не совпадает с зарегистрированным removeEffect; прямой нижний remove использует currentTarget. Старое выполнение core-dispatcher на фасаде не является браузерным кликом. |
+| [issue-00112](../../issues/potential/issue-00112.md) | Схема имеет механические поля definingSkill, однако конфигурация строит только три пути по три навыка; general/activeEffects не дают эти поля. Проблема UI отделена от алгоритма защиты72. |
+| [issue-00113](../../issues/potential/issue-00113.md) | applySelf присутствует в SkillUsage и форме, но цель выбирается только по applyOnTarget; иначе используется this. Нет цели при applyOnTarget → сообщение ошибки/возврат; это не lifecycle ActiveEffect. |
+| [issue-00114](../../issues/potential/issue-00114.md) | Duration заменяет первое @level и берёт match(/\d+\*?\d+/g)[0]. Одиночное2 не совпадает; 10 и2*@level при уровне2 обрабатываются. Новый синтаксис выражений не вводился. |
+| [issue-00115](../../issues/potential/issue-00115.md) | Пустой TypedObject thresholds допускается схемой и приводит к chooser без варианта; дальше читается undefined.value. Одиночный порог0 допустим; доступ select по id не является отдельной ошибкой. |
+| [issue-00116](../../issues/potential/issue-00116.md) | Drop профессии сбрасывает флаги базовых навыков и по строкам Set ищет CONFIG.skillMap; неизвестное имя строит undefined-путь. Отсутствие choices у Set и набор52 вариантов в UI различены; родственная Loot-проблема225 сохраняется отдельно. |
+| [issue-00117](../../issues/potential/issue-00117.md) | Имя вставляется в JSON временных HP без escaping. Кавычка даёт malformed JSON; это не ошибка арифметики240 и не миграция корректного JSON в объект294. Поздний consumer updateDerivedStat прочитан, его полная проверка остаётся .011. |
+| [issue-00118](../../issues/potential/issue-00118.md) | none скрывает кнопку профессии, пустой/неизвестный stat и level0 её не скрывают; doProfessionSkillRoll читает stats/statMap до prompt. Схема свободной строки не гарантирует подходящий runtime ключ. |
+| [issue-00119](../../issues/potential/issue-00119.md) | Три ключа thresholds есть в en и отсутствуют в ru: label hasThresholds в модели, name/thresholdValue в HBS. Поздняя .038 проверяла настоящий Localization с EN fallback. Полный свод двух языков остаётся .016. |
+| [issue-00120](../../issues/potential/issue-00120.md) | Все шесть CRUD вызывают item.update без await/return, _onChangeForm вызывает super и дополнительную ветвь. Датированный pending-update фасад подтвердил раннее завершение; реальная гонка записей не запускалась. |
+| [issue-00236](../../issues/potential/issue-00236.md) | Обычный бросок создаёт ChatMessageData(this.actor), но метод принадлежит Actor. Core getSpeaker применяет fallback вместо владельца способности; прямая атака передаёт this и имеет другой маршрут. |
+| [issue-00237](../../issues/potential/issue-00237.md) | Прямая атака передаёт отсутствующий attack.name в addActiveEffects и не вызывает addAttackModifiers; weapon skillReplacement обходит constructBaseAttackFormula. Уже вошедшие в stat.value эффекты сохраняются. Контракт оружия продолжает .010. |
+| [issue-00238](../../issues/potential/issue-00238.md) | Прямая extra-атака штрафует−3 без проверки/списания STA. В weaponAttack имеется guard STA−3, но update не ожидается (отдельная262). Прежние STA2/3/10 не повторялись, норму по рулбуку аудит не выбирает. |
+| [issue-00239](../../issues/potential/issue-00239.md) | Producer не передаёт itemUuid, AttackMessageData не восстанавливает его из damage.item; onDamage без guard вызывает разрешённый Item.rollDamage. Отсутствующий/удалённый Item имеет ту же границу, .045 не доказывает полный игровой урон. |
+| [issue-00240](../../issues/potential/issue-00240.md) | min(rollOver,cap)+строковое значение вычисляется Roll только при наличии d; +2 даёт value:5+2 в JSON. Эта причина отделена от кавычек117 и object value после миграции294. |
+| [issue-00241](../../issues/potential/issue-00241.md) | Dispatcher, weapon chooser и threshold не связывают вложенный Promise; HP не ждёт toMessage/query. Прямые prompt rejectClose могут отклоняться. Ранний true в query dispatcher8 и CRUD120 — отдельные уровни. |
+| [issue-00242](../../issues/potential/issue-00242.md) | Фильтр использует только первый attackOption; пустой chooser делегирует undefined. Поздняя .041 исполнила первое падение weaponAttack.system.damage; браузерная обработка пустого select не доказана. |
+| [issue-00243](../../issues/potential/issue-00243.md) | Producer временных HP задаёт icon; schema/migrateData ядра14 используют img и не переносят icon. Прежняя миграция выполнена отдельно, конечный вид эффекта в клиенте не проверен. |
+| [issue-00244](../../issues/potential/issue-00244.md) | И прямая, и оружейная формула исключают meleeBonus при monster.addMeleeBonus=false, а context проверяет только applyMeleeBonus. Поздняя .041 добавила оружейный producer той же причины, без нового issue. |
+
+### Формальная проверка и сохранность
+
+Проверки Python через stdin и git diff --check прошли: 66 057 локальных ссылок и якорей, 338 таблиц в проверяемой области изменённых документов. Согласованы 615 строк реестра/карточек, 329 уникальных issues (все potential), 1596 S, 1198 D, 277 Q и 62 исторических протокола; назначения файлов и шесть критериев подзадачи согласованы с очередью. Старый хвост журнала и результаты .002–.007 сохранены, матрицы обновлены только в назначенных строках и указателях прогресса.
+
+Изменены только 37 существующих Markdown-документов: 24 карточки, две issues и 11 документов матриц/протокола/навигации/задач. Новых, staged и untracked файлов нет. SHA-256 всех 615 исходников совпадает с исходным срезом; 1698 остальных отслеживаемых файлов побайтно неизменны. У всех 1735 отслеживаемых файлов сохранены mode/uid/gid/inode; ветка и HEAD прежние. Девять контрольных файлов ядра совпали с хешами .001, текущий Node — v24.16.0.
+
+Статическая проверка ключей порогов уточнена по обоим источникам: hasThresholds находится в label модели, name и thresholdValue — в HBS. Первоначальная выборка только label JavaScript охватывала один ключ; после включения HBS проверены все три: en содержит их, ru не содержит. В новых описаниях исправлено ошибочное обозначение всех трёх как schema label; существующая issue00119 и её прежнее доказательство не изменены.
+
+Всего .002–.008 сопоставили 229/615 основных файлов и 172/329 issues; остаются 386 файлов и 157 issues. .001–.008 done, .009–.018 planned; следующая [TASK-0004.009](../../tasks/task-0004.009.md). TASK-0004 in-progress, TASK-0003 done, TASK-0005 draft. Соответствие рулбукам и новые механики не исследовались; код/данные/права/владельцы не менялись, коммит не создавался.
+
 ## TASK-0004.007
 
 2026-09-14. [TASK-0004.007](../../tasks/task-0004.007.md), rusbar-main, HEAD 6a26042f7881d9990c304483c7219e0698f6617e. На старте дерево чистое, 1735 отслеживаемых файлов. Основной охват — 37 файлов. Исходники соответствуют срезу TASK-0001; это проверено сводным SHA-256 всех 615 файлов. Подзадача завершена: 37 файлов / 1802 строки, 23 основных issues, 20 процессов и восемь границ.

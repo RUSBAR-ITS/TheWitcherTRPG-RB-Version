@@ -89,7 +89,7 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 
 ## Непроверенные участки и открытые вопросы
 
-Исходник прочитан полностью. Изолированно использованы настоящие модели Foundry и системные методы; UI, TextEditor, Actor, Roll, запись и query частично заменены фасадами. Браузер, мир, БД и реальные броски не запускались. Связанные Actor-файлы прочитаны в пределах конкретных потребителей, не объявлены полностью разобранными.
+В TASK-0004.008 текущий файл и его связи сопоставлены с датированными протоколами TASK-0003.018/.019 (2026-09-10) и .038 (2026-09-11), в пределах относящихся к нему сценариев. Новых поведенческих запусков нет; прежние настоящие модели/методы и фасады различены в протоколе. Браузерный submit, мир, сеть и запись в БД не проверены. Установлены процессы R008-01, R008-04, R008-05, R008-08; оставшиеся границы: [U008-01](../../../../cross-check-0002.md#u008-01), [U008-03](../../../../cross-check-0002.md#u008-03), [U008-07](../../../../cross-check-0002.md#u008-07). Полный пофайловый разбор соседей в TASK-0003 не равен проверке клиентского lifecycle.
 
 ## Связанные проблемы
 
@@ -136,3 +136,13 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 Dwarf / Gnome Profession содержит семь text-результатов на 1d7; Elf Profession и Human Profession — девять на 1d9, причём их results совпадают. Ни одна запись не содержит profession Item, definingSkill/skillPath или documentUuid на профессию. WitcherCharacterSheet:154 берёт первый уже имеющийся profession Item. Генератор выдаёт название для пользователя, не вызывает ProfessionData и не создаёт дерево навыков; соответствие списков рулбуку не проверялось.
 
 [35 карточек подтаблиц](../../../README.md#подтаблицы-создания-персонажа--task-0003054), [перекрёстная сверка и пределы](../../../../review-log.md#task-0003054).
+
+## Сквозная сверка TASK-0004.008
+
+2026-09-14; rusbar-main, f96434101e0e827838c2e6a3e09da8933a9801ef. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Четырнадцать верхних полей включают definingSkill, три пути и отдельный Set базовых professionSkills. enrichedText готовит одиннадцать описаний. Отбор защиты рассматривает только девять навыков путей, игнорирует isDefense и возвращает первое совпадение; UI definingSkill проверен отдельно.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/professionPathData.js](templates/professionPathData.js.md), [module/data/item/templates/professionSkillData.js](templates/professionSkillData.js.md), [module/data/dataUtils.js](../dataUtils.js.md), [module/data/item/templates/combat/defensePropertiesData.js](templates/combat/defensePropertiesData.js.md), [system.json](../../../system.json.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherProfessionSheet.js](../../item/sheets/WitcherProfessionSheet.js.md), [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../item/sheets/configurations/WitcherProfessionConfigurationSheet.js.md), [module/item/mixins/defenseOptionMixin.js](../../item/mixins/defenseOptionMixin.js.md), [module/actor/mixins/defenseMixin.js](../../actor/mixins/defenseMixin.js.md), [module/actor/mixins/professionMixin.js](../../actor/mixins/professionMixin.js.md), [module/actor/sheets/mixins/itemMixin.js](../../actor/sheets/mixins/itemMixin.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004008) — TASK-0004.008; процессы [R008-01](../../../../cross-check-0002.md#r008-01), [R008-04](../../../../cross-check-0002.md#r008-04), [R008-05](../../../../cross-check-0002.md#r008-05), [R008-08](../../../../cross-check-0002.md#r008-08). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
