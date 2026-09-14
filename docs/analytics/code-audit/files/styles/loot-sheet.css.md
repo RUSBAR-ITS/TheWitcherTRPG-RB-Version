@@ -81,7 +81,7 @@ left-loot-border — правая рамка, width 150px/height 100%; loot-img 
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Проверки локальные: Foundry 14.367.0, Node 24.16.0, Handlebars 4.7.9, PostCSS 8.5.12. Модели, helpers, методы и HBS — реальные исходники; UUID resolver, Actor/DOM/ChatMessage и отдельные вспомогательные helpers представлены указанными в журнале фасадами. Не запускались мир, браузер, HTTP, БД, установка пакетов или сборка. Совпадение селектора и существование файла не доказывают конечный вид или доступ службы.
+Текущая статическая сверка завершена; прежние пофайловые опыты сохраняют свои даты и фасады. hidden-from-view задаёт display:none; серебристый стиль скрытой строки — отдельная ветвь. Оба варианта сохраняют игровые данные; права на просмотр и действие не следуют из CSS. Непроверенные границы и следующий критерий: [U016-03](../../cross-check-0002.md#u016-03), [U016-05](../../cross-check-0002.md#u016-05). Полный браузерный цикл, мир, HTTP и запись в БД не выполнялись; смысл перевода/игровых правил не оценивался.
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@ left-loot-border — правая рамка, width 150px/height 100%; loot-img 
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | ee24c2605f4db98fad1ff6db024d2b0c26883670; полный файл | Первичная карточка; [перекрёстная сверка](../../review-log.md#task-0003048) |
+
+## Сквозная сверка TASK-0004.016
+
+2026-09-14; rusbar-main, 0588289c84d955201457f44ec2f8152a9258135e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+hidden-from-view задаёт display:none; серебристый стиль скрытой строки — отдельная ветвь. Оба варианта сохраняют игровые данные; права на просмотр и действие не следуют из CSS. Подключение: импорт № 11 в общем CSS; 6 правил / 10 деклараций.
+
+Сопоставленные определения и потребители: [templates/sheets/item/container-sheet.hbs](../templates/sheets/item/container-sheet.hbs.md), [module/data/item/containerData.js](../module/data/item/containerData.js.md), [module/actor/sheets/WitcherLootSheet.js](../module/actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/tabs/tab-inventory.hbs](../templates/sheets/actor/tabs/tab-inventory.hbs.md), [module/actor/sheets/mixins/itemMixin.js](../module/actor/sheets/mixins/itemMixin.js.md), [styles/witcher-styles.css](witcher-styles.css.md).
+
+[Протокол и границы](../../review-log.md#task-0004016) — TASK-0004.016; процессы [R016-09](../../cross-check-0002.md#r016-09), [R016-12](../../cross-check-0002.md#r016-12). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

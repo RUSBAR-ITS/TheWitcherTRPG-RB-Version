@@ -88,7 +88,7 @@ CSS не читает Actor/Item напрямую и не выполняет upd
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных частей файла нет. Не проверены реальная отрисовка, нативное переключение details, hover/focus, keyboard/touch, размеры окна, переполнение, computedStyle, поддержка vendor-элементов, вложенности/light-dark в конкретном браузере и сторонние темы. Для отмеченных старых/неустановленных потребителей нужен фактический сценарий подключения, прежде чем удалять либо исправлять CSS. HTTP системы, мир и БД не запускались; доступ службы и игровые записи не проверялись.
+Текущая статическая сверка завершена; прежние пофайловые опыты сохраняют свои даты и фасады. Корневой scope Monster и active.details отделены от внутреннего .tab:not(.active). Нативный выбор group/id относится к core _prepareTabs; CSS не выбирает активную вкладку самостоятельно. Непроверенные границы и следующий критерий: [U016-05](../../../cross-check-0002.md#u016-05). Полный браузерный цикл, мир, HTTP и запись в БД не выполнялись; смысл перевода/игровых правил не оценивался.
 
 ## Связанные проблемы
 
@@ -99,3 +99,13 @@ CSS не читает Actor/Item напрямую и не выполняет upd
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 523c9b2616e19058b18f812ae0361c8a86366814; полный файл | Первичная карточка; [перекрёстная сверка](../../../review-log.md#task-0003049) |
+
+## Сквозная сверка TASK-0004.016
+
+2026-09-14; rusbar-main, 0588289c84d955201457f44ec2f8152a9258135e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Корневой scope Monster и active.details отделены от внутреннего .tab:not(.active). Нативный выбор group/id относится к core _prepareTabs; CSS не выбирает активную вкладку самостоятельно. Подключение: импорт № 34 в общем CSS; 7 правил / 17 деклараций.
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherMonsterSheet.js](../../module/actor/sheets/WitcherMonsterSheet.js.md), [templates/sheets/actor/partials/monster/tabs/tab-details.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-details.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../../templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs.md), [templates/partials/character/tab-skills.hbs](../../templates/partials/character/tab-skills.hbs.md), [styles/witcher-styles.css](../witcher-styles.css.md).
+
+[Протокол и границы](../../../review-log.md#task-0004016) — TASK-0004.016; процессы [R016-18](../../../cross-check-0002.md#r016-18). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

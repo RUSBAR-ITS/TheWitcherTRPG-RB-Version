@@ -70,7 +70,7 @@ JavaScript-функций нет. Браузер сопоставляет select
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Проверки локальные: Foundry 14.367.0, Node 24.16.0, Handlebars 4.7.9, PostCSS 8.5.12. Модели, helpers, методы и HBS — реальные исходники; UUID resolver, Actor/DOM/ChatMessage и отдельные вспомогательные helpers представлены указанными в журнале фасадами. Не запускались мир, браузер, HTTP, БД, установка пакетов или сборка. Совпадение селектора и существование файла не доказывают конечный вид или доступ службы.
+Текущая статическая сверка завершена; прежние пофайловые опыты сохраняют свои даты и фасады. Единственное правило .logEntry задаёт flex/space-around. Journal IP/currency и реальные награды имеют отдельных consumers; extended-sheet исключает RewardsSheet из основного grid. Непроверенные границы и следующий критерий: [U016-03](../../cross-check-0002.md#u016-03). Полный браузерный цикл, мир, HTTP и запись в БД не выполнялись; смысл перевода/игровых правил не оценивался.
 
 ## Связанные проблемы
 
@@ -81,3 +81,13 @@ JavaScript-функций нет. Браузер сопоставляет select
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | ee24c2605f4db98fad1ff6db024d2b0c26883670; полный файл | Первичная карточка; [перекрёстная сверка](../../review-log.md#task-0003048) |
+
+## Сквозная сверка TASK-0004.016
+
+2026-09-14; rusbar-main, 0588289c84d955201457f44ec2f8152a9258135e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Единственное правило .logEntry задаёт flex/space-around. Journal IP/currency и реальные награды имеют отдельных consumers; extended-sheet исключает RewardsSheet из основного grid. Подключение: импорт № 27 в общем CSS; 1 правил / 2 деклараций.
+
+Сопоставленные определения и потребители: [templates/sheets/actor/currencyConverter/currencyConverter.hbs](../templates/sheets/actor/currencyConverter/currencyConverter.hbs.md), [templates/sheets/actor/rewards/currency.hbs](../templates/sheets/actor/rewards/currency.hbs.md), [module/actor/rewardsSheet.js](../module/actor/rewardsSheet.js.md), [module/actor/mixins/currencyConverterMixin.js](../module/actor/mixins/currencyConverterMixin.js.md), [styles/witcher-styles.css](witcher-styles.css.md).
+
+[Протокол и границы](../../review-log.md#task-0004016) — TASK-0004.016; процессы [R016-10](../../cross-check-0002.md#r016-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

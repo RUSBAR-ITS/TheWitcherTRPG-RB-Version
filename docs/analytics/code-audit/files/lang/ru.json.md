@@ -105,7 +105,7 @@ JSON не вызывает код и не импортирует другой с
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверялись смысловая точность перевода игровых правил, терминологическое единообразие, другие шесть языков, контент компедиумов, реальный браузер/мир, сетевой доступ к ресурсам, активные модули переводов и все возможные сохранённые/пользовательские ключи. Три en-only ключа без найденного потребителя и два ru-only ключа сохранены как наблюдение состава; удалять их на основании поиска нельзя.
+Текущая статическая сверка завершена; прежние пофайловые опыты сохраняют свои даты и фасады. 1135 строковых листьев, 1133 общих с en и два только ru. По 63 dotted-имени и четыре пустых hint; после разворачивания пустой перевод не считается отсутствующим. Damage.silver не заменяет ожидаемый DamageType.silver. Непроверенные границы и следующий критерий: [U016-07](../../cross-check-0002.md#u016-07), [U016-08](../../cross-check-0002.md#u016-08). Полный браузерный цикл, мир, HTTP и запись в БД не выполнялись; смысл перевода/игровых правил не оценивался.
 
 ## Связанные проблемы
 
@@ -264,3 +264,13 @@ JSON не вызывает код и не импортирует другой с
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 4b9951094106e26d9274bbd5d5e8e7a709cfcf24; полный файл | Первичная карточка; [перекрёстная сверка](../../review-log.md#task-0003051) |
+
+## Сквозная сверка TASK-0004.016
+
+2026-09-14; rusbar-main, 0588289c84d955201457f44ec2f8152a9258135e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+1135 строковых листьев, 1133 общих с en и два только ru. По 63 dotted-имени и четыре пустых hint; после разворачивания пустой перевод не считается отсутствующим. Damage.silver не заменяет ожидаемый DamageType.silver.
+
+Сопоставленные определения и потребители: [system.json](../system.json.md), [module/setup/config.js](../module/setup/config.js.md), [module/scripts/chat.js](../module/scripts/chat.js.md), [module/actor/mixins/currencyConverterMixin.js](../module/actor/mixins/currencyConverterMixin.js.md), [module/data/item/templates/combat/attackOptionsData.js](../module/data/item/templates/combat/attackOptionsData.js.md), [module/activeEffect/mixins/baseMixin.js](../module/activeEffect/mixins/baseMixin.js.md), [module/data/activeEffects/witcherActiveEffectData.js](../module/data/activeEffects/witcherActiveEffectData.js.md), [templates/sheets/item/configuration/tabs/general.hbs](../templates/sheets/item/configuration/tabs/general.hbs.md), [templates/sheets/item/configuration/tabs/spellGeneral.hbs](../templates/sheets/item/configuration/tabs/spellGeneral.hbs.md).
+
+[Протокол и границы](../../review-log.md#task-0004016) — TASK-0004.016; процессы [R016-20](../../cross-check-0002.md#r016-20), [R016-21](../../cross-check-0002.md#r016-21), [R016-22](../../cross-check-0002.md#r016-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

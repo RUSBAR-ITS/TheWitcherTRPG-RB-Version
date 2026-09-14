@@ -77,7 +77,7 @@ JS-функций/записи нет. each объявляет component/name д
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Проверки локальные: Foundry 14.367.0, Node 24.16.0, Handlebars 4.7.9, PostCSS 8.5.12. Модели, helpers, методы и HBS — реальные исходники; UUID resolver, Actor/DOM/ChatMessage и отдельные вспомогательные helpers представлены указанными в журнале фасадами. Не запускались мир, браузер, HTTP, БД, установка пакетов или сборка. Совпадение селектора и существование файла не доказывают конечный вид или доступ службы. Скрытие нуля и печать сырого строкового enum описаны без самостоятельного вывода о нарушении игровых правил.
+Текущая статическая сверка завершена; прежние пофайловые опыты сохраняют свои даты и фасады. Тип diagrams и prepared UUID-компоненты подтверждены DiagramData. quantity ?? 1 сохраняет 0; алхимия требует isFormulae/gt 0 и строит динамический key/PNG. Компонент с недоступным UUID остаётся исходной записью. Непроверенные границы и следующий критерий: [U016-06](../../../../../../cross-check-0002.md#u016-06), [U016-07](../../../../../../cross-check-0002.md#u016-07). Полный браузерный цикл, мир, HTTP и запись в БД не выполнялись; смысл перевода/игровых правил не оценивался.
 
 ## Связанные проблемы
 
@@ -88,3 +88,13 @@ JS-функций/записи нет. each объявляет component/name д
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | ee24c2605f4db98fad1ff6db024d2b0c26883670; полный файл | Первичная карточка; [перекрёстная сверка](../../../../../../review-log.md#task-0003048) |
+
+## Сквозная сверка TASK-0004.016
+
+2026-09-14; rusbar-main, 0588289c84d955201457f44ec2f8152a9258135e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Тип diagrams и prepared UUID-компоненты подтверждены DiagramData. quantity ?? 1 сохраняет 0; алхимия требует isFormulae/gt 0 и строит динамический key/PNG. Компонент с недоступным UUID остаётся исходной записью.
+
+Сопоставленные определения и потребители: [module/actor/sheets/mixins/itemMixin.js](../../../../../module/actor/sheets/mixins/itemMixin.js.md), [module/setup/handlebars.js](../../../../../module/setup/handlebars.js.md), [module/data/item/diagramData.js](../../../../../module/data/item/diagramData.js.md), [module/data/item/templates/craftingComponentData.js](../../../../../module/data/item/templates/craftingComponentData.js.md), [templates/partials/character/substances.hbs](../../../../partials/character/substances.hbs.md), [module/setup/config.js](../../../../../module/setup/config.js.md), [module/scripts/chat.js](../../../../../module/scripts/chat.js.md), [module/actor/mixins/currencyConverterMixin.js](../../../../../module/actor/mixins/currencyConverterMixin.js.md), [module/data/item/templates/combat/attackOptionsData.js](../../../../../module/data/item/templates/combat/attackOptionsData.js.md), [module/activeEffect/mixins/baseMixin.js](../../../../../module/activeEffect/mixins/baseMixin.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004016) — TASK-0004.016; процессы [R016-02](../../../../../../cross-check-0002.md#r016-02), [R016-04](../../../../../../cross-check-0002.md#r016-04), [R016-21](../../../../../../cross-check-0002.md#r016-21). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

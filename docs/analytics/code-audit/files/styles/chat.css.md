@@ -96,7 +96,7 @@ JavaScript-функций нет. Браузер сопоставляет select
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Проверки локальные: Foundry 14.367.0, Node 24.16.0, Handlebars 4.7.9, PostCSS 8.5.12. Модели, helpers, методы и HBS — реальные исходники; UUID resolver, Actor/DOM/ChatMessage и отдельные вспомогательные helpers представлены указанными в журнале фасадами. Не запускались мир, браузер, HTTP, БД, установка пакетов или сборка. Совпадение селектора и существование файла не доказывают конечный вид или доступ службы.
+Текущая статическая сверка завершена; прежние пофайловые опыты сохраняют свои даты и фасады. Header > h4 совпадает с HBS. Две цепочки заголовков description/components не учитывают section-обёртки partial: 00308. Экранирование текста и последующий core enrichHTML относятся к разным шагам. Непроверенные границы и следующий критерий: [U016-06](../../cross-check-0002.md#u016-06), [U016-02](../../cross-check-0002.md#u016-02). Полный браузерный цикл, мир, HTTP и запись в БД не выполнялись; смысл перевода/игровых правил не оценивался.
 
 ## Связанные проблемы
 
@@ -107,3 +107,13 @@ JavaScript-функций нет. Браузер сопоставляет select
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | ee24c2605f4db98fad1ff6db024d2b0c26883670; полный файл | Первичная карточка; [перекрёстная сверка](../../review-log.md#task-0003048) |
+
+## Сквозная сверка TASK-0004.016
+
+2026-09-14; rusbar-main, 0588289c84d955201457f44ec2f8152a9258135e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Header > h4 совпадает с HBS. Две цепочки заголовков description/components не учитывают section-обёртки partial: 00308. Экранирование текста и последующий core enrichHTML относятся к разным шагам. Подключение: импорт № 19 в общем CSS; 14 правил / 31 деклараций.
+
+Сопоставленные определения и потребители: [module/actor/sheets/mixins/itemMixin.js](../module/actor/sheets/mixins/itemMixin.js.md), [module/setup/handlebars.js](../module/setup/handlebars.js.md), [module/data/item/commonItemData.js](../module/data/item/commonItemData.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../module/actor/sheets/WitcherCharacterSheet.js.md), [templates/partials/character/tab-background.hbs](../templates/partials/character/tab-background.hbs.md), [styles/witcher-styles.css](witcher-styles.css.md).
+
+[Протокол и границы](../../review-log.md#task-0004016) — TASK-0004.016; процессы [R016-02](../../cross-check-0002.md#r016-02), [R016-03](../../cross-check-0002.md#r016-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
