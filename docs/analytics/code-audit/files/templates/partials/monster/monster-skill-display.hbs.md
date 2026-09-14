@@ -61,7 +61,7 @@ JS-функций нет. localize выводит skill.label. При isVisible=
 
 ## Непроверенные участки и открытые вопросы
 
-Старый шаблон не является текущим PARTS монстра. Видимость проверена сравнением с реальным HBS текущей вкладки; глобальная политика показа навыков не изменялась.
+Поиск подтвердил старого HBS-потребителя, а не полную недостижимость файла. Реальное применение внешним листом — [U004-01](../../../../cross-check-0002.md#u004-01)/[U004-03](../../../../cross-check-0002.md#u004-03); политика видимости не изменялась.
 
 ## Связанные проблемы
 
@@ -72,3 +72,13 @@ JS-функций нет. localize выводит skill.label. При isVisible=
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Старый partial скрывает строку при isVisible=false, даёт прямой input system.skills.<stat>.<name>.value и data-action=rollSkill. У текущего character partial иное поведение видимости и показ modifiedValue. Производитель конфигурации Bool и обе строки сопоставлены; старый родитель не входит в текущий Monster PARTS.
+
+Сопоставленные определения и потребители: [templates/partials/monster/monster-skill-tab.hbs](monster-skill-tab.hbs.md), [templates/partials/character/skill-display.hbs](../character/skill-display.hbs.md), [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../sheets/actor/configuration/partials/skillConfiguration.hbs.md), [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-10](../../../../cross-check-0002.md#r004-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

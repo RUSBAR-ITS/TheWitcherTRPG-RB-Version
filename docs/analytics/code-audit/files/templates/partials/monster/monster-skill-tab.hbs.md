@@ -64,7 +64,7 @@ HBS только читает system.pannels и два набора навыко
 
 ## Непроверенные участки и открытые вопросы
 
-Данный файл не объявляется удалённым или полностью недостижимым: найден старый HBS-потребитель. Доказано отсутствие его выбора в исследованном текущем V2 маршруте. Не производилась очистка старых шаблонов.
+Файл не объявлен удалённым или полностью недостижимым. Внешние маршруты старого листа — [U004-03](../../../../cross-check-0002.md#u004-03); браузерный DOM — [U004-01](../../../../cross-check-0002.md#u004-01). Исправленная граница переводов передана [U004-06](../../../../cross-check-0002.md#u004-06).
 
 ## Связанные проблемы
 
@@ -87,3 +87,13 @@ HBS только читает system.pannels и два набора навыко
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полностью разобран внешний старый monster-sheet.hbs, который подключает эту вкладку: 289. Сам старый лист найден только в preload, не в текущем PARTS. Изолированный полный render подтверждает совместимость выбранного контекста/частей, не достижимость V1 в клиенте.
 
 Связи: [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003032).
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Семь фиксированных таблиц читают pannels.*IsOpen, подключают встроенные и Item partial. Событие skill-display инвертирует флаг Actor; вложенные строки задают разные пути сохранения. Старый monster-sheet содержит literal включение, тогда как текущий WitcherMonsterSheet.PARTS.skills использует character/tab-skills. Старые Actor.Skill.* существуют в ru/en после expandObject: отзыв .030 учтён.
+
+Сопоставленные определения и потребители: [templates/partials/monster/monster-custom-skill-display.hbs](monster-custom-skill-display.hbs.md), [templates/partials/monster/monster-skill-display.hbs](monster-skill-display.hbs.md), [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js.md), [templates/sheets/actor/monster-sheet.hbs](../../sheets/actor/monster-sheet.hbs.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-07](../../../../cross-check-0002.md#r004-07), [R004-10](../../../../cross-check-0002.md#r004-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

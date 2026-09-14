@@ -69,7 +69,7 @@ Default class SkillItemData extends foundry.abstract.TypeDataModel. registerData
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны 16 строк. Внешние расширения схемы и данные действующих миров не исследовались. Вручную добавленный JS-массив modifiers применялся только для проверки ветвей старого CRUD/броска и не выдаётся за поддерживаемое сохранение.
+Форма и схема установлены; live Item.create/update, стороннее расширение и достижимость старого массива — [U004-03](../../../../cross-check-0002.md#u004-03). Настройка допустимых spd/luck и политика группового бонуса не согласовывались.
 
 ## Связанные проблемы
 
@@ -80,3 +80,13 @@ Default class SkillItemData extends foundry.abstract.TypeDataModel. registerData
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Восемь полей Item skill сопоставлены с формой имени/атрибута, группировкой Actor и старым CRUD. В отличие от встроенного Skill отсутствуют isVisible/modifiedValue/modifiers; поле activeEffectModifiers существует, но прямой custom-бросок его не читает. .029 проверила числовое приведение, произвольный attribute и отбрасывание массива настоящей DataModel; это не доказательство успешного Item.update в мире.
+
+Сопоставленные определения и потребители: [module/actor/mixins/skillMixin.js](../../actor/mixins/skillMixin.js.md), [module/actor/sheets/mixins/customSkillMixin.js](../../actor/sheets/mixins/customSkillMixin.js.md), [module/item/sheets/WitcherSkillItemSheet.js](../../item/sheets/WitcherSkillItemSheet.js.md), [templates/sheets/item/skill-item-sheet.hbs](../../../templates/sheets/item/skill-item-sheet.hbs.md), [module/data/actor/templates/common/skills/skillData.js](../actor/templates/common/skills/skillData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-06](../../../../cross-check-0002.md#r004-06), [R004-08](../../../../cross-check-0002.md#r004-08). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

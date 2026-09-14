@@ -74,7 +74,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны 19 строк. Неиспользуемое showSuccess и неполное заполнение options описаны как фактический контракт; найденные вызывающие места не задают showSuccess=false и не передают конфигурацию целиком через constructor. Отдельного подтверждённого пользовательского сбоя этих полей не заявляется.
+Неиспользуемое поле не объявляется новым сбоем без фактического caller. Допустимые конфигурации конкретных профессий/боя/магии — [U004-07](../../../cross-check-0002.md#u004-07); документ после отложенного результата — [U004-05](../../../cross-check-0002.md#u004-05).
 
 ## Связанные проблемы
 
@@ -139,3 +139,13 @@ castSpell использует showResult:false и не меняет начал�
 [Общее словесное действие](../actor/mixins/verbalCombatMixin.js.md) оставляет threshold−1/defense=false, showResult=true/showCrit=true. [createRollConfig защиты](verbalCombat/verbalCombatDefense.js.md) присваивает threshold=totalAttack, defense=true/showResult=true и thresholdDesc=skill.label; фактически получает число навыка и теряет подпись ([305](../../../../../issues/potential/issue-00305.md)). Группы 18/21 подтвердили undefined label и fallback на число порога, равенство остаётся успехом. Counterargue открывает новое actor.verbalCombat без передачи прежнего threshold.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Девять полей сопоставлены с extendedRoll и вызывающими сторонами. Constructor применяет только options.showResult; остальные поля меняют присваиванием. showSuccess не читается. Числовой порог0 включает сравнение, отрицательный/undefined отключает; defense определяет равенство, reversal направление. realCraft изменяет showResult на входной конфигурации, профессиональный caller различает отсутствие options и {}.
+
+Сопоставленные определения и потребители: [module/scripts/rolls/extendedRoll.js](rolls/extendedRoll.js.md), [module/item/witcherItem.js](../item/witcherItem.js.md), [module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [module/actor/mixins/defenseMixin.js](../actor/mixins/defenseMixin.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-03](../../../cross-check-0002.md#r004-03), [R004-04](../../../cross-check-0002.md#r004-04), [R004-12](../../../cross-check-0002.md#r004-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

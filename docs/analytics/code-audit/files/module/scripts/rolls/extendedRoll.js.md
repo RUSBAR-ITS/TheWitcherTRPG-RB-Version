@@ -87,7 +87,7 @@ showResult=false возвращает тот же messageData по ссылке 
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны 107 строк. Нет валидации первого die.faces/active, произвольного HTML flavor или типов отдельных полей config. Эти факты не превращены в новые issues без самостоятельного сценария текущего потребителя. Случайное распределение, сетевое сохранение флагов и браузерный рендер не проверялись; формулы и арифметика исполнены ядром с заданными гранями.
+Грамматика, контролируемые грани и Promise ранее проверены в .028; новых игровых прогонов здесь нет. Сохранение сообщения/flags и полный consumer — [U004-05](../../../../cross-check-0002.md#u004-05)/[U004-07](../../../../cross-check-0002.md#u004-07). Проверка faces/active, произвольного HTML и распределения случайности не заявляется.
 
 ## Связанные проблемы
 
@@ -168,3 +168,13 @@ castSpell задаёт RollConfig({showResult:false}) с threshold−1, зате
 Оба [словесных producer](../../actor/mixins/verbalCombatMixin.js.md) передают дополнительные verbalCombat/damage flags. Группа 08 исполнила настоящий helper: сообщение уже создано, два setFlag pending, consumer ещё не получает damage; это уточнение [184](../../../../../../issues/potential/issue-00184.md). Общий action не ждёт extendedRoll; [обычная защита](../verbalCombat/verbalCombatDefense.js.md) ждёт его. Группы 21–22 проверили defense=true:8=8 успешно,8<9 нет; при управляемых d10 фумбл дал 7<8, крит 18=18 успешен. thresholdDesc теряется в caller из-за numeric skill ([305](../../../../../../issues/potential/issue-00305.md)), сравнение остаётся правильным. ChatMessage/toMessage/setFlag заменены; настоящей записи нет.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Формула исполняется настоящим Roll; helper не исправляет пропущенные операторы и пустые подписи. Первый результат10/1 запускает 1d10x10; fumbleAmount хранит полную сумму до ограничения вычитаемого. Итоговый числовой Roll заменяет исходные dice. Сравнение >/< либо >=/<= задают threshold/defense/reversal. showResult=false откладывает сообщение и игнорирует отдельный flags; true ждёт toMessage, но не setFlag. Успех броска отделён от realCraft и прочих последующих действий.
+
+Сопоставленные определения и потребители: [module/chatMessage/chatMessageData.js](../../chatMessage/chatMessageData.js.md), [module/scripts/rollConfig.js](../rollConfig.js.md), [module/scripts/rolls/fumble.js](fumble.js.md), [module/item/witcherItem.js](../../item/witcherItem.js.md), [module/actor/mixins/verbalCombatMixin.js](../../actor/mixins/verbalCombatMixin.js.md), [module/actor/mixins/defenseMixin.js](../../actor/mixins/defenseMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-02](../../../../cross-check-0002.md#r004-02), [R004-03](../../../../cross-check-0002.md#r004-03), [R004-04](../../../../cross-check-0002.md#r004-04), [R004-05](../../../../cross-check-0002.md#r004-05), [R004-12](../../../../cross-check-0002.md#r004-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

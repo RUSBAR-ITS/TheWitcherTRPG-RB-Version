@@ -71,7 +71,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Повторная регистрация событий в живом браузере, все языки, профессиональные броски и их формулы в этой порции не исследовались. Итог calc_total_skills — сумма встроенных навыков с весом из подписи; его смысл для правил создания персонажа отдельно не устанавливался.
+Полный разбор конфигурации уже завершён; остаются реальный DOM/повторный render [U004-01](../../../../../cross-check-0002.md#u004-01) и профессиональные callers [U004-07](../../../../../cross-check-0002.md#u004-07). Значение суммы для правил создания персонажа не выбиралось. Политика и сохранение IP — [U004-04](../../../../../cross-check-0002.md#u004-04).
 
 ## Связанные проблемы
 
@@ -114,3 +114,13 @@ skillListener31 напрямую связывает .profession-roll с thisActo
 [module/actor/mixins/professionMixin.js](../../mixins/professionMixin.js.md), [templates/partials/character/tab-profession.hbs](../../../../templates/partials/character/tab-profession.hbs.md), [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs.md), [templates/dialog/combat/profession-attack.hbs](../../../../templates/dialog/combat/profession-attack.hbs.md).
 
 [Сверка и ограничения](../../../../../review-log.md#task-0003038). Связанные файлы повторно в покрытии не учитывались; код и статусы issues не изменены.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Установлены оба пути: data-action=rollSkill передаёт описание карты, level-up — ключ. _onProfessionRoll — отдельный процесс профессии. Глобальная jQuery заменяется объектом, customSkillListener локален. Сумма totalSkills читает label после локализации '(2)', а не costMultiplier; .003 закрепила различие свежих и повторно мигрированных Skill. Связь с полным WitcherModifiersConfiguration уже разобрана в .030/.003, ожидание будущего пофайлового разбора снято.
+
+Сопоставленные определения и потребители: [module/actor/mixins/skillMixin.js](../../mixins/skillMixin.js.md), [module/actor/mixins/professionMixin.js](../../mixins/professionMixin.js.md), [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../configurations/WitcherModifiersConfiguration.js.md), [module/data/actor/templates/common/skills/skillData.js](../../../data/actor/templates/common/skills/skillData.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-01](../../../../../cross-check-0002.md#r004-01), [R004-09](../../../../../cross-check-0002.md#r004-09), [R004-10](../../../../../cross-check-0002.md#r004-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

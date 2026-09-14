@@ -76,7 +76,7 @@ Default-export class без наследования. constructor сразу в�
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны 21 строка. Поверхностное слияние flags и flavor без default — ограничения API, но текущая цепочка защиты не передаёт непустые конфликтующие namespace. Поэтому самостоятельная issue о потере флагов в append не заведена. Сохранение и рендер реального сообщения, включая схему type=base, в этой порции не проверялись.
+Поверхностный append установлен, но новая issue без конфликтующего текущего входа не создаётся. Реальное принятие type=base и запись/рендер — [U004-05](../../../cross-check-0002.md#u004-05); полный профессиональный caller — [U004-07](../../../cross-check-0002.md#u004-07).
 
 ## Связанные проблемы
 
@@ -157,3 +157,13 @@ castSpell создаёт ChatMessageData(this, HBS, 'attack', {attacker,attack,d
 [Атака/общее действие](../actor/mixins/verbalCombatMixin.js.md) создаёт DTO типа damage с system.vcDamage, [обычная защита](../scripts/verbalCombat/verbalCombatDefense.js.md) — default base с пустым system. extendedRoll дописывает rollTotal. Группа 07 проверила настоящие DMD/BMD: vcDamage очищается схемой damage; base сохраняет rollTotal. Формула урона отдельно передаётся через flags.damage.formula и читается [onDamage](../scripts/verbalCombat/verbalCombat.js.md); очистка лишнего поля system сама по себе не доказывает потерю формулы. DTO не сохраняет flags; post-create запись описана в [184](../../../../../issues/potential/issue-00184.md).
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Контейнер ChatMessageData отделён от схем Base/Attack/DefenseMessageData: constructor хранит system/flags по ссылке, а не валидирует документ. Два append защиты сохраняют speaker/type и сливают верхний уровень; нынешние входы не подтверждают потерю содержательных flags. extendedRoll мутирует этот же system.rollTotal/flavor; отложенные callers сами вызывают toMessage. UUID в fumble и this.actor в профессиональном caller — отдельные ошибки выбора speaker, не действие контейнера.
+
+Сопоставленные определения и потребители: [module/data/chatMessage/baseMessageData.js](../data/chatMessage/baseMessageData.js.md), [module/data/chatMessage/attackMessageData.js](../data/chatMessage/attackMessageData.js.md), [module/data/chatMessage/defenseMessageData.js](../data/chatMessage/defenseMessageData.js.md), [module/actor/mixins/defenseMixin.js](../actor/mixins/defenseMixin.js.md), [module/actor/mixins/professionMixin.js](../actor/mixins/professionMixin.js.md), [module/scripts/rolls/extendedRoll.js](../scripts/rolls/extendedRoll.js.md), [module/scripts/rolls/fumble.js](../scripts/rolls/fumble.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-04](../../../cross-check-0002.md#r004-04), [R004-05](../../../cross-check-0002.md#r004-05), [R004-12](../../../cross-check-0002.md#r004-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

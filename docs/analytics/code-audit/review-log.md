@@ -1,5 +1,98 @@
 # Журнал перекрёстных сверок
 
+## TASK-0004.004
+
+2026-09-14. Выполнена [TASK-0004.004](../../tasks/task-0004.004.md) на rusbar-main, HEAD f31a2541770dddb23c01b5284c16f31989c5d1e5. На старте дерево чистое: 1735 отслеживаемых файлов, без staged/untracked. Основной охват — 19 исходников / 1135 строк; все совпадают с пофайловым срезом TASK-0001. Foundry 14.367.0, Node v24.16.0.
+
+### Состав и последовательность сверки
+
+Перечитаны все 19 исходников, сопоставлены карточки, определения/потребители и 14 полных назначенных issues с поздними дополнениями. В [матрицах](cross-check-0002.md#результаты-task-0004004) обновлены 19 F, 65 групп S (180 конкретных мест), 38 выбранных отношений D, 19 Q и 14 строк issues; добавлены 12 процессов R004-01–12 и семь адресованных границ U004-01–07. D остаётся начальной выборкой зависимостей/потребителей, S включает поля контекста HBS и не является списком только вызовов функций.
+
+| Основной файл | Проверенная связь / результат |
+| --- | --- |
+| [карточка module/actor/mixins/skillMixin.js](files/module/actor/mixins/skillMixin.js.md) | [R004-01](cross-check-0002.md#r004-01), [R004-02](cross-check-0002.md#r004-02), [R004-07](cross-check-0002.md#r004-07), [R004-09](cross-check-0002.md#r004-09), [R004-12](cross-check-0002.md#r004-12); Сопоставлены четыре разных адреса: ключ skillMap, entry.name в system.skills, Item.id из DOM и произвольное Item.name. |
+| [карточка module/actor/sheets/mixins/customSkillMixin.js](files/module/actor/sheets/mixins/customSkillMixin.js.md) | [R004-07](cross-check-0002.md#r004-07), [R004-08](cross-check-0002.md#r004-08); Шесть регистраций сверены с двумя вариантами HBS. |
+| [карточка module/actor/sheets/mixins/skillMixin.js](files/module/actor/sheets/mixins/skillMixin.js.md) | [R004-01](cross-check-0002.md#r004-01), [R004-09](cross-check-0002.md#r004-09), [R004-10](cross-check-0002.md#r004-10); Установлены оба пути: data-action=rollSkill передаёт описание карты, level-up — ключ. |
+| [карточка module/chatMessage/chatMessageData.js](files/module/chatMessage/chatMessageData.js.md) | [R004-04](cross-check-0002.md#r004-04), [R004-05](cross-check-0002.md#r004-05), [R004-12](cross-check-0002.md#r004-12); Контейнер ChatMessageData отделён от схем Base/Attack/DefenseMessageData: constructor хранит system/flags по ссылке, а не валидирует документ. |
+| [карточка module/data/item/skillItemData.js](files/module/data/item/skillItemData.js.md) | [R004-06](cross-check-0002.md#r004-06), [R004-08](cross-check-0002.md#r004-08); Восемь полей Item skill сопоставлены с формой имени/атрибута, группировкой Actor и старым CRUD. |
+| [карточка module/item/sheets/WitcherSkillItemSheet.js](files/module/item/sheets/WitcherSkillItemSheet.js.md) | [R004-06](cross-check-0002.md#r004-06); Регистрация листа skill доведена до PARTS.main и submitOnChange. |
+| [карточка module/scripts/helper.js](files/module/scripts/helper.js.md) | [R004-02](cross-check-0002.md#r004-02), [R004-11](cross-check-0002.md#r004-11), [R004-12](cross-check-0002.md#r004-12); Выбор Actor, пользователя и строка формулы — независимые контракты. |
+| [карточка module/scripts/rollConfig.js](files/module/scripts/rollConfig.js.md) | [R004-03](cross-check-0002.md#r004-03), [R004-04](cross-check-0002.md#r004-04), [R004-12](cross-check-0002.md#r004-12); Девять полей сопоставлены с extendedRoll и вызывающими сторонами. |
+| [карточка module/scripts/rolls/extendedRoll.js](files/module/scripts/rolls/extendedRoll.js.md) | [R004-02](cross-check-0002.md#r004-02), [R004-03](cross-check-0002.md#r004-03), [R004-04](cross-check-0002.md#r004-04), [R004-05](cross-check-0002.md#r004-05), [R004-12](cross-check-0002.md#r004-12); Формула исполняется настоящим Roll; helper не исправляет пропущенные операторы и пустые подписи. |
+| [карточка module/scripts/rolls/fumble.js](files/module/scripts/rolls/fumble.js.md) | [R004-05](cross-check-0002.md#r004-05); Контекстное меню сопоставлено с регистрацией Hook, точными DataModel и producer Roll.options. |
+| [карточка templates/partials/character/custom-skill-display.hbs](files/templates/partials/character/custom-skill-display.hbs.md) | [R004-07](cross-check-0002.md#r004-07); Оба вызова общего tab-skills передают Item без hash. |
+| [карточка templates/partials/character/skill-display.hbs](files/templates/partials/character/skill-display.hbs.md) | [R004-01](cross-check-0002.md#r004-01), [R004-10](cross-check-0002.md#r004-10); Родитель явно передаёт skill/name/stat, поэтому label/value берутся из встроенной модели. |
+| [карточка templates/partials/character/tab-skills.hbs](files/templates/partials/character/tab-skills.hbs.md) | [R004-06](cross-check-0002.md#r004-06), [R004-07](cross-check-0002.md#r004-07), [R004-10](cross-check-0002.md#r004-10); PARTS персонажа и монстра выбирают этот общий шаблон. |
+| [карточка templates/partials/monster/monster-custom-skill-display.hbs](files/templates/partials/monster/monster-custom-skill-display.hbs.md) | [R004-07](cross-check-0002.md#r004-07), [R004-08](cross-check-0002.md#r004-08); Старый partial согласован с Item.id/system.value и closest('.item'); inline-edit отправляет строку в NumberField, activeEffectModifiers выводится read-only при раскрытии. |
+| [карточка templates/partials/monster/monster-skill-display.hbs](files/templates/partials/monster/monster-skill-display.hbs.md) | [R004-10](cross-check-0002.md#r004-10); Старый partial скрывает строку при isVisible=false, даёт прямой input system.skills.<stat>.<name>.value и data-action=rollSkill. |
+| [карточка templates/partials/monster/monster-skill-tab.hbs](files/templates/partials/monster/monster-skill-tab.hbs.md) | [R004-07](cross-check-0002.md#r004-07), [R004-10](cross-check-0002.md#r004-10); Семь фиксированных таблиц читают pannels.*IsOpen, подключают встроенные и Item partial. |
+| [карточка templates/sheets/actor/configuration/app/edit-skills.hbs](files/templates/sheets/actor/configuration/app/edit-skills.hbs.md) | [R004-09](cross-check-0002.md#r004-09), [R004-10](cross-check-0002.md#r004-10); WitcherModifiersConfiguration уже полностью разобран в .030/.003. |
+| [карточка templates/sheets/actor/configuration/partials/skillConfiguration.hbs](files/templates/sheets/actor/configuration/partials/skillConfiguration.hbs.md) | [R004-10](cross-check-0002.md#r004-10); Производитель _getSkills отдаёт реальные DataField и isVisibleValue; formGroup строит полные Actor.system пути при настоящем родителе модели. |
+| [карточка templates/sheets/item/skill-item-sheet.hbs](files/templates/sheets/item/skill-item-sheet.hbs.md) | [R004-06](cross-check-0002.md#r004-06); Два именованных поля формы принадлежат Item: name и system.attribute. |
+
+| Внутренний этап | Перекрёстная проверка и граница |
+| --- | --- |
+| 1. Формула и результат | UI/key → Actor/system → addActiveEffects/social/EC/custom → RollConfig/extendedRoll → ChatMessage и fumble. Проверены знак, источники, threshold/crit/flags, конкретные callers профессий/боя/улик. Старые .028 и последующие уточнения сопоставлены с неизменённым кодом; это не новый игровой прогон. |
+| 2. Собственный навык | SkillItemData → ItemSheet → девять групп _prepareCustomSkills → семь групп текущего HBS → builtin listener; отдельно старый Item ID/custom handler/CRUD. Сверены определения обоих концов; отсутствие кнопок массива modifiers не превращено в доступный пользовательский путь. |
+| 3. Развитие и IP | edit-skills → levelUpSkill → настоящий Log/CharacterData → payload и prepared/source. Цена и границы Promise сопоставлены с .029/M07 и .003; IP расход вручную отделён от повышения. Политика отрицательного баланса, потолок навыка и итог БД не утверждаются. |
+
+### Применённые прежние доказательства
+
+Новых поведенческих запусков в .004 нет. Достаточность прежних опытов проверена сравнением текущих исходников и контрактов с записанными входами, результатами и фасадами. Даты/HEAD ниже относятся к выполненным тогда опытам. Отдельного стенда/тестовых файлов не создавалось.
+
+| Доказательство | Что применено сейчас | Предел |
+| --- | --- | --- |
+| [TASK-0003.028](#task-0003028), 2026-09-11, 9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b | 18 групп: defaults, контейнер/append, настоящий Roll/парсер, крит/провал/x10,12 комбинаций сравнений, toMessage/setFlag,70 случаев fumble, speaker, Actor/owner и модификатор. | Грани заданы, RollResolver/диалоги/документные Actor и запись заменены. Настоящие core getSpeaker/helpers не равны запуску чата/меню. |
+| [TASK-0003.029](#task-0003029), 2026-09-11, 273a6d7db0b7c866399db3ecd4f7191817ae6f10 | 22 группы: настоящие SkillItemData/CharacterData/Log/методы/Roll, cost/IP/pending, commonsp, HBS обоих листов, custom names и группировка, числовые поля. | Item/Actor/Application/DOM/запись представлены фасадами; modifiers внедрён в обход схемы только для старых ветвей. Ошибка прежнего поиска переводов отозвана следующей .030. |
+| [TASK-0003.030](#task-0003030), 2026-09-11, aa6af106e86a9c75fe050d599f961c8fadb74f1b | Полный редактор, core form/expandObject, числовой threshold0 и отрицательный, исправление утверждения о семи Actor.Skill.*. | Новое выполнение этих опытов не приписано .004; ru levelUp/customModifier и en fallback отличены от отсутствия строки в обоих языках. |
+| [Сверка №1, M07](cross-check-0001.md), HEAD 411ab4004a2378a5f96ceeb19f003f834ff9d3d9 | Настоящие CharacterData/Log/levelUpSkill передают magic6 и magic10 при стоимости4 из10. | Actor.update перехвачен; какой запрос сохранён последним сервером, неизвестно. |
+| [TASK-0003.008](#task-0003008), 2026-09-10, c5edcbadd05ff4038a174bd2e2a49785e40ea878 | realCraft/extendedRoll при недостающих материалах сохраняют текст успешного броска/изготовления; поздние .016/.031/.034 уточняют caller и поиск компонентов. | Roll в исходном опыте заменён числом11; изменение инвентаря между проверками задано входом. Полное изготовление сейчас не повторялось. |
+| [.031](#task-0003031), [.038](#task-0003038), [.039](#task-0003039), 2026-09-11 | Пустая подпись +1[], профессиональные defaults options/порог, spell showResult=false и отсутствие переноса DC ритуала. | Сверены конкретные caller-границы; не закрываются будущие .007/.008/.009 целиком. Версии/фасады — в исходных протоколах. |
+| [.040](#task-0003040), 2026-09-11; [.041](#task-0003041), [.042](#task-0003042), [.044](#task-0003044), [.046](#task-0003046), 2026-09-12 | Схемы messages/UUID, корректный Actor в producer, defense равенство, pending flags и словесный consumer. | Флаги словесного damage не тождественны основному system.damage; полный бой/БД и серверное окно не доказаны. |
+| [TASK-0004.002](#task-0004002), [TASK-0004.003](#task-0004003), 2026-09-14 | Ранний барьер id/каталога, schema/source/prepared/reset, разные max/value/roll, Log и миграции labels. | Загрузка system в Node не устраняет package gate; общий lifecycle Actor и live UI прежними фасадами не заменяются. |
+
+### Контрольные случаи и выводы
+
+- Знаки: addPart(−2) даёт '+-2', корректный для настоящего Roll (.028группа11); ноль/'0' скрывается при hideZero. Положительный модификатор без оператора из issue00033 и пустая подпись +1[] — другие причины. Произвольный текст модификатора не валидируется helper.
+- Порог: numeric0 ранее исполнялся, отрицательные/undefined отключают сравнение. Пустая строка в текущем условии threshold>=0 приводится к0; это статический вывод из кода, отдельный runtime-сценарий пустой строки не заявляется. UI-контроль навыка обычно передаёт default−1. showSuccess не читается; defense допускает равенство, reversal меняет направление сравнения.
+- Крит/провал: .028 управляемые грани10;10,10,3 с1d10+8 дали41;1;10,10,3 дали0 и fumbleAmount23. Таблица использует полную23, а не вычтенную9. Сопоставление fumble с en/ru касается внутренних ключей, не правил книги.
+- Отмена/неверный ключ: prompt rejectClose=true отклоняет бросок до сообщения; input выбора Actor с null даёт другой TypeError. commonsp/commonspeech, Item.id и Item.name не взаимозаменяемы; подтверждены прежними настоящими методами и текущими producer/consumer.
+- IP: цена встроенного навыка max(value,1)×multiplier; недостаток обычных IP даёт отрицательный payload без guard, модель допускает его. Магическая стоимость затенена; Log и финальный update противоречат. История мутируется prepared до записи; отправленный payload не равен окончательному балансу. Отрицательный ручной input='-3' — строковый контракт _saveIpSpending/Log, уже общий дубль00029/00200.
+
+Внешние стороны прочитаны в нужных определениях: config/statMap/skillMap, actor/модели Skill и Character/Monster, modifier/armor/Log, текущие PARTS и _prepareCustomSkills, редакторы skills/visibility, ручной расход CharacterSheet, realCraft, profession.doProfessionSkillRoll, rollClue, defense/castSpell/verbal callers, message schemas, статус/временные эффекты и query owner. Проверены существование 73 соседних исходников/карточек из таблиц связей; это структурное число, а не 73 полностью заново разобранных файла. Смежные файлы не добавлены к основному охвату19.
+
+### Issues, уточнения и остаток
+
+Прочитаны целиком 00017,00041,00167,00181–00191:14 назначенных карточек. Их индивидуальные причины, поздние поправки и пределы записаны в [матрице issues](cross-check-0002.md#матрица-issues). Новых регистраций нет;329 potential,0 open,0 closed. У00167 скорректирована только устаревшая фраза в предложении о ещё не выполненном разборе; подтверждения пользователя, исправления кода и закрытия нет.
+
+В основных карточках уточнены текущие границы и ссылки; у edit-skills исправлена основная строка зависимости, называвшая полный разбор конфигурации будущим. В родительской задаче исправлена текущая итоговая строка «Предметная сверка не начата»; в реестре задач обновлена устаревшая текущая сводка567/615. Исторические исходные протоколы и их даты сохранены. Соседние карточки уже содержат согласуемые определения; нового вывода, требующего их переписывания, не выявлено.
+
+Остаток — [U004-01–07](cross-check-0002.md#остаток-после-004): реальный DOM/повторный render, источник эффекта и подписи, сохранение/расширения Item, серверные IP/журнал, ChatMessage/flags, ru/en и полные внешние callers. Адресаты .005–.016/.018 указаны отдельно; это не разрешение запуска мира/сети. Доступ к службе/HTTP, реальная БД/браузер, сторонние модули, распределение случайности и соответствие рулбукам не проверялись.
+
+### Проверка документации и сохранности
+
+Команды чтения: rg по module/templates для импортов, обработчиков и PARTS; cat/sed для всех основных файлов, указанных определений и полных issues; Python через stdin для разрешения ссылок, таблиц и хешей. Проверка S сравнивает каждый сохранённый expr с указанной строкой исходника; индивидуальные sha256 и общий хеш615 рассчитаны заново. Состав19/строки1135,65S/180мест и73существующих соседних карточек подтверждены до изменения документации. Это статическая проверка, не запуск игры.
+
+| Локальный файл /opt/foundryvtt | SHA-256 при .004 |
+| --- | --- |
+| <code>package.json</code> | cd5edf1856bdf4d66f00d2574aa03cd2ccdc3fc4df07f5fc9abf0411b917d4f5 |
+| <code>client/dice/roll.mjs</code> | a27f498f7b3864a1baa7cebbb1ccb611f9796720b4a4d153df779803b995c7ff |
+| <code>client/dice/parser.mjs</code> | 2fe7a584106a9ac5c5b216af62ec6b7e6b4da0ab4dbdd8a64bc32320b5bce799 |
+| <code>client/dice/grammar.pegjs</code> | 0344a420e9bbf5d840c380e3fa6dab2f152098914776b52b0af29d69ea7d684a |
+| <code>client/documents/chat-message.mjs</code> | 446c041c59b3f097e5c3358a528181e368e072be9cfe55fa928fa92932e55c5b |
+| <code>client/applications/api/dialog.mjs</code> | 4e2d299eaa931d96df1839e64a2defc60b6b95ee89a3e1d32d60b99040899343 |
+| <code>client/helpers/localization.mjs</code> | 0efd3b6434e772a12ea00bb9fd10d0186f031a0d8d6945a580dd8d809ce8080f |
+| <code>common/abstract/data.mjs</code> | 11bb7f848c707803607accfa9f6b946c7cbfe8b17781ff562b468bdc77b934e5 |
+| <code>common/data/fields.mjs</code> | efa8e3ccdf553ca826580e60bfbfc97db57bdeadaa954a50f6a55e0ab52c3e01 |
+
+Хеши фиксируют установленную версию; по ним не утверждается новое исполнение всех методов. getSpeaker и контракт закрытия DialogV2 перечитаны из локального ядра; версии не получались из предположения о релизе.
+
+Итоговая проверка завершилась успешно: 615 строк реестра и их байты сохранены, основной охват задач не пересекается; в матрицах 1596 S,1198 D,277 Q,329 issues и62 прежних протокола. Подтверждён прогресс89 файлов/58 issues, остальные526/271 ожидают своих блоков. Проверены61363 локальные Markdown-ссылки с якорями и244 таблицы изменённых документов (для журнала — новая запись); ошибок и замечаний git diff --check нет.
+
+Изменены31 существующий Markdown-документ, новых файлов нет:19 основных карточек, матрица, журнал, реестр файлов, три указателя документации, реестр issues и00167, два указателя задач, подзадача.004 и CHANGELOG. Для всех1735 ранее отслеживаемых файлов сохранены mode/uid/gid/inode; байты1704 файлов вне согласованного набора неизменны. Историческая часть журнала, исходный родительский исторический раздел, HEAD и индекс сохранены. Коммит, запись игровых документов, запуск службы/мира, build/install/extract и изменение прав не выполнялись.
+
+TASK-0004.004 — done; TASK-0004 — in-progress. Общий прогресс:89/615 файлов и58/329 issues;526 файлов и271 issue ожидают следующих блоков. Следующая — [TASK-0004.005](../../tasks/task-0004.005.md); .005–.018 planned, TASK-0005 draft. Коммит не создавался.
+
 ## TASK-0004.003
 
 Дата: 2026-09-14; rusbar-main, HEAD b4aeecb967caf97700cc565a670d6347b933619f. Перед началом рабочее дерево чистое, 1735 отслеживаемых файлов. Foundry 14.367.0, Node v24.16.0. [Задача](../../tasks/task-0004.003.md), [матрицы и 13 процессов](cross-check-0002.md#результаты-task-0004003).

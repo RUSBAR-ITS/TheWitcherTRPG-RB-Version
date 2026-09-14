@@ -64,7 +64,7 @@ PARTS.skills WitcherMonsterConfigurationSheet. Контекст _getSkills пе�
 
 ## Непроверенные участки и открытые вопросы
 
-Браузерное отображение table/formGroup и сохранение checkbox в мире не проверены. Флаг видимости и его использование текущей строкой — отдельные этапы; настройка здесь существует, но character/skill-display не читает isVisible.
+Контракт формы установлен прежним настоящим formGroup; браузерный checkbox/таблица и серверное сохранение — [U004-01](../../../../../../cross-check-0002.md#u004-01). Связь видимости не менялась; ru/en — [U004-06](../../../../../../cross-check-0002.md#u004-06).
 
 ## Связанные проблемы
 
@@ -81,3 +81,13 @@ PARTS.skills WitcherMonsterConfigurationSheet. Контекст _getSkills пе�
 2026-09-11, `8b938d44a042749df027d8b58e28bb1d79638091`. Полный provider WitcherMonsterConfigurationSheet._getSkills даёт 52 записи/51 настоящее поле. Повторная подготовка отражает awareness true→false, core formGroup пропускает undefined commonspeech с предупреждением. tabs.skills автоматически подготовлен core для единственной primary-группы конфигурации.
 
 Связи: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md). [Результаты и пределы проверки](../../../../../../review-log.md#task-0003032).
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Производитель _getSkills отдаёт реальные DataField и isVisibleValue; formGroup строит полные Actor.system пути при настоящем родителе модели. Ошибка commonsp/commonspeech оставляет одну undefined DataField, не неверные имена всех51 остальных. Поле label isVisible не задано; технический путь может служить подписью. Текущий навык игнорирует Bool, старый partial использует.
+
+Сопоставленные определения и потребители: [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js.md), [module/setup/config.js](../../../../../module/setup/config.js.md), [templates/partials/character/skill-display.hbs](../../../../partials/character/skill-display.hbs.md), [templates/partials/monster/monster-skill-display.hbs](../../../../partials/monster/monster-skill-display.hbs.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-10](../../../../../../cross-check-0002.md#r004-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

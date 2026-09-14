@@ -68,7 +68,7 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 
 ## Непроверенные участки и открытые вопросы
 
-Управление вкладками и submit формы проверены по исходникам, без браузерного взаимодействия. Полные классы CharacterSheet/MonsterSheet и конфигурации не входят в 14 файлов. Видимость isVisible определяется строкой partial, а не этим циклом.
+Полные классы листов уже имеют карточки, прежнее ожидание их пофайлового разбора снято. Live tabs/form — [U004-01](../../../../cross-check-0002.md#u004-01); исход сохранения IP — [U004-04](../../../../cross-check-0002.md#u004-04). Группы custom — [U004-03](../../../../cross-check-0002.md#u004-03).
 
 ## Связанные проблемы
 
@@ -117,3 +117,13 @@ PARTS.skills обоих V2 листов указывает на этот HBS. П
 Карточки CSS: [styles/tab-skills.css](../../../styles/tab-skills.css.md), [styles/character-header.css](../../../styles/character-header.css.md), [styles/monster-skill-tab.css](../../../styles/monster-skill-tab.css.md).
 
 [Методика и результаты](../../../../review-log.md#task-0003049). Соседний файл повторно в покрытие не включён; браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+PARTS персонажа и монстра выбирают этот общий шаблон. Цикл system.skills ограничивает собственные Items семью группами; hash есть только у встроенной строки. Блок IP содержит Character-поля training1–4 и improvementPoints; их наличие в HBS не создаёт схемы/обработчиков у Monster. totalSkills/totalProfSkills только выводятся; ручной расход вызывает CharacterSheet._saveIpSpending, отдельный от кнопки повышения.
+
+Сопоставленные определения и потребители: [templates/partials/character/custom-skill-display.hbs](custom-skill-display.hbs.md), [templates/partials/character/skill-display.hbs](skill-display.hbs.md), [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js.md), [module/data/actor/monsterData.js](../../../module/data/actor/monsterData.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-06](../../../../cross-check-0002.md#r004-06), [R004-07](../../../../cross-check-0002.md#r004-07), [R004-10](../../../../cross-check-0002.md#r004-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

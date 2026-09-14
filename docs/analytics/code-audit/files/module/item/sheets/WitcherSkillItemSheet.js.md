@@ -66,7 +66,7 @@ Default export class extends HandlebarsApplicationMixin(ItemSheetV2). registerSh
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны 43 строки. Работа штатного submitOnChange, сохранение документа сервером, SheetConfig и реальный рендер окна не исполнялись; поля подтверждены шаблоном и схемой.
+Штатный submit и браузерное поведение начального attribute='' — [U004-03](../../../../cross-check-0002.md#u004-03)/[U004-01](../../../../cross-check-0002.md#u004-01). Недоступность spd/luck подтверждена связью компонентов; выбор исправления остаётся несогласованным.
 
 ## Связанные проблемы
 
@@ -77,3 +77,13 @@ Default export class extends HandlebarsApplicationMixin(ItemSheetV2). registerSh
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Регистрация листа skill доведена до PARTS.main и submitOnChange. reduce statMap даёт девять origin=stats, включая spd/luck; форма предлагает только name/system.attribute. _prepareCustomSkills готовит все девять массивов, текущий tab-skills выводит семь. Контекст сохраняет ссылки, повторный classes.push сам по себе не объявлен визуальным дефектом.
+
+Сопоставленные определения и потребители: [module/data/item/skillItemData.js](../../data/item/skillItemData.js.md), [templates/sheets/item/skill-item-sheet.hbs](../../../templates/sheets/item/skill-item-sheet.hbs.md), [templates/partials/character/tab-skills.hbs](../../../templates/partials/character/tab-skills.hbs.md), [module/setup/registerSheets.js](../../setup/registerSheets.js.md), [module/actor/sheets/WitcherActorSheet.js](../../actor/sheets/WitcherActorSheet.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-06](../../../../cross-check-0002.md#r004-06). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

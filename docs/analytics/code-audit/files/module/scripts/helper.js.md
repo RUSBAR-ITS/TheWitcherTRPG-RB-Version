@@ -95,7 +95,7 @@ getRandomInt не создаёт Roll/ChatMessage; влияет на downstream 
 
 ## Непроверенные участки и открытые вопросы
 
-Полностью прочитаны 106 строк, все восемь экспортов и 16 импортирующих файлов сверены. getCurrentToken не имеет найденных внешних вызовов; некорректные max текущими потребителями не передаются, поэтому их крайние случаи не оформлены самостоятельными issues. Для расширения issue-00149 проверены реальные guards соседей, но полный UI боевых/словесных действий и многоклиентские запросы не исполнялись.
+Реальные окна/удалённый исполнитель и права — [U004-01](../../../cross-check-0002.md#u004-01)/[U004-07](../../../cross-check-0002.md#u004-07). Некорректные max и сторонние callers не исследованы как пользовательские сбои. Русский customModifier отсутствует, английский fallback есть; полнота переводов — [U004-06](../../../cross-check-0002.md#u004-06).
 
 ## Связанные проблемы
 
@@ -180,3 +180,13 @@ getActorOwner вызывается из effect/status helpers после castSpe
 getRandomInt:73–75 реально использован в 20 проверках Actor.randomHuman/randomMonster с контролируемым Math.random. Основные RollTable используют собственный Roll/Die RNG. Совпадение названия локаций не связывает эти генераторы.
 
 [Карточки Combat](../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Выбор Actor, пользователя и строка формулы — независимые контракты. getInteractActor может вернуть undefined, закрытый input даёт null перед values.actor; getCustomModifier с rejectClose=true отклоняется до Roll. addPart возвращает строку с '+', '+-2' допустимо настоящему парсеру. getActorOwner допускает отсутствие activeGM/OWNER, а применяющие статус/эффект callers вызывают .query без guard пользователя. getRandomInt имеет реальные границы2/6/10/100; getCurrentToken не имеет найденного внешнего вызова.
+
+Сопоставленные определения и потребители: [module/actor/mixins/skillMixin.js](../actor/mixins/skillMixin.js.md), [module/setup/settings.js](../setup/settings.js.md), [module/scripts/statusEffects/applyStatusEffect.js](statusEffects/applyStatusEffect.js.md), [module/scripts/temporaryEffects/applyActiveEffect.js](temporaryEffects/applyActiveEffect.js.md), [module/scripts/investigation/rollClue.js](investigation/rollClue.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-02](../../../cross-check-0002.md#r004-02), [R004-11](../../../cross-check-0002.md#r004-11), [R004-12](../../../cross-check-0002.md#r004-12). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

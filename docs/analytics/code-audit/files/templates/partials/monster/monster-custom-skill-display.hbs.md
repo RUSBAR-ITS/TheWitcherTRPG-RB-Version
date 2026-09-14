@@ -68,7 +68,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Повторяющийся id custom-rollable описан как буквальный контракт; поведение селектора jQuery с несколькими подключёнными к документу строками не проверено. CRUD старого массива проверен отдельно как вызываемый код без текущих кнопок.
+Повторяющийся id custom-rollable и селекция нескольких реальных строк остаются [U004-01](../../../../cross-check-0002.md#u004-01); внешнее использование старого шаблона и запись Item — [U004-03](../../../../cross-check-0002.md#u004-03).
 
 ## Связанные проблемы
 
@@ -79,3 +79,13 @@
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `273a6d7db0b7c866399db3ecd4f7191817ae6f10`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003029) |
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Старый partial согласован с Item.id/system.value и closest('.item'); inline-edit отправляет строку в NumberField, activeEffectModifiers выводится read-only при раскрытии. Кнопки roll/remove/open существуют, CRUD массива modifiers отсутствует. Текущий V2 лист не выбирает старого родителя; правильный DOM этой строки не устраняет ошибку современного partial и не меняет формулу custom-броска.
+
+Сопоставленные определения и потребители: [templates/partials/monster/monster-skill-tab.hbs](monster-skill-tab.hbs.md), [module/actor/sheets/mixins/customSkillMixin.js](../../../module/actor/sheets/mixins/customSkillMixin.js.md), [module/actor/mixins/skillMixin.js](../../../module/actor/mixins/skillMixin.js.md), [module/data/item/skillItemData.js](../../../module/data/item/skillItemData.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-07](../../../../cross-check-0002.md#r004-07), [R004-08](../../../../cross-check-0002.md#r004-08). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

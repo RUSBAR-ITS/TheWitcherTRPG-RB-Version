@@ -79,7 +79,7 @@ TheWitcherTRPG.js импортирует namespace Fumble и регистрир�
 
 ## Непроверенные участки и открытые вопросы
 
-Все 119 строк прочитаны. Сопоставлены код, конфигурация и переводы; правила рулбука, стихийные последствия и отдельный полноценный боевой процесс не исследовались. Неизвестный skill без spell и неверный fumbleAmount не валидируются; это отмечено как входной контракт. Полный флоу схемы base в мире ограничен известным наблюдением issue-00005.
+Полный браузерный контекст и фактический speaker/сохранение — [U004-05](../../../../cross-check-0002.md#u004-05); боевой caller — [U004-07](../../../../cross-check-0002.md#u004-07). Условия сравниваются с внутренними ключами en/ru, не с рулбуком. Неизвестный skill/fumbleAmount не валидируются.
 
 ## Связанные проблемы
 
@@ -98,3 +98,13 @@ TheWitcherTRPG.js импортирует namespace Fumble и регистрир�
 Сопоставленные исходники: [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js), [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js). Полные новые описания: [attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [defenseMessageData.js](../../data/chatMessage/defenseMessageData.js.md).
 
 [Сверка порции и всей серии .031–.040](../../../../review-log.md#task-0003040). Уточнение связи не означает повторной проверки всех сценариев соседнего файла; мир/БД и браузер не запускались.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Контекстное меню сопоставлено с регистрацией Hook, точными DataModel и producer Roll.options. Видимость не проверяет constructor; обработка ограничена Attack/Defense. На границе9 безоружная ветвь не выбирает ключ, вооружённая защита выбирает >9, дальние7/9 сдвинуты относительно en/ru. Обработчики передают UUID как actor в getSpeaker и создают только текст, без исполнения последствий. Прежние70 случаев .028 остаются датированным доказательством.
+
+Сопоставленные определения и потребители: [module/scripts/rolls/extendedRoll.js](extendedRoll.js.md), [module/TheWitcherTRPG.js](../../TheWitcherTRPG.js.md), [module/data/chatMessage/attackMessageData.js](../../data/chatMessage/attackMessageData.js.md), [module/data/chatMessage/defenseMessageData.js](../../data/chatMessage/defenseMessageData.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-05](../../../../cross-check-0002.md#r004-05). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.

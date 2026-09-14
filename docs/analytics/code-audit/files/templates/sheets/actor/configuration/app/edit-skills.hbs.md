@@ -36,7 +36,7 @@ JS-функций нет. checked отражает три булевых пол�
 
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
-| WitcherModifiersConfiguration | [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | PARTS, контекст и жизненный цикл | system/skillKey; submitOnChange=true; _onRender → activateListeners | Определения в классе; полный аудит запланирован в .030 |
+| WitcherModifiersConfiguration | [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) | PARTS, контекст и жизненный цикл | system/skillKey; submitOnChange=true; _onRender → activateListeners | Определения в классе; полный аудит выполнен в .030, сквозная связь уточнена в .003/.004 |
 | Skill | [module/data/actor/templates/common/skills/skillData.js](../../../../../../../../../module/data/actor/templates/common/skills/skillData.js) | Модель группы | value/label, isProfession/isPickup/isLearned, activeEffectModifiers | Пути HBS и поля модели |
 | skillListener / levelUpSkill | [module/actor/sheets/mixins/skillMixin.js](../../../../../../../../../module/actor/sheets/mixins/skillMixin.js); [module/actor/mixins/skillMixin.js](../../../../../../../../../module/actor/mixins/skillMixin.js) | Событие → Actor | Ключ button → стоимость, журнал, повышение | data-action=level-up |
 | openModifiers | [module/actor/sheets/WitcherCharacterSheet.js](../../../../../../../../../module/actor/sheets/WitcherCharacterSheet.js); [module/actor/sheets/WitcherMonsterSheet.js](../../../../../../../../../module/actor/sheets/WitcherMonsterSheet.js); [templates/partials/character/tab-skills.hbs](../../../../../../../../../templates/partials/character/tab-skills.hbs) | Действие открытия | Общая вкладка передаёт type=skill и skillKey; оба листа создают конфигурацию | Определения actions и вызов конструктора |
@@ -66,7 +66,7 @@ JS-функций нет. checked отражает три булевых пол�
 
 ## Непроверенные участки и открытые вопросы
 
-На этапе .029 класс WitcherModifiersConfiguration проверялся точечно; в .030 его полная карточка завершена. Наличие отсутствующего русского ключа не означает отсутствие английского fallback. Отдельный дефект HTML по одному восстановлению дерева не регистрировался.
+Ожидание полного разбора конфигурации снято. Настоящий browser submit — [U004-01](../../../../../../cross-check-0002.md#u004-01); запись повышения — [U004-04](../../../../../../cross-check-0002.md#u004-04). Отсутствие ru levelUp не означает отсутствия en fallback ([U004-06](../../../../../../cross-check-0002.md#u004-06)).
 
 ## Связанные проблемы
 
@@ -83,3 +83,13 @@ JS-функций нет. checked отражает три булевых пол�
 2026-09-11, `aa6af106e86a9c75fe050d599f961c8fadb74f1b`. Полный разбор владельца формы завершён: класс хранит type/skillKey независимо, оба PARTS по умолчанию рендерятся. Содержимое skills зависит от skillKey, а не type; обычный openModifiers передаёт соответствующую пару. Штатная форма отправляет все enabled поля, в том числе checkbox/value; ошибка повышения Monster остаётся.
 
 Сверенные источники: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js); [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../../../../../../../templates/sheets/actor/configuration/app/edit-stats.hbs). [Итоговая сверка третьей серии, сценарии и ограничения](../../../../../../review-log.md#task-0003030). Код и статусы проблем не менялись.
+
+## Сквозная сверка TASK-0004.004
+
+2026-09-14; rusbar-main, f31a2541770dddb23c01b5284c16f31989c5d1e5. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+WitcherModifiersConfiguration уже полностью разобран в .030/.003. Его context.system/skillKey согласован с @root.skillKey для базового value и трёх Bool; отдельная level-up кнопка передаёт встроенный ключ без допуска по IP/типу Actor. activeEffectModifiers только показывается disabled. parse5 ранее удалил tr/td оболочки внутри div без доказанного видимого сбоя — новая issue не нужна.
+
+Сопоставленные определения и потребители: [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js.md), [module/actor/sheets/mixins/skillMixin.js](../../../../../module/actor/sheets/mixins/skillMixin.js.md), [module/actor/mixins/skillMixin.js](../../../../../module/actor/mixins/skillMixin.js.md), [module/data/actor/templates/common/skills/skillData.js](../../../../../module/data/actor/templates/common/skills/skillData.js.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004004) — TASK-0004.004; процессы [R004-09](../../../../../../cross-check-0002.md#r004-09), [R004-10](../../../../../../cross-check-0002.md#r004-10). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.
