@@ -40,7 +40,7 @@ JS-функций нет. CSS читается браузером через @im
 | weapon_roll_sheet | [templates/dialog/combat/weapon-attack.hbs](../../../../../templates/dialog/combat/weapon-attack.hbs) | Корневой div; единственный найденный буквальный потребитель класса в шаблонах |
 | input, td, select, label | Тот же шаблон | Потомки root в таблицах/разделах; верхняя секция содержит также attack-sheet |
 | div.attack-sheet select/table | [styles/attack-sheet.css](../../../../../styles/attack-sheet.css) | Пересечение: max-width90%, table-layoutfixed и декларация переноса; не заменяют margin/float |
-| input.small и общие input | [styles/system-styles.css](../../../../../styles/system-styles.css) и Foundry | У системного input.small width5ch, но этот класс не используется данным HBS; правила ядра целиком не проверены |
+| input.small и общие input | [styles/system-styles.css](../../../../../styles/system-styles.css) и Foundry | customAim имеет class=small и совпадает с input.small (width5ch). Специфичность равна .weapon_roll_sheet input; поздний weapon-roll задаёт width30px среди этих двух правил. Полный каскад ядра не проверен |
 | Inline customDmg | [templates/dialog/combat/weapon-attack.hbs](../../../../../templates/dialog/combat/weapon-attack.hbs):224 | width:auto/max-width50% на конкретном input; inline width при обычном каскаде приоритетнее width30px |
 | @import | [styles/witcher-styles.css](../../../../../styles/witcher-styles.css):17, [system.json](../../../../../system.json) | Путь подключения; манифест не ссылается на этот CSS напрямую |
 
@@ -58,7 +58,7 @@ JS-функций нет. CSS читается браузером через @im
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных участков нет. Браузер, сторонние темы, полные правила Foundry, отображение при изменении масштаба/языка не проверялись.
+Исходник и связи сопоставлены в TASK-0004.010. Реальные computedStyle, масштаб/язык, темы и полные стили ядра не проверены. Уточнение small основано на текущей разметке и порядке импортов, не новом рендере. Остаток: [U010-06](../../cross-check-0002.md#u010-06). Прежние опыты сохраняют свои даты и фасады; нового исполнения нет.
 
 ## Связанные проблемы
 
@@ -69,3 +69,13 @@ JS-функций нет. CSS читается браузером через @im
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; полный файл | Первичная карточка, определения и потребители сверены; [журнал](../../review-log.md#task-0003041) |
+
+## Сквозная сверка TASK-0004.010
+
+2026-09-14; rusbar-main, ac3978e901dd3549639225028f79aca54d1ace2f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Корневой класс weapon_roll_sheet охватывает поля текущего HBS. Исправлено прежнее утверждение об отсутствии small: input customAim имеет этот класс, поэтому совпадает и с input.small из system-styles. Среди этих двух правил с равной специфичностью поздний weapon-roll задаёт width30px; inline customDmg задаёт другую ширину. Полный визуальный результат не вычислялся.
+
+Сопоставленные определения и потребители: [templates/dialog/combat/weapon-attack.hbs](../templates/dialog/combat/weapon-attack.hbs.md), [styles/attack-sheet.css](attack-sheet.css.md), [styles/system-styles.css](system-styles.css.md), [styles/witcher-styles.css](witcher-styles.css.md), [system.json](../system.json.md).
+
+[Протокол и границы](../../review-log.md#task-0004010) — TASK-0004.010; процессы [R010-20](../../cross-check-0002.md#r010-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

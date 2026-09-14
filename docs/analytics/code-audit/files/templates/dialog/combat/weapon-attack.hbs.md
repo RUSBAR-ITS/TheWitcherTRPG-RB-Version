@@ -43,7 +43,7 @@
 | outsideLOS / isAmbush / isPinned / isSilhouetted | checkbox | false | +3 / +5 / +4 / +2 |
 | targetOutsideLOS / isActivelyDodging / isMoving | checkbox | false | −3 / −2 / −3 |
 | isProne / isBlinded / isRicochet / isFastDraw | checkbox | false | −2 / −3 / −5 / −3 |
-| customAim | number | 0 | Положительное значение прибавляется; отрицательное игнорируется |
+| customAim | number; class=small | 0 | Положительное значение прибавляется; отрицательное игнорируется |
 | customAtt | number | 0 | Строка добавки к атаке, кроме '0' |
 | customDmg | text | 0; inline width:auto; max-width:50% | Текст формулы добавки к урону |
 | ammunition | select | usingAmmo && noAmmo !== 1; первый option | ID → Actor.items.get, quantity−1, effects |
@@ -88,7 +88,7 @@ location/strike не фильтруются по типу цели, hasTailWing,
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанной разметки нет. Браузерная вёрстка, штатный selectOptions (v14 создаёт select через createSelectInput), локализованные тексты, form validation, очистка HTML ядром и сохранение выборов не запускались. Фасад selectOptions сохранял ключи/порядок config, но не доказывает все детали штатного helper.
+Исходник и связи сопоставлены в TASK-0004.010. Штатные selectOptions/localize, form validation и очистка HTML в браузере не исполнены; старые HBS/parser-сценарии не доказывают XSS или сохранение выбора. Остаток: [U010-01](../../../../cross-check-0002.md#u010-01), [U010-06](../../../../cross-check-0002.md#u010-06), [U010-07](../../../../cross-check-0002.md#u010-07). Прежние опыты сохраняют свои даты и фасады; нового исполнения нет.
 
 ## Связанные проблемы
 
@@ -99,3 +99,13 @@ location/strike не фильтруются по типу цели, hasTailWing,
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | d5c7a4b871dce3aa55f4b8b589e62c3c9450f2d3; полный файл | Первичная карточка, определения и потребители сверены; [журнал](../../../../review-log.md#task-0003041) |
+
+## Сквозная сверка TASK-0004.010
+
+2026-09-14; rusbar-main, ac3978e901dd3549639225028f79aca54d1ace2f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Девять полей контекста и20 имён формы сопоставлены с callback weaponAttack. Ветка unavailable зависит от piercing=false; noAmmo/noThrowable — предупреждения без собственного запрета подтверждения; ammoOption вставляется сырым HTML. customAim действительно имеет small и связывает этот HBS с input.small и weapon_roll_sheet input; обе карточки уточнены.
+
+Сопоставленные определения и потребители: [module/actor/mixins/weaponAttackMixin.js](../../../module/actor/mixins/weaponAttackMixin.js.md), [module/data/item/weaponData.js](../../../module/data/item/weaponData.js.md), [module/data/item/templates/weaponTypeData.js](../../../module/data/item/templates/weaponTypeData.js.md), [module/setup/config.js](../../../module/setup/config.js.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [styles/weapon-roll.css](../../../styles/weapon-roll.css.md), [styles/attack-sheet.css](../../../styles/attack-sheet.css.md), [styles/system-styles.css](../../../styles/system-styles.css.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004010) — TASK-0004.010; процессы [R010-02](../../../../cross-check-0002.md#r010-02), [R010-03](../../../../cross-check-0002.md#r010-03), [R010-06](../../../../cross-check-0002.md#r010-06), [R010-20](../../../../cross-check-0002.md#r010-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

@@ -85,7 +85,7 @@ getAllLocations возвращает head, torso, rightArm, leftArm, rightLeg, l
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан целиком. Полный WitcherActor и его регистрация в Foundry не исполнялись; циклический import проверен чтением, не загрузкой всего приложения. Браузер, распределение случайных результатов, полный урон, HP и запись не проверены. Неизвестная локация описана как граница входного контракта.
+Исходник и связи сопоставлены в TASK-0004.010. Циклический import установлен чтением; полный клиентский lifecycle/случайное распределение и урон по всем зонам с записью HP не исполнены заново. Остаток: [U010-04](../../../../cross-check-0002.md#u010-04), [U010-05](../../../../cross-check-0002.md#u010-05), [U010-08](../../../../cross-check-0002.md#u010-08). Прежние опыты сохраняют свои даты и фасады; нового исполнения нет.
 
 ## Связанные проблемы
 
@@ -104,3 +104,13 @@ getAllLocations возвращает head, torso, rightArm, leftArm, rightLeg, l
 getLocationObject:8–9 делегирует WitcherActor.getLocationObject, а не RollTable. Все 20 случайных локаций проверены на исходном статическом обработчике с настоящим helper и управляемым Math.random. Экспортные Human/Monster Damage Location — отдельный справочный маршрут.
 
 [Карточки Combat](../../../README.md#боевые-таблицы--task-0003057), [перекрёстная сверка](../../../../review-log.md#task-0003057). Для issue-00322/00323/00324 см. [реестр проблем](../../../../../../issues/potential/../README.md). Пределы изолированных сценариев сохранены отдельно от запуска мира.
+
+## Сквозная сверка TASK-0004.010
+
+2026-09-14; rusbar-main, ac3978e901dd3549639225028f79aca54d1ace2f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Два wrapper делегируют статическим методам WitcherActor. getAllLocations теряет this конкретного Monster и не добавляет tailWing; getLocationObject отдельно поддерживает хвост и случайные исходы. Таблицы компедиума не вызываются: на9 randomMonster даёт одну leftLeg независимо от пересечения диапазонов00322. Мутация локации у damage и перечисление всех зон — разные связи.
+
+Сопоставленные определения и потребители: [module/actor/witcherActor.js](../witcherActor.js.md), [module/data/actor/monsterData.js](../../data/actor/monsterData.js.md), [module/scripts/helper.js](../../scripts/helper.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [module/actor/mixins/damageMixin.js](damageMixin.js.md), [module/actor/mixins/defenseMixin.js](defenseMixin.js.md), [module/actor/mixins/weaponAttackMixin.js](weaponAttackMixin.js.md), [module/actor/mixins/professionMixin.js](professionMixin.js.md), [module/actor/mixins/castSpellMixin.js](castSpellMixin.js.md), [module/scripts/combat/applyDamage.js](../../scripts/combat/applyDamage.js.md), [module/scripts/combat/generalCombatHook.js](../../scripts/combat/generalCombatHook.js.md), [module/item/mixins/damageUtilMixin.js](../../item/mixins/damageUtilMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004010) — TASK-0004.010; процессы [R010-13](../../../../cross-check-0002.md#r010-13), [R010-19](../../../../cross-check-0002.md#r010-19). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

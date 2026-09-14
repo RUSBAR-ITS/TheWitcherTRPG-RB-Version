@@ -139,7 +139,7 @@ damageMulti вычисляется по общему damage.type; без соп�
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных участков файла нет. Не проверены реальный Actor/Item lifecycle, порядок сетевых подтверждений, HP, эффекты на persisted:false поля, полный бой по всем локациям, визуальный чат и соответствие правилу книги. Несколько Natural, отрицательные SP/износ и сопротивления при SP=0 описаны без выбора нового игрового правила.
+Исходник и связи сопоставлены в TASK-0004.010. Полный потребитель урона уже описан в .044 и сопоставлен до границы HP, но реальное сохранение SP/HP, гонки и эффекты поверх prepared-полей не проверены. Слои/износ по книге не выбирались. Остаток: [U010-02](../../../../cross-check-0002.md#u010-02), [U010-04](../../../../cross-check-0002.md#u010-04), [U010-07](../../../../cross-check-0002.md#u010-07), [U010-08](../../../../cross-check-0002.md#u010-08). Прежние опыты сохраняют свои даты и фасады; нового исполнения нет.
 
 ## Связанные проблемы
 
@@ -159,3 +159,13 @@ damageMulti вычисляется по общему damage.type; без соп�
 [Полностью разобран consumer](damageMixin.js.md): applyAlwaysSpDamage вызывается после расхода SP даже при blocked; applySpDamage — только в ветке положительного остатка после SP. await этих обёрток по-прежнему не гарантирует завершение записи Item из прежней 282. Группа 34 с настоящей ArmorData Light SP 5: общая обработка 10 по всем зонам даёт 0, отдельные вызовы —15/5/2/2/2/2 из-за общих DamageInstance в caller (285). Группа 24 подтвердила прежний неправильный путь applyAP и отсутствие самостоятельного multiplication без сопротивления. Ошибка контекста подробностей 287 отделена от арифметики/SP.
 
 [Методика и пределы проверки](../../../../review-log.md#task-0003044). Уточнение связей не увеличивает покрытие; мир, браузер и БД не запускались.
+
+## Сквозная сверка TASK-0004.010
+
+2026-09-14; rusbar-main, ac3978e901dd3549639225028f79aca54d1ace2f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+EV использует все equipped Item, а SP — getList без stored. Покрытие определяется modifiedMax, сумма — текущим modified SP; Natural Item и поля Monster идут разными путями. Сопоставлены приоритет слоёв, независимость bypass-флагов при расчёте, тип отдельной DamageInstance и общий damage.type при сопротивлениях, прямой/обычный износ. Await обёрток не подтверждает update Item/Actor; totalSP и displaySP имеют разные типы и обработку у consumer.
+
+Сопоставленные определения и потребители: [module/actor/witcherActor.js](../witcherActor.js.md), [module/data/item/armorData.js](../../data/item/armorData.js.md), [module/data/item/templates/armor/spData.js](../../data/item/templates/armor/spData.js.md), [module/data/item/templates/armor/resistanceData.js](../../data/item/templates/armor/resistanceData.js.md), [module/data/actor/monsterData.js](../../data/actor/monsterData.js.md), [module/data/actor/templates/common/lifepathData.js](../../data/actor/templates/common/lifepathData.js.md), [module/data/item/templates/combat/damagePropertiesData.js](../../data/item/templates/combat/damagePropertiesData.js.md), [module/scripts/damageInstance.js](../../scripts/damageInstance.js.md), [module/actor/mixins/damageUtilMixin.js](damageUtilMixin.js.md), [module/scripts/combat/generalCombatHook.js](../../scripts/combat/generalCombatHook.js.md), [module/data/actor/templates/common/combatEffectsData.js](../../data/actor/templates/common/combatEffectsData.js.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [module/actor/mixins/damageMixin.js](damageMixin.js.md), [module/actor/mixins/castSpellMixin.js](castSpellMixin.js.md), [module/actor/mixins/skillMixin.js](skillMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004010) — TASK-0004.010; процессы [R010-14](../../../../cross-check-0002.md#r010-14), [R010-15](../../../../cross-check-0002.md#r010-15), [R010-16](../../../../cross-check-0002.md#r010-16), [R010-17](../../../../cross-check-0002.md#r010-17), [R010-18](../../../../cross-check-0002.md#r010-18), [R010-19](../../../../cross-check-0002.md#r010-19). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

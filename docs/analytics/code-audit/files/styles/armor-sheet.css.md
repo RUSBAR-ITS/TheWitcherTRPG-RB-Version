@@ -68,7 +68,7 @@ CSS не изменяет поля SP, resistance, effects, EV и докумен
 
 ## Непроверенные участки и открытые вопросы
 
-Непрочитанных частей нет. Не запускались HTTP-загрузка, браузер, computedStyle, responsive layout, полные helpers Foundry и реальные листы. Правила доступа не менялись.
+Исходник и связи сопоставлены в TASK-0004.010. HTTP, computedStyle, responsive layout, темы и настоящие листы не запускались; в .043 проверялись классы/разметка с фасадами helpers. Остаток: [U010-06](../../cross-check-0002.md#u010-06), [U010-08](../../cross-check-0002.md#u010-08). Прежние опыты сохраняют свои даты и фасады; нового исполнения нет.
 
 ## Связанные проблемы
 
@@ -79,3 +79,13 @@ CSS не изменяет поля SP, resistance, effects, EV и докумен
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 929ac4c6d90509ce06ef0795be380925e8b59e69; полный файл | Первичная карточка; [перекрёстная сверка](../../review-log.md#task-0003043) |
+
+## Сквозная сверка TASK-0004.010
+
+2026-09-14; rusbar-main, ac3978e901dd3549639225028f79aca54d1ace2f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+CSS связан с manifest/import, актуальным armor-sheet, общим effect-part и старым monster-inventory. location-table отсутствует у Shield; sp/icon-spacer принадлежат прежнему partial, не современному Monster PART. Более поздний activeEffect.css сбрасывает margin у effect-list, сохраняя flex. Присутствие ресурса в preload не доказывает активность старого UI.
+
+Сопоставленные определения и потребители: [styles/witcher-styles.css](witcher-styles.css.md), [templates/sheets/item/armor-sheet.hbs](../templates/sheets/item/armor-sheet.hbs.md), [module/item/sheets/WitcherArmorSheet.js](../module/item/sheets/WitcherArmorSheet.js.md), [module/setup/registerSheets.js](../module/setup/registerSheets.js.md), [templates/partials/effect-part.hbs](../templates/partials/effect-part.hbs.md), [templates/partials/monster/monster-inventory-tab.hbs](../templates/partials/monster/monster-inventory-tab.hbs.md), [styles/system-styles.css](system-styles.css.md), [styles/item-sheets.css](item-sheets.css.md), [styles/activeEffect.css](activeEffect.css.md), [module/setup/handlebars.js](../module/setup/handlebars.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../module/actor/sheets/WitcherMonsterSheet.js.md), [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs.md).
+
+[Протокол и границы](../../review-log.md#task-0004010) — TASK-0004.010; процессы [R010-20](../../cross-check-0002.md#r010-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.

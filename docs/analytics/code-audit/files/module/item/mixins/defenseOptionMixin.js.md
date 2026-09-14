@@ -58,7 +58,7 @@ Wrapper не создаёт уникальный action, не задаёт itemI
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Настоящий Item lifecycle/внешние пользовательские модели/мир не запускались. Полный разбор моделей выполнен прежде; здесь повторно проверены только связи.
+Исходник и связи сопоставлены в TASK-0004.010. Внешние модели Item, реальный lifecycle, очистка/рендер Dialog и сохранение не проверены; извлечённый initializer ядра исследован только в пределах свёртки buttons. Остаток: [U010-01](../../../../cross-check-0002.md#u010-01), [U010-03](../../../../cross-check-0002.md#u010-03), [U010-08](../../../../cross-check-0002.md#u010-08). Прежние опыты сохраняют свои даты и фасады; нового исполнения нет.
 
 ## Связанные проблемы
 
@@ -69,3 +69,13 @@ Wrapper не создаёт уникальный action, не задаёт itemI
 | Дата | Версия и область | Результат |
 | --- | --- | --- |
 | 2026-09-12 | 16695cbfc7fec3e0de56660c7cab21bc0304e94b; полный файл | Первичная карточка; [перекрёстная сверка](../../../../review-log.md#task-0003042) |
+
+## Сквозная сверка TASK-0004.010
+
+2026-09-14; rusbar-main, ac3978e901dd3549639225028f79aca54d1ace2f. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Item wrapper задаёт имя как label/value, затем позволяет модели переопределить поля; сам не фильтрует доступность и не добавляет уникальный ID. Сопоставлены Weapon/Profession/DefenseProperties и consumer buttons/chooser. Совпадение имён превращается в совпадение action, а пустая skills у профессионального override не равна отсутствию допустимой защиты.
+
+Сопоставленные определения и потребители: [module/item/witcherItem.js](../witcherItem.js.md), [module/data/item/weaponData.js](../../data/item/weaponData.js.md), [module/data/item/professionData.js](../../data/item/professionData.js.md), [module/data/item/templates/combat/defensePropertiesData.js](../../data/item/templates/combat/defensePropertiesData.js.md), [module/data/chatMessage/templates/attackData.js](../../data/chatMessage/templates/attackData.js.md), [module/actor/mixins/defenseMixin.js](../../actor/mixins/defenseMixin.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004010) — TASK-0004.010; процессы [R010-07](../../../../cross-check-0002.md#r010-07), [R010-08](../../../../cross-check-0002.md#r010-08). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
