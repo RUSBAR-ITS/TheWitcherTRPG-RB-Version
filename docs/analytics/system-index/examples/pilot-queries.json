@@ -1,5 +1,5 @@
 {
-  "dataset": "task-0006.003-pilot",
+  "dataset": "task-0006.004-pilot",
   "basis": "source_read",
   "cases": [
     {
@@ -280,11 +280,14 @@
         "src-000047"
       ],
       "expected": {
-        "ids": [],
-        "empty_reason": "not_indexed",
-        "coverage": "not_indexed"
+        "ids": [
+          "proc-000004",
+          "proc-000005"
+        ],
+        "empty_reason": null,
+        "coverage": "partial"
       },
-      "note": "Отрицательный контроль: процессы Actor дополняются только в .004."
+      "note": "В .004 внесены явные шаги Actor: подготовка производных и calculateStat. Пустой ответ .003 заменён текущим результатом."
     }
   ]
 }

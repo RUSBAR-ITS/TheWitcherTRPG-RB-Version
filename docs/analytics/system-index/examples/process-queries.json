@@ -1,0 +1,208 @@
+{
+  "dataset": "task-0006.004-pilot",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "PR-01",
+      "command": [
+        "processes",
+        "ent-000012"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000001",
+          "proc-000008"
+        ],
+        "step_ids": [
+          "proc-000001/read",
+          "proc-000008/numeric",
+          "proc-000008/append"
+        ]
+      }
+    },
+    {
+      "id": "PR-02",
+      "command": [
+        "processes",
+        "ent-000009"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000001",
+          "proc-000011"
+        ],
+        "step_ids": [
+          "proc-000001/read",
+          "proc-000011/values"
+        ]
+      }
+    },
+    {
+      "id": "PR-03",
+      "command": [
+        "processes",
+        "ent-000281"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000004"
+        ],
+        "step_ids": [
+          "proc-000004/stats-first",
+          "proc-000004/stats-second"
+        ]
+      }
+    },
+    {
+      "id": "PR-04",
+      "command": [
+        "processes",
+        "ent-000344"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000011",
+          "proc-000012"
+        ],
+        "step_ids": [
+          "proc-000011/config",
+          "proc-000012/threshold",
+          "proc-000012/normal",
+          "proc-000012/reversed",
+          "proc-000012/success"
+        ]
+      }
+    },
+    {
+      "id": "PR-05",
+      "command": [
+        "processes",
+        "ent-000360"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000011",
+          "proc-000013",
+          "proc-000014"
+        ],
+        "step_ids": [
+          "proc-000011/prompt",
+          "proc-000013/prompt",
+          "proc-000014/dialog",
+          "proc-000014/add-part"
+        ]
+      }
+    },
+    {
+      "id": "PR-06",
+      "command": [
+        "processes",
+        "ent-000012",
+        "--scope",
+        "src-000019"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000008"
+        ],
+        "step_ids": [
+          "proc-000008/numeric",
+          "proc-000008/append"
+        ]
+      }
+    },
+    {
+      "id": "PR-07",
+      "command": [
+        "processes",
+        "ent-000012",
+        "--scope",
+        "src-000022"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope"
+      }
+    },
+    {
+      "id": "PR-08",
+      "command": [
+        "process",
+        "proc-000012",
+        "--offset",
+        "16",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "output"
+        ],
+        "total": 23,
+        "truncated": true,
+        "next_offset": 17,
+        "next_steps": [
+          "publish",
+          "defer"
+        ],
+        "outside_page": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "PR-09",
+      "command": [
+        "processes",
+        "ent-000176"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000007"
+        ],
+        "step_ids": [
+          "proc-000007/phase"
+        ]
+      }
+    },
+    {
+      "id": "PR-10",
+      "command": [
+        "processes",
+        "src-000209"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "not_indexed",
+        "coverage": "not_indexed"
+      }
+    },
+    {
+      "id": "PR-11",
+      "command": [
+        "processes",
+        "ent-000188"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope"
+      }
+    },
+    {
+      "id": "PR-12",
+      "command": [
+        "details",
+        "proc-000006"
+      ],
+      "expected": {
+        "ref_anchors": [
+          "r005-04",
+          "r005-05",
+          "r005-06",
+          "r018-02"
+        ]
+      }
+    }
+  ]
+}

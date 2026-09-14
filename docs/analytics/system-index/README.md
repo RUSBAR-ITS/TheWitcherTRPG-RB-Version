@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.003](../../tasks/task-0006.003.md) завершена: внесены сущности и связи пилота «подготовка Actor → Active Effects → характеристики/навыки → бросок». Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.004](../../tasks/task-0006.004.md) завершена: добавлены процессы пилота и поиск участия методов/полей в их шагах. Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 615 исходников в каталоге; 23 основных и 13 смежных файлов представлены частично, 579 ещё не индексированы. В графе 400 сущностей и 977 связей. Два начальных процесса сохранены; следующие процессы пилота — [TASK-0006.004](../../tasks/task-0006.004.md). Точные границы по файлам — [покрытие пилота](pilot-coverage.md).
+**Текущий охват:** 615 исходников в каталоге; 23 основных и 13 смежных файлов представлены частично, 579 ещё не индексированы. В графе 400 сущностей, 977 связей и 14 процессов (101 шаг, 151 переход). [Границы файлов](pilot-coverage.md), [процессы и поиск участия](process-guide.md). Следующая — [TASK-0006.005](../../tasks/task-0006.005.md), приёмка пилота и план расширения.
 
 ## Быстрый запуск
 
@@ -17,10 +17,12 @@ python3 docs/analytics/system-index/query.py neighbors ent-000302 --direction in
 python3 docs/analytics/system-index/query.py neighbors ent-000277 --direction in --relation registers
 python3 docs/analytics/system-index/query.py show ent-000326
 python3 docs/analytics/system-index/query.py details ent-000304
+python3 docs/analytics/system-index/query.py processes ent-000012
+python3 docs/analytics/system-index/query.py process proc-000012 --offset 16 --limit 1
 python3 docs/analytics/system-index/query.py check --freshness
 ```
 
-Первый запрос различает Skill.activeEffectModifiers (ent-000012) и SkillItemData.activeEffectModifiers (ent-000188). У первого читатели — getter Skill.modifiedValue и actor.modifierMixin.addActiveEffects. Два skillMixin имеют разные файлы и ID: actor — ent-000299, sheet — ent-000305. processes src-000047 пока возвращает not_indexed.
+Первый запрос различает Skill.activeEffectModifiers (ent-000012) и SkillItemData.activeEffectModifiers (ent-000188). У первого читатели — getter Skill.modifiedValue и actor.modifierMixin.addActiveEffects. Два skillMixin имеют разные файлы и ID: actor — ent-000299, sheet — ent-000305. processes ent-000012 показывает шаги getter и сборки модификаторов; processes src-000047 — proc-000004/000005.
 
 Ответы содержат ID, адреса исходников/карточек, область и актуальность. Поиск по ID/символу/пути точный и чувствителен к регистру; aliases поддерживают русские термины, например find НАВЫК --match exact. Для программного чтения добавить --format json после команды.
 
@@ -49,10 +51,10 @@ python3 docs/analytics/system-index/query.py check --freshness
 | [Манифест](manifest.json) / [источники](sources.jsonl) | Проверенный срез, части и покрытие |
 | [Сущности пилота](data/entities/pilot.jsonl) / [связи пилота](data/relations/pilot.jsonl) | Дополнение .003 к начальным записям |
 | [Начальные сущности](examples/entities.jsonl) / [связи](examples/relations.jsonl) / [процессы](examples/processes.jsonl) | Записи .001; ID и содержимое сохранены |
-| [Покрытие пилота](pilot-coverage.md) | 23 основных/13 смежных файлов, ограничения и адреса для .004 |
-| [13 текущих случаев](examples/pilot-queries.json) / [16 начальных случаев](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно от расширенного графа |
-| [Тесты пилота](tests/test_pilot.py) / [тесты инструмента](tests/test_query.py) | Проверки по исходникам и изолированным входам |
-| [Протокол .003](review-log.md#task-0006003) | Результаты, срез и пределы проверки |
+| [Покрытие пилота](pilot-coverage.md) / [процессы](process-guide.md) | Границы 23 основных/13 смежных файлов и 14 процессов |
+| [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
+| [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
+| [Протокол .004](review-log.md#task-0006004) | Процессы, расширение поиска участия и проверки |
 
 Подробные объяснения остаются в [аудите](../code-audit/README.md); назначение справочника задано [требованиями](../system-index-requirements.md).
 
@@ -62,4 +64,4 @@ python3 docs/analytics/system-index/query.py check --freshness
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены 20 тестовых методов: 13 CLI-случаев пилота, 16 начальных CLI-случаев, 24 повреждённых входа и дополнительные проверки. Начальные случаи используют временное представление неизменных examples/*.jsonl с тем же каталогом исходников; ожидаемые ответы .001 не переписаны под выросший граф. Игровой JavaScript и мир Foundry эти тесты не запускают.
+Пройдены 26 тестовых методов: 12 новых CLI-случаев процессов, 13 текущих случаев пилота, 16 начальных случаев, 24 повреждённых входа и дополнительные проверки. Начальные случаи используют отдельное временное представление; их ожидаемые ответы сохранены. Игровой JavaScript и мир Foundry эти тесты не запускают.

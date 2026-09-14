@@ -43,19 +43,18 @@ class PilotQueries(unittest.TestCase):
                     else:
                         self.assertEqual(projection[key], expected, key)
                 self.assertEqual(out["freshness"]["state"], "current")
-                if case["id"] != "P13":
-                    self.assertEqual(out["coverage"]["state"], "partial")
+                self.assertEqual(out["coverage"]["state"], "partial")
 
     def test_catalogue_and_pilot_are_distinct(self):
         run = run_cli(["check", "--freshness", "--format", "json"], cwd="/tmp")
         self.assertEqual(run.returncode, 0, run.stderr)
         out = json.loads(run.stdout)
-        self.assertEqual(out["counts"], {"sources": 615, "entities": 400, "relations": 977, "processes": 2})
+        self.assertEqual(out["counts"], {"sources": 615, "entities": 400, "relations": 977, "processes": 14})
         self.assertEqual(len(self.data.manifest["scope"]["selected_sources"]), 23)
         represented = [s for s in self.data.sources.values() if s["coverage"]["definitions"]["included"]]
         self.assertEqual(len(represented), 36)
         self.assertTrue(all(s["coverage"]["definitions"]["state"] == "partial" for s in represented))
-        self.assertEqual(self.data.sources["src-000047"]["coverage"]["processes"]["state"], "not_indexed")
+        self.assertEqual(self.data.sources["src-000047"]["coverage"]["processes"]["state"], "partial")
 
     def test_value_paths_and_double_calculation_sites(self):
         # Independent literal source checks guard the interpretation, not game behaviour.

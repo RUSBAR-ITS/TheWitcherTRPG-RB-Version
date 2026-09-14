@@ -12,7 +12,7 @@ JSONL: один JSON-объект на непустую строку, UTF-8, б�
 | sources.jsonl | Каталог исходников и подробных карточек, хеши и три аспекта покрытия |
 | examples/entities.jsonl, relations.jsonl, processes.jsonl | Существующие примеры .001; все три пути в manifest.parts имеют префикс examples/ |
 | examples/queries.json | Ожидаемые ответы для .002; в граф не загружается |
-| data/entities/pilot.jsonl и data/relations/pilot.jsonl | Подключённые дополнения .003; процессы пока сохраняются в examples/ |
+| data/entities/pilot.jsonl, data/relations/pilot.jsonl, data/processes/pilot.jsonl | Сущности/связи .003 и процессы .004; начальные examples/ также подключены |
 | README.md, format.md, query-contract.md, review-log.md | Навигация, спецификация и доказательства выполнения |
 
 Активные части перечисляются явно и дают единственное определение каждого ID. При переносе примера в data старая часть исключается из manifest.parts; повторное подключение тех же записей — ошибка. Копии обратных отношений и полных карточек не поддерживаются.
@@ -36,7 +36,7 @@ JSONL: один JSON-объект на непустую строку, UTF-8, б�
 Обязательные поля показаны в [manifest.json](manifest.json): format_version, dataset_id, purpose, approval, snapshot, scope, parts, next_ids, retired_ids. query_examples, dependencies и reference_hashes используются при наличии примеров/внешних контрактов.
 
 - format_version=1; незнакомая версия требует явной поддержки, а не попытки угадать структуру.
-- purpose=pilot_index обозначает текущий пилот .003; seed_examples — начальный набор .002. approval=approved фиксирует согласование. В исторической .001 использовались proposal_examples и pending. Поля назначения независимы от охвата; snapshot фиксирует проверенный срез исходников.
+- purpose=pilot_index обозначает текущий пилот .004; seed_examples — начальный набор .002. approval=approved фиксирует согласование. В исторической .001 использовались proposal_examples и pending. Поля назначения независимы от охвата; snapshot фиксирует проверенный срез исходников.
 - snapshot содержит date, branch, head и совокупный source_hash. Хеш: сортированные пути, для каждого UTF-8 пути + NUL + байты файла, SHA-256.
 - scope содержит адрес/хеш исходного реестра, число его файлов, выбранные источники и global_coverage. selected_sources перечисляет основные источники порции; смежные записи могут иметь другие источники. Все пути сохраняются в каталоге, реальный охват задают facets покрытия.
 - parts перечисляет непересекающиеся активные файлы четырёх видов записей.
@@ -141,4 +141,8 @@ HEAD показывает срез, но изменение только docs н
 | examples/*.jsonl, examples/queries.json, manifest.json, sources.jsonl | Использовать и при необходимости уточнить согласованные примеры; пока не объявлять полным пилотом |
 | README.md, query-contract.md, review-log.md | Реальные команды, примеры вывода и результаты выполнения |
 
-query.py, tests/test_query.py и tests/fixtures/invalid-records.json созданы. Результаты выполнения, 16 CLI-примеров, повреждённые входы и сохранность проверены в [протоколе .002](review-log.md#task-0006002). На момент .002 данные содержали только начальные примеры. В .003 добавлены [сущности и связи пилота](pilot-coverage.md); процессы дополняются в .004.
+query.py, tests/test_query.py и tests/fixtures/invalid-records.json созданы. Результаты выполнения, 16 CLI-примеров, повреждённые входы и сохранность проверены в [протоколе .002](review-log.md#task-0006002). На момент .002 данные содержали только начальные примеры. В .003 добавлены [сущности и связи пилота](pilot-coverage.md); в .004 добавлены [процессы и участие сущностей](process-guide.md).
+
+## Поиск участия после TASK-0006.004
+
+Формат v1 сохранён. processes ENTITY_ID сопоставляет entry.entity, steps.entity и оба конца отношений из steps.relations. Это явное участие в шаге; другие связи графа и владельцы автоматически не обходятся. Для SOURCE_ID и --scope остаётся прежний смысл места шага, а не определения поля. Формат step_ids/entry_matches не изменился. [Примеры и ограничения](process-guide.md#поиск-участия-сущности).

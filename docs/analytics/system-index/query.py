@@ -542,8 +542,18 @@ class Dataset:
             if args.id in self.sources and not explicit:
                 scopes = {args.id}
             for proc in sorted(self.processes.values(), key=lambda x: x["id"]):
-                steps = [x for x in proc["steps"] if (
-                    x["entity"] == args.id if args.id in self.entities else x["location"]["source"] == args.id)]
+                steps = []
+                for step in proc["steps"]:
+                    if args.id in self.entities:
+                        # A field participates via the reads/writes/etc. explicitly
+                        # attached to this step, not via a transitive graph search.
+                        matches = step["entity"] == args.id or any(
+                            args.id in (self.relations[rid]["from"], self.relations[rid]["to"])
+                            for rid in step["relations"])
+                    else:
+                        matches = step["location"]["source"] == args.id
+                    if matches:
+                        steps.append(step)
                 entry_node = self.entities[proc["entry"]["entity"]]
                 entry_matches = (entry_node["id"] == args.id if args.id in self.entities else args.id in self.source_ids(entry_node))
                 if scopes:
