@@ -65,7 +65,7 @@ JavaScript-методов нет. formGroup isConsumable отображаетс�
 
 ## Непроверенные участки и открытые вопросы
 
-Не запускались браузерный DOM/FormDataExtended и реальные сохранения. Выбор пользовательского исправления для ID или отсутствующего поля не сделан. Нельзя считать добавленный массив работоспособным редактором только по наличию кнопок.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../../../cross-check-0002.md#u007-01), [U007-02](../../../../../../cross-check-0002.md#u007-02). Для этого файла установлены процессы R007-03, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -74,3 +74,13 @@ JavaScript-методов нет. formGroup isConsumable отображаетс�
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.015 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Вкладка строит строки effects/removesEffects с data-id и именованными controls. У записи itemEffect нет id, у properties нет addsTempHp; editor и formGroup ломаются в разных местах. Add/edit/remove именуются эффектами, но работают с массивами статусов, а не embedded ActiveEffect.
+
+Сопоставленные определения и потребители: [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../../../module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js.md), [module/data/item/templates/consumePropertiesData.js](../../../../../module/data/item/templates/consumePropertiesData.js.md), [module/data/item/templates/consumableData.js](../../../../../module/data/item/templates/consumableData.js.md), [module/data/item/templates/itemEffectData.js](../../../../../module/data/item/templates/itemEffectData.js.md), [module/setup/config.js](../../../../../module/setup/config.js.md), [lang/ru.json](../../../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-03](../../../../../../cross-check-0002.md#r007-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

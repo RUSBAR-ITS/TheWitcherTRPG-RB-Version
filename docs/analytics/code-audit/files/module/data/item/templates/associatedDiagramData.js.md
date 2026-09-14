@@ -68,7 +68,7 @@ WeaponData и ArmorData напрямую импортируют две named-ф�
 
 ## Непроверенные участки и открытые вопросы
 
-Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исполнялись изолированно; документы мира, сеть, браузерный submit и БД не запускались. Не исследованы загрузка pack, восстановление документа после reset и сообщения при неразрешимом embedded UUID. issue-00077 касается более раннего этапа модели и не ошибки этой фабрики.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-03](../../../../../cross-check-0002.md#u007-03), [U007-01](../../../../../cross-check-0002.md#u007-01). Для этого файла установлены процессы R007-09, R007-10, R007-12, R007-14, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -83,3 +83,13 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. dismantle разрешает associatedDiagramUuid через fromUuid заново; prepared associatedDiagram не использует. canBeDismantled возвращает truthy строку для weapon/armor, не проверяя разрешение. Отсутствующий рецепт/неподходящая структура дали TypeError до выдачи/списания (issue-00215).
 
 Связи: [module/item/mixins/dismantlingMixin.js](../../../item/mixins/dismantlingMixin.js.md). [Результаты и пределы проверки](../../../../../review-log.md#task-0003034).
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Фабрика хранит associatedDiagramUuid и разрешает prepared associatedDiagram при непустой строке. Привязка оружия/брони не создаёт обратный associatedItemUuid рецепта. Dismantle/Repair разрешают UUID заново, не используют prepared как гарантию доступности. Явного сброса прежнего prepared при пустой строке здесь нет.
+
+Сопоставленные определения и потребители: [module/data/item/weaponData.js](../weaponData.js.md), [module/data/item/armorData.js](../armorData.js.md), [module/item/sheets/mixins/associatedDiagramMixin.js](../../../item/sheets/mixins/associatedDiagramMixin.js.md), [templates/partials/associated-diagram.hbs](../../../../templates/partials/associated-diagram.hbs.md), [module/item/systems/repair.js](../../../item/systems/repair.js.md), [module/item/mixins/dismantlingMixin.js](../../../item/mixins/dismantlingMixin.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-09](../../../../../cross-check-0002.md#r007-09), [R007-10](../../../../../cross-check-0002.md#r007-10), [R007-12](../../../../../cross-check-0002.md#r007-12), [R007-14](../../../../../cross-check-0002.md#r007-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

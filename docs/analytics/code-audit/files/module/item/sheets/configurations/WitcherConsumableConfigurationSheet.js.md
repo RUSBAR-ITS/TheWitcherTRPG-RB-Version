@@ -72,7 +72,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверялись server-side update, конкурентное редактирование массивов и полный FormDataExtended. Тесты не доказывают сохранение ручного id и не устраняют issue-00091. Имена actions не означают создание документов ActiveEffect: здесь меняются только обычные записи статусов.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../../cross-check-0002.md#u007-01), [U007-02](../../../../../cross-check-0002.md#u007-02). Для этого файла установлены процессы R007-03, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -81,3 +81,13 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.015 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Конфигурация наследует общие поля/ActiveEffect и добавляет consumableProperties. Её actions редактируют простые массивы по отсутствующему id; добавление строки не делает редактор работоспособным. Focusout/input, unchecked checkbox и update массива разделены; ручной id в прежней диагностике не является исправлением схемы.
+
+Сопоставленные определения и потребители: [module/item/sheets/configurations/WitcherConfigurationSheet.js](WitcherConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md), [module/data/item/templates/consumePropertiesData.js](../../../data/item/templates/consumePropertiesData.js.md), [module/data/item/templates/itemEffectData.js](../../../data/item/templates/itemEffectData.js.md), [module/item/sheets/WitcherAlchemicalSheet.js](../WitcherAlchemicalSheet.js.md), [module/item/sheets/WitcherValuableSheet.js](../WitcherValuableSheet.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-03](../../../../../cross-check-0002.md#r007-03). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

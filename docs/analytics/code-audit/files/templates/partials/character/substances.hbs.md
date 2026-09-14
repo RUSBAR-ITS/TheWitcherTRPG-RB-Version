@@ -73,7 +73,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Проверки выполнены в Node 24.16.0 с установленным кодом Foundry 14.367.0. Использованы реальные модели и методы системы; Application/Document-оболочки, DOM, UUID-резолвер, запись документов и чат заменены фасадами. Мир, браузер, HTTP и БД не запускались. Точные границы и сценарии приведены в журнале .034; чтение соседних определений не засчитывается как их новый полный разбор.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../cross-check-0002.md#u007-01), [U007-06](../../../../cross-check-0002.md#u007-06), [U007-07](../../../../cross-check-0002.md#u007-07). Для этого файла установлены процессы R007-08, R007-07, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -92,3 +92,13 @@
 Полный [styles/substances.css](../../../../../../../styles/substances.css): 12 правил/38 declarations, активная рамка sub-open и отдельный hover. Группа 15 проверила все девять флагов: исходный _onSubstanceDisplay выдаёт соответствующий update; повторный HBS с true даёт одну открытую кнопку и девять иконок. Список компонентов в данной CSS-проверке — явный partial-фасад, прежний полный рендер .034 сохранён. .substances-section > span/table, .substances и .substance-type-subheader текущей разметке не соответствуют. substance-img также есть в рецепте и динамическом alchemyCraftComponentsList.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Substances HBS читает девять групп и *Count непосредственно; массив alchemyComponentsList использует другая таблица. Subtype проходит в components partial и далее summary, но не в add-item dataset; отдельная иконка сохраняет subtype. Stored исключается producer getSubstance, запас суммируется Number(quantity).
+
+Сопоставленные определения и потребители: [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/actor/mixins/craftingMixin.js](../../../module/actor/mixins/craftingMixin.js.md), [module/actor/sheets/WitcherActorSheet.js](../../../module/actor/sheets/WitcherActorSheet.js.md), [module/data/actor/templates/character/pannelsData.js](../../../module/data/actor/templates/character/pannelsData.js.md), [module/data/actor/commonActorData.js](../../../module/data/actor/commonActorData.js.md), [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](../../sheets/actor/partials/character/inventory/tab-inventory-components.hbs.md), [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](../../sheets/actor/partials/character/inventory/inventory-items-summary.hbs.md), [lang/en.json](../../../lang/en.json.md), [lang/ru.json](../../../lang/ru.json.md), [styles/substances.css](../../../styles/substances.css.md), [templates/sheets/actor/tabs/tab-inventory.hbs](../../sheets/actor/tabs/tab-inventory.hbs.md), [module/setup/handlebars.js](../../../module/setup/handlebars.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-08](../../../../cross-check-0002.md#r007-08), [R007-07](../../../../cross-check-0002.md#r007-07). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

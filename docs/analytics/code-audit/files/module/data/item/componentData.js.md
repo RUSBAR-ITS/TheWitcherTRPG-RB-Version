@@ -75,7 +75,7 @@ getSubstance исключает isStored; findNeededComponent ищет Item.name
 
 ## Непроверенные участки и открытые вопросы
 
-Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исполнялись изолированно; документы мира, сеть, браузерный submit и БД не запускались. Нормы добычи, допустимые числовые/текстовые записи и правила именования материалов не переопределялись. Существование поля не означает его использование всеми потребителями.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../cross-check-0002.md#u007-01), [U007-03](../../../../cross-check-0002.md#u007-03), [U007-08](../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-07, R007-02, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -108,3 +108,13 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 2026-09-11, `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`. Полностью описанный craftingMixin различает item.type='component', system.type='substances', substanceType и name. Поиск имени включает stored и quantity0; getSubstance/UUID-поиск исключают stored. Для обеих локалей все девять имён вещества разрешились; _stats.compendiumSource сопоставляется отдельно от Item.uuid. Панель видит только getSubstance-набор.
 
 Связи: [module/actor/mixins/craftingMixin.js](../../actor/mixins/craftingMixin.js.md); [module/actor/sheets/mixins/alchemyMixin.js](../../actor/sheets/mixins/alchemyMixin.js.md); [templates/partials/character/substances.hbs](../../../templates/partials/character/substances.hbs.md). [Результаты и пределы проверки](../../../../review-log.md#task-0003034).
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+ComponentData задаёт 14 полей, включая type/substanceType и строковые rarity/location/quantityObtainable/forage. Поиск вещества использует пару type/substanceType, поиск рецепта — точное имя/локализованное вещество. Stored и quantity0 учитываются потребителями по-разному. Ошибка select принадлежит HBS и не отсутствующему полю модели.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherComponentSheet.js](../../item/sheets/WitcherComponentSheet.js.md), [templates/sheets/item/component-sheet.hbs](../../../templates/sheets/item/component-sheet.hbs.md), [module/actor/mixins/craftingMixin.js](../../actor/mixins/craftingMixin.js.md), [module/actor/sheets/mixins/itemMixin.js](../../actor/sheets/mixins/itemMixin.js.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs.md), [templates/chat/item/partials/item-description/tags.hbs](../../../templates/chat/item/partials/item-description/tags.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-07](../../../../cross-check-0002.md#r007-07), [R007-02](../../../../cross-check-0002.md#r007-02). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

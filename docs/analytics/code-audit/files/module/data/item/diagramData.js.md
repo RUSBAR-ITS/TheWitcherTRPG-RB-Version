@@ -86,7 +86,7 @@ CONFIG.Item.dataModels.diagrams регистрируется registerDataModels.
 
 ## Непроверенные участки и открытые вопросы
 
-Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исполнялись изолированно; документы мира, сеть, браузерный submit и БД не запускались. fromUuidSync представлен картой с настоящим BaseItem/null; поведение core с индексом и embedded Compendium установлено по исходнику. Старый associatedItem=null/неожиданного типа и ошибка разрешения UUID не объявлены допустимым миграционным входом. Сохранение промежуточных свойств при полном reset Foundry не проверялось. Изготовление, списание и ремонт полностью остаются внешними процессами.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-03](../../../../cross-check-0002.md#u007-03), [U007-06](../../../../cross-check-0002.md#u007-06), [U007-02](../../../../cross-check-0002.md#u007-02). Для этого файла установлены процессы R007-09, R007-10, R007-13, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -133,3 +133,13 @@ Foundry 14.367.0, Node 24.16.0. Настоящие модели и код исп
 [templates/chat/item/partials/item-description/crafting-items.hbs](../../../../../../../templates/chat/item/partials/item-description/crafting-items.hbs) читает prepared craftingComponents напрямую; в отличие от повторного map листа из issue-00095, здесь недоступный UUID сохраняет name. Группы 02–03/11: доступный UUID дал ResolvedName/resolved.png; недоступный — SavedUnknown без img; quantity=0 остался 0. Схема убрала исходный img, подготовка вернула его только разрешённой записи. Корректный тип документа — diagrams. Заголовок материалов остаётся у пустого рецепта из-за truthy объекта alchemyComponents; положительные вещества выводятся только при isFormulae.
 
 [Сценарии, результаты и ограничения](../../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Схема рецепта, migrateData и prepareDerivedData разделены: legacy перезаписывает UUID/craftingDC; prepared разрешает Item и обогащает строки, сохраняя source/fallback. Fallback теряется затем в known-map листа. isFormulae формы и положительный alchemyDC реального расхода независимы; quantity/resultQuantity не означают завершённую выдачу.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/craftingComponentData.js](templates/craftingComponentData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherDiagramSheet.js](../../item/sheets/WitcherDiagramSheet.js.md), [templates/sheets/item/diagrams-sheet.hbs](../../../templates/sheets/item/diagrams-sheet.hbs.md), [templates/partials/associated-item.hbs](../../../templates/partials/associated-item.hbs.md), [module/item/witcherItem.js](../../item/witcherItem.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../actor/sheets/WitcherCharacterSheet.js.md), [module/item/systems/repair.js](../../item/systems/repair.js.md), [module/item/mixins/dismantlingMixin.js](../../item/mixins/dismantlingMixin.js.md), [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-09](../../../../cross-check-0002.md#r007-09), [R007-10](../../../../cross-check-0002.md#r007-10), [R007-13](../../../../cross-check-0002.md#r007-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

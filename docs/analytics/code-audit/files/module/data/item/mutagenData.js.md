@@ -72,7 +72,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящие модели/методы Foundry 14.367.0 и системы в изолированном Node 24.16.0; DOM, родительские документы и запись представлены фасадами. Мир и браузер не запускались. Не проверялись импорт компедиумов, изготовление алхимии и игровые правила мутаций. Фактическая регистрация не исключает пользовательский выбор другого листа.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../cross-check-0002.md#u007-01), [U007-08](../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-01, R007-02, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -97,3 +97,13 @@ WitcherLootSheet запрашивает getList('mutagens'), тогда как �
 Полные карточки порции: [module/actor/sheets/WitcherLootSheet.js](../../actor/sheets/WitcherLootSheet.js.md), [templates/sheets/actor/loot-sheet.hbs](../../../templates/sheets/actor/loot-sheet.hbs.md), [templates/sheets/actor/partials/loot/loot-item-display.hbs](../../../templates/sheets/actor/partials/loot/loot-item-display.hbs.md), [module/data/item/mountData.js](mountData.js.md), [module/item/sheets/WitcherMountSheet.js](../../item/sheets/WitcherMountSheet.js.md), [templates/sheets/item/mount-sheet.hbs](../../../templates/sheets/item/mount-sheet.hbs.md).
 
 [Проверки, общая сверка 31 файла с прежними 247 и ограничения](../../../../review-log.md#task-0003035). Связанный файл повторно в покрытии не учитывается; исправления не выполнялись.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Модель мутагена содержит consumable, но зарегистрированный MutagenSheet наследует базовую конфигурацию без этой вкладки. Тип доступен в общем header; отсутствие собственного select не означает невозможности выбора. Availability в общем CONFIG не добавляет avail в модель; canHaveTemporaryItemImprovement остаётся false.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/consumableData.js](templates/consumableData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherMutagenSheet.js](../../item/sheets/WitcherMutagenSheet.js.md), [templates/sheets/item/mutagen-sheet.hbs](../../../templates/sheets/item/mutagen-sheet.hbs.md), [module/item/mixins/consumeMixin.js](../../item/mixins/consumeMixin.js.md), [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-01](../../../../cross-check-0002.md#r007-01), [R007-02](../../../../cross-check-0002.md#r007-02). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

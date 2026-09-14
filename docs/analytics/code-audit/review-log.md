@@ -1,5 +1,132 @@
 # Журнал перекрёстных сверок
 
+## TASK-0004.007
+
+2026-09-14. [TASK-0004.007](../../tasks/task-0004.007.md), rusbar-main, HEAD 6a26042f7881d9990c304483c7219e0698f6617e. На старте дерево чистое, 1735 отслеживаемых файлов. Основной охват — 37 файлов. Исходники соответствуют срезу TASK-0001; это проверено сводным SHA-256 всех 615 файлов. Подзадача завершена: 37 файлов / 1802 строки, 23 основных issues, 20 процессов и восемь границ.
+
+### Этап 1 — использование расходников
+
+Прочитаны 15 исходников / 482 строки по перечню [TASK-0003.015](../../tasks/task-0003.015.md), сопоставлены назначения, зависимости, потребители, доказательства и поздние уточнения их карточек. Полностью прочитаны основные issues00091–00093. Проверены обе стороны: три модели → consumable/consumeProperties/itemEffect → зарегистрированные листы/configuration/HBS → Actor.useItem и menu → consume/heal/status/applySelf → запросы HP, количества и сообщения. Текущий core formGroup возвращает пустой HTML для отсутствующего DataField, а не прерывает всю форму.
+
+Результаты согласуются с [протоколом .015](#task-0003015) от 2026-09-10: ID строки не хранится; addsTempHp отсутствует; мутаген использует базовую configuration; лечение/статусы/ActiveEffect и списание идут отдельными запросами. Percentage/varEffect не читаются Actor.applyStatus/removeStatus. Выбор red/green/blue найден в общей шапке. Heal без d не вычисляет арифметическую строку; parseInt выполняется уже в consume. Входы проверяют флаг, прямой метод — нет. Quantity0 и порядок удаления последней единицы сопоставлены с .026 и TASK-0004.006.
+
+Новых поведенческих запусков нет. Сохранены пределы прежнего опыта: настоящие модели/методы/ядро, но DOM, Item/Actor-контекст, UUID, query и записи представлены фасадами; выбор пользовательского листа, серверное сохранение и клиентская гонка не подтверждены. Уточнения про иммунитеты, disabled status и GM-query остаются отдельными существующими issues00031/00049/00045. Новых проблем этот этап не требует.
+
+### Этап 2 — рецепты, изготовление и разбор
+
+Прочитаны 18 исходников / 855 строк: 12 файлов [TASK-0003.016](../../tasks/task-0003.016.md), пять [.034](../../tasks/task-0003.034.md) и costEditMixin из [.017](../../tasks/task-0003.017.md). Сопоставлены их карточки; полностью прочитаны основные issues00080,00094–00101,00173,00214–00217 с поздними уточнениями. Прежние протоколы .016 (2026-09-10) и .034 (2026-09-11) перечитаны; нового исполнения нет.
+
+Установлены разные контракты getSubstance/findNeededComponent/findComponentByUuid, ID строки рецепта и UUID Item. Модель обогащает prepared-имя, сохраняя source и fallback; sheet known-map теряет fallback при недоступном UUID. Другая потеря name/uuid происходит в dismantle. Независимые ссылки результата/обратного рецепта не создаются взаимно. Миграция смешанных полей, isFormulae против alchemyDC, форма против реального режима расхода, работающий ремесленный callback и блокированный _alchemyCraft рассмотрены отдельно.
+
+Сверены обе стороны HBS/обработчиков: select отсутствует в штатном core; Drop использует offsetParent; subtype проходит через панель, но пропадает на add-item; linked description читается вне system; две подсказки имеют пробел, две другие переставлены. Настоящий метод разбора ждёт разрешения UUID до записей, а выдачу/списание/чат не ждёт; текущий menu entry блокирует вызов прежде этой операции. Половина количества с минимумом1 описана как алгоритм, без оценки по рулбуку. Стоимость из глобального DOM может дать NaN; consumer окончательно сопоставлен на этапе 3 ниже.
+
+### Этап 3 — ремонт и передача результата
+
+Прочитаны четыре основных файла / 465 строк; сопоставлены карточки и полные issues00102–00107 с поздними уточнениями, а также соседняя issue00108. Повторно прочитан протокол TASK-0003.017 от 2026-09-10: DialogV2/DOM/UUID/записи и Roll в нём представлены указанными там фасадами. Определения настоящего ClientSettings, подготовки формулы и core-рендера сверены с установленным кодом. Первые барьеры damagedLocations и woundsAffectSkillBase отделены от диагностического вызова нижних ветвей. Цена не означает списания денег; обычный ремонт, GM repair и прямое восстановление имеют разные действия и ожидания Promise.
+
+### Дополнительная проверка N007-01
+
+2026-09-14, Node 24.16.0, установленный Foundry 14.367.0 и Handlebars 4.7.9. Через stdin без файлов/мира импортирован настоящий alchemyMixin.js, отрендерены целиком текущий tab-inventory-diagrams.hbs и настоящий inventory-items-summary partial; parse5 разбирал полученный HTML. Контекст — обычные заданные объекты, localize/concat/or — явные фасады; Actor/Item/DataModel и lifecycle здесь не исполнялись. Независимые ожидания: рецепт требует2 и запас5 → строка Vitriol 5 / 2; пустой массив → строки нет; isFormulae=false → строки нет; требование0 → строки нет; запас0/требование2 → строка Vitriol 0 / 2. Все пять сценариев прошли; метод создаёт девять записей и не меняет входной контекст. Первая попытка остановилась на пропущенном в обвязке helper or; после добавления фасада прошёл полный набор. Это недостаток обвязки, не issue системы. Предупреждение Node о MODULE_TYPELESS_PACKAGE_JSON не устранялось.
+
+Подтверждён UI-потребитель alchemyComponentsList: карточка примеси исправлена вместе с обратной ссылкой карточки таблицы. Исторический протокол .034 сохраняется; новое доказательство не приписывается его запуску. Отдельная substances-панель продолжает читать *Count непосредственно. В issues00100/00173 уточнены устаревшие ожидания уже завершённого TASK-0003. Новые технические проблемы не зарегистрированы.
+
+### Охват файлов и обратных связей
+
+Каждый из 37 исходников прочитан полностью; в карточках сопоставлены назначение, условия, зависимости/потребители, доказательства, ограничения и поздние дополнения с текущими определениями. Соседние определения и вызовы читались по конкретным связям; 51 смежный путь проверен структурно, это не 51 дополнительный полный пофайловой разбор. Карточка consumer alchemyComponentsList дополнена вне основных 37, без повторного зачёта её принадлежности .006.
+
+| Основной файл | Содержательный результат |
+| --- | --- |
+| [карточка: module/actor/mixins/craftingMixin.js](files/module/actor/mixins/craftingMixin.js.md) | [R007-07](cross-check-0002.md#r007-07), [R007-13](cross-check-0002.md#r007-13), [R007-16](cross-check-0002.md#r007-16) |
+| [карточка: module/actor/sheets/mixins/alchemyMixin.js](files/module/actor/sheets/mixins/alchemyMixin.js.md) | [R007-08](cross-check-0002.md#r007-08) |
+| [карточка: module/data/item/alchemicalData.js](files/module/data/item/alchemicalData.js.md) | [R007-01](cross-check-0002.md#r007-01), [R007-04](cross-check-0002.md#r007-04), [R007-05](cross-check-0002.md#r007-05) |
+| [карточка: module/data/item/componentData.js](files/module/data/item/componentData.js.md) | [R007-07](cross-check-0002.md#r007-07), [R007-02](cross-check-0002.md#r007-02) |
+| [карточка: module/data/item/diagramData.js](files/module/data/item/diagramData.js.md) | [R007-09](cross-check-0002.md#r007-09), [R007-10](cross-check-0002.md#r007-10), [R007-13](cross-check-0002.md#r007-13) |
+| [карточка: module/data/item/mutagenData.js](files/module/data/item/mutagenData.js.md) | [R007-01](cross-check-0002.md#r007-01), [R007-02](cross-check-0002.md#r007-02) |
+| [карточка: module/data/item/templates/associatedDiagramData.js](files/module/data/item/templates/associatedDiagramData.js.md) | [R007-09](cross-check-0002.md#r007-09), [R007-10](cross-check-0002.md#r007-10), [R007-12](cross-check-0002.md#r007-12), [R007-14](cross-check-0002.md#r007-14) |
+| [карточка: module/data/item/templates/consumableData.js](files/module/data/item/templates/consumableData.js.md) | [R007-01](cross-check-0002.md#r007-01), [R007-03](cross-check-0002.md#r007-03), [R007-05](cross-check-0002.md#r007-05) |
+| [карточка: module/data/item/templates/consumePropertiesData.js](files/module/data/item/templates/consumePropertiesData.js.md) | [R007-01](cross-check-0002.md#r007-01), [R007-03](cross-check-0002.md#r007-03), [R007-04](cross-check-0002.md#r007-04) |
+| [карточка: module/data/item/templates/craftingComponentData.js](files/module/data/item/templates/craftingComponentData.js.md) | [R007-09](cross-check-0002.md#r007-09), [R007-11](cross-check-0002.md#r007-11), [R007-14](cross-check-0002.md#r007-14) |
+| [карточка: module/data/item/valuableData.js](files/module/data/item/valuableData.js.md) | [R007-01](cross-check-0002.md#r007-01), [R007-02](cross-check-0002.md#r007-02), [R007-05](cross-check-0002.md#r007-05) |
+| [карточка: module/item/mixins/consumeMixin.js](files/module/item/mixins/consumeMixin.js.md) | [R007-04](cross-check-0002.md#r007-04), [R007-05](cross-check-0002.md#r007-05), [R007-06](cross-check-0002.md#r007-06) |
+| [карточка: module/item/mixins/costEditMixin.js](files/module/item/mixins/costEditMixin.js.md) | [R007-15](cross-check-0002.md#r007-15) |
+| [карточка: module/item/mixins/dismantlingMixin.js](files/module/item/mixins/dismantlingMixin.js.md) | [R007-14](cross-check-0002.md#r007-14) |
+| [карточка: module/item/mixins/repairMixin.js](files/module/item/mixins/repairMixin.js.md) | [R007-16](cross-check-0002.md#r007-16), [R007-19](cross-check-0002.md#r007-19) |
+| [карточка: module/item/sheets/WitcherAlchemicalSheet.js](files/module/item/sheets/WitcherAlchemicalSheet.js.md) | [R007-02](cross-check-0002.md#r007-02) |
+| [карточка: module/item/sheets/WitcherComponentSheet.js](files/module/item/sheets/WitcherComponentSheet.js.md) | [R007-02](cross-check-0002.md#r007-02), [R007-07](cross-check-0002.md#r007-07) |
+| [карточка: module/item/sheets/WitcherDiagramSheet.js](files/module/item/sheets/WitcherDiagramSheet.js.md) | [R007-10](cross-check-0002.md#r007-10), [R007-11](cross-check-0002.md#r007-11), [R007-13](cross-check-0002.md#r007-13) |
+| [карточка: module/item/sheets/WitcherMutagenSheet.js](files/module/item/sheets/WitcherMutagenSheet.js.md) | [R007-02](cross-check-0002.md#r007-02) |
+| [карточка: module/item/sheets/WitcherValuableSheet.js](files/module/item/sheets/WitcherValuableSheet.js.md) | [R007-02](cross-check-0002.md#r007-02) |
+| [карточка: module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](files/module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js.md) | [R007-03](cross-check-0002.md#r007-03) |
+| [карточка: module/item/sheets/mixins/associatedDiagramMixin.js](files/module/item/sheets/mixins/associatedDiagramMixin.js.md) | [R007-12](cross-check-0002.md#r007-12), [R007-11](cross-check-0002.md#r007-11) |
+| [карточка: module/item/systems/repair.js](files/module/item/systems/repair.js.md) | [R007-15](cross-check-0002.md#r007-15), [R007-16](cross-check-0002.md#r007-16), [R007-17](cross-check-0002.md#r007-17), [R007-18](cross-check-0002.md#r007-18), [R007-19](cross-check-0002.md#r007-19), [R007-20](cross-check-0002.md#r007-20) |
+| [карточка: templates/chat/item/consume.hbs](files/templates/chat/item/consume.hbs.md) | [R007-06](cross-check-0002.md#r007-06) |
+| [карточка: templates/chat/item/dismantle.hbs](files/templates/chat/item/dismantle.hbs.md) | [R007-14](cross-check-0002.md#r007-14) |
+| [карточка: templates/chat/item/repair.hbs](files/templates/chat/item/repair.hbs.md) | [R007-20](cross-check-0002.md#r007-20), [R007-19](cross-check-0002.md#r007-19) |
+| [карточка: templates/dialog/repair-dialog.hbs](files/templates/dialog/repair-dialog.hbs.md) | [R007-16](cross-check-0002.md#r007-16), [R007-17](cross-check-0002.md#r007-17), [R007-18](cross-check-0002.md#r007-18) |
+| [карточка: templates/partials/associated-diagram.hbs](files/templates/partials/associated-diagram.hbs.md) | [R007-12](cross-check-0002.md#r007-12) |
+| [карточка: templates/partials/associated-item.hbs](files/templates/partials/associated-item.hbs.md) | [R007-12](cross-check-0002.md#r007-12), [R007-10](cross-check-0002.md#r007-10) |
+| [карточка: templates/partials/character/substances.hbs](files/templates/partials/character/substances.hbs.md) | [R007-08](cross-check-0002.md#r007-08), [R007-07](cross-check-0002.md#r007-07) |
+| [карточка: templates/partials/components-list.hbs](files/templates/partials/components-list.hbs.md) | [R007-15](cross-check-0002.md#r007-15), [R007-16](cross-check-0002.md#r007-16), [R007-17](cross-check-0002.md#r007-17) |
+| [карточка: templates/sheets/item/alchemical-sheet.hbs](files/templates/sheets/item/alchemical-sheet.hbs.md) | [R007-02](cross-check-0002.md#r007-02), [R007-01](cross-check-0002.md#r007-01) |
+| [карточка: templates/sheets/item/component-sheet.hbs](files/templates/sheets/item/component-sheet.hbs.md) | [R007-02](cross-check-0002.md#r007-02), [R007-07](cross-check-0002.md#r007-07) |
+| [карточка: templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](files/templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md) | [R007-03](cross-check-0002.md#r007-03) |
+| [карточка: templates/sheets/item/diagrams-sheet.hbs](files/templates/sheets/item/diagrams-sheet.hbs.md) | [R007-09](cross-check-0002.md#r007-09), [R007-10](cross-check-0002.md#r007-10), [R007-11](cross-check-0002.md#r007-11), [R007-13](cross-check-0002.md#r007-13) |
+| [карточка: templates/sheets/item/mutagen-sheet.hbs](files/templates/sheets/item/mutagen-sheet.hbs.md) | [R007-02](cross-check-0002.md#r007-02) |
+| [карточка: templates/sheets/item/valuable-sheet.hbs](files/templates/sheets/item/valuable-sheet.hbs.md) | [R007-02](cross-check-0002.md#r007-02), [R007-01](cross-check-0002.md#r007-01) |
+
+### Применимость доказательств
+
+| Материал | Что сопоставлено сейчас | Исходный метод и предел |
+| --- | --- | --- |
+| [.015](#task-0003015), 2026-09-10 | Схемы расходования, ID, formGroup, лист мутагена, consume→heal/status/AE→HP/quantity/chat | 14 групп: настоящие модели/методы/ядро, ActorDataModel-контекст, DOM, UUID, GM query и запись — фасады. Лечение без кубика; вручную добавленный id только для нижней диагностики checkbox. |
+| [.016](#task-0003016), 2026-09-10 | Component/Diagram, строки ID/UUID, source/prepared, known fallback, Drop, linked partial, миграция и режим | 15 групп: настоящие модели/BaseItem/HBS; UUID Map/null и DOM/update фасады. Missing select наблюдался до временной подстановки helper; полный reset/мир не исполнялись. |
+| [.017](#task-0003017), 2026-09-10 | RepairData, rows, price, settings/формула, guards, restoration и socket | 16 групп: настоящие классы/ClientSettings/core parser, но Dialog/DOM/UUID/write/Roll фасады. Нижние ветви — с ручным damagedLocations и settings; обычный успешный ремонт не доказан. |
+| [.034](#task-0003034), 2026-09-11 | Три поиска, вещества, _craftingCraft/realCraft, dismantle и pending запросы | 21 группа: настоящие модели/Actor/Item/Character методы, extendedRoll и управляемый Roll для ремесленного callback; записи/DOM/UUID фасады. Старое отрицание consumer alchemyComponentsList исправлено текущей N007-01, исторический журнал не переписан. |
+| Поздние дополнения основных issues | .027/.031/.040 от 2026-09-11, .048 от 2026-09-12; им соответствуют карточки источников и обработчиков | Уточняют reachability, subtype, чат/описания; не объявлены новыми запусками и не расширены на клиентский lifecycle. |
+| Текущий статический контроль | 126 S групп / 296 мест, 72 D, 28 Q; оба конца вызова/данных и ранние барьеры | S проверены частями45/45/36 (57/108/131 мест); path/line/expression совпали. D/Q прочитаны и получили предметный результат; один факт наличия ссылки не считается исполнением. |
+| N007-01, 2026-09-14 | Настоящая примесь и HBS с независимыми ожидаемыми строками | Единственный новый поведенческий запуск этой порции, пять сценариев; не выполняет Actor/Item модель, submit или запись. |
+
+### Issues и исправления описаний
+
+Все 23 основные карточки прочитаны целиком, включая поздние уточнения; причины и достижимость сопоставлены с процессами. Вне основного списка дополнительно рассмотрены границы issues00031/00034/00037/00038/00045/00049/00108/00168/00174/00176 по определениям, прежним результатам и применимым уточнениям. Они не увеличивают основной счётчик и не считаются повторно закрытыми.
+
+| Issue | Процессы и уточнение |
+| --- | --- |
+| [issue-00080](../../issues/potential/issue-00080.md) | [R007-11](cross-check-0002.md#r007-11), [R007-12](cross-check-0002.md#r007-12): Связь drop→offsetParent.dataset подтверждена для associatedDiagram и собственного Diagram handler. Weapon/Armor wrapper дополнительно не ждёт async. null-сценарий .013/.016 диагностический, конкретный браузерный offsetParent не проверен; это не UUID-fallback проблема. |
+| [issue-00091](../../issues/potential/issue-00091.md) | [R007-03](cross-check-0002.md#r007-03): В itemEffect нет id, обе строки массива очищаются без него; HBS/edit/remove требуют этот id. Edit(-1) и несработавший filter остаются ранним барьером. Старый checkbox-опыт использовал ручной id и не доказывает работоспособность обычного редактора. |
+| [issue-00092](../../issues/potential/issue-00092.md) | [R007-03](cross-check-0002.md#r007-03): addsTempHp отсутствует в ConsumablePropertiesData, но передаётся formGroup. Настоящий core возвращает пустую разметку и логирует ошибку; остальные controls могут отрендериться. Это отдельная причина от потерянного ID. |
+| [issue-00093](../../issues/potential/issue-00093.md) | [R007-01](cross-check-0002.md#r007-01), [R007-02](cross-check-0002.md#r007-02): Модель Mutagen содержит consumable, зарегистрированный sheet не переопределяет базовую configureItem. Главный header даёт type, но не добавляет consumable вкладку. Пользовательский альтернативный sheet не проверен. |
+| [issue-00094](../../issues/potential/issue-00094.md) | [R007-02](cross-check-0002.md#r007-02): Component HBS применяет #select, которого нет в текущих core/system helpers. Первое исполнение .016 даёт Missing helper; временный helper для дальнейшего чтения формы не является штатным решением или проверкой selected option. |
+| [issue-00095](../../issues/potential/issue-00095.md) | [R007-10](cross-check-0002.md#r007-10): Модель сохраняет fallback name/uuid недоступного компонента. Known-map sheet всегда создаёт объект из spread, поэтому ??component не восстанавливает имя. Настоящий BaseItem в .016 сохранял id строки; индексы всех пакетов не проверялись. |
+| [issue-00096](../../issues/potential/issue-00096.md) | [R007-12](cross-check-0002.md#r007-12): Оба linked partial читают .description вместо .system.description у Item. Имя/иконка доступны; отсутствие описания связано с consumer, а не потерей исходного текста при UUID-разрешении. Отдельного решения о безопасном HTML-выводе не принималось. |
+| [issue-00097](../../issues/potential/issue-00097.md) | [R007-09](cross-check-0002.md#r007-09): Legacy associatedItem и положительный alchemyDC перезаписывают новые associatedItemUuid/craftingDC при смешанном входе; isFormulae это не ограничивает. .016 исполняла настоящую миграцию модели, но мир не мигрировался. |
+| [issue-00098](../../issues/potential/issue-00098.md) | [R007-11](cross-check-0002.md#r007-11): Два буквальных ключа tooltip компонента имеют ведущий пробел, тогда как соответствующие en/ru ключи существуют без него. Это отличается от переставленных add/delete подписей linked recipe в issue99. |
+| [issue-00099](../../issues/potential/issue-00099.md) | [R007-12](cross-check-0002.md#r007-12): Linked recipe использует delete-tooltip для add и add-tooltip для delete; необходимые ключи есть в en/ru. Разметка плюса не означает наличие picker-handler. Причина сохранена независимо от issue98. |
+| [issue-00100](../../issues/potential/issue-00100.md) | [R007-15](cross-check-0002.md#r007-15): Пустой input→parseInt NaN→?? сохраняет NaN→additionalCost/итог NaN. Текущее чтение связано с прежними DOM-опытами .016/.017, не с новым запуском. Убрано устаревшее ожидание полного .017; списание NaN из кошелька не утверждается. |
+| [issue-00101](../../issues/potential/issue-00101.md) | [R007-09](cross-check-0002.md#r007-09), [R007-13](cross-check-0002.md#r007-13): isFormulae определяет редактор/HBS, положительный alchemyDC — isAlchemicalCraft и выбор поиска при realCraft. Миграция DC и неправильный formula-button — отдельные причины97/176. Рабочий _craftingCraft .034 не исправляет _alchemyCraft. |
+| [issue-00102](../../issues/potential/issue-00102.md) | [R007-18](cross-check-0002.md#r007-18), [R007-19](cross-check-0002.md#r007-19): RepairData не создаёт damagedLocations; обычный guard падает раньше броска. Нижний _doRepair при успехе/праве обращается к отсутствующему getRestoreReliabilityData. Диагностический remove-before-throw не означает доступный обычный ремонт. |
+| [issue-00103](../../issues/potential/issue-00103.md) | [R007-18](cross-check-0002.md#r007-18): woundsAffectSkillBase не зарегистрирована: настоящий ClientSettings останавливает prepareRollFormula. При ручной true-фасадной настройке остаётся незакрытая скобка. Ошибки основной настройки/синтаксиса и уровни их достижимости разделены. |
+| [issue-00104](../../issues/potential/issue-00104.md) | [R007-16](cross-check-0002.md#r007-16), [R007-18](cross-check-0002.md#r007-18): Первый найденный компонент quantity0 остаётся owned; row показывает missingQuantity1, но guard проверяет missing/unknown и damagedLocations. Допуск нулевого owned показан за вручную заданным damagedLocations, а не как успешный штатный ремонт. |
+| [issue-00105](../../issues/potential/issue-00105.md) | [R007-16](cross-check-0002.md#r007-16): Не найденный по имени компонент с UUID разрешается в null и попадает в missingComponents; prepareDialogTemplate затем читает oc.img. Это ошибка до диалога, отдельная от отсутствия всего рецепта и нулевого owned. |
+| [issue-00106](../../issues/potential/issue-00106.md) | [R007-15](cross-check-0002.md#r007-15): Cost listener и итог ищутся во всём document; два DOM-набора/повторная подписка используют общий input и первый total-price. .017 фасад подтверждает область поиска, но не доступность двух реальных modal окон. |
+| [issue-00107](../../issues/potential/issue-00107.md) | [R007-20](cross-check-0002.md#r007-20): ShowComponents учитывает owned/missing, пропуская unknown-only. HBS скрывает список и цену заказа, хотя unknown присутствует в данных. Текст сообщения не свидетельствует об успешном ремонте или платеже. |
+| [issue-00173](../../issues/potential/issue-00173.md) | [R007-08](cross-check-0002.md#r007-08): Substances/components передают subtype в summary, но summary не выводит data-subtype на add-item. Иконка вещества имеет собственный корректный dataset. Снято устаревшее ожидание .027; старые .027/.034 остаются датированными опытами. |
+| [issue-00214](../../issues/potential/issue-00214.md) | [R007-14](cross-check-0002.md#r007-14): Dismantle ждёт UUID до начала изменений, затем не ждёт add/remove/message. Два +2 к стопке5 дают pending запросы[7,7]. Текущий menu callback блокирует прямой вход; серверная атомарность и сохранённый итог не заявляются. |
+| [issue-00215](../../issues/potential/issue-00215.md) | [R007-14](cross-check-0002.md#r007-14): Доступность/тип всего рецепта не проверяются перед чтением craftingComponents. null/неподходящая структура останавливает прямой dismantle до записей; отсутствие отдельного компонента — следующая, иная ветвь. |
+| [issue-00216](../../issues/potential/issue-00216.md) | [R007-14](cross-check-0002.md#r007-14): При UUID-компоненте resolved null создаёт запись без прежних name/uuid. Chat уже получает пустой fallback; name-only строка остаётся видимой и по имени не разрешается. Это отдельная потеря от known-map редактора95. |
+| [issue-00217](../../issues/potential/issue-00217.md) | [R007-14](cross-check-0002.md#r007-14): canBeDismantled и прямой dismantle не охраняют quantity. В .034 источник0/-1 всё равно запрашивал выдачу компонентов и remove1; пустой рецепт тоже списывает Item. Нормы разбора не оцениваются, DB и исправленный menu путь не проверены. |
+
+В alchemyMixin уточнены условия использования, consumer, предел старого доказательства и отсутствие новой issue; в карточке таблицы рецептов добавлена обратная ссылка и N007-01. В issues00100/00173 сняты устаревшие ожидания уже выполненных .017/.027. Новых issues, подтверждений пользователем, переходов в open/closed или исправлений системы нет: все 329 остаются potential.
+
+### Сверка документов и сохранности
+
+Обновлены 37 основных карточек и одна смежная, 286 строк матриц (37 F + 126 S + 72 D + 28 Q + 23 I), два issue-документа, задача и указатели. Добавлены [20 процессов и восемь границ](cross-check-0002.md#результаты-task-0004007). Всего .002–.007 — 205/615 файлов и 150/329 issues; остаются 410 файлов и 179 issues. Следующая — [TASK-0004.008](../../tasks/task-0004.008.md), расы/профессии/профессиональные действия; .008–.018 planned, родительская TASK-0004 in-progress и её общие критерии не закрыты. TASK-0003 done, TASK-0005 draft.
+
+Проверка прошла: все 615 исходников и строки реестра сохранены; у каждого файла/issue одна основная принадлежность, 277 Q покрывают 615 карточек. Согласованы 20 R007 / 8 U007, 286 предметных строк матриц и текущая очередь. Проверены 65033 локальные ссылки с якорями и 401 таблица изменённых документов; git diff --check без ошибок. История журнала до .007 побайтно сохранена.
+
+Изменён 51 существующий документ; новых, staged и посторонних изменений нет. У всех 1735 отслеживаемых файлов сохранены mode/uid/gid/inode; у 1684 файлов вне разрешённого списка сохранены также байты. Ветка/HEAD прежние. Install/build/compile/extract, служба, мир, БД и изменение прав не выполнялись; коммит не создавался.
+
+
 ## TASK-0004.006
 
 2026-09-14. Выполнена [TASK-0004.006](../../tasks/task-0004.006.md) на rusbar-main, HEAD a176c4f18879f2e5a63b93bc15345fc26d9f535a. На старте дерево чистое: 1735 отслеживаемых файлов, без staged/untracked. Основной охват — 53 исходника / 4485 строк; их содержимое соответствует пофайловому срезу TASK-0001. Установлены Foundry 14.367.0 и Node v24.16.0; сравнение с локальным ядром не является запуском мира.

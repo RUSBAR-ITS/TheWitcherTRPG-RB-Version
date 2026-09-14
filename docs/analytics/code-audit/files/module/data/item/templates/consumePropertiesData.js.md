@@ -68,7 +68,7 @@ itemEffect задаёт name:String='', statusEffect:String=null (nullable), per
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящие модели/методы Foundry 14.367.0 и системы в изолированном Node 24.16.0; DOM, родительские документы и запись представлены фасадами. Мир и браузер не запускались. Семантика вероятности/вариативности для расходования отдельно не согласована; отсутствие ветви не заменяет текст игровых правил. Пустые/невалидные выражения лечения и полноценная серверная валидация HP требуют отдельного разбора healMixin.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../../cross-check-0002.md#u007-01), [U007-04](../../../../../cross-check-0002.md#u007-04), [U007-08](../../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-01, R007-03, R007-04, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -77,3 +77,13 @@ itemEffect задаёт name:String='', statusEffect:String=null (nullable), per
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.015 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+ConsumablePropertiesData задаёт doesHeal/heal и два массива itemEffect. У строк нет id, у модели нет addsTempHp; это два разных разрыва редактора. Percentage/varEffect доступны схеме, но consume/applyStatus не исполняют вероятность или вариативность. Текст heal проходит calculateHealValue, затем parseInt.
+
+Сопоставленные определения и потребители: [module/data/item/templates/itemEffectData.js](itemEffectData.js.md), [lang/ru.json](../../../../lang/ru.json.md), [module/data/item/templates/consumableData.js](consumableData.js.md), [module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js](../../../item/sheets/configurations/WitcherConsumableConfigurationSheet.js.md), [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md), [module/item/mixins/consumeMixin.js](../../../item/mixins/consumeMixin.js.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-01](../../../../../cross-check-0002.md#r007-01), [R007-03](../../../../../cross-check-0002.md#r007-03), [R007-04](../../../../../cross-check-0002.md#r007-04). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

@@ -82,7 +82,7 @@ dismantlingMixin подключён к WitcherItem через import/Object.assi
 
 ## Непроверенные участки и открытые вопросы
 
-Файл прочитан полностью. Проверки выполнены в Node 24.16.0 с установленным кодом Foundry 14.367.0. Использованы реальные модели и методы системы; Application/Document-оболочки, DOM, UUID-резолвер, запись документов и чат заменены фасадами. Мир, браузер, HTTP и БД не запускались. Точные границы и сценарии приведены в журнале .034; чтение соседних определений не засчитывается как их новый полный разбор. Новые наблюдения основной операции относятся к прямому вызову и будущему исправленному входу меню; доступность из текущего клика не утверждается.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-02](../../../../cross-check-0002.md#u007-02), [U007-03](../../../../cross-check-0002.md#u007-03), [U007-08](../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-14, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -93,3 +93,13 @@ dismantlingMixin подключён к WitcherItem через import/Object.assi
 | Дата | Версия и область пересмотра | Результат и запись сверки |
 | --- | --- | --- |
 | 2026-09-11 | `7dbb31bdbd094f58c77c9e58dd5a684df6bb942c`; полный файл | Первая карточка; [сверка порции](../../../../review-log.md#task-0003034) |
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Прямой dismantle ждёт рецепт и все компоненты до записей, но add/remove/message не ждёт. Missing recipe блокирует, missing component теряет имя, name-only остаётся ненайденным; quantity0/-1 источника не проверяется. Два pending добавления к одной стопке используют прежнее количество. Текущий menu callback обрывается до этого метода.
+
+Сопоставленные определения и потребители: [module/data/item/templates/associatedDiagramData.js](../../data/item/templates/associatedDiagramData.js.md), [module/data/item/weaponData.js](../../data/item/weaponData.js.md), [module/data/item/armorData.js](../../data/item/armorData.js.md), [module/data/item/diagramData.js](../../data/item/diagramData.js.md), [module/data/item/templates/craftingComponentData.js](../../data/item/templates/craftingComponentData.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/data/item/commonItemData.js](../../data/item/commonItemData.js.md), [templates/chat/item/dismantle.hbs](../../../templates/chat/item/dismantle.hbs.md), [module/item/witcherItem.js](../witcherItem.js.md), [module/actor/sheets/interactions/itemContextMenu.js](../../actor/sheets/interactions/itemContextMenu.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-14](../../../../cross-check-0002.md#r007-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

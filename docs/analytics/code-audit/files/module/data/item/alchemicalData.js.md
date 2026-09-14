@@ -74,7 +74,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящие модели/методы Foundry 14.367.0 и системы в изолированном Node 24.16.0; DOM, родительские документы и запись представлены фасадами. Мир и браузер не запускались. Не проверялись импорт компедиумов, изготовление алхимии и игровые правила мутаций. Наличие текстовых time/toxicity не означает согласованного требования к автоматизации.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../cross-check-0002.md#u007-01), [U007-04](../../../../cross-check-0002.md#u007-04), [U007-08](../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-01, R007-04, R007-05, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -89,3 +89,13 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Таблица alchemical читает type/alchemyDC/avail/time/weight/cost/toxicity/effect. Для mutagen тот же partial получает itemType=mutagen; для valuable alchemical-item часть полей отсутствует. effect остаётся экранированным StringField, consume не запускается рендером.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+AlchemicalData включает общую строковую quantity и два поля consumable; внутри properties четыре поля. Тип alchemical/potion/decoction/oil влияет на форму; текстовые time/toxicity не запускают таймер или автоматическое применение. Штатная конфигурация специализирована; consume и списание происходят через Item/Actor.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/consumableData.js](templates/consumableData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherAlchemicalSheet.js](../../item/sheets/WitcherAlchemicalSheet.js.md), [templates/sheets/item/alchemical-sheet.hbs](../../../templates/sheets/item/alchemical-sheet.hbs.md), [module/item/mixins/consumeMixin.js](../../item/mixins/consumeMixin.js.md), [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs.md), [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-01](../../../../cross-check-0002.md#r007-01), [R007-04](../../../../cross-check-0002.md#r007-04), [R007-05](../../../../cross-check-0002.md#r007-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

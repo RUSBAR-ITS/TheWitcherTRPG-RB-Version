@@ -67,7 +67,7 @@ JavaScript-функций нет. each components выводит количес�
 
 ## Непроверенные участки и открытые вопросы
 
-Полный процесс ремонта, конкурирующие окна, права, округление денег и стоимость по игровым правилам не проверялись. Global DOM-поиск не считается доказательством сбоя нескольких диалогов без отдельного сценария.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../cross-check-0002.md#u007-01), [U007-05](../../../cross-check-0002.md#u007-05), [U007-08](../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-15, R007-16, R007-17, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -90,3 +90,13 @@ JavaScript-функций нет. each components выводит количес�
 Полностью разобраны [styles/components-list.css](../../../../../../styles/components-list.css) и [styles/repair.css](../../../../../../styles/repair.css). Таблица и цена — отдельные области: components-price используется также сообщением ремонта. Группа 12 отрендерила текущий repair-dialog с настоящим partial. th:nth-child(n+2) в components-list.css не ограничен table.components-list — [docs/issues/potential/issue-00309.md](../../../../../issues/potential/issue-00309.md). Scroll/max-height задаёт .repair .components-list-container; расчёт/изменение цены остаются у costEditMixin.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003048). Связанные файлы повторно не засчитываются в покрытие.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Components-list получает нормализованные Repair rows и totalPrice. Пустые cost inputs и data-price span связываются с глобальным costEditMixin; итог может стать NaN и смешать несколько DOM-наборов. Показанное missingQuantity нулевой owned стопки не используется repair guard. Цена отображается, не списывается.
+
+Сопоставленные определения и потребители: [module/item/systems/repair.js](../../module/item/systems/repair.js.md), [templates/dialog/repair-dialog.hbs](../dialog/repair-dialog.hbs.md), [module/item/mixins/costEditMixin.js](../../module/item/mixins/costEditMixin.js.md), [module/setup/handlebars.js](../../module/setup/handlebars.js.md), [lang/ru.json](../../lang/ru.json.md).
+
+[Протокол и границы](../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-15](../../../cross-check-0002.md#r007-15), [R007-16](../../../cross-check-0002.md#r007-16), [R007-17](../../../cross-check-0002.md#r007-17). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

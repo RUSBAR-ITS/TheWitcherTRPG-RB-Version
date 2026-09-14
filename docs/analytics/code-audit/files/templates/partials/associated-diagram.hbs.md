@@ -68,7 +68,7 @@ JavaScript-методов нет. if item.system.associatedDiagram.name выби
 
 ## Непроверенные участки и открытые вопросы
 
-Не исполнялись CSS, layout, полное окно и DB. Влияние data-edit=img на общий ItemSheet не устанавливалось. Кнопка add без listener описана как текущая разметка, а не подтверждённый альтернативный способ выбрать документ. Исправление отображения HTML-описания требует отдельного решения.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../cross-check-0002.md#u007-01), [U007-03](../../../cross-check-0002.md#u007-03), [U007-07](../../../cross-check-0002.md#u007-07). Для этого файла установлены процессы R007-12, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -77,3 +77,13 @@ JavaScript-методов нет. if item.system.associatedDiagram.name выби
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.016 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Associated-diagram partial читает prepared связь оружия/брони, имя/иконку и ошибочный .description. Drop принимает нужную категорию через mixin; плюс не создаёт picker. Tooltip add/delete переставлены. Очистка UUID и восстановление prepared — разные границы.
+
+Сопоставленные определения и потребители: [module/data/item/templates/associatedDiagramData.js](../../module/data/item/templates/associatedDiagramData.js.md), [module/item/sheets/mixins/associatedDiagramMixin.js](../../module/item/sheets/mixins/associatedDiagramMixin.js.md), [module/data/item/commonItemData.js](../../module/data/item/commonItemData.js.md), [lang/ru.json](../../lang/ru.json.md), [templates/sheets/item/weapon-sheet.hbs](../sheets/item/weapon-sheet.hbs.md), [templates/sheets/item/armor-sheet.hbs](../sheets/item/armor-sheet.hbs.md), [module/setup/handlebars.js](../../module/setup/handlebars.js.md).
+
+[Протокол и границы](../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-12](../../../cross-check-0002.md#r007-12). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

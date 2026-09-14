@@ -74,7 +74,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящие модели/методы Foundry 14.367.0 и системы в изолированном Node 24.16.0; DOM, родительские документы и запись представлены фасадами. Мир и браузер не запускались. Не проверялись импорт компедиумов, изготовление алхимии и игровые правила мутаций. Фактическая регистрация не исключает пользовательский выбор другого листа.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../cross-check-0002.md#u007-01), [U007-02](../../../../cross-check-0002.md#u007-02), [U007-08](../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-01, R007-02, R007-05, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -89,3 +89,13 @@
 2026-09-11, `rusbar-main`, `ce0c7eb7069b215b641d725913b3aae21502e811`. Таблица valuables использует isCarried/avail/conceal/quantity/weight/cost/description и также принимает loots разных типов у Monster. Подготовка Character задаёт семь группы ценностей, mount — отдельный partial. Отсутствующие на чужой модели avail/conceal не становятся ошибкой рендера. issue-00178 касается подписи доступности, а не существующих словарей.
 
 Связанные шаблоны: [templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs); [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs). [Проверки и ограничения](../../../../review-log.md#task-0003027). Полный разбор соседей вне этой порции не засчитывается.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+ValuableData имеет 15 верхних полей и расходование. Категория valuable type выбирается из словаря листа; effect/quality в модели не означают автоматического эффекта основной формы. Конфигурация содержит consumable вкладку, а применение и quantity принадлежат общим Item/Actor входам.
+
+Сопоставленные определения и потребители: [module/data/item/commonItemData.js](commonItemData.js.md), [module/data/item/templates/consumableData.js](templates/consumableData.js.md), [module/setup/registerDataModels.js](../../setup/registerDataModels.js.md), [module/item/sheets/WitcherValuableSheet.js](../../item/sheets/WitcherValuableSheet.js.md), [templates/sheets/item/valuable-sheet.hbs](../../../templates/sheets/item/valuable-sheet.hbs.md), [module/item/mixins/consumeMixin.js](../../item/mixins/consumeMixin.js.md), [templates/partials/item-header.hbs](../../../templates/partials/item-header.hbs.md), [templates/partials/effect-part.hbs](../../../templates/partials/effect-part.hbs.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-01](../../../../cross-check-0002.md#r007-01), [R007-02](../../../../cross-check-0002.md#r007-02), [R007-05](../../../../cross-check-0002.md#r007-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

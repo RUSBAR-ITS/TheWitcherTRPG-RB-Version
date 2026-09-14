@@ -107,3 +107,7 @@ learned переключается независимо от кнопки изг
 Сопоставленные определения и потребители: [templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs](inventory-items-summary.hbs.md), [templates/sheets/actor/tabs/tab-inventory.hbs](../../../tabs/tab-inventory.hbs.md), [module/item/witcherItem.js](../../../../../../module/item/witcherItem.js.md), [module/actor/sheets/WitcherCharacterSheet.js](../../../../../../module/actor/sheets/WitcherCharacterSheet.js.md).
 
 [Протокол и границы](../../../../../../../review-log.md#task-0004006) — TASK-0004.006; процессы [R006-18](../../../../../../../cross-check-0002.md#r006-18), [R006-20](../../../../../../../cross-check-0002.md#r006-20). В этой порции выполнена статическая сверка; поведенческие опыты принадлежат датированным прежним протоколам, а не новому прогону.
+
+## Дополнительная сверка TASK-0004.007
+
+2026-09-14; источник неизменён. При isFormulae таблица читает ../alchemyComponentsList, созданный [alchemyMixin.js](../../../../../../module/actor/sheets/mixins/alchemyMixin.js.md) через Character._prepareContext. Это отдельный потребитель от substances.hbs, который читает *Count напрямую. В карточке примеси исправлено противоположное утверждение. [R007-08](../../../../../../../cross-check-0002.md#r007-08) и [N007-01](../../../../../../../review-log.md#task-0004007): настоящий producer/HBS/summary partial, пять независимых ожидаемых результатов, контекст и localize/concat/or представлены фасадами. Браузер, lifecycle и запись не запускались; основные результаты .006 сохранены.

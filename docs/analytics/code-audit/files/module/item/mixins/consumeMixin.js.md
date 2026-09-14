@@ -74,7 +74,7 @@ consume запрашивает изменение system.derivedStats.hp.value, 
 
 ## Непроверенные участки и открытые вопросы
 
-Реальный код и Foundry 14.367.0 исполнялись в изолированном Node 24.16.0, без DB/мира. Actor — DataModel-фасад, Item/DOM/UUID/GM query/чат и операции записи подменены. Не проверялись Roll с кубиками, серверная валидация HP для пустого/невалидного heal, конкурентное лечение, повторные клики и реальная сеть. Правила токсичности, длительности и мутаций не выводятся из отсутствующих ветвей. Связь с issue-00049 установлена по вызову toggleStatusEffect без active:true; выключенный статус этим сценарием повторно не исполнялся.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-02](../../../../cross-check-0002.md#u007-02), [U007-04](../../../../cross-check-0002.md#u007-04), [U007-07](../../../../cross-check-0002.md#u007-07). Для этого файла установлены процессы R007-04, R007-05, R007-06, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -100,3 +100,13 @@ consume запрашивает изменение system.derivedStats.hp.value, 
 2026-09-11, `rusbar-main`, `45a63062a2bd55939fef430609fc5dddc350b0e9`. Полностью разобран caller itemContextMenu.consumeItem: после isConsumable запускает consume и removeItem(id,1) без ожидания. Группа 17 проверила quantity2→update1 и quantity1/0→delete; consume в этой группе заменён pending Promise. Прежний сценарий удаления последнего источника до применения UUID из .015 остаётся отдельным доказательством issue-00034/00045. Нарушение запрета нулевого количества зарегистрировано как potential issue-00174.
 
 Определения: [module/actor/sheets/mixins/itemMixin.js](../../../../../../../module/actor/sheets/mixins/itemMixin.js) и [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js). [Методика и перекрёстная сверка](../../../../review-log.md#task-0003026). Полный разбор новых соседних файлов вне порции не засчитывается.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Consume ждёт только расчёт лечения; parseInt, HP cap, toggles статусов, applySelf и чат имеют разные ветви и ожидания. Сам метод не проверяет actor/флаг/запас. Списывают внешние callers без ожидания consume; последний Item может исчезнуть до UUID-копирования AE. Percentage/varEffect и снятые статусы в сообщении не обрабатываются.
+
+Сопоставленные определения и потребители: [module/scripts/temporaryEffects/applyActiveEffect.js](../../scripts/temporaryEffects/applyActiveEffect.js.md), [module/actor/mixins/healMixin.js](../../actor/mixins/healMixin.js.md), [module/actor/witcherActor.js](../../actor/witcherActor.js.md), [module/data/item/templates/consumePropertiesData.js](../../data/item/templates/consumePropertiesData.js.md), [module/setup/config.js](../../setup/config.js.md), [templates/chat/item/consume.hbs](../../../templates/chat/item/consume.hbs.md), [module/item/witcherItem.js](../witcherItem.js.md), [module/actor/sheets/interactions/itemContextMenu.js](../../actor/sheets/interactions/itemContextMenu.js.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-04](../../../../cross-check-0002.md#r007-04), [R007-05](../../../../cross-check-0002.md#r007-05), [R007-06](../../../../cross-check-0002.md#r007-06). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

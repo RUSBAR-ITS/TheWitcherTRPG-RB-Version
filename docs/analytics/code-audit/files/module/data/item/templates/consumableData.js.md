@@ -68,7 +68,7 @@
 
 ## Непроверенные участки и открытые вопросы
 
-Настоящие модели/методы Foundry 14.367.0 и системы в изолированном Node 24.16.0; DOM, родительские документы и запись представлены фасадами. Мир и браузер не запускались. Фабрика не определяет условия экипировки, допустимые рецепты или полномочия пользователя.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-02](../../../../../cross-check-0002.md#u007-02), [U007-04](../../../../../cross-check-0002.md#u007-04), [U007-08](../../../../../cross-check-0002.md#u007-08). Для этого файла установлены процессы R007-01, R007-03, R007-05, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -77,3 +77,13 @@
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.015 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+consumable() вводит isConsumable=false и EmbeddedDataField четырёх свойств. Его используют три модели; признак проверяют входы useItem/меню, но сам consume не охраняет флаг/количество. Записи effects/removesEffects принадлежат properties, а перенос ActiveEffect работает с отдельной коллекцией Item.effects.
+
+Сопоставленные определения и потребители: [module/data/item/templates/consumePropertiesData.js](consumePropertiesData.js.md), [lang/ru.json](../../../../lang/ru.json.md), [module/data/item/alchemicalData.js](../alchemicalData.js.md), [module/data/item/mutagenData.js](../mutagenData.js.md), [module/data/item/valuableData.js](../valuableData.js.md), [module/item/mixins/consumeMixin.js](../../../item/mixins/consumeMixin.js.md), [module/item/witcherItem.js](../../../item/witcherItem.js.md), [templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs.md).
+
+[Протокол и границы](../../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-01](../../../../../cross-check-0002.md#r007-01), [R007-03](../../../../../cross-check-0002.md#r007-03), [R007-05](../../../../../cross-check-0002.md#r007-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.

@@ -74,7 +74,7 @@ JavaScript-функций нет. if/unless isFormulae выбирают слов
 
 ## Непроверенные участки и открытые вопросы
 
-Не проверялись FormDataExtended, полный ProseMirror, сохранение одновременно открытых окон и внешние stylesheet. Повторяющийся id select отмечен как разметка, без заявления о конкретном сбое выбора. Span.edit-component не объявлен редактируемым text input.
+В TASK-0004.007 текущие определения и потребители сопоставлены; прежние опыты TASK-0003.015/.016/.017 (2026-09-10) и .034 (2026-09-11) сохраняют собственные входы и фасады. Браузер, мир, сеть и запись в БД не запускались. Точные оставшиеся вопросы и ответственные блоки: [U007-01](../../../../cross-check-0002.md#u007-01), [U007-03](../../../../cross-check-0002.md#u007-03), [U007-06](../../../../cross-check-0002.md#u007-06), [U007-07](../../../../cross-check-0002.md#u007-07). Для этого файла установлены процессы R007-09, R007-10, R007-11, R007-13, а не полный клиентский lifecycle.
 
 ## Связанные проблемы
 
@@ -83,3 +83,13 @@ JavaScript-функций нет. if/unless isFormulae выбирают слов
 ## История актуализации
 
 2026-09-10 — полный разбор файла и сверка определений, потребителей и внешнего API на указанной версии. Результаты приведены в записи TASK-0003.016 журнала. Проверка описания не означает проверки мира или отсутствия ошибок.
+
+## Сквозная сверка TASK-0004.007
+
+2026-09-14; rusbar-main, 6a26042f7881d9990c304483c7219e0698f6617e. Исходник совпадает со срезом TASK-0001; изменено только описание.
+
+Форма рецепта использует isFormulae для выбора количества полей и ручных списков; реальный Item расход выбирает alchemyDC. Known/unknown компоненты приходят из sheet, где fallback может быть утрачен; span.edit-component не равен text input. Подсказки add/remove компонентов имеют начальный пробел; Drop/CRUD обслуживают отдельные handlers.
+
+Сопоставленные определения и потребители: [module/item/sheets/WitcherDiagramSheet.js](../../../module/item/sheets/WitcherDiagramSheet.js.md), [module/data/item/diagramData.js](../../../module/data/item/diagramData.js.md), [module/data/item/templates/craftingComponentData.js](../../../module/data/item/templates/craftingComponentData.js.md), [templates/partials/item-header.hbs](../../partials/item-header.hbs.md), [templates/partials/associated-item.hbs](../../partials/associated-item.hbs.md), [module/setup/config.js](../../../module/setup/config.js.md), [lang/ru.json](../../../lang/ru.json.md).
+
+[Протокол и границы](../../../../review-log.md#task-0004007) — TASK-0004.007; процессы [R007-09](../../../../cross-check-0002.md#r007-09), [R007-10](../../../../cross-check-0002.md#r007-10), [R007-11](../../../../cross-check-0002.md#r007-11), [R007-13](../../../../cross-check-0002.md#r007-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Единственный новый запуск N007-01 проверяет producer/HBS alchemyComponentsList на заданном контексте; его границы не распространяются на остальные процессы.
