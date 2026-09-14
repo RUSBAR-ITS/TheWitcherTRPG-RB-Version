@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.001-seed",
-  "purpose": "seed_examples",
+  "dataset_id": "task-0006.003-pilot",
+  "purpose": "pilot_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-14",
     "branch": "rusbar-main",
-    "head": "bc0863c89f38833280caa2cfdb9a28b6ef80b965",
+    "head": "85de48d5711a2c45d8bc0d57c308bfc91d68b547",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -14,11 +14,31 @@
     "registry_sha256": "f5ab0b1453d786ea13e84966f1a9f03950d3f2beb7d6dfb6f2a8ac009239ff28",
     "source_count": 615,
     "selected_sources": [
-      "src-000090",
+      "src-000004",
+      "src-000008",
+      "src-000019",
+      "src-000022",
+      "src-000045",
+      "src-000047",
+      "src-000052",
+      "src-000055",
+      "src-000080",
+      "src-000081",
+      "src-000082",
+      "src-000083",
+      "src-000084",
+      "src-000085",
       "src-000086",
-      "src-000084"
+      "src-000087",
+      "src-000088",
+      "src-000089",
+      "src-000090",
+      "src-000091",
+      "src-000202",
+      "src-000209",
+      "src-000214"
     ],
-    "semantic_scope": "Примеры трёх моделей; остальные источники только в каталоге.",
+    "semantic_scope": "23 основных файла пилота Actor / Active Effects / stats / skills / roll и 13 смежных файлов частично; прочие 579 только в каталоге. Процессы сохраняют два начальных примера до .004.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -26,16 +46,18 @@
       "sources.jsonl"
     ],
     "entities": [
-      "examples/entities.jsonl"
+      "examples/entities.jsonl",
+      "data/entities/pilot.jsonl"
     ],
     "relations": [
-      "examples/relations.jsonl"
+      "examples/relations.jsonl",
+      "data/relations/pilot.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl"
     ]
   },
-  "query_examples": "examples/queries.json",
+  "query_examples": "examples/pilot-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -47,12 +69,21 @@
   "reference_hashes": {
     "docs/analytics/code-audit/cross-check-0002.md": "59eefefaba927f7c40562df488f138aac4458ae3b99a94c4d0130194dcfee382",
     "docs/issues/potential/issue-00004.md": "f52e9d6151ef626dfde1f8a85cbd9a48bca1ee55a5f44f34a656660b7853d313",
-    "docs/issues/potential/issue-00015.md": "929d09b62873d79a5b642813712365406c3a489018b02262c4d4930ccaa45e9a"
+    "docs/issues/potential/issue-00015.md": "929d09b62873d79a5b642813712365406c3a489018b02262c4d4930ccaa45e9a",
+    "docs/issues/potential/issue-00012.md": "76a72cbfaebd87bb491ff394bb698d9f217483d225de448abfb6864c26233792",
+    "docs/issues/potential/issue-00036.md": "0a07e483b1fc574f154c1e2937fbd7228cd6f636d415bbe6603da329fb7cf96c",
+    "docs/issues/potential/issue-00204.md": "2e06c0cf9f8d2d7c12b5156e4f4e507ea92809f040253728b13dafa4077da730",
+    "docs/issues/potential/issue-00190.md": "a8589838497f6891a7243cfdb24e49120d15a2a13b7d9d053a07561656c1b4a6",
+    "docs/issues/potential/issue-00167.md": "1d5522951f635b5b738597f88da525378b316e2f9f197de2ac8c07095c25c3dd",
+    "docs/issues/potential/issue-00043.md": "73dccf2b4fa71be754ee3c4d3f9bd901ac3542aa7c16c27429e83f163a9e8cda",
+    "docs/issues/potential/issue-00184.md": "945ef944d9ddf6e71757f904f0812b6d6e61a18bc7799b25aaf8630139d45190",
+    "docs/issues/potential/issue-00031.md": "0a40ca63935c870a082a3bb1d6caa74fff34856b95b9de9b450c2f9e88211ec7",
+    "docs/analytics/code-audit/files/module/data/actor/templates/common/skills/intData.js.md": "001f4663b21678671900802d8b73701db374ee6a69b466b993a933b617321310"
   },
   "next_ids": {
     "source": 616,
-    "entity": 36,
-    "relation": 54,
+    "entity": 401,
+    "relation": 978,
     "process": 3
   },
   "retired_ids": []

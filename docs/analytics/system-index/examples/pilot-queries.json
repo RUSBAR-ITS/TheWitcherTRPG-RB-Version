@@ -1,0 +1,290 @@
+{
+  "dataset": "task-0006.003-pilot",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "P01",
+      "iq": [
+        "IQ-01",
+        "IQ-02"
+      ],
+      "command": [
+        "find",
+        "activeEffectModifiers",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000012",
+          "ent-000188"
+        ]
+      }
+    },
+    {
+      "id": "P02",
+      "iq": [
+        "IQ-01",
+        "IQ-02"
+      ],
+      "command": [
+        "find",
+        "skillMixin",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000299",
+          "ent-000305"
+        ]
+      }
+    },
+    {
+      "id": "P03",
+      "iq": [
+        "IQ-02"
+      ],
+      "command": [
+        "show",
+        "ent-000012"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000012"
+        ],
+        "owner": "ent-000007",
+        "source": "src-000086",
+        "line_start": 9
+      }
+    },
+    {
+      "id": "P04",
+      "iq": [
+        "IQ-03"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000277",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000329"
+        ],
+        "locations": [
+          [
+            "src-000004",
+            33
+          ]
+        ]
+      }
+    },
+    {
+      "id": "P05",
+      "iq": [
+        "IQ-03"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000311",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000329"
+        ],
+        "locations": [
+          [
+            "src-000004",
+            34
+          ]
+        ]
+      }
+    },
+    {
+      "id": "P06",
+      "iq": [
+        "IQ-03",
+        "IQ-05"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000302",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000301",
+          "ent-000382"
+        ],
+        "locations": [
+          [
+            "src-000022",
+            43
+          ],
+          [
+            "src-000045",
+            35
+          ]
+        ]
+      }
+    },
+    {
+      "id": "P07",
+      "iq": [
+        "IQ-04"
+      ],
+      "command": [
+        "neighbors",
+        "ent-000016",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000009",
+          "ent-000012"
+        ]
+      }
+    },
+    {
+      "id": "P08",
+      "iq": [
+        "IQ-05",
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000012",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000016",
+          "ent-000296"
+        ],
+        "locations": [
+          [
+            "src-000086",
+            17
+          ],
+          [
+            "src-000019",
+            10
+          ],
+          [
+            "src-000019",
+            20
+          ],
+          [
+            "src-000019",
+            21
+          ]
+        ]
+      }
+    },
+    {
+      "id": "P09",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000004",
+        "--access",
+        "computes",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000282",
+          "ent-000284"
+        ]
+      }
+    },
+    {
+      "id": "P10",
+      "iq": [
+        "IQ-02",
+        "IQ-08"
+      ],
+      "command": [
+        "show",
+        "ent-000326"
+      ],
+      "expected": {
+        "resolution": "dynamic",
+        "gaps": [
+          "unresolved_target"
+        ],
+        "source": "src-000008",
+        "line_start": 117
+      }
+    },
+    {
+      "id": "P11",
+      "iq": [
+        "IQ-08"
+      ],
+      "command": [
+        "details",
+        "ent-000304"
+      ],
+      "expected": {
+        "includes_ref_paths": [
+          "docs/issues/potential/issue-00190.md",
+          "docs/analytics/code-audit/files/module/actor/mixins/skillMixin.js.md",
+          "docs/analytics/code-audit/cross-check-0002.md"
+        ]
+      }
+    },
+    {
+      "id": "P12",
+      "iq": [
+        "IQ-06"
+      ],
+      "command": [
+        "field",
+        "ent-000346",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope"
+      }
+    },
+    {
+      "id": "P13",
+      "iq": [
+        "IQ-07"
+      ],
+      "command": [
+        "processes",
+        "src-000047"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "not_indexed",
+        "coverage": "not_indexed"
+      },
+      "note": "Отрицательный контроль: процессы Actor дополняются только в .004."
+    }
+  ]
+}

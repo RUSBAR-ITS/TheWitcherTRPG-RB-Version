@@ -36,16 +36,68 @@ def source_hash(root, rows):
     return h.hexdigest()
 
 
+def seed_view():
+    """Reconstruct the .001 seed without duplicating the full source catalogue."""
+    manifest = json.loads((BASE / "manifest.json").read_text())
+    rows = {kind: [json.loads(s) for s in (BASE / "examples" / (kind + ".jsonl")).read_text().splitlines()]
+            for kind in ("entities", "relations", "processes")}
+    rows["sources"] = [json.loads(s) for s in (BASE / "sources.jsonl").read_text().splitlines()]
+    selected = ["src-000090", "src-000086", "src-000084"]
+    for src in rows["sources"]:
+        for aspect, kind in (("definitions", "entities"), ("relations", "relations"), ("processes", "processes")):
+            if aspect == "processes":
+                included = [r["id"] for r in rows[kind]
+                            if any(step["location"]["source"] == src["id"] for step in r["steps"])]
+            else:
+                included = [r["id"] for r in rows[kind]
+                            if r.get("location") and r["location"]["source"] == src["id"]
+                            and (aspect != "definitions" or r["kind"] != "boundary")]
+            src["coverage"][aspect] = {
+                "state": "partial" if src["id"] in selected else "not_indexed",
+                "included": included,
+                "remaining": ["Охват исторического начального набора .001; расширение пилота здесь не подключено."]
+            }
+    manifest["scope"]["selected_sources"] = selected
+    manifest["scope"]["semantic_scope"] = "Исторический начальный набор из трёх исходников."
+    manifest["purpose"] = "seed_examples"
+    manifest.pop("query_examples", None)  # Cases are loaded from the original examples explicitly.
+    manifest["dataset_id"] = "task-0006.001-seed-view"
+    manifest["parts"] = {kind: [kind + ".jsonl"] for kind in rows}
+    manifest["reference_hashes"] = {p: digest for p, digest in manifest["reference_hashes"].items()
+                                   if p in ("docs/analytics/code-audit/cross-check-0002.md",
+                                            "docs/issues/potential/issue-00004.md",
+                                            "docs/issues/potential/issue-00015.md")}
+    manifest["next_ids"] = {"source": 616, "entity": 36, "relation": 54, "process": 3}
+    return manifest, rows
+
+
+def save_seed_view(directory):
+    manifest, rows = seed_view()
+    for kind, records in rows.items():
+        (directory / (kind + ".jsonl")).write_text(
+            "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in records))
+    path = directory / "manifest.json"
+    path.write_text(json.dumps(manifest, ensure_ascii=False))
+    return path
+
+
 class RealExamples(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = query.Dataset()
+        cls.tmp = tempfile.TemporaryDirectory(prefix="witcher-index-seed-")
+        cls.addClassCleanup(cls.tmp.cleanup)
+        cls.manifest = save_seed_view(Path(cls.tmp.name))
+        cls.data = query.Dataset(cls.manifest)
+
+    @classmethod
+    def run_cli(cls, arguments, cwd=ROOT):
+        return run_cli(["--dataset", str(cls.manifest), *arguments], cwd=cwd)
 
     def test_16_approved_cli_examples(self):
         cases = json.loads((BASE / "examples/queries.json").read_text())["cases"]
         for case in cases:
             with self.subTest(case=case["id"]):
-                run = run_cli(case["command"] + ["--format", "json"])
+                run = self.run_cli(case["command"] + ["--format", "json"])
                 self.assertEqual(run.returncode, 0, run.stderr)
                 out = json.loads(run.stdout)
                 expected = case["expected"]
@@ -87,7 +139,7 @@ class RealExamples(unittest.TestCase):
         self.assertEqual(self.data.entities["ent-000009"]["owner"], "ent-000007")
 
     def test_full_check_and_cwd_independence(self):
-        run = run_cli(["check", "--freshness", "--format", "json"], cwd="/tmp")
+        run = self.run_cli(["check", "--freshness", "--format", "json"], cwd="/tmp")
         self.assertEqual(run.returncode, 0, run.stderr)
         out = json.loads(run.stdout)
         self.assertTrue(out["valid"])
@@ -128,12 +180,12 @@ class RealExamples(unittest.TestCase):
             ["find", "value", "--offset", "-1"], ["neighbors", "ent-000007", "--direction", "out", "--depth", "0"],
             ["field", "ent-000007"], ["show", "ent-000004", "--scope", "src-999999"]
         ]:
-            run = run_cli(args)
+            run = self.run_cli(args)
             self.assertEqual(run.returncode, 2, run.stderr)
             self.assertNotIn("Traceback", run.stderr)
 
     def test_text_output_is_navigable(self):
-        out = run_cli(["neighbors", "ent-000018", "--direction", "in", "--relation", "calls"])
+        out = self.run_cli(["neighbors", "ent-000018", "--direction", "in", "--relation", "calls"])
         self.assertEqual(out.returncode, 0, out.stderr)
         self.assertIn("module/data/actor/templates/common/skills/intData.js:26", out.stdout)
         self.assertIn("this = Intelligence", out.stdout)
@@ -147,11 +199,8 @@ class Fixture:
         self.root = root
         self.base = root / "index"
         self.base.mkdir()
-        self.m = json.loads((BASE / "manifest.json").read_text())
+        self.m, self.rows = seed_view()
         self.m["purpose"] = "test_fixture"
-        self.rows = {kind: [json.loads(line) for path in paths
-                           for line in (BASE / path).read_text().splitlines()]
-                     for kind, paths in self.m["parts"].items()}
         self.rows["sources"] = [s for s in self.rows["sources"] if s["id"] in self.m["scope"]["selected_sources"]]
         self.m["scope"]["source_count"] = 3
         for src in self.rows["sources"]:
