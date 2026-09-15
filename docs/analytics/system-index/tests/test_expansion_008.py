@@ -230,11 +230,12 @@ class EffectLifecycleExpansion(unittest.TestCase):
         historical=[p['id'] for p in out['items'] if int(p['id'].split('-')[1])<=49]
         self.assertEqual(historical,['proc-000004','proc-000005','proc-000049'])
         out=self.data.query(query.parser().parse_args(['find','value','--match','exact','--kind','field','--limit','1','--no-verify']))
-        # Localization aliases join six model fields; .012 adds createEnrichedText.result.value (dataUtils:4).
+        # Localization aliases join six model fields; .012 adds dataUtils:4 result.value;
+        # .015 adds the actor attack(label).value StringField (src58:7).
         def count_value_leaves(obj):
             return sum(count_value_leaves(v) if isinstance(v,dict) else int(isinstance(v,str) and v.casefold()=='value') for v in obj.values())
         aliases=sum(count_value_leaves(json.loads((ROOT/('lang/'+lang+'.json')).read_text())) for lang in ['en','ru'])
-        self.assertEqual(out['page']['total'],6+aliases+1)
+        self.assertEqual(out['page']['total'],6+aliases+1+1)
         self.assertTrue(out['page']['truncated'])
 
     def test_external_contract_hashes_and_core_source_distinctions(self):

@@ -1,0 +1,558 @@
+{
+  "dataset": "task-0006.015-expansion",
+  "basis": "Ожидания установлены по текущим исходникам и позднему аудиту до запросов к CLI. ID взяты из адресованных определений.",
+  "cases": [
+    {
+      "id": "ATK-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.attack(label)",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003898"
+        ]
+      },
+      "basis": "Actor58:4 actual attack(label) factory, string label/value; имя не attackData."
+    },
+    {
+      "id": "ATK-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "chat.attackData()",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003911"
+        ]
+      },
+      "basis": "Chat98:3 separate factory; attackOption/skill/alias/itemUuid."
+    },
+    {
+      "id": "ATK-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003597",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000369",
+          "ent-003884",
+          "ent-003886",
+          "ent-003889",
+          "ent-003895",
+          "ent-003896",
+          "ent-003897"
+        ],
+        "excludes_to_ids": [
+          "ent-004016"
+        ]
+      },
+      "basis": "src25:30/138/187/292/293/301/310; fumble menu203 отделено от этого вызова."
+    },
+    {
+      "id": "ATK-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003895",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000296",
+          "ent-000297"
+        ]
+      },
+      "basis": "Обычный helper25:322/323; replacement182–185 обходит его."
+    },
+    {
+      "id": "ATK-05",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003895",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "weaponAttack187, только else обычного навыка."
+    },
+    {
+      "id": "ATK-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000044",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000287"
+        ]
+      },
+      "basis": "calculateAttackStats192 читает BODY.value, затем собственный B, не накопленный meleeBonus."
+    },
+    {
+      "id": "ATK-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000660",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000287"
+        ]
+      },
+      "basis": "Actor193 += B, запись prepared без Document.update."
+    },
+    {
+      "id": "ATK-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "extra144/150: STA−3; early return если <0, update без await."
+    },
+    {
+      "id": "ATK-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "ammo157 и throwable167 до цикла179, два конкретных writer адреса."
+    },
+    {
+      "id": "ATK-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003900",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000287"
+        ]
+      },
+      "basis": "Actor194/195 перезаписывает punch/kick.value формулами из B."
+    },
+    {
+      "id": "ATK-11",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000180",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "prepare",
+          "guard",
+          "context",
+          "prompt",
+          "damage",
+          "sta",
+          "ammo",
+          "throwable",
+          "properties",
+          "loop",
+          "modifiers",
+          "damage-formula",
+          "location-strike",
+          "output",
+          "direct",
+          "message"
+        ],
+        "next_steps": [
+          "guard"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Порядок всего тела25:8–310; два выхода и возвраты до/после resource requests."
+    },
+    {
+      "id": "ATK-12",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000181"
+      ],
+      "expected": {
+        "ids": [
+          "base",
+          "accuracy",
+          "situation",
+          "custom-range",
+          "damage",
+          "helpers"
+        ],
+        "next_steps": [
+          "accuracy"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Одна итерация25:180–293; customDmg изменяет другую общую строку."
+    },
+    {
+      "id": "ATK-13",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000179"
+      ],
+      "expected": {
+        "ids": [
+          "selection",
+          "modifiers",
+          "values"
+        ],
+        "next_steps": [
+          "modifiers"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Prompt callback104–129: checked vs value, условные ammo/range."
+    },
+    {
+      "id": "ATK-14",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000177"
+      ],
+      "expected": {
+        "ids": [
+          "body",
+          "bonus",
+          "unarmed"
+        ],
+        "next_steps": [
+          "bonus"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Actor192–195: B → += → overwrite strings, не resource update."
+    },
+    {
+      "id": "ATK-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003933",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "src25:286 += customDmg внутри for; variable11 вне for."
+    },
+    {
+      "id": "ATK-16",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003597"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00259.md",
+          "docs/issues/potential/issue-00261.md",
+          "docs/issues/potential/issue-00262.md",
+          "docs/issues/potential/issue-00297.md"
+        ]
+      },
+      "basis": "Доказательства накопления строки, ранних записей, async/shared payload и прямого plain properties, с поздними уточнениями."
+    },
+    {
+      "id": "ATK-17",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003944"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "25:177/301 →159:47: plain object без getPreprocessedEffects; не обещать успешный rollDamage."
+    },
+    {
+      "id": "ATK-18",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000654",
+        "--direction",
+        "in",
+        "--relation",
+        "embeds",
+        "--scope",
+        "src-000100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003926"
+        ]
+      },
+      "basis": "damage schema100:16 EmbeddedDataField возвращает тип в сообщении."
+    },
+    {
+      "id": "ATK-19",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003904",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003906"
+        ]
+      },
+      "basis": "Getter94:29 возвращает rollTotal, новый Roll не создаёт."
+    },
+    {
+      "id": "ATK-20",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003903",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003698",
+          "ent-003905",
+          "ent-003911",
+          "ent-003916"
+        ]
+      },
+      "basis": "super17 и factories22–24; UUIDField constructor не фабрика."
+    },
+    {
+      "id": "ATK-21",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003909",
+        "--direction",
+        "in",
+        "--relation",
+        "reads",
+        "--scope",
+        "src-000195"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004014",
+          "ent-004015"
+        ]
+      },
+      "basis": "combat21/61: два разных потребителя одного prepared поля; полные .016/.017/.020 позже."
+    },
+    {
+      "id": "ATK-22",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003953",
+        "--direction",
+        "in",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "await renderTemplate69–72 с контекстом57–67."
+    },
+    {
+      "id": "ATK-23",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003968",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003954"
+        ]
+      },
+      "basis": "Optional form.elements.ammunition?.value108, source control249, предупреждение не блокировка."
+    },
+    {
+      "id": "ATK-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000183"
+      ],
+      "expected": {
+        "ids": [
+          "config",
+          "lifepath",
+          "return"
+        ],
+        "next_steps": [
+          "lifepath"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "handleStrikeType369 attackPenality;376 whole lifepath record, не value."
+    },
+    {
+      "id": "ATK-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000186"
+      ],
+      "expected": {
+        "ids": [
+          "class",
+          "attack",
+          "defense"
+        ],
+        "next_steps": [
+          "attack",
+          "defense"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "Exact system.constructor203:18; вызывается отдельным callback11; прочие типы пропускаются."
+    },
+    {
+      "id": "ATK-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000189"
+      ],
+      "expected": {
+        "ids": [
+          "localize",
+          "speaker",
+          "create"
+        ],
+        "next_steps": [
+          "speaker"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "203:109/114/118 localize, actor UUID, ChatMessage.create без await; никакого RollTable."
+    },
+    {
+      "id": "ATK-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004018"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00181.md"
+        ]
+      },
+      "basis": "unarmed203:99/101: 9 отсутствует; диапазоны подтверждены прежним аудитом."
+    },
+    {
+      "id": "ATK-28",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004023"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Динамический WITCHER.fumbleResults.result; каталог en/ru, возможен undefined, не таблица компедиума."
+    }
+  ]
+}

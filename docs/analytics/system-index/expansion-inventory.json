@@ -1150,7 +1150,7 @@
           "source": "src-000025",
           "path": "module/actor/mixins/weaponAttackMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000050",
@@ -1168,13 +1168,13 @@
           "source": "src-000058",
           "path": "module/data/actor/templates/character/attackData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000059",
           "path": "module/data/actor/templates/character/attackStatsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000062",
@@ -1204,7 +1204,7 @@
           "source": "src-000094",
           "path": "module/data/chatMessage/attackMessageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000095",
@@ -1228,25 +1228,25 @@
           "source": "src-000098",
           "path": "module/data/chatMessage/templates/attackData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000099",
           "path": "module/data/chatMessage/templates/critData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000100",
           "path": "module/data/chatMessage/templates/damageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000101",
           "path": "module/data/chatMessage/templates/locationData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000108",
@@ -1390,7 +1390,7 @@
           "source": "src-000447",
           "path": "styles/attack-sheet.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000451",
@@ -1402,7 +1402,7 @@
           "source": "src-000479",
           "path": "styles/weapon-roll.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000482",
@@ -1456,7 +1456,7 @@
           "source": "src-000510",
           "path": "templates/dialog/combat/weapon-attack.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000553",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.014",
+    "task": "TASK-0006.015",
     "date": "2026-09-15",
-    "source_head": "db4a9d63faabdfe75227f6f77d24d768c66b6571",
-    "dataset": "task-0006.014-expansion",
+    "source_head": "baec9c69c47aca602facaddf566008c45bfc8073",
+    "dataset": "task-0006.015-expansion",
     "counts": {
       "sources": 615,
-      "entities": 3893,
-      "relations": 8995,
-      "processes": 176
+      "entities": 4022,
+      "relations": 9427,
+      "processes": 189
     },
-    "primary_count": 88,
-    "neighbor_count": 125,
-    "catalog_only_definitions": 402,
-    "boundary_count": 267,
+    "primary_count": 94,
+    "neighbor_count": 127,
+    "catalog_only_definitions": 394,
+    "boundary_count": 272,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4495,5 +4495,12 @@
     "ent-003840",
     "ent-003887",
     "ent-003893"
+  ],
+  "added_boundaries_015": [
+    "ent-003944",
+    "ent-004004",
+    "ent-004005",
+    "ent-004022",
+    "ent-004023"
   ]
 }
