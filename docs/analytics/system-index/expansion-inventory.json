@@ -1,9 +1,9 @@
 {
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
-  "date": "2026-09-14",
-  "source_head": "0c09df13984e021c24073926150dfd7a336b6ac5",
-  "index_dataset": "task-0006.004-pilot",
+  "date": "2026-09-15",
+  "source_head": "7c2450b94fa8381c8337980990bd42acf6d83af3",
+  "index_dataset": "task-0006.025-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -550,7 +550,7 @@
           "source": "src-000030",
           "path": "module/actor/sheets/WitcherLootSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000031",
@@ -730,7 +730,7 @@
           "source": "src-000549",
           "path": "templates/sheets/actor/loot-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000550",
@@ -760,7 +760,7 @@
           "source": "src-000558",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000560",
@@ -772,7 +772,7 @@
           "source": "src-000563",
           "path": "templates/sheets/actor/partials/loot/loot-item-display.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000564",
@@ -826,7 +826,7 @@
           "source": "src-000576",
           "path": "templates/sheets/actor/tabs/tab-inventory.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         }
       ]
     },
@@ -850,7 +850,7 @@
           "source": "src-000111",
           "path": "module/data/item/containerData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000114",
@@ -910,7 +910,7 @@
           "source": "src-000166",
           "path": "module/item/sheets/WitcherContainerSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000169",
@@ -1072,7 +1072,7 @@
           "source": "src-000598",
           "path": "templates/sheets/item/container-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000601",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.024",
+    "task": "TASK-0006.025",
     "date": "2026-09-15",
-    "source_head": "b4dc32e5fb85529abba08a5ac96cd89cfb3a3087",
-    "dataset": "task-0006.024-expansion",
+    "source_head": "7c2450b94fa8381c8337980990bd42acf6d83af3",
+    "dataset": "task-0006.025-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4634,
-      "relations": 12075,
-      "processes": 363
+      "entities": 4670,
+      "relations": 12209,
+      "processes": 373
     },
-    "primary_count": 151,
-    "neighbor_count": 103,
-    "catalog_only_definitions": 361,
-    "boundary_count": 344,
+    "primary_count": 158,
+    "neighbor_count": 99,
+    "catalog_only_definitions": 358,
+    "boundary_count": 348,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4590,5 +4590,11 @@
     "ent-004583",
     "ent-004628",
     "ent-004629"
+  ],
+  "added_boundaries_025": [
+    "ent-004657",
+    "ent-004658",
+    "ent-004659",
+    "ent-004671"
   ]
 }

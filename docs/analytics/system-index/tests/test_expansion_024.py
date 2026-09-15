@@ -137,10 +137,20 @@ class ResourceFormExpansion(unittest.TestCase):
         self.assertIn(self.q['WitcherActor.calculateStat'],{r['from']for r in self.data.incoming[ignored]if r['kind']=='reads'})
 
     def test_graph_definitions_facets_and_process_relations(self):
-        d=self.data;self.assertEqual([len(d.sources),len(d.entities),len(d.relations),len(d.processes)],[615,4634,12075,363])
+        d=self.data
+        historical={kind:[json.loads(line)for part in d.manifest['parts'][kind]
+            if '/expansion-'not in part or int(part.rsplit('expansion-',1)[1].split('.')[0])<=24
+            for line in(BASE/part).read_text().splitlines()]
+            for kind in ['entities','relations','processes']}
+        self.assertEqual([len(d.sources),*[len(historical[k])for k in ['entities','relations','processes']]],[615,4634,12075,363])
         self.assertEqual([len(self.new[k])for k in ['entities','relations','processes']],[55,267,10])
-        self.assertEqual(len(d.manifest['scope']['selected_sources']),151)
-        self.assertEqual(collections.Counter(s['coverage']['definitions']['state']for s in d.sources.values()),{'complete':2,'partial':252,'not_indexed':361})
+        primary_at_024=['src-000002', 'src-000003', 'src-000004', 'src-000005', 'src-000006', 'src-000007', 'src-000008', 'src-000010', 'src-000014', 'src-000015', 'src-000016', 'src-000017', 'src-000018', 'src-000019', 'src-000022', 'src-000023', 'src-000025', 'src-000027', 'src-000028', 'src-000029', 'src-000031', 'src-000032', 'src-000034', 'src-000036', 'src-000038', 'src-000040', 'src-000041', 'src-000042', 'src-000043', 'src-000045', 'src-000046', 'src-000047', 'src-000050', 'src-000051', 'src-000052', 'src-000054', 'src-000055', 'src-000056', 'src-000057', 'src-000058', 'src-000059', 'src-000062', 'src-000063', 'src-000074', 'src-000080', 'src-000081', 'src-000082', 'src-000083', 'src-000084', 'src-000085', 'src-000086', 'src-000087', 'src-000088', 'src-000089', 'src-000090', 'src-000091', 'src-000092', 'src-000094', 'src-000095', 'src-000096', 'src-000097', 'src-000098', 'src-000099', 'src-000100', 'src-000101', 'src-000108', 'src-000109', 'src-000112', 'src-000126', 'src-000127', 'src-000129', 'src-000130', 'src-000131', 'src-000132', 'src-000133', 'src-000134', 'src-000136', 'src-000137', 'src-000155', 'src-000157', 'src-000159', 'src-000160', 'src-000164', 'src-000167', 'src-000172', 'src-000178', 'src-000181', 'src-000182', 'src-000183', 'src-000184', 'src-000186', 'src-000192', 'src-000193', 'src-000194', 'src-000195', 'src-000196', 'src-000197', 'src-000202', 'src-000204', 'src-000205', 'src-000206', 'src-000209', 'src-000212', 'src-000213', 'src-000214', 'src-000215', 'src-000216', 'src-000217', 'src-000445', 'src-000453', 'src-000455', 'src-000481', 'src-000482', 'src-000483', 'src-000484', 'src-000485', 'src-000486', 'src-000488', 'src-000490', 'src-000491', 'src-000492', 'src-000493', 'src-000494', 'src-000496', 'src-000506', 'src-000509', 'src-000510', 'src-000513', 'src-000521', 'src-000522', 'src-000527', 'src-000530', 'src-000531', 'src-000541', 'src-000542', 'src-000543', 'src-000544', 'src-000547', 'src-000551', 'src-000560', 'src-000562', 'src-000565', 'src-000583', 'src-000585', 'src-000590', 'src-000591', 'src-000592', 'src-000593', 'src-000599', 'src-000610', 'src-000613']
+        self.assertEqual(len(primary_at_024),151)
+        self.assertTrue(set(primary_at_024)<=set(d.manifest['scope']['selected_sources']))
+        historical_entities=historical['entities']
+        represented={e['location']['source']for e in historical_entities if e['kind']!='boundary'and e.get('location')}
+        historical_states=collections.Counter('complete'if s['coverage']['definitions']['state']=='complete'else 'partial'if sid in represented else 'not_indexed'for sid,s in d.sources.items())
+        self.assertEqual(historical_states,{'complete':2,'partial':252,'not_indexed':361})
         for e in self.new['entities']:
             if e['kind']=='boundary':continue
             defs=[r for r in d.incoming[e['id']]if r['kind']=='defines'];self.assertEqual(len(defs),1);self.assertEqual(defs[0]['from'],e['owner'])

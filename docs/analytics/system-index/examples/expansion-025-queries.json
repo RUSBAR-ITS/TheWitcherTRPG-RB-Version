@@ -1,0 +1,499 @@
+{
+  "dataset": "task-0006.025-expansion",
+  "basis": "Ожидания установлены из JS/HBS и конкретных core участков до выполнения CLI; ID только адресуют определения.",
+  "cases": [
+    {
+      "id": "E025-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "ContainerData.content",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004639"
+        ]
+      },
+      "basis": "Определения 111:13/28 и29:244–246; разные owners/семантика."
+    },
+    {
+      "id": "E025-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "ContainerData.itemContent",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004640"
+        ]
+      },
+      "basis": "Определения 111:13/28 и29:244–246; разные owners/семантика."
+    },
+    {
+      "id": "E025-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "WitcherCharacterSheet.context.clothingAndContainers",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004664"
+        ]
+      },
+      "basis": "Определения 111:13/28 и29:244–246; разные owners/семантика."
+    },
+    {
+      "id": "E025-04",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-004639"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004639"
+        ]
+      },
+      "basis": "Schema владельцы Container/Common/Valuable различены."
+    },
+    {
+      "id": "E025-05",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-003388"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003388"
+        ]
+      },
+      "basis": "Schema владельцы Container/Common/Valuable различены."
+    },
+    {
+      "id": "E025-06",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-004662"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004662"
+        ]
+      },
+      "basis": "Schema владельцы Container/Common/Valuable различены."
+    },
+    {
+      "id": "E025-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003541",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004651"
+        ]
+      },
+      "basis": "172:130 динамический dispatch к container override."
+    },
+    {
+      "id": "E025-08",
+      "question": "IQ-04",
+      "command": [
+        "field",
+        "ent-003388",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000166"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004651",
+          "ent-004652"
+        ]
+      },
+      "basis": "166:36/52 два writer исходного Item."
+    },
+    {
+      "id": "E025-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004652",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004653"
+        ]
+      },
+      "basis": "166:29 bind click, не удаление документа."
+    },
+    {
+      "id": "E025-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004651",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-001003"
+        ]
+      },
+      "basis": "Два разных call site35/36 одного внешнего метода без await."
+    },
+    {
+      "id": "E025-11",
+      "question": "IQ-05",
+      "command": [
+        "field",
+        "ent-004640",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003685",
+          "ent-004654"
+        ]
+      },
+      "basis": "598:13 и558:72 читают prepared plain snapshots."
+    },
+    {
+      "id": "E025-12",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000293",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004647"
+        ]
+      },
+      "basis": "47:246 polymorphic dispatch, formula111:18."
+    },
+    {
+      "id": "E025-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004639",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000166"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004651",
+          "ent-004652"
+        ]
+      },
+      "basis": "Конкретные адреса записи; определения не writers, ItemDelete не освобождает stored."
+    },
+    {
+      "id": "E025-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004638",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000111"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004648"
+        ]
+      },
+      "basis": "Конкретные адреса записи; определения не writers, ItemDelete не освобождает stored."
+    },
+    {
+      "id": "E025-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003388",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Конкретные адреса записи; определения не writers, ItemDelete не освобождает stored."
+    },
+    {
+      "id": "E025-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004637",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000598"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004657"
+        ]
+      },
+      "basis": "Конкретные адреса записи; определения не writers, ItemDelete не освобождает stored."
+    },
+    {
+      "id": "E025-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004637",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000166"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Полное тело166 не читает carry; это не вывод об отсутствии UI или произвольных external readers."
+    },
+    {
+      "id": "E025-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004638",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000111"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004647"
+        ]
+      },
+      "basis": "111:18; prepare31 читает только source quantity/weight, не дочерний storedWeight."
+    },
+    {
+      "id": "E025-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000364",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "next_steps": [
+          "push"
+        ],
+        "next_exits": [
+          "skipped",
+          "failed"
+        ]
+      },
+      "basis": "Независимо прочитанное ветвление JS: guard, index condition без early return, forEach следующий UUID."
+    },
+    {
+      "id": "E025-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000365",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "next_steps": [
+          "resolve"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Независимо прочитанное ветвление JS: guard, index condition без early return, forEach следующий UUID."
+    },
+    {
+      "id": "E025-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000366",
+        "--offset",
+        "3",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "next_steps": [
+          "resolve"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "Независимо прочитанное ветвление JS: guard, index condition без early return, forEach следующий UUID."
+    },
+    {
+      "id": "E025-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000372"
+      ],
+      "expected": {
+        "ids": [
+          "delete",
+          "lifecycle"
+        ]
+      },
+      "basis": "175–180 delete и внешний lifecycle без model cleanup."
+    },
+    {
+      "id": "E025-23",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004651"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00157.md"
+        ]
+      },
+      "basis": "Ссылка на существующую датированную проверку, не новое runtime воспроизведение."
+    },
+    {
+      "id": "E025-24",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004652"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00156.md"
+        ]
+      },
+      "basis": "Ссылка на существующую датированную проверку, не новое runtime воспроизведение."
+    },
+    {
+      "id": "E025-25",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004659"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00162.md"
+        ]
+      },
+      "basis": "Ссылка на существующую датированную проверку, не новое runtime воспроизведение."
+    },
+    {
+      "id": "E025-26",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004658"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Конкретный результат UUID runtime не известен заранее; null/index/exception отмечены."
+    },
+    {
+      "id": "E025-27",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-000892",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "29:130 вызывает _prepareValuables; на глубине1 его чтение context.items и запись clothingAndContainers ещё не раскрыты."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/client/utils/helpers.mjs",
+      "lines": "188–209",
+      "scope": "fromUuidSync: Document/cache/index/null и strict embedded compendium exception.",
+      "sha256": "21d7b80e8f7ac7b8e4c53aef622f36ec1867ca6be75ae7bb21c959df733d314c"
+    },
+    {
+      "path": "/opt/foundryvtt/client/documents/abstract/client-document.mjs",
+      "lines": "276–285,313–320,539–557",
+      "scope": "Safe prepare, вызов model derived и forwarding _onDelete.",
+      "sha256": "a007180e3cf8d465dffe43b11272f289b4cf77a9e301c7d431f48267dfad8e9e"
+    },
+    {
+      "path": "/opt/foundryvtt/common/abstract/type-data.mjs",
+      "lines": "238–250",
+      "scope": "Базовые _preDelete/_onDelete не очищают произвольные UUID.",
+      "sha256": "c63bbcfb576a90a3b9880a28dc7a66e5bd90d33dad0da12559cdc7a631e9b2c7"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/ux/context-menu.mjs",
+      "lines": "611–624",
+      "scope": "onClick(event,target), legacy callback(target,event).",
+      "sha256": "78ca291bf89b79486e45c7adaf8b04ed829d5858912ba0fe6f16946b727e6470"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/sheets/item-sheet.mjs",
+      "lines": "1–26,60–64",
+      "scope": "ItemSheetV2 наследует DocumentSheetV2; item getter и внешний render.",
+      "sha256": "20a6427810422668d19dafcea1418d68b5faf4d9ef96b8196a2e1bc6b5e236cb"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/document-sheet.mjs",
+      "lines": "465–536",
+      "scope": "Общая форма: editable, typing/validation и await update существующего документа.",
+      "sha256": "7925d81900eeea0d5e79606e12ce43539ae00714f50d8452c7305fe81394aa01"
+    }
+  ]
+}
