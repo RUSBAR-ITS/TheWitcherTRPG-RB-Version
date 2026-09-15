@@ -1138,13 +1138,13 @@
           "source": "src-000016",
           "path": "module/actor/mixins/defenseMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000018",
           "path": "module/actor/mixins/locationMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000025",
@@ -1222,7 +1222,7 @@
           "source": "src-000097",
           "path": "module/data/chatMessage/defenseMessageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000098",
@@ -1234,7 +1234,7 @@
           "source": "src-000099",
           "path": "module/data/chatMessage/templates/critData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000100",
@@ -1246,7 +1246,7 @@
           "source": "src-000101",
           "path": "module/data/chatMessage/templates/locationData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000108",
@@ -1324,7 +1324,7 @@
           "source": "src-000160",
           "path": "module/item/mixins/defenseOptionMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000164",
@@ -1408,19 +1408,19 @@
           "source": "src-000482",
           "path": "templates/chat/combat/defense/defense.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000483",
           "path": "templates/chat/combat/defense/defenseCrit.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000484",
           "path": "templates/chat/combat/defense/defenseStun.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000490",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.015",
+    "task": "TASK-0006.016",
     "date": "2026-09-15",
-    "source_head": "baec9c69c47aca602facaddf566008c45bfc8073",
-    "dataset": "task-0006.015-expansion",
+    "source_head": "574af24e57d57ded1dfa5d39a6090e9b1d7dad81",
+    "dataset": "task-0006.016-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4022,
-      "relations": 9427,
-      "processes": 189
+      "entities": 4120,
+      "relations": 9766,
+      "processes": 211
     },
-    "primary_count": 94,
-    "neighbor_count": 127,
-    "catalog_only_definitions": 394,
-    "boundary_count": 272,
+    "primary_count": 103,
+    "neighbor_count": 121,
+    "catalog_only_definitions": 391,
+    "boundary_count": 278,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4502,5 +4502,13 @@
     "ent-004005",
     "ent-004022",
     "ent-004023"
+  ],
+  "added_boundaries_016": [
+    "ent-004076",
+    "ent-004082",
+    "ent-004083",
+    "ent-004094",
+    "ent-004098",
+    "ent-004112"
   ]
 }

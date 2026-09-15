@@ -1,0 +1,583 @@
+{
+  "dataset": "task-0006.016-expansion",
+  "basis": "Ожидания установлены по исходникам и позднему аудиту до запросов к CLI; ID взяты из фактических определений. Это проверки справочника, не исполнение игрового боя.",
+  "cases": [
+    {
+      "id": "DEF-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "DefenseMessageData",
+        "--match",
+        "exact",
+        "--kind",
+        "class"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000426"
+        ]
+      },
+      "basis": "97:6 own class; crit/location schema не объединены с damage factories."
+    },
+    {
+      "id": "DEF-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "DefenseMessageData.crit.location.modifier",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004053"
+        ]
+      },
+      "basis": "97:30 NumberField; общий damage modifier101:8 StringField."
+    },
+    {
+      "id": "DEF-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003891",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000290",
+          "ent-003776",
+          "ent-003890",
+          "ent-004024",
+          "ent-004032"
+        ]
+      },
+      "basis": "16:19/20/63/104; inline actions и chooser вызывают конкретные методы."
+    },
+    {
+      "id": "DEF-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003890",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003777",
+          "ent-004036"
+        ]
+      },
+      "basis": "160:6 optional model(attack.attackOption); label/value prefix переопределяемы моделью."
+    },
+    {
+      "id": "DEF-05",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004032",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003891"
+        ]
+      },
+      "basis": "16:19 берет все Items; definingSkill/isDefense не добавлены данным caller."
+    },
+    {
+      "id": "DEF-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004025"
+        ]
+      },
+      "basis": "16:265 единственная запись STA: extra−1 перед проверкой карты навыка."
+    },
+    {
+      "id": "DEF-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004066",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000870",
+          "ent-004024",
+          "ent-004029"
+        ]
+      },
+      "basis": "Переданное число: config/crit205, thresholds315–318, результат398; не поле Actor."
+    },
+    {
+      "id": "DEF-08",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004024",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000296",
+          "ent-000369",
+          "ent-000374",
+          "ent-003438"
+        ],
+        "excludes_to_ids": [
+          "ent-000298"
+        ]
+      },
+      "basis": "16:180/181/200/241: собственный defense helper побеждает mixin; extendedRoll здесь не публикует."
+    },
+    {
+      "id": "DEF-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004046",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004029"
+        ]
+      },
+      "basis": "16:323/331/339/347 значения raw return; не Document.update."
+    },
+    {
+      "id": "DEF-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004093",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000870"
+        ]
+      },
+      "basis": "16:419 armor, при block потеря1/2 и отсутствует minimum guard."
+    },
+    {
+      "id": "DEF-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003715",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000870"
+        ]
+      },
+      "basis": "16:424 другая ветка износа; без await, после сообщения."
+    },
+    {
+      "id": "DEF-12",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000654",
+        "--direction",
+        "in",
+        "--relation",
+        "embeds",
+        "--scope",
+        "src-000097"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004041"
+        ]
+      },
+      "basis": "97:18 типизация свойств атакующего; не формула защиты."
+    },
+    {
+      "id": "DEF-13",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004038",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003905"
+        ],
+        "excludes_to_ids": [
+          "ent-003917",
+          "ent-003918"
+        ]
+      },
+      "basis": "97:15 super; вложенные schemas определены inline21–35."
+    },
+    {
+      "id": "DEF-14",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000190"
+      ],
+      "expected": {
+        "ids": [
+          "options",
+          "buttons",
+          "wait",
+          "chooser",
+          "single",
+          "prompt",
+          "execute"
+        ],
+        "next_steps": [
+          "buttons"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Полный11–121; chooser0 не останавливается, окно только при length>1."
+    },
+    {
+      "id": "DEF-15",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000194"
+      ],
+      "expected": {
+        "ids": [
+          "enabled",
+          "remaining",
+          "update"
+        ],
+        "next_steps": [
+          "remaining"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "257–270 boolreturn без ожидания update; недостаток false."
+    },
+    {
+      "id": "DEF-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000198",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "extra",
+          "formula",
+          "base-message",
+          "roll",
+          "crit",
+          "crit-location",
+          "adrenaline",
+          "crit-html",
+          "stun-html",
+          "message",
+          "results"
+        ],
+        "next_steps": [
+          "formula"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "123–247: критическая query раньше сообщения, реакции позже; crit/stun считаются отдельно."
+    },
+    {
+      "id": "DEF-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000199"
+      ],
+      "expected": {
+        "ids": [
+          "deadly",
+          "difficult",
+          "complex",
+          "simple"
+        ],
+        "next_steps": [
+          "difficult"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "315–352: убывающие thresholds15/13/10/7, else null; не RollTable."
+    },
+    {
+      "id": "DEF-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000200"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "roll",
+          "map",
+          "return",
+          "existing"
+        ],
+        "next_steps": [
+          "roll",
+          "existing"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "355–395: includes(random) с Roll либо тот же location по ссылке."
+    },
+    {
+      "id": "DEF-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000202"
+      ],
+      "expected": {
+        "ids": [
+          "outcome",
+          "hit",
+          "stagger",
+          "block",
+          "item",
+          "armor",
+          "weapon"
+        ],
+        "next_steps": [
+          "hit",
+          "stagger"
+        ],
+        "next_exits": []
+      },
+      "basis": "397–431: равенство в success ветке; отсутствующий block Item падает после сообщения."
+    },
+    {
+      "id": "DEF-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000203"
+      ],
+      "expected": {
+        "ids": [
+          "threshold",
+          "roll",
+          "outcome",
+          "apply"
+        ],
+        "next_steps": [
+          "roll"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "433–456: defense=false/reversal=true, showCrit=false; равенство неуспех при threshold>=0."
+    },
+    {
+      "id": "DEF-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000204"
+      ],
+      "expected": {
+        "ids": [
+          "delegate",
+          "base",
+          "tail"
+        ],
+        "next_steps": [
+          "base"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "18:5 вызывает класс без Actor.this; 47:295 читает флаг лишь при monster контексте."
+    },
+    {
+      "id": "DEF-22",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004098"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00032.md"
+        ]
+      },
+      "basis": "Поздний .043 consumer перечисляет шесть зон; одиночный tailWing не отменяет проблему."
+    },
+    {
+      "id": "DEF-23",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004094"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00270.md"
+        ]
+      },
+      "basis": "CONFIG block содержит brawling;16:418 нет item guard."
+    },
+    {
+      "id": "DEF-24",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004092"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00258.md"
+        ]
+      },
+      "basis": "Raw assignment16:209 существует; schema97 его не объявляет, consumer14:326 ожидает поле."
+    },
+    {
+      "id": "DEF-25",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004055",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000195"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Весь combat195 прочитан: button.stun читает attackWeaponProperties.stun, не system.stun.modifier."
+    },
+    {
+      "id": "DEF-26",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004113",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004031",
+          "ent-004110"
+        ]
+      },
+      "basis": "195:29 Actor выбирается заново, затем передаётся свойство оглушения."
+    },
+    {
+      "id": "DEF-27",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004120",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--scope",
+        "src-000195"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004119"
+        ]
+      },
+      "basis": "195:91 отдельное меню; producer16 не вызывает applyCritWound автоматически."
+    },
+    {
+      "id": "DEF-28",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000211"
+      ],
+      "expected": {
+        "ids": [
+          "amount",
+          "type",
+          "armed",
+          "unarmed"
+        ],
+        "next_steps": [
+          "type"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "203:75–93 отдельный текстовый путь; sender UUID и unarmed helper переиспользованы из .015."
+    }
+  ]
+}

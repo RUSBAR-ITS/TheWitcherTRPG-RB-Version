@@ -115,9 +115,14 @@ class WeaponAttackExpansion(unittest.TestCase):
     def test_graph_addresses_reverse_links_facets_and_processes(self):
         d=self.data
         self.assertEqual([len(self.new[k]) for k in ['entities','relations','processes']],[129,432,13])
-        self.assertEqual([len(d.sources),len(d.entities),len(d.relations),len(d.processes)],[615,4022,9427,189])
-        self.assertEqual(len(d.manifest['scope']['selected_sources']),94)
-        self.assertEqual(collections.Counter(s['coverage']['definitions']['state'] for s in d.sources.values()),{'complete':2,'partial':219,'not_indexed':394})
+        # Historical .015 range; omitted duplicate3706 remains absent.
+        historical={k:[r for r in getattr(d,k).values() if int(r['id'].split('-')[1])<=cap]
+                    for k,cap in [('entities',4023),('relations',9427),('processes',189)]}
+        self.assertEqual([len(d.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,4022,9427,189])
+        represented={e['location']['source'] for e in historical['entities'] if e['kind']!='boundary' and e.get('location')}
+        self.assertEqual(len(represented),221)
+        self.assertEqual(615-len(represented),394)
+        self.assertTrue(represented <= {s for s,v in d.sources.items() if v['coverage']['definitions']['included']})
         actor_processes=d.query(query.parser().parse_args(['processes','src-000047','--limit','100','--no-verify']))
         added={p['id'] for p in actor_processes['items'] if 135<=int(p['id'].split('-')[1])<=155}
         self.assertEqual(added,{'proc-000135','proc-000136','proc-000137','proc-000138','proc-000139','proc-000150'})
