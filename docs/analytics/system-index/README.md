@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.018](../../tasks/task-0006.018.md) связывает исходные и подготовленные SP/сопротивления с формами, EV, выбором слоёв и запросами износа Item/Monster. [Покрытие и сверка](coverage-018.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.019](../../tasks/task-0006.019.md) связывает входы сообщения/статуса с щитом, локациями, SP/сопротивлениями, временными HP и записью HP/STA. [Покрытие и сверка](coverage-019.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 4330 сущностей, 10834 связи и 268 процессов (923 шага, 1645 переходов). Определения есть в 235/615 файлах: два словаря complete по строковым ключам, 233 файла partial; роли 119 основных/116 смежных, 380 без определений. .001–.018 выполнены; следующая — [TASK-0006.019](../../tasks/task-0006.019.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
+**Текущий охват:** 4403 сущности, 11181 связь и 291 процесс (989 шагов, 1778 переходов). Определения есть в 239/615 файлах: два словаря complete по строковым ключам, 237 файлов partial; роли 128 основных/111 смежных, 376 без определений. .001–.019 выполнены; следующая — [TASK-0006.020](../../tasks/task-0006.020.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -125,7 +125,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.018 выполнены; .019–.023 стоят в согласованной очереди |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.019 выполнены; .020–.023 стоят в согласованной очереди |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
@@ -143,6 +143,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [Расширение .016](coverage-016.md) / [сущности](data/entities/expansion-016.jsonl) / [отношения](data/relations/expansion-016.jsonl) / [процессы](data/processes/expansion-016.jsonl) | Выбор/формула защиты, crit/stun, износ, локации и выбранные действия чата |
 | [Расширение .017](coverage-017.md) / [сущности](data/entities/expansion-017.jsonl) / [отношения](data/relations/expansion-017.jsonl) / [процессы](data/processes/expansion-017.jsonl) | Формула/проценты/сообщение урона, схемы и DamageInstance |
 | [Расширение .018](coverage-018.md) / [сущности](data/entities/expansion-018.jsonl) / [отношения](data/relations/expansion-018.jsonl) / [процессы](data/processes/expansion-018.jsonl) | SP/EV, формы, слои, сопротивления и запросы износа |
+| [Расширение .019](coverage-019.md) / [сущности](data/entities/expansion-019.jsonl) / [отношения](data/relations/expansion-019.jsonl) / [процессы](data/processes/expansion-019.jsonl) | Message/status, щит, одна/все локации, временные HP и ресурс |
 | [24 случая .010](examples/expansion-010-queries.json) / [тесты](tests/test_expansion_010.py) / [протокол](review-log.md#task-0006010) | Поля ввода/disabled, prepared/source, ID/строка и ожидание записи |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
@@ -154,7 +155,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены все 143 тестовых метода (unittest, 980.173 с), включая 32 новых CLI-случая; накоплено 389 CLI-примеров. Это проверки справочника по исходникам, без исполнения игрового сценария. Проверены все 10834 отношения в обоих направлениях. Итоговая актуальность и сохранность — в [протоколе](review-log.md#task-0006018). Исторические случаи и численные срезы отделены от накопленных ответов.
+Пройдены все 153 тестовых метода (unittest, 1103.282 с), включая 32 новых CLI-случая; накоплен 421 CLI-пример. Это проверки справочника по исходникам, без исполнения игрового сценария. Проверено 11181 отношение в обоих направлениях. Итоговая актуальность и сохранность — в [протоколе](review-log.md#task-0006019). Исторические случаи и численные срезы отделены от накопленных ответов.
 
 ## Практический маршрут по пилоту
 
@@ -255,3 +256,18 @@ python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 - show ent-004269 — граница числового SP и текстового пояснения.
 
 [32 примера IQ-01–IQ-08](examples/expansion-018-queries.json) и [сверка](coverage-018.md) разделяют source/prepared/payload, Natural Item/Monster и размер износа/подтверждение записи. Полное применение урона и изменение HP/STA остаются .019.
+
+## Применение урона и ресурсы — .019
+
+- neighbors ent-000869 --direction in --relation calls — входы сообщения, статуса и критического урона.
+- process proc-000269 — щит, ранний выход, масло, локации и последующие эффекты.
+- process proc-000270 — изменение экземпляров, запрос записи shield и условный отчёт.
+- process proc-000274 — SP, серебро, flat, коэффициент локации, сопротивления и износ.
+- process proc-000272 — общий массив, Promise.all, суммирование и ожидаемое сообщение.
+- field ent-004350 --access writes — расход JSON внутри changes; это отдельное поле от prepared TemporaryEffects.
+- process proc-000273 — отбор временных HP, изменения ActiveEffect и конечный Actor.update.
+- process proc-000286 — изменения prepared сообщения без ChatMessage.update.
+- show ent-004369 — граница отсутствующего типа в статусном producer.
+- show ent-004368 — raw result и требования общего шаблона.
+
+[32 примера IQ-01–IQ-08](examples/expansion-019-queries.json) и [сверка](coverage-019.md) различают prepared документ, runtime экземпляры, JSON changes и запросы сохранения. Полная обработка чата/начала хода остаётся .020, травмы — .021.

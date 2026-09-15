@@ -235,8 +235,12 @@ class EffectLifecycleExpansion(unittest.TestCase):
         def count_value_leaves(obj):
             return sum(count_value_leaves(v) if isinstance(v,dict) else int(isinstance(v,str) and v.casefold()=='value') for v in obj.values())
         aliases=sum(count_value_leaves(json.loads((ROOT/('lang/'+lang+'.json')).read_text())) for lang in ['en','ru'])
-        self.assertEqual(out['page']['total'],6+aliases+1+1)
         self.assertTrue(out['page']['truncated'])
+        # Keep this numerical slice through .015; .019 adds two distinct JSON/container
+        # fields named value. Current definitions are checked by their own expansion.
+        values=self.data.query(query.parser().parse_args(['find','value','--match','exact','--kind','field','--limit','100','--no-verify']))
+        historical_values=[e for e in values['items'] if int(e['id'].split('-')[1])<=4023]
+        self.assertEqual(len(historical_values),6+aliases+1+1)
 
     def test_external_contract_hashes_and_core_source_distinctions(self):
         text=(BASE/'coverage-008.md').read_text()

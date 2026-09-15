@@ -1,0 +1,661 @@
+{
+  "dataset": "task-0006.019-expansion",
+  "basis": "Ожидания установлены по исходникам и поздней сверке до сопоставления с CLI. Проверяется индекс; JavaScript/БД/боевые сценарии не исполняются.",
+  "cases": [
+    {
+      "id": "APPLY-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.damageMixin.applyDamage",
+        "--match",
+        "exact",
+        "--kind",
+        "method"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000869"
+        ]
+      },
+      "basis": "14:7 метод экспортируемого объекта damageMixin; ранний ID .008 сохранён, owner уточнён."
+    },
+    {
+      "id": "APPLY-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "damageTypeModification.fire",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004339"
+        ]
+      },
+      "basis": "63:12 фиксированная SchemaField тройки damageModification; не запись CONFIG."
+    },
+    {
+      "id": "APPLY-03",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000056",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004187"
+        ]
+      },
+      "basis": "14:49 единственный writer shield.value в этом файле; без await."
+    },
+    {
+      "id": "APPLY-04",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000873"
+        ]
+      },
+      "basis": "14:145 динамический ключ; выбранный hp caller, await Actor.update."
+    },
+    {
+      "id": "APPLY-05",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000873"
+        ]
+      },
+      "basis": "14:145 sta writer использует тот же метод, временные HP пропускаются."
+    },
+    {
+      "id": "APPLY-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000004",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000873",
+          "ent-004187"
+        ]
+      },
+      "basis": "14:49 shield.value и145 derivedStat.value — два самостоятельных запроса."
+    },
+    {
+      "id": "APPLY-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000869",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004116",
+          "ent-004118",
+          "ent-004178",
+          "ent-004179"
+        ]
+      },
+      "basis": "Поиск module:194:100/116 и14:289/301; четыре callers с разными типами/dialogData и без await."
+    },
+    {
+      "id": "APPLY-08",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004099",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000711",
+          "ent-000807",
+          "ent-000873",
+          "ent-003945",
+          "ent-004095",
+          "ent-004188",
+          "ent-004386"
+        ]
+      },
+      "basis": "14:86,92,109,115/116,118; speaker в allLocations не вызывается."
+    },
+    {
+      "id": "APPLY-09",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000873",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004099",
+          "ent-004332"
+        ]
+      },
+      "basis": "14:79 и118 — все прямые callers общего resource writer."
+    },
+    {
+      "id": "APPLY-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004333",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004188"
+        ]
+      },
+      "basis": "14:200 единственный найденный caller; положительный flat после blocked guard."
+    },
+    {
+      "id": "APPLY-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003925",
+        "--access",
+        "computes",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004099",
+          "ent-004178"
+        ]
+      },
+      "basis": "194:109 мутация prepared message,14:90 того же damage в цикле зон; это не writer БД."
+    },
+    {
+      "id": "APPLY-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000668",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000194"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004178"
+        ]
+      },
+      "basis": "194:113 присваивание категории при addOilDmg; false не удаляет прежнее масло."
+    },
+    {
+      "id": "APPLY-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004170",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000014",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000869",
+          "ent-004187",
+          "ent-004188"
+        ]
+      },
+      "basis": "14:17 oil фабрика;40–44 shield;172/203 добавки и179/183/207/221/226/230 порционные mutations."
+    },
+    {
+      "id": "APPLY-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004376",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004188"
+        ]
+      },
+      "basis": "14:168/218/225 enemyData.resistNonSilver; direct status/crit null."
+    },
+    {
+      "id": "APPLY-15",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004178",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000869",
+          "ent-003945",
+          "ent-004160",
+          "ent-004161",
+          "ent-004372"
+        ]
+      },
+      "basis": "194:106 await dialog,109 resolve location,118 factory/setter,116 Actor без await."
+    },
+    {
+      "id": "APPLY-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000269",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "shield",
+          "shield-guard",
+          "oil",
+          "locations",
+          "statuses",
+          "item"
+        ],
+        "next_steps": [
+          "shield-guard"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:7–33 точный внешний порядок; shield первым, эффектам не передаётся await."
+    },
+    {
+      "id": "APPLY-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000269",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "shield-guard"
+        ],
+        "next_steps": [
+          "oil"
+        ],
+        "next_exits": [
+          "shield-blocked",
+          "failed"
+        ]
+      },
+      "basis": "14:10–14 bypass только отменяет early return, поглощение уже было."
+    },
+    {
+      "id": "APPLY-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000271",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "guard"
+        ],
+        "next_steps": [
+          "blocked-report",
+          "report"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:73 blocked report→void return; внешний applyDamage затем продолжает эффекты."
+    },
+    {
+      "id": "APPLY-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000272",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "locations",
+          "dispatch",
+          "collect",
+          "report",
+          "resource"
+        ],
+        "next_steps": [
+          "dispatch"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:85–118 общий массив/Promise.all, await отчёт до ресурса."
+    },
+    {
+      "id": "APPLY-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000273",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "floor",
+          "select",
+          "changes",
+          "effect-update",
+          "actor-update"
+        ],
+        "next_steps": [
+          "select",
+          "actor-update"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:121–146 hp ветка temporaryEffects и общий конечный update; STA без JSON."
+    },
+    {
+      "id": "APPLY-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000273",
+        "--offset",
+        "3",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "effect-update"
+        ],
+        "next_steps": [
+          "changes",
+          "actor-update"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:140–141 каждый эффект ждёт update; цикл не остановлен при damage0."
+    },
+    {
+      "id": "APPLY-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000274",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "armor",
+          "silver-select",
+          "silver-roll",
+          "sp",
+          "always-wear",
+          "positive",
+          "flat",
+          "location",
+          "resistance",
+          "ordinary-wear",
+          "return"
+        ],
+        "next_steps": [
+          "silver-select"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:149–244 полный расчёт с серебром/SP/flat/локацией/сопротивлениями/износом."
+    },
+    {
+      "id": "APPLY-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000274",
+        "--offset",
+        "5",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "positive"
+        ],
+        "next_steps": [
+          "flat"
+        ],
+        "next_exits": [
+          "blocked",
+          "failed"
+        ]
+      },
+      "basis": "14:190–198 после прямого износа, до flat и остальных стадий."
+    },
+    {
+      "id": "APPLY-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000286",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "message",
+          "dialog",
+          "location",
+          "oil",
+          "actor"
+        ],
+        "next_steps": [
+          "dialog"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "194:103–121 ссылка на сообщение, await prompt, мутации, новый экземпляр и Actor без await."
+    },
+    {
+      "id": "APPLY-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000287"
+      ],
+      "expected": {
+        "ids": [
+          "dispatch"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "194:99–101 один запуск с null dialogData, no-await, тип из plain payload."
+    },
+    {
+      "id": "APPLY-26",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004363"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00285.md"
+        ]
+      },
+      "basis": "14:92 один массив во всех расчётах, result возвращает общие экземпляры."
+    },
+    {
+      "id": "APPLY-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004364"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00117.md",
+          "docs/issues/potential/issue-00294.md"
+        ]
+      },
+      "basis": "14:130 JSON.parse; некорректная строка и object после миграции — разные условия."
+    },
+    {
+      "id": "APPLY-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004367"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00287.md"
+        ]
+      },
+      "basis": "14:269 читает damageResult.damageProperties, расчёт241 возвращает properties."
+    },
+    {
+      "id": "APPLY-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004369"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00021.md"
+        ]
+      },
+      "basis": "196:62–72 type не передан;194:100 setter получает undefined."
+    },
+    {
+      "id": "APPLY-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004187"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00291.md",
+          "docs/issues/potential/issue-00292.md"
+        ]
+      },
+      "basis": "14:39–49 знак и отсутствующий await; разные причины/пределы."
+    },
+    {
+      "id": "APPLY-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004370"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00301.md"
+        ]
+      },
+      "basis": "194:16/28 первый DOM total без guard; не чтение rolls/system.rollTotal."
+    },
+    {
+      "id": "APPLY-32",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004387",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004390"
+        ]
+      },
+      "basis": "490:11 raw result в HBS include; createDamageResultMessage не вызывается."
+    }
+  ]
+}

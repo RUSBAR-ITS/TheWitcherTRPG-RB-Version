@@ -1126,13 +1126,13 @@
           "source": "src-000014",
           "path": "module/actor/mixins/damageMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000015",
           "path": "module/actor/mixins/damageUtilMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000016",
@@ -1180,13 +1180,13 @@
           "source": "src-000062",
           "path": "module/data/actor/templates/character/general/damage/damageModificationData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000063",
           "path": "module/data/actor/templates/character/general/damage/damageTypeModificationData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000073",
@@ -1354,7 +1354,7 @@
           "source": "src-000194",
           "path": "module/scripts/combat/applyDamage.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000195",
@@ -1426,25 +1426,25 @@
           "source": "src-000490",
           "path": "templates/chat/damage/damageToAllLocations.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000491",
           "path": "templates/chat/damage/damageToLocation.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000492",
           "path": "templates/chat/damage/shieldAbsorbs.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000493",
           "path": "templates/chat/damage/spAbsorbs.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000509",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.018",
+    "task": "TASK-0006.019",
     "date": "2026-09-15",
-    "source_head": "79a558ed3fd347d0825d91608f6669750ac0c4b6",
-    "dataset": "task-0006.018-expansion",
+    "source_head": "66ce051d648088488966465cbea06dd8c4744c5e",
+    "dataset": "task-0006.019-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4330,
-      "relations": 10834,
-      "processes": 268
+      "entities": 4403,
+      "relations": 11181,
+      "processes": 291
     },
-    "primary_count": 119,
-    "neighbor_count": 116,
-    "catalog_only_definitions": 380,
-    "boundary_count": 292,
+    "primary_count": 128,
+    "neighbor_count": 111,
+    "catalog_only_definitions": 376,
+    "boundary_count": 305,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4528,5 +4528,20 @@
     "ent-004269",
     "ent-004330",
     "ent-004331"
+  ],
+  "added_boundaries_019": [
+    "ent-004360",
+    "ent-004361",
+    "ent-004362",
+    "ent-004363",
+    "ent-004364",
+    "ent-004365",
+    "ent-004366",
+    "ent-004367",
+    "ent-004368",
+    "ent-004369",
+    "ent-004370",
+    "ent-004371",
+    "ent-004386"
   ]
 }

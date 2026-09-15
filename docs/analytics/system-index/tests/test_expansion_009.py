@@ -17,6 +17,16 @@ class SkillUIExpansion(unittest.TestCase):
         manifest=json.loads((BASE/'manifest.json').read_text())
         rows={kind:[json.loads(l) for part in manifest['parts'][kind] if not re.search(r'expansion-(\d+)',part) or int(re.search(r'expansion-(\d+)',part).group(1))<=9
                     for l in (BASE/part).read_text().splitlines()] for kind in ('entities','relations','processes')}
+        # .019 corrects the two early method owners to damageMixin (introduced in
+        # .012). This deliberately historical .009 fixture keeps its source owners;
+        # the accumulated graph and .019 tests require the actual mixin owner.
+        for entity in rows['entities']:
+            if entity['id'] in {'ent-000869','ent-000873'}:
+                entity['owner']='src-000014'
+                entity['kind']='function'
+        for relation in rows['relations']:
+            if relation['id'] in {'rel-002171','rel-002193'}:
+                relation['from']='src-000014'
         allowed_relations={r['id'] for r in rows['relations']}
         for process in rows['processes']:
             for step in process['steps']:
