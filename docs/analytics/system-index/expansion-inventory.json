@@ -4256,10 +4256,10 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.022",
+    "task": "TASK-0006.023",
     "date": "2026-09-15",
-    "source_head": "924d6a149fd668a184b7bcffc625c3ad443e9b7f",
-    "dataset": "task-0006.022-expansion",
+    "source_head": "32e972cf19172933c6a9dc8c67c375b128a1e163",
+    "dataset": "task-0006.023-expansion",
     "counts": {
       "sources": 615,
       "entities": 4579,

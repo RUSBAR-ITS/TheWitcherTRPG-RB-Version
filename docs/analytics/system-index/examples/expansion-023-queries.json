@@ -1,0 +1,1189 @@
+{
+  "dataset": "task-0006.023-expansion",
+  "basis": "Ожидания по исходникам/позднему аудиту до CLI. Стыки H01–H12 проверяют обе стороны реальных рёбер; отдельные входы и внешние события не объединяются в выдуманный вызов.",
+  "cases": [
+    {
+      "id": "JOIN-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "броня",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000416",
+          "ent-002163",
+          "ent-002628",
+          "ent-002644",
+          "ent-002817"
+        ]
+      },
+      "basis": "ru.json:5 и registerDataModels:49: ArmorData — модель брони; одно слово также встречается в четырёх строковых ключах."
+    },
+    {
+      "id": "JOIN-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "healMixin",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003419",
+          "ent-003435"
+        ]
+      },
+      "basis": "Два export let healMixin: Actor17:1 и лист42:3; разные владельцы."
+    },
+    {
+      "id": "JOIN-03",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "CommonItemData.quantity",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003383"
+        ]
+      },
+      "basis": "109:7 StringField, владелец CommonItemData."
+    },
+    {
+      "id": "JOIN-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "CriticalWoundData.followUp",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004491"
+        ]
+      },
+      "basis": "112:30 ссылка UUID Item."
+    },
+    {
+      "id": "JOIN-05",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003555",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003573"
+        ]
+      },
+      "basis": "43:268 Item row делегирует Actor."
+    },
+    {
+      "id": "JOIN-06",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003597",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003555"
+        ]
+      },
+      "basis": "47:231 ветка type weapon."
+    },
+    {
+      "id": "JOIN-07",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000869",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004116",
+          "ent-004118",
+          "ent-004178",
+          "ent-004179"
+        ]
+      },
+      "basis": "194:100/116 и14:289/301, разные источники."
+    },
+    {
+      "id": "JOIN-08",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004014",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000805",
+          "ent-003889"
+        ]
+      },
+      "basis": "195:20/23 отдельный пользовательский click."
+    },
+    {
+      "id": "JOIN-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004015",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003891"
+        ]
+      },
+      "basis": "195:58 действие контекстного меню."
+    },
+    {
+      "id": "JOIN-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000601",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004413",
+          "ent-004414"
+        ]
+      },
+      "basis": "196:7/8 запускаются независимо, без await."
+    },
+    {
+      "id": "JOIN-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000873"
+        ]
+      },
+      "basis": "14:145 ресурсный путь, эффект tempHP отдельно."
+    },
+    {
+      "id": "JOIN-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000157"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000867"
+        ]
+      },
+      "basis": "157:9 расходник пишет HP, quantity списывает вызывающий код."
+    },
+    {
+      "id": "JOIN-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000042"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004501"
+        ]
+      },
+      "basis": "42:80 восстановление отдыха."
+    },
+    {
+      "id": "JOIN-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000196"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004266",
+          "ent-004414"
+        ]
+      },
+      "basis": "196:33/83 независимые источники."
+    },
+    {
+      "id": "JOIN-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003556",
+          "ent-003557"
+        ]
+      },
+      "basis": "47:262/268/281 merge/create/deplete."
+    },
+    {
+      "id": "JOIN-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003565"
+        ]
+      },
+      "basis": "43:144 dynamic dataset.field, в том числе quantity."
+    },
+    {
+      "id": "JOIN-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000157"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "В consume нет writer quantity; не отсутствие списания у вызывающего кода."
+    },
+    {
+      "id": "JOIN-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004239",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000108"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004205",
+          "ent-004207",
+          "ent-004212"
+        ]
+      },
+      "basis": "108:78/99–104/193–243: damage, repair, migration."
+    },
+    {
+      "id": "JOIN-19",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003942",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "25:177 toObject(false) меняет подготовленный payload."
+    },
+    {
+      "id": "JOIN-20",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004485",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000112"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "112:67–102 heal/treat не пишут treatment; поле редактирует форма через внешнее ядро."
+    },
+    {
+      "id": "JOIN-21",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000560"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Ручные input HP в sidebar существуют; выбранный граф этого файла содержит только связи редакторов. Пустой ответ partial не отрицает ввод HP."
+    },
+    {
+      "id": "JOIN-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000135",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "lookup",
+          "type",
+          "weapon",
+          "spell",
+          "consume",
+          "deplete"
+        ],
+        "next_steps": [
+          "type"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "47:225–243 dispatch; consume/deplete без ожидания."
+    },
+    {
+      "id": "JOIN-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000180",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "prepare",
+          "guard",
+          "context",
+          "prompt",
+          "damage",
+          "sta",
+          "ammo",
+          "throwable",
+          "properties",
+          "loop",
+          "modifiers",
+          "damage-formula",
+          "location-strike",
+          "output",
+          "direct",
+          "message"
+        ],
+        "next_steps": [
+          "guard"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "25:7–313, direct и message — альтернативы."
+    },
+    {
+      "id": "JOIN-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000269",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "shield",
+          "shield-guard",
+          "oil",
+          "locations",
+          "statuses",
+          "item"
+        ],
+        "next_steps": [
+          "shield-guard"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:7–34, ранний возврат щита до статусов."
+    },
+    {
+      "id": "JOIN-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000316",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "index",
+          "count",
+          "roll",
+          "find",
+          "resolve",
+          "add",
+          "message"
+        ],
+        "next_steps": [
+          "count"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:312–344 от index к Item, не RollTable."
+    },
+    {
+      "id": "JOIN-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000322",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "state",
+          "day",
+          "sterilize",
+          "updates",
+          "threshold",
+          "transition",
+          "persist"
+        ],
+        "next_steps": [
+          "day",
+          "threshold"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "112:67–92, threshold вне treatment-ветки."
+    },
+    {
+      "id": "JOIN-27",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000323",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "link",
+          "load",
+          "create",
+          "delete"
+        ],
+        "next_steps": [
+          "load",
+          "delete"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "112:94–102, пустой followUp ведёт сразу к delete."
+    },
+    {
+      "id": "JOIN-28",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000340",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "resources",
+          "wounds",
+          "report",
+          "notify"
+        ],
+        "next_steps": [
+          "wounds"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "42:78–102, await ресурсов не ждёт forEach/heal."
+    },
+    {
+      "id": "JOIN-29",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000309",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "gm",
+          "actor",
+          "regeneration",
+          "periodic"
+        ],
+        "next_steps": [
+          "actor"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "196:3–9 только activeGM; не проверка смены хода."
+    },
+    {
+      "id": "JOIN-30",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000180",
+        "--offset",
+        "13",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "output"
+        ],
+        "next_steps": [
+          "direct",
+          "message"
+        ],
+        "next_exits": []
+      },
+      "basis": "25:300 ветвление rollOnlyDmg; пагинация не обрезает выходящие переходы шага."
+    },
+    {
+      "id": "JOIN-31",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-000910"
+      ],
+      "expected": {
+        "resolution": "external"
+      },
+      "basis": "Общий submit реализован ядром; применимость выбранной формы отдельно."
+    },
+    {
+      "id": "JOIN-32",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004526"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "599:12 treatment control,172 form options; весь путь сохранения не подтверждён миром."
+    },
+    {
+      "id": "JOIN-33",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003944"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "25:177 plain object → item damageUtil:47 метод; существующие issue297/262."
+    },
+    {
+      "id": "JOIN-34",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003944"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00297.md",
+          "docs/issues/potential/issue-00262.md"
+        ]
+      },
+      "basis": "Ранее установленные границы прототипа/payload; не новый runtime опыт."
+    },
+    {
+      "id": "JOIN-35",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-003555",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "useItem вызывает consume; consume вызывает calculateHealValue. При depth1 второй вызов остаётся на фронтире."
+    }
+  ],
+  "handoffs": [
+    {
+      "id": "H01",
+      "title": "Регистрация, модель, документ и context",
+      "edges": [
+        {
+          "source": "src-000214",
+          "line": 49,
+          "kind": "registers",
+          "from_name": "registerDataModels",
+          "to_name": "ArmorData",
+          "literal": "armor: ArmorData"
+        },
+        {
+          "source": "src-000027",
+          "line": 59,
+          "kind": "calls",
+          "from_name": "WitcherActorSheet._prepareContext",
+          "to_name": "DocumentSheetV2._prepareContext",
+          "literal": "super._prepareContext"
+        },
+        {
+          "source": "src-000027",
+          "line": 90,
+          "kind": "calls",
+          "from_name": "WitcherActorSheet._prepareContext",
+          "to_name": "sheet.activeEffectMixin.prepareActiveEffectCategories",
+          "literal": "prepareActiveEffectCategories"
+        },
+        {
+          "source": "src-000027",
+          "line": 91,
+          "kind": "calls",
+          "from_name": "WitcherActorSheet._prepareContext",
+          "to_name": "Actor.allApplicableEffects",
+          "literal": "allApplicableEffects"
+        }
+      ]
+    },
+    {
+      "id": "H02",
+      "title": "Строка Item, use/consume и quantity",
+      "edges": [
+        {
+          "source": "src-000043",
+          "line": 268,
+          "kind": "calls",
+          "from_name": "sheet.itemMixin._onItemRoll",
+          "to_name": "WitcherActor.useItem",
+          "literal": "this.actor.useItem"
+        },
+        {
+          "source": "src-000047",
+          "line": 239,
+          "kind": "calls",
+          "from_name": "WitcherActor.useItem",
+          "to_name": "item.consumeMixin.consume",
+          "literal": "item.consume()"
+        },
+        {
+          "source": "src-000034",
+          "line": 55,
+          "kind": "calls",
+          "from_name": "sheet.itemContextMenu.consumeItem",
+          "to_name": "item.consumeMixin.consume",
+          "literal": "item.consume()"
+        },
+        {
+          "source": "src-000047",
+          "line": 281,
+          "kind": "writes",
+          "from_name": "WitcherActor.removeItem",
+          "to_name": "CommonItemData.quantity",
+          "literal": "system.quantity"
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "title": "Поля и форма боя к обработчикам",
+      "edges": [
+        {
+          "source": "src-000025",
+          "line": 30,
+          "kind": "calls",
+          "from_name": "actor.weaponAttackMixin.weaponAttack",
+          "to_name": "WitcherItem.getItemAttack",
+          "literal": "weapon.getItemAttack"
+        },
+        {
+          "source": "src-000025",
+          "line": 292,
+          "kind": "reads",
+          "from_name": "actor.weaponAttackMixin.weaponAttack",
+          "to_name": "actor.weaponAttackMixin.weaponAttack/dialog.location",
+          "literal": "handleAttackLocation"
+        },
+        {
+          "source": "src-000025",
+          "line": 307,
+          "kind": "reads",
+          "from_name": "actor.weaponAttackMixin.weaponAttack",
+          "to_name": "defenseOptions().defenseOptions",
+          "literal": "defenseOptions"
+        },
+        {
+          "source": "src-000195",
+          "line": 58,
+          "kind": "calls",
+          "from_name": "executeDefense",
+          "to_name": "actor.defenseMixin.prepareAndExecuteDefense",
+          "literal": "prepareAndExecuteDefense"
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "title": "Атака к сообщению или прямому урону",
+      "edges": [
+        {
+          "source": "src-000047",
+          "line": 231,
+          "kind": "calls",
+          "from_name": "WitcherActor.useItem",
+          "to_name": "actor.weaponAttackMixin.weaponAttack",
+          "literal": "this.weaponAttack"
+        },
+        {
+          "source": "src-000025",
+          "line": 177,
+          "kind": "writes",
+          "from_name": "actor.weaponAttackMixin.weaponAttack",
+          "to_name": "actor.weaponAttackMixin.weaponAttack/damage.properties",
+          "literal": "toObject(false)"
+        },
+        {
+          "source": "src-000025",
+          "line": 301,
+          "kind": "calls",
+          "from_name": "actor.weaponAttackMixin.weaponAttack",
+          "to_name": "item.damageUtilMixin.rollDamage",
+          "literal": "weapon.rollDamage"
+        },
+        {
+          "source": "src-000025",
+          "line": 310,
+          "kind": "calls",
+          "from_name": "actor.weaponAttackMixin.weaponAttack",
+          "to_name": "extendedRoll",
+          "literal": "await extendedRoll"
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "title": "Сообщение и новое действие в чате",
+      "edges": [
+        {
+          "source": "src-000195",
+          "line": 16,
+          "kind": "registers",
+          "from_name": "attackChatMessageListeners",
+          "to_name": "onDamage",
+          "literal": "addEventListener"
+        },
+        {
+          "source": "src-000195",
+          "line": 20,
+          "kind": "calls",
+          "from_name": "onDamage",
+          "to_name": "fromUuidSync",
+          "literal": "fromUuidSync"
+        },
+        {
+          "source": "src-000195",
+          "line": 23,
+          "kind": "calls",
+          "from_name": "onDamage",
+          "to_name": "item.damageUtilMixin.rollDamage",
+          "literal": "item.rollDamage"
+        },
+        {
+          "source": "src-000194",
+          "line": 116,
+          "kind": "calls",
+          "from_name": "applyDamageFromMessage",
+          "to_name": "actor.damageMixin.applyDamage",
+          "literal": "actor.applyDamage"
+        }
+      ]
+    },
+    {
+      "id": "H06",
+      "title": "Броня, EV, SP и расчёт урона",
+      "edges": [
+        {
+          "source": "src-000047",
+          "line": 77,
+          "kind": "calls",
+          "from_name": "WitcherActor.calculateStat",
+          "to_name": "actor.armorMixin.getArmorEcumbrance",
+          "literal": "getArmorEcumbrance"
+        },
+        {
+          "source": "src-000014",
+          "line": 153,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.calculateDamageWithLocation",
+          "to_name": "actor.armorMixin.getLocationArmor",
+          "literal": "getLocationArmor"
+        },
+        {
+          "source": "src-000014",
+          "line": 188,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.calculateDamageWithLocation",
+          "to_name": "actor.armorMixin.applyAlwaysSpDamage",
+          "literal": "applyAlwaysSpDamage"
+        },
+        {
+          "source": "src-000014",
+          "line": 236,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.calculateDamageWithLocation",
+          "to_name": "actor.armorMixin.applySpDamage",
+          "literal": "applySpDamage"
+        }
+      ]
+    },
+    {
+      "id": "H07",
+      "title": "Урон, ресурсы и эффекты",
+      "edges": [
+        {
+          "source": "src-000014",
+          "line": 145,
+          "kind": "writes",
+          "from_name": "actor.damageMixin.updateDerivedStat",
+          "to_name": "DerivedStats.hp",
+          "literal": "system.derivedStats"
+        },
+        {
+          "source": "src-000014",
+          "line": 140,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.updateDerivedStat",
+          "to_name": "Document.update/ActiveEffect",
+          "literal": "tempHp.update"
+        },
+        {
+          "source": "src-000014",
+          "line": 29,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.applyDamage",
+          "to_name": "applyStatusEffectToActor",
+          "literal": "applyStatusEffectToActor"
+        },
+        {
+          "source": "src-000014",
+          "line": 32,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.applyDamage",
+          "to_name": "applyActiveEffectToActorViaId",
+          "literal": "applyActiveEffectToActorViaId"
+        }
+      ]
+    },
+    {
+      "id": "H08",
+      "title": "Два транспорта и получатели",
+      "edges": [
+        {
+          "source": "src-000213",
+          "line": 34,
+          "kind": "calls",
+          "from_name": "query",
+          "to_name": "applyActiveEffectToActorViaId",
+          "literal": "callableFunctions"
+        },
+        {
+          "source": "src-000213",
+          "line": 40,
+          "kind": "calls",
+          "from_name": "query",
+          "to_name": "WitcherActor.addItem",
+          "literal": "entity[queryData.function]"
+        },
+        {
+          "source": "src-000217",
+          "line": 11,
+          "kind": "registers",
+          "from_name": "registerSocketListeners",
+          "to_name": "registerSocketListeners/message",
+          "literal": "game.socket.on"
+        },
+        {
+          "source": "src-000217",
+          "line": 18,
+          "kind": "calls",
+          "from_name": "registerSocketListeners/message",
+          "to_name": "WitcherActor.addItem",
+          "literal": "fromUuid[message.type]"
+        }
+      ]
+    },
+    {
+      "id": "H09",
+      "title": "Критическая травма к Item",
+      "edges": [
+        {
+          "source": "src-000014",
+          "line": 335,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.applyCritWound",
+          "to_name": "fromUuid",
+          "literal": "fromUuid"
+        },
+        {
+          "source": "src-000014",
+          "line": 336,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.applyCritWound",
+          "to_name": "WitcherActor.addItem",
+          "literal": "this.addItem"
+        },
+        {
+          "source": "src-000014",
+          "line": 343,
+          "kind": "calls",
+          "from_name": "actor.damageMixin.applyCritWound",
+          "to_name": "ChatMessage.create",
+          "literal": "ChatMessage.create"
+        }
+      ]
+    },
+    {
+      "id": "H10",
+      "title": "Травма, отдых и followUp",
+      "edges": [
+        {
+          "source": "src-000042",
+          "line": 88,
+          "kind": "calls",
+          "from_name": "sheet.healMixin.recoverActor/criticalWound.forEach",
+          "to_name": "CriticalWoundData.heal",
+          "literal": "crit.system.heal"
+        },
+        {
+          "source": "src-000112",
+          "line": 86,
+          "kind": "calls",
+          "from_name": "CriticalWoundData.heal",
+          "to_name": "CriticalWoundData.treat",
+          "literal": "this.treat()"
+        },
+        {
+          "source": "src-000112",
+          "line": 97,
+          "kind": "calls",
+          "from_name": "CriticalWoundData.treat",
+          "to_name": "fromUuid",
+          "literal": "await fromUuid"
+        },
+        {
+          "source": "src-000112",
+          "line": 98,
+          "kind": "calls",
+          "from_name": "CriticalWoundData.treat",
+          "to_name": "Document.createEmbeddedDocuments",
+          "literal": "createEmbeddedDocuments"
+        },
+        {
+          "source": "src-000112",
+          "line": 101,
+          "kind": "calls",
+          "from_name": "CriticalWoundData.treat",
+          "to_name": "Document.delete/Item",
+          "literal": "this.parent.delete"
+        }
+      ]
+    },
+    {
+      "id": "H11",
+      "title": "Combat к periodic и регенерации",
+      "edges": [
+        {
+          "source": "src-000212",
+          "line": 6,
+          "kind": "calls",
+          "from_name": "updateCombat callback",
+          "to_name": "combatHooks",
+          "literal": "combatHooks(combat, update, options, userId)"
+        },
+        {
+          "source": "src-000212",
+          "line": 11,
+          "kind": "calls",
+          "from_name": "combatHooks",
+          "to_name": "applyGeneralCombatHooks",
+          "literal": "applyGeneralCombatHooks"
+        },
+        {
+          "source": "src-000196",
+          "line": 7,
+          "kind": "calls",
+          "from_name": "applyGeneralCombatHooks",
+          "to_name": "applyMonsterRegeneration",
+          "literal": "applyMonsterRegeneration"
+        },
+        {
+          "source": "src-000196",
+          "line": 8,
+          "kind": "calls",
+          "from_name": "applyGeneralCombatHooks",
+          "to_name": "applyCombatEffects",
+          "literal": "applyCombatEffects"
+        },
+        {
+          "source": "src-000194",
+          "line": 100,
+          "kind": "calls",
+          "from_name": "applyDamageFromStatus",
+          "to_name": "actor.damageMixin.applyDamage",
+          "literal": "actor.applyDamage"
+        }
+      ]
+    },
+    {
+      "id": "H12",
+      "title": "Разные пути к общему ресурсу HP",
+      "edges": [
+        {
+          "source": "src-000157",
+          "line": 9,
+          "kind": "writes",
+          "from_name": "item.consumeMixin.consume",
+          "to_name": "DerivedStats.hp",
+          "literal": "system.derivedStats.hp.value"
+        },
+        {
+          "source": "src-000042",
+          "line": 80,
+          "kind": "writes",
+          "from_name": "sheet.healMixin.recoverActor",
+          "to_name": "DerivedStats.hp",
+          "literal": "system.derivedStats.hp.value"
+        },
+        {
+          "source": "src-000193",
+          "line": 39,
+          "kind": "writes",
+          "from_name": "onHeal",
+          "to_name": "DerivedStats.hp",
+          "literal": "system.derivedStats.hp.value"
+        },
+        {
+          "source": "src-000196",
+          "line": 33,
+          "kind": "writes",
+          "from_name": "applyMonsterRegeneration",
+          "to_name": "DerivedStats.hp",
+          "literal": "system.derivedStats.hp.value"
+        },
+        {
+          "source": "src-000196",
+          "line": 83,
+          "kind": "writes",
+          "from_name": "applyCombatEffect",
+          "to_name": "DerivedStats.hp",
+          "literal": "system.derivedStats.hp.value"
+        }
+      ]
+    }
+  ]
+}
