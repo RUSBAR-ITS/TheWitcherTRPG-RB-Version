@@ -1,0 +1,651 @@
+{
+  "dataset": "task-0006.018-expansion",
+  "basis": "Ожидания установлены чтением исходников и поздних доказательств до сравнения с поиском. Проверяется справочник; JS/мир не исполняются.",
+  "cases": [
+    {
+      "id": "ARM-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "SpData",
+        "--match",
+        "exact",
+        "--kind",
+        "class"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004214"
+        ]
+      },
+      "basis": "127:3 DataModel с четырьмя Number; шесть отдельных экземпляров в108:38–43."
+    },
+    {
+      "id": "ARM-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "ArmorData.location",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004223"
+        ]
+      },
+      "basis": "108:34 итоговый String, ранний ArrayField21 заменён повторным ключом."
+    },
+    {
+      "id": "ARM-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004193",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000290",
+          "ent-004194",
+          "ent-004195"
+        ]
+      },
+      "basis": "10:13 getList;29–59 выбор слоёв;73/74 два вызова SP."
+    },
+    {
+      "id": "ARM-04",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000310",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000282",
+          "ent-000302",
+          "ent-000868"
+        ]
+      },
+      "basis": "47:77,11:35,22:69; поиск всех имён подтвердил три внешних callers."
+    },
+    {
+      "id": "ARM-05",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004195",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004196"
+        ]
+      },
+      "basis": "10:124 возвращает делегированный результат четырёх SP."
+    },
+    {
+      "id": "ARM-06",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004200",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004205"
+        ]
+      },
+      "basis": "10:258–260 три Item вызова одной модели; Natural не вызывается."
+    },
+    {
+      "id": "ARM-07",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004205",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004200"
+        ]
+      },
+      "basis": "Поиск всего module/templates: только три вызова у слоёв в10."
+    },
+    {
+      "id": "ARM-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004239",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000108",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004205",
+          "ent-004207",
+          "ent-004212"
+        ]
+      },
+      "basis": "108:78,99–104,193/203/213/223/233/243: запись базы, не modified."
+    },
+    {
+      "id": "ARM-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004240",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000127"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004217",
+          "ent-004218"
+        ]
+      },
+      "basis": "127:27 копия базы,37 прибавление каждого улучшения."
+    },
+    {
+      "id": "ARM-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004241",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000590",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004290",
+          "ent-004294",
+          "ent-004298",
+          "ent-004302",
+          "ent-004306",
+          "ent-004310"
+        ]
+      },
+      "basis": "590:4/7/10/13/16/19 шесть formGroup разных зон."
+    },
+    {
+      "id": "ARM-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004244",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000126"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004221"
+        ]
+      },
+      "basis": "126:19 prepared OR; base12 пуст."
+    },
+    {
+      "id": "ARM-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004244",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000010"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004191"
+        ]
+      },
+      "basis": "10:216–218 ключ instance.type,223 Natural использует общий damage.type."
+    },
+    {
+      "id": "ARM-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003355",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000010"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004201"
+        ]
+      },
+      "basis": "10:274 один update общий для torso/rightArm/leftArm, max0."
+    },
+    {
+      "id": "ARM-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004230",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000280"
+        ]
+      },
+      "basis": "47:43–46 словарь и flat; getter effectsWithEnhancements не вызван."
+    },
+    {
+      "id": "ARM-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004268",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000010"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004199"
+        ]
+      },
+      "basis": "196:64 plain поле из статуса;10:249 ??0, не DamageProperties.schema."
+    },
+    {
+      "id": "ARM-16",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004264",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004191"
+        ]
+      },
+      "basis": "10:212 после AP early return; по общему damage.type."
+    },
+    {
+      "id": "ARM-17",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004218",
+        "--direction",
+        "out",
+        "--relation",
+        "reads",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004231",
+          "ent-004240",
+          "ent-004241",
+          "ent-004242",
+          "ent-004246"
+        ]
+      },
+      "basis": "127:32/34/37/38, оба modified поля +=stopping."
+    },
+    {
+      "id": "ARM-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000232",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "filter",
+          "zone",
+          "natural",
+          "worn",
+          "return"
+        ],
+        "next_steps": [
+          "zone"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "10:13–84 разделены отбор, switch, обход натуральной базы, два SP вызова и возврат."
+    },
+    {
+      "id": "ARM-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000233"
+      ],
+      "expected": {
+        "ids": [
+          "scan",
+          "check",
+          "return"
+        ],
+        "next_steps": [
+          "check"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "10:88–120 invalid returns undefined, не empty armorSet."
+    },
+    {
+      "id": "ARM-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000235"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "heavy",
+          "medium",
+          "light",
+          "natural",
+          "return"
+        ],
+        "next_steps": [
+          "heavy",
+          "natural"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "10:133–179 обход может пропустить только носимую часть."
+    },
+    {
+      "id": "ARM-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000237"
+      ],
+      "expected": {
+        "ids": [
+          "ap",
+          "multi",
+          "worn",
+          "natural",
+          "return"
+        ],
+        "next_steps": [
+          "multi"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "10:208–227 AP early return до multiplier и две независимые половины."
+    },
+    {
+      "id": "ARM-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000238"
+      ],
+      "expected": {
+        "ids": [
+          "bypass",
+          "amount",
+          "dispatch",
+          "return"
+        ],
+        "next_steps": [
+          "amount"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "10:230–246 bypassWorn возвращает0 до Monster; Roll условный, update не ждётся."
+    },
+    {
+      "id": "ARM-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000239"
+      ],
+      "expected": {
+        "ids": [
+          "amount",
+          "dispatch",
+          "return"
+        ],
+        "next_steps": [
+          "dispatch"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "10:248–255 direct spDamage; нет bypassWorn/crushing."
+    },
+    {
+      "id": "ARM-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000247"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "update"
+        ],
+        "next_steps": [
+          "update"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "108:76 guard modified,78 пишет base; превышение не записывается."
+    },
+    {
+      "id": "ARM-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000244"
+      ],
+      "expected": {
+        "ids": [
+          "base",
+          "items",
+          "slots",
+          "models",
+          "diagram"
+        ],
+        "next_steps": [
+          "items",
+          "slots"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "108:120–154 ID guard→items→слоты→nested derived→diagram."
+    },
+    {
+      "id": "ARM-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000252"
+      ],
+      "expected": {
+        "ids": [
+          "head",
+          "torso",
+          "leftArm",
+          "rightArm",
+          "leftLeg",
+          "rightLeg"
+        ],
+        "next_steps": [
+          "torso"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "108:189–247 шесть самостоятельных if, включая truthy max guard."
+    },
+    {
+      "id": "ARM-27",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000265"
+      ],
+      "expected": {
+        "ids": [
+          "location",
+          "head",
+          "torso",
+          "legs",
+          "shield"
+        ],
+        "next_steps": [
+          "head",
+          "torso",
+          "legs",
+          "shield"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "583:60–129 видимость и input, не отбор SP в Actor."
+    },
+    {
+      "id": "ARM-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004205"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00083.md",
+          "docs/issues/potential/issue-00282.md"
+        ]
+      },
+      "basis": "Guard и ожидание записи — два отдельных существующих issues."
+    },
+    {
+      "id": "ARM-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004263"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00278.md"
+        ]
+      },
+      "basis": "10:112 undefined,125 незащищённое чтение."
+    },
+    {
+      "id": "ARM-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004269"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00283.md"
+        ]
+      },
+      "basis": "14:159 число,160 деление текста; разные результаты."
+    },
+    {
+      "id": "ARM-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004331"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00090.md"
+        ]
+      },
+      "basis": "590:9–19 четыре отсутствующих ru hint, правильные поля сторон."
+    },
+    {
+      "id": "ARM-32",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004329"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00007.md"
+        ]
+      },
+      "basis": "211:174/175 и179/180 числовые ключи верны, подписи ног поменяны."
+    }
+  ]
+}

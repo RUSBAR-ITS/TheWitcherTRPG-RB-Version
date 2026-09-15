@@ -1120,7 +1120,7 @@
           "source": "src-000010",
           "path": "module/actor/mixins/armorMixin.js",
           "pilot_role": "neighbor",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000014",
@@ -1252,19 +1252,19 @@
           "source": "src-000108",
           "path": "module/data/item/armorData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000126",
           "path": "module/data/item/templates/armor/resistanceData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000127",
           "path": "module/data/item/templates/armor/spData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000129",
@@ -1330,7 +1330,7 @@
           "source": "src-000164",
           "path": "module/item/sheets/WitcherArmorSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000181",
@@ -1342,7 +1342,7 @@
           "source": "src-000182",
           "path": "module/item/sheets/configurations/WitcherArmorConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000193",
@@ -1384,7 +1384,7 @@
           "source": "src-000446",
           "path": "styles/armor-sheet.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000447",
@@ -1474,7 +1474,7 @@
           "source": "src-000583",
           "path": "templates/sheets/item/armor-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000585",
@@ -1486,7 +1486,7 @@
           "source": "src-000590",
           "path": "templates/sheets/item/configuration/tabs/armorGeneral.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000592",
@@ -1786,7 +1786,7 @@
           "source": "src-000128",
           "path": "module/data/item/templates/associatedDiagramData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000135",
@@ -1834,7 +1834,7 @@
           "source": "src-000190",
           "path": "module/item/sheets/mixins/associatedDiagramMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000191",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.017",
+    "task": "TASK-0006.018",
     "date": "2026-09-15",
-    "source_head": "6fa707f90e678e046b58dfae390246a202515f4f",
-    "dataset": "task-0006.017-expansion",
+    "source_head": "79a558ed3fd347d0825d91608f6669750ac0c4b6",
+    "dataset": "task-0006.018-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4191,
-      "relations": 10013,
-      "processes": 230
+      "entities": 4330,
+      "relations": 10834,
+      "processes": 268
     },
-    "primary_count": 111,
+    "primary_count": 119,
     "neighbor_count": 116,
-    "catalog_only_definitions": 388,
-    "boundary_count": 284,
+    "catalog_only_definitions": 380,
+    "boundary_count": 292,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4518,5 +4518,15 @@
     "ent-004150",
     "ent-004151",
     "ent-004192"
+  ],
+  "added_boundaries_018": [
+    "ent-004251",
+    "ent-004252",
+    "ent-004253",
+    "ent-004263",
+    "ent-004265",
+    "ent-004269",
+    "ent-004330",
+    "ent-004331"
   ]
 }
