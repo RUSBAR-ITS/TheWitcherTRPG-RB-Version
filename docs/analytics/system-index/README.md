@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.013](../../tasks/task-0006.013.md) связывает строки и меню инвентаря с количеством, использованием Item и применением расходников. [Покрытие и сверка](coverage-013.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.014](../../tasks/task-0006.014.md) связывает схемы и редакторы оружия, атаки, защиты и свойств урона с выбранными боевыми потребителями. [Покрытие и сверка](coverage-014.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 3696 сущностей, 8459 связей и 155 процессов (578 шагов, 957 переходов). Определения есть в 197/615 файлах: два словаря complete по строковым ключам, 195 файлов partial; роли 74 основных/123 смежных, 418 без определений. .001–.013 выполнены; следующая — [TASK-0006.014](../../tasks/task-0006.014.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
+**Текущий охват:** 3893 сущности, 8995 связей и 176 процессов (631 шаг, 1063 перехода). Определения есть в 213/615 файлах: два словаря complete по строковым ключам, 211 файлов partial; роли 88 основных/125 смежных, 402 без определений. .001–.014 выполнены; следующая — [TASK-0006.015](../../tasks/task-0006.015.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -125,7 +125,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.013 выполнены; .014–.023 стоят в согласованной очереди |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.014 выполнены; .015–.023 стоят в согласованной очереди |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
@@ -138,6 +138,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [Расширение .011](coverage-011.md) / [сущности](data/entities/expansion-011.jsonl) / [отношения](data/relations/expansion-011.jsonl) / [процессы](data/processes/expansion-011.jsonl) | Полные строки en/ru, выбранные потребители, шесть процессов и накопленная сверка |
 | [Расширение .012](coverage-012.md) / [сущности](data/entities/expansion-012.jsonl) / [отношения](data/relations/expansion-012.jsonl) / [процессы](data/processes/expansion-012.jsonl) | Общие модели/документы, миграции, контекст, enrichment, свойства Item и Drop |
 | [Расширение .013](coverage-013.md) / [сущности](data/entities/expansion-013.jsonl) / [отношения](data/relations/expansion-013.jsonl) / [процессы](data/processes/expansion-013.jsonl) | Инвентарь, quantity, расходники, редактор и передача Item |
+| [Расширение .014](coverage-014.md) / [сущности](data/entities/expansion-014.jsonl) / [отношения](data/relations/expansion-014.jsonl) / [процессы](data/processes/expansion-014.jsonl) | Схемы/редакторы оружия, атаки, защиты и урона, выбранные consumers |
 | [24 случая .010](examples/expansion-010-queries.json) / [тесты](tests/test_expansion_010.py) / [протокол](review-log.md#task-0006010) | Поля ввода/disabled, prepared/source, ID/строка и ожидание записи |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
@@ -149,7 +150,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены 104 тестовых метода (unittest, 478.882 с), включая 26 новых CLI-случаев; накоплено 247 CLI-примеров. Это проверки справочника, без исполнения игрового сценария. Проверены все 8459 отношений в обоих направлениях. Актуальность: 615 исходников, реестр, 690 документов и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006013). Исторические случаи и численные срезы отделены от накопленных ответов.
+Пройдены 111 тестовых методов (unittest, 550.549 с), включая 26 новых CLI-случаев; накоплено 273 CLI-примера. После переиспользования прежнего узла сохранения формы повторно пройдены все 7 тестов .014 (57.587 с), включая те же 26 запросов. Это проверки справочника, без исполнения игрового сценария. Проверены все 8995 отношений в обоих направлениях. Итоговая актуальность и сохранность — в [протоколе](review-log.md#task-0006014). Исторические случаи и численные срезы отделены от накопленных ответов.
 
 ## Практический маршрут по пилоту
 
@@ -178,3 +179,16 @@ python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 - process proc-000154 → поиск записи editor по отсутствующему id и недостижимый штатный update.
 
 Команды передаются query.py. [26 примеров](examples/expansion-013-queries.json), [тесты](tests/test_expansion_013.py), [покрытие](coverage-013.md). Сохранение в мире и работа нескольких клиентов остаются внешними границами.
+
+## Боевые свойства Item — .014
+
+- find DefenseProperties --match exact --kind class — реальная модель; одноимённые поля имеют других владельцев.
+- find DamageProperties.effects --match exact — словарь TypedObject; Array расходника имеет отдельного владельца.
+- field ent-003755 --access writes --scope src-000186 — три ручных операции записи по ключу словаря.
+- neighbors ent-003777 --direction out --relation reads — навыки цепочки ??, включая границу пустой строки.
+- process proc-000158 — подготовка улучшений, цикл разрешения ID и граница recipe.
+- process proc-000171 — dataset key/field, on→checked и update dot-path.
+- process proc-000173 — выбор Set по клавишам, пустой набор и служебные options.
+- process proc-000174 — последовательный AP/IAP и primitive/Array merge, без object effects.
+
+[26 примеров IQ-01–IQ-08](examples/expansion-014-queries.json) и [сверка](coverage-014.md) различают общий general.hbs, включаемый spell partial и внешнее сохранение формы. Полные боевые процессы продолжаются в следующих задачах.

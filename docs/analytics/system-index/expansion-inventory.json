@@ -28,7 +28,7 @@
           "source": "src-000156",
           "path": "module/data/migrations/damagePropertiesMigration.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000204",
@@ -946,7 +946,7 @@
           "source": "src-000183",
           "path": "module/item/sheets/configurations/WitcherConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000184",
@@ -958,7 +958,7 @@
           "source": "src-000186",
           "path": "module/item/sheets/configurations/WitcherPropertiesConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000192",
@@ -1060,7 +1060,7 @@
           "source": "src-000594",
           "path": "templates/sheets/item/configuration/tabs/general.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000595",
@@ -1270,49 +1270,49 @@
           "source": "src-000129",
           "path": "module/data/item/templates/combat/attackOptionsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000130",
           "path": "module/data/item/templates/combat/damagePropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000131",
           "path": "module/data/item/templates/combat/defenseOptionsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000132",
           "path": "module/data/item/templates/combat/defensePropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000133",
           "path": "module/data/item/templates/combat/skillAttackData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000134",
           "path": "module/data/item/templates/combat/skillDefenseData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000153",
           "path": "module/data/item/templates/weaponTypeData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000155",
           "path": "module/data/item/weaponData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000159",
@@ -1336,7 +1336,7 @@
           "source": "src-000181",
           "path": "module/item/sheets/WitcherWeaponSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000182",
@@ -1480,7 +1480,7 @@
           "source": "src-000585",
           "path": "templates/sheets/item/configuration/partials/attackOptionsPart.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000590",
@@ -1492,19 +1492,19 @@
           "source": "src-000592",
           "path": "templates/sheets/item/configuration/tabs/damagePropertiesConfiguration.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000593",
           "path": "templates/sheets/item/configuration/tabs/defensePropertiesConfiguration.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000613",
           "path": "templates/sheets/item/weapon-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         }
       ]
     },
@@ -1666,7 +1666,7 @@
           "source": "src-000187",
           "path": "module/item/sheets/configurations/WitcherSpellConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000200",
@@ -1726,7 +1726,7 @@
           "source": "src-000597",
           "path": "templates/sheets/item/configuration/tabs/spellGeneral.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000602",
@@ -2026,7 +2026,7 @@
           "source": "src-000148",
           "path": "module/data/item/templates/professionSkillData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000152",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.013",
+    "task": "TASK-0006.014",
     "date": "2026-09-15",
-    "source_head": "4bb8dd93abad2521698edd4a156d40737469a72c",
-    "dataset": "task-0006.013-expansion",
+    "source_head": "db4a9d63faabdfe75227f6f77d24d768c66b6571",
+    "dataset": "task-0006.014-expansion",
     "counts": {
       "sources": 615,
-      "entities": 3696,
-      "relations": 8459,
-      "processes": 155
+      "entities": 3893,
+      "relations": 8995,
+      "processes": 176
     },
-    "primary_count": 74,
-    "neighbor_count": 123,
-    "catalog_only_definitions": 418,
-    "boundary_count": 255,
+    "primary_count": 88,
+    "neighbor_count": 125,
+    "catalog_only_definitions": 402,
+    "boundary_count": 267,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4481,5 +4481,19 @@
     "ent-003658",
     "ent-003659",
     "ent-003663"
+  ],
+  "added_boundaries_014": [
+    "ent-003704",
+    "ent-003705",
+    "ent-003774",
+    "ent-003785",
+    "ent-003786",
+    "ent-003787",
+    "ent-003788",
+    "ent-003819",
+    "ent-003832",
+    "ent-003840",
+    "ent-003887",
+    "ent-003893"
   ]
 }

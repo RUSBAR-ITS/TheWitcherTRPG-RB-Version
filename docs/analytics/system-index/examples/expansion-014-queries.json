@@ -1,0 +1,491 @@
+{
+  "dataset": "task-0006.014-expansion",
+  "basis": "Ожидания установлены по текущим исходникам и позднему аудиту до запросов к CLI. ID взяты из адресованных определений.",
+  "cases": [
+    {
+      "id": "WPN-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "attackOptions()",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003697"
+        ]
+      },
+      "basis": "Фабрика src129:3, не метод подготовки модели."
+    },
+    {
+      "id": "WPN-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "DamageProperties.effects",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003755"
+        ]
+      },
+      "basis": "src130:49 TypedObjectField, отличный от массива ConsumablePropertiesData.effects."
+    },
+    {
+      "id": "WPN-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "DefenseProperties",
+        "--match",
+        "exact",
+        "--kind",
+        "class"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003702"
+        ]
+      },
+      "basis": "Имя фактического класса src132:3; суффикса Data нет. Поиск ограничен class: одноимённые поля имеют других владельцев."
+    },
+    {
+      "id": "WPN-04",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003774"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Legacy callback читает ключ, отсутствующий в современной WeaponData схеме; issue65."
+    },
+    {
+      "id": "WPN-05",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003707",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003381",
+          "ent-003697",
+          "ent-003698",
+          "ent-003701"
+        ]
+      },
+      "basis": "Явные вызовы super14/factory18/39/41; EmbeddedDataField не вызов фабрики."
+    },
+    {
+      "id": "WPN-06",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000654",
+        "--direction",
+        "in",
+        "--relation",
+        "embeds"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000667",
+          "ent-003737"
+        ]
+      },
+      "basis": "EmbeddedDataField Weapon40 и skillAttack22; остальные owners могут быть вне порции."
+    },
+    {
+      "id": "WPN-07",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003697",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003699",
+          "ent-003707"
+        ]
+      },
+      "basis": "Два раскрытых включения schema; полный список Item не обещается."
+    },
+    {
+      "id": "WPN-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003755",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000186"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003806",
+          "ent-003807",
+          "ent-003808"
+        ]
+      },
+      "basis": "PropertiesConfig:91/105/112, target из damage HBS; update без await."
+    },
+    {
+      "id": "WPN-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003743",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000592"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000910"
+        ]
+      },
+      "basis": "formGroup3 связывает schema поле с внешним writer именованных controls; не custom change."
+    },
+    {
+      "id": "WPN-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003755",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Полностью прочитанный merge328–355 не имеет object ветки; ammo/upgrade вызывают addEffects, реальный writer в src130."
+    },
+    {
+      "id": "WPN-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003731",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "В weaponAttack поле не встречается; чтение applyMeleeBonus не переименовывается."
+    },
+    {
+      "id": "WPN-12",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003884",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000196",
+          "ent-003725",
+          "ent-003726",
+          "ent-003727",
+          "ent-003728",
+          "ent-003729"
+        ]
+      },
+      "basis": "Item35/61/63/67: выбор Set → вычисляемое имя skill → optional alias."
+    },
+    {
+      "id": "WPN-13",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003790",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "WeaponAttack158/173, а не mergeDamageProperties."
+    },
+    {
+      "id": "WPN-14",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003777",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003726",
+          "ent-003727",
+          "ent-003728",
+          "ent-003729"
+        ]
+      },
+      "basis": "Weapon56 nullish coalescing; пустая строка завершает fallback."
+    },
+    {
+      "id": "WPN-15",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000170"
+      ],
+      "expected": {
+        "ids": [
+          "target",
+          "update"
+        ],
+        "next_steps": [
+          "update"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Config88–91 randomID, percentage0, update без ожидания."
+    },
+    {
+      "id": "WPN-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000171"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "checkbox",
+          "update"
+        ],
+        "next_steps": [
+          "checkbox"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Config95–105: ключ словаря, on→checked, dot-path; массива/findIndex нет."
+    },
+    {
+      "id": "WPN-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000172"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "update"
+        ],
+        "next_steps": [
+          "update"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Config109–112: key и -=null; внешняя поддержка legacy."
+    },
+    {
+      "id": "WPN-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000158"
+      ],
+      "expected": {
+        "ids": [
+          "super",
+          "reset",
+          "lookup",
+          "append",
+          "recipe"
+        ],
+        "next_steps": [
+          "reset",
+          "recipe"
+        ]
+      },
+      "basis": "Weapon70–91: reset лишь один раз, цикл lookup не сбрасывает накопленное."
+    },
+    {
+      "id": "WPN-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000173"
+      ],
+      "expected": {
+        "ids": [
+          "field",
+          "choose",
+          "payload"
+        ],
+        "next_steps": [
+          "choose"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "Нет поля → none; пустой Set → другая ветвь; служебные options264 сохраняются."
+    },
+    {
+      "id": "WPN-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000164"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "combine",
+          "copy"
+        ],
+        "next_steps": [
+          "combine",
+          "copy"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "Damage80–97: shallow copy или сложение процента truthy статуса; пустой dictionary → []."
+    },
+    {
+      "id": "WPN-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000174"
+      ],
+      "expected": {
+        "ids": [
+          "ap",
+          "iap",
+          "generic",
+          "return"
+        ],
+        "next_steps": [
+          "iap"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Порядок тела helper332–354: AP → проверка изменённого IAP → primitive/array; object не добавлен."
+    },
+    {
+      "id": "WPN-22",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003777"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00079.md"
+        ]
+      },
+      "basis": "Late issue79/Task3.042 связывает пустой skill с chooser; здесь полный chooser не исполнен."
+    },
+    {
+      "id": "WPN-23",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003887"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00069.md"
+        ]
+      },
+      "basis": "Объект effects не поддерживается generic merge; addEffects не является его внутренним вызовом."
+    },
+    {
+      "id": "WPN-24",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003820",
+        "--direction",
+        "in",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003883"
+        ]
+      },
+      "basis": "Реальный include46; general594 содержит собственные controls, не включает partial."
+    },
+    {
+      "id": "WPN-25",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003799",
+        "--direction",
+        "out",
+        "--relation",
+        "constructs"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003703"
+        ]
+      },
+      "basis": "WeaponSheet6 создаёт properties config для того же Item."
+    },
+    {
+      "id": "WPN-26",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003893"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Armor51 содержит модель, но не делегирующие методы отбора; штатный shield не объединяется с этим путём."
+    }
+  ]
+}
