@@ -1522,7 +1522,7 @@
           "source": "src-000038",
           "path": "module/actor/sheets/mixins/criticalWoundMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000041",
@@ -1540,19 +1540,19 @@
           "source": "src-000112",
           "path": "module/data/item/criticalWoundData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000167",
           "path": "module/item/sheets/WitcherCriticalWoundSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000455",
           "path": "styles/crit-wounds-table.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000485",
@@ -1582,13 +1582,13 @@
           "source": "src-000530",
           "path": "templates/partials/crit-wounds-table.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000599",
           "path": "templates/sheets/item/criticalWound-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         }
       ]
     },
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.020",
+    "task": "TASK-0006.021",
     "date": "2026-09-15",
-    "source_head": "e41ef6627b63a4ba024cc221fd6d2b7e07976148",
-    "dataset": "task-0006.020-expansion",
+    "source_head": "33b48126984ca2420f8d027ab0a49475710d23ac",
+    "dataset": "task-0006.021-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4473,
-      "relations": 11393,
-      "processes": 313
+      "entities": 4528,
+      "relations": 11605,
+      "processes": 334
     },
-    "primary_count": 136,
-    "neighbor_count": 107,
-    "catalog_only_definitions": 372,
-    "boundary_count": 318,
+    "primary_count": 142,
+    "neighbor_count": 104,
+    "catalog_only_definitions": 369,
+    "boundary_count": 329,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4558,5 +4558,18 @@
     "ent-004471",
     "ent-004472",
     "ent-004473"
+  ],
+  "added_boundaries_021": [
+    "ent-004475",
+    "ent-004520",
+    "ent-004521",
+    "ent-004522",
+    "ent-004523",
+    "ent-004524",
+    "ent-004525",
+    "ent-004526",
+    "ent-004527",
+    "ent-004528",
+    "ent-004529"
   ]
 }

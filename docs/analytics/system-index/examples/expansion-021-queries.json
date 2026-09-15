@@ -1,0 +1,637 @@
+{
+  "dataset": "task-0006.021-expansion",
+  "basis": "Ожидания установлены по коду/аудиту до сравнения с CLI. Это проверки справочника, не игрового исполнения.",
+  "cases": [
+    {
+      "id": "WOUND-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "CriticalWoundData.treat",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004481"
+        ]
+      },
+      "basis": "112:94 метод Item.system, не обработчик листа."
+    },
+    {
+      "id": "WOUND-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "CriticalWoundData.followUp",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004491"
+        ]
+      },
+      "basis": "112:30 DocumentUUIDField с type Item."
+    },
+    {
+      "id": "WOUND-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004481",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004480",
+          "ent-004495"
+        ]
+      },
+      "basis": "112:86 автоматическое завершение;38:16 ручная кнопка, оба без await."
+    },
+    {
+      "id": "WOUND-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004481",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000802",
+          "ent-001004",
+          "ent-004475"
+        ]
+      },
+      "basis": "112:97 единственный await,98/101 create/delete без await."
+    },
+    {
+      "id": "WOUND-05",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004480",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004502"
+        ]
+      },
+      "basis": "42:88 callback отдыха, forEach не ждёт."
+    },
+    {
+      "id": "WOUND-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004491",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000167"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004499"
+        ]
+      },
+      "basis": "167:19 UUID Item из drop."
+    },
+    {
+      "id": "WOUND-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004488",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003565"
+        ]
+      },
+      "basis": "43:144 общий Item.update при соответствующем dataset.field."
+    },
+    {
+      "id": "WOUND-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004488",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000112"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004480"
+        ]
+      },
+      "basis": "112:80 поле update payload; при treat не сохраняется."
+    },
+    {
+      "id": "WOUND-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004489",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000112"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004478"
+        ]
+      },
+      "basis": "112:50/53/56 prepared вычисление."
+    },
+    {
+      "id": "WOUND-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004489",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000112"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Модель не вызывает update для healingTime; prepared вычисление выделено отдельно."
+    },
+    {
+      "id": "WOUND-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004490",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000112"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004480"
+        ]
+      },
+      "basis": "112:75 запрос true внутри updates, не this.sterilized присваивание."
+    },
+    {
+      "id": "WOUND-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004485",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004120"
+        ]
+      },
+      "basis": "14:317 filter индексных записей treatment none."
+    },
+    {
+      "id": "WOUND-13",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004492",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Actor helper346: прямых callers в module не найдено; не метод модели."
+    },
+    {
+      "id": "WOUND-14",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004120",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000807",
+          "ent-003556",
+          "ent-004097",
+          "ent-004475"
+        ]
+      },
+      "basis": "14:326/335/336/343, только fromUuid ожидается."
+    },
+    {
+      "id": "WOUND-15",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004499",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003455"
+        ]
+      },
+      "basis": "172:130 условный dispatch для specialized sheet после Item documentName."
+    },
+    {
+      "id": "WOUND-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000316",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "index",
+          "count",
+          "roll",
+          "find",
+          "resolve",
+          "add",
+          "message"
+        ],
+        "next_steps": [
+          "count"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:315–343 index/filter/count/roll/UUID/add/chat."
+    },
+    {
+      "id": "WOUND-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000317",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "switch",
+          "simple",
+          "complex",
+          "difficult"
+        ],
+        "next_steps": [
+          "simple",
+          "complex",
+          "difficult"
+        ],
+        "next_exits": [
+          "unchanged"
+        ]
+      },
+      "basis": "14:346–355 возврат срока, нет default."
+    },
+    {
+      "id": "WOUND-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000319",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "base",
+          "actor"
+        ],
+        "next_steps": [
+          "actor"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "112:39super/actor42/расчёт43."
+    },
+    {
+      "id": "WOUND-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000320",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "switch",
+          "simple",
+          "complex",
+          "difficult"
+        ],
+        "next_steps": [
+          "simple",
+          "complex",
+          "difficult"
+        ],
+        "next_exits": [
+          "unchanged"
+        ]
+      },
+      "basis": "112:47–59 prepared writer и нет default."
+    },
+    {
+      "id": "WOUND-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000322",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "state",
+          "day",
+          "sterilize",
+          "updates",
+          "threshold",
+          "transition",
+          "persist"
+        ],
+        "next_steps": [
+          "day",
+          "threshold"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "112:69 treated,84 порог за его пределами."
+    },
+    {
+      "id": "WOUND-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000323",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "link",
+          "load",
+          "create",
+          "delete"
+        ],
+        "next_steps": [
+          "load",
+          "delete"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "112:95 ссылка;97 await;98/101 без await."
+    },
+    {
+      "id": "WOUND-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000329",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "resolve",
+          "transition"
+        ],
+        "next_steps": [
+          "transition"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "38:15UUID/16system.treat, нет guard."
+    },
+    {
+      "id": "WOUND-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000330",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "update"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "167:18 запись followUp без ожидания."
+    },
+    {
+      "id": "WOUND-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000331",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "heal"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "42:88 передача isSterilized без await."
+    },
+    {
+      "id": "WOUND-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000316",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "count"
+        ],
+        "next_steps": [
+          "resolve",
+          "roll"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "14:323 ровно один кандидат не требует roll/lesserEffect."
+    },
+    {
+      "id": "WOUND-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000322",
+        "--offset",
+        "4",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "threshold"
+        ],
+        "next_steps": [
+          "transition",
+          "persist"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "112:84 deadly исключает авто treat; threshold вне treatment."
+    },
+    {
+      "id": "WOUND-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004520"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00002.md",
+          "docs/issues/potential/issue-00289.md",
+          "docs/issues/potential/issue-00324.md"
+        ]
+      },
+      "basis": "14:315–335 pack/индекс/candidate guards отсутствуют."
+    },
+    {
+      "id": "WOUND-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004522"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00288.md"
+        ]
+      },
+      "basis": "Actor.addItem:260–273 quantity, не сброс состояния."
+    },
+    {
+      "id": "WOUND-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004523"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00121.md",
+          "docs/issues/potential/issue-00127.md"
+        ]
+      },
+      "basis": "112:94–102 разрешение и запись разделены."
+    },
+    {
+      "id": "WOUND-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004524"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00122.md",
+          "docs/issues/potential/issue-00127.md"
+        ]
+      },
+      "basis": "112:67–92 prepared день/updates/порог/ожидание."
+    },
+    {
+      "id": "WOUND-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004528"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00325.md"
+        ]
+      },
+      "basis": "Три JSON одной цепочки, не чтение runtime pack."
+    },
+    {
+      "id": "WOUND-32",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004529"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00054.md"
+        ]
+      },
+      "basis": "455:70–90 старый table selector;530и562 два HTMLсписка."
+    }
+  ]
+}

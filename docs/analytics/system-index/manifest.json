@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.020-expansion",
+  "dataset_id": "task-0006.021-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-15",
     "branch": "rusbar-main",
-    "head": "e41ef6627b63a4ba024cc221fd6d2b7e07976148",
+    "head": "33b48126984ca2420f8d027ab0a49475710d23ac",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -37,6 +37,7 @@
       "src-000032",
       "src-000034",
       "src-000036",
+      "src-000038",
       "src-000040",
       "src-000043",
       "src-000045",
@@ -77,6 +78,7 @@
       "src-000101",
       "src-000108",
       "src-000109",
+      "src-000112",
       "src-000126",
       "src-000127",
       "src-000129",
@@ -92,6 +94,7 @@
       "src-000159",
       "src-000160",
       "src-000164",
+      "src-000167",
       "src-000172",
       "src-000178",
       "src-000181",
@@ -118,6 +121,7 @@
       "src-000217",
       "src-000445",
       "src-000453",
+      "src-000455",
       "src-000481",
       "src-000482",
       "src-000483",
@@ -134,6 +138,7 @@
       "src-000521",
       "src-000522",
       "src-000527",
+      "src-000530",
       "src-000531",
       "src-000541",
       "src-000542",
@@ -148,10 +153,11 @@
       "src-000591",
       "src-000592",
       "src-000593",
+      "src-000599",
       "src-000610",
       "src-000613"
     ],
-    "semantic_scope": "Основных источников 136; определения в 243 файлах (en/ru complete, остальные partial); без определений 372. .020: chat listeners/menus, выбранные документы, query/socket/activeGM, periodic damage и границы crit/heal. Процессов 313.",
+    "semantic_scope": "Основных источников 142; определения в 246 файлах (en/ru complete, остальные partial); без определений 369. .021: выбор критической травмы, Item schema, UI, heal/treat/followUp, два расчёта срока и границы эффектов/отдыха. Процессов 334.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -175,7 +181,8 @@
       "data/entities/expansion-017.jsonl",
       "data/entities/expansion-018.jsonl",
       "data/entities/expansion-019.jsonl",
-      "data/entities/expansion-020.jsonl"
+      "data/entities/expansion-020.jsonl",
+      "data/entities/expansion-021.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -194,7 +201,8 @@
       "data/relations/expansion-017.jsonl",
       "data/relations/expansion-018.jsonl",
       "data/relations/expansion-019.jsonl",
-      "data/relations/expansion-020.jsonl"
+      "data/relations/expansion-020.jsonl",
+      "data/relations/expansion-021.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -213,10 +221,11 @@
       "data/processes/expansion-017.jsonl",
       "data/processes/expansion-018.jsonl",
       "data/processes/expansion-019.jsonl",
-      "data/processes/expansion-020.jsonl"
+      "data/processes/expansion-020.jsonl",
+      "data/processes/expansion-021.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-020-queries.json",
+  "query_examples": "examples/expansion-021-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -400,13 +409,23 @@
     "docs/issues/potential/issue-00255.md": "16cc3875e1f7ff6a216ae6e22aa4ec6427fcc81a7970fdacf936afd89fc20046",
     "docs/issues/potential/issue-00108.md": "5b198d371f823301f474d90891fbc646bd7b69e74c0a52735eaa1de57d427ada",
     "docs/issues/potential/issue-00239.md": "1e137dfe2b9238520411b5ced4a94a71a7f138f8a38de8e938f1a95d67978354",
-    "docs/analytics/system-index/coverage-020.md": "d912aff4ecc3401b2f0d30b631488c7ea526da363330fed874babc4f3c5863eb"
+    "docs/analytics/system-index/coverage-020.md": "d912aff4ecc3401b2f0d30b631488c7ea526da363330fed874babc4f3c5863eb",
+    "docs/issues/potential/issue-00288.md": "5396b5c76278d000ae518d9653dd6475f462b58421814464a0259418a3ea9ab1",
+    "docs/issues/potential/issue-00324.md": "fda4685517c3b49c07734a4c7221c2db6feba592e8dfcde621de89358e74c529",
+    "docs/issues/potential/issue-00122.md": "ddd2ea5c79eec3d66092ec76b867dc014561015f66e34c6ed7187fd8b8513cb8",
+    "docs/issues/potential/issue-00127.md": "9c546932dcfa750e104e262a70bd286ce0839f850492824b9ec15df223335474",
+    "docs/issues/potential/issue-00121.md": "32c7db7819f8b265e2d7d4062df73d9d0230212a4f1b1b222e2607121d59f767",
+    "docs/issues/potential/issue-00325.md": "236e70ed179ec7c53947c375ad407b7b26f83e102b3082cf83bfaa38c7efec0a",
+    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json.md": "cb852ce4f7622e041547dd6fc6817533a86f9359f46047b0dfb1ea428a51e7eb",
+    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json.md": "6d7db8abab96be4872cc69341b1eb86f11c99422ad7cdcbe45c5a2a5b0683a88",
+    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Treated__f7NaW1AMnrSLGkd3.json.md": "3e170de6d54d390aa72626a90c256b64b4d60e61b5158b8ab249b77eb1e3b9d0",
+    "docs/analytics/system-index/coverage-021.md": "37b1b82bfc893eab134542a0a9ab82a98c137a02b54177f757a0ae9302ac8a74"
   },
   "next_ids": {
     "source": 616,
-    "entity": 4475,
-    "relation": 11394,
-    "process": 314
+    "entity": 4530,
+    "relation": 11606,
+    "process": 335
   },
   "retired_ids": []
 }
