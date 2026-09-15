@@ -225,7 +225,10 @@ class EffectLifecycleExpansion(unittest.TestCase):
         for kind,rows in historical.items():
             self.assertTrue({r['id'] for r in rows}<=set(getattr(self.data,kind)))
         out=self.data.query(query.parser().parse_args(['processes','src-000047','--no-verify']))
-        self.assertEqual([p['id'] for p in out['items']],['proc-000004','proc-000005','proc-000049'])
+        # .013 adds inventory processes to this Actor file. Preserve the exact
+        # historical .008 result; later source participation is checked by its expansion.
+        historical=[p['id'] for p in out['items'] if int(p['id'].split('-')[1])<=49]
+        self.assertEqual(historical,['proc-000004','proc-000005','proc-000049'])
         out=self.data.query(query.parser().parse_args(['find','value','--match','exact','--kind','field','--limit','1','--no-verify']))
         # Localization aliases join six model fields; .012 adds createEnrichedText.result.value (dataUtils:4).
         def count_value_leaves(obj):

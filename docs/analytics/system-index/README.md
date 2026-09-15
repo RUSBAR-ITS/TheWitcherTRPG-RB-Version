@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.012](../../tasks/task-0006.012.md) связывает общие модели, документы Actor/Item и контекст листов с прежними расчётами/эффектами. [Покрытие и сверка](coverage-012.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.013](../../tasks/task-0006.013.md) связывает строки и меню инвентаря с количеством, использованием Item и применением расходников. [Покрытие и сверка](coverage-013.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 3554 сущности, 7907 связей и 134 процесса (503 шага, 818 переходов). Определения есть в 179/615 файлах: два словаря complete по строковым ключам, 177 файлов partial; роли 65 основных/114 смежных, 436 без определений. .001–.012 выполнены; следующая — [TASK-0006.013](../../tasks/task-0006.013.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
+**Текущий охват:** 3696 сущностей, 8459 связей и 155 процессов (578 шагов, 957 переходов). Определения есть в 197/615 файлах: два словаря complete по строковым ключам, 195 файлов partial; роли 74 основных/123 смежных, 418 без определений. .001–.013 выполнены; следующая — [TASK-0006.014](../../tasks/task-0006.014.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -22,7 +22,7 @@ python3 docs/analytics/system-index/query.py process proc-000012 --offset 16 --l
 python3 docs/analytics/system-index/query.py check --freshness
 ```
 
-Первый запрос различает Skill.activeEffectModifiers (ent-000012) и SkillItemData.activeEffectModifiers (ent-000188). У первого читатели — getter Skill.modifiedValue, actor.modifierMixin.addActiveEffects и форма edit-skills с disabled AE. Два skillMixin имеют разные файлы и ID: actor — ent-000299, sheet — ent-000305. processes ent-000012 показывает шаги getter, сборки модификаторов и отображения AE в форме; processes src-000047 — proc-000004/000005/000049.
+Первый запрос различает Skill.activeEffectModifiers (ent-000012) и SkillItemData.activeEffectModifiers (ent-000188). У первого читатели — getter Skill.modifiedValue, actor.modifierMixin.addActiveEffects и форма edit-skills с disabled AE. Два skillMixin имеют разные файлы и ID: actor — ent-000299, sheet — ent-000305. processes ent-000012 показывает шаги getter, сборки модификаторов и отображения AE в форме; processes src-000047 включает прежние proc-000004/000005/000049 и новые процессы .013; используйте пагинацию для полного ответа.
 
 Ответы содержат ID, адреса исходников/карточек, область и актуальность. Поиск по ID/символу/пути точный и чувствителен к регистру; aliases поддерживают русские термины, например find НАВЫК --match exact. Для программного чтения добавить --format json после команды.
 
@@ -125,7 +125,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.011 выполнены; остаток требует дальнейшей постановки |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.013 выполнены; .014–.023 стоят в согласованной очереди |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
@@ -137,6 +137,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [Расширение .010](coverage-010.md) / [сущности](data/entities/expansion-010.jsonl) / [отношения](data/relations/expansion-010.jsonl) / [процессы](data/processes/expansion-010.jsonl) | Формы/submit, ресурсы, старый CRUD и видимость навыков |
 | [Расширение .011](coverage-011.md) / [сущности](data/entities/expansion-011.jsonl) / [отношения](data/relations/expansion-011.jsonl) / [процессы](data/processes/expansion-011.jsonl) | Полные строки en/ru, выбранные потребители, шесть процессов и накопленная сверка |
 | [Расширение .012](coverage-012.md) / [сущности](data/entities/expansion-012.jsonl) / [отношения](data/relations/expansion-012.jsonl) / [процессы](data/processes/expansion-012.jsonl) | Общие модели/документы, миграции, контекст, enrichment, свойства Item и Drop |
+| [Расширение .013](coverage-013.md) / [сущности](data/entities/expansion-013.jsonl) / [отношения](data/relations/expansion-013.jsonl) / [процессы](data/processes/expansion-013.jsonl) | Инвентарь, quantity, расходники, редактор и передача Item |
 | [24 случая .010](examples/expansion-010-queries.json) / [тесты](tests/test_expansion_010.py) / [протокол](review-log.md#task-0006010) | Поля ввода/disabled, prepared/source, ID/строка и ожидание записи |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
@@ -148,7 +149,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены 95 тестовых методов и 221 CLI-случай, включая 24 новых .012; проверены все 7907 отношений в обоих направлениях. Актуальность: 615 исходников, реестр, 676 документов и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006012). Исторические случаи A01/A13/A23/A25/P08/P13/SUI-11 сохранены на соответствующих частях; текущие читатели и размеры проверяются отдельно. Игровое поведение не исполняется.
+Пройдены 104 тестовых метода (unittest, 478.882 с), включая 26 новых CLI-случаев; накоплено 247 CLI-примеров. Это проверки справочника, без исполнения игрового сценария. Проверены все 8459 отношений в обоих направлениях. Актуальность: 615 исходников, реестр, 690 документов и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006013). Исторические случаи и численные срезы отделены от накопленных ответов.
 
 ## Практический маршрут по пилоту
 
@@ -166,3 +167,14 @@ python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 - process proc-000129 → разрешение Drop; proc-000130 → четыре типа документов и границы handlers.
 
 Команды передаются query.py. [24 примера](examples/expansion-012-queries.json), [покрытие](coverage-012.md) и [протокол](review-log.md#task-0006012) различают подготовленные данные, запрос записи и внешнее сохранение. Полные инвентарь/бой/ремесло/восстановление раскрываются следующими задачами.
+
+## Инвентарь и расходники — .013
+
+- field ent-003383 --access writes → изменение количества: addItem/removeItem/inline edit.
+- process proc-000135 → ветви useItem; proc-000136/137 → объединение/создание и списание/удаление.
+- process proc-000140 → Drop, уникальность, prepared equipped и profession flags.
+- process proc-000149 → consume с HP, статусами, applySelf и сообщением; количество меняют его callers.
+- process proc-000152 → передача Item с барьером legacy callback и отсутствием подтверждения доставки.
+- process proc-000154 → поиск записи editor по отсутствующему id и недостижимый штатный update.
+
+Команды передаются query.py. [26 примеров](examples/expansion-013-queries.json), [тесты](tests/test_expansion_013.py), [покрытие](coverage-013.md). Сохранение в мире и работа нескольких клиентов остаются внешними границами.

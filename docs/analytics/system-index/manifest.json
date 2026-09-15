@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.012-expansion",
+  "dataset_id": "task-0006.013-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-15",
     "branch": "rusbar-main",
-    "head": "f3fb4869c73e00011e3238e0609d3b651dc5b337",
+    "head": "4bb8dd93abad2521698edd4a156d40737469a72c",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -29,8 +29,10 @@
       "src-000029",
       "src-000031",
       "src-000032",
+      "src-000034",
       "src-000036",
       "src-000040",
+      "src-000043",
       "src-000045",
       "src-000046",
       "src-000047",
@@ -53,8 +55,12 @@
       "src-000091",
       "src-000092",
       "src-000109",
+      "src-000136",
+      "src-000137",
+      "src-000157",
       "src-000172",
       "src-000178",
+      "src-000184",
       "src-000192",
       "src-000202",
       "src-000205",
@@ -67,6 +73,7 @@
       "src-000445",
       "src-000453",
       "src-000481",
+      "src-000496",
       "src-000506",
       "src-000521",
       "src-000522",
@@ -77,10 +84,12 @@
       "src-000543",
       "src-000544",
       "src-000547",
+      "src-000551",
       "src-000562",
+      "src-000591",
       "src-000610"
     ],
-    "semantic_scope": "Основных источников 65; определения в 179 файлах (en/ru complete, остальные partial); без определений 436. .012: общий каркас Actor/Item, схемы, контекст листов, свойства Item/Drop и enrichment. Процессов 134.",
+    "semantic_scope": "Основных источников 74; определения в 197 файлах (en/ru complete, остальные partial); без определений 418. .013: инвентарь/quantity/consume, поля расходников и редактор. Процессов 155.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -96,7 +105,8 @@
       "data/entities/expansion-009.jsonl",
       "data/entities/expansion-010.jsonl",
       "data/entities/expansion-011.jsonl",
-      "data/entities/expansion-012.jsonl"
+      "data/entities/expansion-012.jsonl",
+      "data/entities/expansion-013.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -107,7 +117,8 @@
       "data/relations/expansion-009.jsonl",
       "data/relations/expansion-010.jsonl",
       "data/relations/expansion-011.jsonl",
-      "data/relations/expansion-012.jsonl"
+      "data/relations/expansion-012.jsonl",
+      "data/relations/expansion-013.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -118,10 +129,11 @@
       "data/processes/expansion-009.jsonl",
       "data/processes/expansion-010.jsonl",
       "data/processes/expansion-011.jsonl",
-      "data/processes/expansion-012.jsonl"
+      "data/processes/expansion-012.jsonl",
+      "data/processes/expansion-013.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-012-queries.json",
+  "query_examples": "examples/expansion-013-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -192,13 +204,27 @@
     "docs/issues/potential/issue-00024.md": "642b7ab8e35d2432d3ed7bfe25e5d48639892794e8f456001a03718a8b3ef902",
     "docs/issues/potential/issue-00165.md": "408a261440e21758266973eb33d6045d6b78c4858c9f6a4947d3eada96e9c304",
     "docs/issues/potential/issue-00030.md": "488e5552ab23be8b969bf9612097d6a60ed04859b5280d7dda5bded74132acc2",
-    "docs/analytics/system-index/coverage-012.md": "e0e2f5595aa8a7587988b38382a3451458200b4b16fc656a4560af9a8870aa0f"
+    "docs/analytics/system-index/coverage-012.md": "e0e2f5595aa8a7587988b38382a3451458200b4b16fc656a4560af9a8870aa0f",
+    "docs/issues/potential/issue-00034.md": "33b53b17bf34f3110af4881ac6b82f6134042b3fd2a7c459172dbe31f66de377",
+    "docs/issues/potential/issue-00116.md": "be8d6b707313378473972a666af2904bc6e7c5dc244f551c2adc0851e6f5a441",
+    "docs/issues/potential/issue-00172.md": "73a5d0953690840dae9735b849688d4fe9eaa686f8070dfb1b90c3098b51c38c",
+    "docs/issues/potential/issue-00225.md": "54691653067465c434c9b6065f390dcb3a1114f8044504b09392c908427db703",
+    "docs/issues/potential/issue-00153.md": "260274511afb5587f711d6a9b0fd6c40e1fcddf68d8ff8a00ea64e33cf62ae01",
+    "docs/issues/potential/issue-00175.md": "019d5e1cde985c7a16a8cdef932c03f9d61b2659d27b27c7b79e8fba1d68f0e9",
+    "docs/issues/potential/issue-00091.md": "963ce64d47ff247d0cabe5dddd97293e433ee920f464f0b89bcfed8419d4f7b9",
+    "docs/issues/potential/issue-00092.md": "84b84187be87ac3d28041913f1ccabd8c09e181b63cef3a257782492d5759521",
+    "docs/issues/potential/issue-00174.md": "9c267c7ef0420102378f913ed90717743ed5a035ac465e07256b54d3acb8c2a3",
+    "docs/issues/potential/issue-00168.md": "1f253621764444fe790e311d37fe3effc7abdb83a9b168b4ca5bcfc484367a4b",
+    "docs/issues/potential/issue-00169.md": "59af737fcbfc9dc39bb526007f753b0c1e9f230f73c655e368cef5f443d2960e",
+    "docs/issues/potential/issue-00060.md": "453c02fdabd7bd079b2d2292f2247129c88e911f300094c43039f522dae100b0",
+    "docs/issues/potential/issue-00093.md": "fa0ff316e9235492ca7e27fc143520595bafe356bddfb856194219076897dfd6",
+    "docs/analytics/system-index/coverage-013.md": "fff63fd5e8752e365006e4b16c244276119b0eba5498c5524799af1496d8168a"
   },
   "next_ids": {
     "source": 616,
-    "entity": 3555,
-    "relation": 7908,
-    "process": 135
+    "entity": 3697,
+    "relation": 8460,
+    "process": 156
   },
   "retired_ids": []
 }

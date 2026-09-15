@@ -130,10 +130,18 @@ class DocumentsExpansion(unittest.TestCase):
     def test_addresses_reverse_links_coverage_and_process_participation(self):
         d=self.data
         self.assertEqual([len(self.new[k]) for k in ['entities','relations','processes']],[231,512,37])
-        self.assertEqual([len(d.sources),len(d.entities),len(d.relations),len(d.processes)],[615,3554,7907,134])
-        self.assertEqual(len(d.manifest['scope']['selected_sources']),65)
-        self.assertEqual(collections.Counter(s['coverage']['definitions']['state'] for s in d.sources.values()),
-                         {'complete':2,'partial':177,'not_indexed':436})
+        # The .012 numerical result is historical; .013 tests check current totals.
+        historical={kind:[json.loads(line) for part in d.manifest['parts'][kind]
+                          if not (re.search(r'expansion-(\d+)',part) and int(re.search(r'expansion-(\d+)',part)[1])>12)
+                          for line in (BASE/part).read_text().splitlines()]
+                    for kind in ['entities','relations','processes']}
+        self.assertEqual([len(d.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,3554,7907,134])
+        represented={e['location']['source'] for e in historical['entities'] if e['kind']!='boundary' and e['location']}
+        self.assertEqual(len(represented),179)
+        self.assertEqual((len(represented)-2,615-len(represented)),(177,436))
+        previous_primary=['src-000002', 'src-000003', 'src-000004', 'src-000005', 'src-000006', 'src-000007', 'src-000008', 'src-000019', 'src-000022', 'src-000023', 'src-000027', 'src-000028', 'src-000029', 'src-000031', 'src-000032', 'src-000036', 'src-000040', 'src-000045', 'src-000046', 'src-000047', 'src-000052', 'src-000054', 'src-000055', 'src-000056', 'src-000057', 'src-000080', 'src-000081', 'src-000082', 'src-000083', 'src-000084', 'src-000085', 'src-000086', 'src-000087', 'src-000088', 'src-000089', 'src-000090', 'src-000091', 'src-000092', 'src-000109', 'src-000172', 'src-000178', 'src-000192', 'src-000202', 'src-000205', 'src-000206', 'src-000209', 'src-000212', 'src-000214', 'src-000215', 'src-000216', 'src-000445', 'src-000453', 'src-000481', 'src-000506', 'src-000521', 'src-000522', 'src-000527', 'src-000531', 'src-000541', 'src-000542', 'src-000543', 'src-000544', 'src-000547', 'src-000562', 'src-000610']
+        self.assertEqual(len(previous_primary),65)
+        self.assertTrue(set(previous_primary)<=set(d.manifest['scope']['selected_sources']))
         for e in self.new['entities']:
             if e['location']:
                 loc=e['location'];self.assertLessEqual(loc['line_end'],len((ROOT/d.sources[loc['source']]['path']).read_text().splitlines()))

@@ -1,0 +1,514 @@
+{
+  "dataset": "task-0006.013-expansion",
+  "basis": "Ожидания установлены по текущим исходникам/позднему аудиту до проверки CLI; IDs взяты из определений, не из ответов поиска.",
+  "cases": [
+    {
+      "id": "INV-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "CommonItemData.quantity",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003383"
+        ]
+      },
+      "basis": "CommonItemData:7 StringField; имя и документ не являются владельцем quantity."
+    },
+    {
+      "id": "INV-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "item.consumeMixin.consume",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000867"
+        ]
+      },
+      "basis": "consumeMixin:4 прежнее определение .008, ID сохраняется."
+    },
+    {
+      "id": "INV-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003582",
+        "--direction",
+        "out",
+        "--relation",
+        "embeds"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003578"
+        ]
+      },
+      "basis": "consumableData:8 EmbeddedDataField получает класс."
+    },
+    {
+      "id": "INV-04",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003577",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000404",
+          "ent-000408",
+          "ent-000409"
+        ]
+      },
+      "basis": "Три явных spread consumable() в defineSchema; наличие специализированной формы проверяется отдельно."
+    },
+    {
+      "id": "INV-05",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000047"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003556",
+          "ent-003557"
+        ]
+      },
+      "basis": "Actor:262/268/281; addItem пишет существующий стек и новый source, removeItem остаток."
+    },
+    {
+      "id": "INV-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003565"
+        ]
+      },
+      "basis": "itemMixin:144, только при dataset.field=system.quantity."
+    },
+    {
+      "id": "INV-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000157"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Полностью прочитанное тело consume/createConsumeMessage: количество не записывают; пустой ответ ограничен src157."
+    },
+    {
+      "id": "INV-08",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003399",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003383",
+          "ent-003384",
+          "ent-003388",
+          "ent-003389"
+        ]
+      },
+      "basis": "calcWeight:19 читает ровно эти четыре поля; isHidden не участвует."
+    },
+    {
+      "id": "INV-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003555",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000867",
+          "ent-000868",
+          "ent-003557",
+          "ent-003597"
+        ]
+      },
+      "basis": "Actor:231/235/239/240; weapon/magic раньше isConsumable, только consume ветка списывает."
+    },
+    {
+      "id": "INV-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000867",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003555",
+          "ent-003634"
+        ]
+      },
+      "basis": "Два разных внешних caller: Actor239 и меню55."
+    },
+    {
+      "id": "INV-11",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000135"
+      ],
+      "expected": {
+        "ids": [
+          "lookup",
+          "type",
+          "weapon",
+          "spell",
+          "consume",
+          "deplete"
+        ],
+        "next_steps": [
+          "type"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "Нет Item → return; typed branches; consume/deplete запускаются без await."
+    },
+    {
+      "id": "INV-12",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000136"
+      ],
+      "expected": {
+        "ids": [
+          "lookup",
+          "merge",
+          "copy",
+          "quantity",
+          "create"
+        ],
+        "next_steps": [
+          "merge",
+          "copy"
+        ]
+      },
+      "basis": "Actor260–271: первое name/type и guard, две await записи; условный truthy numberOfItem."
+    },
+    {
+      "id": "INV-13",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000137"
+      ],
+      "expected": {
+        "ids": [
+          "subtract",
+          "delete",
+          "update"
+        ],
+        "next_steps": [
+          "delete",
+          "update"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Actor276–281: нет guard; <=0 delete, else update."
+    },
+    {
+      "id": "INV-14",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000140"
+      ],
+      "expected": {
+        "includes_ids": [
+          "owner",
+          "input",
+          "sort",
+          "unique",
+          "equipped",
+          "reset",
+          "profession",
+          "add"
+        ],
+        "next_steps": [
+          "input"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "itemMixin8–54: ownerguard, uniqueness, prepared weapon, последовательность profession."
+    },
+    {
+      "id": "INV-15",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000149"
+      ],
+      "expected": {
+        "ids": [
+          "properties",
+          "heal",
+          "hp",
+          "statuses",
+          "active",
+          "message"
+        ],
+        "next_steps": [
+          "heal",
+          "statuses"
+        ]
+      },
+      "basis": "consume5–16: await только calculateHealValue; далее вызовы без await, quantity отсутствует."
+    },
+    {
+      "id": "INV-16",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-000867",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000288",
+          "ent-000621",
+          "ent-001002",
+          "ent-003591",
+          "ent-003592",
+          "ent-003593"
+        ]
+      },
+      "basis": "Дословный набор вызовов строк8/9/13/14/15/16; status/AE прежние ID."
+    },
+    {
+      "id": "INV-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000157"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000867"
+        ]
+      },
+      "basis": "HP update владельца на строке9; helper рассчитывает ограниченную величину."
+    },
+    {
+      "id": "INV-18",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003658"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00091.md",
+          "docs/issues/potential/issue-00060.md"
+        ]
+      },
+      "basis": "ID барьер отделён от опыта on→checked с временным вручную заданным id."
+    },
+    {
+      "id": "INV-19",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003659"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "HBS591:9 ссылается на отсутствующее поле; это не новое поле модели."
+    },
+    {
+      "id": "INV-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000154"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "coerce",
+          "find",
+          "update"
+        ],
+        "next_steps": [
+          "coerce"
+        ]
+      },
+      "basis": "Config50–67: присваивание по индексу -1 раньше update; результат не обозначен успешным."
+    },
+    {
+      "id": "INV-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000152"
+      ],
+      "expected": {
+        "ids": [
+          "target",
+          "prompt",
+          "role",
+          "local",
+          "socket",
+          "deplete"
+        ],
+        "next_steps": [
+          "prompt"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Menu118: неверный второй legacy аргумент ломает вход до prompt; прямой корректный вызов имеет дальнейшие ветви."
+    },
+    {
+      "id": "INV-22",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003640"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00168.md",
+          "docs/issues/potential/issue-00169.md"
+        ]
+      },
+      "basis": "Аргументы legacy и отсутствие ACK — две разные проблемы."
+    },
+    {
+      "id": "INV-23",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003640",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000323",
+          "ent-000805",
+          "ent-003556",
+          "ent-003557",
+          "ent-003650"
+        ]
+      },
+      "basis": "Menu132/143/144/146/149; caller сам не вызывает query."
+    },
+    {
+      "id": "INV-24",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003556",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--scope",
+        "src-000217"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003652"
+        ]
+      },
+      "basis": "socketHook18 resolved Actor[message.type](...data), при addItem; не query."
+    },
+    {
+      "id": "INV-25",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003653",
+        "--direction",
+        "out",
+        "--relation",
+        "extends"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000825"
+        ]
+      },
+      "basis": "Конфигурация184:3; это отдельный лист того же Item."
+    },
+    {
+      "id": "INV-26",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "inventory-items-summary.context.hasQuantity",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003670"
+        ]
+      },
+      "basis": "HBS551:13 управляет подписью колонки, не полем количества документа."
+    }
+  ]
+}

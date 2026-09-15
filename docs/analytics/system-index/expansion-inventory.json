@@ -34,7 +34,7 @@
           "source": "src-000204",
           "path": "module/scripts/socket/socketMessage.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000209",
@@ -208,7 +208,7 @@
           "source": "src-000142",
           "path": "module/data/item/templates/itemEffectData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000205",
@@ -568,13 +568,13 @@
           "source": "src-000034",
           "path": "module/actor/sheets/interactions/itemContextMenu.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000043",
           "path": "module/actor/sheets/mixins/itemMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000044",
@@ -742,25 +742,25 @@
           "source": "src-000551",
           "path": "templates/sheets/actor/partials/character/inventory/inventory-items-summary.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000556",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-mounts.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000557",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000558",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000560",
@@ -820,13 +820,13 @@
           "source": "src-000571",
           "path": "templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000576",
           "path": "templates/sheets/actor/tabs/tab-inventory.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         }
       ]
     },
@@ -880,13 +880,13 @@
           "source": "src-000136",
           "path": "module/data/item/templates/consumableData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000137",
           "path": "module/data/item/templates/consumePropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000154",
@@ -898,7 +898,7 @@
           "source": "src-000157",
           "path": "module/item/mixins/consumeMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000158",
@@ -952,7 +952,7 @@
           "source": "src-000184",
           "path": "module/item/sheets/configurations/WitcherConsumableConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000186",
@@ -1006,7 +1006,7 @@
           "source": "src-000496",
           "path": "templates/chat/item/consume.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000498",
@@ -1054,7 +1054,7 @@
           "source": "src-000591",
           "path": "templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000594",
@@ -1462,13 +1462,13 @@
           "source": "src-000553",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-armors.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000559",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-weapons.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000583",
@@ -1900,19 +1900,19 @@
           "source": "src-000552",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-alchemical.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000554",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-components.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000555",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000582",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.012",
+    "task": "TASK-0006.013",
     "date": "2026-09-15",
-    "source_head": "f3fb4869c73e00011e3238e0609d3b651dc5b337",
-    "dataset": "task-0006.012-expansion",
+    "source_head": "4bb8dd93abad2521698edd4a156d40737469a72c",
+    "dataset": "task-0006.013-expansion",
     "counts": {
       "sources": 615,
-      "entities": 3554,
-      "relations": 7907,
-      "processes": 134
+      "entities": 3696,
+      "relations": 8459,
+      "processes": 155
     },
-    "primary_count": 65,
-    "neighbor_count": 114,
-    "catalog_only_definitions": 436,
-    "boundary_count": 241,
+    "primary_count": 74,
+    "neighbor_count": 123,
+    "catalog_only_definitions": 418,
+    "boundary_count": 255,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4465,5 +4465,21 @@
     "ent-003540",
     "ent-003541",
     "ent-003542"
+  ],
+  "added_boundaries_013": [
+    "ent-003595",
+    "ent-003596",
+    "ent-003598",
+    "ent-003599",
+    "ent-003601",
+    "ent-003605",
+    "ent-003606",
+    "ent-003607",
+    "ent-003608",
+    "ent-003645",
+    "ent-003651",
+    "ent-003658",
+    "ent-003659",
+    "ent-003663"
   ]
 }
