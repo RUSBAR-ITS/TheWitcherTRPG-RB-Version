@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.006](../../tasks/task-0006.006.md) дополняет прошедший [приёмку пилот](pilot-acceptance.md) регистрациями документов, листов, настроек и входами системы. [Границы расширения](coverage-006.md). Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.007](../../tasks/task-0006.007.md) дополняет справочник редактором ActiveEffect, мастером изменений, подсказками и связями системной вкладки. [Границы расширения](coverage-007.md). Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 615 исходников в каталоге; 27 основных и 81 смежный файл имеют частичные определения, 507 пока только в каталоге определений. В графе 636 сущностей, 1601 связь и 23 процесса (145 шагов, 200 переходов). [Расширение .006](coverage-006.md), [исторический пилот](pilot-coverage.md), [очередь](expansion-plan.md#первые-порции-расширения). Следующая — [TASK-0006.007](../../tasks/task-0006.007.md), редактор ActiveEffect и мастер изменений; полный индекс остаётся незавершённым.
+**Текущий охват:** 615 исходников в каталоге; 33 основных и 87 смежных файлов имеют частичные определения, 495 пока без определений. В графе 768 сущностей, 1905 связей и 32 процесса (187 шагов, 269 переходов). [Расширение .007](coverage-007.md), [исторический пилот](pilot-coverage.md), [очередь](expansion-plan.md#первые-порции-расширения). Следующая — [TASK-0006.008](../../tasks/task-0006.008.md), категории, перенос и статусы эффектов; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -54,6 +54,17 @@ python3 docs/analytics/system-index/query.py process proc-000021
 
 Настройки — узлы setting; readers ищутся через neighbors. `proc-000021` показывает ready, ожидание getIndex и условия достижения сокета. Полный набор [16 примеров](examples/expansion-006-queries.json) и [покрытие](coverage-006.md) отделяют декларации манифеста, CONFIG-регистрации и реальное выполнение.
 
+## Поиск по расширению .007
+
+- find WitcherActiveEffectConfig.wizardAction --match exact → ent-000697, фактический класс листа и действие.
+- neighbors ent-000639 --direction out --relation calls → семь групп базовых подсказок.
+- field ent-000715 --access reads → чтение prepared changes в OK-callback.
+- neighbors ent-000699 --direction out --relation refers → прежний _preUpdate через внешнее обновление.
+- process proc-000026 и process proc-000027 → открытие мастера и отдельное подтверждение.
+- details ent-000726 → условия системной вкладки и различие отсутствующего поля/перевода.
+
+Команды передаются тому же query.py; добавить --format json для машинной выдачи. [20 точных примеров](examples/expansion-007-queries.json), [покрытие](coverage-007.md), [процессы](coverage-007.md#процессы-и-границы), [внешние контракты](coverage-007.md#проверенные-внешние-контракты). Раскрытие подсказки до поля модели не означает применения бонуса.
+
 ## Материалы
 
 | Материал | Содержание |
@@ -67,9 +78,11 @@ python3 docs/analytics/system-index/query.py process proc-000021
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006 выполнена, .007–.011 planned |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.007 выполнены, .008–.011 planned |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
+| [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
+| [20 случаев .007](examples/expansion-007-queries.json) / [тесты](tests/test_expansion_007.py) / [протокол](review-log.md#task-0006007) | Проверки расширения и внешних контрактов |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
 Подробные объяснения остаются в [аудите](../code-audit/README.md); назначение справочника задано [требованиями](../system-index-requirements.md).

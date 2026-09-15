@@ -141,11 +141,19 @@ class RegistrationExpansion(unittest.TestCase):
                     self.assertTrue(s['location']['line_start']<=r['location']['line_start']<=s['location']['line_end'],(p['id'],s['id'],rid))
 
     def test_coverage_counts_and_old_ids_are_preserved(self):
-        self.assertEqual([len(self.data.sources),len(self.data.entities),len(self.data.relations),len(self.data.processes)],[615,636,1601,23])
-        self.assertEqual(len(self.data.manifest['scope']['selected_sources']),27)
-        represented=[s for s in self.data.sources.values() if s['coverage']['definitions']['included']]
+        # Fixed .006 counts describe its parts, not a ceiling for later expansions.
+        historical = {kind: [json.loads(line)
+                             for part in (f'examples/{kind}.jsonl', f'data/{kind}/pilot.jsonl',
+                                          f'data/{kind}/expansion-006.jsonl')
+                             for line in (BASE/part).read_text().splitlines()]
+                      for kind in ('entities','relations','processes')}
+        self.assertEqual([len(self.data.sources), *map(len, historical.values())], [615,636,1601,23])
+        selected = [4,8,19,22,45,47,52,55,80,81,82,83,84,85,86,87,88,89,90,91,202,209,212,214,215,216,481]
+        self.assertTrue({f'src-{n:06}' for n in selected} <= set(self.data.manifest['scope']['selected_sources']))
+        represented = {e['location']['source'] for e in historical['entities']
+                       if e['kind']!='boundary' and e.get('location')}
         self.assertEqual(len(represented),108)
-        self.assertTrue(all(s['coverage']['definitions']['state']=='partial' for s in represented))
+        self.assertTrue(all(self.data.sources[s]['coverage']['definitions']['state']=='partial' for s in represented))
         self.assertEqual(self.data.sources['src-000209']['coverage']['definitions']['state'],'partial')
         self.assertTrue(all(f'ent-{n:06}' in self.data.entities for n in range(1,401)))
         self.assertTrue(all(f'rel-{n:06}' in self.data.relations for n in range(1,978)))

@@ -136,19 +136,19 @@
           "source": "src-000005",
           "path": "module/activeEffect/WitcherActiveEffectSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000006",
           "path": "module/activeEffect/mixins/baseMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000007",
           "path": "module/activeEffect/mixins/temporaryItemImprovementMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000008",
@@ -226,7 +226,7 @@
           "source": "src-000445",
           "path": "styles/activeEffect.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000488",
@@ -244,19 +244,19 @@
           "source": "src-000506",
           "path": "templates/dialog/activeEffects/wizard.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000531",
           "path": "templates/partials/effect-part.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000541",
           "path": "templates/sheets/activeEffect/system-specific.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000562",
@@ -1174,19 +1174,19 @@
           "source": "src-000059",
           "path": "module/data/actor/templates/character/attackStatsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000062",
           "path": "module/data/actor/templates/character/general/damage/damageModificationData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000063",
           "path": "module/data/actor/templates/character/general/damage/damageTypeModificationData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000073",
@@ -1276,7 +1276,7 @@
           "source": "src-000130",
           "path": "module/data/item/templates/combat/damagePropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000131",
@@ -1972,7 +1972,7 @@
           "source": "src-000077",
           "path": "module/data/actor/templates/common/lifepathData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000116",
@@ -2410,7 +2410,7 @@
           "source": "src-000474",
           "path": "styles/system-styles.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000480",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.006",
+    "task": "TASK-0006.007",
     "date": "2026-09-15",
-    "source_head": "983e6fda1d00beb87d22dba5c41aac518d2b3310",
-    "dataset": "task-0006.006-expansion",
+    "source_head": "3770b84f90ed1230abba5e1f133e5ccd716be3c8",
+    "dataset": "task-0006.007-expansion",
     "counts": {
-      "entities": 636,
-      "relations": 1601,
       "sources": 615,
-      "processes": 23
+      "entities": 768,
+      "relations": 1905,
+      "processes": 32
     },
-    "primary_count": 27,
-    "neighbor_count": 81,
-    "catalog_only_definitions": 507,
-    "boundary_count": 95,
+    "primary_count": 33,
+    "neighbor_count": 87,
+    "catalog_only_definitions": 495,
+    "boundary_count": 129,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4307,5 +4307,41 @@
     "ent-000610",
     "ent-000613",
     "ent-000631"
+  ],
+  "added_boundaries_007": [
+    "ent-000649",
+    "ent-000670",
+    "ent-000671",
+    "ent-000672",
+    "ent-000673",
+    "ent-000676",
+    "ent-000678",
+    "ent-000689",
+    "ent-000690",
+    "ent-000691",
+    "ent-000692",
+    "ent-000701",
+    "ent-000702",
+    "ent-000704",
+    "ent-000705",
+    "ent-000706",
+    "ent-000708",
+    "ent-000709",
+    "ent-000710",
+    "ent-000711",
+    "ent-000714",
+    "ent-000715",
+    "ent-000716",
+    "ent-000717",
+    "ent-000719",
+    "ent-000720",
+    "ent-000721",
+    "ent-000722",
+    "ent-000725",
+    "ent-000727",
+    "ent-000728",
+    "ent-000730",
+    "ent-000731",
+    "ent-000737"
   ]
 }

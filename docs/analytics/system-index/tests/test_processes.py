@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from test_query import BASE, ROOT, query, run_cli, save_seed_view
+from test_query import BASE, ROOT, query, run_cli, save_seed_view, save_pilot_view
 
 
 class ProcessParticipation(unittest.TestCase):
@@ -20,6 +20,9 @@ class ProcessParticipation(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data = query.Dataset()
+        cls.pilot = tempfile.TemporaryDirectory(prefix="witcher-index-process-pilot-")
+        cls.addClassCleanup(cls.pilot.cleanup)
+        cls.pilot_manifest = save_pilot_view(Path(cls.pilot.name))
 
     def ask(self, *args):
         return self.data.query(query.parser().parse_args([*args, "--no-verify"]))
@@ -28,7 +31,7 @@ class ProcessParticipation(unittest.TestCase):
         cases = json.loads((BASE / "examples/process-queries.json").read_text())["cases"]
         for case in cases:
             with self.subTest(case=case["id"]):
-                run = run_cli([*case["command"], "--format", "json"])
+                run = run_cli(["--dataset", str(self.pilot_manifest), *case["command"], "--format", "json"])
                 self.assertEqual(run.returncode, 0, run.stderr)
                 out = json.loads(run.stdout)
                 first = out["items"][0] if out["items"] else {}

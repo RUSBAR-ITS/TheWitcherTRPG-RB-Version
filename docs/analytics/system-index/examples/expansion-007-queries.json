@@ -1,0 +1,416 @@
+{
+  "dataset": "task-0006.007-expansion",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "AE-01",
+      "question": "IQ-01/02: действие фактического класса листа.",
+      "command": [
+        "find",
+        "WitcherActiveEffectConfig.wizardAction",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000697"
+        ],
+        "locations": [
+          [
+            "src-000005",
+            59
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-02",
+      "question": "IQ-02: определение поставщика характеристик.",
+      "command": [
+        "find",
+        "getStatSuggestions",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000640"
+        ],
+        "locations": [
+          [
+            "src-000006",
+            14
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-03",
+      "question": "IQ-02: поставщик временного улучшения.",
+      "command": [
+        "find",
+        "getItemDamageSuggestions",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000648"
+        ],
+        "locations": [
+          [
+            "src-000007",
+            8
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-04",
+      "question": "IQ-03/04: семь вызовов базового коллектора.",
+      "command": [
+        "neighbors",
+        "ent-000639",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000640",
+          "ent-000641",
+          "ent-000642",
+          "ent-000643",
+          "ent-000644",
+          "ent-000645",
+          "ent-000646"
+        ]
+      }
+    },
+    {
+      "id": "AE-05",
+      "question": "IQ-05: отдельный и групповой список используют один поставщик.",
+      "command": [
+        "neighbors",
+        "ent-000643",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000639",
+          "ent-000642"
+        ]
+      }
+    },
+    {
+      "id": "AE-06",
+      "question": "IQ-02: объявление строковой формулы урона.",
+      "command": [
+        "show",
+        "ent-000666"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000666"
+        ],
+        "locations": [
+          [
+            "src-000155",
+            29
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-07",
+      "question": "IQ-02: строка oilEffect в DamageProperties.",
+      "command": [
+        "show",
+        "ent-000668"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000668"
+        ],
+        "locations": [
+          [
+            "src-000130",
+            51
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-08",
+      "question": "IQ-06: автор корневого update-payload.",
+      "command": [
+        "field",
+        "ent-000718",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000699"
+        ],
+        "locations": [
+          [
+            "src-000005",
+            92
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-09",
+      "question": "IQ-06: читатель prepared changes.",
+      "command": [
+        "field",
+        "ent-000715",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000699"
+        ],
+        "locations": [
+          [
+            "src-000005",
+            84
+          ]
+        ]
+      }
+    },
+    {
+      "id": "AE-10",
+      "question": "IQ-03: callback запрашивает внешнее обновление.",
+      "command": [
+        "neighbors",
+        "ent-000699",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000719"
+        ]
+      }
+    },
+    {
+      "id": "AE-11",
+      "question": "IQ-04: косвенное продолжение к прежнему _preUpdate.",
+      "command": [
+        "neighbors",
+        "ent-000699",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000319"
+        ]
+      }
+    },
+    {
+      "id": "AE-12",
+      "question": "IQ-07: два типа и неподдержанный тип.",
+      "command": [
+        "process",
+        "proc-000026",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "type"
+        ],
+        "next_steps": [
+          "base",
+          "temporary",
+          "render"
+        ]
+      }
+    },
+    {
+      "id": "AE-13",
+      "question": "IQ-07: открытие prompt не ожидает подтверждения.",
+      "command": [
+        "process",
+        "proc-000026",
+        "--offset",
+        "4",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "prompt"
+        ],
+        "next_exits": [
+          "returned"
+        ]
+      }
+    },
+    {
+      "id": "AE-14",
+      "question": "IQ-07: @skill ожидает prompt, закрытие отклоняет.",
+      "command": [
+        "process",
+        "proc-000029",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "prompt"
+        ],
+        "next_steps": [
+          "ok"
+        ],
+        "next_exits": [
+          "cancelled"
+        ]
+      }
+    },
+    {
+      "id": "AE-15",
+      "question": "IQ-07: условие дополнительных formGroup.",
+      "command": [
+        "process",
+        "proc-000032",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "item"
+        ],
+        "next_steps": [
+          "self-target"
+        ],
+        "next_exits": [
+          "returned"
+        ]
+      }
+    },
+    {
+      "id": "AE-16",
+      "question": "IQ-08: позднее уточнение частичного payload сохранено.",
+      "command": [
+        "details",
+        "ent-000319"
+      ],
+      "expected": {
+        "includes_anchors": [
+          "r005-03",
+          "уточнение-task-0003010"
+        ]
+      }
+    },
+    {
+      "id": "AE-17",
+      "question": "IQ-08: отсутствующее поле и отсутствующий перевод различены.",
+      "command": [
+        "details",
+        "ent-000726"
+      ],
+      "expected": {
+        "includes_anchors": [
+          "r005-12"
+        ],
+        "includes_refs": [
+          "docs/issues/potential/issue-00318.md",
+          "docs/issues/potential/issue-00053.md"
+        ]
+      }
+    },
+    {
+      "id": "AE-18",
+      "question": "IQ-01/02: несовпадение commonspeech/commonsp остаётся границей.",
+      "command": [
+        "find",
+        "baseMixin.getSkillSuggestions/commonspeech",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000672"
+        ],
+        "resolution": "dynamic"
+      }
+    },
+    {
+      "id": "AE-19",
+      "question": "IQ-04/05: у CSS h4 нет соответствия в проверенной разметке с p.",
+      "command": [
+        "neighbors",
+        "ent-000764",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "ids": []
+      }
+    },
+    {
+      "id": "AE-20",
+      "question": "IQ-04: обход всех слотов Actor/Item без фильтра по текущему типу.",
+      "command": [
+        "neighbors",
+        "ent-000720",
+        "--direction",
+        "out",
+        "--relation",
+        "refers",
+        "--limit",
+        "40"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000459",
+          "ent-000460",
+          "ent-000461",
+          "ent-000462",
+          "ent-000463",
+          "ent-000464",
+          "ent-000465",
+          "ent-000466",
+          "ent-000467",
+          "ent-000468",
+          "ent-000469",
+          "ent-000470",
+          "ent-000471",
+          "ent-000472",
+          "ent-000473",
+          "ent-000474",
+          "ent-000475",
+          "ent-000476",
+          "ent-000477",
+          "ent-000478",
+          "ent-000479",
+          "ent-000480",
+          "ent-000481",
+          "ent-000482",
+          "ent-000483",
+          "ent-000484"
+        ]
+      }
+    }
+  ]
+}
