@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.010](../../tasks/task-0006.010.md) дополняет справочник редакторами характеристик/навыков, ручными ресурсами, старыми модификаторами Item и настройкой видимости. [Покрытие](coverage-010.md). Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.011](../../tasks/task-0006.011.md) дополняет справочник всеми строковыми ключами en/ru и проверенными потребителями. [Покрытие и накопленная сверка](coverage-011.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 615 исходников; 58 основных и 93 смежных файла имеют частичные определения, 464 пока без определений. В графе 1008 сущностей, 2671 связь и 91 процесс (390 шагов, 595 переходов). [Расширение .010](coverage-010.md), [исторический пилот](pilot-coverage.md), [очередь](expansion-plan.md#первые-порции-расширения). Следующая — [TASK-0006.011](../../tasks/task-0006.011.md), локализации en/ru и их потребители; полный индекс остаётся незавершённым.
+**Текущий охват:** 615 исходников; определения есть в 154 файлах (2 complete по строковым ключам, 152 partial), роли 60 основных/94 смежных, 461 без определений. В графе 3323 сущности, 7395 связей и 97 процессов (400 шагов, 608 переходов). [Расширение .011](coverage-011.md), [исторический пилот](pilot-coverage.md), [остаток](expansion-plan.md). Очередь .006–.011 выполнена; дальнейшая ещё не поставлена, полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -87,6 +87,19 @@ python3 docs/analytics/system-index/query.py process proc-000021
 
 [22 проверочных запроса](examples/expansion-009-queries.json), [контексты и границы](coverage-009.md), [шесть внешних контрактов](coverage-009.md#проверенные-внешние-контракты). PARTS, предзагрузка, render, подписка и click учитываются отдельно.
 
+## Поиск переводов после .011
+
+Точные ключи чувствительны к регистру; подписи ищутся как нормализуемые aliases. Одинаковые тексты дают отдельные результаты с языком и raw JSON Pointer. Для ограничения словарём CLI принимает ID источника: src-000002 (en), src-000003 (ru).
+
+~~~bash
+python3 docs/analytics/system-index/query.py find WITCHER.Settings.criticalWoundsPack --match exact --kind field
+python3 docs/analytics/system-index/query.py find WITCHER.Actor.Skill.Intelligence --match exact --scope src-000003
+python3 docs/analytics/system-index/query.py neighbors ent-001827 --direction in --relation refers
+python3 docs/analytics/system-index/query.py process proc-000093
+~~~
+
+[24 проверенных примера](examples/expansion-011-queries.json) охватывают все восемь IQ; [coverage-011](coverage-011.md) объясняет состав словарей, fallback, placeholders и границы потребителей.
+
 ## Поиск по расширению .010
 
 - find CONFIG.WITCHER.statLabels --match exact → ent-000946; field ent-000946 --access writes → два производителя общей карты.
@@ -112,7 +125,7 @@ python3 docs/analytics/system-index/query.py process proc-000021
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.010 выполнены, .011 planned |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.011 выполнены; остаток требует дальнейшей постановки |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
@@ -122,6 +135,7 @@ python3 docs/analytics/system-index/query.py process proc-000021
 | [Расширение .009](coverage-009.md) / [сущности](data/entities/expansion-009.jsonl) / [отношения](data/relations/expansion-009.jsonl) / [процессы](data/processes/expansion-009.jsonl) | Контексты листов, строки builtin/Item, старый ID/selector и форма навыка |
 | [22 случая .009](examples/expansion-009-queries.json) / [тесты](tests/test_expansion_009.py) / [протокол](review-log.md#task-0006009) | PARTS/preload, девять/семь групп, hash/dataset, имя/ID и внешняя запись |
 | [Расширение .010](coverage-010.md) / [сущности](data/entities/expansion-010.jsonl) / [отношения](data/relations/expansion-010.jsonl) / [процессы](data/processes/expansion-010.jsonl) | Формы/submit, ресурсы, старый CRUD и видимость навыков |
+| [Расширение .011](coverage-011.md) / [сущности](data/entities/expansion-011.jsonl) / [отношения](data/relations/expansion-011.jsonl) / [процессы](data/processes/expansion-011.jsonl) | Полные строки en/ru, выбранные потребители, шесть процессов и накопленная сверка |
 | [24 случая .010](examples/expansion-010-queries.json) / [тесты](tests/test_expansion_010.py) / [протокол](review-log.md#task-0006010) | Поля ввода/disabled, prepared/source, ID/строка и ожидание записи |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
@@ -133,7 +147,7 @@ python3 docs/analytics/system-index/query.py process proc-000021
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены 80 тестовых методов, включая 24 новых CLI-случая .010; проверены все 2671 отношение в обоих направлениях. Актуальность: 615 исходников, реестр, 663 документа и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006010). Исторические размеры и случаи A13/A23/P08/P13/SUI-11 сохранены на соответствующих частях; новые читатели и текущие размеры проверяются отдельно. Игровое поведение не исполняется.
+Пройдены 87 тестовых методов и 197 CLI-случаев, включая 24 новых .011; проверены все 7395 отношений в обоих направлениях. Актуальность: 615 исходников, реестр, 668 документов и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006011). Исторические случаи A01/A13/A23/A25/P08/P13/SUI-11 сохранены на соответствующих частях; текущие читатели и размеры проверяются отдельно. Игровое поведение не исполняется.
 
 ## Практический маршрут по пилоту
 

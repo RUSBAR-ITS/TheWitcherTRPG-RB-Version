@@ -177,9 +177,11 @@ class EditingExpansion(unittest.TestCase):
                     self.assertTrue(s['location']['line_start']<=r['location']['line_start']<=s['location']['line_end'])
             out=self.data.query(query.parser().parse_args(['processes',p['entry']['entity'],'--limit','100','--no-verify']))
             self.assertIn(p['id'],[x['id'] for x in out['items']])
-        self.assertEqual([len(self.data.sources),len(self.data.entities),len(self.data.relations),len(self.data.processes)],[615,1008,2671,91])
-        self.assertEqual(len(self.data.manifest['scope']['selected_sources']),58)
-        self.assertEqual(sum(bool(s['coverage']['definitions']['included']) for s in self.data.sources.values()),151)
+        historical={kind:[json.loads(l) for part in self.data.manifest['parts'][kind] if 'expansion-011' not in part
+                          for l in (BASE/part).read_text().splitlines()] for kind in ['entities','relations','processes']}
+        self.assertEqual([len(self.data.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,1008,2671,91])
+        represented={e['location']['source'] for e in historical['entities'] if e['location'] and e['kind']!='boundary'}
+        self.assertEqual(len(represented),151)
 
     def test_external_contract_hashes_and_submission_fields(self):
         text=(BASE/'coverage-010.md').read_text();rows=re.findall(r'^\| (/opt/foundryvtt/[^|]+) \| [^|]+ \| ([0-9a-f]{64}) \|$',text,re.M)

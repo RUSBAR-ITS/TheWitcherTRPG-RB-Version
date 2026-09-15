@@ -227,7 +227,11 @@ class EffectLifecycleExpansion(unittest.TestCase):
         out=self.data.query(query.parser().parse_args(['processes','src-000047','--no-verify']))
         self.assertEqual([p['id'] for p in out['items']],['proc-000004','proc-000005','proc-000049'])
         out=self.data.query(query.parser().parse_args(['find','value','--match','exact','--kind','field','--limit','1','--no-verify']))
-        self.assertEqual(out['page']['total'],6)
+        # Localization text aliases join the six model fields after .011.
+        def count_value_leaves(obj):
+            return sum(count_value_leaves(v) if isinstance(v,dict) else int(isinstance(v,str) and v.casefold()=='value') for v in obj.values())
+        aliases=sum(count_value_leaves(json.loads((ROOT/('lang/'+lang+'.json')).read_text())) for lang in ['en','ru'])
+        self.assertEqual(out['page']['total'],6+aliases)
         self.assertTrue(out['page']['truncated'])
 
     def test_external_contract_hashes_and_core_source_distinctions(self):

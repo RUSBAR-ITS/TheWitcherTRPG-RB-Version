@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.010-expansion",
+  "dataset_id": "task-0006.011-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-15",
     "branch": "rusbar-main",
-    "head": "eb54b0b80d45570dc3e2b24360dc88ed1176740c",
+    "head": "41fe9cb905534016fc97e2fb06180c9aa5e991c3",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -14,6 +14,8 @@
     "registry_sha256": "f5ab0b1453d786ea13e84966f1a9f03950d3f2beb7d6dfb6f2a8ac009239ff28",
     "source_count": 615,
     "selected_sources": [
+      "src-000002",
+      "src-000003",
       "src-000004",
       "src-000005",
       "src-000006",
@@ -73,7 +75,7 @@
       "src-000562",
       "src-000610"
     ],
-    "semantic_scope": "Основных источников: 58; частичные определения в 151 файлах, без определений 464. .010 — редакторы, видимость навыков, ручные ресурсы и старый CRUD modifiers. Процессов: 91.",
+    "semantic_scope": "Основных источников 60; определения в 154 файлах (en/ru complete, остальные partial); без определений 461. .011: все строковые ключи en/ru и выбранные потребители. Процессов 97.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -87,7 +89,8 @@
       "data/entities/expansion-007.jsonl",
       "data/entities/expansion-008.jsonl",
       "data/entities/expansion-009.jsonl",
-      "data/entities/expansion-010.jsonl"
+      "data/entities/expansion-010.jsonl",
+      "data/entities/expansion-011.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -96,7 +99,8 @@
       "data/relations/expansion-007.jsonl",
       "data/relations/expansion-008.jsonl",
       "data/relations/expansion-009.jsonl",
-      "data/relations/expansion-010.jsonl"
+      "data/relations/expansion-010.jsonl",
+      "data/relations/expansion-011.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -105,10 +109,11 @@
       "data/processes/expansion-007.jsonl",
       "data/processes/expansion-008.jsonl",
       "data/processes/expansion-009.jsonl",
-      "data/processes/expansion-010.jsonl"
+      "data/processes/expansion-010.jsonl",
+      "data/processes/expansion-011.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-010-queries.json",
+  "query_examples": "examples/expansion-011-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -166,13 +171,18 @@
     "docs/issues/potential/issue-00197.md": "2f7fb32731f1e0bc8a6462d018dcc1a3978646db071abcf633e5c48f033aeea4",
     "docs/issues/potential/issue-00194.md": "3913bdc10771412c4190a55d73077d656e216e157b97dd6f26563b68df5ffa14",
     "docs/issues/potential/issue-00195.md": "ffa91b63ccd71ce0222aa50cea525f83d2f87777fdecdee1f05b265f7f6ff499",
-    "docs/analytics/system-index/coverage-010.md": "ec36145f371dc95d9efe2c46c7fac327e3cfe187f71e75e67d05ad3894c4fc3b"
+    "docs/analytics/system-index/coverage-010.md": "ec36145f371dc95d9efe2c46c7fac327e3cfe187f71e75e67d05ad3894c4fc3b",
+    "docs/issues/potential/issue-00193.md": "3ff206140e58409ded3fb23847477d563e737196842690f7c26c8de68cc17aa7",
+    "docs/issues/potential/issue-00317.md": "713a5322e82d7d9c49487b9caf762ab7e19be72d8bc6f7322b2a7d35a96ce1af",
+    "docs/issues/potential/issue-00016.md": "2d3ab59ae08da6b0b860182d56ec561e58c13a6f02dba90ea6911e03efb2576b",
+    "docs/issues/potential/issue-00178.md": "2746a35e10f8886e621e70bd28a39293b74851202167146dc9e4820886c7b024",
+    "docs/analytics/system-index/coverage-011.md": "0e9683d296548a26e569699990ad84ffa485333157b6e6dc7b93edc21affc9f0"
   },
   "next_ids": {
     "source": 616,
-    "entity": 1009,
-    "relation": 2672,
-    "process": 92
+    "entity": 3324,
+    "relation": 7396,
+    "process": 98
   },
   "retired_ids": []
 }

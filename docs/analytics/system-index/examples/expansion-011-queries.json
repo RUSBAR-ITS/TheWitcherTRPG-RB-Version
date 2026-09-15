@@ -1,0 +1,440 @@
+{
+  "dataset": "task-0006.011-expansion",
+  "basis": "Ожидания установлены из raw JSON, кода и R016-20/21/22 до CLI.",
+  "cases": [
+    {
+      "id": "LOC-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "WITCHER.Settings.criticalWoundsPack",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--scope",
+        "src-000002"
+      ],
+      "expected": {
+        "ids": [
+          "ent-001827"
+        ]
+      },
+      "basis": "Словарь: точный строковый лист Settings.criticalWoundsPack."
+    },
+    {
+      "id": "LOC-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "Critical Wounds Compendium",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--scope",
+        "src-000002"
+      ],
+      "expected": {
+        "ids": [
+          "ent-001827"
+        ]
+      },
+      "basis": "Точный текст листа из исходного JSON; одинаковые подписи проверяются раздельно."
+    },
+    {
+      "id": "LOC-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "WITCHER.Settings.criticalWoundsPack",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--scope",
+        "src-000003"
+      ],
+      "expected": {
+        "ids": [
+          "ent-002966"
+        ]
+      },
+      "basis": "Словарь: точный строковый лист Settings.criticalWoundsPack."
+    },
+    {
+      "id": "LOC-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "Справочник критических ранений",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--scope",
+        "src-000003"
+      ],
+      "expected": {
+        "ids": [
+          "ent-002966"
+        ]
+      },
+      "basis": "Точный текст листа из исходного JSON; одинаковые подписи проверяются раздельно."
+    },
+    {
+      "id": "LOC-05",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003308",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003298",
+          "src-000003"
+        ]
+      },
+      "basis": "system.json:121–123, декларация языка и внешний загрузчик."
+    },
+    {
+      "id": "LOC-06",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-000176",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-002011"
+        ]
+      },
+      "basis": "BooleanField.label:25; в ru такого ключа нет."
+    },
+    {
+      "id": "LOC-07",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-000729",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003300"
+        ]
+      },
+      "basis": "system-specific:2, условная цепочка в ядро toFormGroup."
+    },
+    {
+      "id": "LOC-08",
+      "question": "IQ-05",
+      "command": [
+        "field",
+        "ent-002011",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000541"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000729"
+        ]
+      },
+      "basis": "Доступ формы при существующем DataField; это не сохранение Bool."
+    },
+    {
+      "id": "LOC-09",
+      "question": "IQ-06",
+      "command": [
+        "neighbors",
+        "ent-003297",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003319",
+          "ent-003320"
+        ]
+      },
+      "basis": "Два format-вызова chat:41 и currencyConverter:69 с разными payload."
+    },
+    {
+      "id": "LOC-10",
+      "question": "IQ-06",
+      "command": [
+        "processes",
+        "ent-002965"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000095"
+        ]
+      },
+      "basis": "Ключ читается в шаге предупреждения; full conversion вне процесса."
+    },
+    {
+      "id": "LOC-11",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000095",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "next_steps": [
+          "message"
+        ],
+        "next_exits": [
+          "continue"
+        ]
+      },
+      "basis": "currencyConverter:67: amount>currentFrom."
+    },
+    {
+      "id": "LOC-12",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000096",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "next_exits": [
+          "external"
+        ]
+      },
+      "basis": "chat:47: ChatMessage.create без await."
+    },
+    {
+      "id": "LOC-13",
+      "question": "IQ-07",
+      "command": [
+        "processes",
+        "ent-000010",
+        "--scope",
+        "src-000522"
+      ],
+      "expected": {
+        "includes_ids": [
+          "proc-000094"
+        ]
+      },
+      "basis": "HBS:4 runtime Skill.label → внешний lookup."
+    },
+    {
+      "id": "LOC-14",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.skills.levelUp",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--scope",
+        "src-000003"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Отсутствует только ru; en имеет строку. Issue193 с поздними поправками."
+    },
+    {
+      "id": "LOC-15",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.Actor.Skill.Intelligence",
+        "--match",
+        "exact",
+        "--kind",
+        "field",
+        "--scope",
+        "src-000003"
+      ],
+      "expected": {
+        "ids": [
+          "ent-002272"
+        ]
+      },
+      "basis": "Dotted property Actor[\"Skill.Intelligence\"] становится полным runtime key."
+    },
+    {
+      "id": "LOC-16",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.DamageType.silver",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-001389"
+        ]
+      },
+      "basis": "DamageType.silver есть только en; другой ru путь не alias."
+    },
+    {
+      "id": "LOC-17",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.Damage.silver",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-002450"
+        ]
+      },
+      "basis": "Русский путь отличен от запрашиваемого DamageType.silver."
+    },
+    {
+      "id": "LOC-18",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.skills.firstAid.label",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Регистр ключей значим; firstaid не firstAid (issue16)."
+    },
+    {
+      "id": "LOC-19",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.skills.firstaid.label",
+        "--match",
+        "exact",
+        "--kind",
+        "field"
+      ],
+      "expected": {
+        "ids": [
+          "ent-001907",
+          "ent-003045"
+        ]
+      },
+      "basis": "Корректный lower-case ключ есть в обоих словарях."
+    },
+    {
+      "id": "LOC-20",
+      "question": "IQ-08",
+      "command": [
+        "find",
+        "WITCHER.Weapon.Availability",
+        "--match",
+        "exact",
+        "--kind",
+        "boundary"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003318"
+        ]
+      },
+      "basis": "Literal tags:14/127, нет определения строки в обоих словарях."
+    },
+    {
+      "id": "LOC-21",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003323"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Повреждение: ключ из damageTypeModification; возможные runtime значения не исчерпаны."
+    },
+    {
+      "id": "LOC-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000093",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "next_exits": [
+          "external",
+          "missing"
+        ]
+      },
+      "basis": "Отсутствующее поле отдельно от отсутствующего ru label."
+    },
+    {
+      "id": "LOC-23",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-001827",
+        "--direction",
+        "in",
+        "--relation",
+        "refers",
+        "--scope",
+        "src-000216"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000570",
+          "src-000216"
+        ]
+      },
+      "basis": "name:3: файловый literal и конкретная настройка; оба не определяют перевод."
+    },
+    {
+      "id": "LOC-24",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-002011"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00318.md"
+        ]
+      },
+      "basis": "Связанное issue о ru; поле не подменено alias."
+    }
+  ]
+}

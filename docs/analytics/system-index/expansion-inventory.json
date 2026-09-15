@@ -2152,7 +2152,7 @@
           "source": "src-000013",
           "path": "module/actor/mixins/currencyConverterMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000021",
@@ -2386,13 +2386,13 @@
           "source": "src-000002",
           "path": "lang/en.json",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000003",
           "path": "lang/ru.json",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000048",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.010",
+    "task": "TASK-0006.011",
     "date": "2026-09-15",
-    "source_head": "eb54b0b80d45570dc3e2b24360dc88ed1176740c",
-    "dataset": "task-0006.010-expansion",
+    "source_head": "41fe9cb905534016fc97e2fb06180c9aa5e991c3",
+    "dataset": "task-0006.011-expansion",
     "counts": {
       "sources": 615,
-      "entities": 1008,
-      "relations": 2671,
-      "processes": 91
+      "entities": 3323,
+      "relations": 7395,
+      "processes": 97
     },
-    "primary_count": 58,
-    "neighbor_count": 93,
-    "catalog_only_definitions": 464,
-    "boundary_count": 193,
+    "primary_count": 60,
+    "neighbor_count": 94,
+    "catalog_only_definitions": 461,
+    "boundary_count": 214,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4413,5 +4413,28 @@
     "ent-001005",
     "ent-001006",
     "ent-001007"
+  ],
+  "added_boundaries_011": [
+    "ent-003297",
+    "ent-003298",
+    "ent-003299",
+    "ent-003300",
+    "ent-003301",
+    "ent-003302",
+    "ent-003303",
+    "ent-003304",
+    "ent-003305",
+    "ent-003306",
+    "ent-003309",
+    "ent-003310",
+    "ent-003311",
+    "ent-003312",
+    "ent-003313",
+    "ent-003314",
+    "ent-003315",
+    "ent-003318",
+    "ent-003321",
+    "ent-003322",
+    "ent-003323"
   ]
 }

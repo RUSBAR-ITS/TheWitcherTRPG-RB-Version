@@ -15,14 +15,18 @@ class SkillUIExpansion(unittest.TestCase):
         cls.addClassCleanup(cls.historical.cleanup)
         directory=Path(cls.historical.name)
         manifest=json.loads((BASE/'manifest.json').read_text())
-        rows={kind:[json.loads(l) for part in manifest['parts'][kind] if 'expansion-010' not in part
+        rows={kind:[json.loads(l) for part in manifest['parts'][kind] if not any('expansion-'+str(n).zfill(3) in part for n in [10,11])
                     for l in (BASE/part).read_text().splitlines()] for kind in ('entities','relations','processes')}
+        allowed_relations={r['id'] for r in rows['relations']}
+        for process in rows['processes']:
+            for step in process['steps']:
+                step['relations']=[rid for rid in step['relations'] if rid in allowed_relations]
         rows['sources']=[json.loads(l) for l in (BASE/'sources.jsonl').read_text().splitlines()]
         manifest['parts']={kind:[kind+'.jsonl'] for kind in rows}
         manifest.pop('query_examples',None)
         manifest['dataset_id']='task-0006.009-historical-case'
         manifest['next_ids']=dict(source=616,entity=936,relation=2400,process=64)
-        excluded={f'src-{n:06}' for n in [32,46,40,542,543,544,547,453]}
+        excluded={f'src-{n:06}' for n in [2,3,32,46,40,542,543,544,547,453]}
         manifest['scope']['selected_sources']=[s for s in manifest['scope']['selected_sources'] if s not in excluded]
         manifest['scope']['semantic_scope']='Исторические части до .009; используется для SUI-11.'
         for src in rows['sources']:
@@ -142,9 +146,9 @@ class SkillUIExpansion(unittest.TestCase):
             self.assertNotIn(token,'\n'.join(custom))
         for token in ['<input','readonly','disabled']:self.assertNotIn(token,'\n'.join(builtin))
         self.assertEqual(self.data.entities['ent-000928']['kind'],'boundary')
-        self.assertEqual([r['to'] for r in self.edges('ent-000916','reads')],['ent-000912','ent-000928'])
+        self.assertEqual([r['to'] for r in self.edges('ent-000916','reads')],['ent-000912','ent-000928','ent-003310'])
         self.assertEqual({r['to'] for r in self.edges('ent-000915','reads')},
-                         {'ent-000010','ent-000013','ent-000014','ent-000015','ent-000016','ent-000922'})
+                         {'ent-000010','ent-000013','ent-000014','ent-000015','ent-000016','ent-000922','ent-003309'})
 
     def test_render_listener_dispatch_and_old_dom_contract(self):
         a=self.source('src-000027');c=self.source('src-000029');v=self.source('src-000028')

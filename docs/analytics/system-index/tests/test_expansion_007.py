@@ -151,7 +151,8 @@ class EffectEditorExpansion(unittest.TestCase):
         self.assertEqual([i+1 for i,l in enumerate(hbs) if '{{formGroup' in l],[2,4,5,7,8])
         self.assertIn('{{#if isItemEffect}}',hbs[2])
         self.assertIn('{{#unless document.isTemporaryItemImprovement}}',hbs[5])
-        self.assertEqual([r['to'] for r in self.edges('ent-000729','reads')],['ent-000176','ent-000731'])
+        # .011 adds the concrete English label; the Temporary missing-field stays distinct.
+        self.assertEqual([r['to'] for r in self.edges('ent-000729','reads')],['ent-000176','ent-000731','ent-002011'])
         temporary=(ROOT/'module/data/activeEffects/witcherTemporaryItemImprovementData.js').read_text()
         self.assertNotIn('applyAfterCalculations',temporary)
         self.assertIn('applySelf',temporary);self.assertIn('applyOnTarget',temporary)
