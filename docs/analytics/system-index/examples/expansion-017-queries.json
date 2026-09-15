@@ -1,0 +1,533 @@
+{
+  "dataset": "task-0006.017-expansion",
+  "basis": "Ожидания заданы по текущим исходникам и поздним доказательствам до сравнения с CLI; это тесты справочника без игрового исполнения.",
+  "cases": [
+    {
+      "id": "DMG-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "DamageInstance",
+        "--match",
+        "exact",
+        "--kind",
+        "class"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004158"
+        ]
+      },
+      "basis": "197:1 обычный класс без imports/DataModel."
+    },
+    {
+      "id": "DMG-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "DamageMessageData.damage.properties",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004127"
+        ]
+      },
+      "basis": "96:22 SchemaField override Embedded свойства общей фабрики."
+    },
+    {
+      "id": "DMG-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004123",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003708",
+          "ent-003905",
+          "ent-003916"
+        ]
+      },
+      "basis": "96:16/21/23 три реальных вызова определения схемы."
+    },
+    {
+      "id": "DMG-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003889",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000373",
+          "ent-000374",
+          "ent-000375",
+          "ent-003792",
+          "ent-003946",
+          "ent-004122"
+        ],
+        "excludes_to_ids": [
+          "ent-000369"
+        ]
+      },
+      "basis": "159:27/40/47/83/84: обычный Roll, отдельный флаг."
+    },
+    {
+      "id": "DMG-05",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003889",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003597",
+          "ent-004014"
+        ]
+      },
+      "basis": "25:301 прямой путь и195:23 путь сообщения атаки; владельцы сохранены из .015."
+    },
+    {
+      "id": "DMG-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003906",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000159"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Весь159 прочитан: rollDamage не пишет system.rollTotal."
+    },
+    {
+      "id": "DMG-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004133",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000159"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004144"
+        ]
+      },
+      "basis": "159:65/68 только callback копии эффекта назначает boolean."
+    },
+    {
+      "id": "DMG-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004133",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000869"
+        ]
+      },
+      "basis": "14:28 фильтр applied автоматического пути."
+    },
+    {
+      "id": "DMG-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004143",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003889"
+        ]
+      },
+      "basis": "159:84 после toMessage; setFlag не ожидается."
+    },
+    {
+      "id": "DMG-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004149",
+        "--direction",
+        "in",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004147"
+        ]
+      },
+      "basis": "159:100 возвращает button.form.elements.newDamage.value."
+    },
+    {
+      "id": "DMG-11",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004148",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-001248",
+          "ent-002392",
+          "ent-004146"
+        ]
+      },
+      "basis": "509:2/4 реальные локализации и переданное значение."
+    },
+    {
+      "id": "DMG-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004172",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004187"
+        ]
+      },
+      "basis": "14:40/43 прямой writer; setter там не вызван."
+    },
+    {
+      "id": "DMG-13",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004162",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Поиск всего module/templates не нашёл production-вызовов setter."
+    },
+    {
+      "id": "DMG-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004173",
+        "--access",
+        "computes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004159"
+        ]
+      },
+      "basis": "197:7 единственная найденная запись; result.blockedBySp не это поле."
+    },
+    {
+      "id": "DMG-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004174",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000014"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004188"
+        ]
+      },
+      "basis": "14:185 запись промежуточной стадии."
+    },
+    {
+      "id": "DMG-16",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004165",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004190"
+        ]
+      },
+      "basis": "14:273 текст контекста одиночного сообщения."
+    },
+    {
+      "id": "DMG-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004182",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004184",
+          "ent-004185"
+        ]
+      },
+      "basis": "194:16/28 первый DOM итог, parseInt; отдельный field от system.rollTotal."
+    },
+    {
+      "id": "DMG-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004126",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000194"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004178"
+        ]
+      },
+      "basis": "194:104 читает prepared system.damage по ссылке."
+    },
+    {
+      "id": "DMG-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000219",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "formula",
+          "empty",
+          "strike",
+          "location",
+          "preprocess",
+          "effects",
+          "payload",
+          "message",
+          "flag"
+        ],
+        "next_steps": [
+          "empty"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "159:21–88 формула и effects до Roll; toMessage ожидается, flag нет."
+    },
+    {
+      "id": "DMG-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000220"
+      ],
+      "expected": {
+        "ids": [
+          "label",
+          "status",
+          "percentage",
+          "compare",
+          "finish"
+        ],
+        "next_steps": [
+          "status"
+        ],
+        "next_exits": []
+      },
+      "basis": "159:51–74 статусная ссылка раньше процента, applied только при truthy percentage."
+    },
+    {
+      "id": "DMG-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000217"
+      ],
+      "expected": {
+        "ids": [
+          "render",
+          "prompt",
+          "return"
+        ],
+        "next_steps": [
+          "prompt"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "159:91–107 реальный prompt rejectClose; строка без валидации."
+    },
+    {
+      "id": "DMG-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000215"
+      ],
+      "expected": {
+        "ids": [
+          "base",
+          "damage",
+          "properties",
+          "effects"
+        ],
+        "next_steps": [
+          "damage"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "96:16–32 последовательные spread/override; очистка ядра внешняя."
+    },
+    {
+      "id": "DMG-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000221"
+      ],
+      "expected": {
+        "ids": [
+          "new",
+          "values",
+          "defaults"
+        ],
+        "next_steps": [
+          "values"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "197:15 new,3/4 вход,5–11 семь null без schema."
+    },
+    {
+      "id": "DMG-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000213"
+      ],
+      "expected": {
+        "ids": [
+          "flavor",
+          "system",
+          "flags"
+        ],
+        "next_steps": [
+          "system"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "50:11–19 shallow объединение; speaker/type не пишутся."
+    },
+    {
+      "id": "DMG-25",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004145"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00295.md"
+        ]
+      },
+      "basis": "159:58 нет guard найденного status."
+    },
+    {
+      "id": "DMG-26",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004150"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00296.md"
+        ]
+      },
+      "basis": "159:102 Item.properties,509:2 Item.DamageProperties."
+    },
+    {
+      "id": "DMG-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004192"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00073.md"
+        ]
+      },
+      "basis": "14:165 присваивание методу, не calls setter."
+    },
+    {
+      "id": "DMG-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004186"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00257.md"
+        ]
+      },
+      "basis": "Cast raw166/170, схема100 безduration, consumers14:29/32 и16:403."
+    }
+  ]
+}

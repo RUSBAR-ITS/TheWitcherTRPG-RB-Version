@@ -1156,13 +1156,13 @@
           "source": "src-000050",
           "path": "module/chatMessage/chatMessageData.js",
           "pilot_role": "neighbor",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000051",
           "path": "module/chatMessage/witcherChatMessage.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000058",
@@ -1210,13 +1210,13 @@
           "source": "src-000095",
           "path": "module/data/chatMessage/baseMessageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000096",
           "path": "module/data/chatMessage/damageMessageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000097",
@@ -1240,7 +1240,7 @@
           "source": "src-000100",
           "path": "module/data/chatMessage/templates/damageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000101",
@@ -1318,7 +1318,7 @@
           "source": "src-000159",
           "path": "module/item/mixins/damageUtilMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000160",
@@ -1372,7 +1372,7 @@
           "source": "src-000197",
           "path": "module/scripts/damageInstance.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000203",
@@ -1396,7 +1396,7 @@
           "source": "src-000451",
           "path": "styles/chat.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000479",
@@ -1450,7 +1450,7 @@
           "source": "src-000509",
           "path": "templates/dialog/combat/variableDamage.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000510",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.016",
+    "task": "TASK-0006.017",
     "date": "2026-09-15",
-    "source_head": "574af24e57d57ded1dfa5d39a6090e9b1d7dad81",
-    "dataset": "task-0006.016-expansion",
+    "source_head": "6fa707f90e678e046b58dfae390246a202515f4f",
+    "dataset": "task-0006.017-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4120,
-      "relations": 9766,
-      "processes": 211
+      "entities": 4191,
+      "relations": 10013,
+      "processes": 230
     },
-    "primary_count": 103,
-    "neighbor_count": 121,
-    "catalog_only_definitions": 391,
-    "boundary_count": 278,
+    "primary_count": 111,
+    "neighbor_count": 116,
+    "catalog_only_definitions": 388,
+    "boundary_count": 284,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4510,5 +4510,13 @@
     "ent-004094",
     "ent-004098",
     "ent-004112"
+  ],
+  "added_boundaries_017": [
+    "ent-004134",
+    "ent-004135",
+    "ent-004145",
+    "ent-004150",
+    "ent-004151",
+    "ent-004192"
   ]
 }
