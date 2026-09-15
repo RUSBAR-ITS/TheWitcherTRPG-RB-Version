@@ -6,19 +6,23 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from test_query import BASE, ROOT, query, run_cli
+from test_query import BASE, ROOT, query, run_cli, save_pilot_view
 
 
 class PilotAcceptance(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data = query.Dataset()
+        cls.pilot = tempfile.TemporaryDirectory(prefix="witcher-index-historical-case-")
+        cls.addClassCleanup(cls.pilot.cleanup)
+        cls.pilot_manifest = save_pilot_view(Path(cls.pilot.name))
 
     def test_26_independently_located_cases(self):
         cases = json.loads((BASE / "examples/acceptance-queries.json").read_text())["cases"]
         for case in cases:
             with self.subTest(case=case["id"]):
-                run = run_cli(case["command"] + ["--format", "json"], cwd="/tmp")
+                prefix = ["--dataset", str(self.pilot_manifest)] if case["id"] == "A23" else []
+                run = run_cli(prefix + case["command"] + ["--format", "json"], cwd="/tmp")
                 self.assertEqual(run.returncode, 0, run.stderr)
                 out = json.loads(run.stdout)
                 items = out["items"]

@@ -160,13 +160,13 @@
           "source": "src-000023",
           "path": "module/actor/mixins/temporaryEffectMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000036",
           "path": "module/actor/sheets/mixins/activeEffectMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000052",
@@ -184,7 +184,7 @@
           "source": "src-000092",
           "path": "module/data/actor/templates/common/temporaryEffectsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000139",
@@ -214,13 +214,13 @@
           "source": "src-000205",
           "path": "module/scripts/statusEffects/applyStatusEffect.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000206",
           "path": "module/scripts/temporaryEffects/applyActiveEffect.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000445",
@@ -238,7 +238,7 @@
           "source": "src-000495",
           "path": "templates/chat/item/appliedTemporaryItemImprovements.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000506",
@@ -250,7 +250,7 @@
           "source": "src-000531",
           "path": "templates/partials/effect-part.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000541",
@@ -262,7 +262,7 @@
           "source": "src-000562",
           "path": "templates/sheets/actor/partials/character/tab-effects.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000589",
@@ -898,7 +898,7 @@
           "source": "src-000157",
           "path": "module/item/mixins/consumeMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000158",
@@ -946,7 +946,7 @@
           "source": "src-000183",
           "path": "module/item/sheets/configurations/WitcherConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000184",
@@ -964,7 +964,7 @@
           "source": "src-000192",
           "path": "module/item/witcherItem.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000454",
@@ -1126,7 +1126,7 @@
           "source": "src-000014",
           "path": "module/actor/mixins/damageMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000015",
@@ -1138,7 +1138,7 @@
           "source": "src-000016",
           "path": "module/actor/mixins/defenseMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000018",
@@ -1198,7 +1198,7 @@
           "source": "src-000074",
           "path": "module/data/actor/templates/common/combatEffectsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000094",
@@ -1318,7 +1318,7 @@
           "source": "src-000159",
           "path": "module/item/mixins/damageUtilMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000160",
@@ -1600,7 +1600,7 @@
           "source": "src-000011",
           "path": "module/actor/mixins/castSpellMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000115",
@@ -1678,7 +1678,7 @@
           "source": "src-000487",
           "path": "templates/chat/combat/spellItem.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000502",
@@ -1942,7 +1942,7 @@
           "source": "src-000020",
           "path": "module/actor/mixins/professionMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000061",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.007",
+    "task": "TASK-0006.008",
     "date": "2026-09-15",
-    "source_head": "3770b84f90ed1230abba5e1f133e5ccd716be3c8",
-    "dataset": "task-0006.007-expansion",
+    "source_head": "fa18840b7dfd3a9ecc341b0ba9cc323fdce6e9a1",
+    "dataset": "task-0006.008-expansion",
     "counts": {
       "sources": 615,
-      "entities": 768,
-      "relations": 1905,
-      "processes": 32
+      "entities": 879,
+      "relations": 2211,
+      "processes": 49
     },
-    "primary_count": 33,
-    "neighbor_count": 87,
-    "catalog_only_definitions": 495,
-    "boundary_count": 129,
+    "primary_count": 41,
+    "neighbor_count": 93,
+    "catalog_only_definitions": 481,
+    "boundary_count": 168,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4343,5 +4343,46 @@
     "ent-000730",
     "ent-000731",
     "ent-000737"
+  ],
+  "added_boundaries_008": [
+    "ent-000795",
+    "ent-000796",
+    "ent-000797",
+    "ent-000798",
+    "ent-000799",
+    "ent-000800",
+    "ent-000801",
+    "ent-000802",
+    "ent-000803",
+    "ent-000804",
+    "ent-000805",
+    "ent-000806",
+    "ent-000807",
+    "ent-000808",
+    "ent-000809",
+    "ent-000810",
+    "ent-000811",
+    "ent-000812",
+    "ent-000813",
+    "ent-000814",
+    "ent-000835",
+    "ent-000838",
+    "ent-000840",
+    "ent-000843",
+    "ent-000846",
+    "ent-000848",
+    "ent-000850",
+    "ent-000852",
+    "ent-000853",
+    "ent-000854",
+    "ent-000860",
+    "ent-000864",
+    "ent-000865",
+    "ent-000866",
+    "ent-000874",
+    "ent-000876",
+    "ent-000877",
+    "ent-000878",
+    "ent-000879"
   ]
 }

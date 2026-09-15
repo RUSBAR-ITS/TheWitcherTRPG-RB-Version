@@ -12,12 +12,16 @@ class PilotQueries(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data = query.Dataset()
+        cls.pilot = tempfile.TemporaryDirectory(prefix="witcher-index-historical-case-")
+        cls.addClassCleanup(cls.pilot.cleanup)
+        cls.pilot_manifest = save_pilot_view(Path(cls.pilot.name))
 
     def test_13_source_grounded_cli_cases(self):
         cases = json.loads((BASE / "examples/pilot-queries.json").read_text())["cases"]
         for case in cases:
             with self.subTest(case=case["id"]):
-                run = run_cli(case["command"] + ["--format", "json"])
+                prefix = ["--dataset", str(self.pilot_manifest)] if case["id"] == "P13" else []
+                run = run_cli(prefix + case["command"] + ["--format", "json"], cwd="/tmp")
                 self.assertEqual(run.returncode, 0, run.stderr)
                 out = json.loads(run.stdout)
                 first = out["items"][0] if out["items"] else {}

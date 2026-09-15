@@ -1,0 +1,481 @@
+{
+  "dataset": "task-0006.008-expansion",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "FX-01",
+      "question": "IQ-01/02: Actor-категоризатор.",
+      "command": [
+        "find",
+        "sheet.activeEffectMixin.prepareActiveEffectCategories",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000771"
+        ],
+        "locations": [
+          [
+            "src-000036",
+            7
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-02",
+      "question": "IQ-01/02: Item-категоризатор отдельный.",
+      "command": [
+        "find",
+        "WitcherConfigurationSheet.prepareActiveEffectCategories",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000827"
+        ],
+        "locations": [
+          [
+            "src-000183",
+            74
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-03",
+      "question": "IQ-02: transfer принадлежит внешнему документу.",
+      "command": [
+        "show",
+        "ent-000797"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000797"
+        ],
+        "resolution": "external"
+      }
+    },
+    {
+      "id": "FX-04",
+      "question": "IQ-02: пул временных HP имеет собственную схему.",
+      "command": [
+        "show",
+        "ent-000818"
+      ],
+      "expected": {
+        "locations": [
+          [
+            "src-000092",
+            6
+          ]
+        ],
+        "ids": [
+          "ent-000818"
+        ]
+      }
+    },
+    {
+      "id": "FX-05",
+      "question": "IQ-03/05: прямые потребители Actor-категоризатора.",
+      "command": [
+        "neighbors",
+        "ent-000771",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000823",
+          "ent-000824"
+        ]
+      }
+    },
+    {
+      "id": "FX-06",
+      "question": "IQ-04/06: predicates Actor-категории.",
+      "command": [
+        "neighbors",
+        "ent-000771",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000314",
+          "ent-000315",
+          "ent-000316",
+          "ent-000796"
+        ]
+      }
+    },
+    {
+      "id": "FX-07",
+      "question": "IQ-06: флаг disabled изменяется в отдельном payload.",
+      "command": [
+        "field",
+        "ent-000837",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000772"
+        ],
+        "locations": [
+          [
+            "src-000036",
+            77
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-08",
+      "question": "IQ-06: Item-генератор читает transferred getter и effects.",
+      "command": [
+        "neighbors",
+        "ent-000792",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000315",
+          "ent-000799"
+        ]
+      }
+    },
+    {
+      "id": "FX-09",
+      "question": "IQ-06: system копии улучшения заменяется на строке35.",
+      "command": [
+        "field",
+        "ent-000857",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000775"
+        ],
+        "locations": [
+          [
+            "src-000023",
+            35
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-10",
+      "question": "IQ-06: duration.rounds изменяется до clone.",
+      "command": [
+        "field",
+        "ent-000860",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000783"
+        ],
+        "locations": [
+          [
+            "src-000206",
+            37
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-11",
+      "question": "IQ-06: priority локальной копии, не поле Actor.",
+      "command": [
+        "field",
+        "ent-000849",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000794"
+        ],
+        "locations": [
+          [
+            "src-000192",
+            353
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-12",
+      "question": "IQ-05: statuscounter вызывается после toggle.",
+      "command": [
+        "neighbors",
+        "ent-000781",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000780"
+        ],
+        "locations": [
+          [
+            "src-000205",
+            63
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-13",
+      "question": "IQ-03/04: ViaId вызывает helper либо внешние UUID/query.",
+      "command": [
+        "neighbors",
+        "ent-000621",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000783",
+          "ent-000805",
+          "ent-000806"
+        ]
+      }
+    },
+    {
+      "id": "FX-14",
+      "question": "IQ-05: specialised query привязан регистратором.",
+      "command": [
+        "neighbors",
+        "ent-000788",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000605"
+        ],
+        "locations": [
+          [
+            "src-000213",
+            49
+          ]
+        ]
+      }
+    },
+    {
+      "id": "FX-15",
+      "question": "IQ-07: запрет удаления чужого эффекта.",
+      "command": [
+        "process",
+        "proc-000034",
+        "--offset",
+        "4",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "owner"
+        ],
+        "next_steps": [
+          "delete",
+          "foreign"
+        ]
+      }
+    },
+    {
+      "id": "FX-16",
+      "question": "IQ-07: prompt улучшения ожидается, закрытие отклоняется.",
+      "command": [
+        "process",
+        "proc-000036",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "prompt"
+        ],
+        "next_steps": [
+          "ok"
+        ],
+        "next_exits": [
+          "cancelled"
+        ]
+      }
+    },
+    {
+      "id": "FX-17",
+      "question": "IQ-07: прямой owned helper ждёт создание.",
+      "command": [
+        "process",
+        "proc-000037",
+        "--offset",
+        "7",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "create"
+        ],
+        "next_exits": [
+          "returned",
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "FX-18",
+      "question": "IQ-07: counter может остановить путь до иммунитета.",
+      "command": [
+        "process",
+        "proc-000040",
+        "--offset",
+        "5",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "counter"
+        ],
+        "next_steps": [
+          "immune"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "FX-19",
+      "question": "IQ-07: inactive пропускает эффект, не сбрасывая общий аккумулятор.",
+      "command": [
+        "process",
+        "proc-000044",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "active"
+        ],
+        "next_steps": [
+          "effects",
+          "map"
+        ]
+      }
+    },
+    {
+      "id": "FX-20",
+      "question": "IQ-07: suppressed-строка скрывается при Actor context.",
+      "command": [
+        "process",
+        "proc-000047",
+        "--offset",
+        "3",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "visible"
+        ],
+        "next_steps": [
+          "effects",
+          "row"
+        ]
+      }
+    },
+    {
+      "id": "FX-21",
+      "question": "IQ-08: потеря system.changes имеет позднее уточнение.",
+      "command": [
+        "details",
+        "ent-000775"
+      ],
+      "expected": {
+        "includes_anchors": [
+          "r005-08",
+          "r005-09",
+          "уточнение-task-0003009"
+        ],
+        "includes_refs": [
+          "docs/issues/potential/issue-00042.md",
+          "docs/issues/potential/issue-00050.md"
+        ]
+      }
+    },
+    {
+      "id": "FX-22",
+      "question": "IQ-08: counter остаётся непроверенной сторонней границей.",
+      "command": [
+        "show",
+        "ent-000814"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000814"
+        ],
+        "resolution": "dynamic"
+      }
+    },
+    {
+      "id": "FX-23",
+      "question": "IQ-04: inherited callable не притворяется одной из трёх функций.",
+      "command": [
+        "show",
+        "ent-000879"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000879"
+        ],
+        "resolution": "dynamic"
+      }
+    },
+    {
+      "id": "FX-24",
+      "question": "IQ-08: процесс передачи связан с объяснением и R005.",
+      "command": [
+        "details",
+        "proc-000037"
+      ],
+      "expected": {
+        "includes_anchors": [
+          "proc-000037",
+          "r005-07",
+          "r005-09"
+        ],
+        "includes_refs": [
+          "docs/analytics/system-index/coverage-008.md"
+        ]
+      }
+    }
+  ]
+}

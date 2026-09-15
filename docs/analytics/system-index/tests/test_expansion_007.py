@@ -196,18 +196,19 @@ class EffectEditorExpansion(unittest.TestCase):
             result=self.data.query(query.parser().parse_args(['processes',p['entry']['entity'],'--limit','50','--no-verify']))
             self.assertIn(p['id'],[x['id'] for x in result['items']])
 
-    def test_current_counts_and_historical_ids(self):
-        self.assertEqual([len(self.data.sources),len(self.data.entities),len(self.data.relations),len(self.data.processes)],
-                         [615,768,1905,32])
-        for name,count in [('entities',636),('relations',1601),('processes',23)]:
-            prefix={'entities':'ent','relations':'rel','processes':'proc'}[name]
-            self.assertTrue({f'{prefix}-{n:06}' for n in range(1,count+1)}<=set(getattr(self.data,name)))
-        self.assertEqual(len(self.data.manifest['scope']['selected_sources']),33)
-        represented=[s for s in self.data.sources.values() if s['coverage']['definitions']['included']]
+    def test_historical_counts_and_ids(self):
+        historical={}
+        for kind in ['entities','relations','processes']:
+            names=[f'examples/{kind}.jsonl',f'data/{kind}/pilot.jsonl',
+                   f'data/{kind}/expansion-006.jsonl',f'data/{kind}/expansion-007.jsonl']
+            historical[kind]=[json.loads(l) for name in names for l in (BASE/name).read_text().splitlines()]
+        self.assertEqual([len(historical[k]) for k in ['entities','relations','processes']],[768,1905,32])
+        for kind,records in historical.items():
+            self.assertTrue({r['id'] for r in records}<=set(getattr(self.data,kind)))
+        represented={e['location']['source'] for e in historical['entities'] if e['location'] and e['kind']!='boundary'}
         self.assertEqual(len(represented),120)
-        self.assertTrue(all(s['coverage']['definitions']['state']=='partial' for s in represented))
-        self.assertEqual(sum(e['kind']=='boundary' for e in self.data.entities.values()),129)
-
+        self.assertEqual(sum(e['kind']=='boundary' for e in historical['entities']),129)
+        self.assertTrue(all(self.data.sources[s]['coverage']['definitions']['state']=='partial' for s in represented))
 
     def test_external_core_contract_hashes_and_critical_order(self):
         # External implementation remains outside the 615-source catalogue.
