@@ -20,7 +20,7 @@ class PilotQueries(unittest.TestCase):
         cases = json.loads((BASE / "examples/pilot-queries.json").read_text())["cases"]
         for case in cases:
             with self.subTest(case=case["id"]):
-                prefix = ["--dataset", str(self.pilot_manifest)] if case["id"] == "P13" else []
+                prefix = ["--dataset", str(self.pilot_manifest)] if case["id"] in {"P08","P13"} else []
                 run = run_cli(prefix + case["command"] + ["--format", "json"], cwd="/tmp")
                 self.assertEqual(run.returncode, 0, run.stderr)
                 out = json.loads(run.stdout)

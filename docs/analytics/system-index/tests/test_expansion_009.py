@@ -4,12 +4,37 @@ import json
 import re
 from pathlib import Path
 import unittest
+import tempfile
 from test_query import BASE, ROOT, query, run_cli
 
 class SkillUIExpansion(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data=query.Dataset()
+        cls.historical=tempfile.TemporaryDirectory(prefix='witcher-index-009-case-')
+        cls.addClassCleanup(cls.historical.cleanup)
+        directory=Path(cls.historical.name)
+        manifest=json.loads((BASE/'manifest.json').read_text())
+        rows={kind:[json.loads(l) for part in manifest['parts'][kind] if 'expansion-010' not in part
+                    for l in (BASE/part).read_text().splitlines()] for kind in ('entities','relations','processes')}
+        rows['sources']=[json.loads(l) for l in (BASE/'sources.jsonl').read_text().splitlines()]
+        manifest['parts']={kind:[kind+'.jsonl'] for kind in rows}
+        manifest.pop('query_examples',None)
+        manifest['dataset_id']='task-0006.009-historical-case'
+        manifest['next_ids']=dict(source=616,entity=936,relation=2400,process=64)
+        excluded={f'src-{n:06}' for n in [32,46,40,542,543,544,547,453]}
+        manifest['scope']['selected_sources']=[s for s in manifest['scope']['selected_sources'] if s not in excluded]
+        manifest['scope']['semantic_scope']='Исторические части до .009; используется для SUI-11.'
+        for src in rows['sources']:
+            for aspect,kind in [('definitions','entities'),('relations','relations'),('processes','processes')]:
+                included=[r['id'] for r in rows[kind] if (
+                    any(st['location']['source']==src['id'] for st in r['steps']) if kind=='processes' else
+                    (r.get('location') or {}).get('source')==src['id'] and (aspect!='definitions' or r['kind']!='boundary'))]
+                src['coverage'][aspect]=dict(state='partial' if included else 'not_indexed',included=included,remaining=['Историческая область .009.'])
+        for kind,data in rows.items():
+            (directory/(kind+'.jsonl')).write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in data))
+        cls.historical_manifest=directory/'manifest.json'
+        cls.historical_manifest.write_text(json.dumps(manifest,ensure_ascii=False))
 
     def source(self,sid):
         return (ROOT/self.data.sources[sid]['path']).read_text().splitlines()
@@ -25,7 +50,8 @@ class SkillUIExpansion(unittest.TestCase):
         self.assertEqual(len(cases),22)
         for case in cases:
             with self.subTest(case=case['id']):
-                run=run_cli([*case['command'],'--format','json'],cwd='/tmp')
+                prefix=['--dataset',str(self.historical_manifest)] if case['id']=='SUI-11' else []
+                run=run_cli([*prefix,*case['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
                 out=json.loads(run.stdout);items=out['items'];first=items[0] if items else {}
                 actual=dict(ids=[x['id'] for x in items if 'id' in x],
@@ -188,10 +214,14 @@ class SkillUIExpansion(unittest.TestCase):
                     self.assertTrue(s['location']['line_start']<=r['location']['line_start']<=s['location']['line_end'])
             out=self.data.query(query.parser().parse_args(['processes',p['entry']['entity'],'--limit','50','--no-verify']))
             self.assertIn(p['id'],[x['id'] for x in out['items']])
-        self.assertEqual([len(self.data.sources),len(self.data.entities),len(self.data.relations),len(self.data.processes)],
-                         [615,935,2399,63])
-        self.assertEqual(len(self.data.manifest['scope']['selected_sources']),50)
-        self.assertEqual(sum(bool(s['coverage']['definitions']['included']) for s in self.data.sources.values()),142)
+        historical={}
+        for kind in ['entities','relations','processes']:
+            parts=[f'examples/{kind}.jsonl',f'data/{kind}/pilot.jsonl',
+                   *[f'data/{kind}/expansion-{n:03}.jsonl' for n in [6,7,8,9]]]
+            historical[kind]=[json.loads(l) for p in parts for l in (BASE/p).read_text().splitlines()]
+        self.assertEqual([len(historical[k]) for k in ['entities','relations','processes']],[935,2399,63])
+        for kind,rows in historical.items():
+            self.assertTrue({r['id'] for r in rows}<=set(getattr(self.data,kind)))
 
     def test_external_contract_versions_and_submission_order(self):
         text=(BASE/'coverage-009.md').read_text()

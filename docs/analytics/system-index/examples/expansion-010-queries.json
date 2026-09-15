@@ -1,0 +1,474 @@
+{
+  "dataset": "task-0006.010-expansion",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "ED-01",
+      "question": "IQ-01: конструктор.",
+      "command": [
+        "find",
+        "WitcherModifiersConfiguration.constructor",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000936"
+        ],
+        "locations": [
+          [
+            "src-000032",
+            10
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-02",
+      "question": "IQ-02: общие подписи.",
+      "command": [
+        "find",
+        "CONFIG.WITCHER.statLabels",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000946"
+        ]
+      }
+    },
+    {
+      "id": "ED-03",
+      "question": "IQ-06: два писателя подписей.",
+      "command": [
+        "field",
+        "ent-000946",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000944",
+          "ent-000992"
+        ],
+        "locations": [
+          [
+            "src-000032",
+            57
+          ],
+          [
+            "src-000033",
+            48
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-04",
+      "question": "IQ-04: две части.",
+      "command": [
+        "neighbors",
+        "ent-000942",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "src-000542",
+          "src-000543"
+        ]
+      }
+    },
+    {
+      "id": "ED-05",
+      "question": "IQ-04: ключ группы.",
+      "command": [
+        "field",
+        "ent-000948",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000978"
+        ],
+        "locations": [
+          [
+            "src-000542",
+            2
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-06",
+      "question": "IQ-06: поле базы и submit.",
+      "command": [
+        "neighbors",
+        "ent-000981",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000003",
+          "ent-000910"
+        ]
+      }
+    },
+    {
+      "id": "ED-07",
+      "question": "IQ-06: новые чтения AE.",
+      "command": [
+        "field",
+        "ent-000012",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000542"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000978",
+          "ent-000987"
+        ],
+        "locations": [
+          [
+            "src-000542",
+            30
+          ],
+          [
+            "src-000542",
+            37
+          ],
+          [
+            "src-000542",
+            37
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-08",
+      "question": "IQ-06: disabled не пишет.",
+      "command": [
+        "neighbors",
+        "ent-000987",
+        "--direction",
+        "out",
+        "--relation",
+        "writes"
+      ],
+      "expected": {
+        "ids": []
+      }
+    },
+    {
+      "id": "ED-09",
+      "question": "IQ-06: запросы luck.value.",
+      "command": [
+        "field",
+        "ent-000004",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000046"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000956",
+          "ent-000957"
+        ],
+        "locations": [
+          [
+            "src-000046",
+            101
+          ],
+          [
+            "src-000046",
+            107
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-10",
+      "question": "IQ-06: разные писатели адреналина.",
+      "command": [
+        "field",
+        "ent-000966",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000958",
+          "ent-000964"
+        ],
+        "locations": [
+          [
+            "src-000009",
+            4
+          ],
+          [
+            "src-000046",
+            113
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-11",
+      "question": "IQ-03: уровни плюса.",
+      "command": [
+        "neighbors",
+        "ent-000959",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000964"
+        ]
+      }
+    },
+    {
+      "id": "ED-12",
+      "question": "IQ-06: удаление списка и update.",
+      "command": [
+        "neighbors",
+        "ent-000970",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-001003"
+        ]
+      }
+    },
+    {
+      "id": "ED-13",
+      "question": "IQ-06: строковый input.",
+      "command": [
+        "field",
+        "ent-000975",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000971"
+        ],
+        "locations": [
+          [
+            "src-000040",
+            58
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ED-14",
+      "question": "IQ-07: промах ID идёт в splice.",
+      "command": [
+        "process",
+        "proc-000081",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "index"
+        ],
+        "next_steps": [
+          "splice",
+          "splice"
+        ]
+      }
+    },
+    {
+      "id": "ED-15",
+      "question": "IQ-07: отсутствие строки.",
+      "command": [
+        "process",
+        "proc-000082",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "index"
+        ],
+        "next_steps": [
+          "write"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "ED-16",
+      "question": "IQ-07: выбор type.",
+      "command": [
+        "process",
+        "proc-000070",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "type"
+        ],
+        "next_steps": [
+          "stats",
+          "derived-check"
+        ]
+      }
+    },
+    {
+      "id": "ED-17",
+      "question": "IQ-04: карты видимости.",
+      "command": [
+        "neighbors",
+        "ent-000993",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000011",
+          "ent-000194",
+          "ent-000196"
+        ]
+      }
+    },
+    {
+      "id": "ED-18",
+      "question": "IQ-03: helper видимости.",
+      "command": [
+        "neighbors",
+        "ent-000980",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000730"
+        ]
+      }
+    },
+    {
+      "id": "ED-19",
+      "question": "IQ-08: вне schema.",
+      "command": [
+        "details",
+        "ent-000972"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00189.md"
+        ]
+      }
+    },
+    {
+      "id": "ED-20",
+      "question": "IQ-08: имя даёт ядро.",
+      "command": [
+        "show",
+        "ent-001006"
+      ],
+      "expected": {
+        "ids": [
+          "ent-001006"
+        ],
+        "resolution": "external"
+      }
+    },
+    {
+      "id": "ED-21",
+      "question": "IQ-04: реальный PARTS.",
+      "command": [
+        "neighbors",
+        "ent-000990",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "src-000547"
+        ]
+      }
+    },
+    {
+      "id": "ED-22",
+      "question": "IQ-07: новое участие AE.",
+      "command": [
+        "processes",
+        "ent-000012",
+        "--scope",
+        "src-000542"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000072"
+        ]
+      }
+    },
+    {
+      "id": "ED-23",
+      "question": "IQ-05: прежний callback.",
+      "command": [
+        "neighbors",
+        "ent-000383",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000300"
+        ]
+      }
+    },
+    {
+      "id": "ED-24",
+      "question": "IQ-08: max/база и доказательство.",
+      "command": [
+        "details",
+        "proc-000071"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00194.md",
+          "docs/issues/potential/issue-00195.md"
+        ],
+        "includes_anchors": [
+          "r003-10",
+          "proc-000071"
+        ]
+      }
+    }
+  ]
+}

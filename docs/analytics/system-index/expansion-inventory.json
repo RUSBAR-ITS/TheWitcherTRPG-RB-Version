@@ -292,13 +292,13 @@
           "source": "src-000032",
           "path": "module/actor/sheets/configurations/WitcherModifiersConfiguration.js",
           "pilot_role": "neighbor",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000040",
           "path": "module/actor/sheets/mixins/customSkillMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000045",
@@ -310,7 +310,7 @@
           "source": "src-000046",
           "path": "module/actor/sheets/mixins/statMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000047",
@@ -430,7 +430,7 @@
           "source": "src-000453",
           "path": "styles/configurations/modifier-configuration.css",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000462",
@@ -496,25 +496,25 @@
           "source": "src-000542",
           "path": "templates/sheets/actor/configuration/app/edit-skills.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000543",
           "path": "templates/sheets/actor/configuration/app/edit-stats.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000544",
           "path": "templates/sheets/actor/configuration/app/partials/stats-block.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000547",
           "path": "templates/sheets/actor/configuration/partials/skillConfiguration.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000610",
@@ -562,7 +562,7 @@
           "source": "src-000033",
           "path": "module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000034",
@@ -1114,7 +1114,7 @@
           "source": "src-000009",
           "path": "module/actor/mixins/adrenalineMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000010",
@@ -1192,7 +1192,7 @@
           "source": "src-000073",
           "path": "module/data/actor/templates/common/adrenalineData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000074",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.009",
+    "task": "TASK-0006.010",
     "date": "2026-09-15",
-    "source_head": "135c66796ae69f62ee8f9954e8c37c484acda59b",
-    "dataset": "task-0006.009-expansion",
+    "source_head": "eb54b0b80d45570dc3e2b24360dc88ed1176740c",
+    "dataset": "task-0006.010-expansion",
     "counts": {
       "sources": 615,
-      "entities": 935,
-      "relations": 2399,
-      "processes": 63
+      "entities": 1008,
+      "relations": 2671,
+      "processes": 91
     },
-    "primary_count": 50,
-    "neighbor_count": 92,
-    "catalog_only_definitions": 473,
-    "boundary_count": 185,
+    "primary_count": 58,
+    "neighbor_count": 93,
+    "catalog_only_definitions": 464,
+    "boundary_count": 193,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4403,5 +4403,15 @@
     "ent-000928",
     "ent-000934",
     "ent-000935"
+  ],
+  "added_boundaries_010": [
+    "ent-000972",
+    "ent-000996",
+    "ent-001002",
+    "ent-001003",
+    "ent-001004",
+    "ent-001005",
+    "ent-001006",
+    "ent-001007"
   ]
 }

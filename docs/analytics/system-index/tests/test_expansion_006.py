@@ -72,7 +72,8 @@ class RegistrationExpansion(unittest.TestCase):
             self.assertTrue(any(e['kind']=='extends' and e['from']==c['id'] for e in self.data.relations.values()))
         self.assertEqual(self.data.entities['ent-000448']['qualified_name'],'WitcheProfessionSheet')
         self.assertIn('WitcherProfessionSheet',self.data.entities['ent-000448']['aliases'])
-        declarations=[r for r in self.data.relations.values() if r['kind']=='refers'
+        historical_ids={json.loads(l)['id'] for l in (BASE/'data/relations/expansion-006.jsonl').read_text().splitlines()}
+        declarations=[r for r in self.data.relations.values() if r['id'] in historical_ids and r['kind']=='refers'
                       and (self.data.entities.get(r['from'],{}).get('qualified_name','').endswith(('.PARTS','.template')))]
         self.assertEqual(len(declarations),50)  # 49 template/return + one templates preload entry.
         self.assertEqual(sum(r['to'].startswith('src-') for r in declarations),41)
