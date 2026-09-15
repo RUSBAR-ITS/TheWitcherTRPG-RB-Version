@@ -216,9 +216,14 @@ class EffectLifecycleExpansion(unittest.TestCase):
                     self.assertTrue(s['location']['line_start']<=r['location']['line_start']<=s['location']['line_end'])
             out=self.data.query(query.parser().parse_args(['processes',p['entry']['entity'],'--limit','50','--no-verify']))
             self.assertIn(p['id'],[x['id'] for x in out['items']])
-        self.assertEqual([len(self.data.sources),len(self.data.entities),len(self.data.relations),len(self.data.processes)],
-                         [615,879,2211,49])
-        self.assertEqual(len(self.data.manifest['scope']['selected_sources']),41)
+        historical={}
+        for kind in ['entities','relations','processes']:
+            parts=[f'examples/{kind}.jsonl',f'data/{kind}/pilot.jsonl',
+                   *[f'data/{kind}/expansion-{n:03}.jsonl' for n in [6,7,8]]]
+            historical[kind]=[json.loads(l) for p in parts for l in (BASE/p).read_text().splitlines()]
+        self.assertEqual([len(historical[k]) for k in ['entities','relations','processes']],[879,2211,49])
+        for kind,rows in historical.items():
+            self.assertTrue({r['id'] for r in rows}<=set(getattr(self.data,kind)))
         out=self.data.query(query.parser().parse_args(['processes','src-000047','--no-verify']))
         self.assertEqual([p['id'] for p in out['items']],['proc-000004','proc-000005','proc-000049'])
         out=self.data.query(query.parser().parse_args(['find','value','--match','exact','--kind','field','--limit','1','--no-verify']))

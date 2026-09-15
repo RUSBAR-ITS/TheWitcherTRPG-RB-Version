@@ -298,7 +298,7 @@
           "source": "src-000040",
           "path": "module/actor/sheets/mixins/customSkillMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000045",
@@ -406,7 +406,7 @@
           "source": "src-000178",
           "path": "module/item/sheets/WitcherSkillItemSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000198",
@@ -454,19 +454,19 @@
           "source": "src-000521",
           "path": "templates/partials/character/custom-skill-display.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000522",
           "path": "templates/partials/character/skill-display.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000527",
           "path": "templates/partials/character/tab-skills.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000528",
@@ -478,7 +478,7 @@
           "source": "src-000534",
           "path": "templates/partials/monster/monster-custom-skill-display.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000537",
@@ -490,7 +490,7 @@
           "source": "src-000538",
           "path": "templates/partials/monster/monster-skill-tab.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000542",
@@ -520,7 +520,7 @@
           "source": "src-000610",
           "path": "templates/sheets/item/skill-item-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         }
       ]
     },
@@ -532,19 +532,19 @@
           "source": "src-000027",
           "path": "module/actor/sheets/WitcherActorSheet.js",
           "pilot_role": "neighbor",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000028",
           "path": "module/actor/sheets/WitcherActorSheetV1.js",
           "pilot_role": "neighbor",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000029",
           "path": "module/actor/sheets/WitcherCharacterSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000030",
@@ -556,7 +556,7 @@
           "source": "src-000031",
           "path": "module/actor/sheets/WitcherMonsterSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000033",
@@ -736,7 +736,7 @@
           "source": "src-000550",
           "path": "templates/sheets/actor/monster-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000551",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.008",
+    "task": "TASK-0006.009",
     "date": "2026-09-15",
-    "source_head": "fa18840b7dfd3a9ecc341b0ba9cc323fdce6e9a1",
-    "dataset": "task-0006.008-expansion",
+    "source_head": "135c66796ae69f62ee8f9954e8c37c484acda59b",
+    "dataset": "task-0006.009-expansion",
     "counts": {
       "sources": 615,
-      "entities": 879,
-      "relations": 2211,
-      "processes": 49
+      "entities": 935,
+      "relations": 2399,
+      "processes": 63
     },
-    "primary_count": 41,
-    "neighbor_count": 93,
-    "catalog_only_definitions": 481,
-    "boundary_count": 168,
+    "primary_count": 50,
+    "neighbor_count": 92,
+    "catalog_only_definitions": 473,
+    "boundary_count": 185,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4384,5 +4384,24 @@
     "ent-000877",
     "ent-000878",
     "ent-000879"
+  ],
+  "added_boundaries_009": [
+    "ent-000883",
+    "ent-000888",
+    "ent-000890",
+    "ent-000905",
+    "ent-000906",
+    "ent-000907",
+    "ent-000908",
+    "ent-000909",
+    "ent-000910",
+    "ent-000911",
+    "ent-000912",
+    "ent-000913",
+    "ent-000914",
+    "ent-000923",
+    "ent-000928",
+    "ent-000934",
+    "ent-000935"
   ]
 }

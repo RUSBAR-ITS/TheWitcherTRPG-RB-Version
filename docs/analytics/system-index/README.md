@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.008](../../tasks/task-0006.008.md) дополняет справочник категориями, переносом и статусами эффектов, Item-проходом и границами query. [Покрытие](coverage-008.md). Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.009](../../tasks/task-0006.009.md) дополняет справочник контекстом и строками навыков, текущими и старыми listeners и формой Item. [Покрытие](coverage-009.md). Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 615 исходников; 41 основной и 93 смежных файла имеют частичные определения, 481 пока без определений. В графе 879 сущностей, 2211 связей и 49 процессов (270 шагов, 417 переходов). [Расширение .008](coverage-008.md), [исторический пилот](pilot-coverage.md), [очередь](expansion-plan.md#первые-порции-расширения). Следующая — [TASK-0006.009](../../tasks/task-0006.009.md), текущие и старые входы навыка; полный индекс остаётся незавершённым.
+**Текущий охват:** 615 исходников; 50 основных и 92 смежных файла имеют частичные определения, 473 пока без определений. В графе 935 сущностей, 2399 связей и 63 процесса (316 шагов, 476 переходов). [Расширение .009](coverage-009.md), [исторический пилот](pilot-coverage.md), [очередь](expansion-plan.md#первые-порции-расширения). Следующая — [TASK-0006.010](../../tasks/task-0006.010.md), редактирование характеристик и навыков; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -76,6 +76,17 @@ python3 docs/analytics/system-index/query.py process proc-000021
 
 [24 проверочных запроса](examples/expansion-008-queries.json), [различия состояний и payload](coverage-008.md), [пять внешних контрактов](coverage-008.md#проверенные-внешние-контракты). Query true и сообщение в чате не означают завершения записи.
 
+## Поиск по расширению .009
+
+- find WitcherActorSheet._prepareCustomSkills --match exact → ent-000882; V1 — ent-000886.
+- field ent-000885 --access reads → два места lookup собственных навыков в общем tab.
+- neighbors ent-000382 --direction out --relation reads → ключи текущей builtin-строки и Item-строки.
+- process proc-000056 → два прохода семи групп; proc-000058 → текущая Item-строка без hash.
+- process proc-000059 → старый Item ID/selector; proc-000060 → установка подписки; бросок остаётся proc-000013.
+- process proc-000061 → поля формы Item до внешнего submit; details ent-000898 → основание девяти вариантов атрибута.
+
+[22 проверочных запроса](examples/expansion-009-queries.json), [контексты и границы](coverage-009.md), [шесть внешних контрактов](coverage-009.md#проверенные-внешние-контракты). PARTS, предзагрузка, render, подписка и click учитываются отдельно.
+
 ## Материалы
 
 | Материал | Содержание |
@@ -89,13 +100,15 @@ python3 docs/analytics/system-index/query.py process proc-000021
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.008 выполнены, .009–.011 planned |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.009 выполнены, .010–.011 planned |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
 | [20 случаев .007](examples/expansion-007-queries.json) / [тесты](tests/test_expansion_007.py) / [протокол](review-log.md#task-0006007) | Проверки расширения и внешних контрактов |
 | [Расширение .008](coverage-008.md) / [сущности](data/entities/expansion-008.jsonl) / [отношения](data/relations/expansion-008.jsonl) / [процессы](data/processes/expansion-008.jsonl) | Категории, CRUD, перенос/статусы, Item-проход, query и временные HP |
 | [24 случая .008](examples/expansion-008-queries.json) / [тесты](tests/test_expansion_008.py) / [протокол](review-log.md#task-0006008) | Исходные адреса, разные predicates/payload, ветви и внешние границы |
+| [Расширение .009](coverage-009.md) / [сущности](data/entities/expansion-009.jsonl) / [отношения](data/relations/expansion-009.jsonl) / [процессы](data/processes/expansion-009.jsonl) | Контексты листов, строки builtin/Item, старый ID/selector и форма навыка |
+| [22 случая .009](examples/expansion-009-queries.json) / [тесты](tests/test_expansion_009.py) / [протокол](review-log.md#task-0006009) | PARTS/preload, девять/семь групп, hash/dataset, имя/ID и внешняя запись |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
 Подробные объяснения остаются в [аудите](../code-audit/README.md); назначение справочника задано [требованиями](../system-index-requirements.md).
@@ -106,7 +119,7 @@ python3 docs/analytics/system-index/query.py process proc-000021
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены 59 тестовых методов, включая 24 новых CLI-случая .008; проверены все 2211 отношений в обоих направлениях. Актуальность: 615 исходников, реестр, 654 документа и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006008). Фиксированные исторические размеры и случаи A23/P13 проверяются на соответствующих частях; остальные прежние справочные случаи используют текущий граф. Игровое поведение не исполняется.
+Пройдены 69 тестовых методов, включая 22 новых CLI-случая .009; проверены все 2399 отношений в обоих направлениях. Актуальность: 615 исходников, реестр, 659 документов и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006009). Фиксированные исторические размеры и случаи A23/P13 проверяются на соответствующих частях; остальные прежние справочные случаи используют текущий граф. Игровое поведение не исполняется.
 
 ## Практический маршрут по пилоту
 

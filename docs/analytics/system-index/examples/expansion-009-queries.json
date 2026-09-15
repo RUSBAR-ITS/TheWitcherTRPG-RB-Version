@@ -1,0 +1,469 @@
+{
+  "dataset": "task-0006.009-expansion",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "SUI-01",
+      "question": "IQ-01/02: группировщик V2.",
+      "command": [
+        "find",
+        "WitcherActorSheet._prepareCustomSkills",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000882"
+        ],
+        "locations": [
+          [
+            "src-000027",
+            102
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-02",
+      "question": "IQ-01/02: отдельный V1 группировщик.",
+      "command": [
+        "find",
+        "WitcherActorSheetV1._prepareCustomSkills",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000886"
+        ],
+        "locations": [
+          [
+            "src-000028",
+            77
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-03",
+      "question": "IQ-02: контекст Item-формы.",
+      "command": [
+        "find",
+        "WitcherSkillItemSheet._prepareContext",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000898"
+        ],
+        "locations": [
+          [
+            "src-000178",
+            25
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-04",
+      "question": "IQ-03/05: кто вызывает V2 группировку.",
+      "command": [
+        "neighbors",
+        "ent-000882",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000823"
+        ],
+        "locations": [
+          [
+            "src-000027",
+            79
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-05",
+      "question": "IQ-03/05: текущие и старые входы custom listener.",
+      "command": [
+        "neighbors",
+        "ent-000904",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000389",
+          "ent-000392"
+        ],
+        "locations": [
+          [
+            "src-000027",
+            235
+          ],
+          [
+            "src-000028",
+            213
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-06",
+      "question": "IQ-03: базовые callbacks не назначены прямым вызовом _onRender.",
+      "command": [
+        "neighbors",
+        "ent-000889",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000907"
+        ]
+      }
+    },
+    {
+      "id": "SUI-07",
+      "question": "IQ-04: virtual listener сохраняет два проверенных разрешения.",
+      "command": [
+        "neighbors",
+        "ent-000890",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000389",
+          "ent-000891"
+        ]
+      }
+    },
+    {
+      "id": "SUI-08",
+      "question": "IQ-06: две записи объекта группировки.",
+      "command": [
+        "field",
+        "ent-000885",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000882"
+        ],
+        "locations": [
+          [
+            "src-000027",
+            112
+          ],
+          [
+            "src-000027",
+            114
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-09",
+      "question": "IQ-06: оба вывода читают тот же customSkills context.",
+      "command": [
+        "field",
+        "ent-000885",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000917"
+        ],
+        "locations": [
+          [
+            "src-000527",
+            24
+          ],
+          [
+            "src-000527",
+            48
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-10",
+      "question": "IQ-06: callback читает Item.name как builtin key.",
+      "command": [
+        "field",
+        "ent-000926",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000382"
+        ],
+        "locations": [
+          [
+            "src-000045",
+            35
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-11",
+      "question": "IQ-06: Item-ID используется только старым адресатом.",
+      "command": [
+        "field",
+        "ent-000929",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000304"
+        ],
+        "locations": [
+          [
+            "src-000022",
+            135
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-12",
+      "question": "IQ-05: старый selector связан с собственным методом.",
+      "command": [
+        "neighbors",
+        "ent-000304",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000904"
+        ],
+        "locations": [
+          [
+            "src-000040",
+            6
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-13",
+      "question": "IQ-04: shared tab использует две пары partial.",
+      "command": [
+        "neighbors",
+        "ent-000917",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "to_ids": [
+          "src-000521",
+          "src-000522"
+        ],
+        "locations": [
+          [
+            "src-000527",
+            20
+          ],
+          [
+            "src-000527",
+            25
+          ],
+          [
+            "src-000527",
+            44
+          ],
+          [
+            "src-000527",
+            49
+          ]
+        ]
+      }
+    },
+    {
+      "id": "SUI-14",
+      "question": "IQ-04: имя формы ведёт к полю документа и внешнему submit.",
+      "command": [
+        "neighbors",
+        "ent-000931",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000910",
+          "ent-000912"
+        ]
+      }
+    },
+    {
+      "id": "SUI-15",
+      "question": "IQ-04: атрибут формы ведёт к модели и внешнему submit.",
+      "command": [
+        "neighbors",
+        "ent-000932",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000184",
+          "ent-000910"
+        ]
+      }
+    },
+    {
+      "id": "SUI-16",
+      "question": "IQ-07: перебор групп V2.",
+      "command": [
+        "process",
+        "proc-000050",
+        "--offset",
+        "3",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "next"
+        ],
+        "next_steps": [
+          "assign"
+        ],
+        "next_exits": [
+          "returned"
+        ]
+      }
+    },
+    {
+      "id": "SUI-17",
+      "question": "IQ-07: virtual listener после await super.",
+      "command": [
+        "process",
+        "proc-000053",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "super"
+        ],
+        "next_steps": [
+          "listeners"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      }
+    },
+    {
+      "id": "SUI-18",
+      "question": "IQ-07: два вида строки внутри общего tab.",
+      "command": [
+        "process",
+        "proc-000056",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "all"
+        ],
+        "next_steps": [
+          "builtin-all",
+          "groups"
+        ]
+      }
+    },
+    {
+      "id": "SUI-19",
+      "question": "IQ-08: текущий Item partial связан с рассогласованием UI.",
+      "command": [
+        "details",
+        "ent-000916"
+      ],
+      "expected": {
+        "includes_anchors": [
+          "r004-07"
+        ],
+        "includes_refs": [
+          "docs/issues/potential/issue-00187.md"
+        ]
+      }
+    },
+    {
+      "id": "SUI-20",
+      "question": "IQ-08: отсутствие template V1 остаётся явной границей.",
+      "command": [
+        "show",
+        "ent-000888"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000888"
+        ],
+        "resolution": "dynamic"
+      }
+    },
+    {
+      "id": "SUI-21",
+      "question": "IQ-08: неподготовленный skill.* не превращён в поле модели.",
+      "command": [
+        "show",
+        "ent-000928"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000928"
+        ],
+        "resolution": "dynamic"
+      }
+    },
+    {
+      "id": "SUI-22",
+      "question": "IQ-08: старый маршрут имеет объяснение и прежние наблюдения.",
+      "command": [
+        "details",
+        "proc-000059"
+      ],
+      "expected": {
+        "includes_anchors": [
+          "proc-000059",
+          "r004-07"
+        ],
+        "includes_refs": [
+          "docs/issues/potential/issue-00190.md",
+          "docs/analytics/system-index/coverage-009.md"
+        ]
+      }
+    }
+  ]
+}
