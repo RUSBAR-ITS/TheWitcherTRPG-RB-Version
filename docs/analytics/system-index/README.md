@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.021](../../tasks/task-0006.021.md) связывает выбор критической травмы, её Item, форму, заживление и переход по followUp. [Покрытие и сверка](coverage-021.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.022](../../tasks/task-0006.022.md) связывает лечение Actor, чат, отдых, регенерацию и спасброски смерти. [Покрытие и сверка](coverage-022.md). Формат JSONL v1 и CLI Python 3 сохранены; [согласованное решение](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 4528 сущностей, 11605 связей и 334 процесса (1091 шаг, 1993 перехода). Определения есть в 246/615 файлах: два словаря complete по строковым ключам, 244 файла partial; роли 142 основных/104 смежных, 369 без определений. .001–.021 выполнены; следующая — [TASK-0006.022](../../tasks/task-0006.022.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
+**Текущий охват:** 4579 сущностей, 11808 связей и 353 процесса (1138 шагов, 2092 перехода). Определения есть в 252/615 файлах: два словаря complete по строковым ключам, 250 файлов partial; роли 149 основных/103 смежных, 363 без определений. .001–.022 выполнены; следующая — [TASK-0006.023](../../tasks/task-0006.023.md). [Очередь и остаток](expansion-plan.md#second-wave) сохраняют непокрытые области; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -125,7 +125,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.021 выполнены; .022–.023 стоят в согласованной очереди |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006–.022 выполнены; .023 стоит в согласованной очереди |
 | [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
 | [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Расширение .007](coverage-007.md) / [сущности](data/entities/expansion-007.jsonl) / [отношения](data/relations/expansion-007.jsonl) / [процессы](data/processes/expansion-007.jsonl) | Редактор AE, подсказки, prepared/source/payload, системная вкладка и CSS |
@@ -146,6 +146,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 | [Расширение .019](coverage-019.md) / [сущности](data/entities/expansion-019.jsonl) / [отношения](data/relations/expansion-019.jsonl) / [процессы](data/processes/expansion-019.jsonl) | Message/status, щит, одна/все локации, временные HP и ресурс |
 | [Расширение .020](coverage-020.md) / [сущности](data/entities/expansion-020.jsonl) / [отношения](data/relations/expansion-020.jsonl) / [процессы](data/processes/expansion-020.jsonl) | Действия чата, query/socket, activeGM и периодика |
 | [Расширение .021](coverage-021.md) / [сущности](data/entities/expansion-021.jsonl) / [отношения](data/relations/expansion-021.jsonl) / [процессы](data/processes/expansion-021.jsonl) | Критические травмы: pack/Item, UI, heal/treat/followUp и срок |
+| [Расширение .022](coverage-022.md) / [сущности](data/entities/expansion-022.jsonl) / [отношения](data/relations/expansion-022.jsonl) / [процессы](data/processes/expansion-022.jsonl) | Лечение, отдых, регенерация и спасброски смерти |
 | [24 случая .010](examples/expansion-010-queries.json) / [тесты](tests/test_expansion_010.py) / [протокол](review-log.md#task-0006010) | Поля ввода/disabled, prepared/source, ID/строка и ожидание записи |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
@@ -157,7 +158,7 @@ python3 docs/analytics/system-index/query.py process proc-000093
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены все 170 тестовых методов (unittest, 1340.706 с), включая 485 CLI-примеров, из них 32 новых. Это проверки справочника по исходникам, без исполнения игрового сценария. Проверены отношения в обоих направлениях. Актуальность и сохранность — в [протоколе](review-log.md#task-0006021). Исторические срезы и накопленные ответы различены.
+Пройдены все 179 тестовых методов, включая 517 CLI-примеров (32 новых). Полный набор unittest discovery выполнен четырьмя независимыми группами модулей за 407.793 с; все группы завершились успешно. Это проверки справочника по исходникам, без исполнения игрового сценария. Проверены отношения в обоих направлениях. Актуальность и сохранность — в [протоколе](review-log.md#task-0006022). Исторические срезы и накопленные ответы различены.
 
 ## Практический маршрут по пилоту
 
@@ -300,3 +301,15 @@ python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 - details ent-004528 → три экспортных документа как свидетельство, граница runtime pack и issue-00325.
 
 [32 проверочных запроса](examples/expansion-021-queries.json), [покрытие и ограничения](coverage-021.md), [протокол](review-log.md#task-0006021). Срок, дни и состояние не смешаны с применением embedded ActiveEffect.
+
+## Лечение, отдых и спасброски — .022
+
+- find actor.healMixin.calculateHealValue --match exact → ent-003593; входящие calls различают расходник и periodic heal.
+- field ent-000055 --access writes → HP writers урона и разных путей восстановления; уточняйте --scope и страницу.
+- process proc-000339 → checkbox/REC/bonuses/DOM; proc-000340 → ресурсы, травмы и отчёт с разным ожиданием.
+- process proc-000347 → chat source/target, parseInt/max и сообщение; combat/heal.hbs не содержит этой кнопки.
+- process proc-000348 и process proc-000349 → раздельные guards/лимиты/await регенерации и periodic heal.
+- process proc-000350 → minus сбрасывает счётчик; proc-000352 → порог и 1d10 без автоматической записи смерти.
+- details ent-004579 → пределы threshold/результата; соседние границы описывают DOM, отчёт и сохранение.
+
+[32 проверочных запроса](examples/expansion-022-queries.json), [покрытие и ограничения](coverage-022.md), [протокол](review-log.md#task-0006022).

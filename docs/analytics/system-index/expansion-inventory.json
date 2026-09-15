@@ -700,7 +700,7 @@
           "source": "src-000520",
           "path": "templates/partials/character-header.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000535",
@@ -778,7 +778,7 @@
           "source": "src-000564",
           "path": "templates/sheets/actor/partials/monster/header.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000565",
@@ -1516,7 +1516,7 @@
           "source": "src-000017",
           "path": "module/actor/mixins/healMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000038",
@@ -1528,13 +1528,13 @@
           "source": "src-000041",
           "path": "module/actor/sheets/mixins/deathSaveMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000042",
           "path": "module/actor/sheets/mixins/healMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000112",
@@ -1558,25 +1558,25 @@
           "source": "src-000485",
           "path": "templates/chat/combat/heal.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000486",
           "path": "templates/chat/combat/regeneration.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000494",
           "path": "templates/chat/heal/resting-status.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000513",
           "path": "templates/dialog/heal/heal-rest.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000530",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.021",
+    "task": "TASK-0006.022",
     "date": "2026-09-15",
-    "source_head": "33b48126984ca2420f8d027ab0a49475710d23ac",
-    "dataset": "task-0006.021-expansion",
+    "source_head": "924d6a149fd668a184b7bcffc625c3ad443e9b7f",
+    "dataset": "task-0006.022-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4528,
-      "relations": 11605,
-      "processes": 334
+      "entities": 4579,
+      "relations": 11808,
+      "processes": 353
     },
-    "primary_count": 142,
-    "neighbor_count": 104,
-    "catalog_only_definitions": 369,
-    "boundary_count": 329,
+    "primary_count": 149,
+    "neighbor_count": 103,
+    "catalog_only_definitions": 363,
+    "boundary_count": 339,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4571,5 +4571,17 @@
     "ent-004527",
     "ent-004528",
     "ent-004529"
+  ],
+  "added_boundaries_022": [
+    "ent-004571",
+    "ent-004572",
+    "ent-004573",
+    "ent-004574",
+    "ent-004575",
+    "ent-004576",
+    "ent-004577",
+    "ent-004578",
+    "ent-004579",
+    "ent-004580"
   ]
 }

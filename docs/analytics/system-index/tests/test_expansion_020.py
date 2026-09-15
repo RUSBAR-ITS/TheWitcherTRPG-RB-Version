@@ -52,7 +52,7 @@ class ChatDeliveryExpansion(unittest.TestCase):
         self.assertNotIn('message.', '\n'.join(chat[3:8]));self.assertNotIn('fumble','\n'.join(chat[3:8]))
         regs=[r for r in self.data.outgoing['ent-000629']if r['kind']=='registers']
         self.assertEqual({r['to'] for r in regs},{self.q[x]for x in ['onShield','onHeal','onRepairRequest']})
-        self.assertEqual(self.data.entities[self.q['onHeal']]['location']['line_end'],26)
+        self.assertEqual(self.data.entities[self.q['onHeal']]['location']['line_start'],26)
         self.assertIn('element = $(element)',combat[5]);self.assertIn('await attackChatMessageListeners(message, element)',combat[10])
         self.assertFalse([r for r in self.data.incoming[self.q['addAttackChatListeners']]if r['kind']=='calls'])
 
@@ -111,7 +111,7 @@ class ChatDeliveryExpansion(unittest.TestCase):
         self.assertNotIn('await','\n'.join(s[2:9]));self.assertNotIn('actor.statuses','\n'.join(s[39:44]))
         self.assertEqual(self.steps(309)['regeneration']['next'][0]['flow'],'scheduled');self.assertEqual(self.steps(309)['periodic']['next'][0]['flow'],'scheduled')
         self.assertEqual(self.steps(310)['effect']['next'][0]['step'],'effect');self.assertEqual(self.steps(310)['effect']['next'][0]['flow'],'await')
-        e=self.data.entities[self.q['applyMonsterRegeneration']];self.assertEqual(e['location']['line_end'],11)
+        e=self.data.entities[self.q['applyMonsterRegeneration']];self.assertEqual(e['location']['line_start'],11)
 
     def test_periodic_payload_and_view_are_separate(self):
         s=self.source(196);schema=self.source(74);h=self.source(488)

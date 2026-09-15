@@ -1,0 +1,636 @@
+{
+  "dataset": "task-0006.022-expansion",
+  "basis": "Ожидания установлены по JS/аудиту до CLI. Проверки справочника, не исполнение Foundry.",
+  "cases": [
+    {
+      "id": "HEAL-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "sheet.healMixin.recoverActor",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004501"
+        ]
+      },
+      "basis": "42:78–102; не Actor healMixin."
+    },
+    {
+      "id": "HEAL-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "CommonActorData.deathSaves",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003325"
+        ]
+      },
+      "basis": "55:31 NumberField0 без min/integer."
+    },
+    {
+      "id": "HEAL-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003593",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000867",
+          "ent-004266"
+        ]
+      },
+      "basis": "157:8 и196:81; chat193 helper не вызывает."
+    },
+    {
+      "id": "HEAL-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004530",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000359",
+          "ent-000807"
+        ]
+      },
+      "basis": "17:18/22; render отдельно, create без await."
+    },
+    {
+      "id": "HEAL-05",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004501",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004534"
+        ]
+      },
+      "basis": "42:34 await callback."
+    },
+    {
+      "id": "HEAL-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000042"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004501"
+        ]
+      },
+      "basis": "42:80 HP payload."
+    },
+    {
+      "id": "HEAL-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000042"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004501"
+        ]
+      },
+      "basis": "42:84 STA.max."
+    },
+    {
+      "id": "HEAL-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000060",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000042"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004501"
+        ]
+      },
+      "basis": "42:85 vigor.max."
+    },
+    {
+      "id": "HEAL-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000193"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004410"
+        ]
+      },
+      "basis": "193:39 выбранная цель."
+    },
+    {
+      "id": "HEAL-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000196"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004266",
+          "ent-004414"
+        ]
+      },
+      "basis": "196:33 и83 два отдельных пути."
+    },
+    {
+      "id": "HEAL-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000017"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "17 не пишет ресурс: только возврат amount/message."
+    },
+    {
+      "id": "HEAL-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003325",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000041"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004536",
+          "ent-004537"
+        ]
+      },
+      "basis": "41:8 reset,13increment; roll не writer."
+    },
+    {
+      "id": "HEAL-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004546",
+        "--access",
+        "computes",
+        "--scope",
+        "src-000042"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004531",
+          "ent-004532"
+        ]
+      },
+      "basis": "42:12 initialfalse,58trueбезсброса."
+    },
+    {
+      "id": "HEAL-14",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004530",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004266"
+        ]
+      },
+      "basis": "196:84; consume использует собственный createConsumeMessage."
+    },
+    {
+      "id": "HEAL-15",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000335",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "roll",
+          "cap"
+        ],
+        "next_steps": [
+          "roll",
+          "cap"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "17:4 lowercase d,7 верхний cap."
+    },
+    {
+      "id": "HEAL-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000337",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "data",
+          "render",
+          "listeners"
+        ],
+        "next_steps": [
+          "render"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "42:5–45 render до listener, не user choice."
+    },
+    {
+      "id": "HEAL-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000339",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "read",
+          "rest",
+          "bonuses",
+          "output"
+        ],
+        "next_steps": [
+          "rest"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "42:49–75 текущие checks/REC/bonuses/DOM."
+    },
+    {
+      "id": "HEAL-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000340",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "resources",
+          "wounds",
+          "report",
+          "notify"
+        ],
+        "next_steps": [
+          "wounds"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "42:79 await update,88noawait foreach,91awaitrender."
+    },
+    {
+      "id": "HEAL-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000347",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "target",
+          "cap",
+          "update",
+          "report"
+        ],
+        "next_steps": [
+          "target"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "193:27parseInt/UUID,32target,39update,41source.name."
+    },
+    {
+      "id": "HEAL-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000348",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "guards",
+          "render",
+          "message",
+          "update"
+        ],
+        "next_steps": [
+          "render"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "196:12–14guards,16render,30create,32update."
+    },
+    {
+      "id": "HEAL-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000349",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "calculate",
+          "positive",
+          "update",
+          "message"
+        ],
+        "next_steps": [
+          "calculate"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "196:80–84 positive guard,await update."
+    },
+    {
+      "id": "HEAL-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000352",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "base",
+          "threshold",
+          "message",
+          "config",
+          "roll"
+        ],
+        "next_steps": [
+          "threshold"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "41:17–42 cap перед вычитанием, extendedRoll."
+    },
+    {
+      "id": "HEAL-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000350",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "counter"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "41:8 значение0, не −1."
+    },
+    {
+      "id": "HEAL-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000347",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "target"
+        ],
+        "next_steps": [
+          "cap"
+        ],
+        "next_exits": [
+          "no-target",
+          "failed"
+        ]
+      },
+      "basis": "193:33 без цели нет update/message."
+    },
+    {
+      "id": "HEAL-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000349",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "positive"
+        ],
+        "next_steps": [
+          "update"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "196:82 fullHP/above-max delta пропускается."
+    },
+    {
+      "id": "HEAL-26",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004572"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00123.md"
+        ]
+      },
+      "basis": "42global document"
+    },
+    {
+      "id": "HEAL-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004573"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00124.md"
+        ]
+      },
+      "basis": "42:58/63 толькоtrue"
+    },
+    {
+      "id": "HEAL-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004574"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00125.md",
+          "docs/issues/potential/issue-00127.md"
+        ]
+      },
+      "basis": "42foreach/494report"
+    },
+    {
+      "id": "HEAL-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004576"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00249.md",
+          "docs/issues/potential/issue-00255.md",
+          "docs/issues/potential/issue-00256.md"
+        ]
+      },
+      "basis": "193UUID/parseInt/no lower"
+    },
+    {
+      "id": "HEAL-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004579"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00196.md"
+        ]
+      },
+      "basis": "41min10−deathSaves"
+    },
+    {
+      "id": "HEAL-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004580"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00197.md"
+        ]
+      },
+      "basis": "41reset0/update noawait"
+    },
+    {
+      "id": "HEAL-32",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004578"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00006.md",
+          "docs/issues/potential/issue-00022.md",
+          "docs/issues/potential/issue-00299.md",
+          "docs/issues/potential/issue-00328.md"
+        ]
+      },
+      "basis": "196две ветви/noawait/amount"
+    }
+  ]
+}
