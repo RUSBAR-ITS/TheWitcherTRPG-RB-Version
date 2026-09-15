@@ -15,7 +15,7 @@ class SkillUIExpansion(unittest.TestCase):
         cls.addClassCleanup(cls.historical.cleanup)
         directory=Path(cls.historical.name)
         manifest=json.loads((BASE/'manifest.json').read_text())
-        rows={kind:[json.loads(l) for part in manifest['parts'][kind] if not any('expansion-'+str(n).zfill(3) in part for n in [10,11])
+        rows={kind:[json.loads(l) for part in manifest['parts'][kind] if not re.search(r'expansion-(\d+)',part) or int(re.search(r'expansion-(\d+)',part).group(1))<=9
                     for l in (BASE/part).read_text().splitlines()] for kind in ('entities','relations','processes')}
         allowed_relations={r['id'] for r in rows['relations']}
         for process in rows['processes']:

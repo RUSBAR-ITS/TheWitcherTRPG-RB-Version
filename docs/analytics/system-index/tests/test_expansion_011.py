@@ -135,10 +135,12 @@ class LocalizationExpansion(unittest.TestCase):
 
     def test_accumulated_reverse_edges_and_process_participation(self):
         d=self.data
-        self.assertEqual([len(d.sources),len(d.entities),len(d.relations),len(d.processes)],[615,3323,7395,97])
-        self.assertEqual(len(d.manifest['scope']['selected_sources']),60)
-        self.assertEqual(collections.Counter(s['coverage']['definitions']['state'] for s in d.sources.values()),
-                         {'complete':2,'partial':152,'not_indexed':461})
+        historical={kind:[json.loads(l) for part in d.manifest['parts'][kind]
+            if not re.search(r'expansion-(\d+)',part) or int(re.search(r'expansion-(\d+)',part).group(1))<=11
+            for l in (BASE/part).read_text().splitlines()] for kind in ['entities','relations','processes']}
+        self.assertEqual([len(d.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,3323,7395,97])
+        represented={e['location']['source'] for e in historical['entities'] if e.get('location') and e['kind']!='boundary'}
+        self.assertEqual(len(represented),154)
         for r in d.relations.values():
             self.assertIn(r,d.outgoing[r['from']])
             self.assertIn(r,d.incoming[r['to']])
@@ -164,7 +166,7 @@ class LocalizationExpansion(unittest.TestCase):
             self.assertIn(p['id'],[x['id'] for x in out['items']])
         # Every prior ID still belongs to its prior part; no renumbering to accommodate translations.
         for kind,last in [('entities',1008),('relations',2671),('processes',91)]:
-            old=[json.loads(l) for part in d.manifest['parts'][kind] if 'expansion-011' not in part
+            old=[json.loads(l) for part in d.manifest['parts'][kind] if not re.search(r'expansion-(\d+)',part) or int(re.search(r'expansion-(\d+)',part).group(1))<=10
                  for l in (BASE/part).read_text().splitlines()]
             self.assertEqual(len(old),last)
             self.assertEqual({int(r['id'].split('-')[1]) for r in old},set(range(1,last+1)))

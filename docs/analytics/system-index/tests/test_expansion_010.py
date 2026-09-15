@@ -177,7 +177,7 @@ class EditingExpansion(unittest.TestCase):
                     self.assertTrue(s['location']['line_start']<=r['location']['line_start']<=s['location']['line_end'])
             out=self.data.query(query.parser().parse_args(['processes',p['entry']['entity'],'--limit','100','--no-verify']))
             self.assertIn(p['id'],[x['id'] for x in out['items']])
-        historical={kind:[json.loads(l) for part in self.data.manifest['parts'][kind] if 'expansion-011' not in part
+        historical={kind:[json.loads(l) for part in self.data.manifest['parts'][kind] if not re.search(r'expansion-(\d+)',part) or int(re.search(r'expansion-(\d+)',part).group(1))<=10
                           for l in (BASE/part).read_text().splitlines()] for kind in ['entities','relations','processes']}
         self.assertEqual([len(self.data.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,1008,2671,91])
         represented={e['location']['source'] for e in historical['entities'] if e['location'] and e['kind']!='boundary'}

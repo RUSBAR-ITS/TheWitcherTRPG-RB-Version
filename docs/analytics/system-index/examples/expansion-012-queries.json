@@ -1,0 +1,455 @@
+{
+  "dataset": "task-0006.012-expansion",
+  "basis": "Ожидания установлены по адресам текущих исходников и позднему аудиту до вызовов CLI; ID разрешены из записей определений.",
+  "cases": [
+    {
+      "id": "DOC-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "CommonItemData.quantity",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003383"
+        ]
+      },
+      "basis": "CommonItemData: объявление в строках 7/18/26; не поле документа WitcherItem."
+    },
+    {
+      "id": "DOC-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "CommonItemData.calcWeight",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003399"
+        ]
+      },
+      "basis": "CommonItemData: объявление в строках 7/18/26; не поле документа WitcherItem."
+    },
+    {
+      "id": "DOC-03",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "CommonItemData.canBeRepaired",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-003400"
+        ]
+      },
+      "basis": "CommonItemData: объявление в строках 7/18/26; не поле документа WitcherItem."
+    },
+    {
+      "id": "DOC-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003399",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003383",
+          "ent-003384",
+          "ent-003388",
+          "ent-003389"
+        ]
+      },
+      "basis": "Строка 19: два guards и quantity*weight; isHidden не участвует."
+    },
+    {
+      "id": "DOC-05",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000109"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "defineSchema описывает поле, calcWeight только читает; отсутствие writers ограничено исходником 109."
+    },
+    {
+      "id": "DOC-06",
+      "question": "IQ-05",
+      "command": [
+        "field",
+        "ent-003383",
+        "--access",
+        "reads"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003399",
+          "ent-003460"
+        ]
+      },
+      "basis": "Общий вес использует quantity; стоимость приводит quantity/cost к Number."
+    },
+    {
+      "id": "DOC-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000168",
+        "--direction",
+        "out",
+        "--relation",
+        "extends"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000036"
+        ]
+      },
+      "basis": "LootData:5 непосредственно наследует TypeDataModel; не CommonActorData."
+    },
+    {
+      "id": "DOC-08",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000164",
+        "--direction",
+        "out",
+        "--relation",
+        "extends"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-000139"
+        ]
+      },
+      "basis": "CharacterData:9 наследует общую модель Actor."
+    },
+    {
+      "id": "DOC-09",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003406",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--scope",
+        "src-000057"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003405"
+        ]
+      },
+      "basis": "MonsterData:69/70/71 вызывает один helper с тремя разными fieldPath."
+    },
+    {
+      "id": "DOC-10",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000113"
+      ],
+      "expected": {
+        "ids": [
+          "common",
+          "academic",
+          "lore"
+        ],
+        "next_steps": [
+          "academic"
+        ]
+      },
+      "basis": "Три последовательных await, без Promise.all."
+    },
+    {
+      "id": "DOC-11",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000111"
+      ],
+      "expected": {
+        "ids": [
+          "html",
+          "result"
+        ],
+        "next_steps": [
+          "result"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "HTML ожидается до schema.getField; при rejection второе поле не читается."
+    },
+    {
+      "id": "DOC-12",
+      "question": "IQ-07",
+      "command": [
+        "processes",
+        "ent-003399"
+      ],
+      "expected": {
+        "includes_ids": [
+          "proc-000103"
+        ]
+      },
+      "basis": "Процесс guard → multiplication; ложный guard возвращает 0."
+    },
+    {
+      "id": "DOC-13",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000103"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "multiply"
+        ],
+        "next_steps": [
+          "multiply"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "CommonItemData:19: isCarried && !isStored."
+    },
+    {
+      "id": "DOC-14",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003448",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003528"
+        ],
+        "excludes_to_ids": [
+          "ent-003403"
+        ]
+      },
+      "basis": "ItemSheet:52 вызывает модель напрямую; wrapper документа на строке 173 — другой вход."
+    },
+    {
+      "id": "DOC-15",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-003528"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Конкретный method определяется типом модели; optional call допускает отсутствие."
+    },
+    {
+      "id": "DOC-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000115"
+      ],
+      "expected": {
+        "includes_ids": [
+          "documents",
+          "temporary-hp",
+          "weapons",
+          "effects"
+        ],
+        "next_steps": [
+          "options"
+        ]
+      },
+      "basis": "V2: super → settings → live documents → prepared HP → helpers → effects."
+    },
+    {
+      "id": "DOC-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000116"
+      ],
+      "expected": {
+        "includes_ids": [
+          "copy",
+          "hp",
+          "helpers"
+        ],
+        "next_steps": [
+          "settings"
+        ]
+      },
+      "basis": "V1:35 получает actor.toObject(false); system берётся из копии, items остаются документами."
+    },
+    {
+      "id": "DOC-18",
+      "question": "IQ-06",
+      "command": [
+        "neighbors",
+        "ent-003456",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-001003"
+        ]
+      },
+      "basis": "ItemSheet:142 запрашивает Item.update, а не createEmbeddedDocuments ActiveEffect."
+    },
+    {
+      "id": "DOC-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000125"
+      ],
+      "expected": {
+        "ids": [
+          "super",
+          "condition",
+          "edit"
+        ],
+        "next_steps": [
+          "condition"
+        ]
+      },
+      "basis": "Super и ручной editor запускаются без await; ветка зависит от dataset.action."
+    },
+    {
+      "id": "DOC-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000127"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "checkbox",
+          "checked",
+          "write"
+        ],
+        "next_steps": [
+          "checkbox"
+        ]
+      },
+      "basis": "ItemSheet:152–156: value==on превращается в checked, затем update без await."
+    },
+    {
+      "id": "DOC-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000129"
+      ],
+      "expected": {
+        "ids": [
+          "editable",
+          "data",
+          "resolve",
+          "dispatch",
+          "raw"
+        ],
+        "next_steps": [
+          "data"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "Drop: editable guard; известный класс разрешается через await, неизвестный возвращает raw data."
+    },
+    {
+      "id": "DOC-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000130"
+      ],
+      "expected": {
+        "ids": [
+          "type",
+          "ae",
+          "actor",
+          "item",
+          "folder",
+          "other"
+        ],
+        "next_steps": [
+          "ae",
+          "actor",
+          "item",
+          "folder",
+          "other"
+        ]
+      },
+      "basis": "Диспетчер четырёх типов; остальные documentName возвращают null."
+    },
+    {
+      "id": "DOC-23",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003540"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00058.md"
+        ]
+      },
+      "basis": "Граница отсутствующего общего handler подтверждена issue-00058 с уточнениями."
+    },
+    {
+      "id": "DOC-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000132"
+      ],
+      "expected": {
+        "ids": [
+          "base",
+          "character",
+          "helpers",
+          "events",
+          "enrich",
+          "tabs"
+        ],
+        "next_steps": [
+          "character"
+        ]
+      },
+      "basis": "Character:125 await; 126–131 без await; 133–137 меняют live lifeEvents."
+    }
+  ]
+}
