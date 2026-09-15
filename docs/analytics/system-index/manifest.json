@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.004-pilot",
-  "purpose": "pilot_index",
+  "dataset_id": "task-0006.006-expansion",
+  "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
-    "date": "2026-09-14",
+    "date": "2026-09-15",
     "branch": "rusbar-main",
-    "head": "3b22cf11595611a18b17fac091acae1249549b03",
+    "head": "983e6fda1d00beb87d22dba5c41aac518d2b3310",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -36,9 +36,13 @@
       "src-000091",
       "src-000202",
       "src-000209",
-      "src-000214"
+      "src-000212",
+      "src-000214",
+      "src-000215",
+      "src-000216",
+      "src-000481"
     ],
-    "semantic_scope": "23 основных и 13 смежных файлов частично; 579 только в каталоге. В четырёх направлениях пилота 12 новых процессов; вместе с двумя начальными — 14. Внешние этапы ядра и нераскрытые тела отмечены границами.",
+    "semantic_scope": "27 основных источников накопленного индекса; всего 108 файлов с частичными определениями, 507 только в каталоге определений. 23 процессов. Порция .006 — регистрации и входы; импортированные классы не проиндексированы целиком.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -47,18 +51,21 @@
     ],
     "entities": [
       "examples/entities.jsonl",
-      "data/entities/pilot.jsonl"
+      "data/entities/pilot.jsonl",
+      "data/entities/expansion-006.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
-      "data/relations/pilot.jsonl"
+      "data/relations/pilot.jsonl",
+      "data/relations/expansion-006.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
-      "data/processes/pilot.jsonl"
+      "data/processes/pilot.jsonl",
+      "data/processes/expansion-006.jsonl"
     ]
   },
-  "query_examples": "examples/process-queries.json",
+  "query_examples": "examples/expansion-006-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -80,13 +87,20 @@
     "docs/issues/potential/issue-00184.md": "945ef944d9ddf6e71757f904f0812b6d6e61a18bc7799b25aaf8630139d45190",
     "docs/issues/potential/issue-00031.md": "0a40ca63935c870a082a3bb1d6caa74fff34856b95b9de9b450c2f9e88211ec7",
     "docs/analytics/code-audit/files/module/data/actor/templates/common/skills/intData.js.md": "001f4663b21678671900802d8b73701db374ee6a69b466b993a933b617321310",
-    "docs/analytics/system-index/process-guide.md": "dea335fcdef849adb3a8743c7892ca03df99de0e76d746407a219c7e8c4320c3"
+    "docs/analytics/system-index/process-guide.md": "dea335fcdef849adb3a8743c7892ca03df99de0e76d746407a219c7e8c4320c3",
+    "docs/issues/potential/issue-00005.md": "2df7296a1bae1cf1aad39d42de93a98c3d009e7b8bd41fbd0e6da7c8680e28b6",
+    "docs/issues/potential/issue-00057.md": "d72dafec9ea2d97f2ca09c79ddda6953d4b40d9014257784aa73877c56db66fd",
+    "docs/issues/potential/issue-00001.md": "89c358184ea100139b35250a503e2214b6490f449586f789108d804eb4cba098",
+    "docs/issues/potential/issue-00002.md": "152d886add77b7f573959c8dfc16198550238b67cbd2775de2db8adbcbe74f79",
+    "docs/issues/potential/issue-00289.md": "3e5863d8b27d411111e195d7c043b01b6e4698dd1d7edfe47d952e6bcbe5d540",
+    "docs/issues/potential/issue-00006.md": "57a4494008554f06ae2b9fbea5f45110be32f5ae4c1694d47b999950e6d5abc6",
+    "docs/analytics/system-index/coverage-006.md": "503664a5ad1a27943e060a6e03d1fa762a2741366964e8f14f4be92e5efc79a4"
   },
   "next_ids": {
     "source": 616,
-    "entity": 401,
-    "relation": 978,
-    "process": 15
+    "entity": 637,
+    "relation": 1602,
+    "process": 24
   },
   "retired_ids": []
 }

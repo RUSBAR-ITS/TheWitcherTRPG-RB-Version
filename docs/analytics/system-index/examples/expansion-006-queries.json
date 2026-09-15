@@ -1,0 +1,347 @@
+{
+  "dataset": "task-0006.006-expansion",
+  "verified_at_head": "983e6fda1d00beb87d22dba5c41aac518d2b3310",
+  "basis": "source_read",
+  "cases": [
+    {
+      "id": "X006-01",
+      "iq": "IQ-01",
+      "command": [
+        "find",
+        "CONFIG.Actor.dataModels.mystery",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000462"
+        ],
+        "locations": [
+          [
+            "src-000214",
+            42
+          ]
+        ]
+      },
+      "basis": "registerDataModels.js:42 назначает MysteryActorData; system.json Actor содержит только character/monster/loot."
+    },
+    {
+      "id": "X006-02",
+      "iq": "IQ-01",
+      "command": [
+        "find",
+        "manifest.documentTypes.Actor.mystery",
+        "--match",
+        "exact",
+        "--scope",
+        "src-000481"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope"
+      },
+      "basis": "system.json:153–159: ключ mystery отсутствует; пустая выдача проверена по полному списку объявлений, не по общему partial alone."
+    },
+    {
+      "id": "X006-03",
+      "iq": "IQ-02",
+      "command": [
+        "find",
+        "CONFIG.Item.dataModels.skill",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000484"
+        ],
+        "locations": [
+          [
+            "src-000214",
+            70
+          ]
+        ]
+      },
+      "basis": "registerDataModels.js:70 назначает SkillItemData; это отдельный Item-навык."
+    },
+    {
+      "id": "X006-04",
+      "iq": "IQ-02",
+      "command": [
+        "find",
+        "manifest.documentTypes.Item.skill",
+        "--match",
+        "exact",
+        "--scope",
+        "src-000481"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope"
+      },
+      "basis": "system.json:160–185 не содержит skill; AE/Chat base нельзя считать такой же ошибкой."
+    },
+    {
+      "id": "X006-05",
+      "iq": "IQ-03",
+      "command": [
+        "find",
+        "WitcherProfessionSheet",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000448"
+        ],
+        "locations": [
+          [
+            "src-000175",
+            4
+          ]
+        ]
+      },
+      "basis": "Default import registerSheets.js:17 разрешается в WitcheProfessionSheet:4, включая исходное имя без r."
+    },
+    {
+      "id": "X006-06",
+      "iq": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000448",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000401"
+        ],
+        "locations": [
+          [
+            "src-000215",
+            72
+          ]
+        ]
+      },
+      "basis": "registerSheets.js:72–75: namespace witcher, makeDefault true, types profession."
+    },
+    {
+      "id": "X006-07",
+      "iq": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-000570",
+        "--direction",
+        "in",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000586"
+        ],
+        "locations": [
+          [
+            "src-000004",
+            64
+          ]
+        ]
+      },
+      "basis": "Выбранный ready читает criticalWoundsPack:64; поздний damageMixin не включён как читатель этой порции."
+    },
+    {
+      "id": "X006-08",
+      "iq": "IQ-05",
+      "command": [
+        "show",
+        "ent-000524"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000524"
+        ],
+        "locations": [
+          [
+            "src-000172",
+            30
+          ]
+        ],
+        "owner": "ent-000434"
+      },
+      "basis": "WitcherItemSheet:30 имеет PARTS={}; регистрация общего листа:34, отдельного note-листа нет."
+    },
+    {
+      "id": "X006-09",
+      "iq": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000524",
+        "--direction",
+        "out",
+        "--relation",
+        "refers"
+      ],
+      "expected": {
+        "ids": [],
+        "empty_reason": "none_in_scope"
+      },
+      "basis": "Пустой PARTS общего листа не ссылается на существующий note-sheet.hbs."
+    },
+    {
+      "id": "X006-10",
+      "iq": "IQ-06",
+      "command": [
+        "neighbors",
+        "ent-000575",
+        "--direction",
+        "in",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000296",
+          "ent-000302",
+          "ent-000303",
+          "ent-000304",
+          "ent-000361"
+        ],
+        "locations": [
+          [
+            "src-000019",
+            3
+          ],
+          [
+            "src-000022",
+            55
+          ],
+          [
+            "src-000022",
+            86
+          ],
+          [
+            "src-000022",
+            144
+          ],
+          [
+            "src-000198",
+            78
+          ]
+        ]
+      },
+      "basis": "Пять буквальных чтений: modifierMixin:3, skillMixin:55/86/144, helper.addPart:78. Другие подсистемы вне выбранных читателей."
+    },
+    {
+      "id": "X006-11",
+      "iq": "IQ-07",
+      "command": [
+        "process",
+        "proc-000021",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "index"
+        ],
+        "next_steps": [
+          "index",
+          "hotbar"
+        ],
+        "next_exits": [
+          "missing",
+          "rejected"
+        ]
+      },
+      "basis": "ready:65–67 — отсутствующий pack/ошибка, ожидание того же Promise и fulfilled; пустой успешный индекс не является отказом ready."
+    },
+    {
+      "id": "X006-12",
+      "iq": "IQ-07",
+      "command": [
+        "processes",
+        "ent-000570"
+      ],
+      "expected": {
+        "ids": [
+          "proc-000019",
+          "proc-000021"
+        ]
+      },
+      "basis": "Настройка участвует в registerSettings и чтении ready через явные отношения шагов; choices не вызывает ready автоматически."
+    },
+    {
+      "id": "X006-13",
+      "iq": "IQ-08",
+      "command": [
+        "details",
+        "ent-000529"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00001.md"
+        ],
+        "includes_anchors": [
+          "r002-01"
+        ]
+      },
+      "basis": "Manifest id и серверный барьер описаны в поздней .002; это историческая проверка метода, не запуск сервера в .006."
+    },
+    {
+      "id": "X006-14",
+      "iq": "IQ-08",
+      "command": [
+        "details",
+        "ent-000328"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00005.md"
+        ],
+        "includes_anchors": [
+          "r002-02"
+        ]
+      },
+      "basis": "Модельная регистрация не добавляет тип в game.model; позднее уточнение различает base ChatMessage."
+    },
+    {
+      "id": "X006-15",
+      "iq": "IQ-08",
+      "command": [
+        "details",
+        "ent-000401"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00057.md"
+        ],
+        "includes_anchors": [
+          "r002-03"
+        ]
+      },
+      "basis": "Общий лист заметки с PARTS={} и пользовательский выбор листа — разные границы."
+    },
+    {
+      "id": "X006-16",
+      "iq": "IQ-07",
+      "command": [
+        "process",
+        "proc-000022",
+        "--limit",
+        "10"
+      ],
+      "expected": {
+        "ids": [
+          "delegate",
+          "general",
+          "regions"
+        ]
+      },
+      "basis": "hooks.js:6/11/12: передача четырёх аргументов и запуск двух async функций без await."
+    }
+  ]
+}

@@ -81,6 +81,38 @@ def save_seed_view(directory):
     return path
 
 
+def save_pilot_view(directory):
+    """Historical .004/.005 parts for fixed pilot counts; no expansion records."""
+    manifest = json.loads((BASE / "manifest.json").read_text())
+    rows = {}
+    for kind in ("entities", "relations", "processes"):
+        rows[kind] = [json.loads(line)
+                      for part in (f"examples/{kind}.jsonl", f"data/{kind}/pilot.jsonl")
+                      for line in (BASE / part).read_text().splitlines()]
+    rows["sources"] = [json.loads(line) for line in (BASE / "sources.jsonl").read_text().splitlines()]
+    selected = [4, 8, 19, 22, 45, 47, 52, 55, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 202, 209, 214]
+    manifest["scope"]["selected_sources"] = [f"src-{n:06}" for n in selected]
+    manifest["scope"]["semantic_scope"] = "Исторические части пилота .004/.005 без расширений."
+    manifest["dataset_id"] = "task-0006.005-pilot-view"
+    manifest.pop("query_examples", None)
+    manifest["parts"] = {kind: [kind + ".jsonl"] for kind in rows}
+    manifest["next_ids"] = dict(source=616, entity=401, relation=978, process=15)
+    for src in rows["sources"]:
+        for aspect, kind in (("definitions", "entities"), ("relations", "relations"), ("processes", "processes")):
+            included = [row["id"] for row in rows[kind]
+                        if (any(step["location"]["source"] == src["id"] for step in row["steps"])
+                            if aspect == "processes" else
+                            (row.get("location") or {}).get("source") == src["id"]
+                            and (aspect != "definitions" or row["kind"] != "boundary"))]
+            src["coverage"][aspect] = dict(state="partial" if included else "not_indexed",
+                included=included, remaining=["Исторический охват пилота; расширение .006 исключено из этого среза."])
+    for kind, data in rows.items():
+        (directory / (kind + ".jsonl")).write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in data))
+    path = directory / "manifest.json"
+    path.write_text(json.dumps(manifest, ensure_ascii=False))
+    return path
+
+
 class RealExamples(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

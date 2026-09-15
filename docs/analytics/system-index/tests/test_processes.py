@@ -52,7 +52,7 @@ class ProcessParticipation(unittest.TestCase):
 
     def test_steps_are_reachable_and_relations_have_local_evidence(self):
         # Checks the authored graph, not a simulation of JavaScript or core Foundry.
-        processes = [p for p in self.data.processes.values() if int(p["id"].split("-")[1]) >= 3]
+        processes = [json.loads(line) for line in (BASE / "data/processes/pilot.jsonl").read_text().splitlines()]
         self.assertEqual(len(processes), 12)
         self.assertEqual(sum(len(p["steps"]) for p in processes), 96)
         for p in processes:

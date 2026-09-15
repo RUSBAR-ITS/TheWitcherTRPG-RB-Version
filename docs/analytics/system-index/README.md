@@ -1,8 +1,8 @@
 # Справочник-граф системы
 
-[TASK-0006.005](../../tasks/task-0006.005.md) завершена: [приёмка пилота](pilot-acceptance.md) подтвердила восемь справочных запросов в заявленных границах. Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
+[TASK-0006.006](../../tasks/task-0006.006.md) дополняет прошедший [приёмку пилот](pilot-acceptance.md) регистрациями документов, листов, настроек и входами системы. [Границы расширения](coverage-006.md). Формат JSONL и Python 3 согласованы в [DEC-0001](../../documentation/decisions.md#dec-0001--формат-и-локальный-поиск-справочника).
 
-**Текущий охват:** 615 исходников в каталоге; 23 основных и 13 смежных файлов представлены частично, 579 ещё не индексированы. В графе 400 сущностей, 977 связей и 14 процессов (101 шаг, 151 переход). [Границы файлов](pilot-coverage.md), [процессы и поиск участия](process-guide.md). [Первая очередь расширения](expansion-plan.md#первые-порции-расширения) оформлена как .006–.011; следующая [TASK-0006.006](../../tasks/task-0006.006.md). Все шесть planned; весь индекс ещё не завершён.
+**Текущий охват:** 615 исходников в каталоге; 27 основных и 81 смежный файл имеют частичные определения, 507 пока только в каталоге определений. В графе 636 сущностей, 1601 связь и 23 процесса (145 шагов, 200 переходов). [Расширение .006](coverage-006.md), [исторический пилот](pilot-coverage.md), [очередь](expansion-plan.md#первые-порции-расширения). Следующая — [TASK-0006.007](../../tasks/task-0006.007.md), редактор ActiveEffect и мастер изменений; полный индекс остаётся незавершённым.
 
 ## Быстрый запуск
 
@@ -42,6 +42,18 @@ python3 docs/analytics/system-index/query.py check --freshness
 
 Инструмент работает из другого каталога при запуске по абсолютному пути. Манифест по умолчанию расположен рядом с query.py. --dataset PATH перед командой выбирает другой набор, но его исходники всё равно адресуются от корня этого репозитория.
 
+## Поиск по расширению .006
+
+```bash
+python3 docs/analytics/system-index/query.py find CONFIG.Actor.dataModels.mystery --match exact
+python3 docs/analytics/system-index/query.py find WitcherProfessionSheet --match exact
+python3 docs/analytics/system-index/query.py neighbors ent-000570 --direction in --relation reads
+python3 docs/analytics/system-index/query.py neighbors ent-000575 --direction in --relation reads
+python3 docs/analytics/system-index/query.py process proc-000021
+```
+
+Настройки — узлы setting; readers ищутся через neighbors. `proc-000021` показывает ready, ожидание getIndex и условия достижения сокета. Полный набор [16 примеров](examples/expansion-006-queries.json) и [покрытие](coverage-006.md) отделяют декларации манифеста, CONFIG-регистрации и реальное выполнение.
+
 ## Материалы
 
 | Материал | Содержание |
@@ -55,7 +67,9 @@ python3 docs/analytics/system-index/query.py check --freshness
 | [12 случаев процессов](examples/process-queries.json) / [13 случаев пилота](examples/pilot-queries.json) / [16 начальных](examples/queries.json) | Ожидаемые ответы; начальные проверяются отдельно |
 | [Тесты процессов](tests/test_processes.py) / [пилота](tests/test_pilot.py) / [инструмента](tests/test_query.py) | Участие поля/метода, переходы, исходники и изолированные входы |
 | [Приёмка пилота](pilot-acceptance.md) / [26 приёмочных случаев](examples/acceptance-queries.json) | Независимые ориентиры IQ-01–IQ-08, выдача и границы пригодности |
-| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов по областям, 62 границы; первая очередь .006–.011 planned |
+| [Расширение](expansion-plan.md) / [полный перечень](expansion-inventory.json) | 615 файлов: исторические роли пилота и отдельное текущее покрытие; .006 выполнена, .007–.011 planned |
+| [Расширение .006](coverage-006.md) / [сущности](data/entities/expansion-006.jsonl) / [отношения](data/relations/expansion-006.jsonl) / [процессы](data/processes/expansion-006.jsonl) | Регистрации, настройки, init/ready/updateCombat и смежные определения |
+| [16 случаев .006](examples/expansion-006-queries.json) / [тесты](tests/test_expansion_006.py) / [протокол](review-log.md#task-0006006) | Проверка новой порции и её границ |
 | [Тесты приёмки](tests/test_acceptance.py) / [протокол .005](review-log.md#task-0006005) | Проверка запросов, взаимности связей и устаревания без изменения источников |
 
 Подробные объяснения остаются в [аудите](../code-audit/README.md); назначение справочника задано [требованиями](../system-index-requirements.md).
@@ -66,7 +80,7 @@ python3 docs/analytics/system-index/query.py check --freshness
 python3 -B -m unittest discover -s docs/analytics/system-index/tests -v
 ```
 
-Пройдены 30 тестовых методов: 26 приёмочных CLI-случаев, 12 случаев процессов, 13 текущих случаев пилота, 16 начальных случаев, 24 повреждённых входа и дополнительные проверки. Проверены обе стороны 977 отношений; устаревание проверяется также изменением только временной копии метаданных. Начальные случаи используют отдельное временное представление; их ожидаемые ответы сохранены. Игровой JavaScript и мир Foundry эти тесты не запускают.
+Пройдены 38 тестовых методов, включая 16 новых CLI-случаев .006; проверены все 1601 отношение в обоих направлениях. Проверка актуальности: 615 исходников, реестр, 634 документа и package Foundry — current. [Протокол и сохранность](review-log.md#task-0006006). Размеры старого пилота проверяются на исходных частях; его запросы продолжают проверяться на текущем графе. Игровое поведение этим не исполняется.
 
 ## Практический маршрут по пилоту
 
