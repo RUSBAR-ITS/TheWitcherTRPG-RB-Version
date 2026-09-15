@@ -433,5 +433,39 @@ class IsolatedCases(unittest.TestCase):
         self.assertEqual(snapshot(), before)
 
 
+
+def save_pre_resource_forms_view(directory):
+    """Срез графа до .024 для прежних точных ответов, включая пустые writers.
+
+    Использует сохранённые части .001–.023, пересчитывает facets по их записям.
+    Это исторический охват графа при неизменных исходниках, не копия мира.
+    """
+    manifest=json.loads((BASE/'manifest.json').read_text())
+    rows={kind:[json.loads(line) for part in manifest['parts'][kind]
+        if '/expansion-' not in part or int(part.rsplit('expansion-',1)[1].split('.')[0])<=23
+        for line in (BASE/part).read_text().splitlines()]
+        for kind in ['entities','relations','processes']}
+    rows['sources']=[json.loads(line)for line in (BASE/'sources.jsonl').read_text().splitlines()]
+    manifest['dataset_id']='task-0006.023-view-before-resource-forms'
+    # Fixed primary set of .023: later promotion of neighbors must not rewrite history.
+    primary_before_024=[2, 3, 4, 5, 6, 7, 8, 10, 14, 15, 16, 17, 18, 19, 22, 23, 25, 27, 28, 29, 31, 32, 34, 36, 38, 40, 41, 42, 43, 45, 46, 47, 50, 51, 52, 54, 55, 56, 57, 58, 59, 62, 63, 74, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 94, 95, 96, 97, 98, 99, 100, 101, 108, 109, 112, 126, 127, 129, 130, 131, 132, 133, 134, 136, 137, 155, 157, 159, 160, 164, 167, 172, 178, 181, 182, 183, 184, 186, 192, 193, 194, 195, 196, 197, 202, 204, 205, 206, 209, 212, 213, 214, 215, 216, 217, 445, 453, 455, 481, 482, 483, 484, 485, 486, 488, 490, 491, 492, 493, 494, 496, 506, 509, 510, 513, 521, 522, 527, 530, 531, 541, 542, 543, 544, 547, 551, 562, 583, 585, 590, 591, 592, 593, 599, 610, 613]
+    manifest['scope']['selected_sources']=[f'src-{n:06}' for n in primary_before_024]
+    manifest['scope']['semantic_scope']='Охват до .024: ручные resource-form writers ещё не включены.'
+    manifest.pop('query_examples',None)
+    manifest['parts']={kind:[kind+'.jsonl']for kind in rows}
+    manifest['next_ids']=dict(source=616,entity=4581,relation=11809,process=354)
+    for source in rows['sources']:
+        sid=source['id']
+        for facet,kind in [('definitions','entities'),('relations','relations'),('processes','processes')]:
+            selected=[r['id']for r in rows[kind]if
+                (any(s['location']['source']==sid for s in r['steps']) if facet=='processes'else
+                 (r.get('location')or{}).get('source')==sid and (facet!='definitions'or r['kind']!='boundary'))]
+            complete=facet=='definitions'and source['coverage'][facet]['state']=='complete'
+            source['coverage'][facet]=dict(state='complete'if complete else'partial'if selected else'not_indexed',included=selected,
+                remaining=[]if complete else['Исторический охват до .024; пустой ответ не отрицает наличие ручной формы в исходниках.'])
+    for kind,records in rows.items():(directory/(kind+'.jsonl')).write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n'for r in records))
+    path=directory/'manifest.json';path.write_text(json.dumps(manifest,ensure_ascii=False));return path
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -766,7 +766,7 @@
           "source": "src-000560",
           "path": "templates/sheets/actor/partials/character/sidebar.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000563",
@@ -784,7 +784,7 @@
           "source": "src-000565",
           "path": "templates/sheets/actor/partials/monster/sidebar.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000566",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.023",
+    "task": "TASK-0006.024",
     "date": "2026-09-15",
-    "source_head": "32e972cf19172933c6a9dc8c67c375b128a1e163",
-    "dataset": "task-0006.023-expansion",
+    "source_head": "b4dc32e5fb85529abba08a5ac96cd89cfb3a3087",
+    "dataset": "task-0006.024-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4579,
-      "relations": 11808,
-      "processes": 353
+      "entities": 4634,
+      "relations": 12075,
+      "processes": 363
     },
-    "primary_count": 149,
+    "primary_count": 151,
     "neighbor_count": 103,
-    "catalog_only_definitions": 363,
-    "boundary_count": 339,
+    "catalog_only_definitions": 361,
+    "boundary_count": 344,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4583,5 +4583,12 @@
     "ent-004578",
     "ent-004579",
     "ent-004580"
+  ],
+  "added_boundaries_024": [
+    "ent-004581",
+    "ent-004582",
+    "ent-004583",
+    "ent-004628",
+    "ent-004629"
   ]
 }

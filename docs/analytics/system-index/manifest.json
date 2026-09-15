@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.023-expansion",
+  "dataset_id": "task-0006.024-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-15",
     "branch": "rusbar-main",
-    "head": "32e972cf19172933c6a9dc8c67c375b128a1e163",
+    "head": "b4dc32e5fb85529abba08a5ac96cd89cfb3a3087",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -153,7 +153,9 @@
       "src-000544",
       "src-000547",
       "src-000551",
+      "src-000560",
       "src-000562",
+      "src-000565",
       "src-000583",
       "src-000585",
       "src-000590",
@@ -164,7 +166,7 @@
       "src-000610",
       "src-000613"
     ],
-    "semantic_scope": "Накопленная проверка .001–.022: 12 стыков предметов, боя, эффектов и восстановления. Основных источников 149; определения в 252/615 файлах, отношения в 257, локальные шаги процессов в 112. Глобальное покрытие partial; новых предметных областей и записей графа в .023 нет.",
+    "semantic_scope": ".024: ручные ресурсы двух sidebar, унаследованный submit Actor-form и клиентская подготовка; REC/full recovery V2/V1. Предыдущие .001–.023 сохранены, все выбранные аспекты partial.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -190,7 +192,8 @@
       "data/entities/expansion-019.jsonl",
       "data/entities/expansion-020.jsonl",
       "data/entities/expansion-021.jsonl",
-      "data/entities/expansion-022.jsonl"
+      "data/entities/expansion-022.jsonl",
+      "data/entities/expansion-024.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -211,7 +214,8 @@
       "data/relations/expansion-019.jsonl",
       "data/relations/expansion-020.jsonl",
       "data/relations/expansion-021.jsonl",
-      "data/relations/expansion-022.jsonl"
+      "data/relations/expansion-022.jsonl",
+      "data/relations/expansion-024.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -232,10 +236,11 @@
       "data/processes/expansion-019.jsonl",
       "data/processes/expansion-020.jsonl",
       "data/processes/expansion-021.jsonl",
-      "data/processes/expansion-022.jsonl"
+      "data/processes/expansion-022.jsonl",
+      "data/processes/expansion-024.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-023-queries.json",
+  "query_examples": "examples/expansion-024-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -437,13 +442,17 @@
     "docs/issues/potential/issue-00124.md": "65f3bd6e92ff93e393a17fdf434ffba94f493a3a5c52a1f1cb9adbf895b69a72",
     "docs/issues/potential/issue-00196.md": "2ceeaf836dab47f62249bb07d275d2f4f889f09ae241b79f0bbda4734670fa6b",
     "docs/analytics/system-index/coverage-022.md": "714700dd8b5e645b6d23809df31246351f1f3051b85928d8620ec763e05230ce",
-    "docs/analytics/system-index/coverage-023.md": "2941f358a2ca69762dae2c5d8f5536cd880b5e6856bf075ad7de755439472a37"
+    "docs/analytics/system-index/coverage-023.md": "2941f358a2ca69762dae2c5d8f5536cd880b5e6856bf075ad7de755439472a37",
+    "docs/issues/potential/issue-00164.md": "0bca03cdda46af66a243e6b29a72d396b32d2c16f20e3eef8e90ae726bb92805",
+    "docs/issues/potential/issue-00203.md": "ec63f06e911dd5028d37712613064072b4dda364e4772b86a9647ecd9374c3bc",
+    "docs/issues/potential/issue-00205.md": "1eef2eda5c5d8e4aefef71c31f2d36dd19d95c631cc4580e3312621607f6645a",
+    "docs/analytics/system-index/coverage-024.md": "3c83e8f58fe2e2bfbe55d9b7e965a278bfea9a5e76f76e9980bc8f4d4a48bac2"
   },
   "next_ids": {
     "source": 616,
-    "entity": 4581,
-    "relation": 11809,
-    "process": 354
+    "entity": 4636,
+    "relation": 12076,
+    "process": 364
   },
   "retired_ids": []
 }

@@ -4,12 +4,17 @@ import json
 import re
 from pathlib import Path
 import unittest
-from test_query import BASE, ROOT, query, run_cli
+import tempfile
+from test_query import BASE, ROOT, query, run_cli, save_pre_resource_forms_view
 
 class EditingExpansion(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data=query.Dataset()
+        cls.history_dir=tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls.history_dir.cleanup)
+        cls.history_manifest=save_pre_resource_forms_view(Path(cls.history_dir.name))
+        cls.historical=query.Dataset(cls.history_manifest)
 
     def source(self,sid):
         return (ROOT/self.data.sources[sid]['path']).read_text().splitlines()
@@ -25,7 +30,8 @@ class EditingExpansion(unittest.TestCase):
         self.assertEqual(len(cases),24)
         for case in cases:
             with self.subTest(case=case['id']):
-                run=run_cli([*case['command'],'--format','json'],cwd='/tmp')
+                prefix=['--dataset',str(self.history_manifest)] if case['id']=='ED-10' else []
+                run=run_cli([*prefix,*case['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
                 out=json.loads(run.stdout);items=out['items'];first=items[0] if items else {}
                 actual=dict(ids=[x['id'] for x in items if 'id' in x],

@@ -1,0 +1,583 @@
+{
+  "dataset": "task-0006.024-expansion",
+  "basis": "Ожидания установлены из HBS/JS и конкретных core-контрактов до CLI; не исполнение игры.",
+  "cases": [
+    {
+      "id": "E024-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "character/sidebar.hbs.input[system.derivedStats.hp.value]",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004585"
+        ]
+      },
+      "basis": "Точное определение input/handler из исходника; принадлежность отдельной форме/классу."
+    },
+    {
+      "id": "E024-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "monster/sidebar.hbs.input[system.armorTailWing]",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004612"
+        ]
+      },
+      "basis": "Точное определение input/handler из исходника; принадлежность отдельной форме/классу."
+    },
+    {
+      "id": "E024-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "WitcherActorSheet._onRecoverSta/recovery.callback",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004630"
+        ]
+      },
+      "basis": "Точное определение input/handler из исходника; принадлежность отдельной форме/классу."
+    },
+    {
+      "id": "E024-04",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-000004"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000004"
+        ]
+      },
+      "basis": "Существующий владелец поля не копируется для каждого экземплярного Actor path."
+    },
+    {
+      "id": "E024-05",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-000160"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000160"
+        ]
+      },
+      "basis": "Существующий владелец поля не копируется для каждого экземплярного Actor path."
+    },
+    {
+      "id": "E024-06",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-000966"
+      ],
+      "expected": {
+        "ids": [
+          "ent-000966"
+        ]
+      },
+      "basis": "Существующий владелец поля не копируется для каждого экземплярного Actor path."
+    },
+    {
+      "id": "E024-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000880",
+        "--direction",
+        "out",
+        "--relation",
+        "passes"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003531",
+          "ent-004581"
+        ]
+      },
+      "basis": "27:51–54 локальное подключение унаследованного form handler."
+    },
+    {
+      "id": "E024-08",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003546",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000389"
+        ]
+      },
+      "basis": "27:225 регистрирует click, не вызывает callback сразу."
+    },
+    {
+      "id": "E024-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004581",
+        "--direction",
+        "in",
+        "--relation",
+        "passes",
+        "--scope",
+        "src-000560",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004585",
+          "ent-004586",
+          "ent-004587",
+          "ent-004588",
+          "ent-004589",
+          "ent-004590",
+          "ent-004591",
+          "ent-004592",
+          "ent-004593",
+          "ent-004594"
+        ]
+      },
+      "basis": "Все 10 named controls Character, условные видимости указаны в рёбрах."
+    },
+    {
+      "id": "E024-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-003546",
+        "--direction",
+        "out",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004630",
+          "ent-004631"
+        ]
+      },
+      "basis": "27:269/283 два независимых callback DialogV2."
+    },
+    {
+      "id": "E024-11",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004635",
+        "--direction",
+        "out",
+        "--relation",
+        "passes"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003546"
+        ]
+      },
+      "basis": "520:48 → V2 listener; Monster не получает кнопку от наследования."
+    },
+    {
+      "id": "E024-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000560",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004581"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000565",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004581"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000027",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004630",
+          "ent-004631"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000028",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004633",
+          "ent-004634"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000060",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000560",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000157",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000565",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004581"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003357",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000565",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004581"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-19",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000042",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004501"
+        ]
+      },
+      "basis": "Конкретный schema-owner + source scope; доказанный ручной/программный writer либо отсутствие input Vigor в sidebar."
+    },
+    {
+      "id": "E024-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000356",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "collect",
+          "editable",
+          "validate",
+          "request"
+        ]
+      },
+      "basis": "Последовательность/ветви установлены по исходнику и точному core-контракту; source call-site не объявлен реализацией ядра."
+    },
+    {
+      "id": "E024-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000357",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "commit",
+          "base",
+          "embedded",
+          "derived",
+          "final"
+        ]
+      },
+      "basis": "Последовательность/ветви установлены по исходнику и точному core-контракту; source call-site не объявлен реализацией ядра."
+    },
+    {
+      "id": "E024-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000359",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "notify",
+          "write"
+        ]
+      },
+      "basis": "Последовательность/ветви установлены по исходнику и точному core-контракту; source call-site не объявлен реализацией ядра."
+    },
+    {
+      "id": "E024-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000363",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "notify",
+          "write"
+        ]
+      },
+      "basis": "Последовательность/ветви установлены по исходнику и точному core-контракту; source call-site не объявлен реализацией ядра."
+    },
+    {
+      "id": "E024-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000359",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "write"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "27:274–277 update без await; ошибка child Promise не приписана callback."
+    },
+    {
+      "id": "E024-25",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004581"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Унаследованный путь/ядро сохранены как адресные границы, не новые локальные методы."
+    },
+    {
+      "id": "E024-26",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-000910"
+      ],
+      "expected": {
+        "resolution": "external"
+      },
+      "basis": "Унаследованный путь/ядро сохранены как адресные границы, не новые локальные методы."
+    },
+    {
+      "id": "E024-27",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004583"
+      ],
+      "expected": {
+        "resolution": "external"
+      },
+      "basis": "Унаследованный путь/ядро сохранены как адресные границы, не новые локальные методы."
+    },
+    {
+      "id": "E024-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004630"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00164.md"
+        ]
+      },
+      "basis": "Существующее наблюдение с датой/фасадом; не новый runtime."
+    },
+    {
+      "id": "E024-29",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-004635",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "После control остаются зарегистрированные callback/renderer; глубина1 не полный процесс."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/client/applications/api/application.mjs",
+      "lines": "438–450, 496–535, 1890–1901, 2134–2162",
+      "sha256": "b5aef80d3e042a4a856be9dd875c72a5224988d62046ba770f25376f4291faa0",
+      "scope": "Слияние DEFAULT_OPTIONS, bind формы, сбор FormDataExtended, ожидание handler и change guard."
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/document-sheet.mjs",
+      "lines": "37–70, 431–434, 465–536",
+      "sha256": "7925d81900eeea0d5e79606e12ce43539ae00714f50d8452c7305fe81394aa01",
+      "scope": "tag form, handler, isEditable, expand/validate и await update существующего документа."
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/sheets/actor-sheet.mjs",
+      "lines": "17–20, 63–66",
+      "sha256": "060e65ed9746a1ade375e61b45330dd083b3102c73d5be8b16e6637c2a89350b",
+      "scope": "ActorSheetV2 наследует DocumentSheetV2; actor возвращает document."
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/ux/form-data-extended.mjs",
+      "lines": "23–45, 105–126, 171–243",
+      "sha256": "0585d07f0ca067969b4dfdde6d187e7d8315abd1cb2dbf9dd55325c003175a01",
+      "scope": "Обход form.elements, исключения полей, Number/null и checkbox."
+    },
+    {
+      "path": "/opt/foundryvtt/client/data/client-backend.mjs",
+      "lines": "310–344",
+      "sha256": "8ffe114bca601980bf2f4582ce1f6e27c555d76586470f1a16ac23f6f021b9c5",
+      "scope": "Обработка изменений после результата сервера; updateSource каждого найденного документа."
+    },
+    {
+      "path": "/opt/foundryvtt/common/abstract/data.mjs",
+      "lines": "669–701, 784–787",
+      "sha256": "11bb7f848c707803607accfa9f6b946c7cbfe8b17781ff562b468bdc77b934e5",
+      "scope": "Пустой diff/dryRun без commit; commit → _initialize."
+    },
+    {
+      "path": "/opt/foundryvtt/client/documents/abstract/client-document.mjs",
+      "lines": "60–67, 276–284, 313–320",
+      "sha256": "a007180e3cf8d465dffe43b11272f289b4cf77a9e301c7d431f48267dfad8e9e",
+      "scope": "Guard готовности, safePrepareData и порядок model/document preparation."
+    },
+    {
+      "path": "/opt/foundryvtt/client/documents/actor.mjs",
+      "lines": "428–474",
+      "sha256": "e82580bf9cef39d934c972dee859a3b9ba7ab5f3ebdc7502319dfed1bc214bb3",
+      "scope": "Initial AE после embedded, final после super.prepareData."
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/dialog.mjs",
+      "lines": "260–285",
+      "sha256": "4e2d299eaa931d96df1839e64a2defc60b6b95ee89a3e1d32d60b99040899343",
+      "scope": "Отдельный submit кнопки ожидает callback; render не его Promise."
+    }
+  ]
+}

@@ -5,12 +5,17 @@ import json
 import re
 from pathlib import Path
 import unittest
-from test_query import BASE, ROOT, query, run_cli
+import tempfile
+from test_query import BASE, ROOT, query, run_cli, save_pre_resource_forms_view
 
 class CumulativeExpansion(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data=query.Dataset()
+        cls.history_dir=tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls.history_dir.cleanup)
+        cls.history_manifest=save_pre_resource_forms_view(Path(cls.history_dir.name))
+        cls.historical=query.Dataset(cls.history_manifest)
         cls.q={e['qualified_name']:e['id'] for e in cls.data.entities.values()}
 
     def source(self,n):return (ROOT/self.data.sources[f'src-{n:06}']['path']).read_text().splitlines()
@@ -23,7 +28,8 @@ class CumulativeExpansion(unittest.TestCase):
         self.assertEqual({c['question'] for c in cases},{f'IQ-{n:02}' for n in range(1,9)})
         for c in cases:
             with self.subTest(case=c['id']):
-                run=run_cli([*c['command'],'--format','json'],cwd='/tmp')
+                prefix=['--dataset',str(self.history_manifest)] if c['id']=='JOIN-21' else []
+                run=run_cli([*prefix,*c['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
                 out=json.loads(run.stdout);rows=out['items'];first=rows[0] if rows else {}
                 actual=dict(ids=[x['id'] for x in rows if 'id' in x],
@@ -111,7 +117,7 @@ class CumulativeExpansion(unittest.TestCase):
         death='\n'.join(self.source(41)[15:43]);self.assertNotIn('.update(',death);self.assertIn('extendedRoll',death)
 
     def test_catalogue_facets_roles_and_useful_empty_results(self):
-        d=self.data
+        d=self.historical
         self.assertEqual([len(d.sources),len(d.entities),len(d.relations),len(d.processes)],[615,4579,11808,353])
         expected={'definitions':{'complete':2,'partial':250,'not_indexed':363},'relations':{'partial':257,'not_indexed':358},'processes':{'partial':112,'not_indexed':503}}
         for facet,counts in expected.items():self.assertEqual(collections.Counter(s['coverage'][facet]['state']for s in d.sources.values()),counts)

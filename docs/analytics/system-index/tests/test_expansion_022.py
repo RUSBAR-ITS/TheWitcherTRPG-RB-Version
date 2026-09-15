@@ -5,12 +5,17 @@ import json
 import re
 from pathlib import Path
 import unittest
-from test_query import BASE, ROOT, query, run_cli
+import tempfile
+from test_query import BASE, ROOT, query, run_cli, save_pre_resource_forms_view
 
 class HealingExpansion(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data=query.Dataset()
+        cls.history_dir=tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls.history_dir.cleanup)
+        cls.history_manifest=save_pre_resource_forms_view(Path(cls.history_dir.name))
+        cls.historical=query.Dataset(cls.history_manifest)
         cls.q={e['qualified_name']:e['id'] for e in cls.data.entities.values()}
         cls.new={k:[json.loads(l) for l in (BASE/f'data/{k}/expansion-022.jsonl').read_text().splitlines()]
                  for k in ['entities','relations','processes']}
@@ -95,9 +100,9 @@ class HealingExpansion(unittest.TestCase):
     def test_graph_addresses_reverse_links_facets_and_processes(self):
         d=self.data
         self.assertEqual([len(self.new[k]) for k in ['entities','relations','processes']],[51, 203, 19])
-        self.assertEqual([len(d.sources),len(d.entities),len(d.relations),len(d.processes)],[615, 4579, 11808, 353])
-        self.assertEqual(len(d.manifest['scope']['selected_sources']),149)
-        self.assertEqual(collections.Counter(s['coverage']['definitions']['state'] for s in d.sources.values()),{'complete':2,'partial':250,'not_indexed':363})
+        self.assertEqual([len(self.historical.sources),len(self.historical.entities),len(self.historical.relations),len(self.historical.processes)],[615, 4579, 11808, 353])
+        self.assertEqual(len(self.historical.manifest['scope']['selected_sources']),149)
+        self.assertEqual(collections.Counter(s['coverage']['definitions']['state'] for s in self.historical.sources.values()),{'complete':2,'partial':250,'not_indexed':363})
         actor_processes=d.query(query.parser().parse_args(['processes','src-000047','--limit','100','--no-verify']))
         added={p['id'] for p in actor_processes['items'] if 135<=int(p['id'].split('-')[1])<=155}
         self.assertEqual(added,{'proc-000135','proc-000136','proc-000137','proc-000138','proc-000139','proc-000150'})
