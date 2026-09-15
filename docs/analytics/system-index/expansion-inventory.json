@@ -34,7 +34,7 @@
           "source": "src-000204",
           "path": "module/scripts/socket/socketMessage.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000209",
@@ -64,7 +64,7 @@
           "source": "src-000213",
           "path": "module/setup/queries.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000214",
@@ -88,7 +88,7 @@
           "source": "src-000217",
           "path": "module/setup/socketHook.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000218",
@@ -232,7 +232,7 @@
           "source": "src-000488",
           "path": "templates/chat/combat/statusEffect.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000495",
@@ -1198,7 +1198,7 @@
           "source": "src-000074",
           "path": "module/data/actor/templates/common/combatEffectsData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000094",
@@ -1348,7 +1348,7 @@
           "source": "src-000193",
           "path": "module/scripts/chat.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000194",
@@ -1360,13 +1360,13 @@
           "source": "src-000195",
           "path": "module/scripts/combat/combat.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000196",
           "path": "module/scripts/combat/generalCombatHook.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000197",
@@ -1636,7 +1636,7 @@
           "source": "src-000150",
           "path": "module/data/item/templates/regions/regionPropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000151",
@@ -1840,7 +1840,7 @@
           "source": "src-000191",
           "path": "module/item/systems/repair.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000452",
@@ -1876,7 +1876,7 @@
           "source": "src-000504",
           "path": "templates/chat/item/repair.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000515",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.019",
+    "task": "TASK-0006.020",
     "date": "2026-09-15",
-    "source_head": "66ce051d648088488966465cbea06dd8c4744c5e",
-    "dataset": "task-0006.019-expansion",
+    "source_head": "e41ef6627b63a4ba024cc221fd6d2b7e07976148",
+    "dataset": "task-0006.020-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4403,
-      "relations": 11181,
-      "processes": 291
+      "entities": 4473,
+      "relations": 11393,
+      "processes": 313
     },
-    "primary_count": 128,
-    "neighbor_count": 111,
-    "catalog_only_definitions": 376,
-    "boundary_count": 305,
+    "primary_count": 136,
+    "neighbor_count": 107,
+    "catalog_only_definitions": 372,
+    "boundary_count": 318,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4543,5 +4543,20 @@
     "ent-004370",
     "ent-004371",
     "ent-004386"
+  ],
+  "added_boundaries_020": [
+    "ent-004456",
+    "ent-004462",
+    "ent-004463",
+    "ent-004464",
+    "ent-004465",
+    "ent-004466",
+    "ent-004467",
+    "ent-004468",
+    "ent-004469",
+    "ent-004470",
+    "ent-004471",
+    "ent-004472",
+    "ent-004473"
   ]
 }

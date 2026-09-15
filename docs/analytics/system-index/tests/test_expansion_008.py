@@ -140,7 +140,11 @@ class EffectLifecycleExpansion(unittest.TestCase):
         self.assertEqual([n['step'] for n in steps['duration']['next'] if 'step' in n],['temporary'])
         self.assertEqual([n['flow'] for n in steps['create']['next']],['await','await'])
         self.assertFalse(any(r['to']=='ent-000319' for r in self.edges('ent-000783','calls')))
-        self.assertEqual([r['to'] for r in self.edges('ent-000783','refers')],['ent-000317'])
+        # Source line67 references the creation lifecycle; line41 independently
+        # references the query registration added in .020.
+        creation_refs=[r['to'] for r in self.edges('ent-000783','refers')
+                       if r['location']['source']=='src-000206' and r['location']['line_start']==67]
+        self.assertEqual(creation_refs,['ent-000317'])
 
     def test_status_target_counter_timer_and_query_return_boundaries(self):
         s=self.source('src-000205');q=self.source('src-000213');hp=self.source('src-000198')

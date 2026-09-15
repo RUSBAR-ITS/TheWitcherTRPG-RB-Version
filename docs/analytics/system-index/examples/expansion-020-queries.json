@@ -1,0 +1,632 @@
+{
+  "dataset": "task-0006.020-expansion",
+  "basis": "Ожидания установлены по исходникам/аудиту до сопоставления с CLI. Это проверки справочника; ядро, сеть, JS и мир не исполняются.",
+  "cases": [
+    {
+      "id": "CHAT-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "onShield",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004409"
+        ]
+      },
+      "basis": "193:10 полный именованный callback; не effect/data shield schema."
+    },
+    {
+      "id": "CHAT-02",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "combatEffects.turnStartEffects.damage.type",
+        "--match",
+        "exact"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004422"
+        ]
+      },
+      "basis": "74:27 объявлен StringField; consumer196:62–71 не переносит его в payload."
+    },
+    {
+      "id": "CHAT-03",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004409",
+        "--direction",
+        "in",
+        "--relation",
+        "registers"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000629"
+        ]
+      },
+      "basis": "193:5 listener регистрирует callback первого button.shield; выбран именно src193, не одноимённый src205."
+    },
+    {
+      "id": "CHAT-04",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-000601",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004413",
+          "ent-004414"
+        ]
+      },
+      "basis": "196:7/8 два вызова без await; combatHooks передал Combat."
+    },
+    {
+      "id": "CHAT-05",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004266",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004413"
+        ]
+      },
+      "basis": "196:42 await локального callback; никакого прямого обхода actor.statuses."
+    },
+    {
+      "id": "CHAT-06",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000056",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000193"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004409"
+        ]
+      },
+      "basis": "193:15 строка data-shield, абсолютная запись Actor.update без await."
+    },
+    {
+      "id": "CHAT-07",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004415",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000196"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004413"
+        ]
+      },
+      "basis": "196:41 Object.values prepared карты."
+    },
+    {
+      "id": "CHAT-08",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004420",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000196"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-004266"
+        ]
+      },
+      "basis": "196:74/76 прибавление к amount; guard61 использует только amount."
+    },
+    {
+      "id": "CHAT-09",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004422",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000196"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Нет чтения type в damage payload196:62–71; ограниченное отрицательное утверждение для этого файла."
+    },
+    {
+      "id": "CHAT-10",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004427",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000196"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "Поле35 объявлено, но heal81 передаёт только amount; полная ветвь .022."
+    },
+    {
+      "id": "CHAT-11",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004461",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000217"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003652"
+        ]
+      },
+      "basis": "217:17 data.shift мутирует принятый массив, не Document.update."
+    },
+    {
+      "id": "CHAT-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004443",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000213"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000605"
+        ]
+      },
+      "basis": "213:50 присваивание handler для отдельного имени query."
+    },
+    {
+      "id": "CHAT-13",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004458",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": []
+      },
+      "basis": "213:40/41 не проходит вложенный system.regionProperties; строка whitelist не превращена в вызов."
+    },
+    {
+      "id": "CHAT-14",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004455",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000787",
+          "ent-003652"
+        ]
+      },
+      "basis": "213:40 условный Item receiver и217:18 uuid socket; два разных dispatch."
+    },
+    {
+      "id": "CHAT-15",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004409",
+        "--direction",
+        "out",
+        "--relation",
+        "reads"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004447",
+          "ent-004448"
+        ]
+      },
+      "basis": "193:11/12 currentTarget attributes связывают кнопку487:48/49 с источником щита."
+    },
+    {
+      "id": "CHAT-16",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000295",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "lookup",
+          "launch"
+        ],
+        "next_steps": [
+          "launch"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "195:20–23 UUID Item/prepared damage → rollDamage без await."
+    },
+    {
+      "id": "CHAT-17",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000300",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "message",
+          "launch"
+        ],
+        "next_steps": [
+          "message"
+        ],
+        "next_exits": [
+          "missing"
+        ]
+      },
+      "basis": "195:54 guard Actor, затем сообщение без guard и пять аргументов."
+    },
+    {
+      "id": "CHAT-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000302",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "input",
+          "update",
+          "report"
+        ],
+        "next_steps": [
+          "update"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "193:11–23 строки, UUID, optional update, незащищённый actor.name."
+    },
+    {
+      "id": "CHAT-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000303",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "actor",
+          "dataset",
+          "guard",
+          "handoff"
+        ],
+        "next_steps": [
+          "dataset"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "193:51–60 actor await, dataset owner/items до guard, await request."
+    },
+    {
+      "id": "CHAT-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000306",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "environment",
+          "gm",
+          "active",
+          "emit"
+        ],
+        "next_steps": [
+          "gm"
+        ],
+        "next_exits": [
+          "ignored"
+        ]
+      },
+      "basis": "204:14/15/17 три ранних guard до envelope/emit."
+    },
+    {
+      "id": "CHAT-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000308",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "active",
+          "lookup",
+          "uuid",
+          "generic"
+        ],
+        "next_steps": [
+          "lookup"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "217:12 activeGM,16 dispatch,17 shift,18 direct,22 unchecked fallback."
+    },
+    {
+      "id": "CHAT-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000309",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "gm",
+          "actor",
+          "regeneration",
+          "periodic"
+        ],
+        "next_steps": [
+          "actor"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "196:4/6/7/8 guard и две не ожидаемые ветви."
+    },
+    {
+      "id": "CHAT-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000310",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "entries",
+          "effect"
+        ],
+        "next_steps": [
+          "effect"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "196:41–44 пустая карта возвращает, каждый callback await."
+    },
+    {
+      "id": "CHAT-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000311",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "guard",
+          "render",
+          "message",
+          "damage-guard",
+          "payload",
+          "damage",
+          "heal-handoff"
+        ],
+        "next_steps": [
+          "render"
+        ],
+        "next_exits": [
+          "ignored",
+          "failed"
+        ]
+      },
+      "basis": "196:47–87 truthy guard, сообщение, positive damage, независимая heal передача."
+    },
+    {
+      "id": "CHAT-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000308",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "lookup"
+        ],
+        "next_steps": [
+          "uuid",
+          "generic"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "217:16 сравнение uuid, а не строгая проверка разрешённого type."
+    },
+    {
+      "id": "CHAT-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000311",
+        "--offset",
+        "3",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "damage-guard"
+        ],
+        "next_steps": [
+          "payload",
+          "heal-handoff"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "196:61 при неположительном damage.amount метод ещё может лечить."
+    },
+    {
+      "id": "CHAT-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004468"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00009.md"
+        ]
+      },
+      "basis": "213:41 Item.system не тождественен Item.system.regionProperties."
+    },
+    {
+      "id": "CHAT-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004469"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00010.md"
+        ]
+      },
+      "basis": "217:16–22 нет проверки unknown/data/UUID."
+    },
+    {
+      "id": "CHAT-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004466"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00249.md",
+          "docs/issues/potential/issue-00255.md"
+        ]
+      },
+      "basis": "193:11 строка;15 optional update не защищает actor.name17."
+    },
+    {
+      "id": "CHAT-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004470"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00006.md"
+        ]
+      },
+      "basis": "212:11 передан Combat;196:6 нет guard combatant/Actor."
+    },
+    {
+      "id": "CHAT-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004471"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00021.md",
+          "docs/issues/potential/issue-00328.md"
+        ]
+      },
+      "basis": "196:41 чтение prepared карты; эффект статуса не доказывает заполнение."
+    },
+    {
+      "id": "CHAT-32",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004472"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00022.md",
+          "docs/issues/potential/issue-00299.md"
+        ]
+      },
+      "basis": "196:80–85 отдельная ветвь .022 после локального damage wrapper."
+    }
+  ]
+}
