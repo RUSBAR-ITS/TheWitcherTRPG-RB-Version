@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json) |
 | Тип файла | JSON: экспорт RollTable, 21 TableResult (10 text, 11 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0 |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.054](../../../../../tasks/task-0003.054.md); 35 файлов / 8319 строк; этот файл — 524 строк |
 | Запись перекрёстной сверки | [TASK-0003.054](../../../review-log.md#task-0003054) |
 | SHA-256 файла | 3da13d11508b247d37c7d5eae22b22a3ecd9ebd385c14005bc9628c1e91caa24 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -20,7 +22,7 @@
 
 [system.json](../../../../../../system.json):35,64–69 объявляет RollTable-пакет Character-gen_Sub-tables и packs/character-generator-sub-tables.db. [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 читает этот каталог через compilePack с recursive:true; фактическое разрешение имени пути описано в [карточке утилиты](../../utils/packs.mjs.md). JSON не подключён как браузерный ES-модуль.
 
-Адрес по манифесту и ID — `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.jZVPaCIoQxFZiyRu`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
+Адрес по манифесту и ID — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.jZVPaCIoQxFZiyRu`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
 
 ## Введённые сущности и действия с ними
 
@@ -101,17 +103,17 @@ Root description: Пустая строка.
 
 | Результат / строка documentUuid | Целевая карточка | Полный адрес |
 | --- | --- | --- |
-| `k0AliUujlhUKLN0G`, строка 53 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `uxEsX6eym5hKf3yX`, строка 77 | [Which Parent](Which_Parent_7fAXpaJLFwlWxkWX.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.7fAXpaJLFwlWxkWX` |
-| `ITgHqKEQCar6G6Et`, строка 124 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `ONmmUjbSaveNjrSy`, строка 171 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `R36SexxMtQ1y3Mct`, строка 218 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `fbee84iwrEvwp5A7`, строка 265 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `AErFz1jut68I9mna`, строка 312 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `fb47S0gLn0cLA2eD`, строка 359 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `98Ry4FUdzahLh10P`, строка 406 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `P2j9J9NLbtkzp04u`, строка 453 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
-| `uW7X6oeT6MO1gf6G`, строка 500 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `k0AliUujlhUKLN0G`, строка 53 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `uxEsX6eym5hKf3yX`, строка 77 | [Which Parent](Which_Parent_7fAXpaJLFwlWxkWX.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.7fAXpaJLFwlWxkWX` |
+| `ITgHqKEQCar6G6Et`, строка 124 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `ONmmUjbSaveNjrSy`, строка 171 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `R36SexxMtQ1y3Mct`, строка 218 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `fbee84iwrEvwp5A7`, строка 265 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `AErFz1jut68I9mna`, строка 312 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `fb47S0gLn0cLA2eD`, строка 359 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `98Ry4FUdzahLh10P`, строка 406 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `P2j9J9NLbtkzp04u`, строка 453 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `uW7X6oeT6MO1gf6G`, строка 500 | [Family Status: Elderland](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
 
 ## Известные потребители
 

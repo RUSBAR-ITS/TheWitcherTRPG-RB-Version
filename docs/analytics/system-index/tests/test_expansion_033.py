@@ -84,15 +84,15 @@ class MagicRegionExpansion(unittest.TestCase):
         self.assertIn('this.templateProperties.visualEffectDuration * 1000',b)
         self.assertIn("canvas.scene.deleteEmbeddedDocuments('Region', [region.id])",b)
         self.assertNotIn('region.parent',b);self.assertNotIn('await ',b);self.assertNotIn('return',b)
-        self.assertNotIn('flags.TheWitcherTRPG.duration',b)
+        self.assertNotIn("flags['TheWitcherTRPG-RB-Version'].duration",b)
         self.assertIn(self.q['Scene.deleteEmbeddedDocuments/Region'],self.targets('spellRegionMixin.deleteSpellVisualEffect/timeout','calls'))
     def test_countdown_uses_active_scene_and_arbitrary_update(self):
         b=self.body(200)
-        for marker in ['if (!game.user.isActiveGM) return','combat.combatants.get(combat.current.combatantId).actor.uuid','game.scenes.active.regions','region.flags.TheWitcherTRPG?.actorUuid === actorUuid','region.flags.TheWitcherTRPG.duration - 1 > 0',"game.scenes.active.deleteEmbeddedDocuments('Region', toDelete)"]:self.assertIn(marker,b)
+        for marker in ['if (!game.user.isActiveGM) return','combat.combatants.get(combat.current.combatantId).actor.uuid','game.scenes.active.regions',"region.flags['TheWitcherTRPG-RB-Version']?.actorUuid === actorUuid","region.flags['TheWitcherTRPG-RB-Version'].duration - 1 > 0","game.scenes.active.deleteEmbeddedDocuments('Region', toDelete)"]:self.assertIn(marker,b)
         for marker in ['update.turn','update.round','combat.scene','Number.isFinite','visualEffectDuration','await ']:self.assertNotIn(marker,b)
         self.assertEqual(b.count('update'),1)
         h=self.body(212);self.assertIn("Hooks.on('updateCombat'",h);self.assertNotIn('await ',h)
-        self.assertIn(self.q['spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.duration'],self.targets('countdownDurationOfRegions','writes'))
+        self.assertIn(self.q['spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG-RB-Version.duration'],self.targets('countdownDurationOfRegions','writes'))
         self.assertIn(self.q['countdownDurationOfRegions'],self.targets('combatHooks','calls'))
     def test_external_evidence_and_primary_partial_scope(self):
         ex=json.loads((BASE/'examples/expansion-033-queries.json').read_text());self.assertEqual(len(ex['core_evidence']),10)

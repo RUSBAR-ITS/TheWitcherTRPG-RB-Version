@@ -34,7 +34,7 @@ export const currencyConverterMixin = {
         }));
 
         const content = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/sheets/actor/currencyConverter/currencyConverter.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/currencyConverter/currencyConverter.hbs',
             {
                 options,
                 currencies
@@ -87,7 +87,7 @@ export const currencyConverterMixin = {
         });
 
         const chatContent = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/chat/currency-conversion.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/chat/currency-conversion.hbs',
             {
                 actor: this.name,
                 amount: amount,

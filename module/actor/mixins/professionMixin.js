@@ -49,7 +49,7 @@ export let professionMixin = {
             return this.doProfessionWeaponAttackRoll(skill);
         }
 
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         let displayDmgFormula = `${skillAttack.damageFormulaOverride}`;
         let damageFormula = !displayRollDetails
@@ -87,7 +87,7 @@ export let professionMixin = {
         };
 
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/dialog/combat/profession-attack.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/dialog/combat/profession-attack.hbs',
             data
         );
 
@@ -312,7 +312,7 @@ export let professionMixin = {
                     duration: { rounds: duration }
                 });
 
-                getActorOwner(target).query('TheWitcherTRPG.query', {
+                getActorOwner(target).query('TheWitcherTRPG-RB-Version.query', {
                     function: 'applyActiveEffectToActor',
                     data: [target.uuid, [newEffect]]
                 });
@@ -352,7 +352,7 @@ export let professionMixin = {
         skill,
         { threshold, thresholdDesc, showResult = true } = { threshold: 0, showResult: true }
     ) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
         let stat = skill.stat;
         let level = skill.level || 0;
 

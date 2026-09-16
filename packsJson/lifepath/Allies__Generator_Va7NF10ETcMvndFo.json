@@ -27,7 +27,7 @@
         "exportSource": null
       },
       "name": "Allies: Gender",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.QFHhoiXtIBYkL8Rd",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.QFHhoiXtIBYkL8Rd",
       "description": "",
       "_key": "!tables.results!Va7NF10ETcMvndFo.q0DM4FW7XCnFdKZu"
     },
@@ -51,7 +51,7 @@
         "exportSource": null
       },
       "name": "Allies: Position",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.5sroduMneFqG9INx",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.5sroduMneFqG9INx",
       "description": "",
       "_key": "!tables.results!Va7NF10ETcMvndFo.mp0F0yfLeczgHYKB"
     },
@@ -75,7 +75,7 @@
         "exportSource": null
       },
       "name": "Allies: How You Met",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.BqAizN8u9r6nMSyK",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.BqAizN8u9r6nMSyK",
       "description": "",
       "_key": "!tables.results!Va7NF10ETcMvndFo.a90EHPhkX2hszHH8"
     },
@@ -99,7 +99,7 @@
         "exportSource": null
       },
       "name": "Allies: Closeness",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.IswiqefPmaHECa5X",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.IswiqefPmaHECa5X",
       "description": "",
       "_key": "!tables.results!Va7NF10ETcMvndFo.KgpE0Q8gz4x0tE9A"
     },
@@ -123,7 +123,7 @@
         "exportSource": null
       },
       "name": "Allies: Where Are They?",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.W19e7rtl3ycrMhQU",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.W19e7rtl3ycrMhQU",
       "description": "",
       "_key": "!tables.results!Va7NF10ETcMvndFo.ph4JxbZMB7MniZZ5"
     }

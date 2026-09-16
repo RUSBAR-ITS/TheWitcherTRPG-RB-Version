@@ -15,17 +15,17 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
         ...super.PARTS,
         skillPath1: {
             template:
-                'systems/TheWitcherTRPG/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs',
             scrollable: ['']
         },
         skillPath2: {
             template:
-                'systems/TheWitcherTRPG/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs',
             scrollable: ['']
         },
         skillPath3: {
             template:
-                'systems/TheWitcherTRPG/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathPart.hbs',
             scrollable: ['']
         }
     };

@@ -21,7 +21,7 @@
     {
       "type": "base",
       "name": "Disfiguring Scar (Treated)",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.kbeASc2PnnkYc5SR",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.kbeASc2PnnkYc5SR",
       "duration": {
         "startTime": null,
         "combat": null,

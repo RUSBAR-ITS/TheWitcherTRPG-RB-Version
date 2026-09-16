@@ -52,7 +52,7 @@ export let skillMixin = {
         let skillLabel = game.i18n.localize(skillMapEntry.rollLabel ?? skillMapEntry.label);
         let skillValue = this.system.skills[attribute.name][skillName].value;
 
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         let messageData = new ChatMessageData(this, `${attributeLabel}: ${skillLabel} Check`);
 
@@ -83,7 +83,7 @@ export let skillMixin = {
     },
 
     addSocialStanding(attribute, skillName) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         const tolerated = ['tolerated', 'toleratedFeared'];
         const feared = ['feared', 'toleratedFeared', 'hatedFeared'];
@@ -141,7 +141,7 @@ export let skillMixin = {
         let skillLabel = customSkill.name;
         let skillValue = customSkill.system.value;
 
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         let messageData = new ChatMessageData(this, `${attributeLabel}: ${skillLabel} Check`);
 

@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json](../../../../../../packsJson/character-generator/Style_and_Values_CjaIcLRWSlzwI6ly.json) |
 | Тип файла | JSON: экспорт RollTable; 7 TableResult (0 text, 7 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, be1c48770219a6d2871259f12c30d93636aac646 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.056](../../../../../tasks/task-0003.056.md); 13 файлов / 2435 строк; этот файл — 198 строк |
 | Запись перекрёстной сверки | [TASK-0003.056](../../../review-log.md#task-0003056) |
 | SHA-256 файла | 9caafc6910b2f7368bc77c23e31600681b3696d02c1af9b382c75866c98156da |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG.Character-gen.RollTable.CjaIcLRWSlzwI6ly`. JSON является экспортом данных, не браузерным модулем.
+[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.CjaIcLRWSlzwI6ly`. JSON является экспортом данных, не браузерным модулем.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог в compilePack с recursive:true; [utils/extract.mjs](../../../../../../utils/extract.mjs) выгружает данные обратно. [Контракт путей и CLI](../../utils/packs.mjs.md), [package.json](../../../../../../package.json):7–8. Команды не запускались, наличие экспорта не доказывает состояние живой БД.
 
@@ -97,13 +99,13 @@
 
 | ID результата / range | Полный documentUuid | Файл и карточка цели | Место обращения / проверка |
 | --- | --- | --- | --- |
-| `q0DM4FW7XCnFdKZu`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.BuyEb4FcAyQL2hov` | [packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json](../../../../../../packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json); [карточка](../style/Style__Clothing_BuyEb4FcAyQL2hov.json.md) | documentUuid:30; имя/ID/тип сверены |
-| `6eMBIJMQZmhaVyCr`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.TOQz3ETDronoeEDt` | [packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json](../../../../../../packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json); [карточка](../style/Style__Personality_TOQz3ETDronoeEDt.json.md) | documentUuid:54; имя/ID/тип сверены |
-| `Kot5qN9Crj60jbwU`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.Ov9xIpAdWEPZCIoH` | [packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json](../../../../../../packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json); [карточка](../style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json.md) | documentUuid:78; имя/ID/тип сверены |
-| `YqKoWFzgGZuSuzj0`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.4RWDMDzNdnz2kgwU` | [packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json](../../../../../../packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json); [карточка](../style/Style__Affectations_4RWDMDzNdnz2kgwU.json.md) | documentUuid:102; имя/ID/тип сверены |
-| `7LFO8Ez5nQK98SWT`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.y1WCi6n2Kpwqb27P` | [packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json](../../../../../../packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json); [карточка](../style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json.md) | documentUuid:126; имя/ID/тип сверены |
-| `O4kO4Ec9Zjr1F3Qm`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.s5EjP50ddIVoitHT` | [packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json](../../../../../../packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json); [карточка](../style/Values__Ideals_s5EjP50ddIVoitHT.json.md) | documentUuid:150; имя/ID/тип сверены |
-| `HkPKK3KrmtmNyo1B`; [1,1] | `Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.4eCXMVEfRx4PivWH` | [packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json](../../../../../../packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json); [карточка](../style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json.md) | documentUuid:174; имя/ID/тип сверены |
+| `q0DM4FW7XCnFdKZu`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.BuyEb4FcAyQL2hov` | [packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json](../../../../../../packsJson/style/Style__Clothing_BuyEb4FcAyQL2hov.json); [карточка](../style/Style__Clothing_BuyEb4FcAyQL2hov.json.md) | documentUuid:30; имя/ID/тип сверены |
+| `6eMBIJMQZmhaVyCr`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.TOQz3ETDronoeEDt` | [packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json](../../../../../../packsJson/style/Style__Personality_TOQz3ETDronoeEDt.json); [карточка](../style/Style__Personality_TOQz3ETDronoeEDt.json.md) | documentUuid:54; имя/ID/тип сверены |
+| `Kot5qN9Crj60jbwU`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.Ov9xIpAdWEPZCIoH` | [packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json](../../../../../../packsJson/style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json); [карточка](../style/Style__Hair_Style_Ov9xIpAdWEPZCIoH.json.md) | documentUuid:78; имя/ID/тип сверены |
+| `YqKoWFzgGZuSuzj0`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.4RWDMDzNdnz2kgwU` | [packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json](../../../../../../packsJson/style/Style__Affectations_4RWDMDzNdnz2kgwU.json); [карточка](../style/Style__Affectations_4RWDMDzNdnz2kgwU.json.md) | documentUuid:102; имя/ID/тип сверены |
+| `7LFO8Ez5nQK98SWT`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.y1WCi6n2Kpwqb27P` | [packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json](../../../../../../packsJson/style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json); [карточка](../style/Values__Valued_Person_y1WCi6n2Kpwqb27P.json.md) | documentUuid:126; имя/ID/тип сверены |
+| `O4kO4Ec9Zjr1F3Qm`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.s5EjP50ddIVoitHT` | [packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json](../../../../../../packsJson/style/Values__Ideals_s5EjP50ddIVoitHT.json); [карточка](../style/Values__Ideals_s5EjP50ddIVoitHT.json.md) | documentUuid:150; имя/ID/тип сверены |
+| `HkPKK3KrmtmNyo1B`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.4eCXMVEfRx4PivWH` | [packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json](../../../../../../packsJson/style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json); [карточка](../style/Values__Feelings_on_People_4eCXMVEfRx4PivWH.json.md) | documentUuid:174; имя/ID/тип сверены |
 
 ## Известные потребители
 

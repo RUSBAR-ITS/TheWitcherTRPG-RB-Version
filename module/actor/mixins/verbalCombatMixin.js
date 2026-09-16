@@ -7,9 +7,9 @@ const DialogV2 = foundry.applications.api.DialogV2;
 
 export let verbalCombatMixin = {
     async verbalCombat() {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/dialog/verbal-combat.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/dialog/verbal-combat.hbs',
             {
                 verbalCombat: CONFIG.WITCHER.verbalCombat
             }

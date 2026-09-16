@@ -128,7 +128,7 @@ export let defenseMixin = {
         defenseItemId,
         skillOverride
     ) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         if (!this.handleExtraDefense(extraDefense)) {
             return;
@@ -185,7 +185,7 @@ export let defenseMixin = {
         }
 
         const chatMessage = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/chat/combat/defense/defense.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/chat/combat/defense/defense.hbs',
             {
                 defenseName: skillOverride ? skillMapEntry.label : defenseAction.label,
                 displayFormula
@@ -210,7 +210,7 @@ export let defenseMixin = {
 
             //adrenaline dice added to attacker
             let attackerActor = fromUuidSync(attacker);
-            getActorOwner(attackerActor).query('TheWitcherTRPG.query', {
+            getActorOwner(attackerActor).query('TheWitcherTRPG-RB-Version.query', {
                 uuid: attacker,
                 function: 'addAdrenaline',
                 data: []
@@ -219,7 +219,7 @@ export let defenseMixin = {
 
         const chatMessageCrit = crit
             ? await foundry.applications.handlebars.renderTemplate(
-                  'systems/TheWitcherTRPG/templates/chat/combat/defense/defenseCrit.hbs',
+                  'systems/TheWitcherTRPG-RB-Version/templates/chat/combat/defense/defenseCrit.hbs',
                   {
                       crit: { criticalLevel: CONFIG.WITCHER.critLevel[crit.criticalLevel] }
                   }
@@ -230,7 +230,7 @@ export let defenseMixin = {
         let stun = this.checkForStun(attackDamageObject);
         const chatMessageStun = stun
             ? await foundry.applications.handlebars.renderTemplate(
-                  'systems/TheWitcherTRPG/templates/chat/combat/defense/defenseStun.hbs',
+                  'systems/TheWitcherTRPG-RB-Version/templates/chat/combat/defense/defenseStun.hbs',
                   {
                       stun
                   }

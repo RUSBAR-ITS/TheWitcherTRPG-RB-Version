@@ -5,11 +5,13 @@
 | Исходный файл | [module/setup/settings.js](../../../../../../module/setup/settings.js) |
 | Тип файла | JavaScript — настройки |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `3252300787c348e11f95098c345a6af7704b690c`; исходник совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f` |
-| Изменения относительно коммита | Нет |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0002](../../../../../tasks/task-0002-system-initialization.md); порция 3 |
 | Запись перекрёстной сверки | [Журнал сверок](../../../review-log.md) — TASK-0002, порция 3 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -23,7 +25,7 @@
 
 | Ключ | Тип / default | Назначение | name / hint |
 | --- | --- | --- | --- |
-| criticalWoundsPack | StringField / `"TheWitcherTRPG.criticalWounds"` | Выбор pack для индекса/применения критических травм. | `WITCHER.Settings.criticalWoundsPack` / `WITCHER.Settings.criticalWoundsPackDetails` |
+| criticalWoundsPack | StringField / `"TheWitcherTRPG-RB-Version.criticalWounds"` | Выбор pack для индекса/применения критических травм. | `WITCHER.Settings.criticalWoundsPack` / `WITCHER.Settings.criticalWoundsPackDetails` |
 | useOptionalAdrenaline | Boolean / `false` | Опциональный адреналин в данных листа и addAdrenaline. | `WITCHER.Settings.Adrenaline` / `WITCHER.Settings.AdrenalineDetails` |
 | useOptionalVerbalCombat | Boolean / `false` | Опциональный вербальный бой в контексте листа. | `WITCHER.Settings.useVerbalCombatRule` / `WITCHER.Settings.useVerbalCombatRuleHint` |
 | silverTrait | Boolean / `false` | Вариант обработки серебра и отображения свойств урона. | `WITCHER.Settings.silverTrait` / `WITCHER.Settings.silverTraitHint` |
@@ -33,7 +35,7 @@
 | clickableImageItemTypes | String / `"valuable"` | CSV типов Item для логики кликабельных картинок. | `WITCHER.Settings.clickableImageItemTypes` / `WITCHER.Settings.clickableImageItemTypesHint` |
 | clickableImageCheckboxForGMOnly | Boolean / `true` | Ограничение интерфейса настройки кликабельной картинки мастером. | `WITCHER.Settings.clickableImageCheckboxForGMOnly` / нет |
 
-Все девять: namespace TheWitcherTRPG, scope world, config true. criticalWoundsPack имеет StringField initial/default TheWitcherTRPG.criticalWounds, blank false, nullable false, choices getAllCompendia. Переключение настроек здесь не реализовано: регистрируется их описание.
+Все девять: namespace TheWitcherTRPG-RB-Version, scope world, config true. criticalWoundsPack имеет StringField initial/default TheWitcherTRPG-RB-Version.criticalWounds, blank false, nullable false, choices getAllCompendia. Переключение настроек здесь не реализовано: регистрируется их описание.
 
 ## Основные функции и методы
 
@@ -50,7 +52,7 @@
 | StringField | foundry.data.fields | API / модель поля | Стр. 7–12: ограничения и callback выбора |
 | game.packs | Foundry | Реестр документов | getAllCompendia: documentName, collection, title |
 | Ключи WITCHER.Settings.* | [lang/en.json](../../../../../../lang/en.json); [lang/ru.json](../../../../../../lang/ru.json) | Локализация | name/hint перечислены выше; эти два файла содержат соответствующий раздел, полнота всех переводов не заявляется |
-| getSetting | [module/setup/handlebars.js](../../../../../../module/setup/handlebars.js) | Косвенное чтение | Зарегистрированный helper читает TheWitcherTRPG + переданный ключ |
+| getSetting | [module/setup/handlebars.js](../../../../../../module/setup/handlebars.js) | Косвенное чтение | Зарегистрированный helper читает TheWitcherTRPG-RB-Version + переданный ключ |
 
 ## Известные потребители
 

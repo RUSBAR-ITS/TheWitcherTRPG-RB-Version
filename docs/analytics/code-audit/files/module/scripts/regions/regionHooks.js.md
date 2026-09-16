@@ -5,11 +5,13 @@
 | Исходный файл | [module/scripts/regions/regionHooks.js](../../../../../../../module/scripts/regions/regionHooks.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `ef8117ba6e5a184989e65761d47a068381056e4a` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.022](../../../../../../tasks/task-0003.022.md), 5 файлов, 289 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.022](../../../../review-log.md#task-0003022) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -26,7 +28,7 @@ setup/hooks импортирует функцию; registerHooks подписы�
 | countdownDurationOfRegions | export async function; 1–18 | Обработчик длительности | Импорт setup/hooks | Чтение Combat и регионов, запросы setFlag/delete |
 | actorUuid | Локальная строка 4 | UUID Actor текущего combatant | combat.combatants.get(current.combatantId).actor.uuid | Разыменование без guard |
 | toDelete | Локальный массив 6 | ID подходящих регионов для удаления | Scene.deleteEmbeddedDocuments | Заполняется при duration-1<=0 или NaN |
-| filter/forEach | Анонимные callbacks8–15 | Выбор Actor и обработка duration | game.scenes.active.regions | Сравнение flags.TheWitcherTRPG?.actorUuid |
+| filter/forEach | Анонимные callbacks8–15 | Выбор Actor и обработка duration | game.scenes.active.regions | Сравнение flags.TheWitcherTRPG-RB-Version?.actorUuid |
 
 ## Основные функции и методы
 
@@ -39,7 +41,7 @@ setup/hooks импортирует функцию; registerHooks подписы�
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
 | registerHooks/combatHooks | [module/setup/hooks.js](../../../../../../../module/setup/hooks.js) | Регистрация/внешний вызов | updateCombat без проверки изменённых полей | 5–12; hook отдельно исполнен в vm |
-| flags.TheWitcherTRPG.duration/actorUuid | [module/data/item/mixin/spellRegionMixin.js](../../../../../../../module/data/item/mixin/spellRegionMixin.js) | Контракт данных | Отбор и decrement | fromItem47–48, duration из damage |
+| flags.TheWitcherTRPG-RB-Version.duration/actorUuid | [module/data/item/mixin/spellRegionMixin.js](../../../../../../../module/data/item/mixin/spellRegionMixin.js) | Контракт данных | Отбор и decrement | fromItem47–48, duration из damage |
 | castSpellMixin | [module/actor/mixins/castSpellMixin.js](../../../../../../../module/actor/mixins/castSpellMixin.js) | Источник damage.duration | Строка длительности заклинания преобразуется, при пустой duration поля нет | duration ветвь 161–176; полный разбор будущий |
 | game.user.isActiveGM; Combat.current/combatants; game.scenes.active | Foundry 14.367.0 User/Combat/Scenes API; client/documents/combat.mjs: 633–647, 822–829 | Контекст события | Активный участник/сцена | current.combatantId может быть null; Combat.scene отличается от active scene |
 | Region.setFlag; Scene.deleteEmbeddedDocuments | Foundry 14.367.0 Document/Scene API | Запись | duration и удаление Region | В Node подменены управляемыми Promise; БД не менялась |

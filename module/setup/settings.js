@@ -1,20 +1,20 @@
 export const registerSettings = function () {
-    game.settings.register('TheWitcherTRPG', 'criticalWoundsPack', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'criticalWoundsPack', {
         name: 'WITCHER.Settings.criticalWoundsPack',
         hint: 'WITCHER.Settings.criticalWoundsPackDetails',
         scope: 'world',
         config: true,
         type: new foundry.data.fields.StringField({
-            initial: 'TheWitcherTRPG.criticalWounds',
+            initial: 'TheWitcherTRPG-RB-Version.criticalWounds',
             blank: false,
             nullable: false,
             choices: getAllCompendia
         }),
-        default: 'TheWitcherTRPG.criticalWounds'
+        default: 'TheWitcherTRPG-RB-Version.criticalWounds'
     });
 
     //optional rules
-    game.settings.register('TheWitcherTRPG', 'useOptionalAdrenaline', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'useOptionalAdrenaline', {
         name: 'WITCHER.Settings.Adrenaline',
         hint: 'WITCHER.Settings.AdrenalineDetails',
         scope: 'world',
@@ -22,7 +22,7 @@ export const registerSettings = function () {
         type: Boolean,
         default: false
     });
-    game.settings.register('TheWitcherTRPG', 'useOptionalVerbalCombat', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'useOptionalVerbalCombat', {
         name: 'WITCHER.Settings.useVerbalCombatRule',
         hint: 'WITCHER.Settings.useVerbalCombatRuleHint',
         scope: 'world',
@@ -34,7 +34,7 @@ export const registerSettings = function () {
     //rules interpretation
 
     //sage rulings
-    game.settings.register('TheWitcherTRPG', 'silverTrait', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'silverTrait', {
         name: 'WITCHER.Settings.silverTrait',
         hint: 'WITCHER.Settings.silverTraitHint',
         scope: 'world',
@@ -43,7 +43,7 @@ export const registerSettings = function () {
         default: false
     });
 
-    game.settings.register('TheWitcherTRPG', 'displayRollsDetails', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'displayRollsDetails', {
         name: 'WITCHER.Settings.displayRollDetails',
         hint: 'WITCHER.Settings.displayRollDetailsHint',
         scope: 'world',
@@ -51,14 +51,14 @@ export const registerSettings = function () {
         type: Boolean,
         default: false
     });
-    game.settings.register('TheWitcherTRPG', 'useWitcherFont', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'useWitcherFont', {
         name: 'WITCHER.Settings.specialFont',
         scope: 'world',
         config: true,
         type: Boolean,
         default: false
     });
-    game.settings.register('TheWitcherTRPG', 'displayRep', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'displayRep', {
         name: 'WITCHER.Settings.displayReputation',
         hint: 'WITCHER.Settings.displayReputationHint',
         scope: 'world',
@@ -66,7 +66,7 @@ export const registerSettings = function () {
         type: Boolean,
         default: false
     });
-    game.settings.register('TheWitcherTRPG', 'clickableImageItemTypes', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'clickableImageItemTypes', {
         name: 'WITCHER.Settings.clickableImageItemTypes',
         hint: 'WITCHER.Settings.clickableImageItemTypesHint',
         scope: 'world',
@@ -74,7 +74,7 @@ export const registerSettings = function () {
         type: String,
         default: 'valuable'
     });
-    game.settings.register('TheWitcherTRPG', 'clickableImageCheckboxForGMOnly', {
+    game.settings.register('TheWitcherTRPG-RB-Version', 'clickableImageCheckboxForGMOnly', {
         name: 'WITCHER.Settings.clickableImageCheckboxForGMOnly',
         scope: 'world',
         config: true,

@@ -75,7 +75,7 @@ export function getRandomInt(max) {
 }
 
 export function addPart(value, details, hideZero = false) {
-    let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+    let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
     if (value == 0 && hideZero) {
         return '';
     }

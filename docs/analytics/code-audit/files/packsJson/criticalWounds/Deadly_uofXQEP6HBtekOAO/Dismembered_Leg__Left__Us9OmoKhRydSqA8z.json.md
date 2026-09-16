@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left__Us9OmoKhRydSqA8z.json](../../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Dismembered_Leg__Left__Us9OmoKhRydSqA8z.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-14 |
-| Ветка и коммит | rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e |
-| Изменения относительно коммита | Нет; 160 строк; SHA-256 02b4651be6f9b9847a53a097ee5744cdef2bc5ea2905a1bcea32d333e695ab42 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.061](../../../../../../tasks/task-0003.061.md) |
 | Запись перекрёстной сверки | [Протокол .061](../../../../review-log.md#task-0003061) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место | Назначение и доступность | Действия |
 | --- | --- | --- | --- |
-| Dismembered Leg (Left) | Корневой Item; name:3, _id:5 | ID `Us9OmoKhRydSqA8z`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.Us9OmoKhRydSqA8z` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
+| Dismembered Leg (Left) | Корневой Item; name:3, _id:5 | ID `Us9OmoKhRydSqA8z`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Us9OmoKhRydSqA8z` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
 | _key / folder / sort | Корневые поля | `"!items!Us9OmoKhRydSqA8z"` / `"uofXQEP6HBtekOAO"` / `0` | Ключ экспорта, родительская папка и сортировка; sort не приоритет эффекта |
 | flags / _stats | Корневые метаданные | `{}` / `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}` | История экспорта и пользовательские флаги; версия в _stats не подтверждает запуск этой версии сейчас |
 | img / ownership | Корневые поля | `"icons/svg/item-bag.svg"` / `{"default":0,"ugXtPMJIktbl63QV":3}` | Ресурс ядра вне пофайлового анализа; наличие указанного пользователя в мире не подтверждено |
@@ -42,7 +44,7 @@
 | daysHealed | `0` | NumberField; счётчик заживления, редактирование и update в heal. |
 | healingTime | `0` | NumberField; для deadly ветви расчёта нет, экспортный 0 сохраняется у Actor. |
 | sterilized | `false` | BooleanField; новая стерилизация даёт ещё +2 дня к очередному дню. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.lck0EEySmuLZXMrA"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.lck0EEySmuLZXMrA"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
 
 ### ActiveEffect 1: Dismembered Leg (Left)
 
@@ -60,7 +62,7 @@ Duration до миграции: `{"rounds":1,"startTime":null,"combat":null,"sec
 
 ### ActiveEffect 2: Dismembered Leg (Left)
 
-ID `8bJOeP1110i3pcOE`; _key=`"!items.effects!Us9OmoKhRydSqA8z.8bJOeP1110i3pcOE"`. Origin=`"Compendium.TheWitcherTRPG.criticalWounds.Item.Us9OmoKhRydSqA8z"` — UUID текущего Item в компедиуме, сопоставлен с экспортом. Цель переноса при transfer=true — Actor-владелец текущего Item; origin не выбирает другого владельца.
+ID `8bJOeP1110i3pcOE`; _key=`"!items.effects!Us9OmoKhRydSqA8z.8bJOeP1110i3pcOE"`. Origin=`"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Us9OmoKhRydSqA8z"` — UUID текущего Item в компедиуме, сопоставлен с экспортом. Цель переноса при transfer=true — Actor-владелец текущего Item; origin не выбирает другого владельца.
 
 Тип `"base"`, name:80; disabled=false, transfer=true, active=true; img=`"icons/svg/item-bag.svg"`, description=`""`, tint=`"#ffffff"`, sort=0, statuses=`[]`. Flags=`{"statuscounter":{"value":1,"config":{"type":"default"},"visible":false}}`; _stats=`{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`. System до миграции: `{"applySelf":false,"applyOnTarget":false,"applyOnHit":false,"applyOnDamage":false}`.
 

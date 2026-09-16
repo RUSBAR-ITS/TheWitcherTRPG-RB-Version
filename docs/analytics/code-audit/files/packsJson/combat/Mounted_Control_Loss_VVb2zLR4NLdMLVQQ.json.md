@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json](../../../../../../packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json) |
 | Тип файла | JSON: экспорт RollTable; 2 TableResult (0 text, 2 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 8573642b0136f80b8ae3456de51e1b7f637ec7f3 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.057](../../../../../tasks/task-0003.057.md); 11 файлов / 1915 строк; этот файл — 84 строк |
 | Запись перекрёстной сверки | [TASK-0003.057](../../../review-log.md#task-0003057) |
 | SHA-256 файла | 35db05336947fe243204ac8c0dbb1ba1d6c83cd9aca0715140406f49f5e6f048 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):24–29,45–50 регистрирует Combat как RollTable, путь packs/combat.db, папка Witcher TRPG System. UUID — `Compendium.TheWitcherTRPG.Combat.RollTable.VVb2zLR4NLdMLVQQ`. Соседний criticalWounds — отдельный пакет типа Item.
+[system.json](../../../../../../system.json):24–29,45–50 регистрирует Combat как RollTable, путь packs/combat.db, папка Witcher TRPG System. UUID — `Compendium.TheWitcherTRPG-RB-Version.Combat.RollTable.VVb2zLR4NLdMLVQQ`. Соседний criticalWounds — отдельный пакет типа Item.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог packsJson/combat в compilePack с recursive:true; [utils/extract.mjs](../../../../../../utils/extract.mjs):18–30 выполняет обратное извлечение. [package.json](../../../../../../package.json):7–8 задаёт команды; [подробный контракт CLI](../../utils/packs.mjs.md). Сборка и извлечение не запускались; экспорт не доказывает совпадения с установленной БД.
 
@@ -85,8 +87,8 @@ Inline-вставок [[…]] нет; текстовые указания бро
 
 | resultId | documentUuid | Строка | Цель в экспорте |
 | --- | --- | --- | --- |
-| `dn7MWvgQnc6QY9pS` | `Compendium.TheWitcherTRPG.Combat.RollTable.aLBBrVnSsL3wqQUx` | 26 | Не найдена |
-| `26LwnYmEgT6vWjyk` | `Compendium.TheWitcherTRPG.Combat.RollTable.6FrD4tQuyJOICu5m` | 50 | Не найдена |
+| `dn7MWvgQnc6QY9pS` | `Compendium.TheWitcherTRPG-RB-Version.Combat.RollTable.aLBBrVnSsL3wqQUx` | 26 | Не найдена |
+| `26LwnYmEgT6vWjyk` | `Compendium.TheWitcherTRPG-RB-Version.Combat.RollTable.6FrD4tQuyJOICu5m` | 50 | Не найдена |
 
 Связанные карточки: [Mounted Control Loss: Mount](Mounted_Control_Loss__Mount_XRdHZOmutZ3yzGRe.json.md), [Mounted Control Loss: Personal](Mounted_Control_Loss__Personal_KWLoKiOHKXXnq5E4.json.md). Сходство имён проверено отдельно от точных UUID: действующих входящих ссылок из остальных экспортов у этих трёх файлов нет.
 

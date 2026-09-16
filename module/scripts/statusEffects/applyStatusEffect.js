@@ -46,7 +46,7 @@ export async function applyStatusEffectToActor(actorUuid, statusEffectId, durati
     if (!actor) return;
 
     if (!actor.isOwner) {
-        getActorOwner(actor).query('TheWitcherTRPG.query', {
+        getActorOwner(actor).query('TheWitcherTRPG-RB-Version.query', {
             function: 'applyStatusEffectToActor',
             data: [actorUuid, statusEffectId, duration]
         });

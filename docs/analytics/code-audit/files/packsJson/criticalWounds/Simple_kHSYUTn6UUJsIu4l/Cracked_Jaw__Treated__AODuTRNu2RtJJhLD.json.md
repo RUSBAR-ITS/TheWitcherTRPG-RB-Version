@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Treated__AODuTRNu2RtJJhLD.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Treated__AODuTRNu2RtJJhLD.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4 |
-| Изменения относительно коммита | Нет; 103 строк; SHA-256 fae890f04ea140cc2672db58af34a2c3ec3b5e905f05ddc5d1de02622170c059 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.058](../../../../../../tasks/task-0003.058.md) |
 | Запись перекрёстной сверки | [Протокол TASK-0003.058](../../../../review-log.md#task-0003058) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место определения | Назначение | Доступность или регистрация | Действия и жизненный цикл |
 | --- | --- | --- | --- | --- |
-| Cracked Jaw (Treated) | Корневой Item, name: 3, _id: 96 | Шаблон травмы | `AODuTRNu2RtJJhLD`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.AODuTRNu2RtJJhLD` | Загрузка, копирование к Actor, подготовка, лечение и удаление |
+| Cracked Jaw (Treated) | Корневой Item, name: 3, _id: 96 | Шаблон травмы | `AODuTRNu2RtJJhLD`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AODuTRNu2RtJJhLD` | Загрузка, копирование к Actor, подготовка, лечение и удаление |
 | _key / folder / sort | Корневые поля | Идентификация экспортного документа и порядок | `"!items!AODuTRNu2RtJJhLD"` / `"kHSYUTn6UUJsIu4l"` / `600000` | Потребление ядром и инструментами экспорта; sort не задаёт приоритет изменений |
 | img / flags / ownership / _stats | Корневые поля | Значок, права и история экспорта | `"icons/svg/item-bag.svg"`; flags=`{}`; ownership=`{"default":0,"ugXtPMJIktbl63QV":3}` | Иконка — ресурс ядра вне пофайлового анализа; ID владельца не доказывает существование такого пользователя в текущем мире |
 | system | Объект, строка 6 | Модель травмы | criticalWound | Поля состояния перечислены ниже |
@@ -48,7 +50,7 @@ _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"co
 
 ### ActiveEffect 1: Cracked Jaw (Treated)
 
-_ID `Sla9gLKh0hbgGMZi`; origin=`"Compendium.TheWitcherTRPG.criticalWounds.Item.AODuTRNu2RtJJhLD"`. Тип `base`, disabled=false, transfer=true; img=`"icons/svg/item-bag.svg"`, tint=`"#ffffff"`, sort=0, statuses=`[]`, description=`""`. Флаги: `{"statuscounter":{"value":1,"config":{"type":"default"},"visible":false}}`. _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`.
+_ID `Sla9gLKh0hbgGMZi`; origin=`"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AODuTRNu2RtJJhLD"`. Тип `base`, disabled=false, transfer=true; img=`"icons/svg/item-bag.svg"`, tint=`"#ffffff"`, sort=0, statuses=`[]`, description=`""`. Флаги: `{"statuscounter":{"value":1,"config":{"type":"default"},"visible":false}}`. _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`.
 
 Системные поля до миграции: `{"applySelf":false,"applyOnTarget":false,"applyOnHit":false,"applyOnDamage":false}`. applyAfterCalculations отсутствует и получает false. Все изменения после миграции находятся в system.changes, type=add, value — число, phase=initial; при prepareBaseData null-приоритет становится 20, явно заданный 0 сохраняется. Старая duration=`{"startTime":null,"combat":null,"seconds":null,"rounds":null,"turns":null,"startRound":null,"startTurn":null}` преобразуется в start=null и duration={value:null, units:"seconds", expiry:null, expired:false}; после prepareBaseData value=Infinity. Истечение по таймеру не задано. Полный updateDuration/registry в сценарии не запускался.
 

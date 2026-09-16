@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen_rHrrGeB9A8bNCiC2.json](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Ruptured_Spleen_rHrrGeB9A8bNCiC2.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-13 |
-| Ветка и коммит | rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a |
-| Изменения относительно коммита | Нет; 37 строк; SHA-256 92c72ad218a43317f6c6f5a226185047403e1e9ac4930acf48d69b0ba35c07e4 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.059](../../../../../../tasks/task-0003.059.md) |
 | Запись перекрёстной сверки | [Протокол .059](../../../../review-log.md#task-0003059) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место | Назначение и доступность | Действия |
 | --- | --- | --- | --- |
-| Ruptured Spleen | Корневой Item; name:2, _id:4 | ID `rHrrGeB9A8bNCiC2`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.rHrrGeB9A8bNCiC2` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
+| Ruptured Spleen | Корневой Item; name:2, _id:4 | ID `rHrrGeB9A8bNCiC2`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.rHrrGeB9A8bNCiC2` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
 | _key / folder / sort | Корневые поля | `"!items!rHrrGeB9A8bNCiC2"` / `"YcLLKtwU75uE8tdC"` / `700000` | Ключ экспорта, родительская папка и сортировка; sort не приоритет эффекта |
 | flags / _stats | Корневые метаданные | `{}` / `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}` | История экспорта и пользовательские флаги; версия в _stats не подтверждает запуск этой версии сейчас |
 | img / ownership | Корневые поля | `"icons/svg/item-bag.svg"` / `{"default":0,"ugXtPMJIktbl63QV":3}` | Ресурс ядра вне пофайлового анализа; наличие указанного пользователя в мире не подтверждено |
@@ -42,7 +44,7 @@
 | daysHealed | `0` | NumberField; счётчик заживления, редактирование и update в heal. |
 | healingTime | `0` | NumberField; у владельца Actor prepareDerivedData рассчитывает max(12−BODY.max,1). |
 | sterilized | `false` | BooleanField; новая стерилизация даёт ещё +2 дня к очередному дню. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.d8uhnIErEmsGtf94"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.d8uhnIErEmsGtf94"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
 
 Effects=[]: активных эффектов, changes и статусов из этого Item нет. Условия в описании не преобразуются движком в автоматические модификаторы.
 

@@ -20,7 +20,7 @@
     {
       "type": "base",
       "name": "Cracked Jaw (Treated)",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.AODuTRNu2RtJJhLD",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AODuTRNu2RtJJhLD",
       "duration": {
         "startTime": null,
         "combat": null,

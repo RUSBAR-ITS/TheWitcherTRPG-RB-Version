@@ -5,11 +5,13 @@
 | Исходный файл | [module/item/sheets/WitcherRaceSheet.js](../../../../../../../module/item/sheets/WitcherRaceSheet.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `29319a7a7e1dfc0663edbc15166f3b6a19682a2f` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.018](../../../../../../tasks/task-0003.018.md), одна порция из восьми файлов |
 | Запись перекрёстной сверки | [TASK-0003.018](../../../../review-log.md#task-0003018) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@ Default class WitcherRaceSheet extends WitcherItemSheet. registerSheets реги
 | --- | --- | --- | --- | --- |
 | WitcherRaceSheet | Класс,3–15 | Специализация общего Item-листа | Default export; makeDefault для race | Два static-реестра |
 | DEFAULT_OPTIONS.position.width | Static object,4–8 | Ширина 600 | Дополнение конфигурации Application | Другие настройки поступают от предков |
-| PARTS.main | Static object,9–14 | Шаблон и scrollable:[''] | template systems/TheWitcherTRPG/templates/sheets/item/race-sheet.hbs | HandlebarsApplicationMixin обслуживает часть |
+| PARTS.main | Static object,9–14 | Шаблон и scrollable:[''] | template systems/TheWitcherTRPG-RB-Version/templates/sheets/item/race-sheet.hbs | HandlebarsApplicationMixin обслуживает часть |
 
 ## Основные функции и методы
 

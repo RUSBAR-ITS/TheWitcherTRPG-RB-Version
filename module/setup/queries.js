@@ -4,7 +4,7 @@ import {
 } from '../scripts/temporaryEffects/applyActiveEffect.js';
 import { applyStatusEffectToActor } from '../scripts/statusEffects/applyStatusEffect.js';
 
-const system = 'TheWitcherTRPG';
+const system = 'TheWitcherTRPG-RB-Version';
 
 async function applyTemporaryItemImprovementsToActor(queryData, { timeout }) {
     let actor = fromUuidSync(queryData.actorUuid);

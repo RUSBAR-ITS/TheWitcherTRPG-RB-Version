@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion_IK7pM8p3NcM4thcz.json](../../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Concussion_IK7pM8p3NcM4thcz.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-13 |
-| Ветка и коммит | rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e |
-| Изменения относительно коммита | Нет; 104 строк; SHA-256 f3ebd8f2541cf797893c8a6df99b12cbb59105d724583d771f5d7a1fc114d5f8 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.060](../../../../../../tasks/task-0003.060.md) |
 | Запись перекрёстной сверки | [Протокол .060](../../../../review-log.md#task-0003060) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место | Назначение и доступность | Действия |
 | --- | --- | --- | --- |
-| Concussion | Корневой Item; name:3, _id:5 | ID `IK7pM8p3NcM4thcz`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.IK7pM8p3NcM4thcz` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
+| Concussion | Корневой Item; name:3, _id:5 | ID `IK7pM8p3NcM4thcz`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.IK7pM8p3NcM4thcz` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
 | _key / folder / sort | Корневые поля | `"!items!IK7pM8p3NcM4thcz"` / `"ox3lLmV3zp0K67Ht"` / `0` | Ключ экспорта, родительская папка и сортировка; sort не приоритет эффекта |
 | flags / _stats | Корневые метаданные | `{}` / `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}` | История экспорта и пользовательские флаги; версия в _stats не подтверждает запуск этой версии сейчас |
 | img / ownership | Корневые поля | `"icons/svg/item-bag.svg"` / `{"default":0,"ugXtPMJIktbl63QV":3}` | Ресурс ядра вне пофайлового анализа; наличие указанного пользователя в мире не подтверждено |
@@ -42,7 +44,7 @@
 | daysHealed | `0` | NumberField; счётчик заживления, редактирование и update в heal. |
 | healingTime | `0` | NumberField; у владельца Actor prepareDerivedData рассчитывает max(15−BODY.max,1). |
 | sterilized | `false` | BooleanField; новая стерилизация даёт ещё +2 дня к очередному дню. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.AFkm8KjxkwYxOCQo"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AFkm8KjxkwYxOCQo"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
 
 ### ActiveEffect 1: Concussion
 

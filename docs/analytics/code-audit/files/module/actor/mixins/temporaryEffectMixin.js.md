@@ -5,11 +5,13 @@
 | Исходный файл | [module/actor/mixins/temporaryEffectMixin.js](../../../../../../../module/actor/mixins/temporaryEffectMixin.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `a33bf33add228ae93f96a52046c8feb4ee992921` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.009](../../../../../../tasks/task-0003.009.md), одна порция из восьми файлов |
 | Запись перекрёстной сверки | [TASK-0003.009](../../../../review-log.md#task-0003009) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -48,7 +50,7 @@ Mixin присоединяется к прототипу WitcherActor. `this` �
 | Файл-потребитель | Используемая сущность этого файла | Способ и условия использования | Основание |
 | --- | --- | --- | --- |
 | [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) | actor.applyTemporaryItemImprovements | Owned-ветвь локальной функции; получает весь входной список | Фильтрация типов выполняется здесь |
-| [module/setup/queries.js](../../../../../../../module/setup/queries.js) | actor.applyTemporaryItemImprovements | Отдельный query TheWitcherTRPG.applyTemporaryItemImprovements | Actor разрешается по UUID; вызов не ожидается |
+| [module/setup/queries.js](../../../../../../../module/setup/queries.js) | actor.applyTemporaryItemImprovements | Отдельный query TheWitcherTRPG-RB-Version.applyTemporaryItemImprovements | Actor разрешается по UUID; вызов не ожидается |
 | [module/actor/witcherActor.js](../../../../../../../module/actor/witcherActor.js) | temporaryEffectMixin | Добавляет метод экземплярам Actor | Object.assign |
 
 ## Данные и изменения состояния

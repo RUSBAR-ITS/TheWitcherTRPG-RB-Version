@@ -7,7 +7,7 @@ export default class WitcherArmorSheet extends WitcherItemSheet {
 
     static PARTS = {
         main: {
-            template: `systems/TheWitcherTRPG/templates/sheets/item/armor-sheet.hbs`,
+            template: `systems/TheWitcherTRPG-RB-Version/templates/sheets/item/armor-sheet.hbs`,
             scrollable: ['']
         }
     };

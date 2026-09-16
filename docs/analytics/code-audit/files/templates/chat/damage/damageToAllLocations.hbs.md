@@ -5,11 +5,13 @@
 | Исходный файл | [templates/chat/damage/damageToAllLocations.hbs](../../../../../../../templates/chat/damage/damageToAllLocations.hbs) |
 | Тип файла | Handlebars |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 965132d5d7972a0edd73aaa62484a1b6ba15991f |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.044](../../../../../../tasks/task-0003.044.md), 9 файлов / 603 логических строк; данный файл — 15 |
 | Запись перекрёстной сверки | [TASK-0003.044](../../../../review-log.md#task-0003044) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -17,7 +19,7 @@
 
 ## Условия использования
 
-Загружается по пути systems/TheWitcherTRPG/templates/chat/damage/damageToAllLocations.hbs через renderTemplate в [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) (applyDamageToAllLocations:103–116). Сам файл не регистрирует событий и не обращается к документам.
+Загружается по пути systems/TheWitcherTRPG-RB-Version/templates/chat/damage/damageToAllLocations.hbs через renderTemplate в [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) (applyDamageToAllLocations:103–116). Сам файл не регистрирует событий и не обращается к документам.
 
 ## Введённые сущности и действия с ними
 

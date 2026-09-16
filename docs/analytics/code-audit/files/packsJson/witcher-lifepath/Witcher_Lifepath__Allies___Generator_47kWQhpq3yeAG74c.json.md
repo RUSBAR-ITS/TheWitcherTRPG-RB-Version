@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Generator_47kWQhpq3yeAG74c.json) |
 | Тип файла | JSON: экспорт RollTable, 6 TableResult (0 text, 6 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, cd2743d0548d5c129065c970d4aa5c43cc9632e2 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.055](../../../../../tasks/task-0003.055.md); 41 файл / 8708 строк; этот файл — 174 строк |
 | Запись перекрёстной сверки | [TASK-0003.055](../../../review-log.md#task-0003055) |
 | SHA-256 файла | 83ba119db83cfff65d6654abb8f21b259500bb2a2b24c2f0b44c15a1f45110d1 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):36,71–76 регистрирует RollTable-пакет Witcher_Lifepath_and_BG_Sub-tables в папке Character Generation с путём packs/witcher-lifepath.db. Адрес документа — `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.47kWQhpq3yeAG74c`.
+[system.json](../../../../../../system.json):36,71–76 регистрирует RollTable-пакет Witcher_Lifepath_and_BG_Sub-tables в папке Character Generation с путём packs/witcher-lifepath.db. Адрес документа — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.47kWQhpq3yeAG74c`.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог compilePack с recursive:true; путь и контракт CLI описаны в [карточке утилиты](../../utils/packs.mjs.md). [utils/extract.mjs](../../../../../../utils/extract.mjs) выполняет обратную выгрузку. Эти команды не запускались. Экспорт не является подключаемым ES-модулем и не доказывает содержимое установленной БД.
 
@@ -96,12 +98,12 @@ Root description: Пустая строка.
 
 | ID результата / range | Полный documentUuid | Файл цели | Обращение и проверка |
 | --- | --- | --- | --- |
-| `q0DM4FW7XCnFdKZu`; [1,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.bw2dbovLaFTJJ8EP` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json.md) | documentUuid:30; имя совпало с целью; recursive:true → innerTable.roll |
-| `mp0F0yfLeczgHYKB`; [1,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zG6aQ2srMV79PDHY` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json.md) | documentUuid:54; имя совпало с целью; recursive:true → innerTable.roll |
-| `a90EHPhkX2hszHH8`; [1,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.pr3upjAFiZVHdOXp` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json.md) | documentUuid:78; имя совпало с целью; recursive:true → innerTable.roll |
-| `KgpE0Q8gz4x0tE9A`; [1,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.TLO7kA1RyxfxP2D8` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json.md) | documentUuid:102; имя совпало с целью; recursive:true → innerTable.roll |
-| `ph4JxbZMB7MniZZ5`; [1,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.LPwYvTqPg52QQ9IU` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json.md) | documentUuid:126; имя совпало с целью; recursive:true → innerTable.roll |
-| `CO3QQZcFp1D2YDGe`; [1,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.2l9nl4ndvdgtn2SJ` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json.md) | documentUuid:150; имя совпало с целью; recursive:true → innerTable.roll |
+| `q0DM4FW7XCnFdKZu`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.bw2dbovLaFTJJ8EP` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Gender_bw2dbovLaFTJJ8EP.json.md) | documentUuid:30; имя совпало с целью; recursive:true → innerTable.roll |
+| `mp0F0yfLeczgHYKB`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zG6aQ2srMV79PDHY` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Position_zG6aQ2srMV79PDHY.json.md) | documentUuid:54; имя совпало с целью; recursive:true → innerTable.roll |
+| `a90EHPhkX2hszHH8`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.pr3upjAFiZVHdOXp` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___How_You_Met_pr3upjAFiZVHdOXp.json.md) | documentUuid:78; имя совпало с целью; recursive:true → innerTable.roll |
+| `KgpE0Q8gz4x0tE9A`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.TLO7kA1RyxfxP2D8` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Closeness_TLO7kA1RyxfxP2D8.json.md) | documentUuid:102; имя совпало с целью; recursive:true → innerTable.roll |
+| `ph4JxbZMB7MniZZ5`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.LPwYvTqPg52QQ9IU` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Where_Are_They__LPwYvTqPg52QQ9IU.json.md) | documentUuid:126; имя совпало с целью; recursive:true → innerTable.roll |
+| `CO3QQZcFp1D2YDGe`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.2l9nl4ndvdgtn2SJ` | [packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Allies___Are_They_Alive__2l9nl4ndvdgtn2SJ.json.md) | documentUuid:150; имя совпало с целью; recursive:true → innerTable.roll |
 
 Inline-вставок [[…]] нет. Текстовые @UUID/@Compendium, внешние URL и исполняемые макросы в этом файле не найдены. Упоминания людей, предметов, монстров, правил и страниц сами по себе не являются зависимостями на документы.
 

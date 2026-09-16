@@ -49,7 +49,7 @@ export let damageMixin = {
         this.update({ 'system.derivedStats.shield.value': shield });
 
         if (shield > 0) {
-            const messageTemplate = 'systems/TheWitcherTRPG/templates/chat/damage/shieldAbsorbs.hbs';
+            const messageTemplate = 'systems/TheWitcherTRPG-RB-Version/templates/chat/damage/shieldAbsorbs.hbs';
 
             const content = await foundry.applications.handlebars.renderTemplate(messageTemplate, {
                 damageInstances: damageInstances.map(instance => instance.initialDamageText()).join(' + '),
@@ -100,7 +100,7 @@ export let damageMixin = {
             0
         );
 
-        const messageTemplate = 'systems/TheWitcherTRPG/templates/chat/damage/damageToAllLocations.hbs';
+        const messageTemplate = 'systems/TheWitcherTRPG-RB-Version/templates/chat/damage/damageToAllLocations.hbs';
         const templateContext = {
             results,
             totalAppliedDamage
@@ -160,7 +160,7 @@ export let damageMixin = {
             displaySP = Math.ceil(displaySP / 2);
         }
 
-        if (game.settings.get('TheWitcherTRPG', 'silverTrait')) {
+        if (game.settings.get('TheWitcherTRPG-RB-Version', 'silverTrait')) {
             if (properties?.silverTrait) {
                 damageInstances[0].setType = 'silver';
             }
@@ -245,7 +245,7 @@ export let damageMixin = {
     },
 
     async createDamageBlockedBySp(damageInstances, displaySP) {
-        const messageTemplate = 'systems/TheWitcherTRPG/templates/chat/damage/spAbsorbs.hbs';
+        const messageTemplate = 'systems/TheWitcherTRPG-RB-Version/templates/chat/damage/spAbsorbs.hbs';
 
         const content = await foundry.applications.handlebars.renderTemplate(messageTemplate, {
             initialDamage: damageInstances.map(instance => instance.initialDamageText()).join(' + '),
@@ -261,7 +261,7 @@ export let damageMixin = {
     },
 
     async createDamageResultMessage(damageResult) {
-        const messageTemplate = 'systems/TheWitcherTRPG/templates/chat/damage/damageToLocation.hbs';
+        const messageTemplate = 'systems/TheWitcherTRPG-RB-Version/templates/chat/damage/damageToLocation.hbs';
 
         const damageInstances = damageResult.damageInstances;
 
@@ -313,7 +313,7 @@ export let damageMixin = {
         let location = crit.location;
 
         let possibleWounds = game.packs
-            .get(game.settings.get('TheWitcherTRPG', 'criticalWoundsPack'))
+            .get(game.settings.get('TheWitcherTRPG-RB-Version', 'criticalWoundsPack'))
             .index.filter(criticalWound => criticalWound.system.treatment == 'none')
             .filter(criticalWound => criticalWound.system.location == location.name)
             .filter(criticalWound => criticalWound.system.criticalLevel == crit.criticalLevel);

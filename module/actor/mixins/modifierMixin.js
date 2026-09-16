@@ -1,6 +1,6 @@
 export let modifierMixin = {
     addActiveEffects(skillName) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
         let skill = CONFIG.WITCHER.skillMap[skillName];
 
         let formula = '';

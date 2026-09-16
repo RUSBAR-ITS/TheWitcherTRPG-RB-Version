@@ -16,7 +16,7 @@ export default class RegionProperties extends foundry.abstract.DataModel {
     async addBehaviorsToRegions(regions) {
         let item = this.parent.parent;
         if (!game.user.isGM) {
-            game.users.activeGM.query('TheWitcherTRPG.query', {
+            game.users.activeGM.query('TheWitcherTRPG-RB-Version.query', {
                 function: 'addBehaviorsToRegionUuids',
                 uuid: item.uuid,
                 data: [regions.map(template => template.uuid)]

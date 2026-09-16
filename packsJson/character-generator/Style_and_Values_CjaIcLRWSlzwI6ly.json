@@ -27,7 +27,7 @@
         "exportSource": null
       },
       "name": "Style: Clothing",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.BuyEb4FcAyQL2hov",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.BuyEb4FcAyQL2hov",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.q0DM4FW7XCnFdKZu"
     },
@@ -51,7 +51,7 @@
         "exportSource": null
       },
       "name": "Style: Personality",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.TOQz3ETDronoeEDt",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.TOQz3ETDronoeEDt",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.6eMBIJMQZmhaVyCr"
     },
@@ -75,7 +75,7 @@
         "exportSource": null
       },
       "name": "Style: Hair Style",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.Ov9xIpAdWEPZCIoH",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.Ov9xIpAdWEPZCIoH",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.Kot5qN9Crj60jbwU"
     },
@@ -99,7 +99,7 @@
         "exportSource": null
       },
       "name": "Style: Affectations",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.4RWDMDzNdnz2kgwU",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.4RWDMDzNdnz2kgwU",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.YqKoWFzgGZuSuzj0"
     },
@@ -123,7 +123,7 @@
         "exportSource": null
       },
       "name": "Values: Valued Person",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.y1WCi6n2Kpwqb27P",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.y1WCi6n2Kpwqb27P",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.7LFO8Ez5nQK98SWT"
     },
@@ -147,7 +147,7 @@
         "exportSource": null
       },
       "name": "Values: Ideals",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.s5EjP50ddIVoitHT",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.s5EjP50ddIVoitHT",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.O4kO4Ec9Zjr1F3Qm"
     },
@@ -171,7 +171,7 @@
         "exportSource": null
       },
       "name": "Values: Feelings on People",
-      "documentUuid": "Compendium.TheWitcherTRPG.Style_and_Values_Sub-tables.RollTable.4eCXMVEfRx4PivWH",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Style_and_Values_Sub-tables.RollTable.4eCXMVEfRx4PivWH",
       "description": "",
       "_key": "!tables.results!CjaIcLRWSlzwI6ly.HkPKK3KrmtmNyo1B"
     }

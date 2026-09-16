@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) |
 | Тип файла | JSON: экспорт RollTable, 8 TableResult (4 text, 4 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, cd2743d0548d5c129065c970d4aa5c43cc9632e2 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.055](../../../../../tasks/task-0003.055.md); 41 файл / 8708 строк; этот файл — 218 строк |
 | Запись перекрёстной сверки | [TASK-0003.055](../../../review-log.md#task-0003055) |
 | SHA-256 файла | 4d0ccf06db2b94ad82e18dd07d945cf4af3a943a1c52bff2abc0cfa56c5ba4ff |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):36,71–76 регистрирует RollTable-пакет Witcher_Lifepath_and_BG_Sub-tables в папке Character Generation с путём packs/witcher-lifepath.db. Адрес документа — `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz`.
+[system.json](../../../../../../system.json):36,71–76 регистрирует RollTable-пакет Witcher_Lifepath_and_BG_Sub-tables в папке Character Generation с путём packs/witcher-lifepath.db. Адрес документа — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz`.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог compilePack с recursive:true; путь и контракт CLI описаны в [карточке утилиты](../../utils/packs.mjs.md). [utils/extract.mjs](../../../../../../utils/extract.mjs) выполняет обратную выгрузку. Эти команды не запускались. Экспорт не является подключаемым ES-модулем и не доказывает содержимое установленной БД.
 
@@ -101,10 +103,10 @@ Root description: Пустая строка.
 
 | ID результата / range | Полный documentUuid | Файл цели | Обращение и проверка |
 | --- | --- | --- | --- |
-| `g8M6NpFm7tM6Vxit`; [-3,1] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:53; имя совпало с целью; recursive:true → innerTable.roll |
-| `PetWGxxqNcQ9CTY8`; [2,3] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:100; имя совпало с целью; recursive:true → innerTable.roll |
-| `pBJUmRRDkPudGBWz`; [4,9] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:147; имя совпало с целью; recursive:true → innerTable.roll |
-| `ErK1v2gFZ5OEch8Z`; [10,14] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:194; имя совпало с целью; recursive:true → innerTable.roll |
+| `g8M6NpFm7tM6Vxit`; [-3,1] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:53; имя совпало с целью; recursive:true → innerTable.roll |
+| `PetWGxxqNcQ9CTY8`; [2,3] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:100; имя совпало с целью; recursive:true → innerTable.roll |
+| `pBJUmRRDkPudGBWz`; [4,9] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:147; имя совпало с целью; recursive:true → innerTable.roll |
+| `ErK1v2gFZ5OEch8Z`; [10,14] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.34nU6OswdgAyMC6p` | [packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json); [карточка](../witcher-lifepath/Witcher_Background__What_Was_Your_Most_Important_Event_34nU6OswdgAyMC6p.json.md) | documentUuid:194; имя совпало с целью; recursive:true → innerTable.roll |
 
 Inline-вставок [[…]] нет. Текстовые @UUID/@Compendium, внешние URL и исполняемые макросы в этом файле не найдены. Упоминания людей, предметов, монстров, правил и страниц сами по себе не являются зависимостями на документы.
 

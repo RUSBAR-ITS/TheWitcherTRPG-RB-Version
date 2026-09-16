@@ -11,7 +11,7 @@ const DialogV2 = foundry.applications.api.DialogV2;
 
 export let castSpellMixin = {
     async castSpell(spellItem) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG', 'displayRollsDetails');
+        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         let damage = spellItem.createBaseDamageObject();
 
@@ -86,7 +86,7 @@ export let castSpellMixin = {
         };
 
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/dialog/combat/spell-attack.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/dialog/combat/spell-attack.hbs',
             data
         );
 
@@ -225,7 +225,7 @@ export let castSpellMixin = {
         }
 
         const chatMessage = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/chat/combat/spellItem.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/chat/combat/spellItem.hbs',
             {
                 spellItem,
                 templateInfo,

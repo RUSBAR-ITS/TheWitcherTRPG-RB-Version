@@ -8,7 +8,7 @@ export default class WitcherMountSheet extends WitcherItemSheet {
     };
     static PARTS = {
         main: {
-            template: `systems/TheWitcherTRPG/templates/sheets/item/mount-sheet.hbs`,
+            template: `systems/TheWitcherTRPG-RB-Version/templates/sheets/item/mount-sheet.hbs`,
             scrollable: ['']
         }
     };

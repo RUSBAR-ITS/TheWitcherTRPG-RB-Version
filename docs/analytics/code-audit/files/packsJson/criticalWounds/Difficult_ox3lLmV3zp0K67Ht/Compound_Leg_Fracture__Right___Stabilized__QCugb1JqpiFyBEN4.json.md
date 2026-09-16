@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Stabilized__QCugb1JqpiFyBEN4.json](../../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Stabilized__QCugb1JqpiFyBEN4.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-13 |
-| Ветка и коммит | rusbar-main, aef03ca01b0db5887653d2b1301a4fe814372a3e |
-| Изменения относительно коммита | Нет; 104 строк; SHA-256 84e1e15b8243aa1f07388c6dd9e4da4bb4282c046955507c51a0287f6c7bc159 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.060](../../../../../../tasks/task-0003.060.md) |
 | Запись перекрёстной сверки | [Протокол .060](../../../../review-log.md#task-0003060) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место | Назначение и доступность | Действия |
 | --- | --- | --- | --- |
-| Compound Leg Fracture (Right - Stabilized) | Корневой Item; name:3, _id:97 | ID `QCugb1JqpiFyBEN4`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.QCugb1JqpiFyBEN4` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
+| Compound Leg Fracture (Right - Stabilized) | Корневой Item; name:3, _id:97 | ID `QCugb1JqpiFyBEN4`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.QCugb1JqpiFyBEN4` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
 | _key / folder / sort | Корневые поля | `"!items!QCugb1JqpiFyBEN4"` / `"ox3lLmV3zp0K67Ht"` / `0` | Ключ экспорта, родительская папка и сортировка; sort не приоритет эффекта |
 | flags / _stats | Корневые метаданные | `{}` / `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}` | История экспорта и пользовательские флаги; версия в _stats не подтверждает запуск этой версии сейчас |
 | img / ownership | Корневые поля | `"icons/svg/item-bag.svg"` / `{"default":0,"ugXtPMJIktbl63QV":3}` | Ресурс ядра вне пофайлового анализа; наличие указанного пользователя в мире не подтверждено |
@@ -42,11 +44,11 @@
 | daysHealed | `0` | NumberField; счётчик заживления, редактирование и update в heal. |
 | healingTime | `0` | NumberField; у владельца Actor prepareDerivedData рассчитывает max(15−BODY.max,1). |
 | sterilized | `false` | BooleanField; новая стерилизация даёт ещё +2 дня к очередному дню. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.3SwpPbi2ddEJkebh"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.3SwpPbi2ddEJkebh"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
 
 ### ActiveEffect 1: Compound Leg Fracture (Right - Stabilized)
 
-ID `XOBIfzJ65964vrHX`; _key=`"!items.effects!QCugb1JqpiFyBEN4.XOBIfzJ65964vrHX"`. Origin=`"Compendium.TheWitcherTRPG.criticalWounds.Item.QCugb1JqpiFyBEN4"` — UUID текущего Item в компедиуме, сопоставлен с экспортом. Цель переноса при transfer=true — Actor-владелец текущего Item; origin не выбирает другого владельца.
+ID `XOBIfzJ65964vrHX`; _key=`"!items.effects!QCugb1JqpiFyBEN4.XOBIfzJ65964vrHX"`. Origin=`"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.QCugb1JqpiFyBEN4"` — UUID текущего Item в компедиуме, сопоставлен с экспортом. Цель переноса при transfer=true — Actor-владелец текущего Item; origin не выбирает другого владельца.
 
 Тип `"base"`, name:23; disabled=false, transfer=true; img=`"icons/svg/item-bag.svg"`, description=`""`, tint=`"#ffffff"`, sort=0, statuses=`[]`. Flags=`{"statuscounter":{"value":1,"config":{"type":"default"},"visible":false}}`; _stats=`{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`. System до миграции: `{"applySelf":false,"applyOnTarget":false,"applyOnHit":false,"applyOnDamage":false}`.
 

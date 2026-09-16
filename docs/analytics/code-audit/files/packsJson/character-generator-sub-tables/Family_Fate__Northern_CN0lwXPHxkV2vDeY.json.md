@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json](../../../../../../packsJson/character-generator-sub-tables/Family_Fate__Northern_CN0lwXPHxkV2vDeY.json) |
 | Тип файла | JSON: экспорт RollTable, 19 TableResult (10 text, 9 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0 |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.054](../../../../../tasks/task-0003.054.md); 35 файлов / 8319 строк; этот файл — 476 строк |
 | Запись перекрёстной сверки | [TASK-0003.054](../../../review-log.md#task-0003054) |
 | SHA-256 файла | e4d7855b7a9ef0d6216a9f2a3c29529e371e99fa947a1dfaeac8dc8932b0a4b3 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -20,7 +22,7 @@
 
 [system.json](../../../../../../system.json):35,64–69 объявляет RollTable-пакет Character-gen_Sub-tables и packs/character-generator-sub-tables.db. [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 читает этот каталог через compilePack с recursive:true; фактическое разрешение имени пути описано в [карточке утилиты](../../utils/packs.mjs.md). JSON не подключён как браузерный ES-модуль.
 
-Адрес по манифесту и ID — `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.CN0lwXPHxkV2vDeY`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
+Адрес по манифесту и ID — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.CN0lwXPHxkV2vDeY`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
 
 ## Введённые сущности и действия с ними
 
@@ -99,15 +101,15 @@ Root description: Пустая строка.
 
 | Результат / строка documentUuid | Целевая карточка | Полный адрес |
 | --- | --- | --- |
-| `k0AliUujlhUKLN0G`, строка 53 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `B0JK9mSkUpWrjcOB`, строка 100 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `hMZ7vrUqgV5iYDPW`, строка 147 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `9kRFTeQ6eDlOgwZb`, строка 194 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `Q8sLmAt8bKK8BWRp`, строка 241 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `trQNJUPaqmlb4D1o`, строка 288 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `tg5VZvn8eAUQnoSe`, строка 335 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `zElZkUwk38v4bhFL`, строка 382 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
-| `pRe4GfbvORQ8CTW5`, строка 429 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `k0AliUujlhUKLN0G`, строка 53 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `B0JK9mSkUpWrjcOB`, строка 100 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `hMZ7vrUqgV5iYDPW`, строка 147 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `9kRFTeQ6eDlOgwZb`, строка 194 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `Q8sLmAt8bKK8BWRp`, строка 241 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `trQNJUPaqmlb4D1o`, строка 288 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `tg5VZvn8eAUQnoSe`, строка 335 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `zElZkUwk38v4bhFL`, строка 382 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
+| `pRe4GfbvORQ8CTW5`, строка 429 | [Family Status: Northern](Family_Status__Northern_EeOlp8UMRiYS1AEt.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt` |
 
 ## Известные потребители
 

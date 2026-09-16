@@ -5,11 +5,13 @@
 | Исходный файл | [module/actor/mixins/verbalCombatMixin.js](../../../../../../../module/actor/mixins/verbalCombatMixin.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20 |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.046](../../../../../../tasks/task-0003.046.md), 5 файлов / 301 логических строк; данный файл — 101 |
 | Запись перекрёстной сверки | [TASK-0003.046](../../../../review-log.md#task-0003046) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -97,7 +99,7 @@ Flavor: div.verbal-combat-attack-message с h2, уроном, локализов
 
 ## Данные и изменения состояния
 
-Создаётся DTO с type damage и system.vcDamage; extendedRoll добавляет rollTotal. Настоящая DamageMessageData удаляет vcDamage, создаёт свои damage defaults. Формула/описание действия отдельно записываются во flags.TheWitcherTRPG.verbalCombat и damage. Это два канала данных: сохранность флагов не следует из system. Метод не расходует Resolve, валюту или ресурсы, не применяет status/ActiveEffect и не реализует накопительные условия текстов effect.
+Создаётся DTO с type damage и system.vcDamage; extendedRoll добавляет rollTotal. Настоящая DamageMessageData удаляет vcDamage, создаёт свои damage defaults. Формула/описание действия отдельно записываются во flags.TheWitcherTRPG-RB-Version.verbalCombat и damage. Это два канала данных: сохранность флагов не следует из system. Метод не расходует Resolve, валюту или ресурсы, не применяет status/ActiveEffect и не реализует накопительные условия текстов effect.
 
 ## Проверки и доказательства
 

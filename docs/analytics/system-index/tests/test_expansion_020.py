@@ -96,7 +96,7 @@ class ChatDeliveryExpansion(unittest.TestCase):
 
     def test_socket_envelope_guard_and_unawaited_receiver(self):
         s=self.source(204);r=self.source(217)
-        for at,t in [(10,'return { type, data }'),(14,'!game.socket || !game.user || !game.users'),(15,'game.user.isGM'),(17,'!game.users.activeGM'),(19,'_createMessage(type, data)'),(20,"await game.socket.emit('system.TheWitcherTRPG', message)")]:self.assertIn(t,s[at-1])
+        for at,t in [(10,'return { type, data }'),(14,'!game.socket || !game.user || !game.users'),(15,'game.user.isGM'),(17,'!game.users.activeGM'),(19,'_createMessage(type, data)'),(20,"await game.socket.emit('system.TheWitcherTRPG-RB-Version', message)")]:self.assertIn(t,s[at-1])
         for at,t in [(5,"'restoreReliability': 'uuid'"),(6,"'addItem': 'uuid'"),(9,'!game.socket || !game.user'),(12,'game.user !== game.users.activeGM'),(17,'fromUuidSync(message.data.shift())'),(18,'fromUuid[message.type](...message.data)'),(22,'callableFunctions[message.type](...message.data)')]:self.assertIn(t,r[at-1])
         self.assertNotIn('await','\n'.join(r));self.assertNotIn('hasOwn','\n'.join(r))
         self.assertEqual([x.get('step')for x in self.steps(308)['lookup']['next']if'step'in x],['uuid','generic'])

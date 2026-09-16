@@ -86,7 +86,7 @@ export default class WitcherActiveEffect extends ActiveEffect {
             }, {});
 
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/dialog/activeEffects/wizard.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/dialog/activeEffects/wizard.hbs',
             {
                 selects: allSkills
             }

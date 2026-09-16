@@ -5,7 +5,7 @@
                 <h2 class="crit-wounds-header-name">{{localize "WITCHER.criticalWound.header"}}</h2>
                 <a class="add-crit" data-action="addCrit"><i class="fas fa-plus"></i></a>
             </div>
-            {{> "systems/TheWitcherTRPG/templates/partials/crit-wounds-table.hbs"}}
+            {{> "systems/TheWitcherTRPG-RB-Version/templates/partials/crit-wounds-table.hbs"}}
 
             <ol class="list item-table item-list">
                 {{#each this.document.items.documentsByType.criticalWound as |critWound i| }}
@@ -55,6 +55,6 @@
     </div>
 
     <div class="active-effects-section">
-        {{> systems/TheWitcherTRPG/templates/partials/effect-part.hbs}}
+        {{> systems/TheWitcherTRPG-RB-Version/templates/partials/effect-part.hbs}}
     </div>
 </section>

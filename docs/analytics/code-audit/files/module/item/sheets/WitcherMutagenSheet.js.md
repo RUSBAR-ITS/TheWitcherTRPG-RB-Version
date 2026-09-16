@@ -5,11 +5,13 @@
 | Исходный файл | [module/item/sheets/WitcherMutagenSheet.js](../../../../../../../module/item/sheets/WitcherMutagenSheet.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `7edb814aa870da75c7ad7633536e899a8d07e205` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.015](../../../../../../tasks/task-0003.015.md), одна порция из пятнадцати файлов |
 | Запись перекрёстной сверки | [TASK-0003.015](../../../../review-log.md#task-0003015) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -24,7 +26,7 @@ registerSheets импортирует класс и назначает лист�
 | Сущность | Вид и место определения | Назначение | Доступность или регистрация | Действия и жизненный цикл |
 | --- | --- | --- | --- | --- |
 | WitcherMutagenSheet | default class extends WitcherItemSheet | Лист mutagen | Регистрация registerSheets | Рендер и подготовка контекста |
-| PARTS.main | static object | template systems/TheWitcherTRPG/templates/sheets/item/mutagen-sheet.hbs; scrollable=[''] | HandlebarsApplicationMixin | Рендер основной части |
+| PARTS.main | static object | template systems/TheWitcherTRPG-RB-Version/templates/sheets/item/mutagen-sheet.hbs; scrollable=[''] | HandlebarsApplicationMixin | Рендер основной части |
 | config.type | Результат getTypes | Словарь категорий | Контекст HBS | Изменяется общий CONFIG.WITCHER через ссылку context.config |
 
 ## Основные функции и методы

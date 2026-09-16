@@ -9,7 +9,7 @@ export default class WitcherCriticalWoundSheet extends WitcherItemSheet {
     };
     static PARTS = {
         main: {
-            template: `systems/TheWitcherTRPG/templates/sheets/item/criticalWound-sheet.hbs`,
+            template: `systems/TheWitcherTRPG-RB-Version/templates/sheets/item/criticalWound-sheet.hbs`,
             scrollable: ['']
         }
     };

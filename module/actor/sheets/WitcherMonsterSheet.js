@@ -20,41 +20,41 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
 
     static PARTS = {
         sidebar: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/actor/partials/monster/sidebar.hbs'
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/monster/sidebar.hbs'
         },
         header: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/actor/partials/monster/header.hbs'
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/monster/header.hbs'
         },
         tabs: {
             // Foundry-provided generic template
             template: 'templates/generic/tab-navigation.hbs'
         },
         stats: {
-            template: 'systems/TheWitcherTRPG/templates/partials/character/tab-stats.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/partials/character/tab-stats.hbs',
             scrollable: ['']
         },
         skills: {
-            template: 'systems/TheWitcherTRPG/templates/partials/character/tab-skills.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/partials/character/tab-skills.hbs',
             scrollable: ['']
         },
         profession: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/actor/partials/monster/tabs/tab-profession.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/monster/tabs/tab-profession.hbs',
             scrollable: ['']
         },
         inventory: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs',
             scrollable: ['']
         },
         details: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/actor/partials/monster/tabs/tab-details.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/monster/tabs/tab-details.hbs',
             scrollable: ['']
         },
         magic: {
-            template: 'systems/TheWitcherTRPG/templates/partials/character/tab-magic.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/partials/character/tab-magic.hbs',
             scrollable: ['']
         },
         effects: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/actor/partials/character/tab-effects.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/character/tab-effects.hbs',
             scrollable: ['']
         }
     }

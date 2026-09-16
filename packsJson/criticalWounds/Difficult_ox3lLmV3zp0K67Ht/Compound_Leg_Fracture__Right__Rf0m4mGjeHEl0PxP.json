@@ -15,7 +15,7 @@
     "daysHealed": 0,
     "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG.criticalWounds.Item.QCugb1JqpiFyBEN4"
+    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.QCugb1JqpiFyBEN4"
   },
   "effects": [
     {
@@ -77,7 +77,7 @@
     {
       "type": "base",
       "name": "Compound Leg Fracture (Right)",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.Rf0m4mGjeHEl0PxP",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Rf0m4mGjeHEl0PxP",
       "duration": {
         "startTime": null,
         "combat": null,

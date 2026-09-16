@@ -5,11 +5,13 @@
 | Исходный файл | [module/actor/mixins/professionMixin.js](../../../../../../../module/actor/mixins/professionMixin.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `b47ba02cdaebc6a66ad14a5638213b6eb24460b4` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.038](../../../../../../tasks/task-0003.038.md), 4 файла, 965 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.038](../../../../review-log.md#task-0003038) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -62,7 +64,7 @@
 | CONFIG.WITCHER | [module/setup/config.js](../../../../../../../module/setup/config.js) | Глобальная конфигурация | statMap/damageTypes и подписи | stat/skill maps и locale labels; неизвестный stat не защищён |
 | displayRollsDetails | [module/setup/settings.js](../../../../../../../module/setup/settings.js) | Setting | Вид подписей формул | Меняет аннотации, не ожидаемые суммы |
 | profession-attack.hbs | [templates/dialog/combat/profession-attack.hbs](../../../../../../../templates/dialog/combat/profession-attack.hbs) | renderTemplate | Прямой путь 87–90 | attackSkill/displayDmgFormula/meleeBonus/config |
-| registerQueries/applyActiveEffectToActor | [module/setup/queries.js](../../../../../../../module/setup/queries.js); [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) | query/API | TheWitcherTRPG.query function applyActiveEffectToActor | data:[target.uuid,[newEffect]]; clone у получателя, затем createEmbeddedDocuments |
+| registerQueries/applyActiveEffectToActor | [module/setup/queries.js](../../../../../../../module/setup/queries.js); [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) | query/API | TheWitcherTRPG-RB-Version.query function applyActiveEffectToActor | data:[target.uuid,[newEffect]]; clone у получателя, затем createEmbeddedDocuments |
 | TemporaryEffects | [module/data/actor/templates/common/temporaryEffectsData.js](../../../../../../../module/data/actor/templates/common/temporaryEffectsData.js) | Путь назначения effect | temporaryHp.<skillName> → name/value | Схема ожидает числовой value; не прямой прирост derivedStats.hp |
 | AttackMessageData/damageData/attackData | [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js); [module/data/chatMessage/templates/damageData.js](../../../../../../../module/data/chatMessage/templates/damageData.js); [module/data/chatMessage/templates/attackData.js](../../../../../../../module/data/chatMessage/templates/attackData.js) | Тип сообщения | attack, damage, defenseOptions, rollTotal | attack.itemUuid/damage.itemUuid отсутствуют в producer; лишнее damage.item не входит в schema |
 | attackChatMessageListeners/onDamage/executeDefense | [module/scripts/combat/combat.js](../../../../../../../module/scripts/combat/combat.js) | Потребитель сообщения | Кнопка damage/контекст защиты | onDamage требует attack.itemUuid; defense читает attackRoll/options/damage/attacker |

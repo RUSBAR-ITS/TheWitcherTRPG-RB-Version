@@ -14,13 +14,13 @@
     "daysHealed": 0,
     "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG.criticalWounds.Item.AODuTRNu2RtJJhLD"
+    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AODuTRNu2RtJJhLD"
   },
   "effects": [
     {
       "type": "base",
       "name": "Cracked Jaw (Stabilized)",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.h15wRehQQoIkxcf0",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.h15wRehQQoIkxcf0",
       "duration": {
         "startTime": null,
         "combat": null,

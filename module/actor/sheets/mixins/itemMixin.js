@@ -301,7 +301,7 @@ export let itemMixin = {
 
         ChatMessage.create({
             content: await foundry.applications.handlebars.renderTemplate(
-                'systems/TheWitcherTRPG/templates/chat/item/item-description.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/chat/item/item-description.hbs',
                 dialogData
             ),
             speaker: ChatMessage.getSpeaker({ actor: this.actor.name }),

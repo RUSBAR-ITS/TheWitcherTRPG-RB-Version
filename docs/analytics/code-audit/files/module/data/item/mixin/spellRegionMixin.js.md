@@ -5,11 +5,13 @@
 | Исходный файл | [module/data/item/mixin/spellRegionMixin.js](../../../../../../../../module/data/item/mixin/spellRegionMixin.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `ef8117ba6e5a184989e65761d47a068381056e4a` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.022](../../../../../../../tasks/task-0003.022.md), 5 файлов, 289 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.022](../../../../../review-log.md#task-0003022) |
+
+Актуализация [issue-00001](../../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@ SpellData и RitualData присоединяют экспорт spellRegionMixin
 | --- | --- | --- | --- | --- |
 | spellRegionMixin | export let object; 1–176 | Четыре метода модели Item | Прототипы SpellData/RitualData | Динамический this — system-модель |
 | regionData | Объект 29–52 | Данные для placeRegion/createTokenEmanation | Локальный payload | name, uuid, user, color, shapes, elevation, restriction, behaviors, visibility, displayMeasurements, locked, ownership, flags |
-| flags.TheWitcherTRPG | 43–50 | Связь области с применением магии | roll, item, itemUuid, duration, actorUuid, options | Вход содержит сами roll/Item-объекты и UUID; факт сериализации БД не проверен |
+| flags.TheWitcherTRPG-RB-Version | 43–50 | Связь области с применением магии | roll, item, itemUuid, duration, actorUuid, options | Вход содержит сами roll/Item-объекты и UUID; факт сериализации БД не проверен |
 | templateSize, gridBased, x, y, direction, shape | 54–60 | Геометрия в пикселях | Локальные значения | size × grid.size/grid.distance; gridBased=!isGridless; начальные x/y/direction=0 |
 | circle / cone / rect / ray / emanation | switch61–113 | Пять поддерживаемых типов | circle, cone, rectangle, line; emanation отдельным API | Пустой/неизвестный тип возвращает null |
 | regions; region.item/actorSheet | 117–139 | Результаты создания и дополнительные ссылки | Возвращаемый массив | Добавляются в память после создания; отсутствующий документ не отфильтрован |

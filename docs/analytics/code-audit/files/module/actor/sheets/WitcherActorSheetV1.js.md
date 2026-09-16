@@ -5,11 +5,13 @@
 | Исходный файл | [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `a2670a0a10c62b28d836b1a57577c4836f14cf20` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.025](../../../../../../tasks/task-0003.025.md), 2 файла, 625 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.025](../../../../review-log.md#task-0003025) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -65,7 +67,7 @@
 | noteMixin | [module/actor/sheets/mixins/noteMixin.js](../../../../../../../module/actor/sheets/mixins/noteMixin.js) | Именованный import; Object.assign prototype | noteListener: .add-note/delete-note | Определение export и точки listener просмотрены; тела внешних примесей не засчитываются полностью |
 | healMixin | [module/actor/sheets/mixins/healMixin.js](../../../../../../../module/actor/sheets/mixins/healMixin.js) | Именованный import; Object.assign prototype | healListeners: .heal-button, открытие отдыха; методы recoverActor и restDialogListener принадлежат примеси | Определение export и точки listener просмотрены; тела внешних примесей не засчитываются полностью |
 | itemContextMenu | [module/actor/sheets/interactions/itemContextMenu.js](../../../../../../../module/actor/sheets/interactions/itemContextMenu.js) | Именованный import; Object.assign prototype | itemContextMenu: ContextMenu на .item, шесть пунктов через собственные фабрики | Определение export и точки listener просмотрены; тела внешних примесей не засчитываются полностью |
-| ChatMessageData | [module/chatMessage/chatMessageData.js](../../../../../../../module/chatMessage/chatMessageData.js) | default import; constructor | _onCritRoll: speaker от actor, type=base, flavor undefined, пустые system и flags.TheWitcherTRPG | constructor(actor,flavor,type='base',system={},flags) |
+| ChatMessageData | [module/chatMessage/chatMessageData.js](../../../../../../../module/chatMessage/chatMessageData.js) | default import; constructor | _onCritRoll: speaker от actor, type=base, flavor undefined, пустые system и flags.TheWitcherTRPG-RB-Version | constructor(actor,flavor,type='base',system={},flags) |
 | statMap, skillMap | [module/setup/config.js](../../../../../../../module/setup/config.js) | CONFIG.WITCHER, ссылка | Поля экземпляра; customSkills группируются по name записей origin='stats' | В statMap 9 основных характеристик; derivedStats в группы не входят |
 | useOptionalAdrenaline, displayRollsDetails, useOptionalVerbalCombat, displayRep | [module/setup/settings.js](../../../../../../../module/setup/settings.js) | game.settings.get | Четыре настройки контекста; displayRollDetails изменяет глобальную формулу инициативы | Имена регистрации сопоставлены со строками чтения |
 | getList, getTotalWeight, update, verbalCombat | [module/actor/witcherActor.js](../../../../../../../module/actor/witcherActor.js); [module/actor/mixins/verbalCombatMixin.js](../../../../../../../module/actor/mixins/verbalCombatMixin.js) | Actor; метод примеси и внешний Document.update | Сортированные списки без stored, общий вес всех calcWeight и валюты; общие действия | getList/getTotalWeight исполнены; verbalCombat ожидает prompt с rejectClose=true |

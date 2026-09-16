@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4 |
-| Изменения относительно коммита | Нет; 92 строк; SHA-256 cfc5e26a4978d63063a35b56515b6458cba3bd1652cca1735de11475668c7fd4 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.058](../../../../../../tasks/task-0003.058.md) |
 | Запись перекрёстной сверки | [Протокол TASK-0003.058](../../../../review-log.md#task-0003058) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место определения | Назначение | Доступность или регистрация | Действия и жизненный цикл |
 | --- | --- | --- | --- | --- |
-| Cracked Ribs (Stabilized) | Корневой Item, name: 3, _id: 89 | Шаблон травмы | `2c4PbGjd0segbvmr`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.2c4PbGjd0segbvmr` | Загрузка, копирование к Actor, подготовка, лечение и удаление |
+| Cracked Ribs (Stabilized) | Корневой Item, name: 3, _id: 89 | Шаблон травмы | `2c4PbGjd0segbvmr`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.2c4PbGjd0segbvmr` | Загрузка, копирование к Actor, подготовка, лечение и удаление |
 | _key / folder / sort | Корневые поля | Идентификация экспортного документа и порядок | `"!items!2c4PbGjd0segbvmr"` / `"kHSYUTn6UUJsIu4l"` / `1200000` | Потребление ядром и инструментами экспорта; sort не задаёт приоритет изменений |
 | img / flags / ownership / _stats | Корневые поля | Значок, права и история экспорта | `"icons/svg/item-bag.svg"`; flags=`{}`; ownership=`{"default":0,"ugXtPMJIktbl63QV":3}` | Иконка — ресурс ядра вне пофайлового анализа; ID владельца не доказывает существование такого пользователя в текущем мире |
 | system | Объект, строка 6 | Модель травмы | criticalWound | Поля состояния перечислены ниже |
@@ -42,13 +44,13 @@
 | daysHealed | `0` | NumberField; счётчик в heal; записывается через update либо удаляется Item. |
 | healingTime | `0` | NumberField; у Item с Actor вычисляется Math.max(8 - BODY.max, 1). |
 | sterilized | `false` | BooleanField; при heal с новой стерилизацией дополнительно +2 дня. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.oe4y6zxH2WUR9gSj"` | DocumentUUIDField типа Item; treat загружает адресата и инициирует замену. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.oe4y6zxH2WUR9gSj"` | DocumentUUIDField типа Item; treat загружает адресата и инициирует замену. |
 
 _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`. Метки версии — история экспорта, не результат текущей миграции. Поле system.description пустое.
 
 ### ActiveEffect 1: Cracked Ribs
 
-_ID `JbjBQiCjrW9VmENf`; origin=`"Compendium.TheWitcherTRPG.criticalWounds.Item.7TzGQ2y4yZnG01im"`. Тип `base`, disabled=false, transfer=true; img=`"icons/svg/item-bag.svg"`, tint=`"#ffffff"`, sort=0, statuses=`[]`, description=`""`. Флаги: `{"statuscounter":{"value":1,"config":{"type":"default"},"visible":false}}`. _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`.
+_ID `JbjBQiCjrW9VmENf`; origin=`"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.7TzGQ2y4yZnG01im"`. Тип `base`, disabled=false, transfer=true; img=`"icons/svg/item-bag.svg"`, tint=`"#ffffff"`, sort=0, statuses=`[]`, description=`""`. Флаги: `{"statuscounter":{"value":1,"config":{"type":"default"},"visible":false}}`. _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`.
 
 Системные поля до миграции: `{"applySelf":false,"applyOnTarget":false,"applyOnHit":false,"applyOnDamage":false}`. applyAfterCalculations отсутствует и получает false. Все изменения после миграции находятся в system.changes, type=add, value — число, phase=initial; при prepareBaseData null-приоритет становится 20, явно заданный 0 сохраняется. Старая duration=`{"startTime":null,"combat":null,"seconds":null,"rounds":null,"turns":null,"startRound":null,"startTurn":null}` преобразуется в start=null и duration={value:null, units:"seconds", expiry:null, expired:false}; после prepareBaseData value=Infinity. Истечение по таймеру не задано. Полный updateDuration/registry в сценарии не запускался.
 

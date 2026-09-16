@@ -86,9 +86,9 @@ export async function extendedRoll(rollFormula, messageData, config = new RollCo
         let message = await evaluatedRoll.toMessage(messageData);
         if (flags) {
             if (Array.isArray(flags)) {
-                flags.forEach(flag => message.setFlag('TheWitcherTRPG', flag.key, flag.value));
+                flags.forEach(flag => message.setFlag('TheWitcherTRPG-RB-Version', flag.key, flag.value));
             } else {
-                message.setFlag('TheWitcherTRPG', flags.key, flags.value);
+                message.setFlag('TheWitcherTRPG-RB-Version', flags.key, flags.value);
             }
         }
     } else {

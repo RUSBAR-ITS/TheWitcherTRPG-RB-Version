@@ -5,11 +5,13 @@
 | Исходный файл | [module/item/sheets/investigation/WitcherObstacleSheet.js](../../../../../../../../module/item/sheets/investigation/WitcherObstacleSheet.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `538dbac9bb9432c123fe4f3c00ab788b58517afb` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.023](../../../../../../../tasks/task-0003.023.md), 14 файлов, 449 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.023](../../../../../review-log.md#task-0003023) |
+
+Актуализация [issue-00001](../../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -33,7 +35,7 @@ registerSheets импортирует класс и регистрирует д�
 | Функция или метод | Входы и предусловия | Результат | Основные действия | Ошибки, асинхронность и изменения состояния |
 | --- | --- | --- | --- | --- |
 | static get defaultOptions() | super.defaultOptions | Слитый объект | mergeObject; tabs .sheet-tabs/.sheet-body initial description; dragSelector '.items-list .item', dropSelector null | Названных контейнеров tabs/dragDrop в текущем HBS нет |
-| get template() | Без аргументов | systems/TheWitcherTRPG/templates/sheets/investigation/obstacle-sheet.hbs | Возвращает строку | Нет записи |
+| get template() | Без аргументов | systems/TheWitcherTRPG-RB-Version/templates/sheets/investigation/obstacle-sheet.hbs | Возвращает строку | Нет записи |
 | getData() | Базовый ItemSheet V1 | Контекст с item/document и skills | Синхронный super.getData(); добавляет skills | Собственных activateListeners, update, обработчика multi-select нет |
 
 ## Используемые сущности и зависимости

@@ -16,13 +16,13 @@
     "daysHealed": 0,
     "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG.criticalWounds.Item.2c4PbGjd0segbvmr"
+    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.2c4PbGjd0segbvmr"
   },
   "effects": [
     {
       "type": "base",
       "name": "Cracked Ribs",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.7TzGQ2y4yZnG01im",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.7TzGQ2y4yZnG01im",
       "duration": {
         "startTime": null,
         "combat": null,

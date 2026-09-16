@@ -13,7 +13,7 @@ export default class WitcherConsumableConfigurationSheet extends WitcherConfigur
         ...super.PARTS,
         consumableProperties: {
             template:
-                'systems/TheWitcherTRPG/templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/tabs/consumablePropertiesConfiguration.hbs',
             scrollable: ['']
         }
     };

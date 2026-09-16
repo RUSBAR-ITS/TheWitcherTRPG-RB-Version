@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json) |
 | Тип файла | JSON: экспорт RollTable; 9 TableResult (2 text, 7 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, be1c48770219a6d2871259f12c30d93636aac646 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.056](../../../../../tasks/task-0003.056.md); 13 файлов / 2435 строк; этот файл — 247 строк |
 | Запись перекрёстной сверки | [TASK-0003.056](../../../review-log.md#task-0003056) |
 | SHA-256 файла | c560cae705be2130eb225e974df77c53df893c41633db3b573fff8b51ebd1ef2 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG.Character-gen.RollTable.g9I3DpPOi5CfOFBz`. JSON является экспортом данных, не браузерным модулем.
+[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.g9I3DpPOi5CfOFBz`. JSON является экспортом данных, не браузерным модулем.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог в compilePack с recursive:true; [utils/extract.mjs](../../../../../../utils/extract.mjs) выгружает данные обратно. [Контракт путей и CLI](../../utils/packs.mjs.md), [package.json](../../../../../../package.json):7–8. Команды не запускались, наличие экспорта не доказывает состояние живой БД.
 
@@ -100,13 +102,13 @@
 
 | ID результата / range | Полный documentUuid | Файл и карточка цели | Место обращения / проверка |
 | --- | --- | --- | --- |
-| `0dQ3NR8YsZjPzHul`; [1,1] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.u0EwVGZtkHA4Knoa` | [packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json](../../../../../../packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json); [карточка](../character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json.md) | documentUuid:56; имя/ID/тип сверены |
-| `bgm46MMbKjQdbD6L`; [1,1] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.xAVQucslVR12q2kc` | [packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json](../../../../../../packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json); [карточка](../character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json.md) | documentUuid:80; имя/ID/тип сверены |
-| `CqIZCaJZUj1KOpiU`; [1,1] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.rLxCo0JWiGvTlapE` | [packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json](../../../../../../packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json); [карточка](../character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json.md) | documentUuid:104; имя/ID/тип сверены |
-| `IaiOuyj71oLzU7JG`; [1,2] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.ZSSaEVLn53BVQ77b` | [packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json](../../../../../../packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json); [карточка](../character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json.md) | documentUuid:128; имя/ID/тип сверены |
-| `NQvQKUljwbGcZKIk`; [2,2] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.DAfZ8BGKmclyyFYc` | [packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json](../../../../../../packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json); [карточка](../character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json.md) | documentUuid:175; имя/ID/тип сверены |
-| `L1KBkf196CGL9GXv`; [2,2] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.5OcHT6WrJ8pL9cYp` | [packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json](../../../../../../packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json); [карточка](../character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json.md) | documentUuid:199; имя/ID/тип сверены |
-| `NUQQD2rE4MFniN0C`; [2,2] | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Vw40FuwmhTGp7Q4V` | [packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json](../../../../../../packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json); [карточка](../character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json.md) | documentUuid:223; имя/ID/тип сверены |
+| `0dQ3NR8YsZjPzHul`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.u0EwVGZtkHA4Knoa` | [packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json](../../../../../../packsJson/character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json); [карточка](../character-generator-sub-tables/Origin__Northern_Kingdom_u0EwVGZtkHA4Knoa.json.md) | documentUuid:56; имя/ID/тип сверены |
+| `bgm46MMbKjQdbD6L`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.xAVQucslVR12q2kc` | [packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json](../../../../../../packsJson/character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json); [карточка](../character-generator-sub-tables/Family_and_Parents__Northern_xAVQucslVR12q2kc.json.md) | documentUuid:80; имя/ID/тип сверены |
+| `CqIZCaJZUj1KOpiU`; [1,1] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.rLxCo0JWiGvTlapE` | [packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json](../../../../../../packsJson/character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json); [карточка](../character-generator-sub-tables/Siblings__Northern_rLxCo0JWiGvTlapE.json.md) | documentUuid:104; имя/ID/тип сверены |
+| `IaiOuyj71oLzU7JG`; [1,2] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.ZSSaEVLn53BVQ77b` | [packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json](../../../../../../packsJson/character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json); [карточка](../character-generator-sub-tables/Human_Profession_ZSSaEVLn53BVQ77b.json.md) | documentUuid:128; имя/ID/тип сверены |
+| `NQvQKUljwbGcZKIk`; [2,2] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.DAfZ8BGKmclyyFYc` | [packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json](../../../../../../packsJson/character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json); [карточка](../character-generator-sub-tables/Origin__Nilfgaard_DAfZ8BGKmclyyFYc.json.md) | documentUuid:175; имя/ID/тип сверены |
+| `L1KBkf196CGL9GXv`; [2,2] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.5OcHT6WrJ8pL9cYp` | [packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json](../../../../../../packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json); [карточка](../character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json.md) | documentUuid:199; имя/ID/тип сверены |
+| `NUQQD2rE4MFniN0C`; [2,2] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Vw40FuwmhTGp7Q4V` | [packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json](../../../../../../packsJson/character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json); [карточка](../character-generator-sub-tables/Siblings__Nilfgaard_Vw40FuwmhTGp7Q4V.json.md) | documentUuid:223; имя/ID/тип сверены |
 
 ## Известные потребители
 

@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](../../../../../../packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json) |
 | Тип файла | JSON: экспорт RollTable; 9 TableResult (3 text, 6 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, be1c48770219a6d2871259f12c30d93636aac646 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.056](../../../../../tasks/task-0003.056.md); 13 файлов / 2435 строк; этот файл — 243 строк |
 | Запись перекрёстной сверки | [TASK-0003.056](../../../review-log.md#task-0003056) |
 | SHA-256 файла | 73830c25617963955b7d417bfd072883fcda1811ee067d3cfe7f962063f85b0e |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG.Character-gen.RollTable.C5d6zkIMvS9gDWEN`. JSON является экспортом данных, не браузерным модулем.
+[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.C5d6zkIMvS9gDWEN`. JSON является экспортом данных, не браузерным модулем.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог в compilePack с recursive:true; [utils/extract.mjs](../../../../../../utils/extract.mjs) выгружает данные обратно. [Контракт путей и CLI](../../utils/packs.mjs.md), [package.json](../../../../../../package.json):7–8. Команды не запускались, наличие экспорта не доказывает состояние живой БД.
 
@@ -101,12 +103,12 @@
 
 | ID результата / range | Полный documentUuid | Файл и карточка цели | Место обращения / проверка |
 | --- | --- | --- | --- |
-| `qajkRaccfhCw3FmJ`; [1,2] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.kEqyptPU1X7TvKc1` | [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json); [карточка](../witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | documentUuid:53; имя/ID/тип сверены |
-| `nZaULCfUDcjTijGv`; [1,2] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.G9iWzbiGQloX7sls` | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json); [карточка](../witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json.md) | documentUuid:77; имя/ID/тип сверены |
-| `I2WgdMaqvCOO86Cd`; [3,8] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.kEqyptPU1X7TvKc1` | [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json); [карточка](../witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | documentUuid:124; имя/ID/тип сверены |
-| `d9NGvIh79ha1B9mq`; [3,8] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.u2n9HR4RhSt1QV3l` | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json); [карточка](../witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json.md) | documentUuid:148; имя/ID/тип сверены |
-| `q8LCtgshNjOjac5P`; [9,10] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.kEqyptPU1X7TvKc1` | [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json); [карточка](../witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | documentUuid:195; имя/ID/тип сверены |
-| `VaBMiBo9HQjCGHT1`; [9,10] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.A7jt3mfuFTEQiXRv` | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json); [карточка](../witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json.md) | documentUuid:219; имя/ID/тип сверены |
+| `qajkRaccfhCw3FmJ`; [1,2] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.kEqyptPU1X7TvKc1` | [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json); [карточка](../witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | documentUuid:53; имя/ID/тип сверены |
+| `nZaULCfUDcjTijGv`; [1,2] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.G9iWzbiGQloX7sls` | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json); [карточка](../witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_G9iWzbiGQloX7sls.json.md) | documentUuid:77; имя/ID/тип сверены |
+| `I2WgdMaqvCOO86Cd`; [3,8] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.kEqyptPU1X7TvKc1` | [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json); [карточка](../witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | documentUuid:124; имя/ID/тип сверены |
+| `d9NGvIh79ha1B9mq`; [3,8] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.u2n9HR4RhSt1QV3l` | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json); [карточка](../witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go__u2n9HR4RhSt1QV3l.json.md) | documentUuid:148; имя/ID/тип сверены |
+| `q8LCtgshNjOjac5P`; [9,10] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.kEqyptPU1X7TvKc1` | [packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json); [карточка](../witcher-lifepath/Witcher_Background__What_School_Did_You_Train_In__kEqyptPU1X7TvKc1.json.md) | documentUuid:195; имя/ID/тип сверены |
+| `VaBMiBo9HQjCGHT1`; [9,10] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.A7jt3mfuFTEQiXRv` | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json); [карточка](../witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json.md) | documentUuid:219; имя/ID/тип сверены |
 
 ## Известные потребители
 

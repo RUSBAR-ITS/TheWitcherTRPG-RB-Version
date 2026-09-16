@@ -2298,7 +2298,7 @@ WITCHER.statusEffects = [
     {
         id: 'hallucination',
         name: 'WITCHER.statusEffects.hallucination',
-        img: 'systems/TheWitcherTRPG/assets/images/statusEffects/spectre.svg'
+        img: 'systems/TheWitcherTRPG-RB-Version/assets/images/statusEffects/spectre.svg'
     },
     {
         id: 'nausea',
@@ -2390,12 +2390,12 @@ WITCHER.statusEffects = [
     {
         id: 'reducedVision',
         name: 'WITCHER.statusEffects.reducedVision',
-        img: 'systems/TheWitcherTRPG/assets/images/statusEffects/visored-helm.svg'
+        img: 'systems/TheWitcherTRPG-RB-Version/assets/images/statusEffects/visored-helm.svg'
     },
     {
         id: 'holdAction',
         name: 'WITCHER.statusEffects.holdAction',
-        img: 'systems/TheWitcherTRPG/assets/images/statusEffects/uncertainty.svg'
+        img: 'systems/TheWitcherTRPG-RB-Version/assets/images/statusEffects/uncertainty.svg'
     },
     {
         id: 'dead',

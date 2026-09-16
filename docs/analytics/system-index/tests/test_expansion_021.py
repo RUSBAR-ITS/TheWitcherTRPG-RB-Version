@@ -55,7 +55,7 @@ class CriticalWoundExpansion(unittest.TestCase):
 
     def test_pick_and_repeat_keep_real_failure_boundaries(self):
         s=self.source(14);a=self.source(47);schema=self.source(97)
-        for at,t in [(316,"game.settings.get('TheWitcherTRPG', 'criticalWoundsPack')"),(317,"criticalWound.system.treatment == 'none'"),(318,'location.name'),(319,'crit.criticalLevel'),(323,'possibleWounds.length == 1'),(326,'crit.location.critEffect ?? getRandomInt(6) + crit.critEffectModifier'),(328,'criticalWound.system.lesserEffect === false'),(330,'criticalWound.system.lesserEffect === true'),(335,'await fromUuid(wound.uuid)'),(336,'this.addItem(wound)'),(343,'ChatMessage.create(chatData)')]:self.assertIn(t,s[at-1])
+        for at,t in [(316,"game.settings.get('TheWitcherTRPG-RB-Version', 'criticalWoundsPack')"),(317,"criticalWound.system.treatment == 'none'"),(318,'location.name'),(319,'crit.criticalLevel'),(323,'possibleWounds.length == 1'),(326,'crit.location.critEffect ?? getRandomInt(6) + crit.critEffectModifier'),(328,'criticalWound.system.lesserEffect === false'),(330,'criticalWound.system.lesserEffect === true'),(335,'await fromUuid(wound.uuid)'),(336,'this.addItem(wound)'),(343,'ChatMessage.create(chatData)')]:self.assertIn(t,s[at-1])
         self.assertNotIn('await',s[335]);self.assertNotIn('critEffectModifier','\n'.join(schema))
         self.assertIn('foundItem', '\n'.join(a[259:273]));self.assertIn('Number',a[261]);self.assertNotIn('treatment','\n'.join(a[258:273]))
         count=self.steps(316)['count'];self.assertEqual([e['step']for e in count['next']if'step'in e],['resolve','roll'])
@@ -98,7 +98,7 @@ class CriticalWoundExpansion(unittest.TestCase):
         self.assertEqual([d['system']['location']for d in docs],['leftLeg','leftLeg','leftArm'])
         for i,d in enumerate(docs):
             self.assertEqual(d['type'],'criticalWound');self.assertEqual(len(d['effects']),1);self.assertTrue(d['effects'][0]['transfer']);self.assertFalse(d['effects'][0]['disabled'])
-            self.assertEqual(d['system']['followUp'],f"Compendium.TheWitcherTRPG.criticalWounds.Item.{docs[i+1]['_id']}"if i<2 else None)
+            self.assertEqual(d['system']['followUp'],f"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.{docs[i+1]['_id']}"if i<2 else None)
         refs=[r['to']for r in self.edges('criticalWound/export-not-pack','refers')if r['to'].startswith('src-')];self.assertEqual(len(refs),3)
         for sid in refs:self.assertFalse(self.data.sources[sid]['coverage']['definitions']['included'])
 

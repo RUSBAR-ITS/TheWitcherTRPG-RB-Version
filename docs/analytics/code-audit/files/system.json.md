@@ -5,11 +5,13 @@
 | Исходный файл | [system.json](../../../../system.json) |
 | Тип файла | JSON |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `3252300787c348e11f95098c345a6af7704b690c`; исходник совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f` |
-| Изменения относительно коммита | Нет |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0002](../../../tasks/task-0002-system-initialization.md); порция 1 |
 | Запись перекрёстной сверки | [Журнал сверок](../review-log.md) — TASK-0002, порция 1 |
+
+Актуализация [issue-00001](../../../issues/open/issue-00001.md), 2026-09-16: ID пакета теперь совпадает с каталогом: TheWitcherTRPG-RB-Version. Относительный entry module/TheWitcherTRPG.js и остальные объявления сохранены. Исторический отказ ID/каталога ниже относится к прежнему срезу; результаты текущих проверок приведены в issue.
 
 ## Назначение файла
 
@@ -23,7 +25,7 @@
 
 | Поля и строки | Содержание и действие |
 | --- | --- |
-| `id`, `title`, `description`, `authors` — 2–19 | Идентификатор `TheWitcherTRPG`, название, описание и два автора. ID используется также строками пространства имён в коде. |
+| `id`, `title`, `description`, `authors` — 2–19 | Идентификатор `TheWitcherTRPG-RB-Version`, название, описание и два автора. ID используется также строками пространства имён в коде. |
 | `compatibility`, `version` — 5–10 | Минимум, проверенное и максимальное поколение — 14; версия содержит заготовку выпуска. Это декларация совместимости, а не результат проверки. |
 | `scripts`, `esmodules`, `styles` — 21–23 | Нет обычных scripts; один ES-модуль и один главный CSS. |
 | `packFolders`, `packs` — 24–88 | Иерархия папок и семь объявлений: Combat, criticalWounds, Character-gen, Character-gen_Sub-tables, Witcher_Lifepath_and_BG_Sub-tables, Life_Event_Sub-tables, Style_and_Values_Sub-tables. Типы — RollTable, кроме criticalWounds (Item). Папка связывает packs по их `name`, а не по имени каталога. |
@@ -69,7 +71,7 @@
 | [module/setup/registerDataModels.js](../../../../module/setup/registerDataModels.js) | Типы документов | Регистрирует классы по ключам подтипов | Сопоставлены ключи с documentTypes; есть дополнительные mystery/clue/obstacle/skill; сверка завершена в порции 3 (issue-00005) |
 | [module/setup/registerSheets.js](../../../../module/setup/registerSheets.js) | Подтипы | Регистрирует листы для подтипов | Встречаются те же дополнительные пользовательские типы |
 | [build.json](../../../../build.json) | Путь system.json | Включает манифест в сборку | Поле includes; сборка не запускалась |
-| [module/setup/settings.js](../../../../module/setup/settings.js) | TheWitcherTRPG.criticalWounds | Значение настройки по умолчанию образовано из ID и имени pack | Строки 2–14 |
+| [module/setup/settings.js](../../../../module/setup/settings.js) | TheWitcherTRPG-RB-Version.criticalWounds | Значение настройки по умолчанию образовано из ID и имени pack | Строки 2–14 |
 | Foundry | Объявления пакета | Читает манифест | Внешний потребитель; не файл системы |
 
 ## Данные и изменения состояния

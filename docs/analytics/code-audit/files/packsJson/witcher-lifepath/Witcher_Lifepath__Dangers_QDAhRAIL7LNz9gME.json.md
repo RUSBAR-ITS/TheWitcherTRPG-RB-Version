@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json) |
 | Тип файла | JSON: экспорт RollTable, 4 TableResult (1 text, 3 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, cd2743d0548d5c129065c970d4aa5c43cc9632e2 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.055](../../../../../tasks/task-0003.055.md); 41 файл / 8708 строк; этот файл — 125 строк |
 | Запись перекрёстной сверки | [TASK-0003.055](../../../review-log.md#task-0003055) |
 | SHA-256 файла | 7fd0835f37abbc2395aff0e12b227e238249317398001012d45a64ceac70e682 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):36,71–76 регистрирует RollTable-пакет Witcher_Lifepath_and_BG_Sub-tables в папке Character Generation с путём packs/witcher-lifepath.db. Адрес документа — `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.QDAhRAIL7LNz9gME`.
+[system.json](../../../../../../system.json):36,71–76 регистрирует RollTable-пакет Witcher_Lifepath_and_BG_Sub-tables в папке Character Generation с путём packs/witcher-lifepath.db. Адрес документа — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.QDAhRAIL7LNz9gME`.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог compilePack с recursive:true; путь и контракт CLI описаны в [карточке утилиты](../../utils/packs.mjs.md). [utils/extract.mjs](../../../../../../utils/extract.mjs) выполняет обратную выгрузку. Эти команды не запускались. Экспорт не является подключаемым ES-модулем и не доказывает содержимое установленной БД.
 
@@ -96,9 +98,9 @@ Root description: Пустая строка.
 
 | ID результата / range | Полный documentUuid | Файл цели | Обращение и проверка |
 | --- | --- | --- | --- |
-| `36ROPw9QWjYWmpBV`; [1,3] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zVS3tsoiyTdjwU7i` | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json.md) | documentUuid:30; имя совпало с целью; recursive:true → innerTable.roll |
-| `9kVdEtFeX4a3nAoe`; [4,6] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.q2Cdg3rDUsu3xYLd` | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json.md) | documentUuid:54; имя совпало с целью; recursive:true → innerTable.roll |
-| `cQfRuoxqB1FI58LA`; [7,10] | `Compendium.TheWitcherTRPG.Witcher_Lifepath_and_BG_Sub-tables.RollTable.iwGZ1Sj0v9iBqvSk` | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json.md) | documentUuid:101; имя совпало с целью; recursive:true → innerTable.roll |
+| `36ROPw9QWjYWmpBV`; [1,3] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zVS3tsoiyTdjwU7i` | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json.md) | documentUuid:30; имя совпало с целью; recursive:true → innerTable.roll |
+| `9kVdEtFeX4a3nAoe`; [4,6] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.q2Cdg3rDUsu3xYLd` | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Danger___Wounds_q2Cdg3rDUsu3xYLd.json.md) | documentUuid:54; имя совпало с целью; recursive:true → innerTable.roll |
+| `cQfRuoxqB1FI58LA`; [7,10] | `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.iwGZ1Sj0v9iBqvSk` | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json); [карточка](../witcher-lifepath/Witcher_Lifepath__Danger___Enemies_Generator_iwGZ1Sj0v9iBqvSk.json.md) | documentUuid:101; имя совпало с целью; recursive:true → innerTable.roll |
 
 Inline-вставок [[…]] нет. Текстовые @UUID/@Compendium, внешние URL и исполняемые макросы в этом файле не найдены. Упоминания людей, предметов, монстров, правил и страниц сами по себе не являются зависимостями на документы.
 

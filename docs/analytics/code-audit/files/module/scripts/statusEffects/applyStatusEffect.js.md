@@ -5,11 +5,13 @@
 | Исходный файл | [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../../module/scripts/statusEffects/applyStatusEffect.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `a33bf33add228ae93f96a52046c8feb4ee992921` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.009](../../../../../../tasks/task-0003.009.md), одна порция из восьми файлов |
 | Запись перекрёстной сверки | [TASK-0003.009](../../../../review-log.md#task-0003009) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -43,7 +45,7 @@
 | --- | --- | --- | --- | --- |
 | getActorOwner, getCurrentCharacter | [module/scripts/helper.js](../../../../../../../module/scripts/helper.js) | Два ES-import | Владелец для query; текущий персонаж для клика | getCurrentCharacter: первый controlled token.actor либо game.user.character; не набор targets и не диалог |
 | Статусы системы и регистрация | [module/setup/config.js](../../../../../../../module/setup/config.js); [module/TheWitcherTRPG.js](../../../../../../../module/TheWitcherTRPG.js) | CONFIG.WITCHER.statusEffects / CONFIG.statusEffects | ID и определения для toggle, img для счётчика | Первый контейнер — массив; активное ядро использует зарегистрированные определения |
-| Queries | [module/setup/queries.js](../../../../../../../module/setup/queries.js) | Динамический вызов по function | TheWitcherTRPG.query, data=[actorUuid,statusEffectId,duration] | Принимающий маршрут импортирует applyStatusEffectToActor |
+| Queries | [module/setup/queries.js](../../../../../../../module/setup/queries.js) | Динамический вызов по function | TheWitcherTRPG-RB-Version.query, data=[actorUuid,statusEffectId,duration] | Принимающий маршрут импортирует applyStatusEffectToActor |
 | Actor.appliedEffects, toggleStatusEffect | Внешний /opt/foundryvtt/client/documents/actor.mjs | Чтение применимых эффектов и изменение embedded-документов | Проверка существования и переключение | toggle ищет существующий статус в this.effects, в том числе disabled; без active=true удаляет найденный |
 | statusEffectImmunities | [module/data/actor/monsterData.js](../../../../../../../module/data/actor/monsterData.js) | Системное поле Actor | Если ID найден, планируется повторный toggle через 1000 ms | Поле объявлено у MonsterData; на остальных Actor код использует optional chaining |
 | game.messages, DOM API, $, setTimeout | Внешние Foundry, браузер и jQuery | Слушатели, поиск сообщения, таймер | Пакетный export смешивает DOM/jQuery; актуальный hook передаёт DOM отдельного сообщения | Минимальные DOM/таймер doubles в проверке |

@@ -1,5 +1,5 @@
 export const registerSocketListeners = function () {
-    let SYSTEM_SOCKET = 'system.TheWitcherTRPG';
+    let SYSTEM_SOCKET = 'system.TheWitcherTRPG-RB-Version';
 
     let callableFunctions = {
         'restoreReliability': 'uuid',

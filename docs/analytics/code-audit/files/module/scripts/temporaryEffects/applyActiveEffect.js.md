@@ -5,11 +5,13 @@
 | Исходный файл | [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `a33bf33add228ae93f96a52046c8feb4ee992921` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.009](../../../../../../tasks/task-0003.009.md), одна порция из восьми файлов |
 | Запись перекрёстной сверки | [TASK-0003.009](../../../../review-log.md#task-0003009) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -33,7 +35,7 @@
 | applyActiveEffectToTargets; 3–12 | activeEffects, duration; game.user.targets | Promise<undefined> | При пустом наборе выходит, иначе для каждого target.actor.uuid вызывает основной маршрут | forEach без await; отсутствие actor у Token не проверяется; завершение не означает записи |
 | applyActiveEffectToActorViaId; 14–30 | actorUuid, itemUuid, имя флага applyWhen, duration | Promise<undefined> | fromUuidSync Item; при наличии фильтрует effect.system[applyWhen]; при отсутствии отправляет тот же вызов activeGM | Не await вызов/query; нет условия прекращения повторной пересылки и проверки activeGM |
 | applyActiveEffectToActor; 32–68 | actorUuid, activeEffects, duration; существующий Actor | Promise<undefined> | Пишет duration.rounds во входные эффекты, отдельно запускает улучшения; у владельца клонирует обычные эффекты в Actor | await только actor.createEmbeddedDocuments; временная ветка и remote query не ожидаются; catch нет |
-| applyTemporaryItemImprovements; 70–80 | actor, все activeEffects | Promise<undefined> | У владельца actor.applyTemporaryItemImprovements; иначе отдельный query TheWitcherTRPG.applyTemporaryItemImprovements | Не фильтрует список и не ожидает конечное действие; фильтрация выполняется методом Actor |
+| applyTemporaryItemImprovements; 70–80 | actor, все activeEffects | Promise<undefined> | У владельца actor.applyTemporaryItemImprovements; иначе отдельный query TheWitcherTRPG-RB-Version.applyTemporaryItemImprovements | Не фильтрует список и не ожидает конечное действие; фильтрация выполняется методом Actor |
 
 ## Используемые сущности и зависимости
 
@@ -42,7 +44,7 @@
 | getActorOwner | [module/scripts/helper.js](../../../../../../../module/scripts/helper.js) | Прямой ES-import | Выбор получателя Queries при !actor.isOwner | 61–71: первый активный не-GM с OWNER при hasPlayerOwner, иначе activeGM; отсутствие получателя отдельно не обработано |
 | fromUuidSync, ActiveEffect, clone, createEmbeddedDocuments | Внешнее ядро Foundry; /opt/foundryvtt/common/abstract/document.mjs и common/documents/active-effect.mjs | Разрешение UUID, создание и копирование | Сохранение обычных эффектов под Actor | clone читает toObject источника; фактические тела проверены |
 | applyTemporaryItemImprovements | [module/actor/mixins/temporaryEffectMixin.js](../../../../../../../module/actor/mixins/temporaryEffectMixin.js); регистрация [module/actor/witcherActor.js](../../../../../../../module/actor/witcherActor.js) | Динамический метод Actor | Выбор оружия и создание его эффектов | Object.assign прототипа Actor |
-| Маршруты query | [module/setup/queries.js](../../../../../../../module/setup/queries.js) | Строковое имя и payload | TheWitcherTRPG.query с function/data; отдельный TheWitcherTRPG.applyTemporaryItemImprovements | Обе принимающие ветви прочитаны; promise операции не возвращают |
+| Маршруты query | [module/setup/queries.js](../../../../../../../module/setup/queries.js) | Строковое имя и payload | TheWitcherTRPG-RB-Version.query с function/data; отдельный TheWitcherTRPG-RB-Version.applyTemporaryItemImprovements | Обе принимающие ветви прочитаны; promise операции не возвращают |
 | WitcherActiveEffect, две модели system | [module/activeEffect/witcherActiveEffect.js](../../../../../../../module/activeEffect/witcherActiveEffect.js); [module/data/activeEffects/witcherActiveEffectData.js](../../../../../../../module/data/activeEffects/witcherActiveEffectData.js); [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) | Через регистрацию ядра | Флаги применения, выбор типа, hooks копии | Обычный эффект сохраняет changes; временные улучшения идут отдельным путём |
 | game.user.targets, game.users.activeGM, ui.combat.combats | Внешние коллекции Foundry | Глобальные обращения | Цели, GM и первый isActive Combat | UI/сеть заменены наблюдаемыми объектами в проверке |
 

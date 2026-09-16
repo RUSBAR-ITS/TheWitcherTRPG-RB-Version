@@ -5,11 +5,13 @@
 | Исходный файл | [module/setup/handlebars.js](../../../../../../module/setup/handlebars.js) |
 | Тип файла | JavaScript — шаблоны и helpers |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `3252300787c348e11f95098c345a6af7704b690c`; исходник совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f` |
-| Изменения относительно коммита | Нет |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0002](../../../../../tasks/task-0002-system-initialization.md); порция 4 |
 | Запись перекрёстной сверки | [Журнал сверок](../../../review-log.md) — TASK-0002, порция 4 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -26,7 +28,7 @@
 | Helper / аргументы | Результат | Действия и предусловия |
 | --- | --- | --- |
 | getOwnedComponentCount(actor, componentName) | Количество компонентов | Без actor: warn и 0. Иначе actor.findNeededComponent(name).sum('quantity'); зависит от примеси Actor и расширения Array.prototype. |
-| getSetting(setting) | Значение настройки | game.settings.get('TheWitcherTRPG', setting), динамическое имя. |
+| getSetting(setting) | Значение настройки | game.settings.get('TheWitcherTRPG-RB-Version', setting), динамическое имя. |
 | window(...props) | Значение по цепочке свойств window | Удаляет последний аргумент options; reduce идёт по свойствам. Промежуточные undefined не проверяются. |
 | includes(csv, substr) | Boolean | split(',') → trim каждого элемента → точное includes(substr); csv должен быть строкой. |
 | formatModLabel(statCurrent, statMax) | Число | Возвращает current − max; форматирования знака или ограничения диапазона нет. |
@@ -53,14 +55,14 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 | --- | --- | --- | --- |
 | findNeededComponent | [module/actor/mixins/craftingMixin.js](../../../../../../module/actor/mixins/craftingMixin.js) | Динамический метод Actor | Определение стр. 15; helper getOwnedComponentCount, строка 90; подключён к WitcherActor.prototype в [module/actor/witcherActor.js](../../../../../../module/actor/witcherActor.js) (451) |
 | Array.prototype.sum | [module/actor/sheets/WitcherActorSheet.js](../../../../../../module/actor/sheets/WitcherActorSheet.js) | Неявная зависимость от изменения прототипа | Стр. 18–24: сумма Number(item.system[prop] ?? 0); helper вызывает sum('quantity'). Этот файл напрямую не импортируется здесь |
-| Настройки TheWitcherTRPG | [module/setup/settings.js](../../../../../../module/setup/settings.js) | Чтение через game.settings | Helper getSetting, строка 94; конкретный ключ передаёт шаблон |
+| Настройки TheWitcherTRPG-RB-Version | [module/setup/settings.js](../../../../../../module/setup/settings.js) | Чтение через game.settings | Helper getSetting, строка 94; конкретный ключ передаёт шаблон |
 | WITCHER.Location.*; WITCHER.Actor.Shield | [lang/ru.json](../../../../../../lang/ru.json); [lang/en.json](../../../../../../lang/en.json) | Локализация | armorPartsInfo; значения leftLeg/rightLeg проверены в JSON, остальные восемь языков целиком не проверялись |
 | Handlebars.registerHelper/createFrame | Handlebars среды Foundry | Внешний API | Регистрация функций, контекст eachLimit |
 | foundry.applications.handlebars.loadTemplates | Foundry 14.367.0 | Внешний API | Список templatePath передаётся одной операцией |
 | window / game | Среда браузера и Foundry | Глобальный доступ | helper window может прочитать произвольную цепочку, getSetting и armorPartsInfo используют game |
 | fa-* классы иконок | Font Awesome среды Foundry | Ресурс интерфейса | Строки icon в parts; наличие конкретного глифа в браузере не проверялось |
 
-Список templatePath — 59 файлов, все существуют при сопоставлении URL-префикса systems/TheWitcherTRPG/ с корнем checkout. Это зависимости загрузки, не доказательство отображения каждого шаблона:
+Список templatePath — 59 файлов, все существуют при сопоставлении URL-префикса systems/TheWitcherTRPG-RB-Version/ с корнем checkout. Это зависимости загрузки, не доказательство отображения каждого шаблона:
 
 | Файл шаблона | Проверка |
 | --- | --- |

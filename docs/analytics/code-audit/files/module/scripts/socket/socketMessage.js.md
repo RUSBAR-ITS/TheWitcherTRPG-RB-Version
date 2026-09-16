@@ -5,11 +5,13 @@
 | Исходный файл | [module/scripts/socket/socketMessage.js](../../../../../../../module/scripts/socket/socketMessage.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 20ce99a1218a82bf46c84570e55587253d0cfbc3 |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.045](../../../../../../tasks/task-0003.045.md), 5 файлов / 336 логических строк; данный файл — 21 |
 | Запись перекрёстной сверки | [TASK-0003.045](../../../../review-log.md#task-0003045) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 | --- | --- | --- | --- |
 | _createMessage | function:9–11 | local | Создаёт {type,data}, сохраняет ссылку на data |
 | emitForGM | async function:13–21 | export | Guards, envelope и socket.emit |
-| system.TheWitcherTRPG | Строковый канал:20 | Аргумент emit | Совпадает с системным ID и receiver |
+| system.TheWitcherTRPG-RB-Version | Строковый канал:20 | Аргумент emit | Совпадает с системным ID и receiver |
 
 ## Основные функции и методы
 
@@ -47,7 +49,7 @@ Guard isGM запрещает отправку любому GM, даже неа�
 | game.socket.emit | Foundry game.socket / /opt/foundryvtt/node_modules/socket.io-client/build/esm/socket.js | Внешний API:20 | emit формирует пакет и возвращает this; проверен реальный отключённый Socket |
 | game.user.isGM / game.users.activeGM | Foundry User/Users | Guards:14–18 | Контролируемые игрок/GM/отсутствующий получатель |
 | registerSocketListeners | [module/setup/socketHook.js](../../../../../../../module/setup/socketHook.js) | Receiver того же канала | Разрешены restoreReliability/addItem, data.shift → fromUuidSync → метод документа |
-| socket:true / id | [system.json](../../../../../../../system.json) | Декларация системного канала | ID TheWitcherTRPG; sender и receiver используют буквальный префикс |
+| socket:true / id | [system.json](../../../../../../../system.json) | Декларация системного канала | ID TheWitcherTRPG-RB-Version; sender и receiver используют буквальный префикс |
 | addItem / removeItem | [module/actor/witcherActor.js](../../../../../../../module/actor/witcherActor.js) | Косвенная операция передачи | sender giftItem отдельно списывает отправителя; addItem выполняет receiver |
 | restoreReliability | [module/item/mixins/repairMixin.js](../../../../../../../module/item/mixins/repairMixin.js); [module/item/systems/repair.js](../../../../../../../module/item/systems/repair.js); [module/item/witcherItem.js](../../../../../../../module/item/witcherItem.js) | Динамический метод Item через mixin | Получатель вызывает по UUID; обновление надёжности далее в RepairSystem |
 | console.error | JavaScript host | Два guard-сообщения | Локальная диагностика, не уведомление интерфейса и не результат caller |

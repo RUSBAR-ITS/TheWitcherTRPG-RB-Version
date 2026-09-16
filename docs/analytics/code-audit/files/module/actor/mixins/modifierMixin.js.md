@@ -5,11 +5,13 @@
 | Исходный файл | [module/actor/mixins/modifierMixin.js](../../../../../../../module/actor/mixins/modifierMixin.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `b8b89a7e3392235f993c21f3c6d277a4a2e7a55f` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.007](../../../../../../tasks/task-0003.007.md), одна порция из двух файлов |
 | Запись перекрёстной сверки | [TASK-0003.007](../../../../review-log.md#task-0003007) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -60,7 +62,7 @@ L: — метка подменённой локализации в изолир�
 
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
-| game.settings.get('TheWitcherTRPG','displayRollsDetails') | [module/setup/settings.js](../../../../../../../module/setup/settings.js); [карточка](../../setup/settings.js.md) | Глобальный API настройки | addActiveEffects:3,19–21 | Настройка зарегистрирована системой; прочитанное значение влияет только на подпись модификатора конкретного навыка. |
+| game.settings.get('TheWitcherTRPG-RB-Version','displayRollsDetails') | [module/setup/settings.js](../../../../../../../module/setup/settings.js); [карточка](../../setup/settings.js.md) | Глобальный API настройки | addActiveEffects:3,19–21 | Настройка зарегистрирована системой; прочитанное значение влияет только на подпись модификатора конкретного навыка. |
 | CONFIG.WITCHER.skillMap; массивы групп | [module/setup/config.js](../../../../../../../module/setup/config.js); [карточка](../../setup/config.js.md) | Глобальная конфигурация | skillMap:4; CONFIG.WITCHER[group]:28 | Структуры skill.attribute.name/skill.name определены в config. skillGroups:265–290 перечисляет allSkills, meleeSkills, rangedSkills, magicSkills, verbalCombatSkills, empatheticVerbalCombatSkills. |
 | system.skills.*.*.activeEffectModifiers | [module/data/actor/templates/common/skills/skillData.js](../../../../../../../module/data/actor/templates/common/skills/skillData.js); [карточка](../../data/actor/templates/common/skills/skillData.js.md) | Чтение модели | 10,20–21 | NumberField=0; включение через группы/skills/CommonActorData. |
 | system.skillGroupModifiers | [module/data/actor/commonActorData.js](../../../../../../../module/data/actor/commonActorData.js); [карточка](../../data/actor/commonActorData.js.md) | Чтение словаря | 24–32 | TypedObjectField записей name/group/value:40–46; число и строки определены там. |

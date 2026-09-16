@@ -4,7 +4,7 @@ export default class WitcherArmorConfigurationSheet extends WitcherPropertiesCon
     static PARTS = {
         ...super.PARTS,
         general: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/item/configuration/tabs/armorGeneral.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/tabs/armorGeneral.hbs',
             scrollable: ['']
         }
     };

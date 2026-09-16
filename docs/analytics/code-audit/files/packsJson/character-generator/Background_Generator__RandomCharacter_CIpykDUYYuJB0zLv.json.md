@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json](../../../../../../packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json) |
 | Тип файла | JSON: экспорт RollTable; 10 TableResult (5 text, 5 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, be1c48770219a6d2871259f12c30d93636aac646 |
-| Изменения относительно коммита | Нет; исходник совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.056](../../../../../tasks/task-0003.056.md); 13 файлов / 2435 строк; этот файл — 264 строк |
 | Запись перекрёстной сверки | [TASK-0003.056](../../../review-log.md#task-0003056) |
 | SHA-256 файла | b02247ba41ece83f3f1cf6cc7005d4878453671b1984f9db4e46dc774249d4f9 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -18,7 +20,7 @@
 
 ## Условия использования
 
-[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG.Character-gen.RollTable.CIpykDUYYuJB0zLv`. JSON является экспортом данных, не браузерным модулем.
+[system.json](../../../../../../system.json):32–38,58–63 регистрирует Character-gen как RollTable в Character Generation, путь packs/character-generator.db. UUID данного документа — `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.CIpykDUYYuJB0zLv`. JSON является экспортом данных, не браузерным модулем.
 
 [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт каталог в compilePack с recursive:true; [utils/extract.mjs](../../../../../../utils/extract.mjs) выгружает данные обратно. [Контракт путей и CLI](../../utils/packs.mjs.md), [package.json](../../../../../../package.json):7–8. Команды не запускались, наличие экспорта не доказывает состояние живой БД.
 
@@ -104,11 +106,11 @@
 
 | ID результата / range | Полный documentUuid | Файл и карточка цели | Место обращения / проверка |
 | --- | --- | --- | --- |
-| `drJqdmAcZDOONAi1`; [1,5] | `Compendium.TheWitcherTRPG.Character-gen.RollTable.g9I3DpPOi5CfOFBz` | [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json); [карточка](../character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json.md) | documentUuid:52; имя/ID/тип сверены |
-| `vFOXGLdH7t8pEJ8X`; [6,7] | `Compendium.TheWitcherTRPG.Character-gen.RollTable.L8o8Rz85um05VUW4` | [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json); [карточка](../character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json.md) | documentUuid:99; имя/ID/тип сверены |
-| `sSTKZFDFEzD0qXZD`; [8,10] | `Compendium.TheWitcherTRPG.Character-gen.RollTable.PCAssN2Ms7yLzuCv` | [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json); [карточка](../character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json.md) | documentUuid:146; имя/ID/тип сверены |
-| `aLWilOjK1d94Rr0Y`; [11,11] | `Compendium.TheWitcherTRPG.Character-gen.RollTable.C5d6zkIMvS9gDWEN` | [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](../../../../../../packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json); [карточка](../character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md) | documentUuid:193; имя/ID/тип сверены |
-| `bemPGrSsRJpsnjWT`; [12,15] | `Compendium.TheWitcherTRPG.Character-gen.RollTable.ioZTpiW6W2eVwRiY` | [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json); [карточка](../character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json.md) | documentUuid:240; имя/ID/тип сверены |
+| `drJqdmAcZDOONAi1`; [1,5] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.g9I3DpPOi5CfOFBz` | [packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json](../../../../../../packsJson/character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json); [карточка](../character-generator/Background_Generator__Human_g9I3DpPOi5CfOFBz.json.md) | documentUuid:52; имя/ID/тип сверены |
+| `vFOXGLdH7t8pEJ8X`; [6,7] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.L8o8Rz85um05VUW4` | [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../../../../../../packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json); [карточка](../character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json.md) | documentUuid:99; имя/ID/тип сверены |
+| `sSTKZFDFEzD0qXZD`; [8,10] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.PCAssN2Ms7yLzuCv` | [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json); [карточка](../character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json.md) | documentUuid:146; имя/ID/тип сверены |
+| `aLWilOjK1d94Rr0Y`; [11,11] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.C5d6zkIMvS9gDWEN` | [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](../../../../../../packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json); [карточка](../character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md) | documentUuid:193; имя/ID/тип сверены |
+| `bemPGrSsRJpsnjWT`; [12,15] | `Compendium.TheWitcherTRPG-RB-Version.Character-gen.RollTable.ioZTpiW6W2eVwRiY` | [packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json](../../../../../../packsJson/character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json); [карточка](../character-generator/Background_Generator__Halfling_ioZTpiW6W2eVwRiY.json.md) | documentUuid:240; имя/ID/тип сверены |
 
 ## Известные потребители
 

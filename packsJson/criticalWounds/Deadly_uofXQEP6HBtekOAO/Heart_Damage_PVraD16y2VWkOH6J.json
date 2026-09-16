@@ -16,7 +16,7 @@
     "daysHealed": 0,
     "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG.criticalWounds.Item.O8EM4quPU4A5VOHH"
+    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.O8EM4quPU4A5VOHH"
   },
   "effects": [
     {
@@ -78,7 +78,7 @@
     {
       "type": "base",
       "name": "Heart Damage",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.PVraD16y2VWkOH6J",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.PVraD16y2VWkOH6J",
       "duration": {
         "startTime": null,
         "combat": null,

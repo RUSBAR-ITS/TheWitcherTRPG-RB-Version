@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json) |
 | Тип файла | JSON: экспорт RollTable, 20 TableResult (10 text, 10 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0 |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.054](../../../../../tasks/task-0003.054.md); 35 файлов / 8319 строк; этот файл — 500 строк |
 | Запись перекрёстной сверки | [TASK-0003.054](../../../review-log.md#task-0003054) |
 | SHA-256 файла | 32192cd7990fdca9d91f95127dc08551202723fac4b421c973d719a235f5dded |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -20,7 +22,7 @@
 
 [system.json](../../../../../../system.json):35,64–69 объявляет RollTable-пакет Character-gen_Sub-tables и packs/character-generator-sub-tables.db. [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 читает этот каталог через compilePack с recursive:true; фактическое разрешение имени пути описано в [карточке утилиты](../../utils/packs.mjs.md). JSON не подключён как браузерный ES-модуль.
 
-Адрес по манифесту и ID — `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.wFuCDleU9PzP00mf`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
+Адрес по манифесту и ID — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.wFuCDleU9PzP00mf`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
 
 ## Введённые сущности и действия с ними
 
@@ -100,16 +102,16 @@ Root description: Пустая строка.
 
 | Результат / строка documentUuid | Целевая карточка | Полный адрес |
 | --- | --- | --- |
-| `k0AliUujlhUKLN0G`, строка 53 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `uxEsX6eym5hKf3yX`, строка 77 | [Which Parent](Which_Parent_7fAXpaJLFwlWxkWX.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.7fAXpaJLFwlWxkWX` |
-| `ITgHqKEQCar6G6Et`, строка 124 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `ONmmUjbSaveNjrSy`, строка 171 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `R36SexxMtQ1y3Mct`, строка 218 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `fbee84iwrEvwp5A7`, строка 265 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `AErFz1jut68I9mna`, строка 312 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `fb47S0gLn0cLA2eD`, строка 359 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `98Ry4FUdzahLh10P`, строка 406 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
-| `P2j9J9NLbtkzp04u`, строка 453 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `k0AliUujlhUKLN0G`, строка 53 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `uxEsX6eym5hKf3yX`, строка 77 | [Which Parent](Which_Parent_7fAXpaJLFwlWxkWX.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.7fAXpaJLFwlWxkWX` |
+| `ITgHqKEQCar6G6Et`, строка 124 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `ONmmUjbSaveNjrSy`, строка 171 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `R36SexxMtQ1y3Mct`, строка 218 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `fbee84iwrEvwp5A7`, строка 265 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `AErFz1jut68I9mna`, строка 312 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `fb47S0gLn0cLA2eD`, строка 359 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `98Ry4FUdzahLh10P`, строка 406 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `P2j9J9NLbtkzp04u`, строка 453 | [Family Status: Nilfgaard](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
 
 ## Известные потребители
 

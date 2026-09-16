@@ -27,7 +27,7 @@
         "exportSource": null
       },
       "name": "Fortune",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.Z0eeWQI3R8v4YNLd",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.Z0eeWQI3R8v4YNLd",
       "description": "",
       "_key": "!tables.results!4Y8IpS3ArbbP2gGc.fEC34SOBkzdDBUtx"
     },
@@ -51,7 +51,7 @@
         "exportSource": null
       },
       "name": "Misfortune",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.JNbvihde5EGIFPdB",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.JNbvihde5EGIFPdB",
       "description": "",
       "_key": "!tables.results!4Y8IpS3ArbbP2gGc.nzF8eW0BGLhTGpdM"
     },
@@ -75,7 +75,7 @@
         "exportSource": null
       },
       "name": "Romance",
-      "documentUuid": "Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.CDgdx129wZvINn16",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.CDgdx129wZvINn16",
       "description": "",
       "_key": "!tables.results!4Y8IpS3ArbbP2gGc.fnoSJmCrZPrgneXp"
     }

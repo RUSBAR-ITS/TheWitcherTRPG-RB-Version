@@ -5,11 +5,13 @@
 | Исходный файл | [module/chatMessage/chatMessageData.js](../../../../../../module/chatMessage/chatMessageData.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.028](../../../../../tasks/task-0003.028.md), 5 файлов, 372 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.028](../../../review-log.md#task-0003028) |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -31,8 +33,8 @@ Default-export class без наследования. constructor сразу в�
 
 | Функция или метод | Входы и предусловия | Результат | Основные действия | Ошибки, асинхронность и изменения состояния |
 | --- | --- | --- | --- | --- |
-| constructor(actor,flavor,type='base',system={},flags={TheWitcherTRPG:{}}) | Actor и произвольные данные сообщения | Новый объект | getSpeaker; сохраняет system/flags по ссылке | flavor не имеет default; неизвестный actor обрабатывается fallback ядра, не верифицируется этим классом. |
-| append(messageData) | Объект с flavor/system/flags | undefined | flavor +=; system={...old,...new}; flags={...old,...new} | Объекты system/flags заменяются; вложенные данные не копируются глубоко. Новая namespace TheWitcherTRPG заменяет старую целиком, в том числе пустым объектом. speaker/type не меняются. |
+| constructor(actor,flavor,type='base',system={},flags={TheWitcherTRPG-RB-Version:{}}) | Actor и произвольные данные сообщения | Новый объект | getSpeaker; сохраняет system/flags по ссылке | flavor не имеет default; неизвестный actor обрабатывается fallback ядра, не верифицируется этим классом. |
+| append(messageData) | Объект с flavor/system/flags | undefined | flavor +=; system={...old,...new}; flags={...old,...new} | Объекты system/flags заменяются; вложенные данные не копируются глубоко. Новая namespace TheWitcherTRPG-RB-Version заменяет старую целиком, в том числе пустым объектом. speaker/type не меняются. |
 
 ## Используемые сущности и зависимости
 
@@ -64,7 +66,7 @@ Default-export class без наследования. constructor сразу в�
 
 ## Данные и изменения состояния
 
-Конструктор не создаёт ChatMessage в БД. system/flags извне сначала сохраняют идентичность; extendedRoll затем записывает system.rollTotal и дописывает flavor. append переобъявляет только два верхних объекта и flavor. Если исходный flavor не задан, append со строкой даёт префикс undefined. В _onCritRoll обоих базовых листов flavor действительно не задан, но append/extendedRoll не вызываются — эта ветвь не доказывает префикс undefined в интерфейсе. В защите две операции append добавляют crit и stun к исходным defender/defense/rollTotal; текущие три объекта не несут содержательных flags.TheWitcherTRPG, поэтому потеря уже заполненной namespace там не воспроизведена.
+Конструктор не создаёт ChatMessage в БД. system/flags извне сначала сохраняют идентичность; extendedRoll затем записывает system.rollTotal и дописывает flavor. append переобъявляет только два верхних объекта и flavor. Если исходный flavor не задан, append со строкой даёт префикс undefined. В _onCritRoll обоих базовых листов flavor действительно не задан, но append/extendedRoll не вызываются — эта ветвь не доказывает префикс undefined в интерфейсе. В защите две операции append добавляют crit и stun к исходным defender/defense/rollTotal; текущие три объекта не несут содержательных flags.TheWitcherTRPG-RB-Version, поэтому потеря уже заполненной namespace там не воспроизведена.
 
 ## Проверки и доказательства
 

@@ -81,7 +81,7 @@ export let damageUtilMixin = {
             }
         });
         let message = await (await new Roll(damageFormula).evaluate()).toMessage(messageData);
-        message.setFlag('TheWitcherTRPG', 'damage', {
+        message.setFlag('TheWitcherTRPG-RB-Version', 'damage', {
             ...damage,
             properties: { ...damage.properties, effects: preprocessedEffects }
         });
@@ -89,7 +89,7 @@ export let damageUtilMixin = {
 
     async createVariableDamageDialog(damageFormula) {
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/dialog/combat/variableDamage.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/dialog/combat/variableDamage.hbs',
             {
                 currentDamage: damageFormula
             }

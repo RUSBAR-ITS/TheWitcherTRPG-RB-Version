@@ -61,7 +61,7 @@ Hooks.on('renderActiveEffectConfig', async (activeEffectConfig, html, data) => {
 
 Hooks.once('ready', async function () {
     //Wait till packs are loaded for index
-    const criticalWounds = game.packs.get(game.settings.get('TheWitcherTRPG', 'criticalWoundsPack'));
+    const criticalWounds = game.packs.get(game.settings.get('TheWitcherTRPG-RB-Version', 'criticalWoundsPack'));
     await criticalWounds.getIndex({
         fields: ['system.criticalLevel', 'system.location', 'system.lesserEffect', 'system.treatment']
     });
@@ -74,7 +74,7 @@ Hooks.once('ready', async function () {
         }
     });
 
-    if (game.settings.get('TheWitcherTRPG', 'useWitcherFont')) {
+    if (game.settings.get('TheWitcherTRPG-RB-Version', 'useWitcherFont')) {
         let els = document.getElementsByClassName('game');
         Array.prototype.forEach.call(els, function (el) {
             if (el) {

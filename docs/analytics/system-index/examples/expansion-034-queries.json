@@ -343,7 +343,7 @@
         {
           "source": "src-000020",
           "line": 315,
-          "literal": "getActorOwner(target).query('TheWitcherTRPG.query', {",
+          "literal": "getActorOwner(target).query('TheWitcherTRPG-RB-Version.query', {",
           "from_name": "actor.professionMixin.doProfessionSkillUsage",
           "to_name": "getActorOwner",
           "kind": "calls"
@@ -351,7 +351,7 @@
         {
           "source": "src-000020",
           "line": 315,
-          "literal": "getActorOwner(target).query('TheWitcherTRPG.query', {",
+          "literal": "getActorOwner(target).query('TheWitcherTRPG-RB-Version.query', {",
           "from_name": "actor.professionMixin.doProfessionSkillUsage",
           "to_name": "User.query",
           "kind": "calls"
@@ -631,17 +631,17 @@
         {
           "source": "src-000200",
           "line": 8,
-          "literal": ".filter(region => region.flags.TheWitcherTRPG?.actorUuid === actorUuid)",
+          "literal": ".filter(region => region.flags['TheWitcherTRPG-RB-Version']?.actorUuid === actorUuid)",
           "from_name": "countdownDurationOfRegions",
-          "to_name": "spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.actorUuid",
+          "to_name": "spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG-RB-Version.actorUuid",
           "kind": "reads"
         },
         {
           "source": "src-000200",
           "line": 11,
-          "literal": "region.setFlag('TheWitcherTRPG', 'duration', region.flags.TheWitcherTRPG.duration - 1);",
+          "literal": "region.setFlag('TheWitcherTRPG-RB-Version', 'duration', region.flags['TheWitcherTRPG-RB-Version'].duration - 1);",
           "from_name": "countdownDurationOfRegions",
-          "to_name": "spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.duration",
+          "to_name": "spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG-RB-Version.duration",
           "kind": "writes"
         },
         {
@@ -1257,7 +1257,7 @@
           "ent-000602"
         ]
       },
-      "basis": "H01–H10: spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.duration, только source200, scope не все writers системы."
+      "basis": "H01–H10: spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG-RB-Version.duration, только source200, scope не все writers системы."
     },
     {
       "id": "E034-33",

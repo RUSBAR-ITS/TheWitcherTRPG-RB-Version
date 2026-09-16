@@ -16,7 +16,7 @@
     "daysHealed": 0,
     "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG.criticalWounds.Item.lck0EEySmuLZXMrA"
+    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.lck0EEySmuLZXMrA"
   },
   "effects": [
     {
@@ -78,7 +78,7 @@
     {
       "type": "base",
       "name": "Dismembered Leg (Left)",
-      "origin": "Compendium.TheWitcherTRPG.criticalWounds.Item.Us9OmoKhRydSqA8z",
+      "origin": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Us9OmoKhRydSqA8z",
       "duration": {
         "startTime": null,
         "combat": null,

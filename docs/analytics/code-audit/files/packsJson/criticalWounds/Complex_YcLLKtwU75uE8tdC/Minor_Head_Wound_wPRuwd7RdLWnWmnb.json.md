@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound_wPRuwd7RdLWnWmnb.json](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound_wPRuwd7RdLWnWmnb.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-13 |
-| Ветка и коммит | rusbar-main, d26e3381a7290807b8e76f9817d0f7a603c0e61a |
-| Изменения относительно коммита | Нет; 104 строк; SHA-256 eb0ebfd6d9bd533aea68e6e6704341ca9ec35616d214f683c5eafa70f86cfae4 |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.059](../../../../../../tasks/task-0003.059.md) |
 | Запись перекрёстной сверки | [Протокол .059](../../../../review-log.md#task-0003059) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место | Назначение и доступность | Действия |
 | --- | --- | --- | --- |
-| Minor Head Wound | Корневой Item; name:2, _id:4 | ID `wPRuwd7RdLWnWmnb`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.wPRuwd7RdLWnWmnb` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
+| Minor Head Wound | Корневой Item; name:2, _id:4 | ID `wPRuwd7RdLWnWmnb`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.wPRuwd7RdLWnWmnb` | Загрузка, копирование к Actor, подготовка, лечение/удаление |
 | _key / folder / sort | Корневые поля | `"!items!wPRuwd7RdLWnWmnb"` / `"YcLLKtwU75uE8tdC"` / `400000` | Ключ экспорта, родительская папка и сортировка; sort не приоритет эффекта |
 | flags / _stats | Корневые метаданные | `{}` / `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}` | История экспорта и пользовательские флаги; версия в _stats не подтверждает запуск этой версии сейчас |
 | img / ownership | Корневые поля | `"icons/svg/item-bag.svg"` / `{"default":0,"ugXtPMJIktbl63QV":3}` | Ресурс ядра вне пофайлового анализа; наличие указанного пользователя в мире не подтверждено |
@@ -42,7 +44,7 @@
 | daysHealed | `0` | NumberField; счётчик заживления, редактирование и update в heal. |
 | healingTime | `0` | NumberField; у владельца Actor prepareDerivedData рассчитывает max(12−BODY.max,1). |
 | sterilized | `false` | BooleanField; новая стерилизация даёт ещё +2 дня к очередному дню. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.EnwgL7ApZTdHgMbD"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.EnwgL7ApZTdHgMbD"` | DocumentUUIDField типа Item; treat загружает адресата или удаляет конечный Item. |
 
 ### ActiveEffect 1: Minor Head Wound
 

@@ -40,7 +40,7 @@ export let spellRegionMixin = {
             locked: false,
             ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
             flags: {
-                TheWitcherTRPG: {
+                'TheWitcherTRPG-RB-Version': {
                     roll: roll,
                     item: item,
                     itemUuid: item.uuid,
@@ -158,7 +158,7 @@ export let spellRegionMixin = {
 
     async deleteSpellVisualEffect(regions) {
         if (!game.user.isGM) {
-            game.users.activeGM.query('TheWitcherTRPG.query', {
+            game.users.activeGM.query('TheWitcherTRPG-RB-Version.query', {
                 function: 'deleteSpellVisualEffect',
                 uuid: item.uuid,
                 data: [regions.map(template => template.uuid)]

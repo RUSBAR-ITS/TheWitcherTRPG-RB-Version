@@ -15,7 +15,7 @@ export async function applyActiveEffectToActorViaId(actorUuid, itemUuid, applyWh
     let item = fromUuidSync(itemUuid);
 
     if (!item) {
-        game.users.activeGM.query('TheWitcherTRPG.query', {
+        game.users.activeGM.query('TheWitcherTRPG-RB-Version.query', {
             function: 'applyActiveEffectToActorViaId',
             data: [actorUuid, itemUuid, applyWhen, duration]
         });
@@ -38,7 +38,7 @@ export async function applyActiveEffectToActor(actorUuid, activeEffects, duratio
     applyTemporaryItemImprovements(actor, activeEffects);
 
     if (!actor.isOwner) {
-        getActorOwner(actor).query('TheWitcherTRPG.query', {
+        getActorOwner(actor).query('TheWitcherTRPG-RB-Version.query', {
             function: 'applyActiveEffectToActor',
             data: [actorUuid, activeEffects.filter(effect => effect.type != 'temporaryItemImprovement')]
         });
@@ -69,7 +69,7 @@ export async function applyActiveEffectToActor(actorUuid, activeEffects, duratio
 
 async function applyTemporaryItemImprovements(actor, activeEffects) {
     if (!actor.isOwner) {
-        getActorOwner(actor).query('TheWitcherTRPG.applyTemporaryItemImprovements', {
+        getActorOwner(actor).query('TheWitcherTRPG-RB-Version.applyTemporaryItemImprovements', {
             actorUuid: actor.uuid,
             effects: activeEffects
         });

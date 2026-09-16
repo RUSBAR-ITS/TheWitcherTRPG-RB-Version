@@ -16,7 +16,7 @@ export default class WitcherObstacleSheet extends foundry.appv1.sheets.ItemSheet
     }
 
     get template() {
-        return `systems/TheWitcherTRPG/templates/sheets/investigation/obstacle-sheet.hbs`;
+        return `systems/TheWitcherTRPG-RB-Version/templates/sheets/investigation/obstacle-sheet.hbs`;
     }
 
     /** @override */

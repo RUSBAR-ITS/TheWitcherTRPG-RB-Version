@@ -5,13 +5,13 @@
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-16",
-    "branch": "rusbar-main",
-    "head": "a9adc1a54188447999b49ab6b8655bd783960923",
-    "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
+    "branch": "dev",
+    "head": "d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8",
+    "source_hash": "2028063cce9eb4bd890f84f1a0600745312e76e0ea0238dd95d4dd793fc504bf"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
-    "registry_sha256": "f5ab0b1453d786ea13e84966f1a9f03950d3f2beb7d6dfb6f2a8ac009239ff28",
+    "registry_sha256": "8aa32997eaa8841d8c6645384f57b1a4ca0bab2fefd614d86abf8d8facf305ff",
     "source_count": 615,
     "selected_sources": [
       "src-000002",
@@ -358,7 +358,7 @@
     }
   },
   "reference_hashes": {
-    "docs/analytics/code-audit/cross-check-0002.md": "4900e756154d2e485919d07df3561f9d6c8a773400b0246d138ee35cf990f584",
+    "docs/analytics/code-audit/cross-check-0002.md": "161ed1f20739d3a44ed42ae9b78e4ffe118a9ef9a6d5ab5f845072fde3de9521",
     "docs/issues/potential/issue-00004.md": "f52e9d6151ef626dfde1f8a85cbd9a48bca1ee55a5f44f34a656660b7853d313",
     "docs/issues/potential/issue-00015.md": "929d09b62873d79a5b642813712365406c3a489018b02262c4d4930ccaa45e9a",
     "docs/issues/potential/issue-00012.md": "76a72cbfaebd87bb491ff394bb698d9f217483d225de448abfb6864c26233792",
@@ -373,7 +373,7 @@
     "docs/analytics/system-index/process-guide.md": "dea335fcdef849adb3a8743c7892ca03df99de0e76d746407a219c7e8c4320c3",
     "docs/issues/potential/issue-00005.md": "2df7296a1bae1cf1aad39d42de93a98c3d009e7b8bd41fbd0e6da7c8680e28b6",
     "docs/issues/potential/issue-00057.md": "d72dafec9ea2d97f2ca09c79ddda6953d4b40d9014257784aa73877c56db66fd",
-    "docs/issues/open/issue-00001.md": "eecf20ddd01e0fbad0c3f8c426befeaca9596167d8f05cc4a3f82eb56ee98db9",
+    "docs/issues/open/issue-00001.md": "c6321b4e52d263f939a4156c18097da9d4607d3f6502ff10496a1ee2c7cf1efa",
     "docs/issues/potential/issue-00002.md": "152d886add77b7f573959c8dfc16198550238b67cbd2775de2db8adbcbe74f79",
     "docs/issues/potential/issue-00289.md": "3e5863d8b27d411111e195d7c043b01b6e4698dd1d7edfe47d952e6bcbe5d540",
     "docs/issues/potential/issue-00006.md": "57a4494008554f06ae2b9fbea5f45110be32f5ae4c1694d47b999950e6d5abc6",
@@ -539,8 +539,8 @@
     "docs/issues/potential/issue-00127.md": "9c546932dcfa750e104e262a70bd286ce0839f850492824b9ec15df223335474",
     "docs/issues/potential/issue-00121.md": "32c7db7819f8b265e2d7d4062df73d9d0230212a4f1b1b222e2607121d59f767",
     "docs/issues/potential/issue-00325.md": "236e70ed179ec7c53947c375ad407b7b26f83e102b3082cf83bfaa38c7efec0a",
-    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json.md": "cb852ce4f7622e041547dd6fc6817533a86f9359f46047b0dfb1ea428a51e7eb",
-    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json.md": "6d7db8abab96be4872cc69341b1eb86f11c99422ad7cdcbe45c5a2a5b0683a88",
+    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json.md": "d053c5966cebe58ab66a657fa7cefba8b1c992e5105ed7b5e43c0cce404de070",
+    "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json.md": "5722be3b8325722ddb98655ed63ef3ba0eb643321d827b37eb2a25d083719be8",
     "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Treated__f7NaW1AMnrSLGkd3.json.md": "3e170de6d54d390aa72626a90c256b64b4d60e61b5158b8ab249b77eb1e3b9d0",
     "docs/analytics/system-index/coverage-021.md": "37b1b82bfc893eab134542a0a9ab82a98c137a02b54177f757a0ae9302ac8a74",
     "docs/issues/potential/issue-00256.md": "810b30687da1baa3bf004eea8539c1f8c11988c6de9dbac74d6d67eaff024389",

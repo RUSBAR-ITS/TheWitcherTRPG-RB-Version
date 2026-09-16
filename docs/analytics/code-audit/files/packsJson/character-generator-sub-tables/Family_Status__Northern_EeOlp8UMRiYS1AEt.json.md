@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Northern_EeOlp8UMRiYS1AEt.json) |
 | Тип файла | JSON: экспорт RollTable, 14 TableResult (7 text, 7 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 63e9a79fefa7743fcf709b2fa19ddbe144f353a0 |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.054](../../../../../tasks/task-0003.054.md); 35 файлов / 8319 строк; этот файл — 359 строк |
 | Запись перекрёстной сверки | [TASK-0003.054](../../../review-log.md#task-0003054) |
 | SHA-256 файла | 40d382f1783354f7d95ee2ce7aca65f25b2e704d155bd1e1a34bd461eb14bfee |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -20,7 +22,7 @@
 
 [system.json](../../../../../../system.json):35,64–69 объявляет RollTable-пакет Character-gen_Sub-tables и packs/character-generator-sub-tables.db. [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 читает этот каталог через compilePack с recursive:true; фактическое разрешение имени пути описано в [карточке утилиты](../../utils/packs.mjs.md). JSON не подключён как браузерный ES-модуль.
 
-Адрес по манифесту и ID — `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
+Адрес по манифесту и ID — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.EeOlp8UMRiYS1AEt`. Штатный лист/каталог Foundry вызывает draw; другой генератор может получить таблицу через documentUuid. При стандартном recursive:true выбираются конечные текстовые результаты, при false документные записи остаются ссылками. Наличие экспорта не доказывает состояние установленной БД или доступ пользователя.
 
 ## Введённые сущности и действия с ними
 
@@ -94,13 +96,13 @@ Root description: `<p>Everyone grows up differently. One man may come of age in 
 
 | Результат / строка documentUuid | Целевая карточка | Полный адрес |
 | --- | --- | --- |
-| `vox7NUbtHmyKyBxI`, строка 53 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
-| `KN1jkgllBFtZX23D`, строка 100 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
-| `NQNctkYs5dmyGEkh`, строка 147 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
-| `LojwHWtEWxxqb6PZ`, строка 194 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
-| `0bRV83bCJSU0qETV`, строка 241 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
-| `mvqP5Ic7KBewbj2x`, строка 288 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
-| `YEQ2wdEvKm0Eamde`, строка 335 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `vox7NUbtHmyKyBxI`, строка 53 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `KN1jkgllBFtZX23D`, строка 100 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `NQNctkYs5dmyGEkh`, строка 147 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `LojwHWtEWxxqb6PZ`, строка 194 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `0bRV83bCJSU0qETV`, строка 241 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `mvqP5Ic7KBewbj2x`, строка 288 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
+| `YEQ2wdEvKm0Eamde`, строка 335 | [Most Influential Friend: Northern](Most_Influential_Friend__Northern_Xc9k6o8pE8Aaj1Kb.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Xc9k6o8pE8Aaj1Kb` |
 
 ## Известные потребители
 

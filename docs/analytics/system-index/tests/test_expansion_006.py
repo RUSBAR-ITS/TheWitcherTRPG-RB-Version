@@ -85,7 +85,7 @@ class RegistrationExpansion(unittest.TestCase):
         self.assertFalse(any(r['from']=='ent-000524' and r['kind']=='refers' for r in declarations))
 
     def test_settings_and_deferred_choices_match_source(self):
-        expected = {'criticalWoundsPack': (2, "default: 'TheWitcherTRPG.criticalWounds'", 'type: new foundry.data.fields.StringField'),
+        expected = {'criticalWoundsPack': (2, "default: 'TheWitcherTRPG-RB-Version.criticalWounds'", 'type: new foundry.data.fields.StringField'),
                     'useOptionalAdrenaline':(17,'default: false','type: Boolean'),
                     'useOptionalVerbalCombat':(25,'default: false','type: Boolean'),
                     'silverTrait':(37,'default: false','type: Boolean'),

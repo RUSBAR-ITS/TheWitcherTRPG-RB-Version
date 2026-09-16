@@ -5,11 +5,13 @@
 | Исходный файл | [module/item/witcherItem.js](../../../../../../module/item/witcherItem.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `c5edcbadd05ff4038a174bd2e2a49785e40ea878` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.008](../../../../../tasks/task-0003.008.md), одна порция из двух файлов |
 | Запись перекрёстной сверки | [TASK-0003.008](../../../review-log.md#task-0003008) |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -112,7 +114,7 @@
 | deepClone, expandObject | Foundry common/utils/helpers.mjs | Вызов | 351/368; копия изменений и структура overrides | Реальные utils; для expandObject в vm вход приведён к обычному объекту другого контекста |
 | game.packs; RollTable.roll; TableResult; fromUuid | Foundry CompendiumCollection, RollTable и UUID API | Поиск/загрузка | 241; 259–276; 301 | Статика плюс контролируемые документы в сценариях; pack БД не открывались |
 | game.i18n.localize; ui.notifications; game.user/users; ChatMessage.create | Foundry client API | Локализация, уведомления, чат | Алхимия, изготовление и сообщения GM о добыче | Проверены ключи/поля и вызовы; внешние действия подменены |
-| Картинки веществ и ключи Inventory.* | systems/TheWitcherTRPG/assets/images/{vitriol,rebis,aether,quebrith,hydragenum,vermilion,sol,caelum,fulgur}.png; [lang/en.json](../../../../../../lang/en.json) / [lang/ru.json](../../../../../../lang/ru.json) | Ресурс/локализация | AlchemyComponent.content/alias; 98–167 | Пути прочитаны; assets вне границ пофайлового анализа; HTTP не проверялся |
+| Картинки веществ и ключи Inventory.* | systems/TheWitcherTRPG-RB-Version/assets/images/{vitriol,rebis,aether,quebrith,hydragenum,vermilion,sol,caelum,fulgur}.png; [lang/en.json](../../../../../../lang/en.json) / [lang/ru.json](../../../../../../lang/ru.json) | Ресурс/локализация | AlchemyComponent.content/alias; 98–167 | Пути прочитаны; assets вне границ пофайлового анализа; HTTP не проверялся |
 
 ## Известные потребители
 

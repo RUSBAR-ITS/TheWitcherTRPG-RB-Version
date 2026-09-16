@@ -5,11 +5,13 @@
 | Исходный файл | [templates/sheets/item/weapon-sheet.hbs](../../../../../../../templates/sheets/item/weapon-sheet.hbs) |
 | Тип файла | Handlebars, HTML-шаблон |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-10 |
-| Ветка и коммит | `rusbar-main`, `8cca18e14b75ec53028ee6bc49a837597de4d9af` |
-| Изменения относительно коммита | Нет; содержимое также совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.013](../../../../../../tasks/task-0003.013.md), одна порция из восьми файлов |
 | Запись перекрёстной сверки | [TASK-0003.013](../../../../review-log.md#task-0003013) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -24,7 +26,7 @@ PARTS.main WitcherWeaponSheet. Требует item, config и inherited showConf
 | Сущность | Вид и место определения | Назначение | Доступность или регистрация | Действия и жизненный цикл |
 | --- | --- | --- | --- | --- |
 | section.scrollable | Корень 1–113 | Содержимое main | PARTS.main | Рендер HBM |
-| item-header; associated-diagram | Partials2,112 | Общая шапка и связь рецепта | Имена systems/TheWitcherTRPG/templates/... | Контекст передаётся без отдельного hash |
+| item-header; associated-diagram | Partials2,112 | Общая шапка и связь рецепта | Имена systems/TheWitcherTRPG-RB-Version/templates/... | Контекст передаётся без отдельного hash |
 | Описание и флаги | 5,11/15/21 | description, rollOnlyDmg, usingAmmo, isAmmo | textarea/checkbox с name | Обычная отправка формы |
 | .damage-type | Четыре input48–59 | slashing/piercing/bludgeoning/elemental | id, checkbox, без name/data-action | Сохраняет специальный listener листа |
 | Таблица оружия | 25–93 | accuracy/avail/reliable/maxReliability/hands/conceal/enhancements/rateOfFire | name system.* | Часть столбцов скрыта для ammo |

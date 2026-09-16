@@ -5,11 +5,13 @@
 | Исходный файл | [module/scripts/rolls/extendedRoll.js](../../../../../../../module/scripts/rolls/extendedRoll.js) |
 | Тип файла | JavaScript, ES module |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-11 |
-| Ветка и коммит | `rusbar-main`, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b` |
-| Изменения относительно коммита | Нет; содержимое совпадает со срезом TASK-0001 `15da5b225535e34af4e132c701b5353ef4eb667f`. |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.028](../../../../../../tasks/task-0003.028.md), 5 файлов, 372 логических строк |
 | Запись перекрёстной сверки | [TASK-0003.028](../../../../review-log.md#task-0003028) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -36,7 +38,7 @@ Named export async extendedRoll. Формулу, параметры сообще
 | extendedRoll(rollFormula,messageData,config=new RollConfig(),flags=[]) | Строка формулы; объект с system/flavor; RollConfig либо соответствующий объект | Promise<Roll> | evaluate первого Roll → при showCrit первый результат 10/1 → 1d10x10 → числовой итог → rollTotal → порог → сообщение/отложенные данные | Мутирует messageData; конфигурацию не меняет. Ошибка parse/evaluate/toMessage отклоняет Promise; setFlag не включён в его ожидание. |
 | isCrit(roll) | Roll с dice и, при наличии первого кубика, хотя бы одним results | Boolean | Точное сравнение первого результата с 10 | Не проверяет faces, active/discarded, итог кубика или последующие кубики. |
 | isFumble(roll) | Тот же контракт | Boolean | Первый результат равен 1 | Нет кубиков → false; первый кубик с пустыми results не защищён вторым optional access. |
-| flags.forEach callback | Массив объектов key/value | Не собирает Promise | message.setFlag('TheWitcherTRPG',key,value) | Единичный объект обрабатывается аналогично; false/null пропускаются. При showResult=false весь аргумент flags игнорируется. |
+| flags.forEach callback | Массив объектов key/value | Не собирает Promise | message.setFlag('TheWitcherTRPG-RB-Version',key,value) | Единичный объект обрабатывается аналогично; false/null пропускаются. При showResult=false весь аргумент flags игнорируется. |
 
 ## Используемые сущности и зависимости
 
@@ -46,7 +48,7 @@ Named export async extendedRoll. Формулу, параметры сообще
 | Roll / evaluate / dice / options / total / toMessage | Foundry 14.367.0: client/dice/roll.mjs, client/dice/parser.mjs, client/dice/grammar.pegjs, client/dice/terms/{dice,die,numeric,operator,term}.mjs | Глобальный конструктор и методы | 10–12, 30, 58, 63–86 | Настоящие парсер, Roll и term-классы исполнены с управляемыми гранями; toMessage заменён. |
 | ChatMessageData — формат входа | [module/chatMessage/chatMessageData.js](../../../../../../../module/chatMessage/chatMessageData.js) | Контракт аргумента; без импорта | messageData.system.rollTotal/flavor; showResult=false | Класс хранит ссылки; extendedRoll не требует instanceof, принимает аналогичный обычный объект. |
 | WITCHER.Crit / Fumble / BeforeCrit / Chat.Success / Chat.Fail | [lang/en.json](../../../../../../../lang/en.json); [lang/ru.json](../../../../../../../lang/ru.json) | Локализация | 16–32, 35–83 | Точные ключи; thresholdDesc также локализуется динамически. |
-| ChatMessage.setFlag | Foundry ChatMessage / Document API; namespace TheWitcherTRPG | Внешняя запись | 89–93 | Сохраняет дополнительные данные после создания сообщения; завершение не ожидается. |
+| ChatMessage.setFlag | Foundry ChatMessage / Document API; namespace TheWitcherTRPG-RB-Version | Внешняя запись | 89–93 | Сохраняет дополнительные данные после создания сообщения; завершение не ожидается. |
 | message.system.rollTotal | [module/data/chatMessage/baseMessageData.js](../../../../../../../module/data/chatMessage/baseMessageData.js); [module/data/chatMessage/attackMessageData.js](../../../../../../../module/data/chatMessage/attackMessageData.js); [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js) | Поля принимающих моделей | 63 | BaseMessageData NumberField, наследники используют rollTotal; сам extendedRoll схемы не создаёт. |
 
 ## Известные потребители

@@ -5,12 +5,14 @@
 | Исходный файл | [packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json](../../../../../../packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json) |
 | Тип файла | JSON: экспорт RollTable, 2 TableResult (0 text, 2 document) |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 93beea0953821c9d8f080f815e686dc4da0c6f9e |
-| Изменения относительно коммита | Нет; совпадает со срезом TASK-0001 15da5b225535e34af4e132c701b5353ef4eb667f |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.053](../../../../../tasks/task-0003.053.md); 21 файл / 3845 строк, этот файл — 78 строк |
 | Запись перекрёстной сверки | [TASK-0003.053](../../../review-log.md#task-0003053) |
 | SHA-256 файла | 1ad565286ce92f99ebbdca368169092d0228fdffac421d9e0379ed26d2e6ada1 |
+
+Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -20,7 +22,7 @@
 
 [system.json](../../../../../../system.json):37,76–81 регистрирует RollTable-пакет Life_Event_Sub-tables с путём packs/lifepath.db. [utils/packs.mjs](../../../../../../utils/packs.mjs):6–10 передаёт packsJson/lifepath в compilePack с recursive:true; браузер читает документы пакета, а не импортирует этот JSON. Нормализация суффикса .db и контракт CLI установлены в [карточке утилиты](../../utils/packs.mjs.md). Компиляция и извлечение здесь не запускались.
 
-Адрес по манифесту и ID: `Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.Lp42vhkw20Ys973y`. Штатный draw доступен через лист/каталог таблиц; внешние потребители могут разрешить UUID или найти документ по имени. Экспорт не подтверждает совпадение с действующей БД и права конкретного игрока.
+Адрес по манифесту и ID: `Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.Lp42vhkw20Ys973y`. Штатный draw доступен через лист/каталог таблиц; внешние потребители могут разрешить UUID или найти документ по имени. Экспорт не подтверждает совпадение с действующей БД и права конкретного игрока.
 
 ## Введённые сущности и действия с ними
 
@@ -73,8 +75,8 @@
 | getHTML / documentToAnchor | Foundry client/documents/table-result.mjs:45–78 | Подготовка текста и ссылки; оболочка клиентского документа и anchor документа подменены |
 | _enrichInlineRolls / _createInlineRoll; Roll.toAnchor | Foundry client/applications/ux/text-editor.mjs:247–251,718–775; client/dice/roll.mjs:1021–1034 | Выполнены реальные методы и парсер; обход DOM заменён последовательной обработкой строк |
 | Шаблоны результата и чата | Foundry templates/sheets/roll-table/result-details.hbs; templates/dice/table-result.hbs | Настоящие HBS-шаблоны исполнены; запись ChatMessage и HTML основного кубика подменены |
-| `JQmqgYHhLo9rqERr`: `Enemies: Generator` | [Enemies__Generator_7AXmeCSRkK3ktJ9Y.json](Enemies__Generator_7AXmeCSRkK3ktJ9Y.json.md) | `Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.7AXmeCSRkK3ktJ9Y`; recursive:true раскрывает RollTable, false сохраняет ссылку |
-| `cUNRbBflCqmrkzp7`: `Allies: Generator` | [Allies__Generator_Va7NF10ETcMvndFo.json](Allies__Generator_Va7NF10ETcMvndFo.json.md) | `Compendium.TheWitcherTRPG.Life_Event_Sub-tables.RollTable.Va7NF10ETcMvndFo`; recursive:true раскрывает RollTable, false сохраняет ссылку |
+| `JQmqgYHhLo9rqERr`: `Enemies: Generator` | [Enemies__Generator_7AXmeCSRkK3ktJ9Y.json](Enemies__Generator_7AXmeCSRkK3ktJ9Y.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.7AXmeCSRkK3ktJ9Y`; recursive:true раскрывает RollTable, false сохраняет ссылку |
+| `cUNRbBflCqmrkzp7`: `Allies: Generator` | [Allies__Generator_Va7NF10ETcMvndFo.json](Allies__Generator_Va7NF10ETcMvndFo.json.md) | `Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.Va7NF10ETcMvndFo`; recursive:true раскрывает RollTable, false сохраняет ссылку |
 
 Пути ядра указаны относительно /opt/foundryvtt; эти внешние файлы не получают карточек системы. Имена, типы и ID всех перечисленных целей совпали; исходящие связи этого файла остаются внутри Life_Event_Sub-tables. Общая глубина графа и входящие связи проверены в [протоколе](../../../review-log.md#task-0003053).
 

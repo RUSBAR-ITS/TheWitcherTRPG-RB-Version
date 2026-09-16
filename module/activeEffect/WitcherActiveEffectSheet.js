@@ -22,7 +22,7 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
             scrollable: ['ol[data-changes]']
         },
         systemSpecific: {
-            template: 'systems/TheWitcherTRPG/templates/sheets/activeEffect/system-specific.hbs',
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/activeEffect/system-specific.hbs',
             scrollable: ['']
         },
         footer: { template: 'templates/generic/form-footer.hbs' }
@@ -69,7 +69,7 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         }
 
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
-            'systems/TheWitcherTRPG/templates/dialog/activeEffects/wizard.hbs',
+            'systems/TheWitcherTRPG-RB-Version/templates/dialog/activeEffects/wizard.hbs',
             {
                 selects: selects
             }

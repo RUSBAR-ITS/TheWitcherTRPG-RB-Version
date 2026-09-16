@@ -43,7 +43,7 @@ export let dismantlingMixin = {
     },
 
     async createDismantleMessage(components) {
-        const messageTemplate = 'systems/TheWitcherTRPG/templates/chat/item/dismantle.hbs';
+        const messageTemplate = 'systems/TheWitcherTRPG-RB-Version/templates/chat/item/dismantle.hbs';
 
         let foundItems = components.filter(comp => comp.item);
         let unfoundItems = components.filter(comp => !comp.item);

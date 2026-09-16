@@ -5,11 +5,13 @@
 | Исходный файл | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Right___Stabilized__fNiSVOJzpaxVvZTE.json) |
 | Тип файла | JSON: Item типа criticalWound |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-12 |
-| Ветка и коммит | rusbar-main, 5283da15a49422fc339c44add4e7d7d02c174ce4 |
-| Изменения относительно коммита | Нет; 104 строк; SHA-256 3db91d1aa77f1ca37d55a326797736fcd7c509c1b595c42077713d940debbfbc |
+| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
+| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
+| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
 | Задача и порция | [TASK-0003.058](../../../../../../tasks/task-0003.058.md) |
 | Запись перекрёстной сверки | [Протокол TASK-0003.058](../../../../review-log.md#task-0003058) |
+
+Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Внутренние UUID направлены на TheWitcherTRPG-RB-Version. ID документов, диапазоны, эффекты и _stats сохранены. Датированные результаты и прежние значения UUID ниже являются историей.
 
 ## Назначение файла
 
@@ -25,7 +27,7 @@
 
 | Сущность | Вид и место определения | Назначение | Доступность или регистрация | Действия и жизненный цикл |
 | --- | --- | --- | --- | --- |
-| Sprained Leg (Right - Stabilized) | Корневой Item, name: 3, _id: 101 | Шаблон травмы | `fNiSVOJzpaxVvZTE`; UUID `Compendium.TheWitcherTRPG.criticalWounds.Item.fNiSVOJzpaxVvZTE` | Загрузка, копирование к Actor, подготовка, лечение и удаление |
+| Sprained Leg (Right - Stabilized) | Корневой Item, name: 3, _id: 101 | Шаблон травмы | `fNiSVOJzpaxVvZTE`; UUID `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.fNiSVOJzpaxVvZTE` | Загрузка, копирование к Actor, подготовка, лечение и удаление |
 | _key / folder / sort | Корневые поля | Идентификация экспортного документа и порядок | `"!items!fNiSVOJzpaxVvZTE"` / `"kHSYUTn6UUJsIu4l"` / `2600000` | Потребление ядром и инструментами экспорта; sort не задаёт приоритет изменений |
 | img / flags / ownership / _stats | Корневые поля | Значок, права и история экспорта | `"icons/svg/item-bag.svg"`; flags=`{}`; ownership=`{"default":0,"ugXtPMJIktbl63QV":3}` | Иконка — ресурс ядра вне пофайлового анализа; ID владельца не доказывает существование такого пользователя в текущем мире |
 | system | Объект, строка 6 | Модель травмы | criticalWound | Поля состояния перечислены ниже |
@@ -42,7 +44,7 @@
 | daysHealed | `0` | NumberField; счётчик в heal; записывается через update либо удаляется Item. |
 | healingTime | `0` | NumberField; у Item с Actor вычисляется Math.max(8 - BODY.max, 1). |
 | sterilized | `false` | BooleanField; при heal с новой стерилизацией дополнительно +2 дня. |
-| followUp | `"Compendium.TheWitcherTRPG.criticalWounds.Item.8qatuNeEROueRDcZ"` | DocumentUUIDField типа Item; treat загружает адресата и инициирует замену. |
+| followUp | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.8qatuNeEROueRDcZ"` | DocumentUUIDField типа Item; treat загружает адресата и инициирует замену. |
 
 _stats: `{"compendiumSource":null,"duplicateSource":null,"exportSource":null,"coreVersion":"13.351","systemId":"TheWitcherTRPG","systemVersion":"AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION"}`. Метки версии — история экспорта, не результат текущей миграции. Поле system.description пустое.
 
