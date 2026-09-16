@@ -1,0 +1,1491 @@
+{
+  "dataset": "task-0006.034-expansion",
+  "basis": "Ожидания установлены чтением выбранных исходников и позднего аудита до CLI. Рёбра проверяются в обоих направлениях с текстовым свидетелем; общий граф не равен полному runtime.",
+  "handoffs": [
+    {
+      "id": "H01",
+      "name": "Ресурс, форма и подготовка",
+      "edges": [
+        {
+          "source": "src-000560",
+          "line": 22,
+          "literal": "value='{{system.derivedStats.hp.value}}' max='99' placeholder='0' data-dtype='Number' />",
+          "from_name": "character/sidebar.hbs.input[system.derivedStats.hp.value]",
+          "to_name": "DerivedStats.hp",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000560",
+          "line": 22,
+          "literal": "value='{{system.derivedStats.hp.value}}' max='99' placeholder='0' data-dtype='Number' />",
+          "from_name": "WitcherActorSheet/resource-form-submit",
+          "to_name": "DerivedStats.hp",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000055",
+          "line": 64,
+          "literal": "this.stats.int.max = this.stats.int.unmodifiedMax;",
+          "from_name": "CommonActorData.prepareBaseData",
+          "to_name": "stat().unmodifiedMax",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000055",
+          "line": 64,
+          "literal": "this.stats.int.max = this.stats.int.unmodifiedMax;",
+          "from_name": "CommonActorData.prepareBaseData",
+          "to_name": "stat().max",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000047",
+          "line": 90,
+          "literal": "deathState.applied = false;",
+          "from_name": "WitcherActor.calculateStat",
+          "to_name": "CommonActorData.healthState.deathState.applied",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000047",
+          "line": 106,
+          "literal": "this.system.stats[stat].value = Math.floor((this.system.stats[stat].unmodifiedMax + totalModifiers) / divider);",
+          "from_name": "WitcherActor.calculateStat",
+          "to_name": "stat().value",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000047",
+          "line": 187,
+          "literal": "this.system.derivedStats[stat].max = modifiedMax;",
+          "from_name": "WitcherActor.calculateDerivedStat",
+          "to_name": "stat().max",
+          "kind": "writes"
+        }
+      ]
+    },
+    {
+      "id": "H02",
+      "name": "Хранение и вес",
+      "edges": [
+        {
+          "source": "src-000166",
+          "line": 35,
+          "literal": "this.item.update({ 'system.content': this.item.system.content });",
+          "from_name": "WitcherContainerSheet._onDropItem",
+          "to_name": "ContainerData.content",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000166",
+          "line": 36,
+          "literal": "item.update({ 'system.isStored': true });",
+          "from_name": "WitcherContainerSheet._onDropItem",
+          "to_name": "CommonItemData.isStored",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000166",
+          "line": 52,
+          "literal": "item.update({ 'system.isStored': false });",
+          "from_name": "WitcherContainerSheet._onRemoveItem",
+          "to_name": "CommonItemData.isStored",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000111",
+          "line": 30,
+          "literal": "let item = fromUuidSync(itemId);",
+          "from_name": "ContainerData.prepareDerivedData",
+          "to_name": "fromUuidSync",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000111",
+          "line": 31,
+          "literal": "this.storedWeight += item.system.quantity * item.system.weight;",
+          "from_name": "ContainerData.prepareDerivedData",
+          "to_name": "ContainerData.storedWeight",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000111",
+          "line": 18,
+          "literal": "return this.isCarried && !this.isStored ? this.quantity * this.weight + this.storedWeight : 0;",
+          "from_name": "ContainerData.calcWeight",
+          "to_name": "ContainerData.storedWeight",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000047",
+          "line": 246,
+          "literal": "let total = this.items.reduce((total, item) => (total += item.system.calcWeight?.() ?? 0), 0);",
+          "from_name": "WitcherActor.getTotalWeight/item.system.calcWeight",
+          "to_name": "ContainerData.calcWeight",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000047",
+          "line": 113,
+          "literal": "var totalWeights = this.getTotalWeight();",
+          "from_name": "WitcherActor.calculateWeigthEncumbrance",
+          "to_name": "WitcherActor.getTotalWeight",
+          "kind": "calls"
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "name": "Постоянные улучшения и боевые читатели",
+      "edges": [
+        {
+          "source": "src-000043",
+          "line": 219,
+          "literal": "item.update({ 'system.enhancementItemIds': newEnhancementList });",
+          "from_name": "sheet.itemMixin._chooseEnhancement/ok.callback",
+          "to_name": "WeaponData.enhancementItemIds",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000043",
+          "line": 219,
+          "literal": "item.update({ 'system.enhancementItemIds': newEnhancementList });",
+          "from_name": "sheet.itemMixin._chooseEnhancement/ok.callback",
+          "to_name": "ArmorData.enhancementItemIds",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000043",
+          "line": 232,
+          "literal": "this.actor.addItem(choosenEnhancement, newQuantity, true);",
+          "from_name": "sheet.itemMixin._chooseEnhancement/ok.callback",
+          "to_name": "WitcherActor.addItem",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000155",
+          "line": 81,
+          "literal": "this.enhancementItems.push({",
+          "from_name": "WeaponData.prepareDerivedData",
+          "to_name": "WeaponData.enhancementItems",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000108",
+          "line": 133,
+          "literal": "this.enhancementItems.push({",
+          "from_name": "ArmorData.prepareDerivedData",
+          "to_name": "ArmorData.enhancementItems",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000130",
+          "line": 72,
+          "literal": "this.parent.enhancementItems",
+          "from_name": "DamageProperties.enhancementsEffects",
+          "to_name": "WeaponData.enhancementItems",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000127",
+          "line": 34,
+          "literal": "let enhancements = this.parent.enhancementItems;",
+          "from_name": "SpData.prepareDerivedData",
+          "to_name": "ArmorData.enhancementItems",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000126",
+          "line": 15,
+          "literal": "let enhancements = this.parent.enhancementItems;",
+          "from_name": "ResistanceData.prepareDerivedData",
+          "to_name": "ArmorData.enhancementItems",
+          "kind": "reads"
+        }
+      ]
+    },
+    {
+      "id": "H04",
+      "name": "Раса и родина: владельцы и читатели",
+      "edges": [
+        {
+          "source": "src-000029",
+          "line": 155,
+          "literal": "context.homeland = actor.getList('homeland')[0];",
+          "from_name": "WitcherCharacterSheet._prepareCharacterData",
+          "to_name": "WitcherCharacterSheet.context.homeland",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000029",
+          "line": 156,
+          "literal": "context.race = actor.getList('race')[0];",
+          "from_name": "WitcherCharacterSheet._prepareCharacterData",
+          "to_name": "WitcherCharacterSheet.context.race",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000029",
+          "line": 164,
+          "literal": "...(await context.race?.system.enrichedText())",
+          "from_name": "WitcherCharacterSheet._prepareCharacterData",
+          "to_name": "RaceData.enrichedText",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000022",
+          "line": 102,
+          "literal": "if (tolerated.includes(this.system.general.socialStanding)) {",
+          "from_name": "actor.skillMixin.addSocialStanding",
+          "to_name": "general().socialStanding",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000022",
+          "line": 123,
+          "literal": "feared.includes(this.system.general.socialStanding)",
+          "from_name": "actor.skillMixin.addSocialStanding",
+          "to_name": "general().socialStanding",
+          "kind": "reads"
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "name": "Редактор профессии и runtime поиск",
+      "edges": [
+        {
+          "source": "src-000185",
+          "line": 109,
+          "literal": "this.item.update({",
+          "from_name": "WitcherProfessionConfigurationSheet._onAddEffectDamageProperties",
+          "to_name": "Document.update/Item",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000185",
+          "line": 141,
+          "literal": "this.item.update({ [`system.${skillObject.path}.skillAttack.damageProperties.effects.-=${effectId}`]: null });",
+          "from_name": "WitcherProfessionConfigurationSheet._oRemoveEffectDamageProperties",
+          "to_name": "DamageProperties.effects",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000185",
+          "line": 186,
+          "literal": "let skill = this.findSkillWithNameInSkillPath(skillPath.system.skillPath1, skillName);",
+          "from_name": "WitcherProfessionConfigurationSheet.findSkillWithName",
+          "to_name": "WitcherProfessionConfigurationSheet.findSkillWithNameInSkillPath",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 32,
+          "literal": "let skill = this.findSkillWithName(name).skill;",
+          "from_name": "actor.professionMixin._onProfessionRoll",
+          "to_name": "actor.professionMixin.findSkillWithName",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 35,
+          "literal": "this.doProfessionAttackRoll(skill);",
+          "from_name": "actor.professionMixin._onProfessionRoll",
+          "to_name": "actor.professionMixin.doProfessionAttackRoll",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 37,
+          "literal": "this.doProfessionSkillUsage(skill);",
+          "from_name": "actor.professionMixin._onProfessionRoll",
+          "to_name": "actor.professionMixin.doProfessionSkillUsage",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 39,
+          "literal": "this.doProfessionThreshold(skill);",
+          "from_name": "actor.professionMixin._onProfessionRoll",
+          "to_name": "actor.professionMixin.doProfessionThreshold",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 41,
+          "literal": "this.doProfessionSkillRoll(skill);",
+          "from_name": "actor.professionMixin._onProfessionRoll",
+          "to_name": "actor.professionMixin.doProfessionSkillRoll",
+          "kind": "calls"
+        }
+      ]
+    },
+    {
+      "id": "H06",
+      "name": "Профессиональное действие, оружие и AE",
+      "edges": [
+        {
+          "source": "src-000020",
+          "line": 256,
+          "literal": "this.weaponAttack(weapon, {",
+          "from_name": "actor.professionMixin.doProfessionWeaponAttackRoll",
+          "to_name": "actor.weaponAttackMixin.weaponAttack",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 278,
+          "literal": "let roll = await this.doProfessionSkillRoll(skill, {",
+          "from_name": "actor.professionMixin.doProfessionSkillUsage",
+          "to_name": "actor.professionMixin.doProfessionSkillRoll",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 315,
+          "literal": "getActorOwner(target).query('TheWitcherTRPG.query', {",
+          "from_name": "actor.professionMixin.doProfessionSkillUsage",
+          "to_name": "getActorOwner",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000020",
+          "line": 315,
+          "literal": "getActorOwner(target).query('TheWitcherTRPG.query', {",
+          "from_name": "actor.professionMixin.doProfessionSkillUsage",
+          "to_name": "User.query",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000213",
+          "line": 34,
+          "literal": "callableFunctions[queryData.function](...queryData.data);",
+          "from_name": "query",
+          "to_name": "applyActiveEffectToActor",
+          "kind": "calls"
+        }
+      ]
+    },
+    {
+      "id": "H07",
+      "name": "Навык, два IP и журнал",
+      "edges": [
+        {
+          "source": "src-000022",
+          "line": 28,
+          "literal": "this.system.logs.addIpReward(logLabel, magicalCost * -1, true);",
+          "from_name": "actor.skillMixin.levelUpSkill",
+          "to_name": "Log.addIpReward",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000022",
+          "line": 32,
+          "literal": "this.system.logs.addIpReward(logLabel, levelUpCost * -1, false);",
+          "from_name": "actor.skillMixin.levelUpSkill",
+          "to_name": "Log.addIpReward",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000022",
+          "line": 36,
+          "literal": "[`system.skills.${attribute.name}.${skillName}.value`]: ++skillValue,",
+          "from_name": "actor.skillMixin.levelUpSkill",
+          "to_name": "Skill.value",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000022",
+          "line": 37,
+          "literal": "'system.magic.magicImprovementPoints': this.system.magic.magicImprovementPoints - magicalCost,",
+          "from_name": "actor.skillMixin.levelUpSkill",
+          "to_name": "CharacterData.magic.magicImprovementPoints",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000022",
+          "line": 38,
+          "literal": "'system.improvementPoints': this.system.improvementPoints - levelUpCost",
+          "from_name": "actor.skillMixin.levelUpSkill",
+          "to_name": "CharacterData.improvementPoints",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000070",
+          "line": 15,
+          "literal": "this.ipLog.push({ label: label, ip: ip, isMagic: isMagic });",
+          "from_name": "Log.addIpReward",
+          "to_name": "Log.ipLog",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000070",
+          "line": 17,
+          "literal": "this.parent.parent.update({",
+          "from_name": "Log.addIpReward",
+          "to_name": "Document.update/Actor",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000070",
+          "line": 24,
+          "literal": "this.parent.parent.update({",
+          "from_name": "Log.addIpReward",
+          "to_name": "Document.update/Actor",
+          "kind": "calls"
+        }
+      ]
+    },
+    {
+      "id": "H08",
+      "name": "Магические данные и фактические потребители",
+      "edges": [
+        {
+          "source": "src-000011",
+          "line": 27,
+          "literal": "let usedSkill = spellItem.system.getUsedSkill();",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "SpellData.getUsedSkill",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 27,
+          "literal": "let usedSkill = spellItem.system.getUsedSkill();",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "HexData.getUsedSkill",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 27,
+          "literal": "let usedSkill = spellItem.system.getUsedSkill();",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "RitualData.getUsedSkill",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 52,
+          "literal": "if (this.system.focus1.value > 0) {",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "focus().value",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000177",
+          "line": 54,
+          "literal": "this.item.update({ 'system.ritualComponentUuids': newComponentList });",
+          "from_name": "WitcherRitualSheet._onDropItem",
+          "to_name": "RitualData.ritualComponentUuids",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000123",
+          "line": 52,
+          "literal": "this.ritualComponentUuids?.forEach(component =>",
+          "from_name": "RitualData.prepareDerivedData",
+          "to_name": "RitualData.ritualComponentUuids",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000123",
+          "line": 54,
+          "literal": "item: fromUuidSync(component.uuid) ?? { name: component.uuid },",
+          "from_name": "RitualData.prepareDerivedData",
+          "to_name": "fromUuidSync",
+          "kind": "calls"
+        }
+      ]
+    },
+    {
+      "id": "H09",
+      "name": "Сотворение и независимые результаты",
+      "edges": [
+        {
+          "source": "src-000011",
+          "line": 132,
+          "literal": "'system.derivedStats.sta.value': newSta",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "DerivedStats.sta",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000011",
+          "line": 247,
+          "literal": "let roll = await extendedRoll(rollFormula, messageData, config);",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "extendedRoll",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 248,
+          "literal": "await roll.toMessage(messageData);",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "Roll.toMessage",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 250,
+          "literal": "spellItem.system.createSpellRegion?.(roll, damage, { stamina: origStaCost });",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "spellRegionMixin.createSpellRegion",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 254,
+          "literal": "applyStatusEffectToActor(this.uuid, effect.statusEffect, damage.duration)",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "applyStatusEffectToActor",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 256,
+          "literal": "applyActiveEffectToActor(",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "applyActiveEffectToActor",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 262,
+          "literal": "applyStatusEffectToTargets(spellItem.system.onCastEffects, damage.duration);",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "applyStatusEffectToTargets",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000011",
+          "line": 263,
+          "literal": "applyActiveEffectToTargets(",
+          "from_name": "actor.castSpellMixin.castSpell",
+          "to_name": "applyActiveEffectToTargets",
+          "kind": "calls"
+        }
+      ]
+    },
+    {
+      "id": "H10",
+      "name": "Region, callback, query и Combat",
+      "edges": [
+        {
+          "source": "src-000117",
+          "line": 8,
+          "literal": "this.fromItem(this.parent, { roll, damage, options })",
+          "from_name": "spellRegionMixin.createSpellRegion",
+          "to_name": "spellRegionMixin.fromItem",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000117",
+          "line": 10,
+          "literal": "await this.regionProperties.addBehaviorsToRegions(regions);",
+          "from_name": "spellRegionMixin.createSpellRegion/behaviors-continuation",
+          "to_name": "RegionProperties.addBehaviorsToRegions",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000117",
+          "line": 152,
+          "literal": "placedRegion = await canvas.regions.placeRegion(regionData, { create: true });",
+          "from_name": "spellRegionMixin.drawPreview",
+          "to_name": "RegionLayer.placeRegion",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000150",
+          "line": 31,
+          "literal": ".forEach(key => behaviors.push(this.createRegionBehaviour(key, this.behaviours[key])));",
+          "from_name": "RegionProperties.addBehaviorsToRegions",
+          "to_name": "RegionProperties.createRegionBehaviour",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000150",
+          "line": 33,
+          "literal": "region.update({",
+          "from_name": "RegionProperties.addBehaviorsToRegions",
+          "to_name": "Document.update/Region",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000213",
+          "line": 41,
+          "literal": "entity.system[queryData.function]?.(...queryData.data);",
+          "from_name": "query",
+          "to_name": "query/nested-region-target",
+          "kind": "refers"
+        },
+        {
+          "source": "src-000117",
+          "line": 171,
+          "literal": "canvas.scene.deleteEmbeddedDocuments('Region', [region.id]);",
+          "from_name": "spellRegionMixin.deleteSpellVisualEffect/timeout",
+          "to_name": "Scene.deleteEmbeddedDocuments/Region",
+          "kind": "calls"
+        },
+        {
+          "source": "src-000200",
+          "line": 8,
+          "literal": ".filter(region => region.flags.TheWitcherTRPG?.actorUuid === actorUuid)",
+          "from_name": "countdownDurationOfRegions",
+          "to_name": "spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.actorUuid",
+          "kind": "reads"
+        },
+        {
+          "source": "src-000200",
+          "line": 11,
+          "literal": "region.setFlag('TheWitcherTRPG', 'duration', region.flags.TheWitcherTRPG.duration - 1);",
+          "from_name": "countdownDurationOfRegions",
+          "to_name": "spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.duration",
+          "kind": "writes"
+        },
+        {
+          "source": "src-000200",
+          "line": 17,
+          "literal": "game.scenes.active.deleteEmbeddedDocuments('Region', toDelete);",
+          "from_name": "countdownDurationOfRegions",
+          "to_name": "Scene.deleteEmbeddedDocuments/Region",
+          "kind": "calls"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "E034-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "DerivedStats.hp",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000055"
+        ]
+      },
+      "basis": "55: schema HP; 560:21 именованное поле"
+    },
+    {
+      "id": "E034-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "ContainerData.content",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004639"
+        ]
+      },
+      "basis": "111:13 UUID-массив"
+    },
+    {
+      "id": "E034-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "WeaponData.enhancementItemIds",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-003723"
+        ]
+      },
+      "basis": "155: source IDs, а не prepared enhancementItems"
+    },
+    {
+      "id": "E034-04",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "RaceData",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000412"
+        ]
+      },
+      "basis": "122:10–31 модель расы"
+    },
+    {
+      "id": "E034-05",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.professionMixin._onProfessionRoll",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004884"
+        ]
+      },
+      "basis": "20:30–43 dispatch по имени"
+    },
+    {
+      "id": "E034-06",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "CharacterData.improvementPoints",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-003337"
+        ]
+      },
+      "basis": "22:38 обычный IP"
+    },
+    {
+      "id": "E034-07",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.castSpellMixin.castSpell",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:13–270 общий cast"
+    },
+    {
+      "id": "E034-08",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "spellRegionMixin.fromItem",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-005078"
+        ]
+      },
+      "basis": "117:23–140 raw Region producer"
+    },
+    {
+      "id": "E034-09",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "skillMixin",
+        "--kind",
+        "document",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000299",
+          "ent-000305"
+        ]
+      },
+      "basis": "22:6 и45:1 — два различных mixin; одинаковое короткое имя не является ID."
+    },
+    {
+      "id": "E034-10",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "levelUpSkill",
+        "--scope",
+        "src-000022",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000300"
+        ]
+      },
+      "basis": "22:7–40 owner Actor."
+    },
+    {
+      "id": "E034-11",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004651",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-001003"
+        ]
+      },
+      "basis": "Прямой вызов: WitcherContainerSheet._onDropItem → Document.update/Item; H02/H06/H09/H10."
+    },
+    {
+      "id": "E034-12",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-001003",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004651"
+        ]
+      },
+      "basis": "Обратная ссылка того же вызова; наличие calls не доказывает await."
+    },
+    {
+      "id": "E034-13",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004888",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "Прямой вызов: actor.professionMixin.doProfessionWeaponAttackRoll → actor.weaponAttackMixin.weaponAttack; H02/H06/H09/H10."
+    },
+    {
+      "id": "E034-14",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-003597",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004888"
+        ]
+      },
+      "basis": "Обратная ссылка того же вызова; наличие calls не доказывает await."
+    },
+    {
+      "id": "E034-15",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000868",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-005077"
+        ]
+      },
+      "basis": "Прямой вызов: actor.castSpellMixin.castSpell → spellRegionMixin.createSpellRegion; H02/H06/H09/H10."
+    },
+    {
+      "id": "E034-16",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-005077",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "Обратная ссылка того же вызова; наличие calls не доказывает await."
+    },
+    {
+      "id": "E034-17",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004458",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004459"
+        ]
+      },
+      "basis": "Прямой вызов: RegionProperties.addBehaviorsToRegionUuids → RegionProperties.addBehaviorsToRegions; H02/H06/H09/H10."
+    },
+    {
+      "id": "E034-18",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004459",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004458"
+        ]
+      },
+      "basis": "Обратная ссылка того же вызова; наличие calls не доказывает await."
+    },
+    {
+      "id": "E034-19",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000787",
+        "--direction",
+        "out",
+        "--relation",
+        "refers",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004468"
+        ]
+      },
+      "basis": "213:40–41 посещает entity/system, не system.regionProperties."
+    },
+    {
+      "id": "E034-20",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-005078",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "117:132/152: следующий callback/core уровень не раскрыт глубиной1."
+    },
+    {
+      "id": "E034-21",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000055",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000560",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004581"
+        ]
+      },
+      "basis": "H01–H10: DerivedStats.hp, только source560, scope не все writers системы."
+    },
+    {
+      "id": "E034-22",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004639",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000166",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004651"
+        ]
+      },
+      "basis": "H01–H10: ContainerData.content, только source166, scope не все writers системы."
+    },
+    {
+      "id": "E034-23",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003388",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000111",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004647"
+        ]
+      },
+      "basis": "H01–H10: CommonItemData.isStored, только source111, scope не все writers системы."
+    },
+    {
+      "id": "E034-24",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003723",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004696"
+        ]
+      },
+      "basis": "H01–H10: WeaponData.enhancementItemIds, только source43, scope не все writers системы."
+    },
+    {
+      "id": "E034-25",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004231",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000127",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004218"
+        ]
+      },
+      "basis": "H01–H10: ArmorData.enhancementItems, только source127, scope не все writers системы."
+    },
+    {
+      "id": "E034-26",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004738",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000022",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000303"
+        ]
+      },
+      "basis": "H01–H10: general().socialStanding, только source22, scope не все writers системы."
+    },
+    {
+      "id": "E034-27",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000009",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000022",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000300"
+        ]
+      },
+      "basis": "H01–H10: Skill.value, только source22, scope не все writers системы."
+    },
+    {
+      "id": "E034-28",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003390",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000022",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000300"
+        ]
+      },
+      "basis": "H01–H10: CharacterData.magic.magicImprovementPoints, только source22, scope не все writers системы."
+    },
+    {
+      "id": "E034-29",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004943",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000070",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004947"
+        ]
+      },
+      "basis": "H01–H10: Log.ipLog, только source70, scope не все writers системы."
+    },
+    {
+      "id": "E034-30",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "H01–H10: DerivedStats.sta, только source11, scope не все writers системы."
+    },
+    {
+      "id": "E034-31",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005054",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000011",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "H01–H10: focus().value, только source11, scope не все writers системы."
+    },
+    {
+      "id": "E034-32",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005284",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000200",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000602"
+        ]
+      },
+      "basis": "H01–H10: spellRegionMixin.fromItem.regionData.flags.TheWitcherTRPG.duration, только source200, scope не все writers системы."
+    },
+    {
+      "id": "E034-33",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005016",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "11:13–270 cast не списывает компонентные UUID. Пустой scoped ответ не означает отсутствия редактора177."
+    },
+    {
+      "id": "E034-34",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004813",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000022",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "22:36 меняет builtin Skill.value; уровни profession Item имеют другого владельца."
+    },
+    {
+      "id": "E034-35",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000417",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "click",
+          "lookup",
+          "magic",
+          "partial",
+          "magic-log",
+          "ordinary",
+          "update"
+        ]
+      },
+      "basis": "22:7–40 и70:14–29: две ветви IP, локальные записи независимо"
+    },
+    {
+      "id": "E034-36",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000415",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "source",
+          "duration",
+          "amount",
+          "dice",
+          "construct",
+          "query"
+        ]
+      },
+      "basis": "20:274–318: Roll→payload→query, не гарантированное HP"
+    },
+    {
+      "id": "E034-37",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000451",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "region",
+          "fumble",
+          "status-self",
+          "ae-self",
+          "status-target",
+          "ae-target",
+          "return"
+        ]
+      },
+      "basis": "11:250–269: Region до fumble и четыре отдельных helper"
+    },
+    {
+      "id": "E034-38",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000452",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "ids": [
+          "formula",
+          "prompt",
+          "cost",
+          "sta",
+          "payload",
+          "flavor",
+          "roll",
+          "region",
+          "guard",
+          "effects",
+          "return"
+        ]
+      },
+      "basis": "11:13–270: общая последовательность, сохранение STA не ожидается"
+    },
+    {
+      "id": "E034-39",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000458",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "branch"
+        ],
+        "next_steps": [
+          "tokens",
+          "manual"
+        ]
+      },
+      "basis": "117:118; страница1 оставляет обе ветви, не доказывает прохождение."
+    },
+    {
+      "id": "E034-40",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000456",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "launch"
+        ],
+        "next_steps": [
+          "behaviors",
+          "catch"
+        ],
+        "next_exits": [
+          "done"
+        ]
+      },
+      "basis": "117:8–15: внешний async возвращает раньше независимой цепочки."
+    },
+    {
+      "id": "E034-41",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004468"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00009.md"
+        ]
+      },
+      "basis": "213:40–41 и150:12–14. Ссылка на прежнее доказательство; runtime не воспроизводился."
+    },
+    {
+      "id": "E034-42",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005329"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00146.md"
+        ]
+      },
+      "basis": "200:2–17 countdown без фильтра turn/round; историческое issue не новое подтверждение."
+    },
+    {
+      "id": "E034-43",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-005301"
+      ],
+      "expected": {
+        "resolution": "external"
+      },
+      "basis": "Region behavior payload150:39–48 передаётся внешнему executor; Macro мира не индексирован."
+    },
+    {
+      "id": "E034-44",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004947"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/analytics/code-audit/files/module/data/actor/templates/character/logData.js.md"
+        ]
+      },
+      "basis": "70:14–29; переход от компактного индекса к подробной карточке."
+    }
+  ]
+}

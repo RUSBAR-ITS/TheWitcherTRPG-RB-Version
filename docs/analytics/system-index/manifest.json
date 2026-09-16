@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.033-expansion",
+  "dataset_id": "task-0006.034-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-16",
     "branch": "rusbar-main",
-    "head": "71475a90dbac72e3abfc9ae9ba5473ec3c148045",
+    "head": "a9adc1a54188447999b49ab6b8655bd783960923",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -247,7 +247,7 @@
       "src-000611",
       "src-000613"
     ],
-    "semantic_scope": ".033: spell Region geometry/raw flags, manual placement/emanation, behaviors/Macro event handoff, GM query owner depth, visual seconds and Combat countdown. Prior IDs/processes preserved, external persistence/runtime and overall coverage partial.",
+    "semantic_scope": ".034: cumulative cross-check of .024–.033 and prior records; ten handoffs, source/prepared/payload and asynchronous contracts. Existing graph IDs/parts preserved; two item-header remaining descriptions clarified. Overall coverage partial.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -348,7 +348,7 @@
       "data/processes/expansion-033.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-033-queries.json",
+  "query_examples": "examples/expansion-034-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -626,7 +626,8 @@
     "docs/issues/potential/issue-00143.md": "426c4eb593f6f593c3e3a4322ad1363d346b4621fb5c6eed4d44524534d8b9f6",
     "docs/issues/potential/issue-00076.md": "8bd95414831ab0b20100ff2cc9b6de2f144f23dbfdf56939e56f00ea1780dde3",
     "docs/issues/potential/issue-00147.md": "99e6161c9d137e0b3229bc63d787e14bb8c6a45e09b3a64a5bd45e1bbe038a6f",
-    "docs/analytics/system-index/coverage-033.md": "707789452cebf77886e8dafd5e4702257aed67f53807ac3f34453732446ad9b5"
+    "docs/analytics/system-index/coverage-033.md": "707789452cebf77886e8dafd5e4702257aed67f53807ac3f34453732446ad9b5",
+    "docs/analytics/system-index/coverage-034.md": "466e1a5c32a9769e0dfbf39c74f087c0e6aa9712d35ead2703ff10afc2952740"
   },
   "next_ids": {
     "source": 616,
