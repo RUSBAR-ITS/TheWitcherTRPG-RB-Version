@@ -11,7 +11,7 @@
 | Задача и порция | [TASK-0003.032](../../../../../../tasks/task-0003.032.md), 13 файлов, 973 логические строки |
 | Запись перекрёстной сверки | [TASK-0003.032](../../../../review-log.md#task-0003032) |
 
-Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
+Актуализация [issue-00001](../../../../../../issues/closed/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -95,7 +95,7 @@ registerSheets импортирует default WitcherMonsterSheet и регис�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../issues/potential/issue-00004.md), [issue-00013](../../../../../../issues/potential/issue-00013.md), [issue-00018](../../../../../../issues/potential/issue-00018.md), [issue-00030](../../../../../../issues/potential/issue-00030.md), [issue-00032](../../../../../../issues/potential/issue-00032.md), [issue-00039](../../../../../../issues/potential/issue-00039.md), [issue-00040](../../../../../../issues/potential/issue-00040.md), [issue-00167](../../../../../../issues/potential/issue-00167.md), [issue-00177](../../../../../../issues/potential/issue-00177.md), [issue-00180](../../../../../../issues/potential/issue-00180.md), [issue-00192](../../../../../../issues/potential/issue-00192.md), [issue-00199](../../../../../../issues/potential/issue-00199.md), [issue-00203](../../../../../../issues/potential/issue-00203.md), [issue-00205](../../../../../../issues/potential/issue-00205.md), [issue-00206](../../../../../../issues/potential/issue-00206.md), [issue-00207](../../../../../../issues/potential/issue-00207.md), [issue-00208](../../../../../../issues/potential/issue-00208.md), [issue-00209](../../../../../../issues/potential/issue-00209.md). Прежние наблюдения дополнены по фактическим маршрутам. Новые остаются potential; игровые правила и код не изменялись.
+[issue-00004](../../../../../../issues/potential/issue-00004.md), [issue-00013](../../../../../../issues/potential/issue-00013.md), [issue-00018](../../../../../../issues/potential/issue-00018.md), [issue-00030](../../../../../../issues/potential/issue-00030.md), [issue-00032](../../../../../../issues/potential/issue-00032.md), [issue-00039](../../../../../../issues/potential/issue-00039.md), [issue-00040](../../../../../../issues/potential/issue-00040.md), [issue-00167](../../../../../../issues/potential/issue-00167.md), [issue-00177](../../../../../../issues/potential/issue-00177.md), [issue-00180](../../../../../../issues/potential/issue-00180.md), [issue-00192](../../../../../../issues/potential/issue-00192.md), [issue-00199](../../../../../../issues/potential/issue-00199.md), [issue-00203](../../../../../../issues/potential/issue-00203.md), [issue-00205](../../../../../../issues/closed/issue-00205.md), [issue-00206](../../../../../../issues/potential/issue-00206.md), [issue-00207](../../../../../../issues/potential/issue-00207.md), [issue-00208](../../../../../../issues/potential/issue-00208.md), [issue-00209](../../../../../../issues/potential/issue-00209.md). Прежние наблюдения дополнены по фактическим маршрутам. Новые остаются potential; игровые правила и код не изменялись.
 
 ## История актуализации
 

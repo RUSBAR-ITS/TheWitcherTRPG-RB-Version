@@ -11,7 +11,7 @@
 | Задача и порция | [TASK-0002](../../../../../tasks/task-0002-system-initialization.md); порция 4 |
 | Запись перекрёстной сверки | [Журнал сверок](../../../review-log.md) — TASK-0002, порция 4 |
 
-Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
+Актуализация [issue-00001](../../../../../issues/closed/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Актуализация issue-00330 — 2026-09-16
 
@@ -208,7 +208,7 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 
 ## Связанные проблемы
 
-[issue-00007](../../../../../issues/potential/issue-00007.md) — подписи ног; [issue-00001](../../../../../issues/open/issue-00001.md) — известное замечание о регистрации каталога и путях.
+[issue-00007](../../../../../issues/closed/issue-00007.md) — подписи ног; [issue-00001](../../../../../issues/closed/issue-00001.md) — известное замечание о регистрации каталога и путях.
 
 ## История актуализации
 
@@ -244,7 +244,7 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 
 ## Уточнение TASK-0003.012
 
-2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. armorPartsInfo читает modifiedStoppingPower/modifiedMaxStoppingPower, определённые в [SpData](../../../../../../module/data/item/templates/armor/spData.js). У них persisted:false: после base→derived 7/10 с улучшением2 превращаются в9/12, а source сохраняет7/10. Шесть ключей ArmorData совпали с helper; shield использует fallback reliability. Подписи ног по-прежнему относятся к [issue-00007](../../../../../issues/potential/issue-00007.md).
+2026-09-10, `d20d821e3a8a0a989ec503b0e97413a5a1431ad9`; исходник не изменён. armorPartsInfo читает modifiedStoppingPower/modifiedMaxStoppingPower, определённые в [SpData](../../../../../../module/data/item/templates/armor/spData.js). У них persisted:false: после base→derived 7/10 с улучшением2 превращаются в9/12, а source сохраняет7/10. Шесть ключей ArmorData совпали с helper; shield использует fallback reliability. Подписи ног по-прежнему относятся к [issue-00007](../../../../../issues/closed/issue-00007.md).
 
 Результат и границы — [сверка TASK-0003.012](../../../review-log.md#task-0003012).
 
@@ -254,7 +254,7 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 
 Полностью разобраны [templates/sheets/item/armor-sheet.hbs](../../../../../../templates/sheets/item/armor-sheet.hbs) и [templates/sheets/item/configuration/tabs/armorGeneral.hbs](../../../../../../templates/sheets/item/configuration/tabs/armorGeneral.hbs). Пары schema/name/value и подписи leftLeg/rightLeg в этих формах верны; issue-00007 по-прежнему локализована в armorPartsInfo инвентаря. Исполнены шесть вариантов location и двенадцать schema-полей конфигурации. Старый тест самого armorPartsInfo не повторялся; ключи локализации проверены по JSON.
 
-Отдельно установлено отсутствие четырёх русских подсказок в armorGeneral.hbs: [issue-00090](../../../../../issues/potential/issue-00090.md). Это не меняет правильную привязку полей к сторонам.
+Отдельно установлено отсутствие четырёх русских подсказок в armorGeneral.hbs: [issue-00090](../../../../../issues/closed/issue-00090.md). Это не меняет правильную привязку полей к сторонам.
 
 ## Уточнение TASK-0003.015
 

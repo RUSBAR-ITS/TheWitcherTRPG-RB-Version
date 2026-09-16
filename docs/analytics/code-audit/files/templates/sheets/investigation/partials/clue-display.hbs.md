@@ -81,7 +81,7 @@
 
 ## Связанные проблемы
 
-[issue-00016](../../../../../../../issues/potential/issue-00016.md) — подписи picklock/trapcraft в общем словаре навыков; группа 17. [issue-00148](../../../../../../../issues/potential/issue-00148.md), [issue-00149](../../../../../../../issues/potential/issue-00149.md), [issue-00150](../../../../../../../issues/potential/issue-00150.md), [issue-00151](../../../../../../../issues/potential/issue-00151.md), [issue-00152](../../../../../../../issues/potential/issue-00152.md), [issue-00153](../../../../../../../issues/potential/issue-00153.md), [issue-00154](../../../../../../../issues/potential/issue-00154.md). Проблемы находятся в обработчиках броска/редактирования и несовпадении числа столбцов. Ошибка selected из-за отсутствия item. при штатном вызове не обнаружена.
+[issue-00016](../../../../../../../issues/closed/issue-00016.md) — подписи picklock/trapcraft в общем словаре навыков; группа 17. [issue-00148](../../../../../../../issues/potential/issue-00148.md), [issue-00149](../../../../../../../issues/potential/issue-00149.md), [issue-00150](../../../../../../../issues/potential/issue-00150.md), [issue-00151](../../../../../../../issues/potential/issue-00151.md), [issue-00152](../../../../../../../issues/potential/issue-00152.md), [issue-00153](../../../../../../../issues/potential/issue-00153.md), [issue-00154](../../../../../../../issues/potential/issue-00154.md). Проблемы находятся в обработчиках броска/редактирования и несовпадении числа столбцов. Ошибка selected из-за отсутствия item. при штатном вызове не обнаружена.
 
 ## История актуализации
 

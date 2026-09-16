@@ -72,7 +72,7 @@ WitcherWeaponSheet/WitcherArmorSheet импортируют named associatedDiag
 
 ## Связанные проблемы
 
-[issue-00080](../../../../../../../issues/potential/issue-00080.md), [issue-00099](../../../../../../../issues/potential/issue-00099.md). 80 — общий offsetParent/Promise; 99 — противоположные подсказки в используемом partial.
+[issue-00080](../../../../../../../issues/potential/issue-00080.md), [issue-00099](../../../../../../../issues/closed/issue-00099.md). 80 — общий offsetParent/Promise; 99 — противоположные подсказки в используемом partial.
 
 ## История актуализации
 

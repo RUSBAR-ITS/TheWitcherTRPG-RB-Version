@@ -59,7 +59,7 @@ SkillItemData содержит восемь полей: attribute, value, label,
 
 DEFAULT_OPTIONS включает submitOnChange=true и closeOnSubmit=false. Своего handler, кнопки submit и локального вызова Item.update нет. Установленный DocumentSheetV2 проверяет isEditable, разворачивает formData.object, валидирует и ожидает _processSubmitData. Существующий документ обновляется; для несохранённого действует ветка canCreate/ошибки. Это внешний контракт, не подтверждение сохранения из одного HBS/input.
 
-openModifiers, повышение, собственные модификаторы и IP/training остаются следующими областями. Readonly totalSkills/totalProfSkills и старый activeEffectModifiers не записывают значения при рендере. [R004-08](../code-audit/cross-check-0002.md#r004-08), [issue-00189](../../issues/potential/issue-00189.md), [issue-00192](../../issues/potential/issue-00192.md#дополнительная-сверка-task-0003032). Семь переводов WITCHER.Actor.Skill.* не объявлены отсутствующими; позднее исправление [issue-00193](../../issues/potential/issue-00193.md) прочитано, en/ru подробно остаются .011.
+openModifiers, повышение, собственные модификаторы и IP/training остаются следующими областями. Readonly totalSkills/totalProfSkills и старый activeEffectModifiers не записывают значения при рендере. [R004-08](../code-audit/cross-check-0002.md#r004-08), [issue-00189](../../issues/potential/issue-00189.md), [issue-00192](../../issues/potential/issue-00192.md#дополнительная-сверка-task-0003032). Семь переводов WITCHER.Actor.Skill.* не объявлены отсутствующими; позднее исправление [issue-00193](../../issues/closed/issue-00193.md) прочитано, en/ru подробно остаются .011.
 
 ## Процессы и границы
 

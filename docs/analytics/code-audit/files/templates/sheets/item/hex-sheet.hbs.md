@@ -71,7 +71,7 @@ PARTS.main WitcherHexSheet. Контекст — item, selects.danger, showConfi
 
 ## Связанные проблемы
 
-[issue-00063](../../../../../../issues/potential/issue-00063.md), [issue-00136](../../../../../../issues/potential/issue-00136.md), [issue-00137](../../../../../../issues/potential/issue-00137.md). 63 — необъявленный checkbox; 136 — отсутствующий маршрут редактирования изображения; 137 — опасность.
+[issue-00063](../../../../../../issues/potential/issue-00063.md), [issue-00136](../../../../../../issues/potential/issue-00136.md), [issue-00137](../../../../../../issues/closed/issue-00137.md). 63 — необъявленный checkbox; 136 — отсутствующий маршрут редактирования изображения; 137 — опасность.
 
 ## История актуализации
 

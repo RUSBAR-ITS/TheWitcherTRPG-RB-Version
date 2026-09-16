@@ -736,7 +736,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00147.md"
+          "docs/issues/closed/issue-00147.md"
         ]
       },
       "basis": "Ссылка на существующую issue сопоставлена с кодом; без нового runtime подтверждения."

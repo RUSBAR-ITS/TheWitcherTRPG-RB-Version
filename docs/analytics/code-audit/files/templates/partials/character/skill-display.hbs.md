@@ -69,7 +69,7 @@ JS-функций и редактируемых полей нет. gte выби�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../issues/potential/issue-00016.md), [issue-00018](../../../../../../issues/potential/issue-00018.md). Путь commonsp, подписи и видимость соотнесены с существующими issues; новых по одной этой строке не создавалось.
+[issue-00004](../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../issues/closed/issue-00016.md), [issue-00018](../../../../../../issues/potential/issue-00018.md). Путь commonsp, подписи и видимость соотнесены с существующими issues; новых по одной этой строке не создавалось.
 
 ## История актуализации
 

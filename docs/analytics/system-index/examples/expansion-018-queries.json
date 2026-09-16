@@ -628,7 +628,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00090.md"
+          "docs/issues/closed/issue-00090.md"
         ]
       },
       "basis": "590:9–19 четыре отсутствующих ru hint, правильные поля сторон."
@@ -642,7 +642,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00007.md"
+          "docs/issues/closed/issue-00007.md"
         ]
       },
       "basis": "211:174/175 и179/180 числовые ключи верны, подписи ног поменяны."

@@ -73,7 +73,7 @@ PARTS.main класса WitcheProfessionSheet. Получает item,systemField
 
 ## Связанные проблемы
 
-[issue-00016](../../../../../../issues/potential/issue-00016.md), [issue-00112](../../../../../../issues/potential/issue-00112.md), [issue-00118](../../../../../../issues/potential/issue-00118.md). Пустой stat — граница модели/Actor-кнопки; сама форма его не преобразует в коде HBS.
+[issue-00016](../../../../../../issues/closed/issue-00016.md), [issue-00112](../../../../../../issues/potential/issue-00112.md), [issue-00118](../../../../../../issues/potential/issue-00118.md). Пустой stat — граница модели/Actor-кнопки; сама форма его не преобразует в коде HBS.
 
 ## История актуализации
 

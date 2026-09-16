@@ -82,7 +82,7 @@ JavaScript-функций нет. Шаблон вычисляет условия
 
 ## Связанные проблемы
 
-[issue-00061](../../../../../../../../issues/potential/issue-00061.md) — отсутствует выбор навыка itemUse; [issue-00062](../../../../../../../../issues/potential/issue-00062.md) — заголовок spell подписан ranged.
+[issue-00061](../../../../../../../../issues/potential/issue-00061.md) — отсутствует выбор навыка itemUse; [issue-00062](../../../../../../../../issues/closed/issue-00062.md) — заголовок spell подписан ranged.
 
 ## История актуализации
 

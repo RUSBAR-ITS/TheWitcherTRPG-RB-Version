@@ -11,7 +11,7 @@
 | Задача и порция | [TASK-0003.011](../../../../../../../tasks/task-0003.011.md), одна порция из семи файлов |
 | Запись перекрёстной сверки | [TASK-0003.011](../../../../../review-log.md#task-0003011) |
 
-Актуализация [issue-00001](../../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
+Актуализация [issue-00001](../../../../../../../issues/closed/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -88,7 +88,7 @@ create отправляет type=base либо temporaryItemImprovement; name, i
 
 ## Связанные проблемы
 
-[issue-00056](../../../../../../../issues/potential/issue-00056.md), [issue-00059](../../../../../../../issues/potential/issue-00059.md), [issue-00061](../../../../../../../issues/potential/issue-00061.md), [issue-00062](../../../../../../../issues/potential/issue-00062.md). В issue-00059 конфигурация является контрольным маршрутом ядра, обход hook относится к основному WitcherItemSheet.
+[issue-00056](../../../../../../../issues/potential/issue-00056.md), [issue-00059](../../../../../../../issues/potential/issue-00059.md), [issue-00061](../../../../../../../issues/potential/issue-00061.md), [issue-00062](../../../../../../../issues/closed/issue-00062.md). В issue-00059 конфигурация является контрольным маршрутом ядра, обход hook относится к основному WitcherItemSheet.
 
 ## История актуализации
 
@@ -143,7 +143,7 @@ Hex/Ritual используют обычную конфигурацию чере
 
 2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
 
-_prepareContext передаёт CONFIG.WITCHER как context.config. general.hbs:37–38 и spellGeneral.hbs:47 используют options=config.damageTypes, localize=true; это подтверждает потребителя WITCHER.DamageType.silver в вариантах формы. В ru перевод находится по другому пути WITCHER.Damage.silver, поэтому настоящий Localization возвращает Silver из en ([docs/issues/potential/issue-00317.md](../../../../../../../issues/potential/issue-00317.md)). Полные описания [en](../../../../lang/en.json.md) и [ru](../../../../lang/ru.json.md) дополняют прежнюю точечную проверку. Полный DOM formGroup и сохранение Item не запускались.
+_prepareContext передаёт CONFIG.WITCHER как context.config. general.hbs:37–38 и spellGeneral.hbs:47 используют options=config.damageTypes, localize=true; это подтверждает потребителя WITCHER.DamageType.silver в вариантах формы. В ru перевод находится по другому пути WITCHER.Damage.silver, поэтому настоящий Localization возвращает Silver из en ([docs/issues/closed/issue-00317.md](../../../../../../../issues/closed/issue-00317.md)). Полные описания [en](../../../../lang/en.json.md) и [ru](../../../../lang/ru.json.md) дополняют прежнюю точечную проверку. Полный DOM formGroup и сохранение Item не запускались.
 
 [Результаты и ограничения сверки](../../../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
 

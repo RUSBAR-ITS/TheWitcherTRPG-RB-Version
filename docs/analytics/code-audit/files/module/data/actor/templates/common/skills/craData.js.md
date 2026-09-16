@@ -88,7 +88,7 @@
 
 ## Связанные проблемы
 
-[issue-00015](../../../../../../../../../issues/potential/issue-00015.md), [issue-00018](../../../../../../../../../issues/potential/issue-00018.md), [issue-00016](../../../../../../../../../issues/potential/issue-00016.md) — наблюдения остаются potential.
+[issue-00015](../../../../../../../../../issues/potential/issue-00015.md), [issue-00018](../../../../../../../../../issues/potential/issue-00018.md), [issue-00016](../../../../../../../../../issues/closed/issue-00016.md) — наблюдения остаются potential.
 
 ## История актуализации
 

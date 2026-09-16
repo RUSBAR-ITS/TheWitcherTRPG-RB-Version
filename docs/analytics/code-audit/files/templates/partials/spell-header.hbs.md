@@ -73,7 +73,7 @@
 
 ## Связанные проблемы
 
-[issue-00063](../../../../../issues/potential/issue-00063.md), [issue-00064](../../../../../issues/potential/issue-00064.md), [issue-00137](../../../../../issues/potential/issue-00137.md). 63 — checkbox вне схемы; 64 — пустая модель не исправляется отображением select; 137 — source Water в потребителе.
+[issue-00063](../../../../../issues/potential/issue-00063.md), [issue-00064](../../../../../issues/potential/issue-00064.md), [issue-00137](../../../../../issues/closed/issue-00137.md). 63 — checkbox вне схемы; 64 — пустая модель не исправляется отображением select; 137 — source Water в потребителе.
 
 ## История актуализации
 

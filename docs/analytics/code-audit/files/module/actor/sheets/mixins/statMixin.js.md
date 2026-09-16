@@ -85,7 +85,7 @@
 
 ## Связанные проблемы
 
-[issue-00012](../../../../../../../issues/potential/issue-00012.md), [issue-00035](../../../../../../../issues/potential/issue-00035.md), [issue-00036](../../../../../../../issues/potential/issue-00036.md), [issue-00196](../../../../../../../issues/potential/issue-00196.md), [issue-00197](../../../../../../../issues/potential/issue-00197.md), [issue-00199](../../../../../../../issues/potential/issue-00199.md), [issue-00193](../../../../../../../issues/potential/issue-00193.md). Предыдущие проблемы расчёта связаны с их потребителями; русский savingThrow добавлен к уточнённой языковой карточке.
+[issue-00012](../../../../../../../issues/potential/issue-00012.md), [issue-00035](../../../../../../../issues/potential/issue-00035.md), [issue-00036](../../../../../../../issues/potential/issue-00036.md), [issue-00196](../../../../../../../issues/potential/issue-00196.md), [issue-00197](../../../../../../../issues/potential/issue-00197.md), [issue-00199](../../../../../../../issues/potential/issue-00199.md), [issue-00193](../../../../../../../issues/closed/issue-00193.md). Предыдущие проблемы расчёта связаны с их потребителями; русский savingThrow добавлен к уточнённой языковой карточке.
 
 ## История актуализации
 

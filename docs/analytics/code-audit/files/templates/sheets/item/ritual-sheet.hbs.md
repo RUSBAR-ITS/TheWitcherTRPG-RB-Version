@@ -86,7 +86,7 @@ PARTS.main WitcherRitualSheet. Контекст содержит item.system и 
 
 ## Связанные проблемы
 
-[issue-00063](../../../../../../issues/potential/issue-00063.md), [issue-00098](../../../../../../issues/potential/issue-00098.md), [issue-00129](../../../../../../issues/potential/issue-00129.md), [issue-00130](../../../../../../issues/potential/issue-00130.md), [issue-00131](../../../../../../issues/potential/issue-00131.md), [issue-00132](../../../../../../issues/potential/issue-00132.md), [issue-00136](../../../../../../issues/potential/issue-00136.md), [issue-00137](../../../../../../issues/potential/issue-00137.md). 98 дополнена обеими кнопками; 129–132 фиксируют несовпадения формы/модели/обработчиков; 136/137 — изображения и подписи.
+[issue-00063](../../../../../../issues/potential/issue-00063.md), [issue-00098](../../../../../../issues/closed/issue-00098.md), [issue-00129](../../../../../../issues/potential/issue-00129.md), [issue-00130](../../../../../../issues/potential/issue-00130.md), [issue-00131](../../../../../../issues/potential/issue-00131.md), [issue-00132](../../../../../../issues/potential/issue-00132.md), [issue-00136](../../../../../../issues/potential/issue-00136.md), [issue-00137](../../../../../../issues/closed/issue-00137.md). 98 дополнена обеими кнопками; 129–132 фиксируют несовпадения формы/модели/обработчиков; 136/137 — изображения и подписи.
 
 ## История актуализации
 

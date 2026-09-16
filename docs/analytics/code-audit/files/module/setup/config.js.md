@@ -11,9 +11,11 @@
 | Задача и порция | [TASK-0002](../../../../../tasks/task-0002-system-initialization.md); порция 2 |
 | Запись перекрёстной сверки | [Журнал сверок](../../../review-log.md) — TASK-0002, порция 2 |
 
-Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
+Актуализация [issue-00001](../../../../../issues/closed/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Актуализация issue-00330 — 2026-09-16
+
+Уточнение 2026-09-16: карта diagramTypeLabels покрывает 10 из 13 типов селекторов; отсутствуют potion/decoction/oil. Шаблон инвентаря обращается к карте и для этих формул. [Issue-00178](../../../../../issues/potential/issue-00178.md) остаётся частично исправленной; прежняя проверка десяти подписей не покрывала все типы.
 
 Версия 14.3.1.00007, dev, база 031fbb8691ad32ab01fad43253c8736071bb2f8b. [Реализация и проверки](../../../../../issues/open/issue-00330.md#реализация-и-проверки--143100007). Ниже сохранён исторический разбор: его сообщения об исправленных подписях/пропусках относятся к прежнему коду. Механики, технические значения и компедиумы этой правкой не изменены.
 
@@ -362,7 +364,7 @@
 
 Все 52 записи skillMap сопоставлены с семью группами реальной схемы CommonActorData по attribute.name/name: пути существуют, лишних или недостающих навыков не найдено. Полные группы и индекс путей из компедиумов — в [карточке skills](../data/actor/templates/common/skills/skillsData.js.md). Ключ commonspeech отличается от name=commonsp; дополненная [issue-00004](../../../../../issues/potential/issue-00004.md) содержит проявления в подсказках, конфигурации, кнопках, формулах и трёх JSON.
 
-Сверка label/rollLabel с восемью языками обнаружила отсутствующие ключи picklock.label и trapcraft.label/rollLabel; подробности — [issue-00016](../../../../../issues/potential/issue-00016.md). Стоимость из magicSkills/skillMap используется в levelUpSkill; наблюдение расхода магических очков записано в [issue-00017](../../../../../issues/potential/issue-00017.md). Это уточнение потребителей справочника, не изменение его значений.
+Сверка label/rollLabel с восемью языками обнаружила отсутствующие ключи picklock.label и trapcraft.label/rollLabel; подробности — [issue-00016](../../../../../issues/closed/issue-00016.md). Стоимость из magicSkills/skillMap используется в levelUpSkill; наблюдение расхода магических очков записано в [issue-00017](../../../../../issues/potential/issue-00017.md). Это уточнение потребителей справочника, не изменение его значений.
 
 Результаты и пределы проверок — в [журнале TASK-0003.002](../../../review-log.md#task-0003002).
 
@@ -428,7 +430,7 @@
 
 2026-09-10, `07237960627bf7debc2b4283aa55d1a8c5d1bb8b`; содержимое исходника совпадает с предыдущим срезом.
 
-Для [общей Item-конфигурации](../../templates/sheets/item/configuration/tabs/general.hbs.md) сопоставлены attackOptions и списки навыков. Вариант itemUse присутствует в WITCHER.attackOptions со skills=['trapcraft']; схема содержит itemUseAttackSkill, но шаблон его не выводит. Исходные getItemAttack/начало weaponAttack на новой модели воспроизвели отсутствие навыка и уведомление до броска: [issue-00061](../../../../../issues/potential/issue-00061.md). Подпись spell отдельно существует в en/ru, однако заголовок третьей секции берёт ranged: [issue-00062](../../../../../issues/potential/issue-00062.md). Значения конфигурации не менялись.
+Для [общей Item-конфигурации](../../templates/sheets/item/configuration/tabs/general.hbs.md) сопоставлены attackOptions и списки навыков. Вариант itemUse присутствует в WITCHER.attackOptions со skills=['trapcraft']; схема содержит itemUseAttackSkill, но шаблон его не выводит. Исходные getItemAttack/начало weaponAttack на новой модели воспроизвели отсутствие навыка и уведомление до броска: [issue-00061](../../../../../issues/potential/issue-00061.md). Подпись spell отдельно существует в en/ru, однако заголовок третьей секции берёт ranged: [issue-00062](../../../../../issues/closed/issue-00062.md). Значения конфигурации не менялись.
 
 [TASK-0003.011 — сценарии и сверка](../../../review-log.md#task-0003011).
 
@@ -613,7 +615,7 @@ WITCHER.magic сопоставляет 4 класса spell→spellcast, hex→h
 
 2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
 
-В [полном инвентаре en](../../lang/en.json.md) и [сопоставлении ru](../../lang/ru.json.md) перечислены ключи справочников и их строковые потребители. Настоящий мастер эффектов на config и реальной схеме damageTypeModification разрешил динамические группы; два label навыков с ошибочным регистром остаются issue-00016. Для damageTypes.silver label=WITCHER.DamageType.silver возвращает en Silver, поскольку ru содержит только WITCHER.Damage.silver; [docs/issues/potential/issue-00317.md](../../../../../issues/potential/issue-00317.md). 120 ключей label/description трёх состояний старого WITCHER.Crit отсутствуют в en/ru; прямого потребителя config.Crit в module/templates не найдено. Поэтому эти 120 ключей не объявлены 120 ошибками текущего UI.
+В [полном инвентаре en](../../lang/en.json.md) и [сопоставлении ru](../../lang/ru.json.md) перечислены ключи справочников и их строковые потребители. Настоящий мастер эффектов на config и реальной схеме damageTypeModification разрешил динамические группы; два label навыков с ошибочным регистром остаются issue-00016. Для damageTypes.silver label=WITCHER.DamageType.silver возвращает en Silver, поскольку ru содержит только WITCHER.Damage.silver; [docs/issues/closed/issue-00317.md](../../../../../issues/closed/issue-00317.md). 120 ключей label/description трёх состояний старого WITCHER.Crit отсутствуют в en/ru; прямого потребителя config.Crit в module/templates не найдено. Поэтому эти 120 ключей не объявлены 120 ошибками текущего UI.
 
 [Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
 

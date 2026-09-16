@@ -87,7 +87,7 @@
 
 ## Связанные проблемы
 
-[issue-00024](../../../../../../../../issues/potential/issue-00024.md) — лист заменяет general.lifeEvents массивом. [issue-00014](../../../../../../../../issues/potential/issue-00014.md) касается другой, числовой system.reputation; ключ WITCHER.Reputation этой фабрики найден.
+[issue-00024](../../../../../../../../issues/potential/issue-00024.md) — лист заменяет general.lifeEvents массивом. [issue-00014](../../../../../../../../issues/closed/issue-00014.md) касается другой, числовой system.reputation; ключ WITCHER.Reputation этой фабрики найден.
 
 ## История актуализации
 

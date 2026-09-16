@@ -78,7 +78,7 @@ selfEffects здесь ожидает массив {effect,statusEffect}; в а�
 
 ## Связанные проблемы
 
-[issue-00133](../../../../../../issues/potential/issue-00133.md), [issue-00134](../../../../../../issues/potential/issue-00134.md), [issue-00135](../../../../../../issues/potential/issue-00135.md), [issue-00137](../../../../../../issues/potential/issue-00137.md), [issue-00249](../../../../../../issues/potential/issue-00249.md), [issue-00253](../../../../../../issues/potential/issue-00253.md). Полная карточка scripts/chat.js остаётся .040; здесь разобраны только потребители трёх типов элементов результата.
+[issue-00133](../../../../../../issues/potential/issue-00133.md), [issue-00134](../../../../../../issues/potential/issue-00134.md), [issue-00135](../../../../../../issues/potential/issue-00135.md), [issue-00137](../../../../../../issues/closed/issue-00137.md), [issue-00249](../../../../../../issues/potential/issue-00249.md), [issue-00253](../../../../../../issues/potential/issue-00253.md). Полная карточка scripts/chat.js остаётся .040; здесь разобраны только потребители трёх типов элементов результата.
 
 ## История актуализации
 

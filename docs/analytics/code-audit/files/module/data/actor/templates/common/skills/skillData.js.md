@@ -104,7 +104,7 @@ NumberField не задаёт ограничения диапазона и це�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../../../../issues/potential/issue-00016.md), [issue-00017](../../../../../../../../../issues/potential/issue-00017.md), [issue-00018](../../../../../../../../../issues/potential/issue-00018.md). Все остаются potential; код системы не исправлялся.
+[issue-00004](../../../../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../../../../issues/closed/issue-00016.md), [issue-00017](../../../../../../../../../issues/potential/issue-00017.md), [issue-00018](../../../../../../../../../issues/potential/issue-00018.md). Все остаются potential; код системы не исправлялся.
 
 ## История актуализации
 

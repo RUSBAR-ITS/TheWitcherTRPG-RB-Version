@@ -82,7 +82,7 @@ JavaScript-методов нет. if item.system.associatedDiagram.name выби
 
 ## Связанные проблемы
 
-[issue-00096](../../../../../issues/potential/issue-00096.md), [issue-00099](../../../../../issues/potential/issue-00099.md), [issue-00080](../../../../../issues/potential/issue-00080.md). Неверный путь текста, перепутанные подсказки и внешний drop.
+[issue-00096](../../../../../issues/potential/issue-00096.md), [issue-00099](../../../../../issues/closed/issue-00099.md), [issue-00080](../../../../../issues/potential/issue-00080.md). Неверный путь текста, перепутанные подсказки и внешний drop.
 
 ## История актуализации
 

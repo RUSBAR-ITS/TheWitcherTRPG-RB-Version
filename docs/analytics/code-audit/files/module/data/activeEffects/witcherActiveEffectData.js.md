@@ -116,7 +116,7 @@ Defaults/схема не доказывают весь submit и доставк�
 
 2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
 
-Уточнение прежней строки зависимостей: label заданы у пяти собственных полей, но все пять присутствуют только в en. Для applyAfterCalculations ключ WITCHER.Effect.applyAfterCalculations отсутствует в ru. Настоящий класс импортирован поверх ActiveEffectTypeDataModel ядра; label из schema.fields проверен настоящим Localization с fallback. [docs/issues/potential/issue-00318.md](../../../../../../issues/potential/issue-00318.md) описывает перевод, отдельно от issue-00043 о фазах/update. Полные словари: [en](../../../lang/en.json.md), [ru](../../../lang/ru.json.md).
+Уточнение прежней строки зависимостей: label заданы у пяти собственных полей, но все пять присутствуют только в en. Для applyAfterCalculations ключ WITCHER.Effect.applyAfterCalculations отсутствует в ru. Настоящий класс импортирован поверх ActiveEffectTypeDataModel ядра; label из schema.fields проверен настоящим Localization с fallback. [docs/issues/closed/issue-00318.md](../../../../../../issues/closed/issue-00318.md) описывает перевод, отдельно от issue-00043 о фазах/update. Полные словари: [en](../../../lang/en.json.md), [ru](../../../lang/ru.json.md).
 
 [Результаты и ограничения сверки](../../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
 

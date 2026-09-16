@@ -569,7 +569,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00119.md"
+          "docs/issues/closed/issue-00119.md"
         ]
       },
       "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."

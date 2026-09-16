@@ -2,9 +2,9 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "031fbb8691ad32ab01fad43253c8736071bb2f8b",
+  "source_head": "52a2b64f82b0f60817a7f7d7b6ad34980510b6f9",
   "index_dataset": "task-0006.034-expansion",
-  "source_hash": "c906c5ef0cbdecd09190b709d034c550666f2e56661bf96b7eff46acd7f75d73",
+  "source_hash": "0242740976e7ebdbed62afdbfd7fce8c964e982cbad24bb9cc796aa712786951",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
   "blocks": [
@@ -4258,7 +4258,7 @@
   "current_index": {
     "task": "TASK-0006.034",
     "date": "2026-09-16",
-    "source_head": "031fbb8691ad32ab01fad43253c8736071bb2f8b",
+    "source_head": "52a2b64f82b0f60817a7f7d7b6ad34980510b6f9",
     "dataset": "task-0006.034-expansion",
     "counts": {
       "sources": 615,

@@ -11,7 +11,7 @@
 | Задача и порция | [TASK-0003.010](../../../../../tasks/task-0003.010.md), одна порция из восьми файлов |
 | Запись перекрёстной сверки | [TASK-0003.010](../../../review-log.md#task-0003010) |
 
-Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
+Актуализация [issue-00001](../../../../../issues/closed/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Назначение файла
 
@@ -113,7 +113,7 @@ isItemEffect предоставляется ядром при подготовк
 
 2026-09-12, rusbar-main, 4b9951094106e26d9274bbd5d5e8e7a709cfcf24. Исходник не менялся.
 
-Системная вкладка добавляет id=systemSpecific к TABS.sheet и наследует ядровой labelPrefix=EFFECT.TABS; так возникает ключ EFFECT.TABS.systemSpecific, присутствующий в [en](../../lang/en.json.md) и [ru](../../lang/ru.json.md). _prepareContext передаёт systemFields, а system-specific.hbs запрашивает formGroup applyAfterCalculations с localize=true. У этой подписи нет ru-строки ([docs/issues/potential/issue-00318.md](../../../../../issues/potential/issue-00318.md)); настоящий localize возвращает английский fallback. Это не изменение мастера, фаз или сохранения.
+Системная вкладка добавляет id=systemSpecific к TABS.sheet и наследует ядровой labelPrefix=EFFECT.TABS; так возникает ключ EFFECT.TABS.systemSpecific, присутствующий в [en](../../lang/en.json.md) и [ru](../../lang/ru.json.md). _prepareContext передаёт systemFields, а system-specific.hbs запрашивает formGroup applyAfterCalculations с localize=true. У этой подписи нет ru-строки ([docs/issues/closed/issue-00318.md](../../../../../issues/closed/issue-00318.md)); настоящий localize возвращает английский fallback. Это не изменение мастера, фаз или сохранения.
 
 [Результаты и ограничения сверки](../../../review-log.md#task-0003051). Правки относятся к документации; мир, браузер, БД и исходники не менялись.
 

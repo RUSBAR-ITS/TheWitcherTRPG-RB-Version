@@ -11,7 +11,7 @@
 | Задача и порция | [TASK-0003.044](../../../../../../tasks/task-0003.044.md), 9 файлов / 603 логических строк; данный файл — 109 |
 | Запись перекрёстной сверки | [TASK-0003.044](../../../../review-log.md#task-0003044) |
 
-Актуализация [issue-00001](../../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
+Актуализация [issue-00001](../../../../../../issues/closed/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
 ## Актуализация issue-00330 — 2026-09-16
 
@@ -105,7 +105,7 @@ createBaseDamageObject не делает копию properties: последую
 
 ## Связанные проблемы
 
-[00070](../../../../../../issues/potential/issue-00070.md), [00184](../../../../../../issues/potential/issue-00184.md), [00247](../../../../../../issues/potential/issue-00247.md), [00257](../../../../../../issues/potential/issue-00257.md), [00293](../../../../../../issues/potential/issue-00293.md) HTML, [00295](../../../../../../issues/potential/issue-00295.md) неизвестный статус, [00296](../../../../../../issues/potential/issue-00296.md) ключ заголовка.
+[00070](../../../../../../issues/potential/issue-00070.md), [00184](../../../../../../issues/potential/issue-00184.md), [00247](../../../../../../issues/potential/issue-00247.md), [00257](../../../../../../issues/potential/issue-00257.md), [00293](../../../../../../issues/potential/issue-00293.md) HTML, [00295](../../../../../../issues/potential/issue-00295.md) неизвестный статус, [00296](../../../../../../issues/closed/issue-00296.md) ключ заголовка.
 
 [issue-00297](../../../../../../issues/potential/issue-00297.md) — разрыв формы properties в прямом rollOnlyDmg.
 
