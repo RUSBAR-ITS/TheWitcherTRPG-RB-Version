@@ -1,0 +1,675 @@
+{
+  "dataset": "task-0006.029-expansion",
+  "basis": "Ожидания установлены чтением JS/HBS/аудита/ядра до CLI; ID взяты из канонических записей.",
+  "cases": [
+    {
+      "id": "E029-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.professionMixin.doProfessionSkillRoll",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004890"
+        ]
+      },
+      "basis": "20:351–379 собственный метод обычного броска."
+    },
+    {
+      "id": "E029-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.professionMixin.doProfessionSkillUsage",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000875"
+        ]
+      },
+      "basis": "20:262–321 прежний ID функции, полный producer."
+    },
+    {
+      "id": "E029-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "profession-attack.hbs.input[customDmg]",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004928"
+        ]
+      },
+      "basis": "507:146 input, callback20:135 возвращает value."
+    },
+    {
+      "id": "E029-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "doProfession",
+        "--scope",
+        "src-000020",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000875",
+          "ent-004887",
+          "ent-004888",
+          "ent-004889",
+          "ent-004890"
+        ]
+      },
+      "basis": "20:45/232/262/323/351 пять собственных реализаций."
+    },
+    {
+      "id": "E029-05",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-004885"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004885"
+        ]
+      },
+      "basis": "45:31 skillMixin; source адрес исправлен, ID сохранён."
+    },
+    {
+      "id": "E029-06",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004884",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000875",
+          "ent-004887",
+          "ent-004889",
+          "ent-004890"
+        ]
+      },
+      "basis": "20:35/37/39/41 все четыре вызова без await/return."
+    },
+    {
+      "id": "E029-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004887",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004914"
+        ]
+      },
+      "basis": "20:89–92 await renderTemplate конкретногоHBS."
+    },
+    {
+      "id": "E029-08",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004890",
+        "--direction",
+        "in",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000875",
+          "ent-004884",
+          "ent-004889"
+        ]
+      },
+      "basis": "20:41/278/345 входы отличаются ожиданием и config."
+    },
+    {
+      "id": "E029-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004888",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "20:256–259 weaponAttack без await; chooser не ждёт дочерней атаки."
+    },
+    {
+      "id": "E029-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004887",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000296",
+          "ent-000369",
+          "ent-003945"
+        ]
+      },
+      "basis": "20:158 undefined name,210 локация,229 await roll."
+    },
+    {
+      "id": "E029-11",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004907",
+        "--direction",
+        "out",
+        "--relation",
+        "passes"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000783",
+          "ent-000806"
+        ]
+      },
+      "basis": "20:315–318 payload к прежнему receiver, сеть и helper не ожидаются отправителем."
+    },
+    {
+      "id": "E029-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004813",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004890"
+        ]
+      },
+      "basis": "20:357 level||0."
+    },
+    {
+      "id": "E029-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004811",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004887"
+        ]
+      },
+      "basis": "20:155 prepared stat.value."
+    },
+    {
+      "id": "E029-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004831",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000875"
+        ]
+      },
+      "basis": "20:276 характеристика цели."
+    },
+    {
+      "id": "E029-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004832",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000875"
+        ]
+      },
+      "basis": "20:294 min rollOver."
+    },
+    {
+      "id": "E029-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004839",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004889"
+        ]
+      },
+      "basis": "20:346 выбранный порог до броска."
+    },
+    {
+      "id": "E029-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004813",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "25:184 replacement обходит baseAttackFormula."
+    },
+    {
+      "id": "E029-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004825",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "20:264–271 фактическая ветвь смотрит applyOnTarget, не applySelf."
+    },
+    {
+      "id": "E029-19",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003915",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "20:74–78 attack payload не читает UUID."
+    },
+    {
+      "id": "E029-20",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000818",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "20:300–318 только payload ActiveEffect, не source update Actor."
+    },
+    {
+      "id": "E029-21",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004905",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000875"
+        ]
+      },
+      "basis": "20:300–313 подготовленный документ, отдельно от доставки/сохранения."
+    },
+    {
+      "id": "E029-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000409",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "choose"
+        ],
+        "next_steps": [
+          "attack",
+          "usage",
+          "threshold",
+          "regular"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "20:34–41 порядок флагов."
+    },
+    {
+      "id": "E029-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000411",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "entries"
+        ],
+        "next_steps": [
+          "launch",
+          "prompt"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "20:327 одна запись, иначе prompt включая0."
+    },
+    {
+      "id": "E029-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000413",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "prompt"
+        ],
+        "next_steps": [
+          "choice"
+        ],
+        "next_exits": [
+          "cancelled",
+          "failed"
+        ]
+      },
+      "basis": "20:244–253 rejectClose=true."
+    },
+    {
+      "id": "E029-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000414",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "target"
+        ],
+        "next_steps": [
+          "feature"
+        ],
+        "next_exits": [
+          "skipped",
+          "failed"
+        ]
+      },
+      "basis": "20:264–268 цель отсутствует: notification+return."
+    },
+    {
+      "id": "E029-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000414",
+        "--offset",
+        "4",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "success"
+        ],
+        "next_steps": [
+          "effect"
+        ],
+        "next_exits": [
+          "skipped",
+          "failed"
+        ]
+      },
+      "basis": "20:284 строго rollOver>0."
+    },
+    {
+      "id": "E029-27",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000415",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "amount"
+        ],
+        "next_steps": [
+          "dice",
+          "construct"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "20:296 includes('d') определяет вычисление."
+    },
+    {
+      "id": "E029-28",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000415",
+        "--offset",
+        "5",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "query"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "20:315 query не ожидается."
+    },
+    {
+      "id": "E029-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004931"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00239.md"
+        ]
+      },
+      "basis": "Связь с прежним issue, без новой регистрации/игрового воспроизведения."
+    },
+    {
+      "id": "E029-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004937"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00294.md"
+        ]
+      },
+      "basis": "Связь с прежним issue, без новой регистрации/игрового воспроизведения."
+    },
+    {
+      "id": "E029-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004934"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00236.md"
+        ]
+      },
+      "basis": "Связь с прежним issue, без новой регистрации/игрового воспроизведения."
+    },
+    {
+      "id": "E029-32",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004933"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00242.md"
+        ]
+      },
+      "basis": "Связь с прежним issue, без новой регистрации/игрового воспроизведения."
+    },
+    {
+      "id": "E029-33",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004936"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00115.md"
+        ]
+      },
+      "basis": "Связь с прежним issue, без новой регистрации/игрового воспроизведения."
+    },
+    {
+      "id": "E029-34",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004937"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "20:289–313 строки/имя/миграция требуют конкретного документа и внешнегоядра."
+    },
+    {
+      "id": "E029-35",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-004884",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "Глубина1 не раскрывает дочерние roll/weapon/AE/чат процессы."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/client/documents/chat-message.mjs",
+      "lines": "231–274",
+      "scope": "getSpeaker: Actor/Token либо controlled token/user.character/user.",
+      "sha256": "446c041c59b3f097e5c3358a528181e368e072be9cfe55fa928fa92932e55c5b"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/dialog.mjs",
+      "lines": "369–375,405–426",
+      "scope": "prompt delegates wait; rejectClose=true: закрытие отвергает Promise, submit ожидает callback.",
+      "sha256": "4e2d299eaa931d96df1839e64a2defc60b6b95ee89a3e1d32d60b99040899343"
+    },
+    {
+      "path": "/opt/foundryvtt/common/documents/active-effect.mjs",
+      "lines": "44–84,152–203,213–220,229–239",
+      "scope": "Legacy changes→system.changes, mode→type, JSON value→объект; rounds→duration.value/units; icon не переносится в img.",
+      "sha256": "e8a1c26a2c84e415f814146f3e632f28fe6f3504920262e324c9ef071dfc5bf5"
+    }
+  ]
+}

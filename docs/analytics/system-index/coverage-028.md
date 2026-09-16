@@ -28,7 +28,7 @@
 | [module/actor/sheets/WitcherCharacterSheet.js](../../../module/actor/sheets/WitcherCharacterSheet.js) (src-000029) | Выбор/enriched профессии и totalProfSkills поверх .027; прочие подготовки partial. |
 | [module/actor/sheets/WitcherMonsterSheet.js](../../../module/actor/sheets/WitcherMonsterSheet.js) (src-000031) | Выбор первого profession, отсутствие Item enrichment, PART template; прочие методы partial. |
 | [module/actor/sheets/mixins/itemMixin.js](../../../module/actor/sheets/mixins/itemMixin.js) (src-000043) | Конкретные inline skill fields и professionSkills Drop, прежние общие процессы .013; полный source/server outcome за границей. |
-| [module/actor/sheets/mixins/statMixin.js](../../../module/actor/sheets/mixins/statMixin.js) (src-000046) | Только profession-roll listener и связь с Actor входом; другие actions покрыты прежними порциями частично. |
+| [module/actor/sheets/mixins/skillMixin.js](../../../module/actor/sheets/mixins/skillMixin.js) (src-000045) | Только profession-roll listener и связь с Actor входом; другие actions покрыты прежними порциями частично. |
 
 ## Владельцы, слоты и значения
 
@@ -204,3 +204,4 @@ calc_total_skills_profession вызывается Character preparation, не у
 ## Проверки
 
 Проверены все 236 тестовых методов в 27 модулях и 698 CLI-примеров, включая 33 новых по IQ-01–IQ-08; ошибок в итоговых результатах нет. Исторические проверки выполняются на предусмотренных прежними тестами срезах. Это проверки справочника по исходникам, без запуска игрового сценария. Перекрёстно сверены source/owner, оба конца отношений, readers/writers, lookup/CRUD, ветви/выходы, refs и facets/роли. [Протокол](review-log.md#task-0006028). Следующая — [TASK-0006.029](../../tasks/task-0006.029.md); родитель in-progress.
+Уточнение адреса при TASK-0006.029: profession-roll listener находится в skillMixin.js:31 (src-000045). Исправлены источник прежнего event и трёх связей; их ID и назначение сохранены. Исторические показатели этой порции не пересчитаны.

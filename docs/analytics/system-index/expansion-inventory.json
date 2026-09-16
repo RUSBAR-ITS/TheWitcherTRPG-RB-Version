@@ -2,8 +2,8 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "17a731d5eaca5827bbcb1375a68a21934d05b760",
-  "index_dataset": "task-0006.028-expansion",
+  "source_head": "ea39a61d3c4e222659abde172ef63982a2f42c66",
+  "index_dataset": "task-0006.029-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -1942,7 +1942,7 @@
           "source": "src-000020",
           "path": "module/actor/mixins/professionMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000061",
@@ -2086,7 +2086,7 @@
           "source": "src-000507",
           "path": "templates/dialog/combat/profession-attack.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000524",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.028",
+    "task": "TASK-0006.029",
     "date": "2026-09-16",
-    "source_head": "17a731d5eaca5827bbcb1375a68a21934d05b760",
-    "dataset": "task-0006.028-expansion",
+    "source_head": "ea39a61d3c4e222659abde172ef63982a2f42c66",
+    "dataset": "task-0006.029-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4885,
-      "relations": 13350,
-      "processes": 408
+      "entities": 4936,
+      "relations": 13603,
+      "processes": 416
     },
-    "primary_count": 195,
-    "neighbor_count": 88,
-    "catalog_only_definitions": 332,
-    "boundary_count": 367,
+    "primary_count": 197,
+    "neighbor_count": 87,
+    "catalog_only_definitions": 331,
+    "boundary_count": 373,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4621,5 +4621,13 @@
     "ent-004875",
     "ent-004881",
     "ent-004886"
+  ],
+  "added_boundaries_029": [
+    "ent-004931",
+    "ent-004933",
+    "ent-004934",
+    "ent-004935",
+    "ent-004936",
+    "ent-004937"
   ]
 }
