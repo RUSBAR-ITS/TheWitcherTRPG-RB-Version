@@ -1,5 +1,64 @@
 # packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Parental Fate: Elderland / `jZVPaCIoQxFZiyRu` |
+| Строк / SHA-256 | 524 / `dfeb6b6aadf7027aa6df714c79dada8f0c1aca0896120e124d95e83b2f32a865` |
+
+### Выполненные исправления
+
+B02: десять описаний судьбы родителей Elderland. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=true`. 21 TableResult: 10 text и 11 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `WLL4GH2QBfngXygQ` / 11 | [1,1] | text | Parental Fate: One or more of your parents were accused of being Scoia’tael. The people around you give your parents sidelong glances. |
+| `k0AliUujlhUKLN0G` / 34 | [1,1] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `uxEsX6eym5hKf3yX` / 58 | [1,10] | document | [Which Parent](../../../../../../packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.7fAXpaJLFwlWxkWX` |
+| `4h4Sw8Y1i17AihjX` / 82 | [2,2] | text | Parental Fate: One or more of your parents turned on your own people and sold out the elder races to the humans. Your parents are unwelcome in your homeland. |
+| `ITgHqKEQCar6G6Et` / 105 | [2,2] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `5VXUJzVqGqVahzfy` / 129 | [3,3] | text | Parental Fate: One or more of your parents killed themselves out of despair. With no hope of regaining the glory of the past, they gave up and ended it. |
+| `ONmmUjbSaveNjrSy` / 152 | [3,3] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `oQQUBuaPK1pTABqq` / 176 | [4,4] | text | Parental Fate: While traveling, one or more of your parents fell prey to human racism. They died in a pogrom and their bodies were displayed on pikes. |
+| `R36SexxMtQ1y3Mct` / 199 | [4,4] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `SdTrfAZtLN9cLgew` / 223 | [5,5] | text | Parental Fate: One or more of your parents have become obsessed with regaining the former glory of their race. They sacrifice everything for this cause. |
+| `fbee84iwrEvwp5A7` / 246 | [5,5] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `7yYGp4SSAi9ymCGL` / 270 | [6,6] | text | Parental Fate: One or more of your parents were exiled from your homeland. There are many possible reasons, from crime to dissenting opinions. |
+| `AErFz1jut68I9mna` / 293 | [6,6] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `ts84cRjou8LMlLD4` / 317 | [7,7] | text | Parental Fate: One or more of your parents were cursed. You can decide what this curse is or the Game Master can decide. |
+| `fb47S0gLn0cLA2eD` / 340 | [7,7] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `LEz6AVGxGmTiJS5K` / 364 | [8,8] | text | Parental Fate: Your parents gave you to another family so that you could survive, because they couldn’t care for you. |
+| `98Ry4FUdzahLh10P` / 387 | [8,8] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `X4C3zlEyKnAX96jL` / 411 | [9,9] | text | Parental Fate: One or more of your parents joined the Scoia’tael in an attempt to get revenge on the humans who they see as ruining their lives. |
+| `P2j9J9NLbtkzp04u` / 434 | [9,9] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+| `XEB17msQM6PA4Wl4` / 458 | [10,10] | text | Parental Fate: One or more of your parents died in an ‘accident’. Most likely they made a powerful enemy that finally found a way to get rid of them. |
+| `uW7X6oeT6MO1gf6G` / 481 | [10,10] | document | [Family Status: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json) |
@@ -163,3 +222,5 @@ Parental Fate: Elderland: 1d10, возможные totals 1…10; 21 резул�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json](Parents__Elderland_zSTMrICDELIRaNyL.json.md), [packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json](Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md), [packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json](Which_Parent_7fAXpaJLFwlWxkWX.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-10](../../../cross-check-0002.md#r017-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

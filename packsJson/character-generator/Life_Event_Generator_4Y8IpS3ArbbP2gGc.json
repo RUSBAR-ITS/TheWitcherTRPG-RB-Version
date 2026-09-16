@@ -26,8 +26,8 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "name": "Fortune",
-      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.Z0eeWQI3R8v4YNLd",
+      "name": "Fortune or Misfortune",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.qKwYD3GHlGxCmiir",
       "description": "",
       "_key": "!tables.results!4Y8IpS3ArbbP2gGc.fEC34SOBkzdDBUtx"
     },
@@ -50,8 +50,8 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "name": "Misfortune",
-      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.JNbvihde5EGIFPdB",
+      "name": "Allies and Enemies",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.Lp42vhkw20Ys973y",
       "description": "",
       "_key": "!tables.results!4Y8IpS3ArbbP2gGc.nzF8eW0BGLhTGpdM"
     },

@@ -1,5 +1,53 @@
 # packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Witcher Lifepath: Danger - Events / `zVS3tsoiyTdjwU7i` |
+| Строк / SHA-256 | 260 / `fc0f2f7856e3d840a6919afdce8d8dbc18c37de282d7e11660b5bcaf1a4a7e48` |
+
+### Выполненные исправления
+
+B12: три денежные inline-формулы в двух файлах. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 10 TableResult: 10 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `q0DM4FW7XCnFdKZu` / 11 | [1,1] | text | Event - Debt: Through broken gear, gwent matches, or the like you’ve grown a 1d10x100 [[1d10*100]] crown debt to an establishment or noble house. |
+| `oKZeEBIq2FLMNk2e` / 34 | [2,2] | text | Event - Sentient Monster Escaped: A troll, katakan, werewolf, or other sentient monster you were hunting escaped you and is wandering free. They may come for you some day. |
+| `kQX7ZeIIWKy5yTPF` / 57 | [3,3] | text | Event - Addiction: You fell on hard times and contracted an addiction (pick your poison). See addiction rules on pg.32 for more information. |
+| `36ROPw9QWjYWmpBV` / 80 | [4,4] | text | Event - Imprisoned: You spent 1d10 [[1d10]] years of that decade in a prison due to false accusation, or perhaps an actual crime that you committed. |
+| `9kVdEtFeX4a3nAoe` / 103 | [5,5] | text | Event - Falsely Accused: Either someone wants you gone or you were an easy scapegoat. Roll 1d10 [[1d10]]. 1-3: theft, 4-5: betrayal, 6-8: murder, 9: rape, 10: illegal witchcraft. |
+| `cQfRuoxqB1FI58LA` / 126 | [6,6] | text | Event - Betrayed: A friend or lover has betrayed you. Roll 1d10 [[1d10]]. 1-3: you were blackmailed, 4-7: a secret was exposed, 8-10: you were attacked. |
+| `th9s2aW3pwS3ZZX2` / 149 | [7,7] | text | Event - Friend or Lover Killed: Someone close to you was killed. Roll 1d10 [[1d10]]. 1-3: they were killed by a monster, 4-6: they were executed, 7-8: they were murdered, 9-10: they were poisoned. |
+| `tfUjaxwfTwqW98vG` / 172 | [8,8] | text | Event - Outlawed in a Kingdom: You were outlawed from a country after either heinous acts against the kingdom or false accusations. In this kingdom, you are wanted by the Guard. |
+| `XFy2l49tSxFMwvUu` / 195 | [9,9] | text | Event - Manipulated: You were manipulated into breaking your neutrality. You decide how it happened, but anyone who knows your reputation knows you aren’t neutral. |
+| `NlfhnGUfAnLtImRU` / 218 | [10,10] | text | Event - Cursed: You were afflicted by a curse. The curse is left up to your GM. The GM must also decide how you can end it. They are not required to tell you, however. |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Danger___Events_zVS3tsoiyTdjwU7i.json) |
@@ -171,3 +219,5 @@ Witcher Lifepath: Danger - Events: 1d10, возможные totals 1…10; 10 р
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json](Witcher_Lifepath__Dangers_QDAhRAIL7LNz9gME.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-19](../../../cross-check-0002.md#r017-19), [R017-05](../../../cross-check-0002.md#r017-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

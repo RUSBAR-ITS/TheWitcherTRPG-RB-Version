@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Fractured Leg (Left)",
+      "name": "Fractured Leg (Right)",
       "origin": "Item.r34NuXwHfPGZCpTu",
       "duration": {
         "startTime": null,
@@ -44,19 +44,19 @@
         {
           "key": "system.stats.spd.totalModifiers",
           "mode": 2,
-          "value": "-3",
+          "value": "-1",
           "priority": null
         },
         {
           "key": "system.skills.ref.dodge.activeEffectModifiers",
           "mode": 2,
-          "value": "-3",
+          "value": "-1",
           "priority": null
         },
         {
           "key": "system.skills.dex.athletics.activeEffectModifiers",
           "mode": 2,
-          "value": "-3",
+          "value": "-1",
           "priority": null
         }
       ],

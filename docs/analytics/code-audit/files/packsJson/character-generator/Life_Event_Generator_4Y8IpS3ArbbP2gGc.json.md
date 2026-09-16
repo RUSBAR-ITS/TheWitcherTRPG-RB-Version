@@ -1,5 +1,46 @@
 # packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../../../../../../packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Life Event Generator / `4Y8IpS3ArbbP2gGc` |
+| Строк / SHA-256 | 102 / `d299ff7987545bd945714d5dc4f795fee768e2e89e23256e2fc34d643b5886d2` |
+
+### Выполненные исправления
+
+B01: две целевые ссылки событий. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 3 TableResult: 0 text и 3 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `fEC34SOBkzdDBUtx` / 11 | [1,4] | document | [Fortune or Misfortune](../../../../../../packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json) — `Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.qKwYD3GHlGxCmiir` |
+| `nzF8eW0BGLhTGpdM` / 35 | [5,7] | document | [Allies and Enemies](../../../../../../packsJson/lifepath/Allies_and_Enemies_Lp42vhkw20Ys973y.json) — `Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.Lp42vhkw20Ys973y` |
+| `fnoSJmCrZPrgneXp` / 59 | [8,10] | document | [Romance](../../../../../../packsJson/lifepath/Romance_CDgdx129wZvINn16.json) — `Compendium.TheWitcherTRPG-RB-Version.Life_Event_Sub-tables.RollTable.CDgdx129wZvINn16` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../../../../../../packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json) |
@@ -162,3 +203,5 @@ Life Event Generator: 1d10, возможные totals 1…10; 3 результа
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/lifepath/Fortune_Z0eeWQI3R8v4YNLd.json](../lifepath/Fortune_Z0eeWQI3R8v4YNLd.json.md), [packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json](../lifepath/Misfortune_JNbvihde5EGIFPdB.json.md), [packsJson/lifepath/Romance_CDgdx129wZvINn16.json](../lifepath/Romance_CDgdx129wZvINn16.json.md), [module/data/actor/templates/character/general/lifeEventData.js](../../module/data/actor/templates/character/general/lifeEventData.js.md), [module/data/actor/templates/character/general/lifeEventsData.js](../../module/data/actor/templates/character/general/lifeEventsData.js.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-09](../../../cross-check-0002.md#r017-09). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

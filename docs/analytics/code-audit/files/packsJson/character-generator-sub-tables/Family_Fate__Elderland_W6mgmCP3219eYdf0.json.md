@@ -1,5 +1,54 @@
 # packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json](../../../../../../packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Family Fate: Elderland / `W6mgmCP3219eYdf0` |
+| Строк / SHA-256 | 284 / `8d04a845e20d673fd2c1ab644f7854762ec6e9ce62f60df5bf08515607837052` |
+
+### Выполненные исправления
+
+B03: продолжение Family Fate → Parental Fate. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 11 TableResult: 10 text и 1 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `WLL4GH2QBfngXygQ` / 11 | [1,1] | text | Family Fate: Your family were marked as human sympathizers and are not particularly loved in their homeland. |
+| `4h4Sw8Y1i17AihjX` / 34 | [2,2] | text | Family Fate: Your family was ostracized for dissenting opinions and now people won’t socialize with you or your family at all. |
+| `5VXUJzVqGqVahzfy` / 57 | [3,3] | text | Family Fate: Your family died in the Northern Wars. They may have actually fought in the war, or were casualties of war who just happened to get in the way. |
+| `oQQUBuaPK1pTABqq` / 80 | [4,4] | text | Family Fate: Your family has been caught in a feud for centuries. You may not remember why this feud started, but it is dire. |
+| `SdTrfAZtLN9cLgew` / 103 | [5,5] | text | Family Fate: Your family was stripped of its title for some reason. You were evicted from your home and left scrambling to survive. |
+| `7yYGp4SSAi9ymCGL` / 126 | [6,6] | text | Family Fate: Your family turned to raiding human settlements early in your life to get food and perhaps strike back at the humans. |
+| `ts84cRjou8LMlLD4` / 149 | [7,7] | text | Family Fate: Your family house is haunted. Most likely this is because your home was the site of many, many deaths during the war against humans. |
+| `LEz6AVGxGmTiJS5K` / 172 | [8,8] | text | Family Fate: Your family has been split by a human in-law who was brought into your family by a sibling or relative. Some of your family like them and some hate them. |
+| `X4C3zlEyKnAX96jL` / 195 | [9,9] | text | Family Fate: Your family was killed by humans who thought they were Scoia’tael. They may have been slaughtered or hung with no court proceedings or trials. |
+| `XEB17msQM6PA4Wl4` / 218 | [10,10] | text | Family Fate: Your family is descended from an infamous traitor. It taints your family’s interactions with others of the elder races and has made living in the elderland difficult. |
+| `PqHSPYmD5OPIb4BU` / 241 | [1,10] | document | [Parental Fate: Elderland](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Elderland_jZVPaCIoQxFZiyRu.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.jZVPaCIoQxFZiyRu` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json](../../../../../../packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json) |
@@ -149,3 +198,5 @@ Family Fate: Elderland: 1d10, возможные totals 1…10; 10 резуль�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator-sub-tables/Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json](Family_and_Parents__Elderland_d7NLtNEdvkagBLOP.json.md), [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json.md), [packsJson/character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json](../character-generator/Background_Generator__Elves_L8o8Rz85um05VUW4.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-10](../../../cross-check-0002.md#r017-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

@@ -1,5 +1,54 @@
 # packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json](../../../../../../packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Family Fate: Nilfgaard / `VstrJuRw43OKcuGr` |
+| Строк / SHA-256 | 284 / `b2187357070df1d353f121d514ba4c1bd3aa0c00e9dd5a685aa86103a4e5eccd` |
+
+### Выполненные исправления
+
+B03: продолжение Family Fate → Parental Fate. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 11 TableResult: 10 text и 1 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `WLL4GH2QBfngXygQ` / 11 | [1,1] | text | Family Fate: Your family was indentured for crimes against the Empire or on trumped-up charges. Only you escaped. |
+| `4h4Sw8Y1i17AihjX` / 34 | [2,2] | text | Family Fate: Your family was exiled to the Korath Desert and you likely spent most of your early life struggling to survive in the deadly wasteland. |
+| `5VXUJzVqGqVahzfy` / 57 | [3,3] | text | Family Fate: Your family was killed by a rogue mage who either had a vendetta against your family, or just wanted blood. Either way, you are alone. |
+| `oQQUBuaPK1pTABqq` / 80 | [4,4] | text | Family Fate: Your family disappeared and you have no idea where they went. One day they just up and left. |
+| `SdTrfAZtLN9cLgew` / 103 | [5,5] | text | Family Fate: Your family was executed for treason against the Empire. You were the only one to escape this fate. |
+| `7yYGp4SSAi9ymCGL` / 126 | [6,6] | text | Family Fate: Your family was stripped of its title for some reason. You were evicted from your home and left scrambling to survive among the un-washed masses. |
+| `ts84cRjou8LMlLD4` / 149 | [7,7] | text | Family Fate: Your family name was tarnished by a magic relative who flaunted their magical gift disgracefully like a Northern mage. |
+| `LEz6AVGxGmTiJS5K` / 172 | [8,8] | text | Family Fate: You disgraced your family in the eyes of the Empire. Something you did or failed to do has ruined your personal name and harmed your family. |
+| `X4C3zlEyKnAX96jL` / 195 | [9,9] | text | Family Fate: Your family has a deep, dark secret that if discovered would destroy them and their name forever. You must protect this secret with your life |
+| `XEB17msQM6PA4Wl4` / 218 | [10,10] | text | Family Fate: Your family was assassinated. They may have been in the way of someone’s plan or they may have been used to get at someone more powerful. Either way, your family is gone now |
+| `yK7lbHRx3KHl2OII` / 241 | [1,10] | document | [Parental Fate: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.wFuCDleU9PzP00mf` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json](../../../../../../packsJson/character-generator-sub-tables/Family_Fate__Nilfgaard_VstrJuRw43OKcuGr.json) |
@@ -136,3 +185,5 @@ Family Fate: Nilfgaard: 1d10, возможные totals 1…10; 10 резуль�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator-sub-tables/Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json](Family_and_Parents__Nilfgaard_5OcHT6WrJ8pL9cYp.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-10](../../../cross-check-0002.md#r017-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

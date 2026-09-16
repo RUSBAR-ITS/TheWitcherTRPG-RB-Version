@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Fortune: Jackpot - Some major event or stroke of luck brought you 1d10x100 [[1d10x100]] crowns.",
+      "description": "Fortune: Jackpot - Some major event or stroke of luck brought you 1d10x100 [[1d10*100]] crowns.",
       "name": "",
       "_key": "!tables.results!Z0eeWQI3R8v4YNLd.q0DM4FW7XCnFdKZu"
     },

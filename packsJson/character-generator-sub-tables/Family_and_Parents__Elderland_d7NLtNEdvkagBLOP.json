@@ -100,30 +100,6 @@
       "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.W6mgmCP3219eYdf0",
       "description": "",
       "_key": "!tables.results!d7NLtNEdvkagBLOP.rx40q7d9iV7PIvy0"
-    },
-    {
-      "_id": "hNdtp3IHu6NaWkJo",
-      "flags": {},
-      "type": "document",
-      "img": "icons/svg/d20-grey.svg",
-      "weight": 1,
-      "range": [
-        2,
-        2
-      ],
-      "drawn": false,
-      "_stats": {
-        "coreVersion": "13.341",
-        "systemId": null,
-        "systemVersion": null,
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "name": "Family Status: Elderland",
-      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.GOp8mGE4MiGaqjk2",
-      "description": "",
-      "_key": "!tables.results!d7NLtNEdvkagBLOP.hNdtp3IHu6NaWkJo"
     }
   ],
   "formula": "1d2",

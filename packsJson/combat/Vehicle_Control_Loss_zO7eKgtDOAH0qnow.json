@@ -53,7 +53,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Vehicle Control Loss - Major Skid: Slide [[1d10x2]] meters sideways in the direction of travel. If you hit an object, use the Charging rules to see what damage is done to your vehicle and the object.",
+      "description": "Vehicle Control Loss - Major Skid: Slide [[1d10*2]] meters sideways in the direction of travel. If you hit an object, use the Charging rules to see what damage is done to your vehicle and the object.",
       "name": "",
       "_key": "!tables.results!zO7eKgtDOAH0qnow.OlzIW2c5GeaHCxi2"
     },
@@ -76,7 +76,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Vehicle Control Loss - Rolled the Vehicle: Your vehicle skids [[1d10x3]] meters sideways in the direction of travel and rolls. In a land vehicle, you, the vehicle, and the animals pulling it take [[5d6]] damage. In a water vehicle, you have capsized and are trapped underwater until you make a DC:12 Athletics check to swim",
+      "description": "Vehicle Control Loss - Rolled the Vehicle: Your vehicle skids [[1d10*3]] meters sideways in the direction of travel and rolls. In a land vehicle, you, the vehicle, and the animals pulling it take [[5d6]] damage. In a water vehicle, you have capsized and are trapped underwater until you make a DC:12 Athletics check to swim",
       "name": "",
       "_key": "!tables.results!zO7eKgtDOAH0qnow.VmZlsmcJudyNWenE"
     }

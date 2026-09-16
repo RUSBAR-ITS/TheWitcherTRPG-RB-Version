@@ -1,5 +1,63 @@
 # packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт Item criticalWound: шаблон травмы, его эффекты и следующий этап лечения |
+| Имя / ID | Fractured Leg (Right) / `yI6kHQM8voHrBF2h` |
+| Строк / SHA-256 | 104 / `843a25b70da021a13fcca9b19d699697f6f9d53869e8b100fe3653db9e1ac902` |
+
+### Выполненные исправления
+
+B16: исправить сторону в имени эффекта. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+| Поле system | Текущее значение |
+| --- | --- |
+| `htmlFields` | ["description"] |
+| `description` | "" |
+| `criticalLevel` | "complex" |
+| `treatment` | "none" |
+| `location` | "rightLeg" |
+| `lesserEffect` | false |
+| `daysHealed` | 0 |
+| `healingTime` | 0 |
+| `sterilized` | false |
+| `followUp` | "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.WNjcD3F3Hs5IdAaa" |
+
+1 ActiveEffect; 3 changes. ID и `_key` сохранённых эффектов, origin, transfer, duration и несвязанные значения сохранены.
+
+#### Fractured Leg (Right) — hF9ez6RQNIpixxd9
+
+Строка `_id`: 36. `disabled=false`, `transfer=true`; statuses: `[]`.
+
+| key | mode | value | priority |
+| --- | --- | --- | --- |
+| `system.stats.spd.totalModifiers` | 2 | "-3" | null |
+| `system.skills.ref.dodge.activeEffectModifiers` | 2 | "-3" | null |
+| `system.skills.dex.athletics.activeEffectModifiers` | 2 | "-3" | null |
+
+### Действия и зависимости
+
+[system.json](../../../../../../../system.json) регистрирует criticalWounds; [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) (`applyCritWound`) читает индекс treatment/location/criticalLevel/lesserEffect, выбирает Item и добавляет его Actor. [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js) определяет поля и выполняет treat/heal; [module/activeEffect/witcherActiveEffect.js](../../../../../../../module/activeEffect/witcherActiveEffect.js) и Foundry обрабатывают ActiveEffect. Исправление descriptions само по себе не меняет расчёты.
+
+Следующий этап: [Fractured Leg (Right - Stabilized)](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Stabilized__WNjcD3F3Hs5IdAaa.json) — `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.WNjcD3F3Hs5IdAaa`.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right__yI6kHQM8voHrBF2h.json) |
@@ -144,3 +202,5 @@ Item `yI6kHQM8voHrBF2h` («Fractured Leg (Right)»): `complex/none/rightLeg`; 1 
 Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Fractured_Leg__Right___Stabilized__WNjcD3F3Hs5IdAaa.json](Fractured_Leg__Right___Stabilized__WNjcD3F3Hs5IdAaa.json.md).
 
 [Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-15](../../../../cross-check-0002.md#r012-15). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

@@ -1,5 +1,48 @@
 # packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json](../../../../../../packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Monster Damage Location / `KYyK6F8JHhA3hOu7` |
+| Строк / SHA-256 | 151 / `e7b47b997bdaf92df7ed5165c913dff450b5a1b87ae4f33c0f9b8ea2b110740a` |
+
+### Выполненные исправления
+
+B05: три диапазона попаданий по монстру. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=true`. 5 TableResult: 5 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `RHNQnlcfgi5i1isk` / 15 | [1,1] | text | Hit location - Head: Penalty to ATK (if aimed) = -6 &#124; DMG = x3 |
+| `nGvEbuComhjRZAPP` / 38 | [2,4] | text | Hit location - Torso: Penalty to ATK (if aimed) = -1 &#124; DMG = x1 |
+| `bmm5fg7mdHPOmQ3G` / 61 | [5,7] | text | Hit location - R. Limb: Penalty to ATK (if aimed) = -3 &#124; DMG = x1/2 |
+| `3K1jam0ISPD3EKNg` / 84 | [8,9] | text | Hit location - L. Limb: Penalty to ATK (if aimed) = -3 &#124; DMG = x1/2 |
+| `BBam5islqax05Zea` / 107 | [10,10] | text | Hit location - Tail or Wing: Penalty to ATK (if aimed) = -2 &#124; DMG = x1/2 |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json](../../../../../../packsJson/combat/Monster_Damage_Location_KYyK6F8JHhA3hOu7.json) |
@@ -157,3 +200,5 @@ Monster Damage Location: 1d10, возможные totals 1…10; 5 резуль�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [module/actor/witcherActor.js](../../module/actor/witcherActor.js.md), [module/actor/mixins/locationMixin.js](../../module/actor/mixins/locationMixin.js.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-21](../../../cross-check-0002.md#r017-21). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

@@ -1,5 +1,64 @@
 # packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Parental Fate: Nilfgaard / `wFuCDleU9PzP00mf` |
+| Строк / SHA-256 | 524 / `c5825249739f227894ca7eab59ebdba86cb45371027fed9c78ff7d71ed2a3ae6` |
+
+### Выполненные исправления
+
+B04: добавить продолжение результата 10. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=true`. 21 TableResult: 10 text и 11 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `WLL4GH2QBfngXygQ` / 11 | [1,1] | text | Parental Fate: One or more of your parents died in one of the Northern Wars. He may have already been in the military or he may have been conscripted into service during that war. |
+| `k0AliUujlhUKLN0G` / 34 | [1,1] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `uxEsX6eym5hKf3yX` / 58 | [1,10] | document | [Which Parent](../../../../../../packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.7fAXpaJLFwlWxkWX` |
+| `4h4Sw8Y1i17AihjX` / 82 | [2,2] | text | Parental Fate: One or more of your parents were poisoned. This may have been the work of a professional rival, or it may have been to get your parents out of the way. |
+| `ITgHqKEQCar6G6Et` / 105 | [2,2] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `5VXUJzVqGqVahzfy` / 129 | [3,3] | text | Parental Fate: The secret police took your parent or parents for ‘questioning.’ The next week their bodies were found hung in the streets of the city |
+| `ONmmUjbSaveNjrSy` / 152 | [3,3] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `oQQUBuaPK1pTABqq` / 176 | [4,4] | text | Parental Fate: One or more of your parents were killed by a rogue mage. Most likely they tried to turn the mage in question in to the Empire and paid the price. |
+| `R36SexxMtQ1y3Mct` / 199 | [4,4] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `SdTrfAZtLN9cLgew` / 223 | [5,5] | text | Parental Fate: One or more of your parents were imprisoned for unlawful magic. Maybe they actually commited the crime or maybe it was a setup. |
+| `fbee84iwrEvwp5A7` / 246 | [5,5] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `7yYGp4SSAi9ymCGL` / 270 | [6,6] | text | Parental Fate: One or more of your parents were exiled to the Korath Desert. Likely they committed a major crime but killing them would cause trouble. |
+| `AErFz1jut68I9mna` / 293 | [6,6] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `ts84cRjou8LMlLD4` / 317 | [7,7] | text | Parental Fate: One or more of your parents were cursed by a mage. The mage likely had a vendetta against them. |
+| `fb47S0gLn0cLA2eD` / 340 | [7,7] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `LEz6AVGxGmTiJS5K` / 364 | [8,8] | text | Parental Fate: Your parents simply left you one day. You may not even know why they did it. One day your parents just disappeared. |
+| `98Ry4FUdzahLh10P` / 387 | [8,8] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `X4C3zlEyKnAX96jL` / 411 | [9,9] | text | Parental Fate: One or more of your parents were enslaved. They either commited a crime against the Empire or were set up by a rival. |
+| `P2j9J9NLbtkzp04u` / 434 | [9,9] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+| `XEB17msQM6PA4Wl4` / 458 | [10,10] | text | Parental Fate: One or more of your parents were sent to the North as double agents. You likely don’t even know where they are now, but they’re serving the Emperor. |
+| `i1IWonZhtKZQHgZY` / 481 | [10,10] | document | [Family Status: Nilfgaard](../../../../../../packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json](../../../../../../packsJson/character-generator-sub-tables/Parental_Fate__Nilfgaard_wFuCDleU9PzP00mf.json) |
@@ -161,3 +220,5 @@ Parental Fate: Nilfgaard: 1d10, возможные totals 1…10; 20 резул�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator-sub-tables/Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json](Parents__Nilfgaard_Nnf1BMSJOnc5Mx3m.json.md), [packsJson/character-generator-sub-tables/Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json](Family_Status__Nilfgaard_6WXA7KAOHjeqCCRn.json.md), [packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json](Which_Parent_7fAXpaJLFwlWxkWX.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-10](../../../cross-check-0002.md#r017-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

@@ -10,7 +10,7 @@
     "description": "<p>The arm is useless</p>",
     "criticalLevel": "difficult",
     "treatment": "stabilized",
-    "location": "rightLeg",
+    "location": "rightArm",
     "lesserEffect": false,
     "daysHealed": 0,
     "healingTime": 0,

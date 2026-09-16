@@ -1,5 +1,63 @@
 # packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Witcher Background: How Did Early Training Go? +2 / `A7jt3mfuFTEQiXRv` |
+| Строк / SHA-256 | 500 / `086c6ed2694b27dd0f6f0c73533d7bc298d4f9d1a6b8f90c52ea331e3ba3f0d3` |
+
+### Выполненные исправления
+
+B11: восемь ссылок обычных исходов обучения в каждом файле. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 20 TableResult: 10 text и 10 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `q0DM4FW7XCnFdKZu` / 11 | [1,1] | text | How Did Early Training Go? - Wounded on the Gauntlet (-1 SPD) You were wounded while running the gauntlet around your School. Your leg was broken badly, and even after healing it is still slightly stiff. |
+| `87E9eABpMKlUvGn5` / 34 | [1,1] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `oKZeEBIq2FLMNk2e` / 58 | [2,2] | text | How Did Early Training Go? - Stolen Knowledge (+1 Witcher Diagram) While training at your School you snuck into the libraries of the keep and copied one of the secret witcher diagrams, smuggling the information out with you. |
+| `JcJEQE8T9biOf2UC` / 81 | [2,2] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `kQX7ZeIIWKy5yTPF` / 105 | [3,3] | text | How Did Early Training Go? - Made a Rival (Make 1 Witcher Enemy) While training at the keep you formed a rivalry with another witcher in training. Even after mutations, their hatred of you continues to boil. |
+| `CnrQloHHzlne08PH` / 128 | [3,3] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `36ROPw9QWjYWmpBV` / 152 | [4,4] | text | How Did Early Training Go? - Easy Mutations (+2 to the Trial of the Grasses) You adapted well to the lesser mutations and mutagenic mushrooms you were fed early in training. When the time came for the Trial of the Grasses, you were well prepared. |
+| `EjpUyBW2tKuwSB3E` / 175 | [4,4] | document | [Witcher Background: How Did Your Trials Go? +4](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.GknRX1nkVVcc9rCK` |
+| `9kVdEtFeX4a3nAoe` / 199 | [5,5] | text | How Did Early Training Go? - Magical Backfire (-1 Vigor Threshold) A failure casting a sign caused minor damage to your body. It was horrifically painful, and even after your body healed your Vigor Threshold was lowered. |
+| `Q0E2wKno4GDkBsEU` / 222 | [5,5] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `cQfRuoxqB1FI58LA` / 246 | [6,6] | text | How Did Early Training Go? - Top of Your Class (+1 Swordsmanship) You were one of the best swordsmen in your class and your skills haven’t dulled. You perform the complex movements, pirouettes, and spins of the witcher with ease. |
+| `9hoqeLEEu2wbXq0Y` / 269 | [6,6] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `th9s2aW3pwS3ZZX2` / 293 | [7,7] | text | How Did Early Training Go? - Bad Reaction to Mutagens (-2 to the Trial of the Grasses) You had allergic reactions to the mutagenic mushrooms and chemical compounds given to you in early training. When the Trial of the Grasses came, it was more difficult. |
+| `oyc8IVQRocy7fHWF` / 316 | [7,7] | document | [Witcher Background: How Did Your Trials Go?](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.vaUFKIYBmEbJotfJ` |
+| `tfUjaxwfTwqW98vG` / 340 | [8,8] | text | How Did Early Training Go? - Made a Friend (Make a Witcher Friend) You made a fast friend in your early years of witcher training. The rough training and dangerous situations sealed your bond. |
+| `e4Efc40kCH5BBm9x` / 363 | [8,8] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `XFy2l49tSxFMwvUu` / 387 | [9,9] | text | How Did Early Training Go? - Wounded by the Pendulum (-1 REF) You were wounded while training on the pendulum. You fell from the posts and broke several bones on the rocks below. While healed, you are a little stiffer than before. |
+| `XEUXNKAzTxw9mgck` / 410 | [9,9] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+| `NlfhnGUfAnLtImRU` / 434 | [10,10] | text | How Did Early Training Go? - Extensive Research (+1 Witcher Training) While sword training was important, you spent most of your free time in the libraries of the keep studying the monsters of the world and taking notes. |
+| `6dhXq4Wi1xnG3pCe` / 457 | [10,10] | document | [Witcher Background: How Did Your Trials Go? +2](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___2_zNG1R1HQoY6tpSLz.json) — `Compendium.TheWitcherTRPG-RB-Version.Witcher_Lifepath_and_BG_Sub-tables.RollTable.zNG1R1HQoY6tpSLz` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json](../../../../../../packsJson/witcher-lifepath/Witcher_Background__How_Did_Early_Training_Go___2_A7jt3mfuFTEQiXRv.json) |
@@ -206,3 +264,5 @@ Witcher Background: How Did Early Training Go? +2: 1d10, возможные tota
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json](../character-generator/Witcher_Background_Generator_C5d6zkIMvS9gDWEN.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json](Witcher_Background__How_Did_Your_Trials_Go__vaUFKIYBmEbJotfJ.json.md), [packsJson/witcher-lifepath/Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json](Witcher_Background__How_Did_Your_Trials_Go___4_GknRX1nkVVcc9rCK.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-14](../../../cross-check-0002.md#r017-14). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

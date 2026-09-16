@@ -1,5 +1,53 @@
 # packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json](../../../../../../packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Misfortune / `JNbvihde5EGIFPdB` |
+| Строк / SHA-256 | 260 / `062a74e17abe24724d635552531a766c3791469bb5bd9d861a7edda14e609902` |
+
+### Выполненные исправления
+
+B12: денежная inline-формула ×100. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 10 TableResult: 10 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `q0DM4FW7XCnFdKZu` / 11 | [1,1] | text | Misfortune: Debt - You fell deeply into debt to the tune of 1d10x100 [[1d10*100]]crowns. |
+| `oKZeEBIq2FLMNk2e` / 34 | [2,2] | text | Misfortune: Imprisonment - Something you did (or a false acusation) had you imprisoned for 1d10 [[1d10]] months. |
+| `kQX7ZeIIWKy5yTPF` / 57 | [3,3] | text | Misfortune: Addiction - You contracted an addiction. You can choose. See the sidebar for addiction rules (Pg 32). |
+| `36ROPw9QWjYWmpBV` / 80 | [4,4] | text | Misfortune: Lover, Friend or Relative Killed - Roll 1d10 [[1d10]]. 1-5: They died in an accident, 6-8: They were murdered by monsters, 9-10: They were murdered by bandits. |
+| `9kVdEtFeX4a3nAoe` / 103 | [5,5] | text | Misfortune: False Accusation - Roll 1d10 [[1d10]]. 1-3: The accusation is theft, 4-5: It’s cowardice or betrayal, 6-8: It’s murder, 9: It’s rape, 10: It’s illegal witchcraft. |
+| `cQfRuoxqB1FI58LA` / 126 | [6,6] | text | Misfortune: Hunted by the Law - Roll 1d10 [[1d10]]. 1-3: It’s just a few of guards, 4-6: It’s an entire small town, 7-8: It’s a major city, 9-10: A whole kingdom is after you. |
+| `th9s2aW3pwS3ZZX2` / 149 | [7,7] | text | Misfortune: Betrayal - Roll 1d10 [[1d10]]. 1-3: You are being blackmailed, 4-7: A secret was exposed, 8-10: You were betrayed by someone very close to you. |
+| `tfUjaxwfTwqW98vG` / 172 | [8,8] | text | Misfortune: Accident - Roll 1d10 [[1d10]]. 1-4: You were disfigured. Change your social standing to feared, 5-6: You were healing for 1d10 [[1d10]] months, 7-8: You lost a 1d10 [[1d10]] months of memory from that year, 9-10: You suffer from horrible nightmares (7 in 10 chance each time you sleep). |
+| `XFy2l49tSxFMwvUu` / 195 | [9,9] | text | Misfortune: Mental or Physical Incapacitation - Roll 1d10 [[1d10]]. 1-3: You were poisoned; permanently lose 5 HP, 4-7: You suffer from anxiety attacks and must make Stun saves (every 5 rounds) in times of stress, 8-10: You have a major psychosis. You hear voices and are violent, irrational, and depressive. The GM controls these voices. |
+| `NlfhnGUfAnLtImRU` / 218 | [10,10] | text | Misfortune: Cursed - You have been cursed. See the Curse section on pg.230 to determine the details. |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json](../../../../../../packsJson/lifepath/Misfortune_JNbvihde5EGIFPdB.json) |
@@ -144,3 +192,5 @@ Misfortune: 1d10, возможные totals 1…10; 10 результатов (1
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json](../character-generator/Life_Event_Generator_4Y8IpS3ArbbP2gGc.json.md), [packsJson/lifepath/Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json](Fortune_or_Misfortune_qKwYD3GHlGxCmiir.json.md), [module/data/actor/templates/character/general/lifeEventData.js](../../module/data/actor/templates/character/general/lifeEventData.js.md), [module/data/actor/templates/character/general/lifeEventsData.js](../../module/data/actor/templates/character/general/lifeEventsData.js.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-09](../../../cross-check-0002.md#r017-09), [R017-05](../../../cross-check-0002.md#r017-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

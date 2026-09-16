@@ -1,5 +1,53 @@
 # packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Witcher Lifepath: Hunt - What Was the Prey? / `ZozZLNSgKpwEltsY` |
+| Строк / SHA-256 | 260 / `1502ca7a0ea582e4ab1a271662fea99b13370299671fd2ba8b707dc81e0f43a8` |
+
+### Выполненные исправления
+
+B09: условие выбора монстра и награда в десяти результатах добычи. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 10 TableResult: 10 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `q0DM4FW7XCnFdKZu` / 11 | [1,1] | text | Hunt Target - Specter Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `oKZeEBIq2FLMNk2e` / 34 | [2,2] | text | Hunt Target - Cursed One Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `kQX7ZeIIWKy5yTPF` / 57 | [3,3] | text | Hunt Target - Hybrid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `36ROPw9QWjYWmpBV` / 80 | [4,4] | text | Hunt Target - Insectoid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `9kVdEtFeX4a3nAoe` / 103 | [5,5] | text | Hunt Target - Elementa Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `cQfRuoxqB1FI58LA` / 126 | [6,6] | text | Hunt Target - Relict Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `th9s2aW3pwS3ZZX2` / 149 | [7,7] | text | Hunt Target - Ogroid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `tfUjaxwfTwqW98vG` / 172 | [8,8] | text | Hunt Target - Draconid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `XFy2l49tSxFMwvUu` / 195 | [9,9] | text | Hunt Target - Necrophage Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+| `NlfhnGUfAnLtImRU` / 218 | [10,10] | text | Hunt Target - Vampire Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster. |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Hunt___What_Was_the_Prey__ZozZLNSgKpwEltsY.json) |
@@ -171,3 +219,5 @@ Witcher Lifepath: Hunt - What Was the Prey?: 1d10, возможные totals 1�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json](Witcher_Lifepath__Hunt_Generator_vTIEP2TnU2n4hwY3.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-18](../../../cross-check-0002.md#r017-18). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

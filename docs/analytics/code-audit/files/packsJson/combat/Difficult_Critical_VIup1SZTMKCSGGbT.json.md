@@ -1,5 +1,49 @@
 # packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json](../../../../../../packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Difficult Critical / `VIup1SZTMKCSGGbT` |
+| Строк / SHA-256 | 174 / `d01cb9847305dc5e280f2133b2c60cbd29643e8cb3a84d7b78587a1883972516` |
+
+### Выполненные исправления
+
+B06: знак −2 в treated-тексте ноги. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=2d6`, `replacement=true`, `displayRoll=true`. 6 TableResult: 6 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `md13gU5GXWqdSo3b` / 15 | [2,3] | text | Compound Leg Fracture - The blow snaps your leg, rendering it useless. Quarter SPD, Dodge/Escape, and Athletics. This induces bleeding. &#124; Stabilized: Halves SPD, Dodge/ Escape, and Athletics. &#124; Treated: -2 to SPD, Dodge/ Escape, and Athletics. |
+| `Kg6cLOw7bcrhf9zi` / 38 | [4,5] | text | Compound Arm Fracture - The blow crushes your arm. Bone sticks out of the skin. The arm is rendered useless and you start bleeding. &#124; Stabilized: That arm is useless. &#124; Treated : That arm must remain in a sling, but it can hold things. |
+| `Aupjx9gqdL7IdDsG` / 61 | [6,8] | text | Sucking Chest Wound - The wound tears your lung, which fills your chest with air, crushing organs. You take a -3 to BODY and SPD. You also start suffocating. &#124; Stabilized: You take a -2 to BODY and SPD. &#124; Treated: You take a -1 to BODY and SPD. |
+| `dcTrmwGr6QqbwArw` / 84 | [9,10] | text | Torn Stomach - The blow rips your stomach, pouring its contents into your gut. You take a -2 to all actions and take 4 points of acid damage per round. &#124; Stabilized: You take a -2 to all actions. &#124; Treated: You take a -1 to all actions. |
+| `8BDa9D8PpydHDt9F` / 107 | [11,11] | text | Concussion -  The blow caused a minor concussion. Make a Stun save every 1d6 rounds and take a -2 to INT, REF, and DEX. &#124; Stabilized: You take a -1 to INT, REF, and DEX. &#124; Treated: You take a-1 to INT and DEX |
+| `H0XA02QcwUBIRRWa` / 130 | [12,12] | text | Skull Fracture - The blow fractures a part of your skull, weakening your head and causing bleeding. You take a -1 to INT and DEX, and take quadruple damage from head wounds. &#124; Stabilized: Take a -1 to INT and DEX and quadruple damage from head wounds. &#124; Treated: You take quadruple damage from head wounds. |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json](../../../../../../packsJson/combat/Difficult_Critical_VIup1SZTMKCSGGbT.json) |
@@ -165,3 +209,5 @@ Difficult Critical: 2d6, возможные totals 2…12; 6 результат�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [module/actor/mixins/defenseMixin.js](../../module/actor/mixins/defenseMixin.js.md), [module/actor/mixins/damageMixin.js](../../module/actor/mixins/damageMixin.js.md), [module/setup/settings.js](../../module/setup/settings.js.md), [module/TheWitcherTRPG.js](../../module/TheWitcherTRPG.js.md), [module/scripts/combat/combat.js](../../module/scripts/combat/combat.js.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-20](../../../cross-check-0002.md#r017-20). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

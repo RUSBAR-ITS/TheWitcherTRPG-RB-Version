@@ -1,6 +1,6 @@
 {
   "folder": "uofXQEP6HBtekOAO",
-  "name": "Spetic Shock",
+  "name": "Septic Shock",
   "type": "criticalWound",
   "_id": "tF3hsi4yZOMJ6xuW",
   "img": "icons/svg/item-bag.svg",
@@ -21,7 +21,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Spetic Shock",
+      "name": "Septic Shock",
       "origin": "Item.tF3hsi4yZOMJ6xuW",
       "duration": {
         "startTime": null,
@@ -77,7 +77,7 @@
     },
     {
       "type": "base",
-      "name": "Spetic Shock",
+      "name": "Septic Shock",
       "origin": "Item.tF3hsi4yZOMJ6xuW",
       "duration": {
         "startTime": null,

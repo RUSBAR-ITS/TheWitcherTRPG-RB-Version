@@ -1,5 +1,45 @@
 # packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json](../../../../../../packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Mounted Control Loss / `VVb2zLR4NLdMLVQQ` |
+| Строк / SHA-256 | 84 / `51071b4927d1a98e2eb10f175414e489552cd0430c64797b45ec20059dc786c8` |
+
+### Выполненные исправления
+
+B13: две существующие цели Mounted Control Loss. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d1`, `replacement=true`, `displayRoll=true`. 2 TableResult: 0 text и 2 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `dn7MWvgQnc6QY9pS` / 7 | [1,1] | document | [Mounted Control Loss: Personal](../../../../../../packsJson/combat/Mounted_Control_Loss__Personal_KWLoKiOHKXXnq5E4.json) — `Compendium.TheWitcherTRPG-RB-Version.Combat.RollTable.KWLoKiOHKXXnq5E4` |
+| `26LwnYmEgT6vWjyk` / 31 | [1,1] | document | [Mounted Control Loss: Mount](../../../../../../packsJson/combat/Mounted_Control_Loss__Mount_XRdHZOmutZ3yzGRe.json) — `Compendium.TheWitcherTRPG-RB-Version.Combat.RollTable.XRdHZOmutZ3yzGRe` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json](../../../../../../packsJson/combat/Mounted_Control_Loss_VVb2zLR4NLdMLVQQ.json) |
@@ -158,3 +198,5 @@ Mounted Control Loss: 1d1, возможные totals 1…1; 2 результат
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-22](../../../cross-check-0002.md#r017-22). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

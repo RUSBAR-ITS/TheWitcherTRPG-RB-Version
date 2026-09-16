@@ -476,6 +476,30 @@
       "description": "Parental Fate: One or more of your parents were sent to the North as double agents. You likely don’t even know where they are now, but they’re serving the Emperor.",
       "name": "",
       "_key": "!tables.results!wFuCDleU9PzP00mf.XEB17msQM6PA4Wl4"
+    },
+    {
+      "_id": "i1IWonZhtKZQHgZY",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Family Status: Nilfgaard",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.6WXA7KAOHjeqCCRn",
+      "description": "",
+      "_key": "!tables.results!wFuCDleU9PzP00mf.i1IWonZhtKZQHgZY"
     }
   ],
   "formula": "1d10",

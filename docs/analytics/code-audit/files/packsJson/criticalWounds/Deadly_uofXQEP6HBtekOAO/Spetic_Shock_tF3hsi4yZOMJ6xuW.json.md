@@ -1,5 +1,73 @@
 # packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json](../../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт Item criticalWound: шаблон травмы, его эффекты и следующий этап лечения |
+| Имя / ID | Septic Shock / `tF3hsi4yZOMJ6xuW` |
+| Строк / SHA-256 | 172 / `feb3e8f27ca7ce1e3dff62a6a74f093b8ce72f1e542bf6fad2022afe6ce449ac` |
+
+### Выполненные исправления
+
+B16: видимые имена Spetic → Septic. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+| Поле system | Текущее значение |
+| --- | --- |
+| `htmlFields` | ["description"] |
+| `description` | "<p>Quarter your Stamina</p>" |
+| `criticalLevel` | "deadly" |
+| `treatment` | "none" |
+| `location` | "torso" |
+| `lesserEffect` | true |
+| `daysHealed` | 0 |
+| `healingTime` | 0 |
+| `sterilized` | false |
+| `followUp` | "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.LM6Kkh0ib6ux4WQp" |
+
+2 ActiveEffect; 6 changes. ID и `_key` сохранённых эффектов, origin, transfer, duration и несвязанные значения сохранены.
+
+#### Septic Shock — 7hne2AKublGH5Vx0
+
+Строка `_id`: 37. `disabled=false`, `transfer=true`; statuses: `["poison"]`.
+
+| key | mode | value | priority |
+| --- | --- | --- | --- |
+| `system.combatEffects.turnStartEffects.poison` | 2 | "{\"damage\": {\"amount\": 3, \"ignoreArmor\": \"true\"}, \"img\": \"icons/svg/poison.svg\", \"name\": \"WITCHER.statusEffects.poison\"}" | null |
+
+#### Septic Shock — mpyziqOjGOOpnHJ7
+
+Строка `_id`: 93. `disabled=false`, `transfer=true`; statuses: `[]`.
+
+| key | mode | value | priority |
+| --- | --- | --- | --- |
+| `system.stats.int.totalModifiers` | 2 | "-3" | null |
+| `system.stats.will.totalModifiers` | 2 | "-3" | null |
+| `system.stats.ref.totalModifiers` | 2 | "-3" | null |
+| `system.stats.dex.totalModifiers` | 2 | "-3" | null |
+| `system.derivedStats.sta.max` | 1 | "0.25" | null |
+
+### Действия и зависимости
+
+[system.json](../../../../../../../system.json) регистрирует criticalWounds; [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) (`applyCritWound`) читает индекс treatment/location/criticalLevel/lesserEffect, выбирает Item и добавляет его Actor. [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js) определяет поля и выполняет treat/heal; [module/activeEffect/witcherActiveEffect.js](../../../../../../../module/activeEffect/witcherActiveEffect.js) и Foundry обрабатывают ActiveEffect. Исправление descriptions само по себе не меняет расчёты.
+
+Следующий этап: [Septic Shock (Stabilized)](../../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json) — `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.LM6Kkh0ib6ux4WQp`.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json](../../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json) |
@@ -166,3 +234,5 @@ Heart none/stabilized: BODY/SPD.max×0.25/×0.5, STA.max тоже; calculateStat
 Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json](Spetic_Shock__Stabilized__LM6Kkh0ib6ux4WQp.json.md).
 
 [Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-22](../../../../cross-check-0002.md#r012-22), [R012-24](../../../../cross-check-0002.md#r012-24). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

@@ -10,7 +10,7 @@
     "description": "<p>halves SPD, Dodge/Escape, and Athletics</p>",
     "criticalLevel": "difficult",
     "treatment": "stabilized",
-    "location": "rightArm",
+    "location": "rightLeg",
     "lesserEffect": false,
     "daysHealed": 0,
     "healingTime": 0,

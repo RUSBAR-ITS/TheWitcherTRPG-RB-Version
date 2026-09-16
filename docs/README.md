@@ -1,6 +1,6 @@
 # The Witcher TRPG — RB-Version
 
-Для компедиумов подготовлены [таблицы и правила английской базовой книги](analytics/compendium-core-rulebook-reference.md), [сравнение всех 226 JSON](analytics/compendium-core-rulebook-comparison.md) и [единый план исправления ошибок К01](issues/open/issue-00331.md#k01). План объединяет прежние issues и ошибки книжной сверки; авторские варианты таблиц отложены. Исправления контента ещё не начаты.
+Для компедиумов подготовлены [таблицы и правила английской базовой книги](analytics/compendium-core-rulebook-reference.md), [сравнение всех 226 JSON](analytics/compendium-core-rulebook-comparison.md) и [единый план исправления ошибок К01](issues/open/issue-00331.md#k01). В 14.3.1.00016 исправлены все 48 JSON плана, шесть библиотек собраны и проверены во временном каталоге. Установка и игровая приёмка — отдельный следующий шаг; [результаты и ограничения](issues/open/issue-00331.md#implementation). Авторские варианты таблиц сохранены.
 
 Открыты три категории работ по компедиумам: [контент — 9 issues](issues/open/issue-00331.md), [механики — 15 issues](issues/open/issue-00332.md), [процессы — 11 issues](issues/open/issue-00333.md). Issue-00320 и issue-00328 отнесены к механикам. Согласованы состав и связи; технические исправления ещё не начаты.
 

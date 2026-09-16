@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Misfortune: Debt - You fell deeply into debt to the tune of 1d10x100 [[1d10x100]]crowns.",
+      "description": "Misfortune: Debt - You fell deeply into debt to the tune of 1d10x100 [[1d10*100]]crowns.",
       "name": "",
       "_key": "!tables.results!JNbvihde5EGIFPdB.q0DM4FW7XCnFdKZu"
     },

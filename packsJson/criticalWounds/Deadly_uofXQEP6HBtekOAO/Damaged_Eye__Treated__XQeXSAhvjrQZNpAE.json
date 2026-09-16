@@ -7,7 +7,7 @@
     "htmlFields": [
       "description"
     ],
-    "description": "<p>-1 to sight-based Awareness</p>",
+    "description": "<p>You suffer a permanent -1 penalty to sight-based Awareness and DEX.</p>",
     "criticalLevel": "deadly",
     "treatment": "treated",
     "location": "head",

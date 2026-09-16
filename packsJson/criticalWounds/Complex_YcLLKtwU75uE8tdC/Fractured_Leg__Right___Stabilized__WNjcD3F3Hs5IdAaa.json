@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Fractured Leg (Left)",
+      "name": "Fractured Leg (Right)",
       "origin": "Item.r34NuXwHfPGZCpTu",
       "duration": {
         "startTime": null,

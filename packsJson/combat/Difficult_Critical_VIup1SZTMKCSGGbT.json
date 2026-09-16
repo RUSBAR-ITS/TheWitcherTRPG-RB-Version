@@ -30,7 +30,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Compound Leg Fracture - The blow snaps your leg, rendering it useless. Quarter SPD, Dodge/Escape, and Athletics. This induces bleeding. | Stabilized: Halves SPD, Dodge/ Escape, and Athletics. | Treated: 2 to SPD, Dodge/ Escape, and Athletics.",
+      "description": "Compound Leg Fracture - The blow snaps your leg, rendering it useless. Quarter SPD, Dodge/Escape, and Athletics. This induces bleeding. | Stabilized: Halves SPD, Dodge/ Escape, and Athletics. | Treated: -2 to SPD, Dodge/ Escape, and Athletics.",
       "name": "",
       "_key": "!tables.results!VIup1SZTMKCSGGbT.md13gU5GXWqdSo3b"
     },

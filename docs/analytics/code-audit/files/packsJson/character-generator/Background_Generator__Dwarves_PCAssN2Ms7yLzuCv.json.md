@@ -1,5 +1,50 @@
 # packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Background Generator: Dwarves / `PCAssN2Ms7yLzuCv` |
+| Строк / SHA-256 | 195 / `a0e5073f44db18b320b3a697dd358d3eaa4db19ec42f14edbbe8912e294f3b11` |
+
+### Выполненные исправления
+
+B03: удалить прежний параллельный вызов Family Status. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d2`, `replacement=true`, `displayRoll=false`. 7 TableResult: 3 text и 4 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `igDANbaFG5sSYm1T` / 11 | [1,2] | text | Elderland Origin: Mahakam (+1 Crafting) |
+| `FyjZwFRJUzcqDrwW` / 34 | [1,1] | text | At Least Some of Your Family Is Alive |
+| `VySuFOPm5I8jY8r9` / 57 | [1,1] | document | [Parents: Elderland](../../../../../../packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.zSTMrICDELIRaNyL` |
+| `lQTRDF2dEv3hPTOh` / 81 | [1,2] | document | [Siblings: Dwarves/Halflings](../../../../../../packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.Ty1Hs3G4BXkkTu67` |
+| `fHqJQkniV2WVHHIf` / 105 | [1,2] | document | [Dwarf / Gnome Profession](../../../../../../packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.TjKh0NMxyyYxjSDt` |
+| `g4JnOCAOpDRIw8tQ` / 129 | [2,2] | text | Something Happened to Your Family |
+| `rx40q7d9iV7PIvy0` / 152 | [2,2] | document | [Family Fate: Elderland](../../../../../../packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json) — `Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.W6mgmCP3219eYdf0` |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json](../../../../../../packsJson/character-generator/Background_Generator__Dwarves_PCAssN2Ms7yLzuCv.json) |
@@ -169,3 +214,5 @@ Background Generator: Dwarves: 1d2, возможные totals 1…2; 8 резу�
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/character-generator/Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json](Background_Generator__RandomCharacter_CIpykDUYYuJB0zLv.json.md), [packsJson/character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json](../character-generator-sub-tables/Parents__Elderland_zSTMrICDELIRaNyL.json.md), [packsJson/character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json](../character-generator-sub-tables/Siblings__Dwarves_Halflings_Ty1Hs3G4BXkkTu67.json.md), [packsJson/character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json](../character-generator-sub-tables/Dwarf___Gnome_Profession_TjKh0NMxyyYxjSDt.json.md), [packsJson/character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json](../character-generator-sub-tables/Family_Fate__Elderland_W6mgmCP3219eYdf0.json.md), [packsJson/character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json](../character-generator-sub-tables/Family_Status__Elderland_GOp8mGE4MiGaqjk2.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-12](../../../cross-check-0002.md#r017-12). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

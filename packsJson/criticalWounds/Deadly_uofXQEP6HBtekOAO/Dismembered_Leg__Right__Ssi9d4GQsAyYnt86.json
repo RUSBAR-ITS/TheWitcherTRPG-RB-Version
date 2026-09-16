@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Dismembered Leg (Left)",
+      "name": "Dismembered Leg (Right)",
       "origin": "Item.Us9OmoKhRydSqA8z",
       "duration": {
         "rounds": 1,
@@ -87,7 +87,7 @@
         "startRound": null,
         "startTurn": null
       },
-      "disabled": true,
+      "disabled": false,
       "img": "icons/svg/item-bag.svg",
       "_id": "teBgn7uGcPnT0CzT",
       "system": {

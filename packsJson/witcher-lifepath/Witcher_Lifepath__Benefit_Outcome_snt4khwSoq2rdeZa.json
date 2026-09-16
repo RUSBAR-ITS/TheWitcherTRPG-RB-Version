@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Law of Surprises - You invoked the Law of Surprises during that decade. Roll 1d10 [[1d10]] to see what you got in return. 1: a baby, 2: a dog, 3: a horse, 4: a new plow, 5: a cat, 6: a barrel of ale, 7: a piece of jewelery worth 1d6x10 [[1d6x10]] crowns, 8: a weapon worth up to 500 crowns, 9: an ox, 10: a mule.",
+      "description": "Law of Surprises - You invoked the Law of Surprises during that decade. Roll 1d10 [[1d10]] to see what you got in return. 1: a baby, 2: a dog, 3: a horse, 4: a new plow, 5: a cat, 6: a barrel of ale, 7: a piece of jewelery worth 1d6x10 [[1d6*10]] crowns, 8: a weapon worth up to 500 crowns, 9: an ox, 10: a mule.",
       "name": "",
       "_key": "!tables.results!snt4khwSoq2rdeZa.q0DM4FW7XCnFdKZu"
     },
@@ -72,7 +72,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Windfall - You raked in a suprisingly large amount of coin that decade. You managed to not only pay for alchemy ingredients and repairs to your gear, but also put some coin aside for a legitimate savings. You gain 1d10x100 [[1d10x100]] crowns.",
+      "description": "Windfall - You raked in a suprisingly large amount of coin that decade. You managed to not only pay for alchemy ingredients and repairs to your gear, but also put some coin aside for a legitimate savings. You gain 1d10x100 [[1d10*100]] crowns.",
       "name": "",
       "_key": "!tables.results!snt4khwSoq2rdeZa.kQX7ZeIIWKy5yTPF"
     },

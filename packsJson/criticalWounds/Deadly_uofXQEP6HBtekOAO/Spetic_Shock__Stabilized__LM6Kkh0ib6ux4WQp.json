@@ -1,6 +1,6 @@
 {
   "folder": "uofXQEP6HBtekOAO",
-  "name": "Spetic Shock (Stabilized)",
+  "name": "Septic Shock (Stabilized)",
   "type": "criticalWound",
   "img": "icons/svg/item-bag.svg",
   "system": {
@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Spetic Shock",
+      "name": "Septic Shock",
       "origin": "Item.tF3hsi4yZOMJ6xuW",
       "duration": {
         "startTime": null,

@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Specter",
+      "description": "Hunt Target - Specter Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.q0DM4FW7XCnFdKZu"
     },
@@ -49,7 +49,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Cursed One",
+      "description": "Hunt Target - Cursed One Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.oKZeEBIq2FLMNk2e"
     },
@@ -72,7 +72,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Hybrid",
+      "description": "Hunt Target - Hybrid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.kQX7ZeIIWKy5yTPF"
     },
@@ -95,7 +95,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Insectoid",
+      "description": "Hunt Target - Insectoid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.36ROPw9QWjYWmpBV"
     },
@@ -118,7 +118,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Elementa",
+      "description": "Hunt Target - Elementa Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.9kVdEtFeX4a3nAoe"
     },
@@ -141,7 +141,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Relict",
+      "description": "Hunt Target - Relict Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.cQfRuoxqB1FI58LA"
     },
@@ -164,7 +164,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Ogroid",
+      "description": "Hunt Target - Ogroid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.th9s2aW3pwS3ZZX2"
     },
@@ -187,7 +187,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Draconid",
+      "description": "Hunt Target - Draconid Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.tfUjaxwfTwqW98vG"
     },
@@ -210,7 +210,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Necrophage",
+      "description": "Hunt Target - Necrophage Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.XFy2l49tSxFMwvUu"
     },
@@ -233,7 +233,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Hunt Target - Vampire",
+      "description": "Hunt Target - Vampire Choose a specific monster from this category. Gain +2 to Witcher Training checks relating to that specific monster.",
       "name": "",
       "_key": "!tables.results!ZozZLNSgKpwEltsY.NlfhnGUfAnLtImRU"
     }

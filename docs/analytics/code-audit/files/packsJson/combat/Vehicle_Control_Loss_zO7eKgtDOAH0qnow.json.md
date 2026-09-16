@@ -1,5 +1,46 @@
 # packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json](../../../../../../packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Vehicle Control Loss / `zO7eKgtDOAH0qnow` |
+| Строк / SHA-256 | 105 / `5fec06b9b0619df5c5d5eeaa23c9a8670d63f8c7b6cd14f16d91c3a4953d9f2b` |
+
+### Выполненные исправления
+
+B12: две inline-формулы дистанции ×2/×3. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d6`, `replacement=true`, `displayRoll=true`. 3 TableResult: 3 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `6MBEl0tLYVFIn7zR` / 15 | [1,2] | text | Vehicle Control Loss - Skid or Slew: No other results |
+| `OlzIW2c5GeaHCxi2` / 38 | [3,4] | text | Vehicle Control Loss - Major Skid: Slide [[1d10*2]] meters sideways in the direction of travel. If you hit an object, use the Charging rules to see what damage is done to your vehicle and the object. |
+| `VmZlsmcJudyNWenE` / 61 | [5,6] | text | Vehicle Control Loss - Rolled the Vehicle: Your vehicle skids [[1d10*3]] meters sideways in the direction of travel and rolls. In a land vehicle, you, the vehicle, and the animals pulling it take [[5d6]] damage. In a water vehicle, you have capsized and are trapped underwater until you make a DC:12 Athletics check to swim |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json](../../../../../../packsJson/combat/Vehicle_Control_Loss_zO7eKgtDOAH0qnow.json) |
@@ -157,3 +198,5 @@ Vehicle Control Loss: 1d6, возможные totals 1…6; 3 результат
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-23](../../../cross-check-0002.md#r017-23), [R017-05](../../../cross-check-0002.md#r017-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

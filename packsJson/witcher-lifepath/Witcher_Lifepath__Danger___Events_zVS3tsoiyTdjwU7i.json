@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Event - Debt: Through broken gear, gwent matches, or the like you’ve grown a 1d10x100 [[1d10x100]] crown debt to an establishment or noble house.",
+      "description": "Event - Debt: Through broken gear, gwent matches, or the like you’ve grown a 1d10x100 [[1d10*100]] crown debt to an establishment or noble house.",
       "name": "",
       "_key": "!tables.results!zVS3tsoiyTdjwU7i.q0DM4FW7XCnFdKZu"
     },

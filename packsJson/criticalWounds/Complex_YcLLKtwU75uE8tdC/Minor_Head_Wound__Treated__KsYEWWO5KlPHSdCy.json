@@ -9,7 +9,7 @@
     "description": "",
     "criticalLevel": "complex",
     "treatment": "treated",
-    "location": "torso",
+    "location": "head",
     "lesserEffect": false,
     "daysHealed": 0,
     "healingTime": 0,

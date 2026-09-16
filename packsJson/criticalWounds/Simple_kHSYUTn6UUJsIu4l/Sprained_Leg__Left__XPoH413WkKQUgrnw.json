@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Sprained Leg (Right)",
+      "name": "Sprained Leg (Left)",
       "origin": "Item.1AxybnKTfdd6Tb8B",
       "duration": {
         "startTime": null,

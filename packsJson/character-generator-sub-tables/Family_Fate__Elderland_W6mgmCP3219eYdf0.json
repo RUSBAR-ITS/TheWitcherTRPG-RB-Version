@@ -236,6 +236,30 @@
       "description": "Family Fate: Your family is descended from an infamous traitor. It taints your family’s interactions with others of the elder races and has made living in the elderland difficult.",
       "name": "",
       "_key": "!tables.results!W6mgmCP3219eYdf0.XEB17msQM6PA4Wl4"
+    },
+    {
+      "_id": "PqHSPYmD5OPIb4BU",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        1,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Parental Fate: Elderland",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.jZVPaCIoQxFZiyRu",
+      "description": "",
+      "_key": "!tables.results!W6mgmCP3219eYdf0.PqHSPYmD5OPIb4BU"
     }
   ],
   "formula": "1d10",

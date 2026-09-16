@@ -7,7 +7,7 @@
     "htmlFields": [
       "description"
     ],
-    "description": "",
+    "description": "<p>You permanently take 2 additional points of damage from bleeding.</p>",
     "criticalLevel": "deadly",
     "treatment": "treated",
     "location": "torso",

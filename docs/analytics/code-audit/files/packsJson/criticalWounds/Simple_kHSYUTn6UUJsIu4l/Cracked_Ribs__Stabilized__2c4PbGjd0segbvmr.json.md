@@ -1,5 +1,61 @@
 # packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт Item criticalWound: шаблон травмы, его эффекты и следующий этап лечения |
+| Имя / ID | Cracked Ribs (Stabilized) / `2c4PbGjd0segbvmr` |
+| Строк / SHA-256 | 92 / `10d6f51a368f987875bd8f5f9c861fe6b6169fe9dd84d08f5211f95ea7faf552` |
+
+### Выполненные исправления
+
+B17: восстановить конкретное пропущенное условие в description. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+| Поле system | Текущее значение |
+| --- | --- |
+| `htmlFields` | ["description"] |
+| `description` | "<p>You suffer a -1 penalty to BODY. This penalty does not affect your Health Points.</p>" |
+| `criticalLevel` | "simple" |
+| `treatment` | "stabilized" |
+| `location` | "torso" |
+| `lesserEffect` | false |
+| `daysHealed` | 0 |
+| `healingTime` | 0 |
+| `sterilized` | false |
+| `followUp` | "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.oe4y6zxH2WUR9gSj" |
+
+1 ActiveEffect; 1 changes. ID и `_key` сохранённых эффектов, origin, transfer, duration и несвязанные значения сохранены.
+
+#### Cracked Ribs — JbjBQiCjrW9VmENf
+
+Строка `_id`: 36. `disabled=false`, `transfer=true`; statuses: `[]`.
+
+| key | mode | value | priority |
+| --- | --- | --- | --- |
+| `system.stats.body.totalModifiers` | 2 | "-1" | null |
+
+### Действия и зависимости
+
+[system.json](../../../../../../../system.json) регистрирует criticalWounds; [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) (`applyCritWound`) читает индекс treatment/location/criticalLevel/lesserEffect, выбирает Item и добавляет его Actor. [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js) определяет поля и выполняет treat/heal; [module/activeEffect/witcherActiveEffect.js](../../../../../../../module/activeEffect/witcherActiveEffect.js) и Foundry обрабатывают ActiveEffect. Исправление descriptions само по себе не меняет расчёты.
+
+Следующий этап: [Cracked Ribs (Treated)](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Treated__oe4y6zxH2WUR9gSj.json) — `Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.oe4y6zxH2WUR9gSj`.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Stabilized__2c4PbGjd0segbvmr.json) |
@@ -142,3 +198,5 @@ Jaw:10 навыковых штрафов−2→10×−1→3 магических
 Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs__Treated__oe4y6zxH2WUR9gSj.json](Cracked_Ribs__Treated__oe4y6zxH2WUR9gSj.json.md), [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Ribs_7TzGQ2y4yZnG01im.json](Cracked_Ribs_7TzGQ2y4yZnG01im.json.md).
 
 [Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-10](../../../../cross-check-0002.md#r012-10). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

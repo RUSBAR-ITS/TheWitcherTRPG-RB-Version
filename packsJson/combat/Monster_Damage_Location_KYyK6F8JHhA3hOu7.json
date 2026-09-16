@@ -42,7 +42,7 @@
       "weight": 1,
       "range": [
         2,
-        5
+        4
       ],
       "drawn": false,
       "_stats": {
@@ -64,7 +64,7 @@
       "img": "https://assets.forge-vtt.com/bazaar/core/icons/svg/d20-black.svg",
       "weight": 1,
       "range": [
-        6,
+        5,
         7
       ],
       "drawn": false,
@@ -110,7 +110,7 @@
       "img": "https://assets.forge-vtt.com/bazaar/core/icons/svg/d20-black.svg",
       "weight": 1,
       "range": [
-        9,
+        10,
         10
       ],
       "drawn": false,

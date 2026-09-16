@@ -236,6 +236,30 @@
       "description": "Family Fate: Your family was assassinated. They may have been in the way of someone’s plan or they may have been used to get at someone more powerful. Either way, your family is gone now",
       "name": "",
       "_key": "!tables.results!VstrJuRw43OKcuGr.XEB17msQM6PA4Wl4"
+    },
+    {
+      "_id": "yK7lbHRx3KHl2OII",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        1,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.341",
+        "systemId": null,
+        "systemVersion": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Parental Fate: Nilfgaard",
+      "documentUuid": "Compendium.TheWitcherTRPG-RB-Version.Character-gen_Sub-tables.RollTable.wFuCDleU9PzP00mf",
+      "description": "",
+      "_key": "!tables.results!VstrJuRw43OKcuGr.yK7lbHRx3KHl2OII"
     }
   ],
   "formula": "1d10",

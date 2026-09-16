@@ -1,13 +1,13 @@
 {
   "folder": "uofXQEP6HBtekOAO",
-  "name": "Spetic Shock (Treated)",
+  "name": "Septic Shock (Treated)",
   "type": "criticalWound",
   "img": "icons/svg/item-bag.svg",
   "system": {
     "htmlFields": [
       "description"
     ],
-    "description": "",
+    "description": "<p>You suffer a permanent -5 penalty to Stamina.</p>",
     "criticalLevel": "deadly",
     "treatment": "treated",
     "location": "torso",
@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Spetic Shock",
+      "name": "Septic Shock",
       "origin": "Item.tF3hsi4yZOMJ6xuW",
       "duration": {
         "startTime": null,

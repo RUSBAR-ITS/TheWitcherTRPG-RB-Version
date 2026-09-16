@@ -1,5 +1,61 @@
 # packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт Item criticalWound: шаблон травмы, его эффекты и следующий этап лечения |
+| Имя / ID | Minor Head Wound (Treated) / `KsYEWWO5KlPHSdCy` |
+| Строк / SHA-256 | 92 / `8b8e37605896024201849d1f2f48906e4549da4c2f5cbdc667aa43cec7101d89` |
+
+### Выполненные исправления
+
+B14: анатомическая локация. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+| Поле system | Текущее значение |
+| --- | --- |
+| `htmlFields` | ["description"] |
+| `description` | "" |
+| `criticalLevel` | "complex" |
+| `treatment` | "treated" |
+| `location` | "head" |
+| `lesserEffect` | false |
+| `daysHealed` | 0 |
+| `healingTime` | 0 |
+| `sterilized` | false |
+| `followUp` | null |
+
+1 ActiveEffect; 1 changes. ID и `_key` сохранённых эффектов, origin, transfer, duration и несвязанные значения сохранены.
+
+#### Minor Head Wound — J7E3yf7R3ZvwDodi
+
+Строка `_id`: 35. `disabled=false`, `transfer=true`; statuses: `[]`.
+
+| key | mode | value | priority |
+| --- | --- | --- | --- |
+| `system.stats.will.totalModifiers` | 2 | "-1" | null |
+
+### Действия и зависимости
+
+[system.json](../../../../../../../system.json) регистрирует criticalWounds; [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) (`applyCritWound`) читает индекс treatment/location/criticalLevel/lesserEffect, выбирает Item и добавляет его Actor. [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js) определяет поля и выполняет treat/heal; [module/activeEffect/witcherActiveEffect.js](../../../../../../../module/activeEffect/witcherActiveEffect.js) и Foundry обрабатывают ActiveEffect. Исправление descriptions само по себе не меняет расчёты.
+
+Следующий этап: `followUp=null`; `treat()` удаляет конечный Item.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json](../../../../../../../packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Treated__KsYEWWO5KlPHSdCy.json) |
@@ -139,3 +195,5 @@ Ribs: BODY−2/−1/−1, REF−1/−1/нет, DEX−1 только none. Teeth:
 Сопоставленные определения и потребители: [module/data/item/criticalWoundData.js](../../../module/data/item/criticalWoundData.js.md), [module/actor/mixins/damageMixin.js](../../../module/actor/mixins/damageMixin.js.md), [module/actor/witcherActor.js](../../../module/actor/witcherActor.js.md), [module/activeEffect/witcherActiveEffect.js](../../../module/activeEffect/witcherActiveEffect.js.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md), [packsJson/criticalWounds/Complex_YcLLKtwU75uE8tdC/Minor_Head_Wound__Stabilized__EnwgL7ApZTdHgMbD.json](Minor_Head_Wound__Stabilized__EnwgL7ApZTdHgMbD.json.md).
 
 [Протокол и границы](../../../../review-log.md#task-0004012) — TASK-0004.012; процессы [R012-13](../../../../cross-check-0002.md#r012-13). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

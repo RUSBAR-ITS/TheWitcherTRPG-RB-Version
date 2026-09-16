@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Compound Leg Fracture (Left)",
+      "name": "Compound Leg Fracture (Right)",
       "origin": "Item.flpxY7FVPGevwfcg",
       "duration": {
         "rounds": 1,

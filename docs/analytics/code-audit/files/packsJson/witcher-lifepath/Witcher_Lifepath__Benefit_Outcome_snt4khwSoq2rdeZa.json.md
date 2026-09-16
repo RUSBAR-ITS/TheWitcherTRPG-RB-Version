@@ -1,5 +1,53 @@
 # packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json
 
+## Текущий срез — 14.3.1.00016
+
+| Поле | Значение |
+| --- | --- |
+| Источник | [packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../issues/open/issue-00331.md) |
+| Тип / назначение | Экспорт RollTable для выдачи текстов и переходов к дочерним таблицам |
+| Имя / ID | Witcher Lifepath: Benefit Outcome / `snt4khwSoq2rdeZa` |
+| Строк / SHA-256 | 260 / `0aaef9c4f37b114e22a236aa83ee25b9386f66ea6ae0b36f98e377ce88f62dcd` |
+
+### Выполненные исправления
+
+B12: три денежные inline-формулы в двух файлах. Остальные поля сохранены. Текущие значения и связи перечислены ниже; архив в конце описывает прежние срезы.
+
+`formula=1d10`, `replacement=true`, `displayRoll=false`. 10 TableResult: 10 text и 0 document. Совпадающие диапазоны выбираются совместно; дочерняя таблица бросается отдельно.
+
+| ID / строка _id | range | Тип | Текст результата / цель |
+| --- | --- | --- | --- |
+| `q0DM4FW7XCnFdKZu` / 11 | [1,1] | text | Law of Surprises - You invoked the Law of Surprises during that decade. Roll 1d10 [[1d10]] to see what you got in return. 1: a baby, 2: a dog, 3: a horse, 4: a new plow, 5: a cat, 6: a barrel of ale, 7: a piece of jewelery worth 1d6x10 [[1d6*10]] crowns, 8: a weapon worth up to 500 crowns, 9: an ox, 10: a mule. |
+| `oKZeEBIq2FLMNk2e` / 34 | [2,2] | text | Romance - You found a lover who saw past your mutations and desensitization. Somehow you managed to make a meaningful connection with a person. Roll 1d10 [[1d10]]. 1-6: it lasted a few weeks, 7-8: it lasted a few months, 9-10: it’s still going, on and off. |
+| `kQX7ZeIIWKy5yTPF` / 57 | [3,3] | text | Windfall - You raked in a suprisingly large amount of coin that decade. You managed to not only pay for alchemy ingredients and repairs to your gear, but also put some coin aside for a legitimate savings. You gain 1d10x100 [[1d10*100]] crowns. |
+| `36ROPw9QWjYWmpBV` / 80 | [4,4] | text | A Noble Owes You - You performed a task for a noble. It may have been legal, it may have been illegal—either way, the noble you helped out owes you big and knows you’ll come to collect someday. You can invoke this favor at any time but it must be reasonable (GM’s discretion). |
+| `9kVdEtFeX4a3nAoe` / 103 | [5,5] | text | Witcher Secrets Passed Down - Along your journeys you met with and traveled with another witcher. This witcher taught you and shared some long-lost knowledge. You gain a witcher diagram: a potion, oil, or decoction of your choice. |
+| `cQfRuoxqB1FI58LA` / 126 | [6,6] | text | Knighted For Valor - At some point that decade, you fought bravely to defend a country. You may have gone to protect someone or you may just have been in the right place at the right time. For this great deed, you were knighted by a king/queen. You gain +1 Reputation in one country of your choice. |
+| `th9s2aW3pwS3ZZX2` / 149 | [7,7] | text | Fell in with Bandits - You fell in with a group of bandits or scoia’tael while on a hunt. You may not have agreed with their methods, but they didn’t bother you and you didn’t bother them. You even shared some drinks. You can ask them for a favor once a month as long as it’s reasonable (GM’s discretion). |
+| `tfUjaxwfTwqW98vG` / 172 | [8,8] | text | Explored a Ruin - You had to hunt a monster through a large and complex ruin. Along the way you found something useful. Roll 1d10 [[1d10]]. 1-2: elven enhancement, 3-4: elven messer, 5-6: dwarven enhancement, 7-8: gnomish hand crossbow, 9-10: dwarven cloak. |
+| `XFy2l49tSxFMwvUu` / 195 | [9,9] | text | A Mage Owes You - During this decade you did a favor for a mage. You may have gathered monster parts for their experiments, let them study you, or even captured a monster alive for them. Either way, the mage now owes you one favor in return as long as it’s reasonable (GM’s discretion). |
+| `NlfhnGUfAnLtImRU` / 218 | [10,10] | text | Found a Teacher - You studied under a mentor. You spent many weeks learning, practicing, and looking to your mentor for guidance. It was a strange experience. You may gain +1 in any INT skill or start a new INT skill at +2. |
+
+### Действия и зависимости
+
+[system.json](../../../../../../system.json) объявляет библиотеку; [utils/packs.mjs](../../../../../../utils/packs.mjs) и [utils/extract.mjs](../../../../../../utils/extract.mjs) передают данные compilePack/extractPack. В .00016 сборка выполнена во временном каталоге отдельным проверочным запуском CLI; действующая БД не заменялась.
+
+Собственных функций у JSON нет. Foundry `RollTable.getResultsForRoll` читает range/drawn, `roll` раскрывает перечисленные documentUuid через fromUuid, `draw/toMessage` передаёт результаты в чат; `TableResult.getHTML` обогащает текст и inline-формулы. `normalize` может изменить распределение по weight; нормализация в это исправление не входит. Выданный текст не создаёт Actor/Item и не начисляет бонусы автоматически.
+
+### Проверка и границы
+
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+
+Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
+
+## Архив анализа до 14.3.1.00016
+
+**Ниже сохранены датированные доказательства прежнего состояния. Старые числа результатов/эффектов, тексты, ссылки, номера строк и заявления об отсутствии исправлений не описывают текущий JSON. Актуальный срез находится выше.**
+
+<details>
+<summary>Предыдущие пофайловые исследования и проверки</summary>
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json](../../../../../../packsJson/witcher-lifepath/Witcher_Lifepath__Benefit_Outcome_snt4khwSoq2rdeZa.json) |
@@ -174,3 +222,5 @@ Witcher Lifepath: Benefit Outcome: 1d10, возможные totals 1…10; 10 р
 Сопоставленные определения и потребители: [system.json](../../system.json.md), [utils/packs.mjs](../../utils/packs.mjs.md), [utils/extract.mjs](../../utils/extract.mjs.md), [module/item/witcherItem.js](../../module/item/witcherItem.js.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json](Witcher_Lifepath__Cautious_Outcome_jhPNDSApv5lQlUk3.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json](Witcher_Lifepath__Non_Neutral_Outcome_sARR2vzegIiAh3uU.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json](Witcher_Lifepath__Normal_Outcome_Lu49KrUT3wDY1bJr.json.md), [packsJson/witcher-lifepath/Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json](Witcher_Lifepath__Risky_Outcome_R6BzlpXysvPx6O5c.json.md).
 
 [Протокол и границы](../../../review-log.md#task-0004017) — TASK-0004.017; процессы [R017-01](../../../cross-check-0002.md#r017-01), [R017-02](../../../cross-check-0002.md#r017-02), [R017-03](../../../cross-check-0002.md#r017-03), [R017-04](../../../cross-check-0002.md#r017-04), [R017-19](../../../cross-check-0002.md#r017-19), [R017-05](../../../cross-check-0002.md#r017-05). В этой порции выполнена статическая сверка; прежние опыты сохраняют свои даты и фасады. Новых поведенческих запусков нет; браузер, мир, сеть и запись в БД не запускались.
+
+</details>

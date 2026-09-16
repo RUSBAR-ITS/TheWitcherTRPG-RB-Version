@@ -26,7 +26,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents died in one of the Northern Wars. He may have already been in the military or he may have been conscripted into service during that war.",
+      "description": "Parental Fate: One or more of your parents were accused of being Scoia’tael. The people around you give your parents sidelong glances.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.WLL4GH2QBfngXygQ"
     },
@@ -97,7 +97,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were poisoned. This may have been the work of a professional rival, or it may have been to get your parents out of the way.",
+      "description": "Parental Fate: One or more of your parents turned on your own people and sold out the elder races to the humans. Your parents are unwelcome in your homeland.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.4h4Sw8Y1i17AihjX"
     },
@@ -144,7 +144,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: The secret police took your parent or parents for ‘questioning.’ The next week their bodies were found hung in the streets of the city",
+      "description": "Parental Fate: One or more of your parents killed themselves out of despair. With no hope of regaining the glory of the past, they gave up and ended it.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.5VXUJzVqGqVahzfy"
     },
@@ -191,7 +191,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were killed by a rogue mage. Most likely they tried to turn the mage in question in to the Empire and paid the price.",
+      "description": "Parental Fate: While traveling, one or more of your parents fell prey to human racism. They died in a pogrom and their bodies were displayed on pikes.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.oQQUBuaPK1pTABqq"
     },
@@ -238,7 +238,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were imprisoned for unlawful magic. Maybe they actually commited the crime or maybe it was a setup.",
+      "description": "Parental Fate: One or more of your parents have become obsessed with regaining the former glory of their race. They sacrifice everything for this cause.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.SdTrfAZtLN9cLgew"
     },
@@ -285,7 +285,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were exiled to the Korath Desert. Likely they committed a major crime but killing them would cause trouble.",
+      "description": "Parental Fate: One or more of your parents were exiled from your homeland. There are many possible reasons, from crime to dissenting opinions.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.7yYGp4SSAi9ymCGL"
     },
@@ -332,7 +332,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were cursed by a mage. The mage likely had a vendetta against them.",
+      "description": "Parental Fate: One or more of your parents were cursed. You can decide what this curse is or the Game Master can decide.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.ts84cRjou8LMlLD4"
     },
@@ -379,7 +379,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: Your parents simply left you one day. You may not even know why they did it. One day your parents just disappeared.",
+      "description": "Parental Fate: Your parents gave you to another family so that you could survive, because they couldn’t care for you.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.LEz6AVGxGmTiJS5K"
     },
@@ -426,7 +426,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were enslaved. They either commited a crime against the Empire or were set up by a rival.",
+      "description": "Parental Fate: One or more of your parents joined the Scoia’tael in an attempt to get revenge on the humans who they see as ruining their lives.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.X4C3zlEyKnAX96jL"
     },
@@ -473,7 +473,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "description": "Parental Fate: One or more of your parents were sent to the North as double agents. You likely don’t even know where they are now, but they’re serving the Emperor.",
+      "description": "Parental Fate: One or more of your parents died in an ‘accident’. Most likely they made a powerful enemy that finally found a way to get rid of them.",
       "name": "",
       "_key": "!tables.results!jZVPaCIoQxFZiyRu.XEB17msQM6PA4Wl4"
     },

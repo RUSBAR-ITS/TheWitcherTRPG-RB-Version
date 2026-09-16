@@ -20,7 +20,7 @@
   "effects": [
     {
       "type": "base",
-      "name": "Compound Leg Fracture (Left - Treated)",
+      "name": "Compound Leg Fracture (Right - Treated)",
       "origin": "Item.kfyfxEVsMRUDDk1A",
       "duration": {
         "startTime": null,

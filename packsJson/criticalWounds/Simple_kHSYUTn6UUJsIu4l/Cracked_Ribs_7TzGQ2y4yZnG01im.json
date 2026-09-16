@@ -8,7 +8,7 @@
     "htmlFields": [
       "description"
     ],
-    "description": "",
+    "description": "<p>You suffer a -2 penalty to BODY. This penalty does not affect your Health Points.</p>",
     "criticalLevel": "simple",
     "treatment": "none",
     "location": "torso",

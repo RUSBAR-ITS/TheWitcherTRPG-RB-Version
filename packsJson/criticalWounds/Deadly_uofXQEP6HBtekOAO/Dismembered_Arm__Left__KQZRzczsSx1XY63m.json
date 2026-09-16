@@ -8,7 +8,7 @@
     "htmlFields": [
       "description"
     ],
-    "description": "<p>The blow rends your arm from your body or damages it beyond repair. </p>",
+    "description": "<p>The blow rends your arm from your body or damages it beyond repair. </p><p>Your left arm cannot be used. This wound induces bleeding.</p>",
     "criticalLevel": "deadly",
     "treatment": "none",
     "location": "leftArm",
