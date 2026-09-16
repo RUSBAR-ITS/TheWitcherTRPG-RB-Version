@@ -66,7 +66,7 @@ class DamageExpansion(unittest.TestCase):
     def test_variable_input_markup_and_exact_localization(self):
         s=self.source(159);h=self.source(509)
         self.assertIn('currentDamage: damageFormula',s[93]);self.assertIn('button.form.elements.newDamage.value',s[99]);self.assertIn('rejectClose: true',s[103]);self.assertNotIn('cssClass','\n'.join(s[89:]));self.assertIn('{{cssClass}}',h[0])
-        self.assertIn('type=\'text\' value="{{currentDamage}}" name=\'newDamage\'',h[3]);self.assertIn('WITCHER.Item.DamageProperties.variableDamage',h[1]);self.assertIn('WITCHER.Item.properties.variableDamage',s[101])
+        self.assertIn('type=\'text\' value="{{currentDamage}}" name=\'newDamage\'',h[3]);self.assertIn('WITCHER.Item.DamageProperties.variableDamage',h[1]);self.assertIn('WITCHER.Item.DamageProperties.variableDamage',s[101])
         self.assertIn('<div class="damage-message" <h1>',s[21]);self.assertNotIn('data-duration',s[57]);self.assertIn("data-status='${effect.statusEffect}'",s[57]);self.assertNotIn('applied','\n'.join(s[51:59]))
         self.assertIn('.percentageFailed',self.source(451)[0]);self.assertIn('.percentageSuccess',self.source(451)[5]);self.assertIn('.apply-status',self.source(451)[9])
         for lang in ['en','ru']:

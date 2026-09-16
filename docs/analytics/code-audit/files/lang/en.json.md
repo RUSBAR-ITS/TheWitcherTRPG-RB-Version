@@ -11,6 +11,28 @@
 | Задача и порция | [TASK-0003.051](../../../../tasks/task-0003.051.md), 2 файла / 3032 логические строки; данный файл — 1529 |
 | Запись перекрёстной сверки | [TASK-0003.051](../../review-log.md#task-0003051) |
 
+## Актуализация issue-00330 — 2026-09-16
+
+Версия 14.3.1.00007, dev, база 031fbb8691ad32ab01fad43253c8736071bb2f8b. [Реализация и проверки](../../../../issues/open/issue-00330.md#реализация-и-проверки--143100007). Ниже сохранён исторический разбор: его сообщения об исправленных подписях/пропусках относятся к прежнему коду. Механики, технические значения и компедиумы этой правкой не изменены.
+
+Текущий словарь: **1163** строковых листьев. Все 1153 прежних ключей сохранены; добавлено 10. Общих en/ru — 1160, только en — три, только ru — два. Сохранены четыре пустых hint, аргументы форматирования, точечные ключи и «СЛ собирания».
+
+| Ключ | До | Сейчас |
+| --- | --- | --- |
+| `WITCHER.rewards.dialog.amount` | — отсутствовал | Amount |
+| `WITCHER.rewards.chat.amount` | — отсутствовал | Amount |
+| `WITCHER.Investigation.goal` | — отсутствовал | Goal |
+| `WITCHER.Investigation.difficulty` | — отсутствовал | Difficulty |
+| `WITCHER.Investigation.complexity` | — отсутствовал | Complexity |
+| `WITCHER.Inventory.carriedWeight` | — отсутствовал | Carried weight |
+| `WITCHER.Inventory.carryLimit` | — отсутствовал | Encumbrance |
+| `WITCHER.Inventory.containerWeight` | — отсутствовал | Contents weight |
+| `WITCHER.Inventory.containerCapacity` | — отсутствовал | Weight capacity |
+| `WITCHER.Item.RegionProperties.tokenMoveWithin` | — отсутствовал | Macro when a token moves within the region |
+| `WITCHER.ReputationButton.Save` | Save | Reputation check |
+| `WITCHER.ReputationSave.Title` | Save | Reputation check |
+
+
 ## Назначение файла
 
 Английские подписи интерфейса системы и основной резервный словарь для других языков. 1153 строковых листа, из них 26 TYPES, 1 EFFECT и 1126 WITCHER; собственного исполняемого кода нет.

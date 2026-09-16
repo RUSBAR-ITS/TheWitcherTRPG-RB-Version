@@ -320,7 +320,8 @@
                 "tokenEnter": "Apply Macro on Enter",
                 "tokenTurnStart": "Apply Macro on Turn start",
                 "tokenPreMove": "Apply Macro before Token moves",
-                "tokenExit": "Apply Macro on Exit"
+                "tokenExit": "Apply Macro on Exit",
+                "tokenMoveWithin": "Macro when a token moves within the region"
             },
             "ContextMenu": {
                 "edit": "Edit",
@@ -881,7 +882,11 @@
             "Vermilion": "Vermilion",
             "Sol": "Sol",
             "Caelum": "Caelum",
-            "Fulgur": "Fulgur"
+            "Fulgur": "Fulgur",
+            "carriedWeight": "Carried weight",
+            "carryLimit": "Encumbrance",
+            "containerWeight": "Contents weight",
+            "containerCapacity": "Weight capacity"
         },
         "Button": {
             "Cancel": "Cancel",
@@ -1249,9 +1254,9 @@
         },
         "Apply.Mod": "Apply a modifier",
         "ReputationTitle": "Executing a reputation roll",
-        "ReputationButton.Save": "Save",
+        "ReputationButton.Save": "Reputation check",
         "ReputationButton.FaceDown": "Face-Down",
-        "ReputationSave.Title": "Save",
+        "ReputationSave.Title": "Reputation check",
         "ReputationFaceDown.Title": "Reputation Face-Down",
         "verbalCombat": {
             "Title": "Verbal Combat",
@@ -1368,7 +1373,10 @@
             "failDamage": "Fail Damage",
             "evidence": {
                 "chooseSkill": "Choose your skill"
-            }
+            },
+            "goal": "Goal",
+            "difficulty": "Difficulty",
+            "complexity": "Complexity"
         },
         "statusEffects": {
             "applyCombat": "Applying combat effect for ",
@@ -1514,12 +1522,14 @@
                 "magicIp": "Is magic IP: ",
                 "currency": "Currency Amount",
                 "currencyType": "Currency Type",
-                "confirm": "Confirm"
+                "confirm": "Confirm",
+                "amount": "Amount"
             },
             "chat": {
                 "title": "Rewards",
                 "ip": "IP",
-                "currency": "Currency"
+                "currency": "Currency",
+                "amount": "Amount"
             }
         },
         "magic": {

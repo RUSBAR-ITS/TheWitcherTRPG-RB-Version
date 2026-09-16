@@ -159,7 +159,7 @@ export let castSpellMixin = {
             rollFormula += !displayRollDetails ? ` -3` : ` -3[${game.i18n.localize('WITCHER.Dialog.attackExtra')}]`;
         }
 
-        templateInfo.spellSource = spellItem.system.source ? 'WITCHER.Spell.' + spellItem.system.source : null;
+        templateInfo.spellSource = spellItem.system.source ? 'WITCHER.Spell.' + (spellItem.system.source === 'Water' ? 'water' : spellItem.system.source) : null;
 
         if (spellItem.system.duration) {
             let durationText = spellItem.system.duration;

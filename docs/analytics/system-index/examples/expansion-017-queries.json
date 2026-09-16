@@ -499,7 +499,7 @@
           "docs/issues/potential/issue-00296.md"
         ]
       },
-      "basis": "159:102 Item.properties,509:2 Item.DamageProperties."
+      "basis": "159:102 и 509:2 теперь используют одинаковый Item.DamageProperties.variableDamage (issue-00330)."
     },
     {
       "id": "DMG-27",

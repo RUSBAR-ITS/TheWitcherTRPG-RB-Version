@@ -35,7 +35,7 @@
                         {{#if spell.system.source}}
                             <span class="item-tag" data-tooltip="{{localize "WITCHER.Spell.Element"}}">
                                 <i class="fa-solid fa-wand-sparkles"></i>
-                                {{ localize (concat "WITCHER.Spell." spell.system.source) }}
+                                {{#if (eq spell.system.source "Water")}}{{localize "WITCHER.Spell.water"}}{{else}}{{localize (concat "WITCHER.Spell." spell.system.source)}}{{/if}}
                             </span>
                         {{/if}}
                         {{#if spell.system.level}}
@@ -47,7 +47,7 @@
                         {{#if spell.system.danger}}
                             <span class="item-tag" data-tooltip="{{localize "WITCHER.Spell.Danger"}}">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
-                                {{ localize (concat "WITCHER.Spell." spell.system.danger) }}
+                                {{ localize (concat "WITCHER.Spell.danger" spell.system.danger) }}
                             </span>
                         {{/if}}
                         {{#if spell.system.range}}

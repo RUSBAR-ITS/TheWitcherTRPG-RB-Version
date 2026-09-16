@@ -257,9 +257,11 @@
         "src-000003"
       ],
       "expected": {
-        "ids": []
+        "ids": [
+          "ent-005360"
+        ]
       },
-      "basis": "Отсутствует только ru; en имеет строку. Issue193 с поздними поправками."
+      "basis": "Issue-00330 добавила ru skills.levelUp; прежний ключ en сохранён."
     },
     {
       "id": "LOC-15",
@@ -294,10 +296,11 @@
       ],
       "expected": {
         "ids": [
-          "ent-001389"
+          "ent-001389",
+          "ent-005351"
         ]
       },
-      "basis": "DamageType.silver есть только en; другой ru путь не alias."
+      "basis": "Issue-00330 добавила ru DamageType.silver; старый ru Damage.silver также сохранён."
     },
     {
       "id": "LOC-17",
@@ -357,7 +360,7 @@
       "question": "IQ-08",
       "command": [
         "find",
-        "WITCHER.Weapon.Availability",
+        "WITCHER.Item.Availability",
         "--match",
         "exact",
         "--kind",
@@ -368,7 +371,7 @@
           "ent-003318"
         ]
       },
-      "basis": "Literal tags:14/127, нет определения строки в обоих словарях."
+      "basis": "Literal tags:14/127 исправлен на существующий Item.Availability; ID lookup сохранён, определения есть в обоих словарях."
     },
     {
       "id": "LOC-21",

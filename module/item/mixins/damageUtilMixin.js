@@ -99,7 +99,7 @@ export let damageUtilMixin = {
             ok: {
                 callback: (event, button, dialog) => button.form.elements.newDamage.value
             },
-            title: `${game.i18n.localize('WITCHER.Item.properties.variableDamage')}`,
+            title: `${game.i18n.localize('WITCHER.Item.DamageProperties.variableDamage')}`,
             content: dialogTemplate,
             rejectClose: true
         });

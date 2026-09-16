@@ -507,13 +507,13 @@ WITCHER.skillMap = {
     },
     picklock: {
         attribute: WITCHER.statMap.cra,
-        label: 'WITCHER.skills.pickLock.label',
+        label: 'WITCHER.skills.picklock.label',
         name: 'picklock'
     },
     trapcraft: {
         attribute: WITCHER.statMap.cra,
-        label: 'WITCHER.skills.trapCrafting.label',
-        rollLabel: 'WITCHER.skills.trapCrafting.rollLabel',
+        label: 'WITCHER.skills.trapcraft.label',
+        rollLabel: 'WITCHER.skills.trapcraft.rollLabel',
         name: 'trapcraft',
         costMultiplier: 2
     },
@@ -2429,3 +2429,17 @@ WITCHER.armorEffects = [
         addsResistance: true
     }
 ];
+
+// Display labels for existing diagram types; stored values and selectors are unchanged.
+WITCHER.diagramTypeLabels = {
+    'alchemical': 'WITCHER.Alchemy.Alchemical',
+    'ingredients': 'WITCHER.Diagram.Ingredient',
+    'weapon': 'WITCHER.Diagram.Weapon',
+    'armor': 'WITCHER.Diagram.Armor',
+    'armor-enhancement': 'WITCHER.Diagram.ArmorEnhancement',
+    'elderfolk-weapon': 'WITCHER.Diagram.ElderFolkWeapon',
+    'elderfolk-armor': 'WITCHER.Diagram.ElderFolkArmor',
+    'ammunition': 'WITCHER.Diagram.Ammunition',
+    'bomb': 'WITCHER.Diagram.Bomb',
+    'traps': 'WITCHER.Diagram.Traps'
+};

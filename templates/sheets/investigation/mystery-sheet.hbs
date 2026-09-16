@@ -1,12 +1,12 @@
 <form>
-    <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Name" /></h1>
-    <label>Goal</label>
+    <h1><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'WITCHER.Name'}}" /></h1>
+    <label>{{localize "WITCHER.Investigation.goal"}}</label>
     <input type="text" name="system.goal" value="{{actor.system.goal}}" />
 
-    <label>Difficulty</label>
+    <label>{{localize "WITCHER.Investigation.difficulty"}}</label>
     <input type="text" name="system.complexity.difficulty" value="{{actor.system.complexity.difficulty}}" />
 
-    <label>Complexity</label>
+    <label>{{localize "WITCHER.Investigation.complexity"}}</label>
     <input type="number" name="system.complexity.complexity" value="{{actor.system.complexity.complexity}}" />
 
     <div class="flex">

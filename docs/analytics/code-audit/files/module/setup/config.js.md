@@ -13,6 +13,32 @@
 
 Актуализация [issue-00001](../../../../../issues/open/issue-00001.md), 2026-09-16: Обращения к ресурсам и/или техническим namespaces переведены на TheWitcherTRPG-RB-Version. Формулы и порядок действий сохранены. Датированные проверки ниже выполнены до смены ID.
 
+## Актуализация issue-00330 — 2026-09-16
+
+Версия 14.3.1.00007, dev, база 031fbb8691ad32ab01fad43253c8736071bb2f8b. [Реализация и проверки](../../../../../issues/open/issue-00330.md#реализация-и-проверки--143100007). Ниже сохранён исторический разбор: его сообщения об исправленных подписях/пропусках относятся к прежнему коду. Механики, технические значения и компедиумы этой правкой не изменены.
+
+Изменённые строки текущего файла:
+
+- `510`: `label: 'WITCHER.skills.picklock.label',`
+- `515`: `label: 'WITCHER.skills.trapcraft.label',`
+- `516`: `rollLabel: 'WITCHER.skills.trapcraft.rollLabel',`
+- `2433`: `// Display labels for existing diagram types; stored values and selectors are unchanged.`
+- `2434`: `WITCHER.diagramTypeLabels = {`
+- `2435`: `'alchemical': 'WITCHER.Alchemy.Alchemical',`
+- `2436`: `'ingredients': 'WITCHER.Diagram.Ingredient',`
+- `2437`: `'weapon': 'WITCHER.Diagram.Weapon',`
+- `2438`: `'armor': 'WITCHER.Diagram.Armor',`
+- `2439`: `'armor-enhancement': 'WITCHER.Diagram.ArmorEnhancement',`
+- `2440`: `'elderfolk-weapon': 'WITCHER.Diagram.ElderFolkWeapon',`
+- `2441`: `'elderfolk-armor': 'WITCHER.Diagram.ElderFolkArmor',`
+- `2442`: `'ammunition': 'WITCHER.Diagram.Ammunition',`
+- `2443`: `'bomb': 'WITCHER.Diagram.Bomb',`
+- `2444`: `'traps': 'WITCHER.Diagram.Traps'`
+- `2445`: `};`
+
+Новая сущность WITCHER.diagramTypeLabels: десять ключей существующих типов → ключи локализации. Потребитель — tab-inventory-diagrams.hbs через context.config; модель и селектор типов не изменены.
+
+
 ## Назначение файла
 
 Единый экспортируемый объект WITCHER со справочниками и декларативными заготовками. Он содержит метаданные характеристик/навыков, настройки атак, предметов, монстров, критических травм и статусов. Вычисляющего обработчика эффектов в этом файле нет.

@@ -3,7 +3,7 @@
         "Item": {
             "alchemical": "Алхимический",
             "armor": "Броня",
-            "clue": "Подсказка",
+            "clue": "Улика",
             "component": "Компонент",
             "container": "Контейнер",
             "criticalWound": "Критические ранения",
@@ -27,7 +27,7 @@
             "character": "Персонаж",
             "monster": "Монстр",
             "loot": "Добыча",
-            "mystery": "Тайна"
+            "mystery": "Загадка"
         },
         "ActiveEffect": {
             "temporaryItemImprovement": "Временное улучшение"
@@ -74,13 +74,13 @@
         "Defense": {
             "name": "Защита",
             "Crit": "Вы получили критический удар",
-            "critStun": "Спасбросок от дезориентации при критическом ранении",
+            "critStun": "Испытание Устойчивости при критическом ранении",
             "defenseOptions": {
                 "name": "Опции защиты",
                 "dodge": "Уклонение",
-                "reposition": "Смена позиции",
+                "reposition": "Изменение позиции",
                 "parry": "Парирование",
-                "block": "Блок",
+                "block": "Блокирование",
                 "parryThrown": "Парирование метательного оружия",
                 "magicResist": "Сопротивление магии"
             },
@@ -117,12 +117,12 @@
             "Stat.Will": "ВОЛЯ",
             "Stat.Luck": "УДАЧА",
             "Stat.Toxicity": "ТОКС",
-            "StatTitle.LableLeft": "Характеристики",
+            "StatTitle.LableLeft": "Параметры",
             "StatTitle.ModMax": "Мод/Макс",
             "StatTitle.Derived": "Доп.",
-            "DerStat.Stun": "ОГЛУШ",
+            "DerStat.Stun": "УСТ",
             "DerStat.Run": "БЕГ",
-            "DerStat.Leap": "ПРЫЖ",
+            "DerStat.Leap": "ПРЖ",
             "DerStat.Enc": "ВЕС",
             "DerStat.Rec": "ОТД",
             "DerStat.woundTreshold": "ПР",
@@ -135,7 +135,7 @@
             "DerStat.Punch": "Удар рукой",
             "DerStat.Kick": "Удар ногой",
             "Initiative": "Инициатива",
-            "SavingThrow": "Спасбросок",
+            "SavingThrow": "Испытание",
             "Crit/Fumble": "Крит/Провал",
             "Adrenaline": "Адреналин",
             "Stamina": "Выносливость",
@@ -186,6 +186,14 @@
                 "heading": "Награды",
                 "currency": "Валюта",
                 "ip": "ОУ"
+            },
+            "woundThreshold": {
+                "ignore": "Порог ранения",
+                "ignoreHint": "Игнорировать штрафы за достижение порога ранения."
+            },
+            "deathState": {
+                "ignore": "При смерти",
+                "ignoreHint": "Игнорировать штрафы состояния «При смерти»."
             }
         },
         "Alchemy": {
@@ -223,7 +231,11 @@
             "LocationLeft": "Л.",
             "LocationRight": "П.",
             "Location": "Часть тела",
-            "tooMuch": "Слишком много брони одного типа"
+            "tooMuch": "Слишком много брони одного типа",
+            "locationLeftArm": "Левая рука",
+            "locationRightArm": "Правая рука",
+            "locationLeftLeg": "Левая нога",
+            "locationRightLeg": "Правая нога"
         },
         "Item": {
             "Equipped": "Экипированно",
@@ -282,7 +294,7 @@
             },
             "DamageProperties": {
                 "damageIsAblation": "Считать разрушающий урон (не функционирует)",
-                "stun": "Дезориентация(x)",
+                "stun": "Дезориентирующее (x)",
                 "damageToAllLocations": "Наносит урон всем частям тела",
                 "bypassesWornArmor": "Игнорирует надетую броню",
                 "bypassesNaturalArmor": "Игнорирует естественную броню",
@@ -307,7 +319,8 @@
                 "tokenEnter": "Применить макрос при входе",
                 "tokenTurnStart": "Применить макрос в начале хода",
                 "tokenPreMove": "Применить макрос перед движением токена",
-                "tokenExit": "Применить макрос при выходе"
+                "tokenExit": "Применить макрос при выходе",
+                "tokenMoveWithin": "Макрос при движении токена внутри региона"
             },
             "ContextMenu": {
                 "edit": "Редактировать",
@@ -446,7 +459,9 @@
             "fullStaInfo": "Ваша выносливость уже полная",
             "defense": {
                 "custom": "Модификатор защиты"
-            }
+            },
+            "customModifier": "Дополнительный модификатор",
+            "savingThrow": "Испытание параметра"
         },
         "DamageType": {
             "name": "Тип урона",
@@ -456,7 +471,8 @@
             "elemental": "Стихийный",
             "electricity": "Электричество",
             "fire": "Огонь",
-            "ice": "Лёд"
+            "ice": "Лёд",
+            "silver": "Серебро"
         },
         "profession": {
             "skillPath": {
@@ -475,7 +491,7 @@
                             "addTemporaryHealth": "Добавляет временные ПЗ",
                             "difficultyCheck": {
                                 "multiplier": "Множитель сложности",
-                                "stat": "Характеристика для проверки",
+                                "stat": "Параметр для проверки",
                                 "maxRollOver": "Непревышаемый результат"
                             },
                             "temporaryHp": {
@@ -483,6 +499,11 @@
                                 "duration": "Длительность"
                             }
                         }
+                    },
+                    "thresholds": {
+                        "hasThresholds": "Использовать пороги",
+                        "name": "Название",
+                        "thresholdValue": "Порог"
                     }
                 }
             },
@@ -550,7 +571,7 @@
             "Left": "Левая",
             "Right": "Правая",
             "Head": "Голова",
-            "Torso": "Торс",
+            "Torso": "Туловище",
             "rightArm": "Правая рука",
             "leftArm": "Левая рука",
             "rightLeg": "Правая нога",
@@ -566,7 +587,7 @@
             "followUp": "Предмет, который заменит критическое ранение при лечении",
             "followUpHint": "Оставьте пустым, чтобы удалить критическое ранение",
             "header": "Крит Ранения",
-            "healingTime.label": "Дней до исцеления",
+            "healingTime.label": "Дней до заживления",
             "criticalLevel": {
                 "label": "Уровень критического ранения",
                 "Simple": "Лёгкий",
@@ -578,7 +599,7 @@
             "treatment": {
                 "label": "Лечение",
                 "Stabilized": "Стабилизировано",
-                "Treated": "Излечено"
+                "Treated": "После лечения"
             },
             "location": {
                 "label": "Часть тела"
@@ -672,7 +693,7 @@
             "dolblathanna": "Доль Блатанна",
             "ebbing": "Эббинг",
             "etolia": "Этолия",
-            "gemmeria": "Гемерра",
+            "gemmeria": "Геммера",
             "gheso": "Гесо",
             "kaedwen": "Каэдвен",
             "kovir": "Ковир",
@@ -680,7 +701,7 @@
             "maecht": "Мэхт",
             "magturga": "Маг Турга",
             "mahakam": "Махакам",
-            "mettina": "Меттина",
+            "mettina": "Метинна",
             "nazair": "Назаир",
             "nilfgaard": "Нильфгаард",
             "poviss": "Повисс",
@@ -703,7 +724,7 @@
         "LifeEvents": "Важные события",
         "Decade": "Десятилетие",
         "Event": "Событие",
-        "DeathSave": "Испытание против Смерти/Дезориентации",
+        "DeathSave": "Испытание Устойчивости / против смерти",
         "BeforeCrit": "До крита",
         "Crit": "Критический успех",
         "Fumble": "Критический провал",
@@ -745,7 +766,7 @@
             "CommonerSuperstition": "Предрассудки Простолюдинов: Образование СЛ:",
             "AcademicKnowledge": "Академические знания: Образование СЛ:",
             "WitcherKnowledge": "Знания Ведьмаков: Монстрология СЛ:",
-            "dontAddAttr": "Не добавлять атрибуты к значению навыка",
+            "dontAddAttr": "Не добавлять параметры к значению навыка",
             "addMeleeBonus": "Добавить бонус ближнего боя",
             "hasTailWing": "Монстр имеет хвост или крылья",
             "SkillTab": "Навыки",
@@ -764,7 +785,7 @@
                 "Insectoid": "Инсектоиды",
                 "Elementa": "Духи стихий",
                 "Relict": "Реликты",
-                "Ogroid": "Огроиды",
+                "Ogroid": "Огры",
                 "Draconid": "Дракониды",
                 "Vampire": "Вампиры"
             },
@@ -847,7 +868,7 @@
             "IngredientDiagrams": "Диаграммы компонентов",
             "WeaponDiagrams": "Диаграммы оружия",
             "ArmorDiagrams": "Диаграммы брони",
-            "enhancementDiagrams": "Диаграммы улучшений",
+            "enhancementDiagrams": "Чертежи усилений",
             "ElderfolkWeaponDiagrams": "Диаграммы оружия Старших народов",
             "ElderfolkArmorDiagrams": "Диаграммы брони Старших народов",
             "AmmunitionDiagrams": "Диаграммы боеприпасов",
@@ -862,7 +883,11 @@
             "Vermilion": "Киноварь",
             "Sol": "Солнце",
             "Caelum": "Аер",
-            "Fulgur": "Фульгор"
+            "Fulgur": "Фульгор",
+            "carriedWeight": "Вес груза",
+            "carryLimit": "Переносимый вес",
+            "containerWeight": "Вес содержимого",
+            "containerCapacity": "Вместимость по весу"
         },
         "Button": {
             "Cancel": "Отменить",
@@ -879,7 +904,7 @@
                 "alternateComponents": "Альтернативные Компоненты"
             },
             "Invocations": "Инвокации",
-            "Witcher": "Знаки Ведьмака",
+            "Witcher": "Ведьмачьи знаки",
             "Rituals": "Ритуалы",
             "Hexes": "Порчи",
             "MagicalGift": "Магический дар",
@@ -890,13 +915,13 @@
             "novice": "Новичок",
             "journeyman": "Подмастерье",
             "master": "Мастер",
-            "mixedElements": "Смешанные элементы",
+            "mixedElements": "Смешанные стихии",
             "earth": "Земля",
             "air": "Воздух",
             "fire": "Огонь",
             "water": "Вода",
             "druid": "Друид",
-            "preacher": "Жрец",
+            "preacher": "Проповедник",
             "archpriest": "Верховный жрец",
             "Basic": "Простой",
             "Alt": "Альтернативный",
@@ -910,9 +935,9 @@
             "SideEffect": "Побочный эффект",
             "Signs": "Знаки",
             "Sign": "Знак",
-            "Element": "Элемент",
+            "Element": "Стихия",
             "MinorGift": "Малый дар",
-            "MajorGift": "Высший дар",
+            "MajorGift": "Большой дар",
             "StaCost": "Стоимость в ВЫН",
             "Variable": "Изменяемая выносливость",
             "variableEffect": "Эффект изменяемой выносливости",
@@ -938,7 +963,8 @@
                 "Variable": "Изм. ВЫН",
                 "Shield": "Щит",
                 "Heal": "Лечение"
-            }
+            },
+            "emanation": "Эманация"
         },
         "Chat": {
             "SaveText": "Для успешной проверки нужно выбросить значение ниже",
@@ -1175,14 +1201,15 @@
             "ritualCrafting": {
                 "label": "Проведение ритуалов (2)",
                 "rollLabel": "Проведение ритуалов"
-            }
+            },
+            "levelUp": "Повысить навык"
         },
         "Stats": {
             "stats": {
-                "Name": "Характеристики"
+                "Name": "Основные параметры"
             },
             "derivedStats": {
-                "Name": "Производные характеристики"
+                "Name": "Дополнительные параметры"
             }
         },
         "SocialStanding": "Социальный статус",
@@ -1228,9 +1255,9 @@
         },
         "Apply.Mod": "Применить модификатор",
         "ReputationTitle": "Выполнение броска репутации",
-        "ReputationButton.Save": "Спасбросок",
+        "ReputationButton.Save": "Проверка репутации",
         "ReputationButton.FaceDown": "Давление авторитетом",
-        "ReputationSave.Title": "Спасбросок",
+        "ReputationSave.Title": "Проверка репутации",
         "ReputationFaceDown.Title": "Давление авторитетом",
         "verbalCombat": {
             "Title": "Словесная Дуэль",
@@ -1293,7 +1320,8 @@
                 "Item": {
                     "damage": "Урон"
                 }
-            }
+            },
+            "applyAfterCalculations": "Применять эффект после расчёта дополнительных параметров"
         },
         "activeEffect": {
             "tab": "Активный эффект",
@@ -1333,20 +1361,23 @@
             "NoItemsOfSpecificType": "Нет предмета необходимого типа для"
         },
         "Investigation": {
-            "clues": "Зацепки",
+            "clues": "Улики",
             "obstacles": "Препятствия",
             "skillsUsed": "Использованные навыки",
             "timeIncrement": "Время",
             "timeBonus": "Бонус времени",
             "damage": "Урон",
-            "obfuscation": "Запутывание",
+            "obfuscation": "Неясность",
             "penalty": "Штраф",
             "focusDamage": "Урон по концентрации",
             "successDamage": "Урон при успехе",
             "failDamage": "Урон при провале",
             "evidence": {
                 "chooseSkill": "Выберите ваш навык"
-            }
+            },
+            "goal": "Цель",
+            "difficulty": "Трудность загадки",
+            "complexity": "Сложность"
         },
         "statusEffects": {
             "applyCombat": "Применение боевого эффекта для",
@@ -1360,7 +1391,7 @@
             "bleed": "Кровотечение",
             "freeze": "Замораживание",
             "staggered": "Ошеломление",
-            "intoxication": "Интоксикация",
+            "intoxication": "Опьянение",
             "hallucination": "Галлюцинации",
             "nausea": "Тошнота",
             "suffocation": "Удушье",
@@ -1374,7 +1405,7 @@
             "aiming": "Прицеливание",
             "deaf": "Глухота",
             "reducedVision": "Снижение зрения",
-            "holdAction": "Удержание действия",
+            "holdAction": "Отложенное действие",
             "dead": "Мертв"
         },
         "armorEffects": {
@@ -1488,12 +1519,14 @@
                 "magicIp": "Магические очки улучшения: ",
                 "currency": "Количество валюты",
                 "currencyType": "Тип валюты",
-                "confirm": "Подтвердить"
+                "confirm": "Подтвердить",
+                "amount": "Количество"
             },
             "chat": {
                 "title": "Награды",
                 "ip": "ОУ",
-                "currency": "Валюта"
+                "currency": "Валюта",
+                "amount": "Количество"
             }
         },
         "magic": {

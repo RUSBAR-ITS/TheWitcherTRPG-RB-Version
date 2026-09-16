@@ -172,12 +172,12 @@ export async function registerHandelbarHelpers() {
             },
             {
                 key: 'leftLeg',
-                name: game.i18n.localize('WITCHER.Location.rightLeg'),
+                name: game.i18n.localize('WITCHER.Location.leftLeg'),
                 icon: 'fa-shoe-prints'
             },
             {
                 key: 'rightLeg',
-                name: game.i18n.localize('WITCHER.Location.leftLeg'),
+                name: game.i18n.localize('WITCHER.Location.rightLeg'),
                 icon: 'fa-shoe-prints'
             },
             {

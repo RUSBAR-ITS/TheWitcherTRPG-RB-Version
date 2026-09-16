@@ -15,7 +15,7 @@ export default function regionBehaviours() {
         tokenMoveWithin: new fields.DocumentUUIDField({
             type: 'Macro',
             required: false,
-            label: 'WITCHER.Item.RegionProperties.tokenPreMove'
+            label: 'WITCHER.Item.RegionProperties.tokenMoveWithin'
         }),
         tokenExit: new fields.DocumentUUIDField({
             type: 'Macro',

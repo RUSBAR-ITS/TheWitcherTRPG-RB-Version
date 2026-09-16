@@ -11,6 +11,76 @@
 | Задача и порция | [TASK-0003.051](../../../../tasks/task-0003.051.md), 2 файла / 3032 логические строки; данный файл — 1503 |
 | Запись перекрёстной сверки | [TASK-0003.051](../../review-log.md#task-0003051) |
 
+## Актуализация issue-00330 — 2026-09-16
+
+Версия 14.3.1.00007, dev, база 031fbb8691ad32ab01fad43253c8736071bb2f8b. [Реализация и проверки](../../../../issues/open/issue-00330.md#реализация-и-проверки--143100007). Ниже сохранён исторический разбор: его сообщения об исправленных подписях/пропусках относятся к прежнему коду. Механики, технические значения и компедиумы этой правкой не изменены.
+
+Текущий словарь: **1162** строковых листьев. Все 1135 прежних ключей сохранены; добавлено 27. Общих en/ru — 1160, только en — три, только ru — два. Сохранены четыре пустых hint, аргументы форматирования, точечные ключи и «СЛ собирания».
+
+| Ключ | До | Сейчас |
+| --- | --- | --- |
+| `WITCHER.Actor.DerStat.Stun` | ОГЛУШ | УСТ |
+| `WITCHER.Actor.DerStat.Leap` | ПРЫЖ | ПРЖ |
+| `WITCHER.Actor.StatTitle.LableLeft` | Характеристики | Параметры |
+| `WITCHER.Stats.stats.Name` | Характеристики | Основные параметры |
+| `WITCHER.Stats.derivedStats.Name` | Производные характеристики | Дополнительные параметры |
+| `WITCHER.Actor.SavingThrow` | Спасбросок | Испытание |
+| `WITCHER.Defense.critStun` | Спасбросок от дезориентации при критическом ранении | Испытание Устойчивости при критическом ранении |
+| `WITCHER.DeathSave` | Испытание против Смерти/Дезориентации | Испытание Устойчивости / против смерти |
+| `WITCHER.Defense.defenseOptions.reposition` | Смена позиции | Изменение позиции |
+| `WITCHER.Defense.defenseOptions.block` | Блок | Блокирование |
+| `WITCHER.Item.DamageProperties.stun` | Дезориентация(x) | Дезориентирующее (x) |
+| `WITCHER.statusEffects.intoxication` | Интоксикация | Опьянение |
+| `WITCHER.statusEffects.holdAction` | Удержание действия | Отложенное действие |
+| `TYPES.Item.clue` | Подсказка | Улика |
+| `WITCHER.Investigation.clues` | Зацепки | Улики |
+| `TYPES.Actor.mystery` | Тайна | Загадка |
+| `WITCHER.Investigation.obfuscation` | Запутывание | Неясность |
+| `WITCHER.Monster.Type.Ogroid` | Огроиды | Огры |
+| `WITCHER.Homelands.mettina` | Меттина | Метинна |
+| `WITCHER.Homelands.gemmeria` | Гемерра | Геммера |
+| `WITCHER.Spell.Witcher` | Знаки Ведьмака | Ведьмачьи знаки |
+| `WITCHER.Spell.preacher` | Жрец | Проповедник |
+| `WITCHER.Spell.MajorGift` | Высший дар | Большой дар |
+| `WITCHER.Spell.Element` | Элемент | Стихия |
+| `WITCHER.Spell.mixedElements` | Смешанные элементы | Смешанные стихии |
+| `WITCHER.Inventory.enhancementDiagrams` | Диаграммы улучшений | Чертежи усилений |
+| `WITCHER.criticalWound.treatment.Treated` | Излечено | После лечения |
+| `WITCHER.criticalWound.healingTime.label` | Дней до исцеления | Дней до заживления |
+| `WITCHER.Location.Torso` | Торс | Туловище |
+| `WITCHER.Armor.locationLeftArm` | — отсутствовал | Левая рука |
+| `WITCHER.Armor.locationRightArm` | — отсутствовал | Правая рука |
+| `WITCHER.Armor.locationLeftLeg` | — отсутствовал | Левая нога |
+| `WITCHER.Armor.locationRightLeg` | — отсутствовал | Правая нога |
+| `WITCHER.profession.skillPath.skill.thresholds.hasThresholds` | — отсутствовал | Использовать пороги |
+| `WITCHER.profession.skillPath.skill.thresholds.name` | — отсутствовал | Название |
+| `WITCHER.profession.skillPath.skill.thresholds.thresholdValue` | — отсутствовал | Порог |
+| `WITCHER.Dialog.customModifier` | — отсутствовал | Дополнительный модификатор |
+| `WITCHER.skills.levelUp` | — отсутствовал | Повысить навык |
+| `WITCHER.Dialog.savingThrow` | — отсутствовал | Испытание параметра |
+| `WITCHER.Actor.woundThreshold.ignore` | — отсутствовал | Порог ранения |
+| `WITCHER.Actor.woundThreshold.ignoreHint` | — отсутствовал | Игнорировать штрафы за достижение порога ранения. |
+| `WITCHER.Actor.deathState.ignore` | — отсутствовал | При смерти |
+| `WITCHER.Actor.deathState.ignoreHint` | — отсутствовал | Игнорировать штрафы состояния «При смерти». |
+| `WITCHER.DamageType.silver` | — отсутствовал | Серебро |
+| `WITCHER.Spell.emanation` | — отсутствовал | Эманация |
+| `WITCHER.Effect.applyAfterCalculations` | — отсутствовал | Применять эффект после расчёта дополнительных параметров |
+| `WITCHER.rewards.dialog.amount` | — отсутствовал | Количество |
+| `WITCHER.rewards.chat.amount` | — отсутствовал | Количество |
+| `WITCHER.Investigation.goal` | — отсутствовал | Цель |
+| `WITCHER.Investigation.difficulty` | — отсутствовал | Трудность загадки |
+| `WITCHER.Investigation.complexity` | — отсутствовал | Сложность |
+| `WITCHER.Inventory.carriedWeight` | — отсутствовал | Вес груза |
+| `WITCHER.Inventory.carryLimit` | — отсутствовал | Переносимый вес |
+| `WITCHER.Inventory.containerWeight` | — отсутствовал | Вес содержимого |
+| `WITCHER.Inventory.containerCapacity` | — отсутствовал | Вместимость по весу |
+| `WITCHER.Item.RegionProperties.tokenMoveWithin` | — отсутствовал | Макрос при движении токена внутри региона |
+| `WITCHER.ReputationButton.Save` | Спасбросок | Проверка репутации |
+| `WITCHER.ReputationSave.Title` | Спасбросок | Проверка репутации |
+| `WITCHER.Monster.dontAddAttr` | Не добавлять атрибуты к значению навыка | Не добавлять параметры к значению навыка |
+| `WITCHER.profession.skillPath.skill.skillUsage.temporaryHealth.difficultyCheck.stat` | Характеристика для проверки | Параметр для проверки |
+
+
 ## Назначение файла
 
 Русские подписи интерфейса системы: 1135 строковых листьев (26 TYPES, 1 EFFECT, 1108 WITCHER). При отсутствии собственного ключа Foundry обращается к en; локализация не меняет расчёты и не регистрирует новые типы документов.

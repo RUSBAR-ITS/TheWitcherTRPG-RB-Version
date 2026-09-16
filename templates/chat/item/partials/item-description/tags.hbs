@@ -11,7 +11,7 @@
             </span>
         {{/if}}
         {{#if item.system.avail}}
-            <span class="item-tag" data-tooltip="{{localize "WITCHER.Weapon.Availability"}}">
+            <span class="item-tag" data-tooltip="{{localize "WITCHER.Item.Availability"}}">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 {{ localize (lookup config.Availability item.system.avail) }}
             </span>
@@ -124,7 +124,7 @@
 {{/if}}
 {{#if (or (eq type 'container') (eq type 'valuable'))}}
     <div class="item-tags">
-        <span class="item-tag" data-tooltip="{{localize "WITCHER.Weapon.Availability"}}">
+        <span class="item-tag" data-tooltip="{{localize "WITCHER.Item.Availability"}}">
             <i class="fa-solid fa-magnifying-glass"></i>
             {{ localize (lookup config.Availability item.system.avail) }}
         </span>

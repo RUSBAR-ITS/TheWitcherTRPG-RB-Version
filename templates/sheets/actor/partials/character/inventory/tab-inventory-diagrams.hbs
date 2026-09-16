@@ -50,7 +50,7 @@
                         {{/if}}
                         <span class="item-tag" data-tooltip="{{localize "WITCHER.Weapon.Type"}}">
                             <i class="fa-solid fa-scroll"></i>
-                            {{ localize (concat "TYPES.Item." diagram.system.type) }}
+                            {{ localize (lookup ../config.diagramTypeLabels diagram.system.type) }}
                         </span>
                         <span class="item-tag" data-tooltip="{{localize "WITCHER.Actor.Profession.Level"}}">
                             <i class="fa-solid fa-screwdriver"></i>

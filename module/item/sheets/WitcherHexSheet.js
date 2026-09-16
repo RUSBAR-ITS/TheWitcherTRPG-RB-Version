@@ -19,9 +19,9 @@ export default class WitcherHexSheet extends WitcherItemSheet {
     createSelects() {
         return {
             danger: {
-                Low: 'WITCHER.Spell.DangerLow',
-                Medium: 'WITCHER.Spell.DangerMedium',
-                High: 'WITCHER.Spell.DangerHigh'
+                Low: 'WITCHER.Spell.dangerLow',
+                Medium: 'WITCHER.Spell.dangerMedium',
+                High: 'WITCHER.Spell.dangerHigh'
             }
         };
     }

@@ -11,6 +11,17 @@
 | Задача и порция | [TASK-0003.002](../../../../../../../../../tasks/task-0003.002.md), одна порция из девяти файлов |
 | Запись перекрёстной сверки | [TASK-0003.002](../../../../../../../review-log.md#task-0003002) |
 
+## Актуализация issue-00330 — 2026-09-16
+
+Версия 14.3.1.00007, dev, база 031fbb8691ad32ab01fad43253c8736071bb2f8b. [Реализация и проверки](../../../../../../../../../issues/open/issue-00330.md#реализация-и-проверки--143100007). Ниже сохранён исторический разбор: его сообщения об исправленных подписях/пропусках относятся к прежнему коду. Механики, технические значения и компедиумы этой правкой не изменены.
+
+Изменённые строки текущего файла:
+
+- `11`: `firstaid: new fields.EmbeddedDataField(Skill, { label: 'WITCHER.skills.firstaid.label' }),`
+- `13`: `picklock: new fields.EmbeddedDataField(Skill, { label: 'WITCHER.skills.picklock.label' }),`
+- `14`: `trapcraft: new fields.EmbeddedDataField(Skill, { label: 'WITCHER.skills.trapcraft.label' })`
+
+
 ## Назначение файла
 
 Определяет Craft — группу CRA из 7 базовых навыков Actor и миграцию их ключей подписи.

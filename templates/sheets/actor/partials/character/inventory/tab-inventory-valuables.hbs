@@ -33,7 +33,7 @@
                 </div>
                 <div class="invisible item-info list-item-info">
                     <div class="item-tags">
-                        <span class="item-tag" data-tooltip="{{localize "WITCHER.Weapon.Availability"}}">
+                        <span class="item-tag" data-tooltip="{{localize "WITCHER.Item.Availability"}}">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             {{ localize (lookup ../config.Availability valuable.system.avail) }}
                         </span>
@@ -64,8 +64,8 @@
                                 max="{{valuable.system.carry}}"
                             ></progress>
                             <div class="progress-bar-stored-weight-labels">
-                                <span>Weight: {{valuable.system.storedWeight}}</span>
-                                <span class="bulk-max">Max Weight: {{valuable.system.carry}}</span>
+                                <span>{{localize "WITCHER.Inventory.containerWeight"}}: {{valuable.system.storedWeight}}</span>
+                                <span class="bulk-max">{{localize "WITCHER.Inventory.containerCapacity"}}: {{valuable.system.carry}}</span>
                             </div>
                         </div>
                         <div class="container-stored-item">
