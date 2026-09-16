@@ -38,7 +38,7 @@ export default class RegionProperties extends foundry.abstract.DataModel {
 
     createRegionBehaviour(event, uuid) {
         return {
-            name: 'Execute Macro on ' + event,
+            name: game.i18n.localize(`WITCHER.Item.RegionProperties.${event}`),
             type: 'executeMacro',
             system: {
                 events: [event],

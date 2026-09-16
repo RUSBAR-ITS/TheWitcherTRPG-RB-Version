@@ -2532,7 +2532,7 @@ onHeal исполнялся из исходного тела с перехват
 | Add/RemoveComponent с начальным пробелом | [00098](../../issues/closed/issue-00098.md) |
 | Три ru-подписи thresholds | [00119](../../issues/closed/issue-00119.md) |
 | Danger*/Water и русский emanation | [00137](../../issues/closed/issue-00137.md) |
-| Weapon.Availability и динамические подтипы рецептов | [00178](../../issues/potential/issue-00178.md); полные десять значений рецептов повторно не исполнялись |
+| Weapon.Availability и динамические подтипы рецептов | [00178](../../issues/closed/issue-00178.md); полные десять значений рецептов повторно не исполнялись |
 | Русский customModifier | [00186](../../issues/closed/issue-00186.md) |
 | Русские levelUp/savingThrow | [00193](../../issues/closed/issue-00193.md); отозванное утверждение об отсутствии семи Actor.Skill.* не повторяется |
 | Четыре ru ignore/ignoreHint | [00205](../../issues/closed/issue-00205.md) |
@@ -2892,7 +2892,7 @@ fromUuidSync — карта «доступный документ / null»; Acto
 
 Прочитаны и сопоставлены целиком, включая поздние уточнения, десять связанных карточек: itemMixin, DiagramData, ArmorData, components-list, item-header, substances, loot-item-display, inventory weapons, currencyConverter HBS и RewardsSheet. В них добавлены встречные ссылки/уточнения. У itemMixin ограничено прежнее утверждение о @UUID: первая HTML-строка и дальнейший ChatMessage.renderHTML/enrichHTML — разные стадии. У inventory weapons убрана недоказанная оценка намерения автора скрывать отрицательную accuracy.
 
-Реестр прежних 305 issues проверен перед регистрацией. Новые [00306](../../issues/potential/issue-00306.md), [00307](../../issues/potential/issue-00307.md), [00308](../../issues/potential/issue-00308.md), [00309](../../issues/potential/issue-00309.md), [00310](../../issues/potential/issue-00310.md) относятся к пяти конкретным наблюдениям. Дополнены [00175](../../issues/potential/issue-00175.md) и [00178](../../issues/potential/issue-00178.md). 00306 отделена от старого пути 00180; недоступное имя компонента в сообщении не повторяет ошибку листа 00095. Ссылки 00200/00029 и историческая общая сверка № 1 сохранены. Все **310 issues** остаются potential, open/closed пусты.
+Реестр прежних 305 issues проверен перед регистрацией. Новые [00306](../../issues/potential/issue-00306.md), [00307](../../issues/potential/issue-00307.md), [00308](../../issues/potential/issue-00308.md), [00309](../../issues/potential/issue-00309.md), [00310](../../issues/potential/issue-00310.md) относятся к пяти конкретным наблюдениям. Дополнены [00175](../../issues/potential/issue-00175.md) и [00178](../../issues/closed/issue-00178.md). 00306 отделена от старого пути 00180; недоступное имя компонента в сообщении не повторяет ошибку листа 00095. Ссылки 00200/00029 и историческая общая сверка № 1 сохранены. Все **310 issues** остаются potential, open/closed пусты.
 
 ### Итоговая формальная сверка
 
@@ -5088,7 +5088,7 @@ Actor/Item базовые документы, коллекции, settings, DOM-
 | --- | --- |
 | [issue-00176](../../issues/potential/issue-00176.md) | Кнопка изготовления формулы запускает ремесленный обработчик |
 | [issue-00177](../../issues/potential/issue-00177.md) | Кнопки ремонта инвентаря монстра не имеют подключённого обработчика |
-| [issue-00178](../../issues/potential/issue-00178.md) | Подписи инвентаря обращаются к отсутствующим ключам локализации |
+| [issue-00178](../../issues/closed/issue-00178.md) | Подписи инвентаря обращаются к отсутствующим ключам локализации |
 | [issue-00179](../../issues/closed/issue-00179.md) | Подписи веса инвентаря и контейнеров обходят локализацию |
 | [issue-00180](../../issues/potential/issue-00180.md) | Старый инвентарь монстра читает и редактирует устаревшие поля брони |
 

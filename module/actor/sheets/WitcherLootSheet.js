@@ -150,7 +150,7 @@ export default class WitcherLootSheet extends HandlebarsApplicationMixin(ActorSh
         let hasEnoughMoney = buyerActor.system.currency[coinType] >= totalCost;
 
         if (!hasEnoughMoney) {
-            ui.notifications.error('Not Enough Coins');
+            ui.notifications.error(game.i18n.localize('WITCHER.Loot.NotEnough'));
         } else {
             this.actor.removeItem(itemId, numberOfItem);
             buyerActor.addItem(item, numberOfItem);

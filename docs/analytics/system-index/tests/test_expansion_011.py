@@ -56,7 +56,7 @@ class LocalizationExpansion(unittest.TestCase):
                 self.assertEqual(out['freshness']['state'],'current')
 
     def test_all_raw_leaves_exact_addresses_and_language_identity(self):
-        self.assertEqual([len(self.leaves[l]) for l in ['en','ru']],[1163,1162])
+        self.assertEqual([len(self.leaves[l]) for l in ['en','ru']],[1173,1172])
         for lang,sid in [('en','src-000002'),('ru','src-000003')]:
             self.assertEqual(set(self.translations[lang]),set(self.leaves[lang]))
             source=(ROOT/f'lang/{lang}.json').read_text().splitlines()
@@ -78,7 +78,7 @@ class LocalizationExpansion(unittest.TestCase):
 
     def test_pairing_placeholders_empty_strings_and_unmatched_keys(self):
         en=self.leaves['en'];ru=self.leaves['ru'];common=en.keys()&ru.keys()
-        self.assertEqual((len(common),len(en.keys()-ru.keys()),len(ru.keys()-en.keys())),(1160,3,2))
+        self.assertEqual((len(common),len(en.keys()-ru.keys()),len(ru.keys()-en.keys())),(1170,3,2))
         self.assertEqual(ru.keys()-en.keys(),{'WITCHER.Damage.silver','WITCHER.Dialog.attackCustom'})
         expected={
             'WITCHER.currencyConverter.errors.insufficient':{'currency'},
@@ -92,7 +92,7 @@ class LocalizationExpansion(unittest.TestCase):
         pairs=[r for r in self.data.relations.values() if r['kind']=='refers' and
                r['from'] in {e['id'] for e in self.translations['en'].values()} and
                r['to'] in {e['id'] for e in self.translations['ru'].values()}]
-        self.assertEqual(len(pairs),1160)
+        self.assertEqual(len(pairs),1170)
         self.assertEqual({(r['from'],r['to']) for r in pairs},
             {(self.translations['en'][k]['id'],self.translations['ru'][k]['id']) for k in common})
 
@@ -107,7 +107,7 @@ class LocalizationExpansion(unittest.TestCase):
             target=self.data.nodes[r['to']]
             if target['kind']=='field':self.assertEqual(target['name'],r['payload'])
             else:self.assertEqual(target['kind'],'boundary')
-        self.assertEqual(len(places),533)  # Existing sites plus changed/new label references in issue-00330.
+        self.assertEqual(len(places),569)  # Existing sites plus changed/new label references in issue-00330.
         missing=self.data.entities['ent-003318']
         self.assertEqual(missing['boundary']['expression'],'WITCHER.Item.Availability')
         for lang in ['en','ru']:self.assertIn(missing['boundary']['expression'],self.leaves[lang])
@@ -138,7 +138,7 @@ class LocalizationExpansion(unittest.TestCase):
         historical={kind:[json.loads(l) for part in d.manifest['parts'][kind]
             if not re.search(r'expansion-(\d+)',part) or int(re.search(r'expansion-(\d+)',part).group(1))<=11
             for l in (BASE/part).read_text().splitlines()] for kind in ['entities','relations','processes']}
-        self.assertEqual([len(d.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,3361,7570,97])
+        self.assertEqual([len(d.sources),*[len(historical[k]) for k in ['entities','relations','processes']]],[615,3381,7680,97])
         represented={e['location']['source'] for e in historical['entities'] if e.get('location') and e['kind']!='boundary'}
         self.assertEqual(len(represented),154)
         for r in d.relations.values():

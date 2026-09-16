@@ -115,7 +115,7 @@
 
 ## Связанные проблемы
 
-[docs/issues/potential/issue-00178.md](../../../../../../../../issues/potential/issue-00178.md), [docs/issues/potential/issue-00306.md](../../../../../../../../issues/potential/issue-00306.md), [docs/issues/potential/issue-00307.md](../../../../../../../../issues/potential/issue-00307.md), [docs/issues/potential/issue-00310.md](../../../../../../../../issues/potential/issue-00310.md). Наблюдения остаются potential; подтверждения и исправления не выполнялись.
+[docs/issues/closed/issue-00178.md](../../../../../../../../issues/closed/issue-00178.md), [docs/issues/potential/issue-00306.md](../../../../../../../../issues/potential/issue-00306.md), [docs/issues/potential/issue-00307.md](../../../../../../../../issues/potential/issue-00307.md), [docs/issues/potential/issue-00310.md](../../../../../../../../issues/potential/issue-00310.md). Наблюдения остаются potential; подтверждения и исправления не выполнялись.
 
 ## История актуализации
 

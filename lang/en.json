@@ -171,7 +171,11 @@
                 "first": "First",
                 "second": "Second",
                 "third": "Third",
-                "fourth": "Fourth"
+                "fourth": "Fourth",
+                "firstPlaceholder": "First Focus",
+                "secondPlaceholder": "Second Focus",
+                "thirdPlaceholder": "Third Focus",
+                "fourthPlaceholder": "Fourth Focus"
             },
             "Lifepath": {
                 "Bonus": "Lifepath Bonus",
@@ -195,6 +199,10 @@
                 "heading": "Rewards",
                 "currency": "Currency",
                 "ip": "IP"
+            },
+            "deathSaves": {
+                "reset": "Reset death save counter",
+                "add": "Increase death save counter"
             }
         },
         "Alchemy": {
@@ -1534,6 +1542,14 @@
         },
         "magic": {
             "magicImprovementPoints": "Magic IP"
+        },
+        "Macro": {
+            "ownedItemsOnly": "You can only create macro buttons for owned Items"
+        },
+        "languages": {
+            "common": "Common",
+            "dwarven": "Dwarven",
+            "elder": "Elder Speech"
         }
     }
 }

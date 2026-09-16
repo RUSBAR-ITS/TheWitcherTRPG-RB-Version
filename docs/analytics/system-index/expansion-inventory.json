@@ -2,9 +2,9 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "52a2b64f82b0f60817a7f7d7b6ad34980510b6f9",
+  "source_head": "aeb527c6e6402e8a5f940a2c3ad0020d7e5b35e4",
   "index_dataset": "task-0006.034-expansion",
-  "source_hash": "0242740976e7ebdbed62afdbfd7fce8c964e982cbad24bb9cc796aa712786951",
+  "source_hash": "bf7516efe8d423339401337514e50b1ce1a745de5dabf6ecf1240c0811de097e",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
   "blocks": [
@@ -4258,12 +4258,12 @@
   "current_index": {
     "task": "TASK-0006.034",
     "date": "2026-09-16",
-    "source_head": "52a2b64f82b0f60817a7f7d7b6ad34980510b6f9",
+    "source_head": "aeb527c6e6402e8a5f940a2c3ad0020d7e5b35e4",
     "dataset": "task-0006.034-expansion",
     "counts": {
       "sources": 615,
-      "entities": 5366,
-      "relations": 15129,
+      "entities": 5386,
+      "relations": 15239,
       "processes": 465
     },
     "primary_count": 232,

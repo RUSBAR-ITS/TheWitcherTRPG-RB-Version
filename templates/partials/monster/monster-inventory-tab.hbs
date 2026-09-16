@@ -85,7 +85,7 @@
                 <td><input class="inline-edit item-quantity" data-field="system.quantity" type="text"
                         value="{{armor.system.quantity}}" data-dtype="Number" /></td>
                 <td><input class="inline-edit" data-field="name" type="text" value="{{armor.name}}"
-                        placeholder="name" /></td>
+                        placeholder="{{localize 'WITCHER.Name'}}" /></td>
                 {{#if (eq type "enhancement")}}
                     <td colspan="2"></td>
                 {{/if}}
@@ -305,7 +305,7 @@
             </td>
             <td><input class="small-medium inline-edit" data-field="system.quantity" type="text"
                     value="{{system.quantity}}" placeholder="1d6" /></td>
-            <td><input class="inline-edit" data-field="name" type="text" value="{{valuable.name}}" placeholder="name" />
+            <td><input class="inline-edit" data-field="name" type="text" value="{{valuable.name}}" placeholder="{{localize 'WITCHER.Name'}}" />
             </td>
             <td><a class="item-delete"><i class="fas fa-trash-alt"></i></a></td>
         </tr>

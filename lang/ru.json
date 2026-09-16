@@ -35,7 +35,7 @@
     },
     "EFFECT": {
         "TABS": {
-            "systemSpecific": "System Specific"
+            "systemSpecific": "Параметры системы"
         }
     },
     "WITCHER": {
@@ -162,7 +162,11 @@
                 "first": "Первый",
                 "second": "Второй",
                 "third": "Третий",
-                "fourth": "Четвертый"
+                "fourth": "Четвертый",
+                "firstPlaceholder": "Первый фокусирующий предмет",
+                "secondPlaceholder": "Второй фокусирующий предмет",
+                "thirdPlaceholder": "Третий фокусирующий предмет",
+                "fourthPlaceholder": "Четвёртый фокусирующий предмет"
             },
             "Lifepath": {
                 "Bonus": "Бонус предыстории",
@@ -194,12 +198,16 @@
             "deathState": {
                 "ignore": "При смерти",
                 "ignoreHint": "Игнорировать штрафы состояния «При смерти»."
+            },
+            "deathSaves": {
+                "reset": "Сбросить счётчик испытаний против смерти",
+                "add": "Увеличить счётчик испытаний против смерти"
             }
         },
         "Alchemy": {
             "Duration": "Длит.",
             "Toxicity": "Токс.",
-            "Alchemical": "Алхимическое",
+            "Alchemical": "Алхимический состав",
             "Potion": "Эликсир",
             "Decoction": "Отвар",
             "Oil": "Масло"
@@ -383,16 +391,16 @@
             "activeEffect": "Активный эффект"
         },
         "Dialog": {
-            "NoComponents": "Недостаточно компонентов для крафта",
+            "NoComponents": "Недостаточно компонентов для изготовления",
             "CraftingDiagram": "Рецепт перед глазами",
-            "RealCrafting": "Использовать настоящий крафт",
+            "RealCrafting": "Изготовить предмет и списать компоненты",
             "Crafting": "Изготовление",
             "CraftingTitle": "Проверка изготовления",
             "AlchemyTitle": "Проверка алхимии",
             "ButtonCraft": "Изготовить",
             "CraftingAlchemycal": "Создание алхимического реагента",
             "CraftingItem": "Изготовление предмета",
-            "Diagram": "Чертеж",
+            "Diagram": "Чертёж",
             "after": "После",
             "DefenseExtra": "Дополнительная Защита",
             "DefenseWith": "Защита с помощью",
@@ -626,7 +634,7 @@
             "alchemyDC": "СЛ Алхимии",
             "craftingDC": "СЛ Изготовления",
             "craftingTime": "Время",
-            "components": "Ингредиенты",
+            "components": "Компоненты",
             "otherComponents": "Другие компоненты",
             "investment": "Доплата",
             "Learned": "Изучено",
@@ -635,9 +643,9 @@
             "Ingredient": "Компонент",
             "Weapon": "Оружие",
             "Armor": "Броня",
-            "ArmorEnhancement": "Усиление Брони",
-            "ElderFolkWeapon": "Оружие Старших Народов",
-            "ElderFolkArmor": "Доспех Старших Народов",
+            "ArmorEnhancement": "Усиление брони",
+            "ElderFolkWeapon": "Оружие Старшего Народа",
+            "ElderFolkArmor": "Броня Старшего Народа",
             "Ammunition": "Боеприпас",
             "Bomb": "Бомба",
             "Traps": "Ловушка",
@@ -844,36 +852,36 @@
             "Weapons": "Экипированное оружие",
             "Valuables": "Ценности",
             "Mounts": "Ездовые",
-            "Crafting": "Крафт",
-            "CraftingMaterials": "Материалы для крафта",
+            "Crafting": "Ремесло",
+            "CraftingMaterials": "Ремесленные материалы",
             "HidesAndAnimalParts": "Шкуры и части животных",
-            "IngotsAndMinerals": "Слитки и материалы",
+            "IngotsAndMinerals": "Слитки и минералы",
             "Enhancements": "Улучшения",
             "Alchemy": "Алхимия",
-            "AlchemicalItems": "Алхимические ингредиенты",
-            "AlchemicalTreatments": "Алхимические процедуры",
-            "WitcherPotionsAndDecoctions": "Зелья и Отвары Ведьмака",
-            "Oils": "Покрытия лезвий",
+            "AlchemicalItems": "Алхимические составы",
+            "AlchemicalTreatments": "Алхимические пропитки и составы",
+            "WitcherPotionsAndDecoctions": "Ведьмачьи эликсиры и отвары",
+            "Oils": "Масла для мечей",
             "Mutagens": "Мутагены",
             "Substances": "Субстанции",
             "Components": "Компоненты",
-            "Diagrams": "Диаграммы и Формулы",
+            "Diagrams": "Чертежи и формулы",
             "RunesAndGlyphs": "Руны и Глифы",
             "Runes": "Руны",
             "Glyphs": "Глифы",
-            "AlchemicalItemDiagrams": "Формулы алхимических предметов",
-            "PotionDiagrams": "Формулы зелий Ведьмака",
-            "DecoctionDiagrams": "Формулы отваров Ведьмака",
-            "OilDiagrams": "Формулы масел",
-            "IngredientDiagrams": "Диаграммы компонентов",
-            "WeaponDiagrams": "Диаграммы оружия",
-            "ArmorDiagrams": "Диаграммы брони",
+            "AlchemicalItemDiagrams": "Формулы алхимических составов",
+            "PotionDiagrams": "Формулы ведьмачьих эликсиров",
+            "DecoctionDiagrams": "Формулы ведьмачьих отваров",
+            "OilDiagrams": "Формулы масел для мечей",
+            "IngredientDiagrams": "Чертежи компонентов",
+            "WeaponDiagrams": "Чертежи оружия",
+            "ArmorDiagrams": "Чертежи брони",
             "enhancementDiagrams": "Чертежи усилений",
-            "ElderfolkWeaponDiagrams": "Диаграммы оружия Старших народов",
-            "ElderfolkArmorDiagrams": "Диаграммы брони Старших народов",
-            "AmmunitionDiagrams": "Диаграммы боеприпасов",
-            "BombDiagrams": "Диаграммы бомб",
-            "TrapDiagrams": "Диаграммы ловушек",
+            "ElderfolkWeaponDiagrams": "Чертежи оружия Старшего Народа",
+            "ElderfolkArmorDiagrams": "Чертежи брони Старшего Народа",
+            "AmmunitionDiagrams": "Чертежи боеприпасов",
+            "BombDiagrams": "Формулы бомб",
+            "TrapDiagrams": "Чертежи ловушек",
             "Substance": "Субстанция",
             "Vitriol": "Купорос",
             "Rebis": "Ребис",
@@ -1000,7 +1008,7 @@
         },
         "Settings": {
             "criticalWoundsPack": "Справочник критических ранений",
-            "criticalWoundsPackDetails": "Compendium queried for critical wounds options",
+            "criticalWoundsPackDetails": "Компедиум, из которого выбираются критические ранения",
             "Adrenaline": "Использовать дополнительное правило адреналина",
             "AdrenalineDetails": "Адреналин - это сила воли, позволяющая держаться и сражаться в критических ситуациях.",
             "useVerbalCombatRule": "Использовать дополнительные правила Словесной Дуэли",
@@ -1351,9 +1359,9 @@
             "ItemsSuccessfullyDeleted": "Компонент успешно удален при крафте",
             "ItemsSuccessfullyCrafted": "Предмет был успешно создан персонажем",
             "ItemsNotCrafted": "Попытка крафта была провалена персонажем",
-            "SuccessfulCraftForNothing": "Нужно было добавить предмет, который можно скрафтить при помощи рецепта. Ваши компоненты не пострадали, чего не скажешь о самооценке.",
+            "SuccessfulCraftForNothing": "Не указан предмет для изготовления по рецепту. Компоненты не израсходованы",
             "SkipRemovalOfComponent": "Нет необходимости удаления компонента",
-            "AssociatedItemMissing": "Предмет для крафта не связан с рецептом"
+            "AssociatedItemMissing": "Изготавливаемый предмет не связан с рецептом"
         },
         "err": {
             "CraftItemDeletion": "Неверное число компонентов было удалено при крафте",
@@ -1424,7 +1432,7 @@
             "meleeAttack": {
                 "6": "Ваше оружие проходит вскользь, и ваш персонаж ошеломлён.",
                 "7": "Ваше оружие застревает в ближайшем объекте; потребуется 1 раунд, чтобы его достать.",
-                "8": "Ваше оружие сильно повреждено и получает ldlO урона надёжности.",
+                "8": "Ваше оружие сильно повреждено и получает 1d10 урона надёжности.",
                 "9": "Ваш персонаж случайно ранил сам себя. Совершите бросок, чтобы определить куда.",
                 ">9": "Ваш персонаж ранил ближайшего союзника. Совершите бросок, чтобы определить, куда он ранил случайно выбранного союзника в пределах дистанции."
             },
@@ -1464,11 +1472,11 @@
         },
         "AssociatedDiagram": {
             "actions": {
-                "add": "Добавить рецепт крафта",
-                "remove": "Удалить рецепт крафта"
+                "add": "Добавить рецепт",
+                "remove": "Удалить рецепт"
             },
-            "missing": "Связанный рецепт крафта отсутствует (перетащите его сюда, чтобы добавить)",
-            "title": "Рецепт крафта"
+            "missing": "Связанный рецепт отсутствует (перетащите его сюда, чтобы добавить)",
+            "title": "Рецепт изготовления"
         },
         "Repair": {
             "action": "Ремонт",
@@ -1531,6 +1539,14 @@
         },
         "magic": {
             "magicImprovementPoints": "Магические ОУ"
+        },
+        "Macro": {
+            "ownedItemsOnly": "Макрос можно создать только для предмета, принадлежащего актёру"
+        },
+        "languages": {
+            "common": "Всеобщий язык",
+            "dwarven": "Язык краснолюдов",
+            "elder": "Старшая речь"
         }
     }
 }

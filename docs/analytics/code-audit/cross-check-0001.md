@@ -585,7 +585,7 @@
 | [issue-00175](../../issues/potential/issue-00175.md) | Основание сохраняется | B10: getSpeaker получает name; core instanceof Actor и прежние tests20 подтверждают fallback. |
 | [issue-00176](../../issues/potential/issue-00176.md) | Основание сохраняется | B10: crafting-craft единственный selector и listener ремесла; продолжение проверяется в B13. |
 | [issue-00177](../../issues/potential/issue-00177.md) | Основание сохраняется | B10: Monster не наследует Character с единственным item-repair listener. |
-| [issue-00178](../../issues/potential/issue-00178.md) | Основание сохраняется | B10: Weapon.Availability и десять подтипов diagrams не имеют keys en; область локалей сохранена. |
+| [issue-00178](../../issues/closed/issue-00178.md) | Основание сохраняется | B10: Weapon.Availability и десять подтипов diagrams не имеют keys en; область локалей сохранена. |
 | [issue-00179](../../issues/closed/issue-00179.md) | Основание сохраняется | B10: Literal Carry/Weight HBS не обращаются к localize. |
 | [issue-00180](../../issues/potential/issue-00180.md) | Основание сохраняется | B10: Относится к preload старого шаблона; текущая ArmorData и новый inventory используют вложенные пути. |
 | [issue-00181](../../issues/potential/issue-00181.md) | Основание сохраняется | B11: K02: unarmed9 отсутствует, ranged7 попадает8–9; остальные границы сопоставлены с en/ru. |

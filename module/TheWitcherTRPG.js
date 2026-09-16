@@ -99,6 +99,13 @@ Hooks.once('polyglot.init', LanguageProvider => {
             elder: { label: 'Elder Speech', font: 'Espruar' }
         };
 
+        async i18nInit() {
+            this.languages.common.label = game.i18n.localize('WITCHER.languages.common');
+            this.languages.dwarven.label = game.i18n.localize('WITCHER.languages.dwarven');
+            this.languages.elder.label = game.i18n.localize('WITCHER.languages.elder');
+            return super.i18nInit();
+        }
+
         getUserLanguages(actor) {
             let known_languages = new Set();
             let literate_languages = new Set();
@@ -149,7 +156,7 @@ Hooks.on('getChatMessageContextOptions', Fumble.addFumbleContextOptions);
  */
 async function createMacro(data, slot) {
     if (!data.uuid.includes('Actor.') && !data.uuid.includes('Token.')) {
-        return ui.notifications.warn('You can only create macro buttons for owned Items');
+        return ui.notifications.warn(game.i18n.localize('WITCHER.Macro.ownedItemsOnly'));
     }
 
     let item = fromUuidSync(data.uuid);

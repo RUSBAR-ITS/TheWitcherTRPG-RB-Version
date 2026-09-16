@@ -2433,6 +2433,9 @@ WITCHER.armorEffects = [
 // Display labels for existing diagram types; stored values and selectors are unchanged.
 WITCHER.diagramTypeLabels = {
     'alchemical': 'WITCHER.Alchemy.Alchemical',
+    'potion': 'WITCHER.Alchemy.Potion',
+    'decoction': 'WITCHER.Alchemy.Decoction',
+    'oil': 'WITCHER.Alchemy.Oil',
     'ingredients': 'WITCHER.Diagram.Ingredient',
     'weapon': 'WITCHER.Diagram.Weapon',
     'armor': 'WITCHER.Diagram.Armor',

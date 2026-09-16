@@ -5,7 +5,7 @@
     <div class="critwound">
         <div class="critwound-header">
             <div class="critwound-info">
-                <input name="name" type="text" value="{{document.name}}" placeholder="Name" />
+                <input name="name" type="text" value="{{document.name}}" placeholder="{{localize 'WITCHER.Name'}}" />
                 <select name="system.criticalLevel">
                     {{selectOptions config.critLevel selected=document.system.criticalLevel localize=true}}
                 </select>

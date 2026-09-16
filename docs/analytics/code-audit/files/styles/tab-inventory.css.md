@@ -166,7 +166,7 @@ CSS не читает Actor/Item напрямую и не выполняет upd
 
 ## Связанные проблемы
 
-[issue-00063](../../../../issues/potential/issue-00063.md), [issue-00177](../../../../issues/potential/issue-00177.md), [issue-00178](../../../../issues/potential/issue-00178.md), [issue-00179](../../../../issues/closed/issue-00179.md), [issue-00307](../../../../issues/potential/issue-00307.md), [issue-00309](../../../../issues/potential/issue-00309.md), [issue-00310](../../../../issues/potential/issue-00310.md), [issue-00311](../../../../issues/potential/issue-00311.md). Связь с конкретным условием, шаблоном или каскадом описана выше. Статусы остаются potential; CSS-анализ не подтверждает исправление или закрытие.
+[issue-00063](../../../../issues/potential/issue-00063.md), [issue-00177](../../../../issues/potential/issue-00177.md), [issue-00178](../../../../issues/closed/issue-00178.md), [issue-00179](../../../../issues/closed/issue-00179.md), [issue-00307](../../../../issues/potential/issue-00307.md), [issue-00309](../../../../issues/potential/issue-00309.md), [issue-00310](../../../../issues/potential/issue-00310.md), [issue-00311](../../../../issues/potential/issue-00311.md). Связь с конкретным условием, шаблоном или каскадом описана выше. Статусы остаются potential; CSS-анализ не подтверждает исправление или закрытие.
 
 ## История актуализации
 

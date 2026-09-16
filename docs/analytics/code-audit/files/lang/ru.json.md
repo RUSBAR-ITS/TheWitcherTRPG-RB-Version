@@ -11,6 +11,13 @@
 | Задача и порция | [TASK-0003.051](../../../../tasks/task-0003.051.md), 2 файла / 3032 логические строки; данный файл — 1503 |
 | Запись перекрёстной сверки | [TASK-0003.051](../../review-log.md#task-0003051) |
 
+## Актуализация N01–N08 — 14.3.1.00010
+
+2026-09-16, dev, база aeb527c6e6402e8a5f940a2c3ad0020d7e5b35e4. Изменены 37 существующих русских значений N02/N03/N08 и добавлены 10 UI-ключей N04/N05/N07. Сейчас 1172 строковых ключа; все прежние 1162 сохранены. Общих с en — 1170; прежние два ru-only/три en-only сохранены. «СЛ собирания», placeholders и четыре пустых hint сохранены.
+
+[Реализация и адресные проверки](../../../../issues/open/issue-00330.md#реализация-n01n08--143100010). Датированные разборы ниже сохраняют результаты прежних срезов.
+
+
 ## Актуализация issue-00330 — 2026-09-16
 
 Версия 14.3.1.00007, dev, база 031fbb8691ad32ab01fad43253c8736071bb2f8b. [Реализация и проверки](../../../../issues/open/issue-00330.md#реализация-и-проверки--143100007). Ниже сохранён исторический разбор: его сообщения об исправленных подписях/пропусках относятся к прежнему коду. Механики, технические значения и компедиумы этой правкой не изменены.
@@ -179,7 +186,7 @@ JSON не вызывает код и не импортирует другой с
 
 ## Связанные проблемы
 
-Повторно сопоставлены с текущими en/ru: [docs/issues/closed/issue-00014.md](../../../../issues/closed/issue-00014.md), [docs/issues/closed/issue-00016.md](../../../../issues/closed/issue-00016.md), [docs/issues/closed/issue-00090.md](../../../../issues/closed/issue-00090.md), [docs/issues/closed/issue-00098.md](../../../../issues/closed/issue-00098.md), [docs/issues/closed/issue-00119.md](../../../../issues/closed/issue-00119.md), [docs/issues/closed/issue-00137.md](../../../../issues/closed/issue-00137.md), [docs/issues/potential/issue-00178.md](../../../../issues/potential/issue-00178.md), [docs/issues/closed/issue-00186.md](../../../../issues/closed/issue-00186.md), [docs/issues/closed/issue-00193.md](../../../../issues/closed/issue-00193.md), [docs/issues/closed/issue-00205.md](../../../../issues/closed/issue-00205.md), [docs/issues/closed/issue-00234.md](../../../../issues/closed/issue-00234.md), [docs/issues/closed/issue-00296.md](../../../../issues/closed/issue-00296.md). Ошибки ключа и отсутствие русского перевода различаются.
+Повторно сопоставлены с текущими en/ru: [docs/issues/closed/issue-00014.md](../../../../issues/closed/issue-00014.md), [docs/issues/closed/issue-00016.md](../../../../issues/closed/issue-00016.md), [docs/issues/closed/issue-00090.md](../../../../issues/closed/issue-00090.md), [docs/issues/closed/issue-00098.md](../../../../issues/closed/issue-00098.md), [docs/issues/closed/issue-00119.md](../../../../issues/closed/issue-00119.md), [docs/issues/closed/issue-00137.md](../../../../issues/closed/issue-00137.md), [docs/issues/closed/issue-00178.md](../../../../issues/closed/issue-00178.md), [docs/issues/closed/issue-00186.md](../../../../issues/closed/issue-00186.md), [docs/issues/closed/issue-00193.md](../../../../issues/closed/issue-00193.md), [docs/issues/closed/issue-00205.md](../../../../issues/closed/issue-00205.md), [docs/issues/closed/issue-00234.md](../../../../issues/closed/issue-00234.md), [docs/issues/closed/issue-00296.md](../../../../issues/closed/issue-00296.md). Ошибки ключа и отсутствие русского перевода различаются.
 
 Новые наблюдения: [docs/issues/closed/issue-00317.md](../../../../issues/closed/issue-00317.md) — русское название silver записано по другому пути; [docs/issues/closed/issue-00318.md](../../../../issues/closed/issue-00318.md) — нет русского перевода applyAfterCalculations. Статусы potential; переводы, код и решения по исправлению не менялись.
 

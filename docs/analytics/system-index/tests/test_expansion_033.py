@@ -36,7 +36,7 @@ class MagicRegionExpansion(unittest.TestCase):
         self.assertEqual(h.count('{{formGroup'),5)
         for key in ['tokenEnter','tokenTurnStart','tokenMoveWithin','tokenExit']:
             self.assertIn(key+': new fields.DocumentUUIDField',s);self.assertIn('value=item.system.regionProperties.behaviours.'+key,h)
-        self.assertIn("label: 'WITCHER.Item.RegionProperties.tokenPreMove'",s)
+        self.assertIn("label: 'WITCHER.Item.RegionProperties.tokenMoveWithin'",s)
         self.assertIn('createRegionFromTemplate',h);self.assertNotIn('createRegionFromTemplate',self.body(150))
         self.assertIn('if (!system.createTemplate) delete parts.regionProperties',self.body(186,68,78))
         b=self.body(150,51,55);self.assertIn('source.behaviours.tokenMoveWithin = source.behaviours.tokenPreMove',b);self.assertNotIn('if (',b)
