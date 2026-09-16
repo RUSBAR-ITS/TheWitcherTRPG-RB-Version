@@ -2,8 +2,8 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "ce02e31707eec4e590c9d559186c70f33a364f80",
-  "index_dataset": "task-0006.032-expansion",
+  "source_head": "71475a90dbac72e3abfc9ae9ba5473ec3c148045",
+  "index_dataset": "task-0006.033-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -1612,7 +1612,7 @@
           "source": "src-000117",
           "path": "module/data/item/mixin/spellRegionMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000123",
@@ -1630,13 +1630,13 @@
           "source": "src-000149",
           "path": "module/data/item/templates/regions/regionBehavioursData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000150",
           "path": "module/data/item/templates/regions/regionPropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000151",
@@ -1672,7 +1672,7 @@
           "source": "src-000200",
           "path": "module/scripts/regions/regionHooks.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000487",
@@ -1720,7 +1720,7 @@
           "source": "src-000596",
           "path": "templates/sheets/item/configuration/tabs/regionPropertiesConfiguration.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000597",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.032",
+    "task": "TASK-0006.033",
     "date": "2026-09-16",
-    "source_head": "ce02e31707eec4e590c9d559186c70f33a364f80",
-    "dataset": "task-0006.032-expansion",
+    "source_head": "71475a90dbac72e3abfc9ae9ba5473ec3c148045",
+    "dataset": "task-0006.033-expansion",
     "counts": {
       "sources": 615,
-      "entities": 5244,
-      "relations": 14759,
-      "processes": 453
+      "entities": 5328,
+      "relations": 14954,
+      "processes": 465
     },
-    "primary_count": 227,
-    "neighbor_count": 77,
-    "catalog_only_definitions": 311,
-    "boundary_count": 410,
+    "primary_count": 232,
+    "neighbor_count": 73,
+    "catalog_only_definitions": 310,
+    "boundary_count": 433,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4672,5 +4672,30 @@
     "ent-005243",
     "ent-005244",
     "ent-005245"
+  ],
+  "added_boundaries_033": [
+    "ent-005292",
+    "ent-005293",
+    "ent-005294",
+    "ent-005295",
+    "ent-005296",
+    "ent-005297",
+    "ent-005298",
+    "ent-005299",
+    "ent-005300",
+    "ent-005301",
+    "ent-005302",
+    "ent-005303",
+    "ent-005319",
+    "ent-005320",
+    "ent-005321",
+    "ent-005322",
+    "ent-005323",
+    "ent-005324",
+    "ent-005325",
+    "ent-005326",
+    "ent-005327",
+    "ent-005328",
+    "ent-005329"
   ]
 }

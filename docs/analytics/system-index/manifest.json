@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.032-expansion",
+  "dataset_id": "task-0006.033-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-16",
     "branch": "rusbar-main",
-    "head": "ce02e31707eec4e590c9d559186c70f33a364f80",
+    "head": "71475a90dbac72e3abfc9ae9ba5473ec3c148045",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -102,6 +102,7 @@
       "src-000114",
       "src-000115",
       "src-000116",
+      "src-000117",
       "src-000119",
       "src-000121",
       "src-000122",
@@ -124,6 +125,8 @@
       "src-000146",
       "src-000147",
       "src-000148",
+      "src-000149",
+      "src-000150",
       "src-000151",
       "src-000152",
       "src-000155",
@@ -156,6 +159,7 @@
       "src-000195",
       "src-000196",
       "src-000197",
+      "src-000200",
       "src-000202",
       "src-000204",
       "src-000205",
@@ -228,6 +232,7 @@
       "src-000591",
       "src-000592",
       "src-000593",
+      "src-000596",
       "src-000597",
       "src-000598",
       "src-000599",
@@ -242,7 +247,7 @@
       "src-000611",
       "src-000613"
     ],
-    "semantic_scope": ".032: complete local castSpell/calcStaminaMulti paths, active/legacy spell lists, prompt and cost, raw/typed/HTML message, fumble and self/target delivery. Region lifecycle .033; prior IDs preserved, global partial.",
+    "semantic_scope": ".033: spell Region geometry/raw flags, manual placement/emanation, behaviors/Macro event handoff, GM query owner depth, visual seconds and Combat countdown. Prior IDs/processes preserved, external persistence/runtime and overall coverage partial.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -277,7 +282,8 @@
       "data/entities/expansion-029.jsonl",
       "data/entities/expansion-030.jsonl",
       "data/entities/expansion-031.jsonl",
-      "data/entities/expansion-032.jsonl"
+      "data/entities/expansion-032.jsonl",
+      "data/entities/expansion-033.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -307,7 +313,8 @@
       "data/relations/expansion-029.jsonl",
       "data/relations/expansion-030.jsonl",
       "data/relations/expansion-031.jsonl",
-      "data/relations/expansion-032.jsonl"
+      "data/relations/expansion-032.jsonl",
+      "data/relations/expansion-033.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -337,10 +344,11 @@
       "data/processes/expansion-029.jsonl",
       "data/processes/expansion-030.jsonl",
       "data/processes/expansion-031.jsonl",
-      "data/processes/expansion-032.jsonl"
+      "data/processes/expansion-032.jsonl",
+      "data/processes/expansion-033.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-032-queries.json",
+  "query_examples": "examples/expansion-033-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -608,13 +616,23 @@
     "docs/issues/potential/issue-00252.md": "4a031b453a523a917d991bf82942dcc2d406704b1ca43b876c7da4e791fd1696",
     "docs/issues/potential/issue-00248.md": "118eab5516a4ffe6dd2185015a243c03625d6c1cb3c4b12e1a329f7ab77bbae1",
     "docs/issues/potential/issue-00139.md": "192c3292c0a37203c43c7c53435fde65afabd3a12cd6e6bc718c3b1a024b4b04",
-    "docs/analytics/system-index/coverage-032.md": "60d566a35dfc7df343edf79eb87fd951879e6753d44154bc3c39f01a6a906bfe"
+    "docs/analytics/system-index/coverage-032.md": "60d566a35dfc7df343edf79eb87fd951879e6753d44154bc3c39f01a6a906bfe",
+    "docs/issues/potential/issue-00144.md": "898d8319c1728bf8f36f15680aaaeb35cf44f75e1ec47c6329bec11d2f70e95b",
+    "docs/issues/potential/issue-00145.md": "9c5502e4c6487a9764d562be924e099136329141eb87cad93b6138981675bb93",
+    "docs/issues/potential/issue-00142.md": "926a64f9a4ffe8fcea2fc91f9a57591e25f7d23f86800ff3d3f334fe92b67e0b",
+    "docs/issues/potential/issue-00138.md": "f9740f57235545e8a1467677c7b7c8462d8c5e7dccf796e9ab4ae26ea0136741",
+    "docs/issues/potential/issue-00140.md": "34b3cc2237d00c1ed5831275eba9b4db059e27210f1e24510c3cb5f95bd3adce",
+    "docs/issues/potential/issue-00141.md": "1af3a8e4b4707758436c4b5d04c80f3553e83d00d46770a5e980cdee3ced5849",
+    "docs/issues/potential/issue-00143.md": "426c4eb593f6f593c3e3a4322ad1363d346b4621fb5c6eed4d44524534d8b9f6",
+    "docs/issues/potential/issue-00076.md": "8bd95414831ab0b20100ff2cc9b6de2f144f23dbfdf56939e56f00ea1780dde3",
+    "docs/issues/potential/issue-00147.md": "99e6161c9d137e0b3229bc63d787e14bb8c6a45e09b3a64a5bd45e1bbe038a6f",
+    "docs/analytics/system-index/coverage-033.md": "707789452cebf77886e8dafd5e4702257aed67f53807ac3f34453732446ad9b5"
   },
   "next_ids": {
     "source": 616,
-    "entity": 5246,
-    "relation": 14760,
-    "process": 454
+    "entity": 5330,
+    "relation": 14955,
+    "process": 466
   },
   "retired_ids": []
 }
