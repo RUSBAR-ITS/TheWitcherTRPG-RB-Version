@@ -2,8 +2,8 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "ea39a61d3c4e222659abde172ef63982a2f42c66",
-  "index_dataset": "task-0006.029-expansion",
+  "source_head": "deee6c1dcec1b5419e8ac37bd8e69aececf0b2a5",
+  "index_dataset": "task-0006.030-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -1696,7 +1696,7 @@
           "source": "src-000525",
           "path": "templates/partials/character/tab-magic.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000539",
@@ -2158,13 +2158,13 @@
           "source": "src-000021",
           "path": "module/actor/mixins/rewardsMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000026",
           "path": "module/actor/rewardsSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000039",
@@ -2176,7 +2176,7 @@
           "source": "src-000049",
           "path": "module/app/reward/reward.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000060",
@@ -2188,19 +2188,19 @@
           "source": "src-000069",
           "path": "module/data/actor/templates/character/ipLogData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000070",
           "path": "module/data/actor/templates/character/logData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000072",
           "path": "module/data/actor/templates/character/skillTrainingData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000075",
@@ -2230,7 +2230,7 @@
           "source": "src-000505",
           "path": "templates/chat/rewards.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000548",
@@ -2248,13 +2248,13 @@
           "source": "src-000574",
           "path": "templates/sheets/actor/rewards/header.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000575",
           "path": "templates/sheets/actor/rewards/ip.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         }
       ]
     },
@@ -2398,7 +2398,7 @@
           "source": "src-000048",
           "path": "module/app/htmlUtils.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000457",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.029",
+    "task": "TASK-0006.030",
     "date": "2026-09-16",
-    "source_head": "ea39a61d3c4e222659abde172ef63982a2f42c66",
-    "dataset": "task-0006.029-expansion",
+    "source_head": "deee6c1dcec1b5419e8ac37bd8e69aececf0b2a5",
+    "dataset": "task-0006.030-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4936,
-      "relations": 13603,
-      "processes": 416
+      "entities": 4999,
+      "relations": 13817,
+      "processes": 425
     },
-    "primary_count": 197,
-    "neighbor_count": 87,
-    "catalog_only_definitions": 331,
-    "boundary_count": 373,
+    "primary_count": 206,
+    "neighbor_count": 85,
+    "catalog_only_definitions": 324,
+    "boundary_count": 383,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4629,5 +4629,17 @@
     "ent-004935",
     "ent-004936",
     "ent-004937"
+  ],
+  "added_boundaries_030": [
+    "ent-004961",
+    "ent-004969",
+    "ent-004970",
+    "ent-004994",
+    "ent-004995",
+    "ent-004996",
+    "ent-004997",
+    "ent-004998",
+    "ent-004999",
+    "ent-005000"
   ]
 }
