@@ -6,8 +6,8 @@
   "snapshot": {
     "date": "2026-09-16",
     "branch": "dev",
-    "head": "095395276b97f0ffe916495e26be3938cf8fdcf8",
-    "source_hash": "443fc67929ed55a440866eb7407b56cc76bb2f3c9734500a1e03404090d023d9"
+    "head": "af4d6f5fc7b40279f09eb66b0ca58aa2e1469ab4",
+    "source_hash": "ba20be1a0964c6a28dc52a2ba94fc8a1ee81c866e544b1cad2f37c32b7a8c54a"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
@@ -534,11 +534,11 @@
     "docs/issues/potential/issue-00239.md": "1e137dfe2b9238520411b5ced4a94a71a7f138f8a38de8e938f1a95d67978354",
     "docs/analytics/system-index/coverage-020.md": "d912aff4ecc3401b2f0d30b631488c7ea526da363330fed874babc4f3c5863eb",
     "docs/issues/potential/issue-00288.md": "dc0bade0666ad159ebc367f1ce31322917678c43d09db4bbaa861c631ba552c6",
-    "docs/issues/potential/issue-00324.md": "49fe9e812d7f37f66bd5f31948db2be58f7a84c1908497d597a0c20c7180fc23",
+    "docs/issues/potential/issue-00324.md": "68f335378fa3afdc2e23122f67c6a510aed5c5c661d6182ac04e36bb1beffa73",
     "docs/issues/potential/issue-00122.md": "ddd2ea5c79eec3d66092ec76b867dc014561015f66e34c6ed7187fd8b8513cb8",
     "docs/issues/potential/issue-00127.md": "fba04f27778e02613c3fe0360df1b645f3c7dd7b477171d18505748be3967f86",
     "docs/issues/potential/issue-00121.md": "2682cc9f50d0ff53cc05c261067f71d78ad66b739e2cf3853e07af16f918667b",
-    "docs/issues/potential/issue-00325.md": "f851d5148d900fd1137461bb8c95e861c86c581c5c1f50b11c82fb8911a8862d",
+    "docs/issues/potential/issue-00325.md": "c2e29bf19d28e8b095f00467ffeb3aa2a51b4e08965ca57016cd788351e1d43d",
     "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left__XPoH413WkKQUgrnw.json.md": "8f8bc34a52ae89117b4cd7732d175990a7fd41282ad95cde5abbf6b9d2ba94d0",
     "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Stabilized__eblucqnyOS7lb5E5.json.md": "5474962937d3ae2dd3b4e46734ba5f959cf14e3eb979d2d9025ac1f4085d5578",
     "docs/analytics/code-audit/files/packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Leg__Left___Treated__f7NaW1AMnrSLGkd3.json.md": "df6c0e5a2c47560b076bad2477415a3d699eb088f115aed5580bcb62dbc5bb85",
