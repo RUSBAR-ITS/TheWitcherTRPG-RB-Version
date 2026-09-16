@@ -4,7 +4,7 @@
 
 | Документ | Что регулирует |
 | --- | --- |
-| [repository.md](repository.md) | Назначение веток и работа с Git |
+| [repository.md](repository.md) | Назначение веток, работа с Git и версия системы |
 | [development.md](development.md) | Согласование, исследование и реализация |
 | [testing.md](testing.md) | Проверки и достоверность результатов |
 | [documentation.md](documentation.md) | Документы, проблемы, задачи и журнал решений |

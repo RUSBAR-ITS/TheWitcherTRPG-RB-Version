@@ -1,13 +1,13 @@
 {
     "id": "TheWitcherTRPG-RB-Version",
-    "title": "The Witcher TRPG - Foundry VTT",
+    "title": "The Witcher TRPG - RUSBAR Version",
     "description": "The Witcher TRPG System",
     "compatibility": {
         "minimum": "14",
         "verified": "14",
         "maximum": "14"
     },
-    "version": "AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION",
+    "version": "14.3.1.00003",
     "authors": [
         {
             "name": "Stexinator",
