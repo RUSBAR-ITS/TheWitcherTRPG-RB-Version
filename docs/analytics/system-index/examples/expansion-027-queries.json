@@ -1,0 +1,580 @@
+{
+  "dataset": "task-0006.027-expansion",
+  "basis": "Ожидания установлены из JS/HBS и прочитанного ядра до выполнения CLI; старые ID используются как адреса.",
+  "cases": [
+    {
+      "id": "E027-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "RaceData",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000412"
+        ]
+      },
+      "basis": "122:8,143:6,67:26 — реальные определения до запроса к CLI."
+    },
+    {
+      "id": "E027-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "perk().description",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004721"
+        ]
+      },
+      "basis": "122:8,143:6,67:26 — реальные определения до запроса к CLI."
+    },
+    {
+      "id": "E027-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "lifeEvents().200",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004762"
+        ]
+      },
+      "basis": "122:8,143:6,67:26 — реальные определения до запроса к CLI."
+    },
+    {
+      "id": "E027-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "homeland",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004709",
+          "ent-004736",
+          "ent-004781"
+        ]
+      },
+      "basis": "116 и65 — разные владельцы Item/Actor;29:155 — ссылка контекста."
+    },
+    {
+      "id": "E027-05",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "socialStanding",
+        "--scope",
+        "src-000068",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004738"
+        ]
+      },
+      "basis": "68:15 — строка Actor, не региональная schema Item."
+    },
+    {
+      "id": "E027-06",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000523",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004774"
+        ]
+      },
+      "basis": "176:11 указывает конкретный HBS."
+    },
+    {
+      "id": "E027-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004777",
+        "--direction",
+        "out",
+        "--relation",
+        "passes"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003616",
+          "ent-004786"
+        ]
+      },
+      "basis": "526:274/302 — редактор и inline select разные контракты."
+    },
+    {
+      "id": "E027-08",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004703",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003406"
+        ]
+      },
+      "basis": "122:25–28 — четыре последовательных callsite общей функции."
+    },
+    {
+      "id": "E027-09",
+      "question": "IQ-04",
+      "command": [
+        "field",
+        "ent-004738",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000022"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-000303"
+        ]
+      },
+      "basis": "22:102/106/113/123 — реальный reader навыковой поправки."
+    },
+    {
+      "id": "E027-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004794",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003543"
+        ]
+      },
+      "basis": "27:221 регистрирует bind(this) именно V2 toggle."
+    },
+    {
+      "id": "E027-11",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-001008",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000290",
+          "ent-004703"
+        ]
+      },
+      "basis": "29:155–164 — выбор и await enriched не копируют homeland."
+    },
+    {
+      "id": "E027-12",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004729",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003565"
+        ]
+      },
+      "basis": "526:302 dataset разрешается43:144 в Item update."
+    },
+    {
+      "id": "E027-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004723",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000524"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004785"
+        ]
+      },
+      "basis": "524:9 именованная Actor форма."
+    },
+    {
+      "id": "E027-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004718",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000603"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004784"
+        ]
+      },
+      "basis": "603:7 именованная Item форма."
+    },
+    {
+      "id": "E027-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004742",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000029"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000892"
+        ]
+      },
+      "basis": "29:133 live prepared assignment, неsource."
+    },
+    {
+      "id": "E027-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004728",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000027"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003543"
+        ]
+      },
+      "basis": "27:303 update по schema key."
+    },
+    {
+      "id": "E027-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004727",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000524"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004785"
+        ]
+      },
+      "basis": "524:91 динамический name только для открытого события."
+    },
+    {
+      "id": "E027-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004721",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000022"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Тело skillMixin.addSocialStanding читает Actor.socialStanding, не perk HTML; пустой результат только этого scope."
+    },
+    {
+      "id": "E027-19",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004796",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "25:375–377 читает объект attacks[strike], не .value; issue19. Отсутствие этих рёбер не всемирная гарантия."
+    },
+    {
+      "id": "E027-20",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000655",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000016"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004026"
+        ]
+      },
+      "basis": "16:276–277 armor/parry и >0."
+    },
+    {
+      "id": "E027-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000387",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "branch"
+        ],
+        "next_steps": [
+          "actor",
+          "item"
+        ],
+        "next_exits": []
+      },
+      "basis": "Ветвление установлено непосредственно из указанных JS/HBS, process выдаёт шаги."
+    },
+    {
+      "id": "E027-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000389",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "type"
+        ],
+        "next_steps": [
+          "emp"
+        ],
+        "next_exits": [
+          "skipped"
+        ]
+      },
+      "basis": "Ветвление установлено непосредственно из указанных JS/HBS, process выдаёт шаги."
+    },
+    {
+      "id": "E027-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000392",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "lookup"
+        ],
+        "next_steps": [
+          "write"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Ветвление установлено непосредственно из указанных JS/HBS, process выдаёт шаги."
+    },
+    {
+      "id": "E027-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000391",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "loop"
+        ],
+        "next_steps": [
+          "card",
+          "return"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Ветвление установлено непосредственно из указанных JS/HBS, process выдаёт шаги."
+    },
+    {
+      "id": "E027-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000390",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "counter"
+        ],
+        "next_steps": [
+          "enriched"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Ветвление установлено непосредственно из указанных JS/HBS, process выдаёт шаги."
+    },
+    {
+      "id": "E027-26",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004791"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00024.md"
+        ]
+      },
+      "basis": "Датированное прежнее наблюдение с ограничениями; новые игровые сценарии не исполнялись."
+    },
+    {
+      "id": "E027-27",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004786"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00109.md"
+        ]
+      },
+      "basis": "Датированное прежнее наблюдение с ограничениями; новые игровые сценарии не исполнялись."
+    },
+    {
+      "id": "E027-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004792"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00213.md"
+        ]
+      },
+      "basis": "Датированное прежнее наблюдение с ограничениями; новые игровые сценарии не исполнялись."
+    },
+    {
+      "id": "E027-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004796"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00019.md"
+        ]
+      },
+      "basis": "Датированное прежнее наблюдение с ограничениями; новые игровые сценарии не исполнялись."
+    },
+    {
+      "id": "E027-30",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004786"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Сохранение Actor editor target в Item не прослежено в браузере; dynamic boundary."
+    },
+    {
+      "id": "E027-31",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-001008",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "Глубина1 не раскрывает цепочку enrichedText→helper и внутренние Item операции."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/common/abstract/data.mjs",
+      "lines": "820–826",
+      "scope": "toObject(source=true) копирует _source, false использует текущую модель и схему.",
+      "sha256": "11bb7f848c707803607accfa9f6b946c7cbfe8b17781ff562b468bdc77b934e5"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/document-sheet.mjs",
+      "lines": "431–434,465–469,486–509,525–531",
+      "scope": "Общий submit: expandObject, validate clean/addTypes; await update существующего документа. Чтение ядра, не UI/БД.",
+      "sha256": "7925d81900eeea0d5e79606e12ce43539ae00714f50d8452c7305fe81394aa01"
+    }
+  ]
+}

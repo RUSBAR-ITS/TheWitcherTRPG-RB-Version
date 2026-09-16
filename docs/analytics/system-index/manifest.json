@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.026-expansion",
+  "dataset_id": "task-0006.027-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-16",
     "branch": "rusbar-main",
-    "head": "4d4ad775e8b85bd8354b4ee3cd7083a5706b9096",
+    "head": "481bee90901013c96b725b5c5d912a687e0c1d85",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -56,9 +56,15 @@
       "src-000057",
       "src-000058",
       "src-000059",
+      "src-000061",
       "src-000062",
       "src-000063",
+      "src-000065",
+      "src-000066",
+      "src-000067",
+      "src-000068",
       "src-000074",
+      "src-000077",
       "src-000080",
       "src-000081",
       "src-000082",
@@ -85,7 +91,9 @@
       "src-000111",
       "src-000112",
       "src-000114",
+      "src-000116",
       "src-000119",
+      "src-000122",
       "src-000126",
       "src-000127",
       "src-000129",
@@ -96,6 +104,8 @@
       "src-000134",
       "src-000136",
       "src-000137",
+      "src-000143",
+      "src-000152",
       "src-000155",
       "src-000157",
       "src-000159",
@@ -104,8 +114,10 @@
       "src-000166",
       "src-000167",
       "src-000169",
+      "src-000171",
       "src-000172",
       "src-000174",
+      "src-000176",
       "src-000178",
       "src-000181",
       "src-000182",
@@ -152,6 +164,8 @@
       "src-000521",
       "src-000522",
       "src-000523",
+      "src-000524",
+      "src-000526",
       "src-000527",
       "src-000530",
       "src-000531",
@@ -177,11 +191,13 @@
       "src-000598",
       "src-000599",
       "src-000601",
+      "src-000603",
       "src-000605",
+      "src-000608",
       "src-000610",
       "src-000613"
     ],
-    "semantic_scope": ".026: постоянные улучшения Item, формы и установка/снятие, prepared потребители, мутаген как текст/consumable/ActiveEffect. Прежние .001–.025 сохранены, временные улучшения .008 не дублируются; global partial.",
+    "semantic_scope": ".027: раса/родина Item, поля Actor general, биография/lifeEvents и фактические social/lifepath consumers. Прежние .001–.026 сохранены; профессия .028, global partial.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -210,7 +226,8 @@
       "data/entities/expansion-022.jsonl",
       "data/entities/expansion-024.jsonl",
       "data/entities/expansion-025.jsonl",
-      "data/entities/expansion-026.jsonl"
+      "data/entities/expansion-026.jsonl",
+      "data/entities/expansion-027.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -234,7 +251,8 @@
       "data/relations/expansion-022.jsonl",
       "data/relations/expansion-024.jsonl",
       "data/relations/expansion-025.jsonl",
-      "data/relations/expansion-026.jsonl"
+      "data/relations/expansion-026.jsonl",
+      "data/relations/expansion-027.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -258,10 +276,11 @@
       "data/processes/expansion-022.jsonl",
       "data/processes/expansion-024.jsonl",
       "data/processes/expansion-025.jsonl",
-      "data/processes/expansion-026.jsonl"
+      "data/processes/expansion-026.jsonl",
+      "data/processes/expansion-027.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-026-queries.json",
+  "query_examples": "examples/expansion-027-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -479,13 +498,16 @@
     "docs/analytics/system-index/coverage-025.md": "f29d232c021478292f59fdc9548949be324d70a2d1a4de7cc7d8313d99ad0f2b",
     "docs/issues/potential/issue-00170.md": "157f6985ae4d92a65f2095f695f39457a56167e625dd41c6611810b199b70fa2",
     "docs/issues/potential/issue-00171.md": "8ea9f54457facadaa6b33a5ca2504f5fd8538246459ee11581f2cb4655ac723b",
-    "docs/analytics/system-index/coverage-026.md": "6f025a63e28c3f7e6c4692adc210ef416424ca900b1debc572c4f993e34ae906"
+    "docs/analytics/system-index/coverage-026.md": "6f025a63e28c3f7e6c4692adc210ef416424ca900b1debc572c4f993e34ae906",
+    "docs/issues/potential/issue-00109.md": "c596b385292db6830a9b598b01456bb53ad69a156e0a283723944993aaeaac00",
+    "docs/issues/potential/issue-00213.md": "df1c4f49321e6fb38ed72c789ea498c70da4dc374a1c2b87d55edf9debd94758",
+    "docs/analytics/system-index/coverage-027.md": "dd4ddf3085ee26067f8e02cca2a9f66837ec6dd62944565f8de67d7ceace4039"
   },
   "next_ids": {
     "source": 616,
-    "entity": 4702,
-    "relation": 12375,
-    "process": 383
+    "entity": 4797,
+    "relation": 12709,
+    "process": 394
   },
   "retired_ids": []
 }
