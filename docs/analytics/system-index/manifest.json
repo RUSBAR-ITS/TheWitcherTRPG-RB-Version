@@ -358,7 +358,7 @@
     }
   },
   "reference_hashes": {
-    "docs/analytics/code-audit/cross-check-0002.md": "59eefefaba927f7c40562df488f138aac4458ae3b99a94c4d0130194dcfee382",
+    "docs/analytics/code-audit/cross-check-0002.md": "4900e756154d2e485919d07df3561f9d6c8a773400b0246d138ee35cf990f584",
     "docs/issues/potential/issue-00004.md": "f52e9d6151ef626dfde1f8a85cbd9a48bca1ee55a5f44f34a656660b7853d313",
     "docs/issues/potential/issue-00015.md": "929d09b62873d79a5b642813712365406c3a489018b02262c4d4930ccaa45e9a",
     "docs/issues/potential/issue-00012.md": "76a72cbfaebd87bb491ff394bb698d9f217483d225de448abfb6864c26233792",
@@ -373,11 +373,11 @@
     "docs/analytics/system-index/process-guide.md": "dea335fcdef849adb3a8743c7892ca03df99de0e76d746407a219c7e8c4320c3",
     "docs/issues/potential/issue-00005.md": "2df7296a1bae1cf1aad39d42de93a98c3d009e7b8bd41fbd0e6da7c8680e28b6",
     "docs/issues/potential/issue-00057.md": "d72dafec9ea2d97f2ca09c79ddda6953d4b40d9014257784aa73877c56db66fd",
-    "docs/issues/potential/issue-00001.md": "89c358184ea100139b35250a503e2214b6490f449586f789108d804eb4cba098",
+    "docs/issues/open/issue-00001.md": "eecf20ddd01e0fbad0c3f8c426befeaca9596167d8f05cc4a3f82eb56ee98db9",
     "docs/issues/potential/issue-00002.md": "152d886add77b7f573959c8dfc16198550238b67cbd2775de2db8adbcbe74f79",
     "docs/issues/potential/issue-00289.md": "3e5863d8b27d411111e195d7c043b01b6e4698dd1d7edfe47d952e6bcbe5d540",
     "docs/issues/potential/issue-00006.md": "57a4494008554f06ae2b9fbea5f45110be32f5ae4c1694d47b999950e6d5abc6",
-    "docs/analytics/system-index/coverage-006.md": "503664a5ad1a27943e060a6e03d1fa762a2741366964e8f14f4be92e5efc79a4",
+    "docs/analytics/system-index/coverage-006.md": "b50fe44e94aa41fd6f16dc7200a9c703d76666916eee1e0e6a836f8f6dbad1bc",
     "docs/issues/potential/issue-00052.md": "660ade73fbcefe134a65805d156db3d74e8197ad52f9fb7fc07230977f66c5f3",
     "docs/issues/potential/issue-00051.md": "fbd30ed1ca5f1377893efb15c90009e5c68b8b3c3c7b6f3fe75cfdbf982b945e",
     "docs/issues/potential/issue-00053.md": "2cf97b5823826a72d87ed599187a1e037641d8e9946971f379a2b62d14e43a7f",

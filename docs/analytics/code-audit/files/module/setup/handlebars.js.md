@@ -196,7 +196,7 @@ armorPartsInfo объявляет head, torso, leftArm, rightArm, leftLeg, right
 
 ## Связанные проблемы
 
-[issue-00007](../../../../../issues/potential/issue-00007.md) — подписи ног; [issue-00001](../../../../../issues/potential/issue-00001.md) — известное замечание о регистрации каталога и путях.
+[issue-00007](../../../../../issues/potential/issue-00007.md) — подписи ног; [issue-00001](../../../../../issues/open/issue-00001.md) — известное замечание о регистрации каталога и путях.
 
 ## История актуализации
 
