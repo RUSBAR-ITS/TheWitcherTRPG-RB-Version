@@ -1,0 +1,817 @@
+{
+  "dataset": "task-0006.032-expansion",
+  "basis": "Ожидания установлены чтением JS/HBS/аудита/ядра до CLI; ID взяты из канонических записей.",
+  "cases": [
+    {
+      "id": "E032-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.castSpellMixin.calcStaminaMulti",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-005171"
+        ]
+      },
+      "basis": "11:272–286 собственный метод, ограниченный строковый parser."
+    },
+    {
+      "id": "E032-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "actor.castSpellMixin.castSpell.origStaCost",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-005204"
+        ]
+      },
+      "basis": "11:113 значение до снижения оплаты."
+    },
+    {
+      "id": "E032-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "templates/dialog/combat/spell-attack.hbs",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-005172"
+        ]
+      },
+      "basis": "508:1–35 шесть controls."
+    },
+    {
+      "id": "E032-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "castSpell",
+        "--scope",
+        "src-000011",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:13 canonical producer."
+    },
+    {
+      "id": "E032-05",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "_prepareSpells",
+        "--scope",
+        "src-000027",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-003444"
+        ]
+      },
+      "basis": "27:125–149 V2 группировка."
+    },
+    {
+      "id": "E032-06",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "spell-type-list",
+        "--scope",
+        "src-000561",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-005173"
+        ]
+      },
+      "basis": "561:1–174 актуальный partial."
+    },
+    {
+      "id": "E032-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000868",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000369",
+          "ent-000374",
+          "ent-005171"
+        ]
+      },
+      "basis": "11:182/247/248 calls, region отдельно."
+    },
+    {
+      "id": "E032-08",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004968",
+        "--direction",
+        "out",
+        "--relation",
+        "renders",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-005173"
+        ]
+      },
+      "basis": "525:10–41 общие группы."
+    },
+    {
+      "id": "E032-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-000868",
+        "--direction",
+        "in",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003555"
+        ]
+      },
+      "basis": "47:235 dispatch магии."
+    },
+    {
+      "id": "E032-10",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-005172",
+        "--direction",
+        "in",
+        "--relation",
+        "renders",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:88–91 await render."
+    },
+    {
+      "id": "E032-11",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-005232",
+        "--direction",
+        "out",
+        "--relation",
+        "handles",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004014"
+        ]
+      },
+      "basis": "195:16 closure typed message."
+    },
+    {
+      "id": "E032-12",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-000868",
+        "--direction",
+        "out",
+        "--relation",
+        "calls",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-000779",
+          "ent-000780",
+          "ent-000782",
+          "ent-000783",
+          "ent-005077"
+        ]
+      },
+      "basis": "11:250–266 region до guard, effects после."
+    },
+    {
+      "id": "E032-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-000057",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:132 absolute update без await."
+    },
+    {
+      "id": "E032-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005054",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:52/59/66/73 положительные слоты."
+    },
+    {
+      "id": "E032-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003589",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:186 prepared alias, не source."
+    },
+    {
+      "id": "E032-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004186",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:166 строка цифр,170 Roll total."
+    },
+    {
+      "id": "E032-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005226",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000487"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-005170"
+        ]
+      },
+      "basis": "487:52 HTML атрибут."
+    },
+    {
+      "id": "E032-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005225",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000487"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-005170"
+        ]
+      },
+      "basis": "487:48 raw HTML атрибут."
+    },
+    {
+      "id": "E032-19",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005019",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000487"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-005170"
+        ]
+      },
+      "basis": "487:23 текстовый DC."
+    },
+    {
+      "id": "E032-20",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005046",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-000868"
+        ]
+      },
+      "basis": "11:262 direct field, отсутствует у Hex/Ritual."
+    },
+    {
+      "id": "E032-21",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005054",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "11 слоты только читает."
+    },
+    {
+      "id": "E032-22",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005016",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "В cast нет списания main компонентов."
+    },
+    {
+      "id": "E032-23",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-005019",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000011"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "DC не передаётся ни формуле, ни RollConfig."
+    },
+    {
+      "id": "E032-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000444",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "wait"
+        ],
+        "next_steps": [
+          "callback"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "11:93–111 prompt ok/close."
+    },
+    {
+      "id": "E032-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000445",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "guard"
+        ],
+        "next_steps": [
+          "write"
+        ],
+        "next_exits": [
+          "skipped"
+        ]
+      },
+      "basis": "11:126–129 guard только newSta<0."
+    },
+    {
+      "id": "E032-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000446",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "dice"
+        ],
+        "next_steps": [
+          "numeric"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "11:279 ветка d."
+    },
+    {
+      "id": "E032-27",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000447",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "parse"
+        ],
+        "next_steps": [
+          "roll",
+          "text"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "11:165–167 regex после truthy guard."
+    },
+    {
+      "id": "E032-28",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000449",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "heal"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed",
+          "failed"
+        ]
+      },
+      "basis": "11:208–211 variable heal свободный идентификатор."
+    },
+    {
+      "id": "E032-29",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000451",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "fumble"
+        ],
+        "next_steps": [
+          "status-self",
+          "return"
+        ],
+        "next_exits": []
+      },
+      "basis": "11:252 fumble guard после region."
+    },
+    {
+      "id": "E032-30",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000452",
+        "--offset",
+        "7",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "region"
+        ],
+        "next_steps": [
+          "guard"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "11:250 region до guard."
+    },
+    {
+      "id": "E032-31",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000453",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "buttons"
+        ],
+        "next_steps": [
+          "damage",
+          "shield",
+          "heal"
+        ],
+        "next_exits": [
+          "skipped"
+        ]
+      },
+      "basis": "487:43–53 независимые кнопки."
+    },
+    {
+      "id": "E032-32",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005236"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00245.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-33",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005235"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00254.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-34",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005237"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00251.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-35",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005238"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00246.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-36",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005239"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00247.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-37",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005240"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00257.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-38",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005241"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00134.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-39",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005242"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00252.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-40",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005243"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00248.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-41",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-005244"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00139.md"
+        ]
+      },
+      "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."
+    },
+    {
+      "id": "E032-42",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-005245"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Preload и legacy inclusion не доказывают render V2."
+    },
+    {
+      "id": "E032-43",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-000868",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "Глубина1 не раскрывает весь downstream и callback."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/client/applications/api/dialog.mjs",
+      "lines": "264–276,369–375,405–424",
+      "scope": "prompt→wait; собственный button callback ожидается; close при rejectClose отвергает Promise.",
+      "sha256": "4e2d299eaa931d96df1839e64a2defc60b6b95ee89a3e1d32d60b99040899343"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/handlebars.mjs",
+      "lines": "460–499",
+      "scope": "selectOptions: object value/label, blank передаётся select builder; числовой value перекрывает имя focusN.",
+      "sha256": "0c5959e0ebdf5847277fba3284d76ee535084e022d087659fd0791e5ccd3545c"
+    },
+    {
+      "path": "/opt/foundryvtt/client/dice/roll.mjs",
+      "lines": "926–953",
+      "scope": "toMessage включает rolls, создаёт typed ChatMessage и возвращает create Promise при create=true.",
+      "sha256": "a27f498f7b3864a1baa7cebbb1ccb611f9796720b4a4d153df779803b995c7ff"
+    },
+    {
+      "path": "/opt/foundryvtt/common/data/fields.mjs",
+      "lines": "1066–1097,1100–1145",
+      "scope": "SchemaField cleaning и prune неизвестных keys; поля, которых нет в damageData, не становятся объявленной частью сообщения.",
+      "sha256": "efa8e3ccdf553ca826580e60bfbfc97db57bdeadaa954a50f6a55e0ab52c3e01"
+    }
+  ]
+}

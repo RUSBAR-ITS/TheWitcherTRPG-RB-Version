@@ -75,6 +75,13 @@ class EffectLifecycleExpansion(unittest.TestCase):
                     self.assertEqual(r['location']['line_start'],263)
                     self.assertEqual((entity['location']['line_start'],entity['location']['line_end']),(1,337))
                     self.assertIn('race',self.source('src-000526')[262])
+                elif entity['id']=='ent-004968':
+                    # .030 indexed magicIP at51; .032 expands the same magic
+                    # template to all lists/forms. Preserve the original edge.
+                    self.assertEqual(r['location']['line_start'],51)
+                    self.assertEqual((entity['location']['line_start'],entity['location']['line_end']),(1,80))
+                    self.assertIn('system.magic.magicImprovementPoints',self.source('src-000525')[51])
+                    self.assertIn('spell-type-list.hbs',self.source('src-000525')[9])
                 else:
                     self.assertEqual(entity['location']['line_start'],r['location']['line_start'])
 

@@ -2,8 +2,8 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "8b7368b866e67a126d8daabb298cc4a48dc8952f",
-  "index_dataset": "task-0006.031-expansion",
+  "source_head": "ce02e31707eec4e590c9d559186c70f33a364f80",
+  "index_dataset": "task-0006.032-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -1600,7 +1600,7 @@
           "source": "src-000011",
           "path": "module/actor/mixins/castSpellMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000115",
@@ -1678,7 +1678,7 @@
           "source": "src-000487",
           "path": "templates/chat/combat/spellItem.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000502",
@@ -1690,7 +1690,7 @@
           "source": "src-000508",
           "path": "templates/dialog/combat/spell-attack.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000525",
@@ -1702,7 +1702,7 @@
           "source": "src-000539",
           "path": "templates/partials/monster/monster-spell-tab.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000540",
@@ -1714,7 +1714,7 @@
           "source": "src-000561",
           "path": "templates/sheets/actor/partials/character/spell-type-list.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000596",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.031",
+    "task": "TASK-0006.032",
     "date": "2026-09-16",
-    "source_head": "8b7368b866e67a126d8daabb298cc4a48dc8952f",
-    "dataset": "task-0006.031-expansion",
+    "source_head": "ce02e31707eec4e590c9d559186c70f33a364f80",
+    "dataset": "task-0006.032-expansion",
     "counts": {
       "sources": 615,
-      "entities": 5169,
-      "relations": 14419,
-      "processes": 440
+      "entities": 5244,
+      "relations": 14759,
+      "processes": 453
     },
-    "primary_count": 222,
-    "neighbor_count": 79,
-    "catalog_only_definitions": 314,
-    "boundary_count": 398,
+    "primary_count": 227,
+    "neighbor_count": 77,
+    "catalog_only_definitions": 311,
+    "boundary_count": 410,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4658,5 +4658,19 @@
     "ent-005167",
     "ent-005168",
     "ent-005169"
+  ],
+  "added_boundaries_032": [
+    "ent-005234",
+    "ent-005235",
+    "ent-005236",
+    "ent-005237",
+    "ent-005238",
+    "ent-005239",
+    "ent-005240",
+    "ent-005241",
+    "ent-005242",
+    "ent-005243",
+    "ent-005244",
+    "ent-005245"
   ]
 }
