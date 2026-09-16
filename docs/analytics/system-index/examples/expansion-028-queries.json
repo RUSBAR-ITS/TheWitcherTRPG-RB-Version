@@ -1,0 +1,634 @@
+{
+  "dataset": "task-0006.028-expansion",
+  "basis": "Ожидания установлены из JS/HBS и прочитанного ядра до выполнения CLI; ID — адреса канонических записей.",
+  "cases": [
+    {
+      "id": "E028-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "ProfessionData.professionSkills",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004804"
+        ]
+      },
+      "basis": "121:20–23 Set базовых навыков."
+    },
+    {
+      "id": "E028-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "professionSkill().level",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004813"
+        ]
+      },
+      "basis": "148:13 Number initial0 без bounds."
+    },
+    {
+      "id": "E028-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "Threshold.thresholds.*.value",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004839"
+        ]
+      },
+      "basis": "146:13 NumberField внутри TypedObject."
+    },
+    {
+      "id": "E028-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "findSkillWithName",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004858",
+          "ent-004859",
+          "ent-004882",
+          "ent-004883"
+        ]
+      },
+      "basis": "185:182/199 и20:381/402 имеют разных владельцев; definingSkill только Actor."
+    },
+    {
+      "id": "E028-05",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "professionSkills",
+        "--scope",
+        "src-000121",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004804"
+        ]
+      },
+      "basis": "121:20 — модельный Set, не options контекста175:23."
+    },
+    {
+      "id": "E028-06",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-000517",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004863"
+        ]
+      },
+      "basis": "175:15 фактический путь формы."
+    },
+    {
+      "id": "E028-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004847",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004864"
+        ]
+      },
+      "basis": "185:18/23/28 три PARTS одного HBS; definingSkill отсутствует."
+    },
+    {
+      "id": "E028-08",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004864",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004865"
+        ]
+      },
+      "basis": "587:2–4 include с конкретными schema/value."
+    },
+    {
+      "id": "E028-09",
+      "question": "IQ-04",
+      "command": [
+        "neighbors",
+        "ent-004798",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-003406"
+        ]
+      },
+      "basis": "121:29–44 один helper в11 последовательных await."
+    },
+    {
+      "id": "E028-10",
+      "question": "IQ-04",
+      "command": [
+        "field",
+        "ent-004813",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000020"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004879"
+        ]
+      },
+      "basis": "20:13–25 суммирует Number всех10levels."
+    },
+    {
+      "id": "E028-11",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004872",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004855"
+        ]
+      },
+      "basis": "185:9 registry handler, не сама запись."
+    },
+    {
+      "id": "E028-12",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004885",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-004884"
+        ]
+      },
+      "basis": "46:31 callback Actor; имя берётся20:31."
+    },
+    {
+      "id": "E028-13",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004851",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004853",
+          "ent-004856"
+        ]
+      },
+      "basis": "185:95/98 два async handler без await."
+    },
+    {
+      "id": "E028-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004837",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000185"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004855"
+        ]
+      },
+      "basis": "185:151 randomID→{value:0}."
+    },
+    {
+      "id": "E028-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004839",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000185"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004856"
+        ]
+      },
+      "basis": "185:166 keyed edit value; UI113 data-field=value."
+    },
+    {
+      "id": "E028-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003755",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000185"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004854"
+        ]
+      },
+      "basis": "185:141 прямой handler пишет -=id; достижимость из HBS не установлена."
+    },
+    {
+      "id": "E028-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004811",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003565"
+        ]
+      },
+      "basis": "43:144 пишет source Item поdata-field HBS526/572."
+    },
+    {
+      "id": "E028-18",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004812",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000607"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004868"
+        ]
+      },
+      "basis": "607 formInput с fieldPath каждого слота."
+    },
+    {
+      "id": "E028-19",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004835",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000588"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004869"
+        ]
+      },
+      "basis": "588:86 formGroup выбранного skillPathN.skillN."
+    },
+    {
+      "id": "E028-20",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004812",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000526"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "526 editor raw editable=false; подтверждённый nested Item writer не выдумывается."
+    },
+    {
+      "id": "E028-21",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003738",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000121"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "121:49–77 проверяет defenseProperties, флаг isDefense в этих методах не читается."
+    },
+    {
+      "id": "E028-22",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000397",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "part"
+        ],
+        "next_steps": [
+          "path"
+        ],
+        "next_exits": [
+          "skipped"
+        ]
+      },
+      "basis": "185:67/74/81 ветви3paths,прочиеcontext."
+    },
+    {
+      "id": "E028-23",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000399",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "route"
+        ],
+        "next_steps": [
+          "effect",
+          "threshold"
+        ],
+        "next_exits": [
+          "skipped"
+        ]
+      },
+      "basis": "185:94–99 дваactionguard."
+    },
+    {
+      "id": "E028-24",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000403",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "lookup"
+        ],
+        "next_steps": [
+          "write"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "185:147 lookup,undefined.path на150–151."
+    },
+    {
+      "id": "E028-25",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000401",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "write"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "185:128 update безawait."
+    },
+    {
+      "id": "E028-26",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000407",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "defining"
+        ],
+        "next_steps": [
+          "paths"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "20:384 definingраньшеpath."
+    },
+    {
+      "id": "E028-27",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000408",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "select"
+        ],
+        "next_steps": [
+          "sum"
+        ],
+        "next_exits": [
+          "skipped",
+          "failed"
+        ]
+      },
+      "basis": "20:12 guardпрофессии."
+    },
+    {
+      "id": "E028-28",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004874"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00111.md"
+        ]
+      },
+      "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."
+    },
+    {
+      "id": "E028-29",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004875"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00110.md"
+        ]
+      },
+      "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."
+    },
+    {
+      "id": "E028-30",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004881"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00109.md"
+        ]
+      },
+      "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."
+    },
+    {
+      "id": "E028-31",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004836"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00119.md"
+        ]
+      },
+      "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."
+    },
+    {
+      "id": "E028-32",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004886"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "20:34–41 ветвление просмотрено; полный исполнитель следующаяпорция."
+    },
+    {
+      "id": "E028-33",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-004797",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "Глубина1 не раскрывает вложенные professionPath→professionSkill→EmbeddedDataModel."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/client/applications/api/application.mjs",
+      "lines": "1931–1965",
+      "scope": "Action dispatch: target.dataset.action, missing → _onClickAction; handler.call(this,event,target) без await.",
+      "sha256": "b5aef80d3e042a4a856be9dd875c72a5224988d62046ba770f25376f4291faa0"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/handlebars.mjs",
+      "lines": "509–548",
+      "scope": "formInput→field.toInput; formGroup→field.toFormGroup.",
+      "sha256": "0c5959e0ebdf5847277fba3284d76ee535084e022d087659fd0791e5ccd3545c"
+    },
+    {
+      "path": "/opt/foundryvtt/common/data/fields.mjs",
+      "lines": "179–180,632–636,664–666",
+      "scope": "DataField.fieldPath становится name создаваемого элемента.",
+      "sha256": "efa8e3ccdf553ca826580e60bfbfc97db57bdeadaa954a50f6a55e0ab52c3e01"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/document-sheet.mjs",
+      "lines": "431–434,465–469,486–509,525–531",
+      "scope": "Submit: expand, clean/validate, await update существующего документа; внешний контракт, не игровой опыт.",
+      "sha256": "7925d81900eeea0d5e79606e12ce43539ae00714f50d8452c7305fe81394aa01"
+    }
+  ]
+}

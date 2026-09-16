@@ -68,7 +68,15 @@ class EffectLifecycleExpansion(unittest.TestCase):
                 entity=self.data.entities[r['to']]
                 self.assertEqual(entity['owner'],r['from'])
                 self.assertEqual(entity['location']['source'],r['location']['source'])
-                self.assertEqual(entity['location']['line_start'],r['location']['line_start'])
+                if entity['id']=='ent-004777':
+                    # .027 defined the race block at263; .028 expands the same
+                    # template to profession + race. Keep the original defines
+                    # address and check that the expanded range includes it.
+                    self.assertEqual(r['location']['line_start'],263)
+                    self.assertEqual((entity['location']['line_start'],entity['location']['line_end']),(1,337))
+                    self.assertIn('race',self.source('src-000526')[262])
+                else:
+                    self.assertEqual(entity['location']['line_start'],r['location']['line_start'])
 
     def test_category_suppression_transfer_and_visibility_are_distinct(self):
         sm=self.source('src-000036');ae=self.source('src-000008');it=self.source('src-000183')

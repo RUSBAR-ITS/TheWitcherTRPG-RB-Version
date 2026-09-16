@@ -2,8 +2,8 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "481bee90901013c96b725b5c5d912a687e0c1d85",
-  "index_dataset": "task-0006.027-expansion",
+  "source_head": "17a731d5eaca5827bbcb1375a68a21934d05b760",
+  "index_dataset": "task-0006.028-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -1984,7 +1984,7 @@
           "source": "src-000121",
           "path": "module/data/item/professionData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000122",
@@ -2002,31 +2002,31 @@
           "source": "src-000144",
           "path": "module/data/item/templates/profession/skillUsageData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000145",
           "path": "module/data/item/templates/profession/temporaryHealthData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000146",
           "path": "module/data/item/templates/profession/thresholdData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000147",
           "path": "module/data/item/templates/professionPathData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000148",
           "path": "module/data/item/templates/professionSkillData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000152",
@@ -2044,7 +2044,7 @@
           "source": "src-000175",
           "path": "module/item/sheets/WitcherProfessionSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000176",
@@ -2056,7 +2056,7 @@
           "source": "src-000185",
           "path": "module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000450",
@@ -2104,25 +2104,25 @@
           "source": "src-000572",
           "path": "templates/sheets/actor/partials/monster/tabs/tab-profession.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000586",
           "path": "templates/sheets/item/configuration/partials/profession/profAttackOptionsPart.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000587",
           "path": "templates/sheets/item/configuration/partials/profession/skillPathPart.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000588",
           "path": "templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000603",
@@ -2134,7 +2134,7 @@
           "source": "src-000607",
           "path": "templates/sheets/item/profession-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000608",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.027",
+    "task": "TASK-0006.028",
     "date": "2026-09-16",
-    "source_head": "481bee90901013c96b725b5c5d912a687e0c1d85",
-    "dataset": "task-0006.027-expansion",
+    "source_head": "17a731d5eaca5827bbcb1375a68a21934d05b760",
+    "dataset": "task-0006.028-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4795,
-      "relations": 12708,
-      "processes": 393
+      "entities": 4885,
+      "relations": 13350,
+      "processes": 408
     },
-    "primary_count": 182,
-    "neighbor_count": 91,
-    "catalog_only_definitions": 342,
-    "boundary_count": 361,
+    "primary_count": 195,
+    "neighbor_count": 88,
+    "catalog_only_definitions": 332,
+    "boundary_count": 367,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4613,5 +4613,13 @@
     "ent-004787",
     "ent-004791",
     "ent-004795"
+  ],
+  "added_boundaries_028": [
+    "ent-004868",
+    "ent-004869",
+    "ent-004874",
+    "ent-004875",
+    "ent-004881",
+    "ent-004886"
   ]
 }
