@@ -27,7 +27,14 @@ class WeaponPropertiesExpansion(unittest.TestCase):
             with self.subTest(case=c['id']):
                 run=run_cli([*c['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
-                out=json.loads(run.stdout);rows=out['items'];first=rows[0] if rows else {}
+                out=json.loads(run.stdout);rows=out['items']
+                if c['id']=='WPN-07':
+                    # Preserve the original case on its historical relation slice;
+                    # .031 adds the source-verified Spell model to this delegation.
+                    self.assertEqual({r['from'] for r in rows},
+                                     {self.q[q] for q in ['WeaponData.defineSchema', 'skillAttack()', 'SpellData.defineSchema']})
+                    rows=[r for r in rows if int(r['id'].split('-')[1])<=8995]
+                first=rows[0] if rows else {}
                 actual=dict(ids=[x['id'] for x in rows if 'id' in x],
                     from_ids=sorted({x['from'] for x in rows if 'from' in x}),
                     to_ids=sorted({x['to'] for x in rows if 'to' in x}),

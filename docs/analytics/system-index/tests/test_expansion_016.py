@@ -27,7 +27,14 @@ class DefenseExpansion(unittest.TestCase):
             with self.subTest(case=c['id']):
                 run=run_cli([*c['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
-                out=json.loads(run.stdout);rows=out['items'];first=rows[0] if rows else {}
+                out=json.loads(run.stdout);rows=out['items']
+                if c['id']=='DEF-04':
+                    # Preserve the original case on its historical relation slice;
+                    # .031 adds the source-verified Spell model to this delegation.
+                    self.assertEqual({r['to'] for r in rows},
+                                     {self.q[q] for q in ['WeaponData.createDefenseOption', 'ProfessionData.createDefenseOption', 'SpellData.createDefenseOption']})
+                    rows=[r for r in rows if int(r['id'].split('-')[1])<=9766]
+                first=rows[0] if rows else {}
                 actual=dict(ids=[x['id'] for x in rows if 'id' in x],
                     from_ids=sorted({x['from'] for x in rows if 'from' in x}),
                     to_ids=sorted({x['to'] for x in rows if 'to' in x}),
@@ -52,7 +59,11 @@ class DefenseExpansion(unittest.TestCase):
         for name in ['WeaponData.createDefenseOption','item.defenseOptionMixin.createDefenseOption','actor.defenseMixin.prepareAndExecuteDefense']:
             self.assertLess(int(self.q[name].split('-')[1]),4024)
         target=self.q['actor.defenseMixin.prepareAndExecuteDefense']
-        self.assertEqual({r['to'] for r in self.data.outgoing[target] if r['kind']=='calls' and r['location']['line_start']==19},{self.q['WeaponData.isApplicableDefense'],self.q['ProfessionData.isApplicableDefense']})
+        calls=[r for r in self.data.outgoing[target] if r['kind']=='calls' and r['location']['line_start']==19]
+        historical={self.q['WeaponData.isApplicableDefense'],self.q['ProfessionData.isApplicableDefense']}
+        self.assertEqual({r['to'] for r in calls if int(r['id'].split('-')[1])<=9766},historical)
+        self.assertEqual({r['to'] for r in calls},historical|{self.q['SpellData.isApplicableDefense']})
+        self.assertIn('return this.defenseProperties.isApplicableDefense(attack)',self.source(125)[70])
 
     def test_defense_formula_cost_and_independent_roll_configuration(self):
         s=self.source(16);formula='\n'.join(s[130:185])

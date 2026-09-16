@@ -1,12 +1,12 @@
 {
   "format_version": 1,
-  "dataset_id": "task-0006.030-expansion",
+  "dataset_id": "task-0006.031-expansion",
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
     "date": "2026-09-16",
     "branch": "rusbar-main",
-    "head": "deee6c1dcec1b5419e8ac37bd8e69aececf0b2a5",
+    "head": "8b7368b866e67a126d8daabb298cc4a48dc8952f",
     "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c"
   },
   "scope": {
@@ -71,6 +71,7 @@
       "src-000070",
       "src-000072",
       "src-000074",
+      "src-000076",
       "src-000077",
       "src-000080",
       "src-000081",
@@ -98,10 +99,13 @@
       "src-000111",
       "src-000112",
       "src-000114",
+      "src-000115",
       "src-000116",
       "src-000119",
       "src-000121",
       "src-000122",
+      "src-000123",
+      "src-000125",
       "src-000126",
       "src-000127",
       "src-000129",
@@ -110,6 +114,7 @@
       "src-000132",
       "src-000133",
       "src-000134",
+      "src-000135",
       "src-000136",
       "src-000137",
       "src-000143",
@@ -118,6 +123,7 @@
       "src-000146",
       "src-000147",
       "src-000148",
+      "src-000151",
       "src-000152",
       "src-000155",
       "src-000157",
@@ -127,18 +133,22 @@
       "src-000166",
       "src-000167",
       "src-000169",
+      "src-000170",
       "src-000171",
       "src-000172",
       "src-000174",
       "src-000175",
       "src-000176",
+      "src-000177",
       "src-000178",
+      "src-000179",
       "src-000181",
       "src-000182",
       "src-000183",
       "src-000184",
       "src-000185",
       "src-000186",
+      "src-000187",
       "src-000192",
       "src-000193",
       "src-000194",
@@ -172,6 +182,7 @@
       "src-000493",
       "src-000494",
       "src-000496",
+      "src-000502",
       "src-000506",
       "src-000507",
       "src-000509",
@@ -186,6 +197,7 @@
       "src-000527",
       "src-000530",
       "src-000531",
+      "src-000540",
       "src-000541",
       "src-000542",
       "src-000543",
@@ -211,17 +223,21 @@
       "src-000591",
       "src-000592",
       "src-000593",
+      "src-000597",
       "src-000598",
       "src-000599",
       "src-000601",
+      "src-000602",
       "src-000603",
       "src-000605",
       "src-000607",
       "src-000608",
+      "src-000609",
       "src-000610",
+      "src-000611",
       "src-000613"
     ],
-    "semantic_scope": ".030: развитие builtin навыков, два пула IP, ручное списание/training, Log, IP rewards API/просмотр. Item/profession уровни раздельны; валюта и полное обучение вне области. Прежние ID .001–.029 сохранены; global partial.",
+    "semantic_scope": ".031: Spell/Hex/Ritual schema, migrations, forms/configuration, two component lists, focus/template settings and direct cast/region readers. Full cast .032 and Region .033; all prior IDs preserved, global partial.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -254,7 +270,8 @@
       "data/entities/expansion-027.jsonl",
       "data/entities/expansion-028.jsonl",
       "data/entities/expansion-029.jsonl",
-      "data/entities/expansion-030.jsonl"
+      "data/entities/expansion-030.jsonl",
+      "data/entities/expansion-031.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -282,7 +299,8 @@
       "data/relations/expansion-027.jsonl",
       "data/relations/expansion-028.jsonl",
       "data/relations/expansion-029.jsonl",
-      "data/relations/expansion-030.jsonl"
+      "data/relations/expansion-030.jsonl",
+      "data/relations/expansion-031.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -310,10 +328,11 @@
       "data/processes/expansion-027.jsonl",
       "data/processes/expansion-028.jsonl",
       "data/processes/expansion-029.jsonl",
-      "data/processes/expansion-030.jsonl"
+      "data/processes/expansion-030.jsonl",
+      "data/processes/expansion-031.jsonl"
     ]
   },
-  "query_examples": "examples/expansion-030-queries.json",
+  "query_examples": "examples/expansion-031-queries.json",
   "dependencies": {
     "foundry": {
       "version": "14.367.0",
@@ -558,13 +577,26 @@
     "docs/issues/potential/issue-00233.md": "000292152e62fb6f97e5482e3a5d2241ecbe4302334c72970c9e84edb76dc129",
     "docs/issues/potential/issue-00029.md": "cbca517ee069e628d59421b470c2de215e93b4265b903f892a059861bbd26082",
     "docs/issues/potential/issue-00200.md": "6b49e6ce9ec83f210d3809fbc8fc9d8067e866628aa94b8223196eca7e90766f",
-    "docs/analytics/system-index/coverage-030.md": "129244e25193c503150cf4d347403e161e7b4401f1ec4c5c28a2380f76e01e41"
+    "docs/analytics/system-index/coverage-030.md": "129244e25193c503150cf4d347403e161e7b4401f1ec4c5c28a2380f76e01e41",
+    "docs/issues/potential/issue-00130.md": "aed23aadc8acc26a40527f5c94cd89ea70e05017bde1bbb5453e824bd104e551",
+    "docs/issues/potential/issue-00131.md": "67db2ba59c24ec7f9208f55fe01111eb832c6b92e65887a5a8174a0d2149b67b",
+    "docs/issues/potential/issue-00128.md": "9ffd6a28c9e06b8376d26f30a043f121b95eaa0cb1b0b485e9d245c1259a6a1d",
+    "docs/issues/potential/issue-00129.md": "61368e93b4320dc393782c9daff2b9186bf3661ced88cda7d6b1766efa287a79",
+    "docs/issues/potential/issue-00063.md": "6f4cee5e9caa14ac3f2d7f4b3b61081f80566401091a0ef56d3d98f6c110a1b6",
+    "docs/issues/potential/issue-00132.md": "cab67f19276acf1795cd7eb5754c883b564ddd82753887a166b88f426d5b5565",
+    "docs/issues/potential/issue-00075.md": "1f2e3b7c2d0702a4a2edf2ebaee87fb8182074524e76d93ff02b02dd344e575e",
+    "docs/issues/potential/issue-00133.md": "e86e6f8815f3c63a6ea6ae21f28fc7630dc3e35a18279c148c1866540aa0ed56",
+    "docs/issues/potential/issue-00134.md": "d00d62be2628c9797bb2b2ed3fcb9d3ed9530e7d280e900f799ea7ea7b69d4a3",
+    "docs/issues/potential/issue-00136.md": "d24ad9de848b449cede5b3a91239744d35f1418b6f9347dab736ce12f8bfa6bf",
+    "docs/issues/potential/issue-00137.md": "3fdaaf8415153ee2c9a2973a644ae3c81fead055f58db2d59e169b863e62d60d",
+    "docs/issues/potential/issue-00135.md": "102c3d610201241db8d6b39e927eae44a09d9503fc230e1118fd56fb40a98139",
+    "docs/analytics/system-index/coverage-031.md": "7ced2df39e381b5a29420e8694e30f9dc5b1ea8cb27ed17673465b1648781005"
   },
   "next_ids": {
     "source": 616,
-    "entity": 5001,
-    "relation": 13818,
-    "process": 426
+    "entity": 5171,
+    "relation": 14420,
+    "process": 441
   },
   "retired_ids": []
 }

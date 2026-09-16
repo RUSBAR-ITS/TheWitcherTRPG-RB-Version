@@ -2,8 +2,8 @@
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
   "date": "2026-09-16",
-  "source_head": "deee6c1dcec1b5419e8ac37bd8e69aececf0b2a5",
-  "index_dataset": "task-0006.030-expansion",
+  "source_head": "8b7368b866e67a126d8daabb298cc4a48dc8952f",
+  "index_dataset": "task-0006.031-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -622,7 +622,7 @@
           "source": "src-000076",
           "path": "module/data/actor/templates/common/focusData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000078",
@@ -1012,7 +1012,7 @@
           "source": "src-000498",
           "path": "templates/chat/item/item-description.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000501",
@@ -1606,31 +1606,31 @@
           "source": "src-000115",
           "path": "module/data/item/hexData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000117",
           "path": "module/data/item/mixin/spellRegionMixin.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000123",
           "path": "module/data/item/ritualData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000125",
           "path": "module/data/item/spellData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000149",
           "path": "module/data/item/templates/regions/regionBehavioursData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000150",
@@ -1642,31 +1642,31 @@
           "source": "src-000151",
           "path": "module/data/item/templates/regions/templatePropertiesData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000170",
           "path": "module/item/sheets/WitcherHexSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000177",
           "path": "module/item/sheets/WitcherRitualSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000179",
           "path": "module/item/sheets/WitcherSpellSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000187",
           "path": "module/item/sheets/configurations/WitcherSpellConfigurationSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000200",
@@ -1684,7 +1684,7 @@
           "source": "src-000502",
           "path": "templates/chat/item/partials/item-description/spell-description.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000508",
@@ -1708,7 +1708,7 @@
           "source": "src-000540",
           "path": "templates/partials/spell-header.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000561",
@@ -1726,25 +1726,25 @@
           "source": "src-000597",
           "path": "templates/sheets/item/configuration/tabs/spellGeneral.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000602",
           "path": "templates/sheets/item/hex-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000609",
           "path": "templates/sheets/item/ritual-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000611",
           "path": "templates/sheets/item/spell-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         }
       ]
     },
@@ -1792,7 +1792,7 @@
           "source": "src-000135",
           "path": "module/data/item/templates/componentData.js",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000138",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.030",
+    "task": "TASK-0006.031",
     "date": "2026-09-16",
-    "source_head": "deee6c1dcec1b5419e8ac37bd8e69aececf0b2a5",
-    "dataset": "task-0006.030-expansion",
+    "source_head": "8b7368b866e67a126d8daabb298cc4a48dc8952f",
+    "dataset": "task-0006.031-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4999,
-      "relations": 13817,
-      "processes": 425
+      "entities": 5169,
+      "relations": 14419,
+      "processes": 440
     },
-    "primary_count": 206,
-    "neighbor_count": 85,
-    "catalog_only_definitions": 324,
-    "boundary_count": 383,
+    "primary_count": 222,
+    "neighbor_count": 79,
+    "catalog_only_definitions": 314,
+    "boundary_count": 398,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4641,5 +4641,22 @@
     "ent-004998",
     "ent-004999",
     "ent-005000"
+  ],
+  "added_boundaries_031": [
+    "ent-005067",
+    "ent-005096",
+    "ent-005097",
+    "ent-005098",
+    "ent-005099",
+    "ent-005100",
+    "ent-005160",
+    "ent-005162",
+    "ent-005163",
+    "ent-005164",
+    "ent-005165",
+    "ent-005166",
+    "ent-005167",
+    "ent-005168",
+    "ent-005169"
   ]
 }
