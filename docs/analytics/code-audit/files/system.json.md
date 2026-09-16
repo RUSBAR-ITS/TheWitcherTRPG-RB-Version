@@ -5,13 +5,15 @@
 | Исходный файл | [system.json](../../../../system.json) |
 | Тип файла | JSON |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-16: актуализация технических обращений по issue-00001 |
-| Ветка и коммит | `dev`, база `d8e0e1ad1159cb71a8769b0353f812de6f1ed4d8` + незакоммиченное исправление issue-00001 |
-| Изменения относительно коммита | issue-00001; текущие технические обращения актуализированы. Прежние опыты ниже относятся к своим датам. |
+| Дата проверки | 2026-09-16: уточнение авторов и ссылки репозитория |
+| Ветка и коммит | `dev`, база `3e2b804ae993e23cfdb4a553260471f7299139e9` + рабочая правка метаданных |
+| Изменения относительно коммита | Добавлены автор и URL; технические объявления сохранены. |
 | Задача и порция | [TASK-0002](../../../tasks/task-0002-system-initialization.md); порция 1 |
 | Запись перекрёстной сверки | [Журнал сверок](../review-log.md) — TASK-0002, порция 1 |
 
 Актуализация [issue-00001](../../../issues/open/issue-00001.md), 2026-09-16: ID пакета теперь совпадает с каталогом: TheWitcherTRPG-RB-Version. Относительный entry module/TheWitcherTRPG.js и остальные объявления сохранены. Исторический отказ ID/каталога ниже относится к прежнему срезу; результаты текущих проверок приведены в issue.
+
+Актуализация метаданных, 2026-09-16: добавлен автор Ilya "RUSBAR" Barkalov и URL репозитория форка. Адреса текущих деклараций скорректированы после добавления трёх строк; исторические протоколы ниже сохранены.
 
 ## Назначение файла
 
@@ -25,16 +27,16 @@
 
 | Поля и строки | Содержание и действие |
 | --- | --- |
-| `id`, `title`, `description`, `authors` — 2–19 | Идентификатор `TheWitcherTRPG-RB-Version`, название, описание и два автора. ID используется также строками пространства имён в коде. |
+| `id`, `title`, `description`, `authors` — 2–22 | Идентификатор `TheWitcherTRPG-RB-Version`, название, описание и три автора: Stexinator, einToastbrot, Ilya "RUSBAR" Barkalov. ID используется также строками пространства имён в коде. |
 | `compatibility`, `version` — 5–10 | Минимум, проверенное и максимальное поколение — 14; версия содержит заготовку выпуска. Это декларация совместимости, а не результат проверки. |
-| `scripts`, `esmodules`, `styles` — 21–23 | Нет обычных scripts; один ES-модуль и один главный CSS. |
-| `packFolders`, `packs` — 24–88 | Иерархия папок и семь объявлений: Combat, criticalWounds, Character-gen, Character-gen_Sub-tables, Witcher_Lifepath_and_BG_Sub-tables, Life_Event_Sub-tables, Style_and_Values_Sub-tables. Типы — RollTable, кроме criticalWounds (Item). Папка связывает packs по их `name`, а не по имени каталога. |
-| `languages` — 89–130 | Восемь языков: en, es, pt-BR, fr, de, it, ru, pl; код pt-BR связан с файлом ptbr.json. |
-| `relationships` — 131–140 | Обязательных модулей нет; statuscounter рекомендован. Polyglot здесь не объявлен, хотя точка входа слушает его событие. |
-| `socket`, `initiative`, `grid` — 141–146 | Разрешён системный сокет; инициатива 1d10; размер клетки 2 m. |
-| `primaryTokenAttribute`, `secondaryTokenAttribute` — 147–148 | Пути resources.health и resources.power для интерфейса токена. |
-| `url`, `manifest`, `download` — 149–151 | Заготовки URL выпуска; строка manifest заканчивается ACTIONn. Потребитель подстановки установлен в TASK-0003.050 по release.yml как справочному источнику; фактический выпуск не запускался. |
-| `documentTypes` — 152–194 | Actor: character, monster, loot. Item: 18 типов от alchemical до weapon. ChatMessage: attack, defense, damage. ActiveEffect: temporaryItemImprovement. `htmlFields` заданы у monster, criticalWound, profession и race; это декларации полей, не содержимое их моделей. |
+| `scripts`, `esmodules`, `styles` — 24–26 | Нет обычных scripts; один ES-модуль и один главный CSS. |
+| `packFolders`, `packs` — 27–91 | Иерархия папок и семь объявлений: Combat, criticalWounds, Character-gen, Character-gen_Sub-tables, Witcher_Lifepath_and_BG_Sub-tables, Life_Event_Sub-tables, Style_and_Values_Sub-tables. Типы — RollTable, кроме criticalWounds (Item). Папка связывает packs по их `name`, а не по имени каталога. |
+| `languages` — 92–133 | Восемь языков: en, es, pt-BR, fr, de, it, ru, pl; код pt-BR связан с файлом ptbr.json. |
+| `relationships` — 134–143 | Обязательных модулей нет; statuscounter рекомендован. Polyglot здесь не объявлен, хотя точка входа слушает его событие. |
+| `socket`, `initiative`, `grid` — 144–149 | Разрешён системный сокет; инициатива 1d10; размер клетки 2 m. |
+| `primaryTokenAttribute`, `secondaryTokenAttribute` — 150–151 | Пути resources.health и resources.power для интерфейса токена. |
+| `url`, `manifest`, `download` — 152–154 | url указывает на https://github.com/RUSBAR-ITS/TheWitcherTRPG-RB-Version; manifest/download остаются заготовками выпуска, строка manifest заканчивается ACTIONn. Потребитель подстановки установлен в TASK-0003.050 по release.yml как справочному источнику; фактический выпуск не запускался. |
+| `documentTypes` — 155–197 | Actor: character, monster, loot. Item: 18 типов от alchemical до weapon. ChatMessage: attack, defense, damage. ActiveEffect: temporaryItemImprovement. `htmlFields` заданы у monster, criticalWound, profession и race; это декларации полей, не содержимое их моделей. |
 
 | Документ | Объявленные типы | htmlFields |
 | --- | --- | --- |
@@ -51,17 +53,17 @@
 
 | Используемая сущность | Файл-источник или внешний API | Вид связи | Где и зачем используется | Основание |
 | --- | --- | --- | --- | --- |
-| Точка входа | [module/TheWitcherTRPG.js](../../../../module/TheWitcherTRPG.js) | ES-модуль | Поле esmodules, строка 22 | Путь существует; модуль полностью разобран в этой порции |
-| Главные стили | [styles/witcher-styles.css](../../../../styles/witcher-styles.css) | Ресурс CSS | Поле styles, строка 23 | Путь существует; все 36 CSS полностью разобраны к TASK-0003.050, см. уточнение ниже |
-| en | [lang/en.json](../../../../lang/en.json) | Локализация | languages, строки 89–130 | Путь существует; полный разбор выполнен в TASK-0003.051; уточнение ниже |
-| es | [lang/es.json](../../../../lang/es.json) | Локализация | languages, строки 89–130 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
-| ptbr | [lang/ptbr.json](../../../../lang/ptbr.json) | Локализация | languages, строки 89–130 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
-| fr | [lang/fr.json](../../../../lang/fr.json) | Локализация | languages, строки 89–130 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
-| de | [lang/de.json](../../../../lang/de.json) | Локализация | languages, строки 89–130 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
-| it | [lang/it.json](../../../../lang/it.json) | Локализация | languages, строки 89–130 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
-| ru | [lang/ru.json](../../../../lang/ru.json) | Локализация | languages, строки 89–130 | Путь существует; полный разбор выполнен в TASK-0003.051; уточнение ниже |
-| pl | [lang/pl.json](../../../../lang/pl.json) | Локализация | languages, строки 89–130 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
-| Данные семи компедиумов | `packs/combat.db`, `packs/criticalWounds.db`, `packs/character-generator.db`, `packs/character-generator-sub-tables.db`, `packs/witcher-lifepath.db`, `packs/lifepath.db`, `packs/style.db` | Объявленные пути | packs, строки 44–88 | Буквальные пути с .db не существуют; в TASK-0003.050 проверено удаление суффикса ядром, нормализованные пути совпадают с выходами CLI |
+| Точка входа | [module/TheWitcherTRPG.js](../../../../module/TheWitcherTRPG.js) | ES-модуль | Поле esmodules, строка 25 | Путь существует; модуль полностью разобран в этой порции |
+| Главные стили | [styles/witcher-styles.css](../../../../styles/witcher-styles.css) | Ресурс CSS | Поле styles, строка 26 | Путь существует; все 36 CSS полностью разобраны к TASK-0003.050, см. уточнение ниже |
+| en | [lang/en.json](../../../../lang/en.json) | Локализация | languages, строки 92–133 | Путь существует; полный разбор выполнен в TASK-0003.051; уточнение ниже |
+| es | [lang/es.json](../../../../lang/es.json) | Локализация | languages, строки 92–133 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
+| ptbr | [lang/ptbr.json](../../../../lang/ptbr.json) | Локализация | languages, строки 92–133 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
+| fr | [lang/fr.json](../../../../lang/fr.json) | Локализация | languages, строки 92–133 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
+| de | [lang/de.json](../../../../lang/de.json) | Локализация | languages, строки 92–133 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
+| it | [lang/it.json](../../../../lang/it.json) | Локализация | languages, строки 92–133 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
+| ru | [lang/ru.json](../../../../lang/ru.json) | Локализация | languages, строки 92–133 | Путь существует; полный разбор выполнен в TASK-0003.051; уточнение ниже |
+| pl | [lang/pl.json](../../../../lang/pl.json) | Локализация | languages, строки 92–133 | Путь существует; вне текущих границ пофайлового анализа по решению пользователя 2026-09-12 |
+| Данные семи компедиумов | `packs/combat.db`, `packs/criticalWounds.db`, `packs/character-generator.db`, `packs/character-generator-sub-tables.db`, `packs/witcher-lifepath.db`, `packs/lifepath.db`, `packs/style.db` | Объявленные пути | packs, строки 47–91 | Буквальные пути с .db не существуют; в TASK-0003.050 проверено удаление суффикса ядром, нормализованные пути совпадают с выходами CLI |
 | Загрузка и типизация пакета | Foundry 14.367.0; `/opt/foundryvtt/common/packages/base-system.mjs` | Внешний API | Схема BaseSystem содержит documentTypes | Версия прочитана из package.json установленного ядра; запуск мира не проверен |
 
 ## Известные потребители

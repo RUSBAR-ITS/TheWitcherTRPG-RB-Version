@@ -16,6 +16,9 @@
         {
             "name": "einToastbrot",
             "discord": "ein_toastbrot"
+        },
+        {
+            "name": "Ilya \"RUSBAR\" Barkalov"
         }
     ],
     "scripts": [],
@@ -146,7 +149,7 @@
     },
     "primaryTokenAttribute": "resources.health",
     "secondaryTokenAttribute": "resources.power",
-    "url": "AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION",
+    "url": "https://github.com/RUSBAR-ITS/TheWitcherTRPG-RB-Version",
     "manifest": "AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTIONn",
     "download": "AUTOMATICALLY REPLACED BY GITHUB WORKFLOW ACTION",
     "documentTypes": {

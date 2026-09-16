@@ -40,7 +40,7 @@
         "ids": [],
         "empty_reason": "none_in_scope"
       },
-      "basis": "system.json:153–159: ключ mystery отсутствует; пустая выдача проверена по полному списку объявлений, не по общему partial alone."
+      "basis": "system.json:156–162: ключ mystery отсутствует; пустая выдача проверена по полному списку объявлений, не по общему partial alone."
     },
     {
       "id": "X006-03",
@@ -79,7 +79,7 @@
         "ids": [],
         "empty_reason": "none_in_scope"
       },
-      "basis": "system.json:160–185 не содержит skill; AE/Chat base нельзя считать такой же ошибкой."
+      "basis": "system.json:163–188 не содержит skill; AE/Chat base нельзя считать такой же ошибкой."
     },
     {
       "id": "X006-05",
