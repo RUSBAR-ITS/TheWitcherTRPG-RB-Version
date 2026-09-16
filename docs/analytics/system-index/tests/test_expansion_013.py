@@ -5,12 +5,16 @@ import json
 import re
 from pathlib import Path
 import unittest
-from test_query import BASE, ROOT, query, run_cli
+import tempfile
+from test_query import BASE, ROOT, query, run_cli, save_pre_resource_forms_view
 
 class InventoryExpansion(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data=query.Dataset()
+        cls.history_dir=tempfile.TemporaryDirectory()
+        cls.addClassCleanup(cls.history_dir.cleanup)
+        cls.history_manifest=save_pre_resource_forms_view(Path(cls.history_dir.name))
         cls.q={e['qualified_name']:e['id'] for e in cls.data.entities.values()}
         cls.new={k:[json.loads(l) for l in (BASE/f'data/{k}/expansion-013.jsonl').read_text().splitlines()]
                  for k in ['entities','relations','processes']}
@@ -25,7 +29,10 @@ class InventoryExpansion(unittest.TestCase):
         self.assertEqual({c['question'] for c in cases},{f'IQ-{n:02}' for n in range(1,9)})
         for c in cases:
             with self.subTest(case=c['id']):
-                run=run_cli([*c['command'],'--format','json'],cwd='/tmp')
+                # .026 adds the schema method caller and enhancement stack writer.
+                # Preserve exact historical examples, then check the new source-backed answer.
+                prefix=['--dataset',str(self.history_manifest)] if c['id'] in {'INV-04','INV-06'} else []
+                run=run_cli([*prefix,*c['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
                 out=json.loads(run.stdout);rows=out['items'];first=rows[0] if rows else {}
                 actual=dict(ids=[x['id'] for x in rows if 'id' in x],
@@ -40,6 +47,15 @@ class InventoryExpansion(unittest.TestCase):
                     else:self.assertEqual(actual[key],value,key)
                 self.assertEqual(out['freshness']['state'],'current')
                 self.assertEqual(out['coverage']['state'],'partial')
+                if prefix:
+                    current_run=run_cli([*c['command'],'--format','json'],cwd='/tmp')
+                    self.assertEqual(current_run.returncode,0,current_run.stderr)
+                    current=json.loads(current_run.stdout)
+                    added='MutagenData.defineSchema' if c['id']=='INV-04' else 'sheet.itemMixin._chooseEnhancement/ok.callback'
+                    expected=set(c['expected']['from_ids'])|{self.q[added]}
+                    self.assertTrue(expected <= {r['from'] for r in current['items']})
+                    self.assertEqual(current['freshness']['state'],'current')
+                    self.assertEqual(current['coverage']['state'],'partial')
 
 
     def test_definitions_and_schema_ownership(self):

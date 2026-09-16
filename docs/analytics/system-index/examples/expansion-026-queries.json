@@ -1,0 +1,490 @@
+{
+  "dataset": "task-0006.026-expansion",
+  "basis": "Ожидания установлены из JS/HBS и локального ядра до первого выполнения CLI. Существующие ID используются только как адреса.",
+  "cases": [
+    {
+      "id": "E026-01",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "EnhancementData.applied",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004675"
+        ]
+      },
+      "basis": "114:14,119:14,53:3 — три независимых владельца/носителя."
+    },
+    {
+      "id": "E026-02",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "MutagenData.effect",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-004679"
+        ]
+      },
+      "basis": "114:14,119:14,53:3 — три независимых владельца/носителя."
+    },
+    {
+      "id": "E026-03",
+      "question": "IQ-01",
+      "command": [
+        "find",
+        "WitcherTemporaryItemImprovementData",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-000177"
+        ]
+      },
+      "basis": "114:14,119:14,53:3 — три независимых владельца/носителя."
+    },
+    {
+      "id": "E026-04",
+      "question": "IQ-02",
+      "command": [
+        "find",
+        "enhancementItemIds",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "includes_ids": [
+          "ent-003723",
+          "ent-004229"
+        ]
+      },
+      "basis": "155:37 и108:46 — одинаковое имя поля у разных моделей; не один глобальный адрес."
+    },
+    {
+      "id": "E026-05",
+      "question": "IQ-02",
+      "command": [
+        "show",
+        "ent-004678"
+      ],
+      "expected": {
+        "ids": [
+          "ent-004678"
+        ]
+      },
+      "basis": "119:13 — описательная строка, не DataModel._source или UUID."
+    },
+    {
+      "id": "E026-06",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-003617",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-003569"
+        ]
+      },
+      "basis": "43:324: bind _chooseEnhancement."
+    },
+    {
+      "id": "E026-07",
+      "question": "IQ-03",
+      "command": [
+        "neighbors",
+        "ent-004691",
+        "--direction",
+        "out",
+        "--relation",
+        "renders"
+      ],
+      "expected": {
+        "includes_to_ids": [
+          "ent-004695"
+        ]
+      },
+      "basis": "605:2; header42–49 рисует тип мутагена."
+    },
+    {
+      "id": "E026-08",
+      "question": "IQ-04",
+      "command": [
+        "field",
+        "ent-004675",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003637",
+          "ent-004696"
+        ]
+      },
+      "basis": "43:227 и34:79 — установка и снятие; schema definition не writer."
+    },
+    {
+      "id": "E026-09",
+      "question": "IQ-04",
+      "command": [
+        "field",
+        "ent-004677",
+        "--access",
+        "writes"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004693"
+        ]
+      },
+      "basis": "Общий header47 сохраняет system.type через inherited form, не через consume."
+    },
+    {
+      "id": "E026-10",
+      "question": "IQ-05",
+      "command": [
+        "neighbors",
+        "ent-004696",
+        "--direction",
+        "out",
+        "--relation",
+        "calls"
+      ],
+      "expected": {
+        "to_ids": [
+          "ent-001003",
+          "ent-003556"
+        ]
+      },
+      "basis": "43:219/225/232 — два callsite update и один forcecreate вызов; Promise независимы."
+    },
+    {
+      "id": "E026-11",
+      "question": "IQ-05",
+      "command": [
+        "field",
+        "ent-004250",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000025"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003597"
+        ]
+      },
+      "basis": "25:170–174 — prepared entry.id → Actor.items → addEffects."
+    },
+    {
+      "id": "E026-12",
+      "question": "IQ-05",
+      "command": [
+        "field",
+        "ent-004232",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000553"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003675"
+        ]
+      },
+      "basis": "553:119 → реальные пустые слоты."
+    },
+    {
+      "id": "E026-13",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003723",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004696"
+        ]
+      },
+      "basis": "43:218 push prepared,219 запрос parent.update; родитель WeaponData."
+    },
+    {
+      "id": "E026-14",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004229",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000043"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-004696"
+        ]
+      },
+      "basis": "43:218 push prepared,219 запрос parent.update; родитель ArmorData."
+    },
+    {
+      "id": "E026-15",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-003782",
+        "--access",
+        "writes",
+        "--scope",
+        "src-000027"
+      ],
+      "expected": {
+        "includes_from_ids": [
+          "ent-003446"
+        ]
+      },
+      "basis": "27:199 — мутация live prepared, не source IDs."
+    },
+    {
+      "id": "E026-16",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004679",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000157"
+      ],
+      "expected": {
+        "ids": []
+      },
+      "basis": "Полное тело consume читает consumeProperties и item.effects, не описательную строку; только этот scope."
+    },
+    {
+      "id": "E026-17",
+      "question": "IQ-06",
+      "command": [
+        "field",
+        "ent-004681",
+        "--access",
+        "reads",
+        "--scope",
+        "src-000552"
+      ],
+      "expected": {
+        "from_ids": [
+          "ent-003673"
+        ]
+      },
+      "basis": "552:80–82 — отображение строки."
+    },
+    {
+      "id": "E026-18",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000379",
+        "--offset",
+        "0",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "selection"
+        ],
+        "next_steps": [
+          "push"
+        ],
+        "next_exits": [
+          "failed"
+        ]
+      },
+      "basis": "Ожидаемые ветви непосредственно из соответствующих JS тел; CLI process возвращает шаги."
+    },
+    {
+      "id": "E026-19",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000379",
+        "--offset",
+        "5",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "stack"
+        ],
+        "next_steps": [
+          "copy"
+        ],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "Ожидаемые ветви непосредственно из соответствующих JS тел; CLI process возвращает шаги."
+    },
+    {
+      "id": "E026-20",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000381",
+        "--offset",
+        "1",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "guard"
+        ],
+        "next_steps": [
+          "map",
+          "super"
+        ],
+        "next_exits": []
+      },
+      "basis": "Ожидаемые ветви непосредственно из соответствующих JS тел; CLI process возвращает шаги."
+    },
+    {
+      "id": "E026-21",
+      "question": "IQ-07",
+      "command": [
+        "process",
+        "proc-000378",
+        "--offset",
+        "2",
+        "--limit",
+        "1"
+      ],
+      "expected": {
+        "ids": [
+          "prompt"
+        ],
+        "next_steps": [],
+        "next_exits": [
+          "done",
+          "failed"
+        ]
+      },
+      "basis": "Ожидаемые ветви непосредственно из соответствующих JS тел; CLI process возвращает шаги."
+    },
+    {
+      "id": "E026-22",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003569"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00170.md"
+        ]
+      },
+      "basis": "Ссылка на прежний датированный опыт; без нового runtime/браузерного подтверждения."
+    },
+    {
+      "id": "E026-23",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-004696"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00171.md"
+        ]
+      },
+      "basis": "Ссылка на прежний датированный опыт; без нового runtime/браузерного подтверждения."
+    },
+    {
+      "id": "E026-24",
+      "question": "IQ-08",
+      "command": [
+        "details",
+        "ent-003637"
+      ],
+      "expected": {
+        "includes_refs": [
+          "docs/issues/potential/issue-00168.md"
+        ]
+      },
+      "basis": "Ссылка на прежний датированный опыт; без нового runtime/браузерного подтверждения."
+    },
+    {
+      "id": "E026-25",
+      "question": "IQ-08",
+      "command": [
+        "show",
+        "ent-004694"
+      ],
+      "expected": {
+        "resolution": "dynamic"
+      },
+      "basis": "Отрицательная граница прочитанного consume/AE пути; не все внешние макросы."
+    },
+    {
+      "id": "E026-26",
+      "question": "IQ-08",
+      "command": [
+        "neighbors",
+        "ent-003569",
+        "--direction",
+        "out",
+        "--depth",
+        "1",
+        "--limit",
+        "100"
+      ],
+      "expected": {
+        "depth_limited": true
+      },
+      "basis": "Глубина1 не раскрывает дальнейшие callback writes/addItem; partial явно сохраняется."
+    }
+  ],
+  "core_evidence": [
+    {
+      "path": "/opt/foundryvtt/client/applications/api/dialog.mjs",
+      "lines": "369–375,405–425",
+      "scope": "prompt всегда добавляет OK, wait по умолчанию rejectClose=false; закрытие не вызывает ok callback.",
+      "sha256": "4e2d299eaa931d96df1839e64a2defc60b6b95ee89a3e1d32d60b99040899343"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/ux/context-menu.mjs",
+      "lines": "611–625",
+      "scope": "onClick(event,target), legacy callback(target,event).",
+      "sha256": "78ca291bf89b79486e45c7adaf8b04ed829d5858912ba0fe6f16946b727e6470"
+    },
+    {
+      "path": "/opt/foundryvtt/common/abstract/data.mjs",
+      "lines": "812–830",
+      "scope": "toObject(source=true) копирует _source; false использует schema transformed values.",
+      "sha256": "11bb7f848c707803607accfa9f6b946c7cbfe8b17781ff562b468bdc77b934e5"
+    },
+    {
+      "path": "/opt/foundryvtt/client/applications/api/document-sheet.mjs",
+      "lines": "431–434,465–469,486–509,525–531",
+      "scope": "Общий form change/submit, expandObject, validate с clean/addTypes, await update.",
+      "sha256": "7925d81900eeea0d5e79606e12ce43539ae00714f50d8452c7305fe81394aa01"
+    }
+  ]
+}

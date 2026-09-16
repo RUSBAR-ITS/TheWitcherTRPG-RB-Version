@@ -1,9 +1,9 @@
 {
   "purpose": "Учёт исходного предложения .005 и текущего покрытия; приложение к очереди, не часть формата графа",
   "status": "expansion_in_progress",
-  "date": "2026-09-15",
-  "source_head": "7c2450b94fa8381c8337980990bd42acf6d83af3",
-  "index_dataset": "task-0006.025-expansion",
+  "date": "2026-09-16",
+  "source_head": "4d4ad775e8b85bd8354b4ee3cd7083a5706b9096",
+  "index_dataset": "task-0006.026-expansion",
   "source_hash": "384f3c2f6d5f5c50b049bb913ee749f0acab5b1406a87a5d2b2eac1f25a04d5c",
   "registry": "docs/analytics/code-audit/registry.md",
   "allocation": "Каждый файл имеет одну основную область для учёта. Перекрёстное использование и повторное обращение в других порциях допускаются; охват файла остаётся частичным до проверки его областей.",
@@ -754,7 +754,7 @@
           "source": "src-000557",
           "path": "templates/sheets/actor/partials/character/inventory/tab-inventory-runes-glyphs.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000558",
@@ -856,7 +856,7 @@
           "source": "src-000114",
           "path": "module/data/item/enhancementData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000118",
@@ -868,7 +868,7 @@
           "source": "src-000119",
           "path": "module/data/item/mutagenData.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000120",
@@ -916,7 +916,7 @@
           "source": "src-000169",
           "path": "module/item/sheets/WitcherEnhancementSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000172",
@@ -934,7 +934,7 @@
           "source": "src-000174",
           "path": "module/item/sheets/WitcherMutagenSheet.js",
           "pilot_role": "catalog_only",
-          "current_role": "neighbor"
+          "current_role": "primary"
         },
         {
           "source": "src-000180",
@@ -1036,13 +1036,13 @@
           "source": "src-000523",
           "path": "templates/partials/character/substances.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000532",
           "path": "templates/partials/item-header.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "neighbor"
         },
         {
           "source": "src-000533",
@@ -1078,7 +1078,7 @@
           "source": "src-000601",
           "path": "templates/sheets/item/enhancement-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000604",
@@ -1090,7 +1090,7 @@
           "source": "src-000605",
           "path": "templates/sheets/item/mutagen-sheet.hbs",
           "pilot_role": "catalog_only",
-          "current_role": "catalog_only"
+          "current_role": "primary"
         },
         {
           "source": "src-000606",
@@ -4256,20 +4256,20 @@
     }
   ],
   "current_index": {
-    "task": "TASK-0006.025",
-    "date": "2026-09-15",
-    "source_head": "7c2450b94fa8381c8337980990bd42acf6d83af3",
-    "dataset": "task-0006.025-expansion",
+    "task": "TASK-0006.026",
+    "date": "2026-09-16",
+    "source_head": "4d4ad775e8b85bd8354b4ee3cd7083a5706b9096",
+    "dataset": "task-0006.026-expansion",
     "counts": {
       "sources": 615,
-      "entities": 4670,
-      "relations": 12209,
-      "processes": 373
+      "entities": 4700,
+      "relations": 12374,
+      "processes": 382
     },
-    "primary_count": 158,
-    "neighbor_count": 99,
-    "catalog_only_definitions": 358,
-    "boundary_count": 348,
+    "primary_count": 166,
+    "neighbor_count": 95,
+    "catalog_only_definitions": 354,
+    "boundary_count": 354,
     "note": "pilot_role и boundaries сохраняют срез .005; current_role отражает роль в текущем охвате определений. Все аспекты покрытия и ID записей хранятся в sources.jsonl; partial не означает полного разбора.",
     "coverage_source": "sources.jsonl"
   },
@@ -4596,5 +4596,13 @@
     "ent-004658",
     "ent-004659",
     "ent-004671"
+  ],
+  "added_boundaries_026": [
+    "ent-004684",
+    "ent-004692",
+    "ent-004693",
+    "ent-004694",
+    "ent-004697",
+    "ent-004698"
   ]
 }

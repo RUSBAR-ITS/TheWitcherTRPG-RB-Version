@@ -28,7 +28,9 @@ class CumulativeExpansion(unittest.TestCase):
         self.assertEqual({c['question'] for c in cases},{f'IQ-{n:02}' for n in range(1,9)})
         for c in cases:
             with self.subTest(case=c['id']):
-                prefix=['--dataset',str(self.history_manifest)] if c['id']=='JOIN-21' else []
+                # JOIN-16 repeats INV-06; .026 adds the stack writer. Its current
+                # answer is checked in .013 and the .026 callback source proof.
+                prefix=['--dataset',str(self.history_manifest)] if c['id'] in {'JOIN-16','JOIN-21'} else []
                 run=run_cli([*prefix,*c['command'],'--format','json'],cwd='/tmp')
                 self.assertEqual(run.returncode,0,run.stderr)
                 out=json.loads(run.stdout);rows=out['items'];first=rows[0] if rows else {}
