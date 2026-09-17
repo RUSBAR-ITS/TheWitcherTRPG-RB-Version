@@ -84,7 +84,7 @@ createHealMessage формирует отдельное сообщение OTHER
 
 ## Связанные проблемы
 
-[issue-00022](../../../../../../issues/potential/issue-00022.md), [issue-00126](../../../../../../issues/potential/issue-00126.md), [issue-00127](../../../../../../issues/potential/issue-00127.md). modifier относится к внешнему обработчику; неправильный speaker и отсутствие ожидания ChatMessage.create относятся к этой примеси.
+[issue-00022](../../../../../../issues/potential/issue-00022.md), [issue-00126](../../../../../../issues/potential/issue-00126.md), [issue-00127](../../../../../../issues/closed/issue-00127.md). modifier относится к внешнему обработчику; неправильный speaker и отсутствие ожидания ChatMessage.create относятся к этой примеси.
 
 ## История актуализации
 

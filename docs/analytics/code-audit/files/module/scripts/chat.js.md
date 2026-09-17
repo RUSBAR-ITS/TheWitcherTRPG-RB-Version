@@ -87,7 +87,7 @@ Callbacks/HBS и полная граница поиска ремонтируем
 
 ## Связанные проблемы
 
-[issue-00108](../../../../../issues/potential/issue-00108.md), [issue-00127](../../../../../issues/potential/issue-00127.md), [issue-00249](../../../../../issues/potential/issue-00249.md), [issue-00253](../../../../../issues/potential/issue-00253.md), [issue-00255](../../../../../issues/potential/issue-00255.md), [issue-00256](../../../../../issues/potential/issue-00256.md). Новые карточки описывают исчезнувший источник и невалидную числовую величину лечения. Асинхронность дополняет issue-00127; формулы, кнопки провала и owner уже имеют отдельные issues. Созданный здесь getSpeaker({actor}) не повторяет ошибку actor.actor из issue-00126.
+[issue-00108](../../../../../issues/potential/issue-00108.md), [issue-00127](../../../../../issues/closed/issue-00127.md), [issue-00249](../../../../../issues/potential/issue-00249.md), [issue-00253](../../../../../issues/potential/issue-00253.md), [issue-00255](../../../../../issues/potential/issue-00255.md), [issue-00256](../../../../../issues/potential/issue-00256.md). Новые карточки описывают исчезнувший источник и невалидную числовую величину лечения. Асинхронность дополняет issue-00127; формулы, кнопки провала и owner уже имеют отдельные issues. Созданный здесь getSpeaker({actor}) не повторяет ошибку actor.actor из issue-00126.
 
 ## История актуализации
 

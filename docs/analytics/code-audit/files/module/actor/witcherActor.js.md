@@ -476,7 +476,7 @@ Difficult показывает разницу max/value: при базе 5 и ×
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) добавляет проверки max/value для Heart Damage и Spetic Shock: первые меняют BODY.max/SPD.max, оставляя value=5; STA.max после initial заново вычисляется. При базовых 5 максимумы STA: Heart none/stabilized=25; Spetic none/stabilized/treated=15/20/20. Dismembered Leg влияет на skill.value, если эффект включён. Повторное addItem правой исходной ноги через совпадение name/type дал quantity=NaN без создания второй травмы ([issue-00288](../../../../../issues/potential/issue-00288.md)).
+[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) добавляет проверки max/value для Heart Damage и Spetic Shock: первые меняют BODY.max/SPD.max, оставляя value=5; STA.max после initial заново вычисляется. При базовых 5 максимумы STA: Heart none/stabilized=25; Spetic none/stabilized/treated=15/20/20. Dismembered Leg влияет на skill.value, если эффект включён. Повторное addItem правой исходной ноги через совпадение name/type дал quantity=NaN без создания второй травмы ([issue-00288](../../../../../issues/closed/issue-00288.md)).
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

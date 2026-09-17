@@ -126,7 +126,7 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/potential/issue-00121.md), [issue-00122](../../../../../../issues/potential/issue-00122.md), [issue-00127](../../../../../../issues/potential/issue-00127.md). Неожидаемое завершение операций, отсутствие проверки результата перехода и условия окончания заживления. Регистрация не означает подтверждение или исправление.
+[issue-00121](../../../../../../issues/closed/issue-00121.md), [issue-00122](../../../../../../issues/closed/issue-00122.md), [issue-00127](../../../../../../issues/closed/issue-00127.md). Неожидаемое завершение операций, отсутствие проверки результата перехода и условия окончания заживления. Регистрация не означает подтверждение или исправление.
 
 ## История актуализации
 
@@ -184,7 +184,7 @@ CriticalWoundData — default export, прямой наследник Foundry Ty
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): 22 Item, семь цепочек из трёх состояний и конечная Decapitation; 14 followUp разрешаются. Исполнены все 22 treat: 14 create → delete и восемь только delete, с pending записями. Ветка deadly отсутствует в calculateHealingTime, экспортный 0 сохраняется. Восемь heal-сценариев подтверждают прирост дней treated и запрет автоматического treat для deadly даже при daysHealed=100; none/stabilized вызывают update({}). Ручной treat не проверяет возможность лечения по описанию. Повтор всего пакета: 94 Item, 62 перехода, пять смен location прежних Simple/Difficult, 31 тройная цепочка и один конечный none. [issue-00121](../../../../../../issues/potential/issue-00121.md)/[issue-00127](../../../../../../issues/potential/issue-00127.md) сохранены.
+[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): 22 Item, семь цепочек из трёх состояний и конечная Decapitation; 14 followUp разрешаются. Исполнены все 22 treat: 14 create → delete и восемь только delete, с pending записями. Ветка deadly отсутствует в calculateHealingTime, экспортный 0 сохраняется. Восемь heal-сценариев подтверждают прирост дней treated и запрет автоматического treat для deadly даже при daysHealed=100; none/stabilized вызывают update({}). Ручной treat не проверяет возможность лечения по описанию. Повтор всего пакета: 94 Item, 62 перехода, пять смен location прежних Simple/Difficult, 31 тройная цепочка и один конечный none. [issue-00121](../../../../../../issues/closed/issue-00121.md)/[issue-00127](../../../../../../issues/closed/issue-00127.md) сохранены.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 
