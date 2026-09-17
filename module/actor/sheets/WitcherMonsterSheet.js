@@ -152,7 +152,7 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
 
     async getOrCreateFolder() {
         let folderName = `${game.i18n.localize('WITCHER.Loot.Name')}`;
-        let type = CONST.FOLDER_DOCUMENT_TYPES[0]; //actor
+        const type = 'Actor';
         let folder = game.folders?.find(folder => folder.type == type && folder.name === folderName);
         if (!folder) {
             folder = await Folder.create({
@@ -167,17 +167,22 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
     }
 
     static async #exportLoot() {
-        let content = `${game.i18n.localize('WITCHER.Loot.MultipleExport')} <input type="number" class="small" name="multiple" value=1><br />`;
+        let content = `${game.i18n.localize('WITCHER.Loot.MultipleExport')} <input type="number" class="small" name="multiple" value="1" min="1" step="1" required><br />`;
 
-        let multiplier = await DialogV2.prompt({
+        const multiplier = await DialogV2.prompt({
             window: { title: `${game.i18n.localize('WITCHER.Monster.exportLoot')}` },
             content: content,
             modal: true,
             ok: {
-                callback: (event, button, dialog) => button.form.elements.multiple.value
+                callback: (event, button, dialog) => button.form.elements.multiple.valueAsNumber
             },
             rejectClose: true
         });
+
+        if (!Number.isSafeInteger(multiplier) || multiplier < 1) {
+            ui.notifications.warn(game.i18n.localize('WITCHER.Monster.lootInvalidMultiplier'));
+            return;
+        }
 
         let folder = await this.getOrCreateFolder();
         let newLoot = await Actor.create({

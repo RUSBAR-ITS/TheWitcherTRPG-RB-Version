@@ -1,5 +1,11 @@
 # module/actor/sheets/WitcherLootSheet.js
 
+## Актуализация 2026-09-17 — 14.3.1.00029
+
+В _prepareContext (43–66) getList использует зарегистрированный тип mutagen, строка56. context.loot теперь содержит мутагены; его потребитель — существующий each loot в loot-sheet.hbs. Остальные списки/вес и методы торговли не менялись. Изолированно проверен настоящий метод с фасадом getList; реальное отображение ожидает браузера.
+
+[Реализация, изолированные проверки и очередь игровой приёмки](../../../../../../issues/open/issue-00206.md#implementation). Исторические разборы ниже сохраняют прежние результаты; игровой запуск текущего изменения отложен пользователем.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/WitcherLootSheet.js](../../../../../../../module/actor/sheets/WitcherLootSheet.js) |
@@ -94,7 +100,7 @@ registerSheets регистрирует класс по умолчанию дл�
 
 ## Связанные проблемы
 
-[issue-00034](../../../../../../issues/potential/issue-00034.md), [issue-00039](../../../../../../issues/potential/issue-00039.md), [issue-00040](../../../../../../issues/potential/issue-00040.md), [issue-00063](../../../../../../issues/potential/issue-00063.md), [issue-00166](../../../../../../issues/potential/issue-00166.md), [issue-00168](../../../../../../issues/potential/issue-00168.md), [issue-00169](../../../../../../issues/potential/issue-00169.md), [issue-00206](../../../../../../issues/potential/issue-00206.md), [issue-00207](../../../../../../issues/potential/issue-00207.md), [issue-00208](../../../../../../issues/potential/issue-00208.md), [issue-00218](../../../../../../issues/potential/issue-00218.md), [issue-00219](../../../../../../issues/potential/issue-00219.md), [issue-00220](../../../../../../issues/potential/issue-00220.md), [issue-00221](../../../../../../issues/potential/issue-00221.md), [issue-00222](../../../../../../issues/potential/issue-00222.md), [issue-00223](../../../../../../issues/potential/issue-00223.md), [issue-00224](../../../../../../issues/potential/issue-00224.md), [issue-00225](../../../../../../issues/potential/issue-00225.md), [issue-00226](../../../../../../issues/potential/issue-00226.md). Новые наблюдения 218–226 остаются potential. Старые 34/39/40/63/166/168/169 сопоставлены по конкретным маршрутам: не все действуют в Loot. Исправления и решения по механике отсутствуют.
+[issue-00034](../../../../../../issues/potential/issue-00034.md), [issue-00039](../../../../../../issues/potential/issue-00039.md), [issue-00040](../../../../../../issues/potential/issue-00040.md), [issue-00063](../../../../../../issues/potential/issue-00063.md), [issue-00166](../../../../../../issues/potential/issue-00166.md), [issue-00168](../../../../../../issues/potential/issue-00168.md), [issue-00169](../../../../../../issues/potential/issue-00169.md), [issue-00206](../../../../../../issues/open/issue-00206.md), [issue-00207](../../../../../../issues/potential/issue-00207.md), [issue-00208](../../../../../../issues/open/issue-00208.md), [issue-00218](../../../../../../issues/open/issue-00218.md), [issue-00219](../../../../../../issues/potential/issue-00219.md), [issue-00220](../../../../../../issues/potential/issue-00220.md), [issue-00221](../../../../../../issues/potential/issue-00221.md), [issue-00222](../../../../../../issues/potential/issue-00222.md), [issue-00223](../../../../../../issues/potential/issue-00223.md), [issue-00224](../../../../../../issues/potential/issue-00224.md), [issue-00225](../../../../../../issues/potential/issue-00225.md), [issue-00226](../../../../../../issues/potential/issue-00226.md). Новые наблюдения 218–226 остаются potential. Старые 34/39/40/63/166/168/169 сопоставлены по конкретным маршрутам: не все действуют в Loot. Исправления и решения по механике отсутствуют.
 
 ## История актуализации
 

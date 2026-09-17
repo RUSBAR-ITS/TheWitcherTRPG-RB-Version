@@ -754,6 +754,7 @@
             "Equipped": "Eq"
         },
         "Monster": {
+            "lootInvalidMultiplier": "Enter a positive whole number of monsters.",
             "lootAmbiguousTable": "More than one table matches this generator.",
             "lootInvalidQuantity": "The number of table rolls must be a finite non-negative number.",
             "lootEmptyTable": "The table returned no results.",

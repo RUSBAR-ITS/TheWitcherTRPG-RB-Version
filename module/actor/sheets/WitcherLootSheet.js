@@ -53,7 +53,7 @@ export default class WitcherLootSheet extends HandlebarsApplicationMixin(ActorSh
         context.enhancements = context.actor.getList('enhancement').filter(i => !i.system.applied);
         context.loot = context.actor
             .getList('mount')
-            .concat(context.actor.getList('mutagens'))
+            .concat(context.actor.getList('mutagen'))
             .concat(context.actor.getList('container'))
             .concat(context.actor.getList('alchemical'))
             .concat(context.actor.getList('diagrams'));

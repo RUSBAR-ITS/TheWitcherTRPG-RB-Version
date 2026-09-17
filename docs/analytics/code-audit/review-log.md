@@ -4295,7 +4295,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 
 | Новая карточка | Наблюдение |
 | --- | --- |
-| [issue-00218](../../issues/potential/issue-00218.md) | Лист добычи не включает предметы типа mutagen |
+| [issue-00218](../../issues/open/issue-00218.md) | Лист добычи не включает предметы типа mutagen |
 | [issue-00219](../../issues/potential/issue-00219.md) | Общая стоимость в листе добычи выводится без значения |
 | [issue-00220](../../issues/potential/issue-00220.md) | Покупка не проверяет запас, количество и итог оплаты |
 | [issue-00221](../../issues/potential/issue-00221.md) | Покупка завершается до записей и не согласует их результаты |
@@ -4305,7 +4305,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | [issue-00225](../../issues/potential/issue-00225.md) | Перенос профессии в Loot обращается к отсутствующим навыкам |
 | [issue-00226](../../issues/potential/issue-00226.md) | Пересчёт покупки зависит от script внутри HTML диалога |
 
-Сопоставлены и дополнены [issue-00034](../../issues/potential/issue-00034.md), [issue-00039](../../issues/potential/issue-00039.md), [issue-00040](../../issues/potential/issue-00040.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00116](../../issues/potential/issue-00116.md), [issue-00136](../../issues/potential/issue-00136.md), [issue-00166](../../issues/potential/issue-00166.md), [issue-00168](../../issues/potential/issue-00168.md), [issue-00169](../../issues/potential/issue-00169.md), [issue-00206](../../issues/potential/issue-00206.md), [issue-00207](../../issues/potential/issue-00207.md), [issue-00208](../../issues/potential/issue-00208.md). Наблюдение 226 основано на вставке script через innerHTML и требует проверки чистого клиента; оно не описано как уже воспроизведённая браузерная ошибка. Raw Actor.name в строке выбора отмечен в карточке листа как неэкранированный HTML; инъекция/влияние на работу клиента не исследовались. Новые и прежние **226 карточек остаются potential**; подтверждения, исправления и закрытия отсутствуют.
+Сопоставлены и дополнены [issue-00034](../../issues/potential/issue-00034.md), [issue-00039](../../issues/potential/issue-00039.md), [issue-00040](../../issues/potential/issue-00040.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00116](../../issues/potential/issue-00116.md), [issue-00136](../../issues/potential/issue-00136.md), [issue-00166](../../issues/potential/issue-00166.md), [issue-00168](../../issues/potential/issue-00168.md), [issue-00169](../../issues/potential/issue-00169.md), [issue-00206](../../issues/open/issue-00206.md), [issue-00207](../../issues/potential/issue-00207.md), [issue-00208](../../issues/open/issue-00208.md). Наблюдение 226 основано на вставке script через innerHTML и требует проверки чистого клиента; оно не описано как уже воспроизведённая браузерная ошибка. Raw Actor.name в строке выбора отмечен в карточке листа как неэкранированный HTML; инъекция/влияние на работу клиента не исследовались. Новые и прежние **226 карточек остаются potential**; подтверждения, исправления и закрытия отсутствуют.
 
 ### Формальная проверка документов
 
@@ -4569,9 +4569,9 @@ Application/Document-оболочки и состав базового document-
 
 | ID | Наблюдение |
 | --- | --- |
-| [issue-00206](../../issues/potential/issue-00206.md) | Экспорт добычи выбирает тип папки ActiveEffect вместо Actor |
+| [issue-00206](../../issues/open/issue-00206.md) | Экспорт добычи выбирает тип папки ActiveEffect вместо Actor |
 | [issue-00207](../../issues/potential/issue-00207.md) | Экспорт добычи завершается до пересчёта количества предметов |
-| [issue-00208](../../issues/potential/issue-00208.md) | Экспорт добычи допускает отрицательный множитель количества |
+| [issue-00208](../../issues/open/issue-00208.md) | Экспорт добычи допускает отрицательный множитель количества |
 | [issue-00209](../../issues/potential/issue-00209.md) | Текущий лист монстра не предлагает редактировать категорию и оценку угрозы |
 | [issue-00210](../../issues/potential/issue-00210.md) | Старый шаблон монстра ссылается на отсутствующие изображения категорий |
 

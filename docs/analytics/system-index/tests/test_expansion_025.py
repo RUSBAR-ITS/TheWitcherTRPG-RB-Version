@@ -88,7 +88,7 @@ class ContainerExpansion(unittest.TestCase):
         self.assertIn('partials/monster/monster-inventory-tab.hbs',self.source(550)[295])
 
     def test_loot_inline_additem_and_delete_boundaries(self):
-        loot='\n'.join(self.source(30)[42:66]);self.assertIn("getList('container')",loot);self.assertIn("getList('mutagens')",loot)
+        loot='\n'.join(self.source(30)[42:66]);self.assertIn("getList('container')",loot);self.assertIn("getList('mutagen')",loot)
         row='\n'.join(self.source(563));self.assertIn('data-item-id="{{item._id}}"',row);self.assertIn('data-field="system.weight"',row)
         add='\n'.join(self.source(47)[258:273]);self.assertIn('!foundItem.system.isStored',add);self.assertNotIn('isStored =',add)
         deleted='\n'.join(self.source(43)[174:180]);self.assertNotIn('await ',deleted);self.assertNotIn('isStored',deleted)

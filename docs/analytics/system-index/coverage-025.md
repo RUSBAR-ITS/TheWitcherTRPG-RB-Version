@@ -65,7 +65,7 @@ Carry — редактируемая справочная вместимость
 | Character | valuable.system.type=containers входит в clothingAndContainers; настоящий Item.type=container идёт отдельным массивом в тот же partial |
 | Строка valuable | outer .item/data-item-id=локальный ID; carried отдельный await update. Только Item.type=container показывает content/progress |
 | Вложенная строка | details.stored-item/data-item-id=полный UUID; класса .item и собственных контролов редактирования нет; closest(.item) у общего меню возвращает контейнер |
-| Loot | getList скрывает stored, но не isHidden; loot=mount+mutagens+container+alchemical+diagrams. Буквальное mutagens сохранено. Вес независимо по всем items+валюте |
+| Loot | getList скрывает stored, но не isHidden; loot=mount+mutagen+container+alchemical+diagrams. В .00029 исправлен тип mutagen по issue-00218. Вес независимо по всем items+валюте |
 | Loot row | Item ID, quantity/weight inline, edit/delete; isHidden меняет CSS, не авторизацию; предметы контейнера не разворачиваются. img.dragable/data-id отличается от core .draggable/dataset.itemId; нативный draggable сам не доказывает Foundry UUID-пакет |
 | Текущий Monster | PARTS.inventory → src571, valuables=loots; нет отдельной секции containers. Старый monster-sheet → src536 лишь прежний/preload путь |
 

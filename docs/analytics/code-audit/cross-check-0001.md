@@ -613,9 +613,9 @@
 | [issue-00203](../../issues/potential/issue-00203.md) | Основание сохраняется | B12: HP/base и HP/max выбирают разные состояния; обе боковые панели сопоставлены. |
 | [issue-00204](../../issues/potential/issue-00204.md) | Основание сохраняется | B12: L01: исходный addActiveEffects выдаёт +1[], настоящий Roll отвергает. |
 | [issue-00205](../../issues/closed/issue-00205.md) | Основание сохраняется | B12: Четыре ru keys отсутствуют, en fallback есть; связь с обоими sidebar. |
-| [issue-00206](../../issues/potential/issue-00206.md) | Основание сохраняется | B12: L02: реальная CONST[0] ActiveEffect, Folder.create payload; сервер Actor.create не запускался. |
+| [issue-00206](../../issues/open/issue-00206.md) | Основание сохраняется | B12: L02: реальная CONST[0] ActiveEffect, Folder.create payload; сервер Actor.create не запускался. |
 | [issue-00207](../../issues/potential/issue-00207.md) | Основание сохраняется | B12: L02: export возвращается при pending checkIfItemHasRollTable, update также не ждёт. |
-| [issue-00208](../../issues/potential/issue-00208.md) | Основание сохраняется | B12: L02: множитель−2 даёт quantity−4; dice-ветка при отрицательном не входит в цикл. |
+| [issue-00208](../../issues/open/issue-00208.md) | Основание сохраняется | B12: L02: множитель−2 даёт quantity−4; dice-ветка при отрицательном не входит в цикл. |
 | [issue-00209](../../issues/potential/issue-00209.md) | Основание сохраняется | B12: Текущие PARTS/config не редактируют category/threat/difficulty/bounty; старый HBS содержит поля. |
 | [issue-00210](../../issues/potential/issue-00210.md) | Основание сохраняется | B12: Проверено существование путей:11 отсутствуют из12; анализ содержимого assets не выполнялся. |
 | [issue-00211](../../issues/potential/issue-00211.md) | Основание сохраняется | B12: L03: массив меняется до двух pending-запросов; runtime source/БД не изменены. |
@@ -625,7 +625,7 @@
 | [issue-00215](../../issues/potential/issue-00215.md) | Основание сохраняется | B13: N01: canBeDismantled возвращает UUID, missing recipe→TypeError. |
 | [issue-00216](../../issues/potential/issue-00216.md) | Основание сохраняется | B13: N01: null UUID-компонент теряет name, чат восстановить его не может. |
 | [issue-00217](../../issues/potential/issue-00217.md) | Основание сохраняется | B13: N01: quantity0 не мешает добавлению материалов; removeItem запускается позже. |
-| [issue-00218](../../issues/potential/issue-00218.md) | Основание сохраняется | B13: getList('mutagens') не совпадает с manifest mutagen; экспорт не фильтрует этот тип. |
+| [issue-00218](../../issues/open/issue-00218.md) | Основание сохраняется | B13: getList('mutagens') не совпадает с manifest mutagen; экспорт не фильтрует этот тип. |
 | [issue-00219](../../issues/potential/issue-00219.md) | Основание сохраняется | B13: Прямой ActorSheetV2 не устанавливает totalCost, HBS читает. |
 | [issue-00220](../../issues/potential/issue-00220.md) | Основание сохраняется | B13: N02: zero stock, qty3, цена−4 принимаются телом; реальные права не обходились. |
 | [issue-00221](../../issues/potential/issue-00221.md) | Основание сохраняется | B13: N02: четыре pending операции после await диалога; состояние БД не проверялось. |
