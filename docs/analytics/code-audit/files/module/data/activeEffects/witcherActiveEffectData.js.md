@@ -148,7 +148,7 @@ Defaults/схема не доказывают весь submit и доставк�
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): четыре исходных системных apply-флага false, applyAfterCalculations отсутствует и получает false. Наследуемая схема сохраняет мигрированные 43 changes в system.changes/initial. Всего 360 изменений пакета: 341 адресует NumberField, 16 — SchemaField, три динамических commonspeech не объявлены. Типизированная схема не делает ADD объекта созданием записи — [issue-00328](../../../../../../issues/potential/issue-00328.md).
+[Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): четыре исходных системных apply-флага false, applyAfterCalculations отсутствует и получает false. Наследуемая схема сохраняет мигрированные 43 changes в system.changes/initial. Всего 360 изменений пакета: 341 адресует NumberField, 16 — SchemaField, три динамических commonspeech не объявлены. Типизированная схема не делает ADD объекта созданием записи — [issue-00328](../../../../../../issues/closed/issue-00328.md).
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

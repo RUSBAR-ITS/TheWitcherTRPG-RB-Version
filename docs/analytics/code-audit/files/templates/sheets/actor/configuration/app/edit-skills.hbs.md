@@ -70,7 +70,7 @@ JS-функций нет. checked отражает три булевых пол�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../../../issues/closed/issue-00016.md), [issue-00017](../../../../../../../../issues/potential/issue-00017.md), [issue-00191](../../../../../../../../issues/potential/issue-00191.md), [issue-00192](../../../../../../../../issues/potential/issue-00192.md), [issue-00193](../../../../../../../../issues/closed/issue-00193.md). Повышение, ключи и подписи отражены в соответствующих issues, без автоматического подтверждения или исправления.
+[issue-00004](../../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../../../issues/closed/issue-00016.md), [issue-00017](../../../../../../../../issues/potential/issue-00017.md), [issue-00191](../../../../../../../../issues/potential/issue-00191.md), [issue-00192](../../../../../../../../issues/potential/issue-00192.md), [issue-00193](../../../../../../../../issues/closed/issue-00193.md). Повышение, ключи и подписи отражены в соответствующих issues, без автоматического подтверждения или исправления.
 
 ## История актуализации
 

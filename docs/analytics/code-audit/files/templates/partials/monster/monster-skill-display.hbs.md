@@ -65,7 +65,7 @@ JS-функций нет. localize выводит skill.label. При isVisible=
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../issues/closed/issue-00016.md), [issue-00018](../../../../../../issues/potential/issue-00018.md). Подписи, commonsp и различие видимости отражены в прежних наблюдениях.
+[issue-00004](../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../issues/closed/issue-00016.md), [issue-00018](../../../../../../issues/potential/issue-00018.md). Подписи, commonsp и различие видимости отражены в прежних наблюдениях.
 
 ## История актуализации
 

@@ -176,6 +176,6 @@ class RegistrationExpansion(unittest.TestCase):
         prior=self.data.entities['ent-000319']['refs']
         self.assertTrue(any(r.get('anchor')=='уточнение-task-0003010' for r in prior))
         self.assertTrue(any(r.get('anchor')=='r005-03' for r in prior))
-        issue2=(ROOT/'docs/issues/potential/issue-00002.md').read_text()
+        issue2=(ROOT/'docs/issues/closed/issue-00002.md').read_text()
         self.assertIn('Пустой индекс сам по себе не вызывает отказа ready',issue2)
         self.assertIn('Статус potential сохранён',issue2)

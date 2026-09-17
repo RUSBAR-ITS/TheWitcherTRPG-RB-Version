@@ -2,7 +2,7 @@
 
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
-М06; [реализация и пределы проверок](../../../../../issues/open/issue-00332.md).
+М06; [реализация и пределы проверок](../../../../../issues/closed/issue-00332.md).
 
 Новый экспорт isForwardCombatTurn проверяет active GM, started, поля round/turn в update, options.turnEvents/direction, previous/current и Actor текущего участника. Пропускает обновления флагов/инициативы, сброс и движение назад; при скачке выполняет только нового текущего участника. combatHooks вызывает предикат до обоих потребителей. Дополнительная подписка или глобальный счётчик не вводились; внутренние Promise периодики/регионов этот callback не ожидает.
 
@@ -72,13 +72,13 @@
 
 ## Связанные проблемы
 
-[issue-00006](../../../../../issues/potential/issue-00006.md) — действия начала хода при произвольном updateCombat.
+[issue-00006](../../../../../issues/closed/issue-00006.md) — действия начала хода при произвольном updateCombat.
 
 ## Дополнительная сверка — TASK-0003.003
 
 2026-09-10, HEAD `c34b790379fd98cd7e33ccbeeca085e49297a40f`; исходники не изменены.
 
-Полностью разобрана схема [combatEffects](../data/actor/templates/common/combatEffectsData.js.md), включая turnStartEffects. registerHooks только назначает updateCombat; чтение словаря и запись повреждения/лечения находятся в generalCombatHook и его зависимостях. Существующая [issue-00006](../../../../../issues/potential/issue-00006.md) дополнена связью со схемой. Изолированное выполнение обработчика выявило потерю damage.type и игнорирование heal.modifier; эти наблюдения выделены в issue-00021/00022.
+Полностью разобрана схема [combatEffects](../data/actor/templates/common/combatEffectsData.js.md), включая turnStartEffects. registerHooks только назначает updateCombat; чтение словаря и запись повреждения/лечения находятся в generalCombatHook и его зависимостях. Существующая [issue-00006](../../../../../issues/closed/issue-00006.md) дополнена связью со схемой. Изолированное выполнение обработчика выявило потерю damage.type и игнорирование heal.modifier; эти наблюдения выделены в issue-00021/00022.
 
 [Сценарии и результаты TASK-0003.003](../../../review-log.md#task-0003003).
 

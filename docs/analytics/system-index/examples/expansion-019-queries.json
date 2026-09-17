@@ -605,7 +605,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00021.md"
+          "docs/issues/closed/issue-00021.md"
         ]
       },
       "basis": "196:62–72 type не передан;194:100 setter получает undefined."

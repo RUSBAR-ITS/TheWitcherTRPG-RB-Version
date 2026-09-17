@@ -60,7 +60,7 @@ HTML не изменяет критический объект. Состояни
 
 ## Связанные проблемы
 
-[docs/issues/potential/issue-00258.md](../../../../../../../issues/potential/issue-00258.md) — потеря critEffectModifier в модели сообщения; проблема не в отображении h3. [docs/issues/potential/issue-00185.md](../../../../../../../issues/potential/issue-00185.md) — отсутствующий получатель query может остановить производителя до рендера.
+[docs/issues/closed/issue-00258.md](../../../../../../../issues/closed/issue-00258.md) — потеря critEffectModifier в модели сообщения; проблема не в отображении h3. [docs/issues/potential/issue-00185.md](../../../../../../../issues/potential/issue-00185.md) — отсутствующий получатель query может остановить производителя до рендера.
 
 ## История актуализации
 

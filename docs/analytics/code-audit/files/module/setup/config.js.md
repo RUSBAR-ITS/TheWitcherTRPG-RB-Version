@@ -2,7 +2,7 @@
 
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
-М02; [реализация и пределы проверок](../../../../../issues/open/issue-00332.md).
+М02; [реализация и пределы проверок](../../../../../issues/closed/issue-00332.md).
 
 В skillMap ключ commonsp совпадает с entry.name и полем IntData.commonsp. Все 52 пары ключ/name/путь схемы сверены; costMultiplier=2 и локализации сохранены. Старый commonspeech не является alias; миграции не добавлены.
 
@@ -373,13 +373,13 @@
 
 [issue-00003](../../../../../issues/potential/issue-00003.md) — обращение querySelector к массиву статусов в интеграции statuscounter.
 
-[issue-00004](../../../../../issues/potential/issue-00004.md) — несовпадение ключа commonspeech и имени поля commonsp при выборе навыка эффекта.
+[issue-00004](../../../../../issues/closed/issue-00004.md) — несовпадение ключа commonspeech и имени поля commonsp при выборе навыка эффекта.
 
 ## Дополнительная сверка навыков — TASK-0003.002
 
 2026-09-10, HEAD `52acddd5fb7d67e993eed1ad2c89b335aef6fd1d`; исходник не изменён.
 
-Все 52 записи skillMap сопоставлены с семью группами реальной схемы CommonActorData по attribute.name/name: пути существуют, лишних или недостающих навыков не найдено. Полные группы и индекс путей из компедиумов — в [карточке skills](../data/actor/templates/common/skills/skillsData.js.md). Ключ commonspeech отличается от name=commonsp; дополненная [issue-00004](../../../../../issues/potential/issue-00004.md) содержит проявления в подсказках, конфигурации, кнопках, формулах и трёх JSON.
+Все 52 записи skillMap сопоставлены с семью группами реальной схемы CommonActorData по attribute.name/name: пути существуют, лишних или недостающих навыков не найдено. Полные группы и индекс путей из компедиумов — в [карточке skills](../data/actor/templates/common/skills/skillsData.js.md). Ключ commonspeech отличается от name=commonsp; дополненная [issue-00004](../../../../../issues/closed/issue-00004.md) содержит проявления в подсказках, конфигурации, кнопках, формулах и трёх JSON.
 
 Сверка label/rollLabel с восемью языками обнаружила отсутствующие ключи picklock.label и trapcraft.label/rollLabel; подробности — [issue-00016](../../../../../issues/closed/issue-00016.md). Стоимость из magicSkills/skillMap используется в levelUpSkill; наблюдение расхода магических очков записано в [issue-00017](../../../../../issues/potential/issue-00017.md). Это уточнение потребителей справочника, не изменение его значений.
 
@@ -389,7 +389,7 @@
 
 2026-09-10, HEAD `c34b790379fd98cd7e33ccbeeca085e49297a40f`; исходники не изменены.
 
-Семь валют WITCHER.currency совпали со [схемой currency](../data/actor/templates/common/currencyData.js.md); rates содержит шесть ключей, falsecoin исключён из конвертера. Под [combatEffects](../data/actor/templates/common/combatEffectsData.js.md) обнаружены 11 изменений statusEffects: пять записей начала хода и шесть модификаторов атаки/защиты. Схема и передача damage/heal проверены; [issue-00021](../../../../../issues/potential/issue-00021.md) фиксирует потерю типа fire. Это наблюдение обработчика, значения config не исправлялись.
+Семь валют WITCHER.currency совпали со [схемой currency](../data/actor/templates/common/currencyData.js.md); rates содержит шесть ключей, falsecoin исключён из конвертера. Под [combatEffects](../data/actor/templates/common/combatEffectsData.js.md) обнаружены 11 изменений statusEffects: пять записей начала хода и шесть модификаторов атаки/защиты. Схема и передача damage/heal проверены; [issue-00021](../../../../../issues/closed/issue-00021.md) фиксирует потерю типа fire. Это наблюдение обработчика, значения config не исправлялись.
 
 [Сценарии и результаты TASK-0003.003](../../../review-log.md#task-0003003).
 

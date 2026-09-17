@@ -65,7 +65,7 @@ def seed_view():
     manifest["parts"] = {kind: [kind + ".jsonl"] for kind in rows}
     manifest["reference_hashes"] = {p: digest for p, digest in manifest["reference_hashes"].items()
                                    if p in ("docs/analytics/code-audit/cross-check-0002.md",
-                                            "docs/issues/potential/issue-00004.md",
+                                            "docs/issues/closed/issue-00004.md",
                                             "docs/issues/potential/issue-00015.md")}
     manifest["next_ids"] = {"source": 616, "entity": 36, "relation": 54, "process": 3}
     return manifest, rows

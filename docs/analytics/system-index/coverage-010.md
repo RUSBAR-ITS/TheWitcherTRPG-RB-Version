@@ -48,7 +48,7 @@ DocumentSheetV2 проверяет isEditable, разворачивает formDa
 
 Читатели баз уже представлены пилотом: CommonActorData.prepareBaseData, Stats.prepareBaseData, WitcherActor.calculateStats/calculateDerivedStat и общий stat().unmodifiedMax. Часть производных баз/максимумов пересчитывается; для HP/STA существенен customStat. Схема NumberField и enabled input не доказывают, что ввод сохранится после подготовки. [issue-00195](../../issues/potential/issue-00195.md), proc-000004/000005. Формулы не переписаны и не скопированы в новые процессы.
 
-Кнопка level-up получает **skillName из модели** и прежним ent-000383 передаёт его Actor.levelUpSkill (ent-000300). IP/logs/стоимость — B11, здесь только вход. Commonspeech/commonsp и применение общей кнопки к Monster связаны с прежними [issue-00004](../../issues/potential/issue-00004.md) и [issue-00192](../../issues/potential/issue-00192.md), а не объявлены новыми проблемами.
+Кнопка level-up получает **skillName из модели** и прежним ent-000383 передаёт его Actor.levelUpSkill (ent-000300). IP/logs/стоимость — B11, здесь только вход. Commonspeech/commonsp и применение общей кнопки к Monster связаны с прежними [issue-00004](../../issues/closed/issue-00004.md) и [issue-00192](../../issues/potential/issue-00192.md), а не объявлены новыми проблемами.
 
 ## Ручные ресурсы и входы бросков
 

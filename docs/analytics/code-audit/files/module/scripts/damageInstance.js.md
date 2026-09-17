@@ -96,7 +96,7 @@
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-Положительные контроли [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) исполнили настоящий DamageInstance: instanceDamage=2/3/4, bypassesNaturalArmor/bypassesWornArmor=true, bypassesShield=false, spDamage=0. Instance.type и object.type не получили bleed/poison ([issue-00021](../../../../../issues/potential/issue-00021.md)). Actor.applyDamage, локация torso и чат перехвачены; фактическое изменение HP/брони не проверено.
+Положительные контроли [Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) исполнили настоящий DamageInstance: instanceDamage=2/3/4, bypassesNaturalArmor/bypassesWornArmor=true, bypassesShield=false, spDamage=0. Instance.type и object.type не получили bleed/poison ([issue-00021](../../../../../issues/closed/issue-00021.md)). Actor.applyDamage, локация torso и чат перехвачены; фактическое изменение HP/брони не проверено.
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

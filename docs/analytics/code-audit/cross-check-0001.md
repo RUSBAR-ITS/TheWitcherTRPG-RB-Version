@@ -409,11 +409,11 @@
 | Issue | Результат | Основание, связи и ограничения |
 | --- | --- | --- |
 | [issue-00001](../../issues/closed/issue-00001.md) | Наблюдение; нужен запуск Foundry | B01: локальный ID и каталог различаются; конкретного сбоя загрузчика не получено. Карточка корректно не заявляет подтверждённую неисправность. |
-| [issue-00002](../../issues/potential/issue-00002.md) | Основание подтверждается | B01/S04: ready без pack падает до hotbar/socket/deprecations; контроль с pack проходит. Запуск мира не выполнен. |
+| [issue-00002](../../issues/closed/issue-00002.md) | Основание подтверждается | B01/S04: ready без pack падает до hotbar/socket/deprecations; контроль с pack проходит. Запуск мира не выполнен. |
 | [issue-00003](../../issues/potential/issue-00003.md) | Основание подтверждается | B01/S03: statusEffects — массив без querySelector; до API EffectCounter выполнение не доходит. Внешний модуль не исследован. |
-| [issue-00004](../../issues/potential/issue-00004.md) | Основание подтверждается кодом | B01: skillMap.commonspeech.name=commonsp, chooseSkill строит путь по ключу, intData объявляет commonsp. Последующие симптомы навыков/редакторов имеют ту же причину. |
+| [issue-00004](../../issues/closed/issue-00004.md) | Основание подтверждается кодом | B01: skillMap.commonspeech.name=commonsp, chooseSkill строит путь по ключу, intData объявляет commonsp. Последующие симптомы навыков/редакторов имеют ту же причину. |
 | [issue-00005](../../issues/potential/issue-00005.md) | Расхождение подтверждается; последствия условны | B01/S06: mystery/clue/obstacle/skill отсутствуют в manifest, но зарегистрированы. base — отдельный штатный тип. Серверная сборка game.model не проверена. |
-| [issue-00006](../../issues/potential/issue-00006.md) | Основание подтверждается кодом | B01: update не фильтруется; current Actor/active regions обрабатываются и при flags. Предыдущее изолированное воспроизведение отделено от нового чтения. |
+| [issue-00006](../../issues/closed/issue-00006.md) | Основание подтверждается кодом | B01: update не фильтруется; current Actor/active regions обрабатываются и при flags. Предыдущее изолированное воспроизведение отделено от нового чтения. |
 | [issue-00007](../../issues/closed/issue-00007.md) | Основание подтверждается | B01/S05: leftLeg/rightLeg имеют обратные подписи; значения SP и цвета идут по исходной части. Это ошибка подсказки, не расчёта SP. |
 | [issue-00008](../../issues/potential/issue-00008.md) | Основание подтверждается | B01/S01: true возвращается при pending addItem и при отсутствующем методе вложенной модели. Граница async отдельно от правильности маршрута issue-00009. |
 | [issue-00009](../../issues/potential/issue-00009.md) | Основание подтверждается кодом и частичным прогоном | B01/S01: query не достигает regionProperties; deleteSpellVisualEffect не разрешён. В примеси uuid:item.uuid без определения item; полное удаление области не запускалось. |
@@ -428,7 +428,7 @@
 | [issue-00018](../../issues/potential/issue-00018.md) | Основание подтверждается | B02/M08: текущий skill-display выводит скрытый навык; прежний monster-шаблон скрывает. PARTS текущего MonsterSheet указывает общий шаблон. |
 | [issue-00019](../../issues/potential/issue-00019.md) | Основание сохранено | B03: SchemaField(value) против интерполяции записи и путей мастера; исправление формы не выбиралось. |
 | [issue-00020](../../issues/potential/issue-00020.md) | Основание сохранено | B03: C06: 100 crown→обмен 10 crown в crown отправляет 110; это коллизия computed key. |
-| [issue-00021](../../issues/potential/issue-00021.md) | Основание сохранено | B03: generalCombatHook не переносит damage.type; applyDamageFromStatus читает отсутствующее поле. Не тождественно issue-00006. |
+| [issue-00021](../../issues/closed/issue-00021.md) | Основание сохранено | B03: generalCombatHook не переносит damage.type; applyDamageFromStatus читает отсутствующее поле. Не тождественно issue-00006. |
 | [issue-00022](../../issues/potential/issue-00022.md) | Основание сохранено | B03: В лечение передаётся heal.amount, modifier не читается; назначение ожидаемой добавки не подменяет правило. |
 | [issue-00023](../../issues/potential/issue-00023.md) | Основание сохранено | B03: Фильтрация по наличию temporaryHp выбирает эффект целиком; внутренний цикл расходует все changes. Полный жизненный цикл AE отдельно. |
 | [issue-00024](../../issues/potential/issue-00024.md) | Основание сохранено | B03: C02: настоящий _prepareContext и CharacterData дают ключу 10 запись 110 в toObject(false); _source остался прежним. |
@@ -446,8 +446,8 @@
 | [issue-00036](../../issues/potential/issue-00036.md) | Основание сохранено | B04: E03: BODY.max2 не влияет на value8 при unmodifiedMax8; перезапись STA и initial/final сверены отдельно. |
 | [issue-00037](../../issues/potential/issue-00037.md) | Основание сохранено | B04: Вызов populateAlchemyCraftComponentsList отсутствует среди класса/примесей; существует getter. |
 | [issue-00038](../../issues/potential/issue-00038.md) | Основание сохранено | B04: removeItem/addItem/toMessage не ожидаются в realCraft; успешный бросок не подтверждает запись. |
-| [issue-00039](../../issues/potential/issue-00039.md) | Основание сохранено | B04: Прямое results[0], отсутствие проверки []; ядро допускает несколько результатов. Legacy getters поддержаны, не отдельная ошибка API. |
-| [issue-00040](../../issues/potential/issue-00040.md) | Основание сохранено | B04: Цикл генерации ожидает roll, но не quantity.update; ++ локальной переменной не обновляет system синхронно. |
+| [issue-00039](../../issues/closed/issue-00039.md) | Основание сохранено | B04: Прямое results[0], отсутствие проверки []; ядро допускает несколько результатов. Legacy getters поддержаны, не отдельная ошибка API. |
+| [issue-00040](../../issues/closed/issue-00040.md) | Основание сохранено | B04: Цикл генерации ожидает roll, но не quantity.update; ++ локальной переменной не обновляет system синхронно. |
 | [issue-00041](../../issues/potential/issue-00041.md) | Основание сохранено | B04: realCraft меняет локальный result, не готовые flavor/options.success; отдельная причина от async issue38. |
 | [issue-00042](../../issues/potential/issue-00042.md) | Основание сохранено | B04: E04: созданный payload теряет system.changes при полной замене system. |
 | [issue-00043](../../issues/potential/issue-00043.md) | Основание сохранено | B04: E01: system без changes падает; changes без флага получают initial. Позднее уточнение .010 связывает это с payload мастера. |
@@ -613,9 +613,9 @@
 | [issue-00203](../../issues/potential/issue-00203.md) | Основание сохраняется | B12: HP/base и HP/max выбирают разные состояния; обе боковые панели сопоставлены. |
 | [issue-00204](../../issues/potential/issue-00204.md) | Основание сохраняется | B12: L01: исходный addActiveEffects выдаёт +1[], настоящий Roll отвергает. |
 | [issue-00205](../../issues/closed/issue-00205.md) | Основание сохраняется | B12: Четыре ru keys отсутствуют, en fallback есть; связь с обоими sidebar. |
-| [issue-00206](../../issues/open/issue-00206.md) | Основание сохраняется | B12: L02: реальная CONST[0] ActiveEffect, Folder.create payload; сервер Actor.create не запускался. |
-| [issue-00207](../../issues/potential/issue-00207.md) | Основание сохраняется | B12: L02: export возвращается при pending checkIfItemHasRollTable, update также не ждёт. |
-| [issue-00208](../../issues/open/issue-00208.md) | Основание сохраняется | B12: L02: множитель−2 даёт quantity−4; dice-ветка при отрицательном не входит в цикл. |
+| [issue-00206](../../issues/closed/issue-00206.md) | Основание сохраняется | B12: L02: реальная CONST[0] ActiveEffect, Folder.create payload; сервер Actor.create не запускался. |
+| [issue-00207](../../issues/closed/issue-00207.md) | Основание сохраняется | B12: L02: export возвращается при pending checkIfItemHasRollTable, update также не ждёт. |
+| [issue-00208](../../issues/closed/issue-00208.md) | Основание сохраняется | B12: L02: множитель−2 даёт quantity−4; dice-ветка при отрицательном не входит в цикл. |
 | [issue-00209](../../issues/potential/issue-00209.md) | Основание сохраняется | B12: Текущие PARTS/config не редактируют category/threat/difficulty/bounty; старый HBS содержит поля. |
 | [issue-00210](../../issues/potential/issue-00210.md) | Основание сохраняется | B12: Проверено существование путей:11 отсутствуют из12; анализ содержимого assets не выполнялся. |
 | [issue-00211](../../issues/potential/issue-00211.md) | Основание сохраняется | B12: L03: массив меняется до двух pending-запросов; runtime source/БД не изменены. |
@@ -625,7 +625,7 @@
 | [issue-00215](../../issues/potential/issue-00215.md) | Основание сохраняется | B13: N01: canBeDismantled возвращает UUID, missing recipe→TypeError. |
 | [issue-00216](../../issues/potential/issue-00216.md) | Основание сохраняется | B13: N01: null UUID-компонент теряет name, чат восстановить его не может. |
 | [issue-00217](../../issues/potential/issue-00217.md) | Основание сохраняется | B13: N01: quantity0 не мешает добавлению материалов; removeItem запускается позже. |
-| [issue-00218](../../issues/open/issue-00218.md) | Основание сохраняется | B13: getList('mutagens') не совпадает с manifest mutagen; экспорт не фильтрует этот тип. |
+| [issue-00218](../../issues/closed/issue-00218.md) | Основание сохраняется | B13: getList('mutagens') не совпадает с manifest mutagen; экспорт не фильтрует этот тип. |
 | [issue-00219](../../issues/potential/issue-00219.md) | Основание сохраняется | B13: Прямой ActorSheetV2 не устанавливает totalCost, HBS читает. |
 | [issue-00220](../../issues/potential/issue-00220.md) | Основание сохраняется | B13: N02: zero stock, qty3, цена−4 принимаются телом; реальные права не обходились. |
 | [issue-00221](../../issues/potential/issue-00221.md) | Основание сохраняется | B13: N02: четыре pending операции после await диалога; состояние БД не проверялось. |
@@ -665,7 +665,7 @@
 | [issue-00255](../../issues/potential/issue-00255.md) | Основание сохраняется | B14: T02: missing source вызывает TypeError после target.update; onShield name guard также отсутствует. |
 | [issue-00256](../../issues/potential/issue-00256.md) | Основание сохраняется | B14: T02:−8 даёт HP−3, bad→NaN; это запросы, не доказанное сохранение. |
 | [issue-00257](../../issues/potential/issue-00257.md) | Основание сохраняется | B14: T01: настоящий BaseChatMessage очищает duration attack/damage; onHit/onDamage читают позже. |
-| [issue-00258](../../issues/potential/issue-00258.md) | Основание сохраняется | B14: T01: Defense.crit теряет modifier, location.critEffect сохраняется; producer/consumer найдены. |
+| [issue-00258](../../issues/closed/issue-00258.md) | Основание сохраняется | B14: T01: Defense.crit теряет modifier, location.critEffect сохраняется; producer/consumer найдены. |
 
 ## Выявленные расхождения и уточнения
 
@@ -692,7 +692,7 @@
 | [00030](../../issues/potential/issue-00030.md), [00192](../../issues/potential/issue-00192.md) | Одна граница модели Monster/Character, но два интерфейса: вкладка IP с отсутствующими полями и отдельный редактор навыков с действием повышения. Это связанные точки входа, а не повторное описание одного обработчика. |
 | [00034](../../issues/potential/issue-00034.md), [00038](../../issues/potential/issue-00038.md), [00127](../../issues/potential/issue-00127.md), [00169](../../issues/potential/issue-00169.md), [00214](../../issues/potential/issue-00214.md), [00221](../../issues/potential/issue-00221.md), [00241](../../issues/potential/issue-00241.md), [00251](../../issues/potential/issue-00251.md) | Общий признак — вызывающий метод не ждёт завершения операции. Различаются расходование, изготовление, лечение, передача, разбор, покупка, профессия и магия. Исправление одного вызывающего метода не исправляет остальные; завершение Promise и согласованность нескольких записей — разные требования. |
 | [00036](../../issues/potential/issue-00036.md), [00194](../../issues/potential/issue-00194.md), [00195](../../issues/potential/issue-00195.md) | Подготовка и редактирование характеристик: потеря изменения в фазах расчёта, сохранение подготовленного max как базы, перезапись производных. Нужно прослеживать исходное значение → подготовку → форму → сохранение. |
-| [00044](../../issues/potential/issue-00044.md), [00257](../../issues/potential/issue-00257.md), [00258](../../issues/potential/issue-00258.md) | Разные потери данных: копирование эффекта, очистка duration моделью сообщения и очистка модификатора критического эффекта в Defense. Для процесса важны все границы схем, а не только объект до ChatMessage.create. |
+| [00044](../../issues/potential/issue-00044.md), [00257](../../issues/potential/issue-00257.md), [00258](../../issues/closed/issue-00258.md) | Разные потери данных: копирование эффекта, очистка duration моделью сообщения и очистка модификатора критического эффекта в Defense. Для процесса важны все границы схем, а не только объект до ChatMessage.create. |
 | [00087](../../issues/potential/issue-00087.md), [00180](../../issues/potential/issue-00180.md) | Миграция сопротивлений и устаревший интерфейс брони используют близкие поля, но ошибки возникают при разных действиях. Старый шаблон не следует автоматически считать текущим зарегистрированным интерфейсом. |
 | [00072](../../issues/potential/issue-00072.md), [00112](../../issues/potential/issue-00112.md) | Основной навык профессии: перебор доступных защит и доступность настройки в редакторе — отдельные ограничения. Отсутствие настройки в UI не доказывает отсутствия поля в модели. |
 | [00095](../../issues/potential/issue-00095.md), [00105](../../issues/potential/issue-00105.md), [00216](../../issues/potential/issue-00216.md) | Недоступный UUID компонента: потеря имени в редакторе рецепта, исключение в подготовке ремонта, потеря имени в сообщении разбора. Одинаковое внешнее условие, разные потребители и результаты. |

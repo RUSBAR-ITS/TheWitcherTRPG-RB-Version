@@ -34,7 +34,7 @@
 | getActiveEffectsItemImprovementPaths — ent-000647 | Один вызов getItemDamageSuggestions, отдельный каталог для type=temporaryItemImprovement. |
 | getItemDamageSuggestions — ent-000648 | system.damage, system.damageProperties.oilEffect/silverDamage — StringField формул в WeaponData/DamageProperties. Наличие этих полей у любого Item не предполагается. |
 
-Основание — [R005-02](../code-audit/cross-check-0002.md#r005-02), поздние уточнения [issue-00004](../../issues/potential/issue-00004.md#уточнение-task-0003010), [issue-00051](../../issues/potential/issue-00051.md), [issue-00052](../../issues/potential/issue-00052.md). Исторические числовые пробы аудита не запускались заново; здесь сопоставлены объявления и пути по коду.
+Основание — [R005-02](../code-audit/cross-check-0002.md#r005-02), поздние уточнения [issue-00004](../../issues/closed/issue-00004.md#уточнение-task-0003010), [issue-00051](../../issues/potential/issue-00051.md), [issue-00052](../../issues/potential/issue-00052.md). Исторические числовые пробы аудита не запускались заново; здесь сопоставлены объявления и пути по коду.
 
 ## Форма, prepared, _source и запрос обновления
 

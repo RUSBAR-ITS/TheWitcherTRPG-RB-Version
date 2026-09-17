@@ -1302,9 +1302,9 @@ BODY.value/SPD.value во всех этих входах остаются 5. Hea
 
 ### Периодические воздействия и переходы
 
-У семи исходных Deadly ADD объектов real getFieldForProperty возвращает SchemaField, миграция JSON-строки успешна, запись в turnStartEffects отсутствует. Реальный applyCombatEffects не вызвал урон. Status bleed/poison сам по себе не заменяет эту запись. Это ещё семь источников прежней [issue-00328](../../issues/potential/issue-00328.md).
+У семи исходных Deadly ADD объектов real getFieldForProperty возвращает SchemaField, миграция JSON-строки успешна, запись в turnStartEffects отсутствует. Реальный applyCombatEffects не вызвал урон. Status bleed/poison сам по себе не заменяет эту запись. Это ещё семь источников прежней [issue-00328](../../issues/closed/issue-00328.md).
 
-Положительные контроли только в памяти: у левой исходной руки KQZRzczsSx1XY63m и Spetic Shock tF3hsi4yZOMJ6xuW mode=2 заменён на override=5. Подготовленная запись получила amount=2/3, ignoreArmor=true как boolean и spDamage=0. Настоящие generalCombatHook → applyDamageFromStatus → DamageInstance передали 2/3 в перехваченный Actor.applyDamage; type далее отсутствует ([issue-00021](../../issues/potential/issue-00021.md)). Это диагностические копии, не исправленные экспорты.
+Положительные контроли только в памяти: у левой исходной руки KQZRzczsSx1XY63m и Spetic Shock tF3hsi4yZOMJ6xuW mode=2 заменён на override=5. Подготовленная запись получила amount=2/3, ignoreArmor=true как boolean и spDamage=0. Настоящие generalCombatHook → applyDamageFromStatus → DamageInstance передали 2/3 в перехваченный Actor.applyDamage; type далее отсутствует ([issue-00021](../../issues/closed/issue-00021.md)). Это диагностические копии, не исправленные экспорты.
 
 Heart treated Me9fgalLrB0i9Z2O использует NumberField bleed.damage.modifier. При пустой карте поле undefined, core выдаёт предупреждение «must be a number», обработчик не вызывает урон. При исходной записи Actor.bleed с amount=2 настоящая схема создаёт modifier=0, эффект прибавляет 2, обработчик передаёт 4. Числовой модификатор готовой записи отделён от семи ADD объектов; восьмой источник сценария не увеличивает их количество.
 
@@ -1328,9 +1328,9 @@ Heart treated Me9fgalLrB0i9Z2O использует NumberField bleed.damage.mod
 
 Шесть RollTable-пакетов: 128 таблиц, 995 результатов, 254 documentUuid. Все 252 разрешимые цели присутствуют, две ссылки Mounted Control Loss отсутствуют — прежняя [issue-00323](../../issues/closed/issue-00323.md). Циклов разрешимых ссылок нет. Все тексты/name результатов, диапазоны, ссылки, корневые ключи и хеши повторно сопоставлены с 128 карточками; типовая запись [n,n] в style сверена с номером строки результата.
 
-Повтор настоящих RollTable/Roll/Die/TableResult/TextEditor и HBS охватил 1728 прямых исходов, 985 достижимых resultId, все 995 getHTML и 51 inline. Десять недостижимых результатов обучения остаются [issue-00321](../../issues/closed/issue-00321.md). Combat дополнительно: 201 исход, 402 повторных draw, 22 draw мировых копий в памяти, 100 перехваченных сообщений. normalize(save:false) не записывал источник. Пересечение Monster на 9 — [issue-00322](../../issues/closed/issue-00322.md); inline x2/x3 — [issue-00319](../../issues/closed/issue-00319.md). Прежние составные проверки глубины [issue-00320](../../issues/potential/issue-00320.md) остаются историческим доказательством .056; полный повтор всех 15420 вариантов глубины в .061 не выполнялся, исходники и хеш 128 таблиц совпадают.
+Повтор настоящих RollTable/Roll/Die/TableResult/TextEditor и HBS охватил 1728 прямых исходов, 985 достижимых resultId, все 995 getHTML и 51 inline. Десять недостижимых результатов обучения остаются [issue-00321](../../issues/closed/issue-00321.md). Combat дополнительно: 201 исход, 402 повторных draw, 22 draw мировых копий в памяти, 100 перехваченных сообщений. normalize(save:false) не записывал источник. Пересечение Monster на 9 — [issue-00322](../../issues/closed/issue-00322.md); inline x2/x3 — [issue-00319](../../issues/closed/issue-00319.md). Прежние составные проверки глубины [issue-00320](../../issues/closed/issue-00320.md) остаются историческим доказательством .056; полный повтор всех 15420 вариантов глубины в .061 не выполнялся, исходники и хеш 128 таблиц совпадают.
 
-CriticalWounds: строгая повторная подготовка всех 94 Item/4 Folder, 79 эффектов/360 changes и 62 treat. В полях changes 341 NumberField, 16 SchemaField, три неизвестных commonspeech ([issue-00004](../../issues/potential/issue-00004.md)). В источниках 356 null priority и четыре явных 0; нулевой приоритет не заменён стандартным. Единственный disabled — новая issue-00329. Все 16 ADD объектов остаются без записи после initial: 13 bleed, poison, suffocation, acid. Числовой modifier Heart treated в эти 16 не входит.
+CriticalWounds: строгая повторная подготовка всех 94 Item/4 Folder, 79 эффектов/360 changes и 62 treat. В полях changes 341 NumberField, 16 SchemaField, три неизвестных commonspeech ([issue-00004](../../issues/closed/issue-00004.md)). В источниках 356 null priority и четыре явных 0; нулевой приоритет не заменён стандартным. Единственный disabled — новая issue-00329. Все 16 ADD объектов остаются без записи после initial: 13 bleed, poison, suffocation, acid. Числовой modifier Heart treated в эти 16 не входит.
 
 Общий граф лечения: 31 тройная цепочка и один конечный none; все 62 UUID разрешаются, циклов и переходов между степенями нет. Пять смен location — один переход Simple ([issue-00325](../../issues/closed/issue-00325.md)) и четыре Difficult ([issue-00327](../../issues/closed/issue-00327.md)). Отсутствие states у Decapitation не объявлено повреждением графа.
 
@@ -1461,7 +1461,7 @@ fromUuid — Map настоящих Item; индекс — массив наст
 
 Девять исходных Item: saPd4IMUCv5qZE60, zaKPfDQFGTR8FKju, c3H8Xx7WYCcM37k6, ujz1IMKCXoJF9w91, flpxY7FVPGevwfcg, Rf0m4mGjeHEl0PxP, UImIh794nOy21jg2, tiVrEesPSzZ64HpZ, 5gnx9xNF52ap9PYi. У каждого turnStartEffects={}, настоящий applyCombatEffects не вызывает damage. Семь Actor имеют bleed, один suffocation, Torn Stomach не задаёт статуса.
 
-Положительные диагностические копии только в памяти: saPd4IMUCv5qZE60/bleed, tiVrEesPSzZ64HpZ/suffocation, 5gnx9xNF52ap9PYi/acid; только mode объекта заменён 2→5. Те же модели создали по одной записи: amount=2/3/4, ignoreArmor=true (boolean), spDamage=0 (number), acid сохранил type до обработчика. Реальные generalCombatHook → applyDamageFromStatus → DamageInstance дошли до перехваченного Actor.applyDamage; получены три вызова с amount=2/3/4, derivedStat=hp, bypassesWornArmor/NaturalArmor=true. Тип DamageInstance в acid-контроле отсутствует, потому что generalCombatHook не передаёт damage.type — [issue-00021](../../issues/potential/issue-00021.md).
+Положительные диагностические копии только в памяти: saPd4IMUCv5qZE60/bleed, tiVrEesPSzZ64HpZ/suffocation, 5gnx9xNF52ap9PYi/acid; только mode объекта заменён 2→5. Те же модели создали по одной записи: amount=2/3/4, ignoreArmor=true (boolean), spDamage=0 (number), acid сохранил type до обработчика. Реальные generalCombatHook → applyDamageFromStatus → DamageInstance дошли до перехваченного Actor.applyDamage; получены три вызова с amount=2/3/4, derivedStat=hp, bypassesWornArmor/NaturalArmor=true. Тип DamageInstance в acid-контроле отсутствует, потому что generalCombatHook не передаёт damage.type — [issue-00021](../../issues/closed/issue-00021.md).
 
 У этих контролей ChatMessage/renderTemplate и getLocationObject('torso') — фасады, Actor.applyDamage только записывает аргументы. Урон после брони/сопротивления, конечные HP, updateCombat и таймеры не исполнялись. Никакой режим или данные в репозитории не изменены. Контроль override не является согласованным решением совмещения одноимённых записей.
 
@@ -1471,7 +1471,7 @@ fromUuid — Map настоящих Item; индекс — массив наст
 
 Сравнение с ранее разобранными Simple/Complex: там суммарно 50 файлов, 33 эффекта и 116 числовых add; в Difficult добавлены множители и объекты. Во всех трёх группах общая модель treatment/followUp; отличие сроков: max(8/12/15−BODY.max,1). Проверены принадлежность/ID текущих данных; прежние сценарии .058/.059 не объявлены повторно исполненными. Сквозная проверка всех семи пакетов остаётся частью .061.
 
-Новые potential: [issue-00327](../../issues/closed/issue-00327.md) — локации двух stabilized правых переломов; [issue-00328](../../issues/potential/issue-00328.md) — ADD объекта урона. Уточнены прежние issue-00004/00021/00036/00121/00127/00288/00326. Новых дублей по commonspeech, max/value, имени эффекта и ожиданию записей не создано. Возврат bleed в treated рук и границы HTML-автоматизации сохранены в карточках без оценки правил. Регистрация разрешена TASK-0003, подтверждения пользователя и исправления не выполнялись.
+Новые potential: [issue-00327](../../issues/closed/issue-00327.md) — локации двух stabilized правых переломов; [issue-00328](../../issues/closed/issue-00328.md) — ADD объекта урона. Уточнены прежние issue-00004/00021/00036/00121/00127/00288/00326. Новых дублей по commonspeech, max/value, имени эффекта и ожиданию записей не создано. Возврат bleed в treated рук и границы HTML-автоматизации сохранены в карточках без оценки правил. Регистрация разрешена TASK-0003, подтверждения пользователя и исправления не выполнялись.
 
 ### Итоговая сверка документов
 
@@ -1826,7 +1826,7 @@ RandomCharacter выбирает Human/Elf/Dwarf/Witcher/Halfling с долям�
 
 Четыре Decade имеют вероятность опасности 10/50/25/75% для Cautious/Non-Neutral/Normal/Risky. При опасности выполняются вводный текст, Dangers и Outcome, при отсутствии — вводный текст и Outcome. Реальные сценарии по обе стороны порогов 90/50/75/25 получили минимум 2 текста (ничего в Outcome) и максимум 18 (умерший враг плюс умерший союзник). Последовательность ветвей проверена трассами.
 
-Повторно воспроизведены четыре отказа RandomCharacter: Human/Northern, Human/Nilfgaard, Halfling/Human Lands и Halfling/Elderland Origin. Выбор Family and Parents=1, Parents=2, Parental Fate=2, Family Status=6 доходит до Most Influential Friend на глубине 6. В обоих происхождениях Halfling используется Family and Parents: Elderland. Прямые Human/Halfling на тех же гранях дали по 10 текстов при глубине 5. Пять контрольных ветвей RandomCharacter прошли: Human/Halfling с живыми родителями — 9, Elves/Dwarves с судьбой родителей — 10, Witcher — 7; все до глубины 5. [Issue-00320](../../issues/potential/issue-00320.md) дополнена, новых issues нет.
+Повторно воспроизведены четыре отказа RandomCharacter: Human/Northern, Human/Nilfgaard, Halfling/Human Lands и Halfling/Elderland Origin. Выбор Family and Parents=1, Parents=2, Parental Fate=2, Family Status=6 доходит до Most Influential Friend на глубине 6. В обоих происхождениях Halfling используется Family and Parents: Elderland. Прямые Human/Halfling на тех же гранях дали по 10 текстов при глубине 5. Пять контрольных ветвей RandomCharacter прошли: Human/Halfling с живыми родителями — 9, Elves/Dwarves с судьбой родителей — 10, Witcher — 7; все до глубины 5. [Issue-00320](../../issues/closed/issue-00320.md) дополнена, новых issues нет.
 
 ### Реальные исполнители и действия пользователя
 
@@ -1937,7 +1937,7 @@ WitcherCharacterSheet:133–137 готовит события, :154–156 выб
 
 Граф ацикличен; наибольшая глубина прямых таблиц этой порции — три вложенных перехода. Allies Generator возвращает 6/7 текстов для живого/умершего союзника, Enemies Generator — 7/8 для врага, Hunt Generator — 4/5 без/с осложнением. Dangers выбирает Events/Wounds/Enemy с частотами 30/30/40%; диапазоны с несколькими записями дают все записи, не один взвешенный выбор.
 
-Снаружи Witcher Background Generator даёт шесть текстов и глубину 4. Его ветка RandomCharacter на грани 11 даёт семь текстов и глубину 5. Исключение _depth>5, ранее отмеченное в [issue-00320](../../issues/potential/issue-00320.md) для семейных путей, здесь не воспроизвелось.
+Снаружи Witcher Background Generator даёт шесть текстов и глубину 4. Его ветка RandomCharacter на грани 11 даёт семь текстов и глубину 5. Исключение _depth>5, ранее отмеченное в [issue-00320](../../issues/closed/issue-00320.md) для семейных путей, здесь не воспроизвелось.
 
 Четыре Decade проверены по обе стороны порогов Cautious=90, Non-Neutral=50, Normal=75, Risky=25. Без опасности выбраны вводный текст и Outcome. При опасности выбраны вводный текст, Dangers и Outcome. С Dangers=10 (умерший враг) и Outcome=benefit получено 12 конечных текстов, максимальная глубина 4. Эти проверки добавлены в материалы [TASK-0003.056](../../tasks/task-0003.056.md); они не закрывают полный аудит её 13 файлов.
 
@@ -2137,7 +2137,7 @@ system.json:35,64–69 регистрирует Character-gen_Sub-tables как 
 
 Family Fate: Northern на 10 не содержит ссылки на статус; Parental Fate: Nilfgaard на 10 сохраняет Which Parent, но также не содержит статуса. Оба случая воспроизведены. Они оставлены как особенности с неопределённой намеренностью; различие вариантов само по себе не объявлено дефектом и не исправлено. У Parental Fate позиция общей Which Parent [1,10] влияет на порядок: при большинстве граней она стоит перед текстом судьбы.
 
-Выявлена другая, технически воспроизведённая проблема — [issue-00320](../../issues/potential/issue-00320.md). Максимум четыре перехода внутри подтаблиц превращается в шесть после добавления двух уровней RandomCharacter → расовый Background Generator:
+Выявлена другая, технически воспроизведённая проблема — [issue-00320](../../issues/closed/issue-00320.md). Максимум четыре перехода внутри подтаблиц превращается в шесть после добавления двух уровней RandomCharacter → расовый Background Generator:
 
 | _depth | Звено |
 | --- | --- |
@@ -3154,11 +3154,11 @@ modifier-configuration.css имеет более специфичный селе
 
 | Граница | Issues / решение сверки |
 | --- | --- |
-| Запуск и пустой контекст Combat | [6](../../issues/potential/issue-00006.md) — любое update; [145](../../issues/potential/issue-00145.md) дополнена общей ветвью. Новая[299](../../issues/potential/issue-00299.md) про ожидание записей имеет другую причину. |
+| Запуск и пустой контекст Combat | [6](../../issues/closed/issue-00006.md) — любое update; [145](../../issues/potential/issue-00145.md) дополнена общей ветвью. Новая[299](../../issues/potential/issue-00299.md) про ожидание записей имеет другую причину. |
 | Выбор Actor и устаревшая кнопка | [149](../../issues/potential/issue-00149.md) уже включала combat/applyDamage, дополнена исполнением без нового дубля; [239](../../issues/potential/issue-00239.md) — Item у onDamage. [108](../../issues/potential/issue-00108.md) — другой repair handler/event.target, не переносится на боевые closures. |
-| Схемы до и после сообщения | [257](../../issues/potential/issue-00257.md) — duration; [258](../../issues/potential/issue-00258.md) — critEffectModifier; [297](../../issues/potential/issue-00297.md) — plain properties в rollOnlyDmg. Успешный обычный AttackMessageData-контроль не устраняет ранний барьер rollOnlyDmg. |
+| Схемы до и после сообщения | [257](../../issues/potential/issue-00257.md) — duration; [258](../../issues/closed/issue-00258.md) — critEffectModifier; [297](../../issues/potential/issue-00297.md) — plain properties в rollOnlyDmg. Успешный обычный AttackMessageData-контроль не устраняет ранний барьер rollOnlyDmg. |
 | Форма предметных воздействий | [70](../../issues/potential/issue-00070.md) — producer/преобразование; [295](../../issues/potential/issue-00295.md) — неизвестный ID; applied-array после сообщения и Item TypedObject различены. |
-| Тип и интенсивность статуса | [21](../../issues/potential/issue-00021.md), [22](../../issues/potential/issue-00022.md) повторены; [291](../../issues/potential/issue-00291.md) получила реальный источник отрицательного итогового damage. |
+| Тип и интенсивность статуса | [21](../../issues/closed/issue-00021.md), [22](../../issues/potential/issue-00022.md) повторены; [291](../../issues/potential/issue-00291.md) получила реальный источник отрицательного итогового damage. |
 | Броня/щиты/общий массив | [282](../../issues/potential/issue-00282.md), [292](../../issues/potential/issue-00292.md) — отдельные SP/shield-записи; [285](../../issues/potential/issue-00285.md) — shared DamageInstance по локациям; [299](../../issues/potential/issue-00299.md) — несколько отдельных status-запросов HP. Это не один дефект. |
 | Модификаторы и типы сопротивлений | [25](../../issues/potential/issue-00025.md), [26](../../issues/potential/issue-00026.md), [27](../../issues/potential/issue-00027.md), [280](../../issues/potential/issue-00280.md), [286](../../issues/potential/issue-00286.md): неверный путь, кратность, flat и разные типы имеют разные условия; статус без fire отдельно 21. |
 | Перечисление локаций | [32](../../issues/potential/issue-00032.md): getAllLocations теряет контекст. Корректный единичный tailWing в dialog/location не опровергает дефект списка. |
@@ -3760,7 +3760,7 @@ Callbacks чата исполнялись через реальную регис
 | [issue-00255](../../issues/potential/issue-00255.md) | Кнопки щита и лечения обращаются к отсутствующему Actor-источнику |
 | [issue-00256](../../issues/potential/issue-00256.md) | Лечение из чата передаёт отрицательные и нечисловые значения в HP |
 | [issue-00257](../../issues/potential/issue-00257.md) | Схема сообщений удаляет длительность эффектов из damage |
-| [issue-00258](../../issues/potential/issue-00258.md) | Сообщение защиты теряет модификатор тяжести критической травмы |
+| [issue-00258](../../issues/closed/issue-00258.md) | Сообщение защиты теряет модификатор тяжести критической травмы |
 
 Дополнены [issue-00005](../../issues/potential/issue-00005.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00025](../../issues/potential/issue-00025.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00044](../../issues/potential/issue-00044.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00108](../../issues/potential/issue-00108.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00127](../../issues/potential/issue-00127.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00183](../../issues/potential/issue-00183.md), [issue-00184](../../issues/potential/issue-00184.md), [issue-00234](../../issues/closed/issue-00234.md), [issue-00239](../../issues/potential/issue-00239.md), [issue-00249](../../issues/potential/issue-00249.md), [issue-00253](../../issues/potential/issue-00253.md). Границы сравнений записаны в каждой карточке: base допускается ядром; chat.getSpeaker корректно получает источник; schema-очистка duration предшествует clone; formula/fumble проблемы прежние; async-кнопки дополняют issue-00127. Предыдущие проверки query, формул, flags и полного ремонта не объявлены выполненными заново.
 
@@ -4295,7 +4295,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 
 | Новая карточка | Наблюдение |
 | --- | --- |
-| [issue-00218](../../issues/open/issue-00218.md) | Лист добычи не включает предметы типа mutagen |
+| [issue-00218](../../issues/closed/issue-00218.md) | Лист добычи не включает предметы типа mutagen |
 | [issue-00219](../../issues/potential/issue-00219.md) | Общая стоимость в листе добычи выводится без значения |
 | [issue-00220](../../issues/potential/issue-00220.md) | Покупка не проверяет запас, количество и итог оплаты |
 | [issue-00221](../../issues/potential/issue-00221.md) | Покупка завершается до записей и не согласует их результаты |
@@ -4305,7 +4305,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | [issue-00225](../../issues/potential/issue-00225.md) | Перенос профессии в Loot обращается к отсутствующим навыкам |
 | [issue-00226](../../issues/potential/issue-00226.md) | Пересчёт покупки зависит от script внутри HTML диалога |
 
-Сопоставлены и дополнены [issue-00034](../../issues/potential/issue-00034.md), [issue-00039](../../issues/potential/issue-00039.md), [issue-00040](../../issues/potential/issue-00040.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00116](../../issues/potential/issue-00116.md), [issue-00136](../../issues/potential/issue-00136.md), [issue-00166](../../issues/potential/issue-00166.md), [issue-00168](../../issues/potential/issue-00168.md), [issue-00169](../../issues/potential/issue-00169.md), [issue-00206](../../issues/open/issue-00206.md), [issue-00207](../../issues/potential/issue-00207.md), [issue-00208](../../issues/open/issue-00208.md). Наблюдение 226 основано на вставке script через innerHTML и требует проверки чистого клиента; оно не описано как уже воспроизведённая браузерная ошибка. Raw Actor.name в строке выбора отмечен в карточке листа как неэкранированный HTML; инъекция/влияние на работу клиента не исследовались. Новые и прежние **226 карточек остаются potential**; подтверждения, исправления и закрытия отсутствуют.
+Сопоставлены и дополнены [issue-00034](../../issues/potential/issue-00034.md), [issue-00039](../../issues/closed/issue-00039.md), [issue-00040](../../issues/closed/issue-00040.md), [issue-00063](../../issues/potential/issue-00063.md), [issue-00116](../../issues/potential/issue-00116.md), [issue-00136](../../issues/potential/issue-00136.md), [issue-00166](../../issues/potential/issue-00166.md), [issue-00168](../../issues/potential/issue-00168.md), [issue-00169](../../issues/potential/issue-00169.md), [issue-00206](../../issues/closed/issue-00206.md), [issue-00207](../../issues/closed/issue-00207.md), [issue-00208](../../issues/closed/issue-00208.md). Наблюдение 226 основано на вставке script через innerHTML и требует проверки чистого клиента; оно не описано как уже воспроизведённая браузерная ошибка. Raw Actor.name в строке выбора отмечен в карточке листа как неэкранированный HTML; инъекция/влияние на работу клиента не исследовались. Новые и прежние **226 карточек остаются potential**; подтверждения, исправления и закрытия отсутствуют.
 
 ### Формальная проверка документов
 
@@ -4569,13 +4569,13 @@ Application/Document-оболочки и состав базового document-
 
 | ID | Наблюдение |
 | --- | --- |
-| [issue-00206](../../issues/open/issue-00206.md) | Экспорт добычи выбирает тип папки ActiveEffect вместо Actor |
-| [issue-00207](../../issues/potential/issue-00207.md) | Экспорт добычи завершается до пересчёта количества предметов |
-| [issue-00208](../../issues/open/issue-00208.md) | Экспорт добычи допускает отрицательный множитель количества |
+| [issue-00206](../../issues/closed/issue-00206.md) | Экспорт добычи выбирает тип папки ActiveEffect вместо Actor |
+| [issue-00207](../../issues/closed/issue-00207.md) | Экспорт добычи завершается до пересчёта количества предметов |
+| [issue-00208](../../issues/closed/issue-00208.md) | Экспорт добычи допускает отрицательный множитель количества |
 | [issue-00209](../../issues/potential/issue-00209.md) | Текущий лист монстра не предлагает редактировать категорию и оценку угрозы |
 | [issue-00210](../../issues/potential/issue-00210.md) | Старый шаблон монстра ссылается на отсутствующие изображения категорий |
 
-Новые пять карточек зарегистрированы по пункту 9 TASK-0003; все potential. Дополнены 16 прежних: [issue-00004](../../issues/potential/issue-00004.md), [issue-00013](../../issues/potential/issue-00013.md), [issue-00015](../../issues/potential/issue-00015.md), [issue-00018](../../issues/potential/issue-00018.md), [issue-00030](../../issues/potential/issue-00030.md), [issue-00031](../../issues/potential/issue-00031.md), [issue-00032](../../issues/potential/issue-00032.md), [issue-00039](../../issues/potential/issue-00039.md), [issue-00040](../../issues/potential/issue-00040.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00177](../../issues/potential/issue-00177.md), [issue-00180](../../issues/potential/issue-00180.md), [issue-00192](../../issues/potential/issue-00192.md), [issue-00199](../../issues/potential/issue-00199.md), [issue-00203](../../issues/potential/issue-00203.md), [issue-00205](../../issues/closed/issue-00205.md). Наблюдения sidebar HP/переводов дополнены в существующих issue-00203/00205, дубликаты не создавались. Всего **210 potential issues**, подтверждений пользователя, исправлений и закрытий нет.
+Новые пять карточек зарегистрированы по пункту 9 TASK-0003; все potential. Дополнены 16 прежних: [issue-00004](../../issues/closed/issue-00004.md), [issue-00013](../../issues/potential/issue-00013.md), [issue-00015](../../issues/potential/issue-00015.md), [issue-00018](../../issues/potential/issue-00018.md), [issue-00030](../../issues/potential/issue-00030.md), [issue-00031](../../issues/potential/issue-00031.md), [issue-00032](../../issues/potential/issue-00032.md), [issue-00039](../../issues/closed/issue-00039.md), [issue-00040](../../issues/closed/issue-00040.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00177](../../issues/potential/issue-00177.md), [issue-00180](../../issues/potential/issue-00180.md), [issue-00192](../../issues/potential/issue-00192.md), [issue-00199](../../issues/potential/issue-00199.md), [issue-00203](../../issues/potential/issue-00203.md), [issue-00205](../../issues/closed/issue-00205.md). Наблюдения sidebar HP/переводов дополнены в существующих issue-00203/00205, дубликаты не создавались. Всего **210 potential issues**, подтверждений пользователя, исправлений и закрытий нет.
 
 ### Формальная проверка и сохранность
 
@@ -5660,7 +5660,7 @@ Hidden-строки не вырезаются из HTML. .hidden-from-view ск�
 | [issue-00146](../../issues/potential/issue-00146.md) | Регион без числовой длительности считается истёкшим при отсчёте |
 | [issue-00147](../../issues/closed/issue-00147.md) | Подпись tokenMoveWithin обещает исполнение макроса до движения |
 
-Дополнены [issue-00006](../../issues/potential/issue-00006.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00009](../../issues/potential/issue-00009.md), [issue-00074](../../issues/potential/issue-00074.md), [issue-00075](../../issues/potential/issue-00075.md), [issue-00076](../../issues/potential/issue-00076.md), [issue-00128](../../issues/potential/issue-00128.md), [issue-00129](../../issues/potential/issue-00129.md), [issue-00137](../../issues/closed/issue-00137.md). Статусы всех проблем остаются potential. Предложения в карточках не являются согласованными исправлениями.
+Дополнены [issue-00006](../../issues/closed/issue-00006.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00009](../../issues/potential/issue-00009.md), [issue-00074](../../issues/potential/issue-00074.md), [issue-00075](../../issues/potential/issue-00075.md), [issue-00076](../../issues/potential/issue-00076.md), [issue-00128](../../issues/potential/issue-00128.md), [issue-00129](../../issues/potential/issue-00129.md), [issue-00137](../../issues/closed/issue-00137.md). Статусы всех проблем остаются potential. Предложения в карточках не являются согласованными исправлениями.
 
 ### Техническая сверка и сохранность
 
@@ -7938,7 +7938,7 @@ PY
 
 ### Наблюдения и пределы
 
-Новые [issue-00019](../../issues/potential/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/potential/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/potential/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/potential/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/closed/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
+Новые [issue-00019](../../issues/potential/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/closed/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/potential/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/closed/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/closed/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
 
 Проверки не включают запуск мира/браузера, запись документов, сетевые запросы, импорт компедиумов, полный боевой цикл, экономику и соответствие рулбуку. Исходники и игровые данные не изменялись. Карточки фиксируют реальные обращения и пределы их изучения; это основание для дальнейших порций, а не доказательство исправности всей системы.
 
@@ -8196,7 +8196,7 @@ PY
 
 ### Наблюдения и пределы
 
-Зарегистрированы [issue-00015](../../issues/potential/issue-00015.md), [issue-00016](../../issues/closed/issue-00016.md), [issue-00017](../../issues/potential/issue-00017.md), [issue-00018](../../issues/potential/issue-00018.md); дополнена [issue-00004](../../issues/potential/issue-00004.md). Все остаются potential, подтверждение пользователем и исправления не выполнялись.
+Зарегистрированы [issue-00015](../../issues/potential/issue-00015.md), [issue-00016](../../issues/closed/issue-00016.md), [issue-00017](../../issues/potential/issue-00017.md), [issue-00018](../../issues/potential/issue-00018.md); дополнена [issue-00004](../../issues/closed/issue-00004.md). Все остаются potential, подтверждение пользователем и исправления не выполнялись.
 
 Мир, браузерные клики, сохранение документов/компедиумов и полный процесс применения ActiveEffect не проверялись. Наблюдение new CommonActorData({}) не доказывает окончательное состояние Actor после клиентского/серверного цикла создания. Совпадение строковых JSON-путей не доказывает исполнение эффектов или корректность механик по рулбуку. Полный анализ соседних файлов остаётся следующим порциям.
 
@@ -8657,7 +8657,7 @@ PY
 
 Сверены вызовы регистрации и определения обработчиков чата, классов документов, API наград/эффектов, метод WitcherActor.useItem и потребители game.api в rewardsMixin. Проверка зависимого определения не считается полным разбором его файла. Типы данных и листов дополнительно сверяются в порции 3.
 
-Изолированно выполнен исходный ready callback в Node vm с подменой импортов и Foundry API: без pack — TypeError и отсутствие дальнейших шагов; контрольный pack дал getIndex, hotbarDrop, socket, deprecations. Зарегистрирована [issue-00002](../../issues/potential/issue-00002.md). Браузерные сценарии и исполнение макроса не проверялись.
+Изолированно выполнен исходный ready callback в Node vm с подменой импортов и Foundry API: без pack — TypeError и отсутствие дальнейших шагов; контрольный pack дал getIndex, hotbarDrop, socket, deprecations. Зарегистрирована [issue-00002](../../issues/closed/issue-00002.md). Браузерные сценарии и исполнение макроса не проверялись.
 
 Результат: две карточки, две строки «Проверено». Исходники не изменялись. Итоговая проверка ссылок и покрытия выполняется также после всех порций.
 
@@ -8667,7 +8667,7 @@ PY
 
 Буквальные обращения CONFIG.WITCHER и шаблонного config сопоставлены с определениями; динамические группы проверены в modifierMixin/baseMixin. Сверены поля Stat, Skill, combatEffects и intData. Прямой буквальный потребитель Crit не найден; damageMixin.applyCritWound читает компедиум. Недостижимость Crit через динамический доступ не утверждается.
 
-Изолированные вызовы настоящего кода с подменой Foundry API: handleStatusCounterIntegration при активном statuscounter и duration=2 даёт TypeError; chooseSkill для общего языка возвращает путь с commonspeech вместо существующего commonsp. Зарегистрированы [issue-00003](../../issues/potential/issue-00003.md) и [issue-00004](../../issues/potential/issue-00004.md). Реальный statuscounter, сохранение эффекта и бросок в мире не запускались.
+Изолированные вызовы настоящего кода с подменой Foundry API: handleStatusCounterIntegration при активном statuscounter и duration=2 даёт TypeError; chooseSkill для общего языка возвращает путь с commonspeech вместо существующего commonsp. Зарегистрированы [issue-00003](../../issues/potential/issue-00003.md) и [issue-00004](../../issues/closed/issue-00004.md). Реальный statuscounter, сохранение эффекта и бросок в мире не запускались.
 
 В ядре 14.367.0 дополнительно проверен setter CONFIG.statusEffects (/opt/foundryvtt/client/client.mjs:30–38), копирующий переданный массив в реестр ядра: присваивание в init само по себе не объявлено ошибкой. Строковые типы changes сверены с миграцией формата в /opt/foundryvtt/common/documents/active-effect.mjs.
 
@@ -8691,7 +8691,7 @@ Actor.mystery и Item.clue/obstacle/skill отсутствуют в documentType
 
 Изолированные проверки исходных функций в Node vm с подменой API:
 
-- hooks + два настоящих зависимых обработчика: update флагов без round/turn записал HP 5→7 и duration региона 3→2 — [issue-00006](../../issues/potential/issue-00006.md).
+- hooks + два настоящих зависимых обработчика: update флагов без round/turn записал HP 5→7 и duration региона 3→2 — [issue-00006](../../issues/closed/issue-00006.md).
 - Helpers: получены 59 путей и 17 регистраций; проверены сравнение, CSV, разность, and/or, capitalize, eachLimit за числом ключей и перепутанные подписи ног — [issue-00007](../../issues/closed/issue-00007.md). eachLimit описан без утверждения достижимости ошибочного входа из UI.
 - Query: true до разрешения Promise цели и при отсутствии метода; unknown=false, constructor=true — [issue-00008](../../issues/potential/issue-00008.md). Цели подменены управляемыми заглушками; реальные операции не выполнялись.
 - Query регионов: вложенный метод не вызван при true, deleteSpellVisualEffect=false. Настоящий deleteSpellVisualEffect при isGM=false даёт ReferenceError: item is not defined — [issue-00009](../../issues/potential/issue-00009.md).

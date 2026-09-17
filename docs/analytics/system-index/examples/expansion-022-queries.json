@@ -624,10 +624,10 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00006.md",
+          "docs/issues/closed/issue-00006.md",
           "docs/issues/potential/issue-00022.md",
           "docs/issues/potential/issue-00299.md",
-          "docs/issues/potential/issue-00328.md"
+          "docs/issues/closed/issue-00328.md"
         ]
       },
       "basis": "196две ветви/noawait/amount"

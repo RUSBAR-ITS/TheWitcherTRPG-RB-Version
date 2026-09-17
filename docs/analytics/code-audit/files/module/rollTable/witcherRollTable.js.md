@@ -1,6 +1,6 @@
 # module/rollTable/witcherRollTable.js
 
-Исходник: [module/rollTable/witcherRollTable.js](../../../../../../module/rollTable/witcherRollTable.js); дата 2026-09-17, ветка dev, 14.3.1.00026. Статус: проверено по исходнику; исполнение в Foundry отложено. Основание: [issue-00332](../../../../../issues/open/issue-00332.md).
+Исходник: [module/rollTable/witcherRollTable.js](../../../../../../module/rollTable/witcherRollTable.js); дата 2026-09-17, ветка dev, 14.3.1.00026. Статус: проверено по исходнику; исполнение в Foundry отложено. Основание: [issue-00332](../../../../../issues/closed/issue-00332.md).
 
 ## Назначение
 

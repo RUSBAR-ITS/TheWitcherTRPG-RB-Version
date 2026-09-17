@@ -2,7 +2,7 @@
 
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
-М07; [реализация и пределы проверок](../../../../../../../../issues/open/issue-00332.md).
+М07; [реализация и пределы проверок](../../../../../../../../issues/closed/issue-00332.md).
 
 TypedObjectField(turnStartEffects) использует новый TurnStartEffectField вместо общего SchemaField. Только damage.modifier использует TurnStartDamageModifierField. ADD объекта объединяет явно заданные поля по priority, не складывает базовые amount; отсутствующие поля дельты не стирают уже заданный modifier. Числовой ADD отсутствующего modifier начинает с нуля. Сам по себе modifier не создаёт положительный amount. heal.modifier и остальные SchemaField не менялись.
 
@@ -124,7 +124,7 @@ applyGeneralCombatHooks вызывает асинхронные регенера
 
 ## Связанные проблемы
 
-[issue-00006](../../../../../../../../issues/potential/issue-00006.md) — момент запуска; [issue-00021](../../../../../../../../issues/potential/issue-00021.md) — потеря damage.type; [issue-00022](../../../../../../../../issues/potential/issue-00022.md) — heal.modifier не учитывается; [issue-00023](../../../../../../../../issues/potential/issue-00023.md) — расход смешанного эффекта временных HP.
+[issue-00006](../../../../../../../../issues/closed/issue-00006.md) — момент запуска; [issue-00021](../../../../../../../../issues/closed/issue-00021.md) — потеря damage.type; [issue-00022](../../../../../../../../issues/potential/issue-00022.md) — heal.modifier не учитывается; [issue-00023](../../../../../../../../issues/potential/issue-00023.md) — расход смешанного эффекта временных HP.
 
 ## История актуализации
 
@@ -180,7 +180,7 @@ Consumer [generalCombatHook](../../../../../../../../../module/scripts/combat/ge
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): семь ADD объектов (шесть bleed, один poison) адресуют SchemaField элемента TypedObjectField, мигрируют в объекты, но оставляют карту пустой ([issue-00328](../../../../../../../../issues/potential/issue-00328.md)). Heart treated — другой путь: NumberField bleed.damage.modifier; без bleed получает warning/undefined, с заранее подготовленной записью amount=2/модификатором 0 даёт modifier=2 и итог урона 4. Override-копии левой руки/Spetic в памяти создают запись с boolean ignoreArmor=true и spDamage=0.
+[Deadly](../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): семь ADD объектов (шесть bleed, один poison) адресуют SchemaField элемента TypedObjectField, мигрируют в объекты, но оставляют карту пустой ([issue-00328](../../../../../../../../issues/closed/issue-00328.md)). Heart treated — другой путь: NumberField bleed.damage.modifier; без bleed получает warning/undefined, с заранее подготовленной записью amount=2/модификатором 0 даёт modifier=2 и итог урона 4. Override-копии левой руки/Spetic в памяти создают запись с boolean ignoreArmor=true и spDamage=0.
 
 [Протокол и ограничения](../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

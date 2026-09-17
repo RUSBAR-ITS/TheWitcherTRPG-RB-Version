@@ -2,7 +2,7 @@
 
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
-М09; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+М09; [реализация и пределы проверок](../../../../../../issues/closed/issue-00332.md).
 
 createHealMessage возвращает Promise ChatMessage.create после await renderTemplate. calculateHealValue и пределы HP не менялись; сам этот метод не сохраняет HP.
 

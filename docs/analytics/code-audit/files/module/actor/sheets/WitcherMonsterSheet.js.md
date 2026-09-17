@@ -4,17 +4,17 @@
 
 В #exportLoot (169–237), после checkIfItemHasRollTable и только для not-found, новое количество сравнивается с item._source.system.quantity. Поле определено как StringField в [commonItemData.js](../../data/item/commonItemData.js.md), поэтому рассчитанное число приводится к строке. Неизменная стопка засчитывается без update, следующие Items/генераторы обрабатываются. При реальной записи сохраняются await, проверка возвращённого документа и остановка при отказе. Render ждёт завершения цикла. Контракт API Foundry не изменён.
 
-[Согласование, 6/6 изолированных проверок и оставшийся игровой сценарий](../../../../../../issues/potential/issue-00207.md#noop-fix). Остальные методы не менялись; исторические записи ниже относятся к своим версиям.
+[Согласование и 6/6 изолированных проверок](../../../../../../issues/closed/issue-00207.md#noop-fix); [игровая приёмка .00030](../../../../../../issues/closed/issue-00207.md#acceptance-00030) пройдена после перезапуска. Остальные методы не менялись; исторические записи ниже относятся к своим версиям.
 
 ## Актуализация 2026-09-17 — 14.3.1.00029
 
 Явный тип Actor для поиска/создания папки. Поле multiple: min1/step1/required, valueAsNumber; Number.isSafeInteger и значение ≥1 проверяются до папки/Actor.create, при отказе локализованное предупреждение и return. Обработка Items из М05 сохранена. Основные методы: getOrCreateFolder (153–167), #exportLoot (169–234). Зависимость: WITCHER.Monster.lootInvalidMultiplier в en/ru. Проверки: полный модуль в VM с фасадами внешних API; создание/reuse папки, отказ без записей, multiplier1/2, фиксированное количество/формула.
 
-[Реализация, изолированные проверки и очередь игровой приёмки](../../../../../../issues/open/issue-00206.md#implementation). Исторические разборы ниже сохраняют прежние результаты; игровой запуск текущего изменения отложен пользователем.
+[Реализация, изолированные проверки и очередь игровой приёмки](../../../../../../issues/closed/issue-00206.md#implementation). Исторические разборы ниже сохраняют прежние результаты; игровой запуск текущего изменения отложен пользователем.
 
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
-М05; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+М05; [реализация и пределы проверок](../../../../../../issues/closed/issue-00332.md).
 
 static #exportLoot обрабатывает снимок исходных Items. Сначала нормализует обычные стопки, затем генераторы: multiplier не должен повторно умножить уже выданные предметы. Каждый helper/update ожидается; fallback количества разрешён только для not-found. При failed/partial цикл прекращается с отчётом, сохранённая часть остаётся для проверки; render листа выполняется после цикла. Новые Items не обходятся как генераторы. Это последовательность одного экспорта, не транзакция и не защита от двух клиентов.
 
@@ -121,7 +121,7 @@ registerSheets импортирует default WitcherMonsterSheet и регис�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../issues/potential/issue-00004.md), [issue-00013](../../../../../../issues/potential/issue-00013.md), [issue-00018](../../../../../../issues/potential/issue-00018.md), [issue-00030](../../../../../../issues/potential/issue-00030.md), [issue-00032](../../../../../../issues/potential/issue-00032.md), [issue-00039](../../../../../../issues/potential/issue-00039.md), [issue-00040](../../../../../../issues/potential/issue-00040.md), [issue-00167](../../../../../../issues/potential/issue-00167.md), [issue-00177](../../../../../../issues/potential/issue-00177.md), [issue-00180](../../../../../../issues/potential/issue-00180.md), [issue-00192](../../../../../../issues/potential/issue-00192.md), [issue-00199](../../../../../../issues/potential/issue-00199.md), [issue-00203](../../../../../../issues/potential/issue-00203.md), [issue-00205](../../../../../../issues/closed/issue-00205.md), [issue-00206](../../../../../../issues/open/issue-00206.md), [issue-00207](../../../../../../issues/potential/issue-00207.md), [issue-00208](../../../../../../issues/open/issue-00208.md), [issue-00209](../../../../../../issues/potential/issue-00209.md). Прежние наблюдения дополнены по фактическим маршрутам. Новые остаются potential; игровые правила и код не изменялись.
+[issue-00004](../../../../../../issues/closed/issue-00004.md), [issue-00013](../../../../../../issues/potential/issue-00013.md), [issue-00018](../../../../../../issues/potential/issue-00018.md), [issue-00030](../../../../../../issues/potential/issue-00030.md), [issue-00032](../../../../../../issues/potential/issue-00032.md), [issue-00039](../../../../../../issues/closed/issue-00039.md), [issue-00040](../../../../../../issues/closed/issue-00040.md), [issue-00167](../../../../../../issues/potential/issue-00167.md), [issue-00177](../../../../../../issues/potential/issue-00177.md), [issue-00180](../../../../../../issues/potential/issue-00180.md), [issue-00192](../../../../../../issues/potential/issue-00192.md), [issue-00199](../../../../../../issues/potential/issue-00199.md), [issue-00203](../../../../../../issues/potential/issue-00203.md), [issue-00205](../../../../../../issues/closed/issue-00205.md), [issue-00206](../../../../../../issues/closed/issue-00206.md), [issue-00207](../../../../../../issues/closed/issue-00207.md), [issue-00208](../../../../../../issues/closed/issue-00208.md), [issue-00209](../../../../../../issues/potential/issue-00209.md). Прежние наблюдения дополнены по фактическим маршрутам. Новые остаются potential; игровые правила и код не изменялись.
 
 ## История актуализации
 

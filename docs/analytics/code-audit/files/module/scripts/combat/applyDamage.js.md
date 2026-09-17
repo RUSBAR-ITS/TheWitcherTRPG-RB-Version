@@ -99,7 +99,7 @@ Empty сохраняет текущую локацию. Остальные зн�
 
 ## Связанные проблемы
 
-[21](../../../../../../issues/potential/issue-00021.md) — потеря типа до applyDamageFromStatus; [149](../../../../../../issues/potential/issue-00149.md) — отсутствие выбранного Actor; [257](../../../../../../issues/potential/issue-00257.md) — потерянная duration; [299](../../../../../../issues/potential/issue-00299.md) — отсутствие ожидания; [300](../../../../../../issues/potential/issue-00300.md) — повторное использование изменённых данных сообщения; [301](../../../../../../issues/potential/issue-00301.md) — непроверенный DOM total. [291](../../../../../../issues/potential/issue-00291.md) — отрицательный итог статуса доходит до увеличения щита.
+[21](../../../../../../issues/closed/issue-00021.md) — потеря типа до applyDamageFromStatus; [149](../../../../../../issues/potential/issue-00149.md) — отсутствие выбранного Actor; [257](../../../../../../issues/potential/issue-00257.md) — потерянная duration; [299](../../../../../../issues/potential/issue-00299.md) — отсутствие ожидания; [300](../../../../../../issues/potential/issue-00300.md) — повторное использование изменённых данных сообщения; [301](../../../../../../issues/potential/issue-00301.md) — непроверенный DOM total. [291](../../../../../../issues/potential/issue-00291.md) — отрицательный итог статуса доходит до увеличения щита.
 
 ## История актуализации
 
@@ -119,7 +119,7 @@ Empty сохраняет текущую локацию. Остальные зн�
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-Положительные контроли [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) достигли applyDamageFromStatus с подготовленной записью bleed/poison: в перехваченный Actor.applyDamage переданы 2/3, а Heart treated с исходным bleed — 4. Тип воздействия отсутствует после формирования DamageInstance — прежняя [issue-00021](../../../../../../issues/potential/issue-00021.md). Семь исходных ADD-объектов не доходят до этого метода ([issue-00328](../../../../../../issues/potential/issue-00328.md)); два разных участка не объединены в одну причину.
+Положительные контроли [Deadly](../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) достигли applyDamageFromStatus с подготовленной записью bleed/poison: в перехваченный Actor.applyDamage переданы 2/3, а Heart treated с исходным bleed — 4. Тип воздействия отсутствует после формирования DamageInstance — прежняя [issue-00021](../../../../../../issues/closed/issue-00021.md). Семь исходных ADD-объектов не доходят до этого метода ([issue-00328](../../../../../../issues/closed/issue-00328.md)); два разных участка не объединены в одну причину.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

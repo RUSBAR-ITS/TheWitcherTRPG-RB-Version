@@ -75,7 +75,7 @@
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../../issues/potential/issue-00004.md), [issue-00015](../../../../../../../issues/potential/issue-00015.md), [issue-00167](../../../../../../../issues/potential/issue-00167.md), [issue-00187](../../../../../../../issues/potential/issue-00187.md), [issue-00192](../../../../../../../issues/potential/issue-00192.md). Глобальный jQuery, незаполненные label и ключи соотнесены с прежними issues; проблемы текущих строк и повышения у монстра описаны отдельно.
+[issue-00004](../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../issues/potential/issue-00015.md), [issue-00167](../../../../../../../issues/potential/issue-00167.md), [issue-00187](../../../../../../../issues/potential/issue-00187.md), [issue-00192](../../../../../../../issues/potential/issue-00192.md). Глобальный jQuery, незаполненные label и ключи соотнесены с прежними issues; проблемы текущих строк и повышения у монстра описаны отдельно.
 
 ## История актуализации
 

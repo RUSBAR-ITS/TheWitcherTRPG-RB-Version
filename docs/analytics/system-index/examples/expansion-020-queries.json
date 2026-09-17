@@ -593,7 +593,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00006.md"
+          "docs/issues/closed/issue-00006.md"
         ]
       },
       "basis": "212:11 передан Combat;196:6 нет guard combatant/Actor."
@@ -607,8 +607,8 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00021.md",
-          "docs/issues/potential/issue-00328.md"
+          "docs/issues/closed/issue-00021.md",
+          "docs/issues/closed/issue-00328.md"
         ]
       },
       "basis": "196:41 чтение prepared карты; эффект статуса не доказывает заполнение."

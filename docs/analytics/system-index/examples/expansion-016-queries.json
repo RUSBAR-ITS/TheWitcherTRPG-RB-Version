@@ -495,7 +495,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00258.md"
+          "docs/issues/closed/issue-00258.md"
         ]
       },
       "basis": "Raw assignment16:209 существует; schema97 его не объявляет, consumer14:326 ожидает поле."

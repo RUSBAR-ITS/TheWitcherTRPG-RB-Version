@@ -1,6 +1,6 @@
 # Карточки файлов
 
-2026-09-17, .00026: две новые карточки классов RollTable/полей периодики; актуальные изменения описаны в 25 существующих карточках. Текущий реестр — 617 файлов; статические описания не означают выполненной игровой приёмки [00332](../../../issues/open/issue-00332.md#implementation).
+2026-09-17, .00026: две новые карточки классов RollTable/полей периодики; актуальные изменения описаны в 25 существующих карточках. Текущий реестр — 617 файлов; статические описания не означают выполненной игровой приёмки [00332](../../../issues/closed/issue-00332.md#implementation).
 
 Карточки создаются по [шаблону](../templates/file.md) по мере пофайлового разбора. Общий список исходников и статусы находятся в [реестре](../registry.md), правила — в [README исследования](../README.md).
 
@@ -738,7 +738,7 @@
 | [packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json](packsJson/character-generator-sub-tables/Siblings__Personality_zNQCbwyK1biYFszn.json.md) | Описывает характер одного брата или сестры. |
 | [packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json](packsJson/character-generator-sub-tables/Which_Parent_7fAXpaJLFwlWxkWX.json.md) | Уточняет, относится событие к отцу, матери или обоим родителям. |
 
-[Перекрёстная сверка](../review-log.md#task-0003054): 35 RollTable / 313 результатов, региональные варианты и предел рекурсии. Зарегистрирована [issue-00320](../../../issues/potential/issue-00320.md); исходники сохранены.
+[Перекрёстная сверка](../review-log.md#task-0003054): 35 RollTable / 313 результатов, региональные варианты и предел рекурсии. Зарегистрирована [issue-00320](../../../issues/closed/issue-00320.md); исходники сохранены.
 
 ## Таблицы биографии ведьмака — TASK-0003.055
 

@@ -127,7 +127,7 @@ JSON не вводит собственных функций или обрабо
 
 Контрольный Actor: восемь unmodifiedMax=5, HP.value=25, dodge.value=athletics.value=8 до эффектов, броня/вес=0. Результат: INT=5, WILL=5, REF=5, DEX=5, BODY=2, SPD=2; BODY.max=5, SPD.max=5; RUN=6, LEAP.value=1, LEAP.max=3, ENC=20, STUN=3, REC=3, HP.max=15, RESOLVE.max=25, FOCUS.max=15; healingTime=10. Навыки: dodge.value=8, dodge.activeEffectModifiers=0; athletics.value=8, athletics.activeEffectModifiers=0. Статусы=`["suffocation"]`; turnStartEffects={}. Значения прочитаны непосредственно из подготовленных полей; сериализация DataModel/toObject возвращает источник и не заменяет такую проверку.
 
-JSON-строка объекта успешно мигрирует; ADD применяется к SchemaField и не создаёт запись. Реальный applyCombatEffects не вызвал урон от этого Item — [issue-00328](../../../../../../issues/potential/issue-00328.md). В отдельных диагностических копиях bleed/suffocation/acid override создавал структуру, очищал ignoreArmor в boolean true и передавал amount=2/3/4 до перехваченного Actor.applyDamage. Экспорт не менялся. В acid-контроле следующий этап терял type — [issue-00021](../../../../../../issues/potential/issue-00021.md); это отдельный достигнутый путь, исходный ADD его не достигает.
+JSON-строка объекта успешно мигрирует; ADD применяется к SchemaField и не создаёт запись. Реальный applyCombatEffects не вызвал урон от этого Item — [issue-00328](../../../../../../issues/closed/issue-00328.md). В отдельных диагностических копиях bleed/suffocation/acid override создавал структуру, очищал ignoreArmor в boolean true и передавал amount=2/3/4 до перехваченного Actor.applyDamage. Экспорт не менялся. В acid-контроле следующий этап терял type — [issue-00021](../../../../../../issues/closed/issue-00021.md); это отдельный достигнутый путь, исходный ADD его не достигает.
 
 Последовательность BODY/SPD.totalModifiers: −3 → −2 → −1; suffocation только в none. BODY.max остаётся 5 и healingTime=10, хотя BODY.value/HP.max различаются.
 
@@ -141,7 +141,7 @@ JSON-строка объекта успешно мигрирует; ADD прим
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/potential/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/potential/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/potential/issue-00288.md) — повтор name/type. [issue-00328](../../../../../../issues/potential/issue-00328.md) — ADD объекта периодического урона; [issue-00021](../../../../../../issues/potential/issue-00021.md) — потеря типа в отдельном положительном контроле. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/potential/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/potential/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/potential/issue-00288.md) — повтор name/type. [issue-00328](../../../../../../issues/closed/issue-00328.md) — ADD объекта периодического урона; [issue-00021](../../../../../../issues/closed/issue-00021.md) — потеря типа в отдельном положительном контроле. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 
