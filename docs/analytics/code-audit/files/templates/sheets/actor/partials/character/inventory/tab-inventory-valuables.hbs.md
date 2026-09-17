@@ -1,5 +1,19 @@
 # templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs
 
+## Актуальное поведение — issue-00333 / 14.3.1.00035
+
+Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../../../../../../issues/open/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.
+
+**Назначение:** Контейнеры в инвентаре персонажа.
+
+**Основные методы, сущности и действия:** Добавлено предупреждение неполного веса контейнера по contentIncomplete; прежние данные инвентаря и действия сохранены.
+
+**Зависимости и потребители:** ContainerData.prepareDerivedData; WITCHER.Container.incompleteWeight.
+
+## Предыдущий срез анализа
+
+Датированные сведения ниже относятся к прежнему коду. При расхождении приоритет имеет актуальный раздел выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs](../../../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs) |

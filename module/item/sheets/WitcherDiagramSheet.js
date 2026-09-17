@@ -1,3 +1,4 @@
+import { linkedItemContext } from './helpers/linkedItemContext.js';
 import WitcherItemSheet from './WitcherItemSheet.js';
 
 export default class WitcherDiagramSheet extends WitcherItemSheet {
@@ -12,11 +13,17 @@ export default class WitcherDiagramSheet extends WitcherItemSheet {
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
 
-        context.knownCraftingComponents = context.item.system.craftingComponents
-            .filter(component => component.uuid)
-            .map(component => {
-                return { id: component.id, ...fromUuidSync(component.uuid), quantity: component.quantity } ?? component;
-            });
+        context.knownCraftingComponents = await Promise.all(
+            context.item.system.craftingComponents
+                .filter(component => component.uuid)
+                .map(component =>
+                    linkedItemContext(component.uuid, {
+                        id: component.id,
+                        name: component.name,
+                        quantity: component.quantity
+                    })
+                )
+        );
         context.unknownCraftingComponents = context.item.system.craftingComponents.filter(component => !component.uuid);
 
         context.selects = this.createSelects();
@@ -83,10 +90,12 @@ export default class WitcherDiagramSheet extends WitcherItemSheet {
         let field = element.dataset.field;
         let value = element.value;
 
-        let components = this.item.system.craftingComponents;
-        let objIndex = components.findIndex(obj => obj.id == itemId);
+        if (!['name', 'quantity'].includes(field)) return;
+        const components = foundry.utils.deepClone(this.item.system.craftingComponents);
+        const objIndex = components.findIndex(obj => obj.id == itemId);
+        if (objIndex < 0) return;
         components[objIndex][field] = value;
-        this.item.update({ 'system.craftingComponents': components });
+        return this.item.update({ 'system.craftingComponents': components });
     }
 
     _onAddComponent(event) {

@@ -1,43 +1,41 @@
 import CommonItemData from './commonItemData.js';
+import { describeContainer, validateTemplate } from '../../item/containerTemplates.js';
 
 const fields = foundry.data.fields;
 
 export default class ContainerData extends CommonItemData {
     static defineSchema() {
-        const commonData = super.defineSchema();
         return {
-            // Using destructuring to effectively append our additional data here
-            ...commonData,
+            ...super.defineSchema(),
             carry: new fields.NumberField({ initial: 0 }),
             storedWeight: new fields.NumberField({ initial: 0 }),
-            content: new fields.ArrayField(new fields.StringField())
+            content: new fields.ArrayField(new fields.StringField()),
+            templateContent: new fields.ObjectField({
+                initial: null,
+                nullable: true,
+                validate: value => {
+                    if (value === null) return true;
+                    try {
+                        validateTemplate(value);
+                        return true;
+                    } catch {
+                        return false;
+                    }
+                }
+            })
         };
     }
 
     calcWeight() {
-        return this.isCarried && !this.isStored ? this.quantity * this.weight + this.storedWeight : 0;
+        const contents = describeContainer(this.parent);
+        return this.isCarried && !this.isStored ? this.quantity * this.weight + contents.weight : 0;
     }
 
     prepareDerivedData() {
         super.prepareDerivedData();
-
-        let content = this.content;
-        this.storedWeight = 0;
-
-        if (content) {
-            this.itemContent = [];
-            content.forEach(itemId => {
-                let item = fromUuidSync(itemId);
-                this.storedWeight += item.system.quantity * item.system.weight;
-                this.itemContent.push({
-                    name: item.name,
-                    img: item.img,
-                    quantity: item.system.quantity,
-                    weight: item.system.weight,
-                    description: item.system.description,
-                    uuid: itemId
-                });
-            });
-        }
+        const contents = describeContainer(this.parent);
+        this.storedWeight = contents.weight;
+        this.itemContent = contents.rows;
+        this.contentIncomplete = contents.incomplete;
     }
 }

@@ -1,5 +1,19 @@
 # module/actor/sheets/mixins/itemMixin.js
 
+## Актуальное поведение — issue-00333 / 14.3.1.00035
+
+Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../../../../issues/open/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.
+
+**Назначение:** Actor Drop, инвентарь и действия с предметами.
+
+**Основные методы, сущности и действия:** _onDropItem сохраняет Document до проверки источника/сортировки. Контейнер или drag с witcherContainer идёт через importToActor. Остальные пути копируют toObject до изменения equipped: монстр получает true в сохраняемых данных, исходник неизменен. addItem ожидается. _onItemDelete ожидает delete через runContainerAction. Прежние stacking/unique/profession для обычного Drop сохранены.
+
+**Зависимости и потребители:** containerOperations.js importToActor/runContainerAction; WitcherItem документные create/delete; WitcherActor.addItem для обычных предметов; core Item.fromDropData.
+
+## Предыдущий срез анализа
+
+Датированные сведения ниже относятся к прежнему коду. При расхождении приоритет имеет актуальный раздел выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/itemMixin.js](../../../../../../../../module/actor/sheets/mixins/itemMixin.js) |

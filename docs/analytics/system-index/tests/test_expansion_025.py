@@ -30,71 +30,70 @@ class ContainerExpansion(unittest.TestCase):
                 self.assertEqual(out['freshness']['state'],'current');self.assertEqual(out['coverage']['state'],'partial')
 
     def test_schema_projection_and_uuid_have_distinct_owners(self):
-        model='\n'.join(self.source(111));common='\n'.join(self.source(109))
+        model='\n'.join(self.source(111)); helper='\n'.join(self.source(619))
         self.assertIn('content: new fields.ArrayField(new fields.StringField())',model)
-        self.assertIn("quantity: new fields.StringField({ initial: '1' })",common)
-        for q,owner in [('ContainerData.content','ContainerData'),('ContainerData.itemContent','ContainerData'),('ContainerData.itemContent[].uuid','ContainerData.itemContent'),('CommonItemData.isStored','CommonItemData'),('ValuableData.type','ValuableData')]:
+        self.assertIn('templateContent: new fields.ObjectField',model)
+        self.assertIn('validateTemplate(value)',model)
+        for q,owner in [('ContainerData.content','ContainerData'),('ContainerData.itemContent','ContainerData'),('ContainerData.itemContent[].uuid','ContainerData.itemContent')]:
             self.assertEqual(self.data.entities[self.q[q]]['owner'],self.q[owner])
-        self.assertNotIn('itemContent:',model[:model.index('calcWeight()')])
-        self.assertIn('uuid: itemId',model)
+        self.assertIn('missing: false',helper);self.assertIn('sourceUuid: item.uuid',helper)
+        self.assertNotIn('fromUuidSync',model)
 
-    def test_drop_guard_and_two_independent_requests(self):
-        text='\n'.join(self.source(166));guard=text[text.index('async _onDropItem'):text.index('_onRemoveItem(event)')]
-        types=re.findall(r"'([a-z]+)'",text[text.index('storableItems'):text.index('static PARTS')])
-        self.assertEqual(types,['weapon','armor','enhancement','valuable','alchemical','component','diagrams','mutagen','container'])
-        for absent in ['await ','return ','isOwner','carry','createEmbeddedDocuments','parent']:
-            self.assertNotIn(absent,guard)
-        self.assertNotIn('isStored',guard.split('this.item.system.content.push')[0])
-        self.assertIn('!this.item.system.content.includes(item.uuid)',guard)
-        self.assertLess(guard.index('content.push'),guard.index('this.item.update'))
-        self.assertLess(guard.index('this.item.update'),guard.index('item.update({ \'system.isStored\''))
-        edges=self.edges('WitcherContainerSheet._onDropItem','calls')
-        self.assertEqual([(e['location']['line_start'],e['to'])for e in edges],[(35,self.q['Document.update/Item']),(36,self.q['Document.update/Item'])])
-        dispatcher='\n'.join(self.source(172)[122:135]);self.assertIn('(await this._onDropItem(event, document)) ?? null',dispatcher)
+    def test_drop_uses_verified_service_and_preserves_native_dispatch(self):
+        sheet='\n'.join(self.source(166));ops='\n'.join(self.source(618));helper='\n'.join(self.source(619))
+        self.assertIn('return runContainerAction(() => storeItem',sheet)
+        self.assertIn('witcherContainer: this.item.uuid',sheet)
+        self.assertIn('const actorMove = !!source.parent && !source.pack && !!owner',ops)
+        self.assertIn('if (move && (source.parent ?? null) === owner) return relocate(source, target)',ops)
+        self.assertIn('await deleteTrees([source]',ops)
+        self.assertNotIn('this.item.system.content.push',sheet)
+        self.assertEqual({e['to'] for e in self.edges('WitcherContainerSheet._onDropItem','calls')}, {self.q['containerOperations.storeItem'],self.q['containerOperations.runContainerAction']})
+        self.assertIn('return (await this._onDropItem(event, document)) ?? null','\n'.join(self.source(172)))
+        self.assertIn('STORABLE_TYPES = new Set',helper)
 
-    def test_remove_nonmember_and_failure_order(self):
-        text='\n'.join(self.source(166)[39:53])
-        for literal in ['index > -1','splice(index, 1)','fromUuidSync(uuid)',"'system.isStored': false"]:self.assertIn(literal,text)
-        self.assertNotIn('await ',text);self.assertNotIn('return',text)
-        self.assertLess(text.index('splice'),text.index('fromUuidSync'))
-        self.assertLess(text.index('fromUuidSync'),text.index('this.item.update'))
-        self.assertLess(text.index('this.item.update'),text.index("item.update({ 'system.isStored'"))
-        writes={e['to']for e in self.edges('WitcherContainerSheet._onRemoveItem','writes')}
-        self.assertEqual(writes,{self.q['ContainerData.content'],self.q['CommonItemData.isStored']})
+    def test_remove_nonmember_and_external_link_do_not_update_other_item(self):
+        ops='\n'.join(self.source(618));body=ops[ops.index('export async function extractItem'):]
+        self.assertIn('if (!contentOf(container).includes(uuid)) return null',body)
+        self.assertIn('if (!item || !sameOwner(item, container) || item.visible === false)',body)
+        self.assertNotIn('fromUuid',body)
+        self.assertIn('await writePatches',body);self.assertIn('return relocate(item, null)',body)
+        self.assertFalse(self.edges('WitcherContainerSheet._onRemoveItem','writes'))
+        self.assertIn(self.q['ContainerData.content'],{r['to'] for r in self.edges('containerOperations.extractItem','writes')})
 
-    def test_weight_is_direct_prepared_and_capacity_separate(self):
-        model='\n'.join(self.source(111));body=model[model.index('prepareDerivedData()'):]
-        self.assertIn('this.storedWeight = 0',body);self.assertIn('this.storedWeight += item.system.quantity * item.system.weight',body)
-        for absent in ['item.system.storedWeight','item.system.calcWeight','item.system.isStored','item.system.isCarried','this.carry']:self.assertNotIn(absent,body)
-        self.assertIn('this.quantity * this.weight + this.storedWeight',model)
-        actor='\n'.join(self.source(47));self.assertIn('item.system.calcWeight?.() ?? 0',actor);self.assertIn('Math.ceil(total + this.system.calcCurrencyWeight())',actor)
-        enc='\n'.join(self.source(47)[108:121]);self.assertIn('(this.system.stats.body.max + bodyTotalModifiers) * 10 + this.system.derivedStats.enc.totalModifiers',enc)
-        self.assertIn('Math.ceil((totalWeights - currentEncumbrance) / 5)',enc)
-        readers=[r for r in self.data.incoming[self.q['ContainerData.storedWeight']]if r['kind']=='reads'and r['location']['source']=='src-000111']
-        self.assertEqual({r['from']for r in readers},{self.q['ContainerData.calcWeight']})
+    def test_weight_traverses_tree_and_capacity_stays_separate(self):
+        model='\n'.join(self.source(111));helper='\n'.join(self.source(619))
+        self.assertIn('this.quantity * this.weight + contents.weight',model)
+        self.assertIn('this.isCarried && !this.isStored',model)
+        self.assertNotIn('this.carry',model)
+        self.assertIn('queue.push(...contentOf(item)',helper)
+        self.assertIn('seen.has(uuid)',helper)
+        self.assertIn('item.system.calcWeight?.() ?? 0','\n'.join(self.source(47)))
+        self.assertEqual({r['to'] for r in self.edges('ContainerData.calcWeight','calls')},{self.q['containerTemplates.describeContainer']})
+        self.assertFalse([r for r in self.data.incoming[self.q['ContainerData.storedWeight']] if r['kind']=='reads' and r['location']['source']=='src-000111'])
 
     def test_visibility_category_templates_and_context_menu_target(self):
-        for n,a in [(27,72),(28,37)]:self.assertIn('filter(i => !i.system.isStored).sort',self.source(n)[a-1])
+        for n,a in [(27,72),(28,37)]:self.assertIn('filter(i => !i.system.isStored).sort','\n'.join(self.source(n)))
         getlist='\n'.join(self.source(47)[249:257]);self.assertNotIn('isStored',getlist.split('return this.items.filter')[0]);self.assertIn('!i.system.isStored',getlist)
-        self.assertIn("i.system.type == 'clothing' || i.system.type == 'containers'",self.source(29)[244])
-        self.assertIn('this._prepareValuables(context)',self.source(29)[129])
+        self.assertIn("i.system.type == 'clothing' || i.system.type == 'containers'",'\n'.join(self.source(29)))
+        self.assertIn('this._prepareValuables(context)','\n'.join(self.source(29)))
         self.assertIn(self.q['WitcherCharacterSheet._prepareValuables'],{r['to']for r in self.edges('WitcherCharacterSheet._prepareContext','calls')})
         inv='\n'.join(self.source(576));self.assertIn('valuables=clothingAndContainers',inv);self.assertIn('valuables=containers',inv)
         rows='\n'.join(self.source(558));self.assertIn("(eq valuable.type 'container')",rows)
         self.assertIn('<details class="stored-item" data-item-id="{{storedItem.uuid}}">',rows)
         self.assertNotIn('remove-item',rows)
         current='\n'.join(self.source(571));self.assertIn('valuables=loots',current);self.assertNotIn('containers',current)
-        self.assertIn('partials/monster/tabs/tab-inventory.hbs',self.source(31)[44])
-        self.assertIn('partials/monster/monster-inventory-tab.hbs',self.source(550)[295])
+        self.assertIn('partials/monster/tabs/tab-inventory.hbs','\n'.join(self.source(31)))
+        self.assertIn('partials/monster/monster-inventory-tab.hbs','\n'.join(self.source(550)))
 
-    def test_loot_inline_additem_and_delete_boundaries(self):
-        loot='\n'.join(self.source(30)[42:66]);self.assertIn("getList('container')",loot);self.assertIn("getList('mutagen')",loot)
-        row='\n'.join(self.source(563));self.assertIn('data-item-id="{{item._id}}"',row);self.assertIn('data-field="system.weight"',row)
-        add='\n'.join(self.source(47)[258:273]);self.assertIn('!foundItem.system.isStored',add);self.assertNotIn('isStored =',add)
-        deleted='\n'.join(self.source(43)[174:180]);self.assertNotIn('await ',deleted);self.assertNotIn('isStored',deleted)
-        for n in [111,109,192]:self.assertNotRegex('\n'.join(self.source(n)),r'\b_onDelete\s*\(')
-        gift='\n'.join(self.source(34)[98:115]);self.assertNotIn("'container'",gift)
-        self.assertIn('callback: this.giftItem.bind(this)', '\n'.join(self.source(34)))
+    def test_loot_additem_unchanged_and_delete_intercepts_document_entry(self):
+        actor='\n'.join(self.source(47));item='\n'.join(self.source(192));mixin='\n'.join(self.source(43))
+        self.assertIn('!foundItem.system.isStored',actor)
+        self.assertIn('static async deleteDocuments',item);self.assertIn('return deleteContainerDocuments',item)
+        self.assertIn('return runContainerAction',mixin)
+        ops='\n'.join(self.source(618));self.assertIn('DialogV2.confirm',ops)
+        self.assertIn('if (!yes) return []',ops);self.assertIn('missing.map(entry => entry.data)',ops)
+        self.assertIn('sourceIntact',ops)
+        self.assertIn('clone(data = {}, context = {})',item)
 
     def test_core_evidence_hashes_and_specific_contracts(self):
         evidence=json.loads((BASE/'examples/expansion-025-queries.json').read_text())['core_evidence']
@@ -128,6 +127,8 @@ class ContainerExpansion(unittest.TestCase):
                 for rid in s['relations']:self.assertEqual(d.relations[rid]['from'],s['entity'])
                 self.assertIn(p['id'],d.sources[s['location']['source']]['coverage']['processes']['included'])
         # Historical portion counts, not a cap on later extensions.
-        self.assertEqual({k:len(v)for k,v in self.new.items()},{'entities':36,'relations':134,'processes':10})
+        self.assertEqual(len(self.new['processes']),10)
+        self.assertEqual(len(self.new['entities']),36)
+        self.assertTrue(set(r['id'] for r in self.new['relations']).isdisjoint(d.manifest['retired_ids']))
 
 if __name__=='__main__':unittest.main()

@@ -107,7 +107,12 @@
                     <img class="item-img" src="{{component.img}}" title="{{component.name}}" />
                 </td>
                 <td class="list-item" data-id="{{component.id}}">
-                    <span class="edit-component item-effect">{{component.name}}</span>
+                    {{#if component.missing}}
+                        <input class="edit-component item-effect" data-field="name" type="text" value="{{component.name}}" />
+                        <span title="{{component.uuid}}">{{localize "WITCHER.LinkedItem.unavailable"}}</span>
+                    {{else}}
+                        <span class="item-effect">{{component.name}}</span>
+                    {{/if}}
                 </td>
                 <td class="list-item" data-id="{{component.id}}">
                     <input class="edit-component" data-field="quantity" type="number" placeholder="0"

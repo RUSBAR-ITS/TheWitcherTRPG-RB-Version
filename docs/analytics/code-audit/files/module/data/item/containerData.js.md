@@ -1,5 +1,19 @@
 # module/data/item/containerData.js
 
+## Актуальное поведение — issue-00333 / 14.3.1.00035
+
+Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../../../issues/open/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.
+
+**Назначение:** Модель экземпляра/шаблона контейнера и вес дерева.
+
+**Основные методы, сущности и действия:** defineSchema добавляет nullable ObjectField templateContent с validateTemplate к прежним carry/storedWeight/content. calcWeight заново вызывает describeContainer: свой quantity*weight плюс вес всех потомков, только если isCarried и не isStored. prepareDerivedData записывает prepared storedWeight/itemContent/contentIncomplete. carry остаётся полем без ограничения вместимости.
+
+**Зависимости и потребители:** CommonItemData; describeContainer и validateTemplate из module/item/containerTemplates.js. WitcherActor.getTotalWeight читает calcWeight; листы читают itemContent/contentIncomplete. Старые прямые fromUuidSync и сумма только ближайшего уровня удалены.
+
+## Предыдущий срез анализа
+
+Датированные сведения ниже относятся к прежнему коду. При расхождении приоритет имеет актуальный раздел выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/containerData.js](../../../../../../../module/data/item/containerData.js) |

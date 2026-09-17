@@ -1,3 +1,5 @@
+import { CONTAINER_INTERNAL, serializeContainer, contentOf } from './containerTemplates.js';
+import { createContainerDocuments, deleteContainerDocuments } from './containerOperations.js';
 import { extendedRoll } from '../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../scripts/rollConfig.js';
 import { WITCHER } from '../setup/config.js';
@@ -8,6 +10,55 @@ import { dismantlingMixin } from './mixins/dismantlingMixin.js';
 import { defenseOptionMixin } from './mixins/defenseOptionMixin.js';
 
 export default class WitcherItem extends Item {
+    /** Native entry points also cover directory imports and Actor embedded creation. */
+    static async createDocuments(data = [], operation = {}) {
+        if (operation[CONTAINER_INTERNAL]) return super.createDocuments(data, operation);
+        return createContainerDocuments(
+            data,
+            operation,
+            (documents, options) => super.createDocuments(documents, options),
+            (ids, options) => super.deleteDocuments(ids, options)
+        );
+    }
+
+    static async deleteDocuments(ids = [], operation = {}) {
+        if (operation[CONTAINER_INTERNAL]) return super.deleteDocuments(ids, operation);
+        return deleteContainerDocuments(ids, operation, (targets, options) => super.deleteDocuments(targets, options));
+    }
+
+    toCompendium(pack, options = {}) {
+        const data = super.toCompendium(pack, options);
+        if (this.type === 'container') {
+            data.system.templateContent = serializeContainer(this);
+            data.system.content = [];
+            data.system.isStored = false;
+            data.system.storedWeight = 0;
+        }
+        return data;
+    }
+
+    clone(data = {}, context = {}) {
+        // The existing directory Duplicate command must also copy the contents, not their UUIDs.
+        if (this.type === 'container' && context.save) {
+            data = foundry.utils.deepClone(data);
+            data.system = {
+                ...data.system,
+                content: [],
+                templateContent: serializeContainer(this),
+                isStored: false
+            };
+        }
+        return super.clone(data, context);
+    }
+
+    async deleteDialog(options = {}, operation = {}) {
+        // The cascade asks once, explicitly including the contents. Preserve core dialog for empty Items.
+        if (this.type === 'container' && (contentOf(this).length || this.system.templateContent?.items?.length)) {
+            return this.delete(operation);
+        }
+        return super.deleteDialog(options, operation);
+    }
+
     /** @inheritdoc */
     static migrateData(source) {
         this.migrateSpells(source);
@@ -251,9 +302,11 @@ export default class WitcherItem extends Item {
 
     /** Find every matching table, including duplicate names within the same pack. */
     getLootRollTables() {
-        return game.packs.filter(pack => pack.documentName === 'RollTable').flatMap(pack =>
-            pack.index.filter(table => table.name === this.name).map(table => ({ pack, id: table._id }))
-        );
+        return game.packs
+            .filter(pack => pack.documentName === 'RollTable')
+            .flatMap(pack =>
+                pack.index.filter(table => table.name === this.name).map(table => ({ pack, id: table._id }))
+            );
     }
 
     /**
@@ -279,8 +332,10 @@ export default class WitcherItem extends Item {
                 const { results } = await table.roll();
                 if (!results.length) throw new Error(game.i18n.localize('WITCHER.Monster.lootEmptyTable'));
                 for (const result of results) {
-                    const item = result.type === 'document' && result.documentUuid
-                        ? await foundry.utils.fromUuid(result.documentUuid) : null;
+                    const item =
+                        result.type === 'document' && result.documentUuid
+                            ? await foundry.utils.fromUuid(result.documentUuid)
+                            : null;
                     if (item?.documentName !== 'Item') {
                         throw new Error(game.i18n.localize('WITCHER.Monster.lootInvalidResult'));
                     }
@@ -291,8 +346,8 @@ export default class WitcherItem extends Item {
 
             for (const { item } of resolved) {
                 // Never use the generator itself as the destination stack.
-                const existing = this.actor.items.find(other =>
-                    other.id !== this.id && other.name === item.name && other.type === item.type
+                const existing = this.actor.items.find(
+                    other => other.id !== this.id && other.name === item.name && other.type === item.type
                 );
                 let saved;
                 if (existing) {
@@ -321,12 +376,24 @@ export default class WitcherItem extends Item {
         } catch (error) {
             console.error('TheWitcherTRPG | Loot generation', this.uuid, error);
             const reason = error.message ?? String(error);
-            ui.notifications.error(game.i18n.format('WITCHER.Monster.lootGenerationFailed', {
-                item: this.name, count: records.length, reason,
-                generator: game.i18n.localize(generatorRemoved
-                    ? 'WITCHER.Monster.lootGeneratorRemoved' : 'WITCHER.Monster.lootGeneratorRetained')
-            }));
-            return { status: records.length || generatorRemoved ? 'partial' : 'failed', records, reason, generatorRemoved };
+            ui.notifications.error(
+                game.i18n.format('WITCHER.Monster.lootGenerationFailed', {
+                    item: this.name,
+                    count: records.length,
+                    reason,
+                    generator: game.i18n.localize(
+                        generatorRemoved
+                            ? 'WITCHER.Monster.lootGeneratorRemoved'
+                            : 'WITCHER.Monster.lootGeneratorRetained'
+                    )
+                })
+            );
+            return {
+                status: records.length || generatorRemoved ? 'partial' : 'failed',
+                records,
+                reason,
+                generatorRemoved
+            };
         }
     }
 

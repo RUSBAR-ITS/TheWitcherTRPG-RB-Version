@@ -122,7 +122,7 @@
         <h3>{{localize "WITCHER.Spell.Ritual.components"}}</h3>
         <table>
             {{#each item.system.ritualComponents as |component name|}}
-                <tr class="list-item" data-uuid="{{component.item.uuid}}" data-target="ritualComponentUuids">
+                <tr class="list-item" data-uuid="{{component.uuid}}" data-target="ritualComponentUuids">
                     <th>
                         <a class="remove-component" title="{{localize "WITCHER.Item.RemoveComponent"}}"><i
                                 class="fas fa-minus"></i></a>
@@ -142,7 +142,7 @@
         <h3>{{localize "WITCHER.Spell.Ritual.alternateComponents"}}</h3>
         <table>
             {{#each item.system.alternateRitualComponents as |component name|}}
-                <tr class="list-item" data-uuid="{{component.item.uuid}}" data-target="alternateRitualComponentUuids">
+                <tr class="list-item" data-uuid="{{component.uuid}}" data-target="alternateRitualComponentUuids">
                     <th>
                         <a class="remove-component" title="{{localize "WITCHER.Item.RemoveComponent"}}"><i
                                 class="fas fa-minus"></i></a>

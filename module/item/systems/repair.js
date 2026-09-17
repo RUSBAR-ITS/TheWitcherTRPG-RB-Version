@@ -42,7 +42,26 @@ class Repair {
             else {
                 //linked in diagram, so we can query data
                 if (uuid) {
-                    const component = await fromUuid(uuid);
+                    let component;
+                    try {
+                        component = await fromUuid(uuid);
+                    } catch (error) {
+                        console.error('TheWitcherTRPG | Repair component', uuid, error);
+                    }
+                    if (
+                        component?.documentName !== 'Item' ||
+                        !component.system ||
+                        !Number.isFinite(component.system.cost) ||
+                        component.visible === false
+                    ) {
+                        ui.notifications.error(
+                            game.i18n.format('WITCHER.Repair.alerts.unavailableComponent', {
+                                name: craftingComponent.name || uuid,
+                                uuid
+                            })
+                        );
+                        return;
+                    }
                     missingComponents.push(component);
                 } else {
                     //not linked, so user input is required later

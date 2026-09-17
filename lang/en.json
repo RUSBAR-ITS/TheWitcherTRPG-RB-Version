@@ -1528,7 +1528,8 @@
                 "notEnoughComponents": "Not enough components to repair this item",
                 "itemIsAlreadyRepaired": "This item is already fully repaired",
                 "noDiagram": "No associated diagram found for this item",
-                "invalidDiagram": "The type of this diagram is not valid for this item"
+                "invalidDiagram": "The type of this diagram is not valid for this item",
+                "unavailableComponent": "Cannot prepare repair: component “{name}” ({uuid}) is unavailable or has no valid cost. Correct the reference and try again."
             }
         },
         "ComponentsList": {
@@ -1566,6 +1567,29 @@
             "common": "Common",
             "dwarven": "Dwarven",
             "elder": "Elder Speech"
+        },
+        "LinkedItem": {
+            "unavailable": "Linked item is unavailable."
+        },
+        "Container": {
+            "invalidTree": "The contents of “{name}” have missing, shared or cyclic references. Correct them before this operation.",
+            "unavailableItem": "A contained item is unavailable: {uuid}.",
+            "invalidTemplate": "The container template is invalid or is not self-contained. Export a complete template from Items.",
+            "busy": "Another operation with these items is still running.",
+            "permission": "You do not have permission to change “{name}”.",
+            "conflict": "The contents changed during this operation. Reopen the container and try again.",
+            "writeFailed": "The item operation was not fully saved.",
+            "incomplete": "The operation and its recovery could not be completed. Remaining items were retained; see the diagnostics before retrying.",
+            "invalidItem": "This item cannot be placed in a container.",
+            "templateReadOnly": "Edit the container template in Items, then export it to a compendium.",
+            "cycle": "A container cannot contain itself or one of its parent containers.",
+            "deleteTitle": "Delete container and contents",
+            "deleteContents": "Delete “{name}” and its contents ({count} items, including nested items)? They will be lost, not returned to the inventory.",
+            "templateHelp": "This is a self-contained template. Import it into Items to edit its contents, then export it again.",
+            "incompleteWeight": "Some contents are unavailable or invalid. The displayed weight is incomplete.",
+            "openItem": "Open contained item",
+            "removeBrokenLink": "Remove unavailable item reference",
+            "extractItem": "Extract item"
         }
     }
 }

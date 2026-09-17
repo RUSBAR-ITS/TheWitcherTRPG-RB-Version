@@ -65,10 +65,15 @@ export default class WitcherRitualSheet extends WitcherItemSheet {
         let field = element.dataset.field;
         let value = element.value;
 
-        let components = this.item.system[targetField];
-        let objIndex = components.findIndex(obj => obj.uuid == itemId);
-        components[objIndex][field] = value;
-        this.item.update({ [`system.${targetField}`]: components });
+        if (!['ritualComponentUuids', 'alternateRitualComponentUuids'].includes(targetField) || field !== 'quantity')
+            return;
+        const quantity = Number(value);
+        if (!Number.isFinite(quantity)) return;
+        const components = foundry.utils.deepClone(this.item.system[targetField]);
+        const objIndex = components.findIndex(obj => obj.uuid == itemId);
+        if (objIndex < 0) return;
+        components[objIndex][field] = quantity;
+        return this.item.update({ [`system.${targetField}`]: components });
     }
 
     _onRemoveComponent(event) {
@@ -76,7 +81,8 @@ export default class WitcherRitualSheet extends WitcherItemSheet {
         let element = event.currentTarget;
         let itemId = element.closest('.list-item').dataset.uuid;
         let targetField = element.closest('.list-item').dataset.target;
-        let newComponentList = this.item.system[targetField].filter(item => item.uuid !== itemId);
-        this.item.update({ [`system.${targetField}`]: newComponentList });
+        if (!['ritualComponentUuids', 'alternateRitualComponentUuids'].includes(targetField) || !itemId) return;
+        const newComponentList = this.item.system[targetField].filter(item => item.uuid !== itemId);
+        return this.item.update({ [`system.${targetField}`]: newComponentList });
     }
 }

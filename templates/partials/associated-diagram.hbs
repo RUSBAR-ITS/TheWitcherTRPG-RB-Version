@@ -3,7 +3,7 @@
     <table class="item-bottom-table" data-type="associatedDiagram">
         <tr data-type="associatedDiagram">
             <th data-type="associatedDiagram">
-                {{#if item.system.associatedDiagram.name}}
+                {{#if associatedDiagramView.uuid}}
                     <a data-type="associatedDiagram" class="remove-associated-diagram"
                         title="{{localize "WITCHER.AssociatedDiagram.actions.remove"}}">
                         <i class="fas fa-minus"></i></a>
@@ -14,20 +14,20 @@
                 {{/if}}
             </th>
             <th data-type="associatedDiagram">
-                {{#if item.system.associatedDiagram.name}}
+                {{#if associatedDiagramView.available}}
                     <header class="sheet-header" data-type="associatedDiagram">
                         <img data-type="associatedDiagram" class="profile-img"
-                            src="{{item.system.associatedDiagram.img}}" data-edit="img"
-                            title="{{item.system.associatedDiagram.name}}" />
+                            src="{{associatedDiagramView.img}}" data-edit="img"
+                            title="{{associatedDiagramView.name}}" />
                     </header>
                 {{/if}}
             </th>
             <th data-type="associatedDiagram">
                 <div class="description" data-type="associatedDiagram">
-                    {{#if item.system.associatedDiagram.name}}
+                    {{#if associatedDiagramView.available}}
                         <label data-type="associatedDiagram"
-                            class="label-info"><b>{{item.system.associatedDiagram.name}}</b></label>
-                        {{item.system.associatedDiagram.description}}
+                            class="label-info"><b>{{associatedDiagramView.name}}</b></label>
+                        {{{associatedDiagramView.description}}}
                     {{else}}
                         {{localize "WITCHER.AssociatedDiagram.missing"}}
                     {{/if}}

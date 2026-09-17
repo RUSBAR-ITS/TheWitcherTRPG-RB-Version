@@ -58,6 +58,7 @@
                     {{/if}}
                     {{#if (eq valuable.type 'container')}}
                         <h3>{{localize "WITCHER.Item.containerItems"}}</h3>
+                        {{#if valuable.system.contentIncomplete}}<p role="alert">{{localize "WITCHER.Container.incompleteWeight"}}</p>{{/if}}
                         <div class="progress-bar-stored-weight">
                             <progress
                                 value="{{valuable.system.storedWeight}}"

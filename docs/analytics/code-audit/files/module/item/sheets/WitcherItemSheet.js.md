@@ -1,5 +1,19 @@
 # module/item/sheets/WitcherItemSheet.js
 
+## Актуальное поведение — issue-00333 / 14.3.1.00035
+
+Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../../../issues/open/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.
+
+**Назначение:** Общий контекст и действия листа Item.
+
+**Основные методы, сущности и действия:** _prepareContext добавляет associatedDiagramView/associatedItemView через await linkedItemContext, только если соответствующее свойство есть у типа предмета. Общие Drop/dispatch остаются прежними. Нельзя использовать prepared system.associatedItem как гарантию полного документа pack.
+
+**Зависимости и потребители:** helpers/linkedItemContext.js; partial associated-diagram.hbs и associated-item.hbs читают отдельные view. Существующая конфигурация, enrichment и mixins сохранены.
+
+## Предыдущий срез анализа
+
+Датированные сведения ниже относятся к прежнему коду. При расхождении приоритет имеет актуальный раздел выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/item/sheets/WitcherItemSheet.js](../../../../../../../module/item/sheets/WitcherItemSheet.js) |

@@ -1,3 +1,4 @@
+import { linkedItemContext } from './helpers/linkedItemContext.js';
 import WitcherConfigurationSheet from './configurations/WitcherConfigurationSheet.js';
 
 const { HandlebarsApplicationMixin } = foundry.applications.api;
@@ -53,6 +54,12 @@ export default class WitcherItemSheet extends HandlebarsApplicationMixin(ItemShe
 
         context.data = context.item.system;
 
+        if ('associatedDiagramUuid' in this.document.system) {
+            context.associatedDiagramView = await linkedItemContext(this.document.system.associatedDiagramUuid);
+        }
+        if ('associatedItemUuid' in this.document.system) {
+            context.associatedItemView = await linkedItemContext(this.document.system.associatedItemUuid);
+        }
         context.showConfig = !!this.configuration;
 
         return context;

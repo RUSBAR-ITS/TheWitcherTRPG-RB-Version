@@ -60,7 +60,7 @@ class MagicItemEditorExpansion(unittest.TestCase):
         self.assertIn('this.effects?.forEach',t);self.assertNotIn('source.effects?.forEach',t)
         for k in ['selfEffects','onCastEffects']:self.assertIn(f'Array.isArray(source.{k}) && source.{k}.length > 0',t)
         self.assertEqual(t.count('foundry.utils.randomID()'),2)
-        self.assertIn("source.system?.class === 'Hexes'",self.body(192,18,26));self.assertIn("source.type = 'ritual'",self.body(192,18,26))
+        self.assertIn("source.system?.class === 'Hexes'",self.body(192));self.assertIn("source.type = 'ritual'",self.body(192))
     def test_forms_current_nested_paths_legacy_requests_and_inheritance(self):
         h=self.body(611);r=self.body(609);header=self.body(540)
         for f in ['createTemplate','templateSize','templateType','visualEffectDuration']:
@@ -74,27 +74,31 @@ class MagicItemEditorExpansion(unittest.TestCase):
         self.assertIn('...super.PARTS',self.body(187));self.assertIn("if (!system.createTemplate) delete parts.regionProperties",self.body(186))
         self.assertIn('1d6+0',h);self.assertIn('initial: null',self.body(125,39,39))
     def test_component_schema_resolution_and_prepared_identity(self):
-        c=self.body(135);p=self.body(123,47,67);h=self.body(609,121,160)
+        c=self.body(135);p=self.body(123);h=self.body(609,121,160)
         self.assertIn('new fields.DocumentUUIDField()',c);self.assertIn('quantity: new fields.NumberField({ initial: 0 })',c)
         for f in ['img:','name:','id:']:self.assertNotIn('        '+f,c)
         self.assertEqual(p.count('fromUuidSync(component.uuid) ?? { name: component.uuid }'),2)
-        self.assertEqual(p.count('img: component.img'),2);self.assertNotIn('.update(',p);self.assertNotIn('await ',p)
-        self.assertEqual(h.count('data-uuid="{{component.item.uuid}}"'),2);self.assertEqual(h.count('class="edit-component"'),2)
+        self.assertEqual(p.count('uuid: component.uuid'),2);self.assertEqual(p.count('img: component.img'),2);self.assertNotIn('.update(',p);self.assertNotIn('await ',p)
+        self.assertEqual(h.count('data-uuid="{{component.uuid}}"'),2);self.assertEqual(h.count('class="edit-component"'),2)
         self.assertNotIn('name=',h);self.assertEqual(h.count('data-field="quantity"'),2)
         self.assertIn('RitualData.ritualComponents',self.q);self.assertIn('RitualData.alternateRitualComponents',self.q)
         cast=self.body(11)
         for f in ['ritualComponentUuids','alternateRitualComponentUuids','ritualComponents','alternateRitualComponents']:self.assertNotIn(f,cast)
         self.assertIn('{{spellItem.system.alternateRitualComponents}}',self.body(487));self.assertNotIn('{{#each spellItem.system.alternateRitualComponents',self.body(487))
     def test_component_crud_selection_first_edit_all_remove_and_async_boundary(self):
-        drop=self.body(177,45,57);edit=self.body(177,59,72);remove=self.body(177,74,81)
-        self.assertIn("event.target.closest('.alternateComponents')",drop);self.assertEqual(drop.count('push({ uuid: item.uuid, quantity: 1 })'),2)
-        self.assertNotIn('item.type',drop);self.assertNotIn('await ',drop);self.assertNotIn('return ',drop)
-        self.assertIn('components.findIndex(obj => obj.uuid == itemId)',edit);self.assertIn('components[objIndex][field] = value',edit);self.assertIn('let value = element.value',edit)
+        text=self.body(177);drop=text[text.index('async _onDropItem'):text.index('_onEditComponent(event)')]
+        edit=text[text.index('    _onEditComponent(event)'):text.index('    _onRemoveComponent(event)')]
+        remove=text[text.index('    _onRemoveComponent(event)'):]
+        self.assertIn("event.target.closest('.alternateComponents')",drop)
+        self.assertEqual(drop.count('push({ uuid: item.uuid, quantity: 1 })'),2)
+        self.assertIn('components.findIndex(obj => obj.uuid == itemId)',edit)
+        self.assertIn('if (objIndex < 0) return',edit);self.assertIn('Number.isFinite(quantity)',edit)
+        self.assertIn('components[objIndex][field] = quantity',edit)
         self.assertIn('.filter(item => item.uuid !== itemId)',remove)
-        for t in [edit,remove]:self.assertNotIn('await ',t);self.assertNotIn('return ',t)
-        self.assertIn('return (await this._onDropItem(event, document)) ?? null',self.body(172,123,135))
-        p=self.data.processes['proc-000435'];self.assertEqual([n['step']for n in p['steps'][0]['next']if'step'in n],['alternate','main'])
-        self.assertEqual(p['steps'][-1]['next'][0]['flow'],'scheduled')
+        for t in [edit,remove]:self.assertIn('return this.item.update',t)
+        self.assertIn('return (await this._onDropItem(event, document)) ?? null',self.body(172))
+        for pid in ['proc-000436','proc-000437']:
+            self.assertEqual(self.data.processes[pid]['steps'][-1]['next'][0]['flow'],'await')
         for q in ['RitualData.ritualComponentUuids','RitualData.alternateRitualComponentUuids']:
             for meth in ['_onDropItem','_onEditComponent','_onRemoveComponent']:self.assertIn(self.q[q],self.targets('WitcherRitualSheet.'+meth,'writes'))
     def test_keyed_statuses_text_and_active_effects_are_separate(self):

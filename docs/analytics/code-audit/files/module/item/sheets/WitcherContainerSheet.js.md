@@ -1,5 +1,19 @@
 # module/item/sheets/WitcherContainerSheet.js
 
+## Актуальное поведение — issue-00333 / 14.3.1.00035
+
+Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../../../issues/open/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.
+
+**Назначение:** Лист контейнера: просмотр, импорт, перенос и извлечение.
+
+**Основные методы, сущности и действия:** _prepareContext пересчитывает представление для актуальной мировой коллекции; _onRender ждёт super и связывает кнопки/drag. Drag добавляет witcherContainer UUID источника, чтобы отличить перемещение от копии каталога. _onDropItem ожидает storeItem, _onRemoveItem проверяет editable и ожидает extractItem. Переносимый pack показывает содержимое без вложенного редактора.
+
+**Зависимости и потребители:** WitcherItemSheet; describeContainer/ownerItems; storeItem/extractItem/runContainerAction из containerOperations.js; container-sheet.hbs. Прямых несогласованных item.update/content.push/splice здесь больше нет.
+
+## Предыдущий срез анализа
+
+Датированные сведения ниже относятся к прежнему коду. При расхождении приоритет имеет актуальный раздел выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/item/sheets/WitcherContainerSheet.js](../../../../../../../module/item/sheets/WitcherContainerSheet.js) |

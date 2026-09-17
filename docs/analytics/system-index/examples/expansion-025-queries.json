@@ -119,12 +119,11 @@
         "--access",
         "writes",
         "--scope",
-        "src-000166"
+        "src-000618"
       ],
       "expected": {
-        "from_ids": [
-          "ent-004651",
-          "ent-004652"
+        "includes_from_ids": [
+          "ent-005451"
         ]
       },
       "basis": "166:36/52 два writer исходного Item."
@@ -160,7 +159,8 @@
       ],
       "expected": {
         "to_ids": [
-          "ent-001003"
+          "ent-005457",
+          "ent-005460"
         ]
       },
       "basis": "Два разных call site35/36 одного внешнего метода без await."
@@ -209,12 +209,12 @@
         "--access",
         "writes",
         "--scope",
-        "src-000166"
+        "src-000618"
       ],
       "expected": {
-        "from_ids": [
-          "ent-004651",
-          "ent-004652"
+        "includes_from_ids": [
+          "ent-005451",
+          "ent-005459"
         ]
       },
       "basis": "Конкретные адреса записи; определения не writers, ItemDelete не освобождает stored."
@@ -299,9 +299,7 @@
         "src-000111"
       ],
       "expected": {
-        "from_ids": [
-          "ent-004647"
-        ]
+        "from_ids": []
       },
       "basis": "111:18; prepare31 читает только source quantity/weight, не дочерний storedWeight."
     },
@@ -318,10 +316,9 @@
       ],
       "expected": {
         "next_steps": [
-          "push"
+          "s3"
         ],
         "next_exits": [
-          "skipped",
           "failed"
         ]
       },
@@ -339,10 +336,9 @@
         "1"
       ],
       "expected": {
-        "next_steps": [
-          "resolve"
-        ],
+        "next_steps": [],
         "next_exits": [
+          "done",
           "failed"
         ]
       },
@@ -355,14 +351,12 @@
         "process",
         "proc-000366",
         "--offset",
-        "3",
+        "1",
         "--limit",
         "1"
       ],
       "expected": {
-        "next_steps": [
-          "resolve"
-        ],
+        "next_steps": [],
         "next_exits": [
           "done",
           "failed"
@@ -379,8 +373,9 @@
       ],
       "expected": {
         "ids": [
-          "delete",
-          "lifecycle"
+          "s0",
+          "s1",
+          "s2"
         ]
       },
       "basis": "175–180 delete и внешний lifecycle без model cleanup."

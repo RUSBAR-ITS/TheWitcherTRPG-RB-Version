@@ -10,12 +10,20 @@
         </span>
         <input type="number" name="system.carry" value="{{item.system.carry}}" data-dtype="Number" />
     </div>
+    {{#if portableTemplate}}<p>{{localize "WITCHER.Container.templateHelp"}}</p>{{/if}}
+    {{#if data.contentIncomplete}}<p role="alert">{{localize "WITCHER.Container.incompleteWeight"}}</p>{{/if}}
     {{#each data.itemContent as |storedItem|}}
-        <div class="container-item">
+        <div class="container-item" data-uuid="{{storedItem.uuid}}" data-missing="{{storedItem.missing}}">
             <div class="header">
                 <input type="text" value="{{storedItem.name}}" disabled />
-                <a class="remove-item" data-uuid="{{storedItem.uuid}}"><i
-                        class="fa-solid fa-arrow-up-from-bracket"></i></a>
+                {{#unless storedItem.portable}}
+                    {{#unless storedItem.missing}}
+                        <a class="open-contained-item" data-uuid="{{storedItem.uuid}}" title="{{localize "WITCHER.Container.openItem"}}"><i class="fas fa-edit"></i></a>
+                    {{/unless}}
+                    <a class="remove-item" data-uuid="{{storedItem.uuid}}"
+                        title="{{#if storedItem.missing}}{{localize "WITCHER.Container.removeBrokenLink"}}{{else}}{{localize "WITCHER.Container.extractItem"}}{{/if}}">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+                {{/unless}}
             </div>
             <item-content class="item-content">
                 <div class="quantity-weight">

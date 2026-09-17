@@ -6,13 +6,13 @@
   "snapshot": {
     "date": "2026-09-17",
     "branch": "dev",
-    "head": "ada23d48fdf82e3e8397c056883cb2cd82598077",
-    "source_hash": "6133e01189807807c8a5d395e5aebe772bd94b8bb83833b70e32c9aeabc03544"
+    "head": "add157e57c566428aa54e1f7da3ec96d6fc061db",
+    "source_hash": "8531990ac30790512dfa8f355e32057b38a8e3c23484a2350853d97daacc355d"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
-    "registry_sha256": "1e830c13dc0b257b2e1a6cfe03ebf7558846d64249f17dd9245a0fd75d10eeb8",
-    "source_count": 617,
+    "registry_sha256": "875106fc059232b9d9e2539a4f1af6510935a480c456f4e5670a0d867d894e54",
+    "source_count": 621,
     "selected_sources": [
       "src-000002",
       "src-000003",
@@ -247,9 +247,13 @@
       "src-000611",
       "src-000613",
       "src-000616",
-      "src-000617"
+      "src-000617",
+      "src-000618",
+      "src-000619",
+      "src-000620",
+      "src-000621"
     ],
-    "semantic_scope": ".00026: changes of issue-00332 M01–M07 and partial M09; M08 remains unchanged; runtime verification pending. Existing dated audit evidence preserved; overall partial.",
+    "semantic_scope": ".00035: issue-00333 П01–П07; containers template/import/move/extract/delete, item context/ritual/drop and isolated checks. Browser acceptance pending; global coverage partial.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -287,7 +291,8 @@
       "data/entities/expansion-032.jsonl",
       "data/entities/expansion-033.jsonl",
       "data/entities/issue-00334.jsonl",
-      "data/entities/issue-00332.jsonl"
+      "data/entities/issue-00332.jsonl",
+      "data/entities/issue-00333.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -320,7 +325,8 @@
       "data/relations/expansion-032.jsonl",
       "data/relations/expansion-033.jsonl",
       "data/relations/issue-00334.jsonl",
-      "data/relations/issue-00332.jsonl"
+      "data/relations/issue-00332.jsonl",
+      "data/relations/issue-00333.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -352,7 +358,8 @@
       "data/processes/expansion-031.jsonl",
       "data/processes/expansion-032.jsonl",
       "data/processes/expansion-033.jsonl",
-      "data/processes/issue-00334.jsonl"
+      "data/processes/issue-00334.jsonl",
+      "data/processes/issue-00333.jsonl"
     ]
   },
   "query_examples": "examples/expansion-034-queries.json",
@@ -429,7 +436,7 @@
     "docs/analytics/system-index/coverage-012.md": "e0e2f5595aa8a7587988b38382a3451458200b4b16fc656a4560af9a8870aa0f",
     "docs/issues/potential/issue-00034.md": "33b53b17bf34f3110af4881ac6b82f6134042b3fd2a7c459172dbe31f66de377",
     "docs/issues/potential/issue-00116.md": "be8d6b707313378473972a666af2904bc6e7c5dc244f551c2adc0851e6f5a441",
-    "docs/issues/potential/issue-00172.md": "fce35c644ea93f077b75d917b71dd7b9ad614a5f51685892d51cefa613fca740",
+    "docs/issues/potential/issue-00172.md": "76c4bb63efb151c8e3a740733fc14ac87313e75292b149651cf91a55bc23a55d",
     "docs/issues/potential/issue-00225.md": "54691653067465c434c9b6065f390dcb3a1114f8044504b09392c908427db703",
     "docs/issues/potential/issue-00153.md": "260274511afb5587f711d6a9b0fd6c40e1fcddf68d8ff8a00ea64e33cf62ae01",
     "docs/issues/potential/issue-00175.md": "019d5e1cde985c7a16a8cdef932c03f9d61b2659d27b27c7b79e8fba1d68f0e9",
@@ -562,15 +569,15 @@
     "docs/issues/potential/issue-00203.md": "ec63f06e911dd5028d37712613064072b4dda364e4772b86a9647ecd9374c3bc",
     "docs/issues/closed/issue-00205.md": "9486a0d31d6330ca79375fa64ea22f75484319278891b279d3109cb8548357fe",
     "docs/analytics/system-index/coverage-024.md": "3c83e8f58fe2e2bfbe55d9b7e965a278bfea9a5e76f76e9980bc8f4d4a48bac2",
-    "docs/issues/potential/issue-00156.md": "1804d61a9440d722f335312baee232de811f7a80a7b3d4d8f95c354deccc1aa2",
-    "docs/issues/potential/issue-00158.md": "df4a82f8bf2beb0e10cdb7d5403c50096a90ba58c08ce7518047939d76528bc4",
-    "docs/issues/potential/issue-00159.md": "fbcf020cc22f71a4c1c9d037fcb951b272be8db20b436c7714b34a173c303c66",
-    "docs/issues/potential/issue-00160.md": "7bad510c6f80fdf82f6e29566b77dc36b5056d422b5102833a6a3b90381cac2f",
-    "docs/issues/potential/issue-00157.md": "7ca7e2959fdc0c4660b1c0cbd8f97c7aa5fd4eb3dc5e7b49d881a36908d5689e",
-    "docs/issues/potential/issue-00161.md": "3a3ca07c92c1d6a2814a4cd36e42cc96b503edbba57fe489fe099cc7e4f06752",
+    "docs/issues/potential/issue-00156.md": "dc840b44e1e50719be55bb1e72c84f8df8f48398868ce8694490e72a9cac3486",
+    "docs/issues/potential/issue-00158.md": "28c8e5344ef06415a6527e432a8ef0e67442cd4d657be6a97fe20857f1f24912",
+    "docs/issues/potential/issue-00159.md": "7aa4d954e124f27a210933eee115ea02773cb798b5aaab03e419a6692b318082",
+    "docs/issues/potential/issue-00160.md": "2e78d2577cda6e35696590b3d9cb03ad14dee8c908b2b7d8ff33d2d022329a15",
+    "docs/issues/potential/issue-00157.md": "00ef7e3e5cd98c8e110f7c0735b1416300a17fc57785f566b91541c20bbf40eb",
+    "docs/issues/potential/issue-00161.md": "668b10745b09f388bf0ff0382c557b338e6b3d5aaebc79575c747d88b85e312f",
     "docs/issues/potential/issue-00163.md": "95f452d3039b9cd96e0a1b467c0115206d0de64a08eeb1f5fe1403a232d21333",
-    "docs/issues/potential/issue-00162.md": "d59defebeb4693c803e41b0ad5d383ae10cbdf6fc364ffcd1622cf304ad4f4f1",
-    "docs/analytics/system-index/coverage-025.md": "62edfc459fb91d008bd5d31162b89c4f142205f12cb7dff44274b3a4ac3d0883",
+    "docs/issues/potential/issue-00162.md": "2f0f578c1ae21cbe6ed9a663588c425bd5fee2067790ff8d443859f15a8fe9ef",
+    "docs/analytics/system-index/coverage-025.md": "481c4e2a58d15bb37791f3010f2ea2e88725fc47a265f21d36f80ff307f65274",
     "docs/issues/potential/issue-00170.md": "157f6985ae4d92a65f2095f695f39457a56167e625dd41c6611810b199b70fa2",
     "docs/issues/potential/issue-00171.md": "8ea9f54457facadaa6b33a5ca2504f5fd8538246459ee11581f2cb4655ac723b",
     "docs/analytics/system-index/coverage-026.md": "6f025a63e28c3f7e6c4692adc210ef416424ca900b1debc572c4f993e34ae906",
@@ -601,7 +608,7 @@
     "docs/issues/potential/issue-00029.md": "cbca517ee069e628d59421b470c2de215e93b4265b903f892a059861bbd26082",
     "docs/issues/potential/issue-00200.md": "6b49e6ce9ec83f210d3809fbc8fc9d8067e866628aa94b8223196eca7e90766f",
     "docs/analytics/system-index/coverage-030.md": "129244e25193c503150cf4d347403e161e7b4401f1ec4c5c28a2380f76e01e41",
-    "docs/issues/potential/issue-00130.md": "aa9603e5f1229407beb11b2cde75ed1c3d444b378778fae54b60d792ad7994ac",
+    "docs/issues/potential/issue-00130.md": "c2b8c750a48ec12715ebbd7f1a221b620a60c67343d7668a4f6569c24c5effa0",
     "docs/issues/potential/issue-00131.md": "67db2ba59c24ec7f9208f55fe01111eb832c6b92e65887a5a8174a0d2149b67b",
     "docs/issues/potential/issue-00128.md": "9ffd6a28c9e06b8376d26f30a043f121b95eaa0cb1b0b485e9d245c1259a6a1d",
     "docs/issues/potential/issue-00129.md": "61368e93b4320dc393782c9daff2b9186bf3661ced88cda7d6b1766efa287a79",
@@ -613,7 +620,7 @@
     "docs/issues/potential/issue-00136.md": "d24ad9de848b449cede5b3a91239744d35f1418b6f9347dab736ce12f8bfa6bf",
     "docs/issues/closed/issue-00137.md": "5add4ec63b482d850bd41f19bdec53f0c1bc98eff3695926eaf9973e0f8a6d0f",
     "docs/issues/potential/issue-00135.md": "102c3d610201241db8d6b39e927eae44a09d9503fc230e1118fd56fb40a98139",
-    "docs/analytics/system-index/coverage-031.md": "7ced2df39e381b5a29420e8694e30f9dc5b1ea8cb27ed17673465b1648781005",
+    "docs/analytics/system-index/coverage-031.md": "1728204c65eef50004b69f51439616a7ace1ce801031b75f86595a1631c3ce9a",
     "docs/issues/potential/issue-00246.md": "4a5f7c786090920f1cd393ff1dfb285ed82251294e03124c6f7ad44b4015b731",
     "docs/issues/potential/issue-00254.md": "66343a11d7a382d593d834dd3b978f2321c78bb4e6fdba8a51d114bd3db444ee",
     "docs/issues/potential/issue-00245.md": "51d04ac2ed8d08a1185c1bc41d3d6ee446357b6e830e617d0f17af7ac00b02ab",
@@ -637,13 +644,14 @@
     "docs/analytics/system-index/coverage-034.md": "cc55f13fc6ef47314a8eb4bcee1d13b5736c26c6e43e9e63086ab8a72bfe25d5",
     "docs/issues/closed/issue-00330.md": "0e7cb10d7cf3a5cfee2a52ee60dc0f25958469bac52b1ea476e8e2a75d6fac1a",
     "docs/issues/closed/issue-00334.md": "38bb15a07056ee24261525309e84632b71519442ab192a2e3d769dce2320fa16",
-    "docs/issues/closed/issue-00332.md": "ba56eca1eee898c3764d0525315285b86401458179664b22b22b450b05782c42"
+    "docs/issues/closed/issue-00332.md": "ba56eca1eee898c3764d0525315285b86401458179664b22b22b450b05782c42",
+    "docs/issues/open/issue-00333.md": "e609aa50683f6819da3992993af7ca50ea333ca230a7194a9b6de53ed0487f42"
   },
   "next_ids": {
-    "source": 618,
-    "entity": 5435,
-    "relation": 15341,
-    "process": 469
+    "source": 622,
+    "entity": 5538,
+    "relation": 15611,
+    "process": 471
   },
   "retired_ids": [
     "ent-000843",
@@ -669,6 +677,27 @@
     "rel-011519",
     "rel-011520",
     "rel-011521",
-    "rel-011522"
+    "rel-011522",
+    "rel-012099",
+    "rel-012102",
+    "rel-012103",
+    "rel-012104",
+    "rel-012105",
+    "rel-012106",
+    "rel-012117",
+    "rel-012122",
+    "rel-012123",
+    "rel-012124",
+    "rel-012125",
+    "rel-012126",
+    "rel-012127",
+    "rel-012128",
+    "rel-012129",
+    "rel-012130",
+    "rel-012131",
+    "rel-012132",
+    "rel-012133",
+    "rel-012134",
+    "rel-012135"
   ]
 }

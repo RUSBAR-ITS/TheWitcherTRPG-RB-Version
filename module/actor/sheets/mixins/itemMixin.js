@@ -1,3 +1,4 @@
+import { importToActor, runContainerAction } from '../../../item/containerOperations.js';
 import { WITCHER } from '../../../setup/config.js';
 import WitcherItem from '../../../item/witcherItem.js';
 
@@ -9,12 +10,23 @@ export let itemMixin = {
 
         //TODO remove when everything is v2
         if (!(item instanceof WitcherItem)) {
-            const itemConverter = await Item.implementation.fromDropData(item);
-            item = itemConverter.toObject();
+            item = await Item.implementation.fromDropData(item);
         }
 
-        // Handle item sorting within the same Actor
-        if (this.actor.uuid === item.parent?.uuid) return this._onSortItem(event, item);
+        const payload = event?.dataTransfer
+            ? foundry.applications.ux.TextEditor.implementation.getDragEventData(event)
+            : {};
+        // Keep parent information until sorting/extraction has been distinguished from copying.
+        if (this.actor.uuid === item.parent?.uuid && !payload.witcherContainer) return this._onSortItem(event, item);
+        if (item.type === 'container' || payload.witcherContainer) {
+            return runContainerAction(() =>
+                importToActor(this.actor, item, {
+                    sourceContainer: payload.witcherContainer,
+                    equipped: item.type === 'weapon' && this.actor.type === 'monster' ? true : undefined
+                })
+            );
+        }
+        item = item.toObject ? item.toObject() : foundry.utils.deepClone(item);
 
         if (this._isUniqueItem(item)) {
             await this.actor.removeItemsOfType(item.type);
@@ -51,7 +63,7 @@ export let itemMixin = {
             });
             this.actor.update(delta);
         }
-        this.actor.addItem(item);
+        return await this.actor.addItem(item);
     },
 
     _isUniqueItem(item) {
@@ -176,7 +188,7 @@ export let itemMixin = {
         event.preventDefault();
         event.stopPropagation();
         let itemId = event.currentTarget.closest('.item').dataset.itemId;
-        this.actor.items.get(itemId).delete();
+        return runContainerAction(() => this.actor.items.get(itemId).delete());
     },
 
     async _chooseEnhancement(event) {

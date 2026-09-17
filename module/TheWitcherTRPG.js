@@ -9,6 +9,7 @@ import * as Fumble from './scripts/rolls/fumble.js';
 import { registerSettings } from './setup/settings.js';
 
 import WitcherItem from './item/witcherItem.js';
+import WitcherItems from './item/collections/WitcherItems.js';
 import WitcherActor from './actor/witcherActor.js';
 import WitcherRollTable from './rollTable/witcherRollTable.js';
 
@@ -31,6 +32,7 @@ Hooks.once('init', function () {
     CONFIG.WITCHER = WITCHER;
     CONFIG.statusEffects = CONFIG.WITCHER.statusEffects;
     CONFIG.Item.documentClass = WitcherItem;
+    CONFIG.Item.collection = WitcherItems;
     CONFIG.Actor.documentClass = WitcherActor;
     CONFIG.RollTable.documentClass = WitcherRollTable;
     CONFIG.ActiveEffect.documentClass = WitcherActiveEffect;
@@ -75,10 +77,12 @@ Hooks.once('ready', async function () {
         });
     } catch (error) {
         console.error('TheWitcherTRPG | Critical wounds index', packId, error);
-        ui.notifications.error(game.i18n.format('WITCHER.Compendium.criticalWoundsIndexFailed', {
-            pack: criticalWounds?.metadata.label ?? packId,
-            reason: error.message ?? String(error)
-        }));
+        ui.notifications.error(
+            game.i18n.format('WITCHER.Compendium.criticalWoundsIndexFailed', {
+                pack: criticalWounds?.metadata.label ?? packId,
+                reason: error.message ?? String(error)
+            })
+        );
     }
 
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
