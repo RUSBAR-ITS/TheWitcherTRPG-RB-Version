@@ -46,7 +46,7 @@
 | WITCHER.Damage.silver | ru | Серебро |
 | WITCHER.Dialog.attackCustom | ru | Модификатор атаки |
 
-Сопоставлено с [R016-20](../code-audit/cross-check-0002.md#r016-20), [R016-21](../code-audit/cross-check-0002.md#r016-21), [R016-22](../code-audit/cross-check-0002.md#r016-22). [issue-00193](../../issues/closed/issue-00193.md) сохраняет позднее уточнение: семь Actor.Skill.* доступны после expandObject. [issue-00317](../../issues/closed/issue-00317.md) — различие DamageType.silver/Damage.silver; [issue-00318](../../issues/closed/issue-00318.md) — ru-label фазы эффекта; [issue-00178](../../issues/closed/issue-00178.md) — Weapon.Availability; [issue-00016](../../issues/closed/issue-00016.md) — регистр CRA labels. [issue-00053](../../issues/potential/issue-00053.md) касается отсутствующего DataField Temporary и отделена от перевода.
+Сопоставлено с [R016-20](../code-audit/cross-check-0002.md#r016-20), [R016-21](../code-audit/cross-check-0002.md#r016-21), [R016-22](../code-audit/cross-check-0002.md#r016-22). [issue-00193](../../issues/closed/issue-00193.md) сохраняет позднее уточнение: семь Actor.Skill.* доступны после expandObject. [issue-00317](../../issues/closed/issue-00317.md) — различие DamageType.silver/Damage.silver; [issue-00318](../../issues/closed/issue-00318.md) — ru-label фазы эффекта; [issue-00178](../../issues/closed/issue-00178.md) — Weapon.Availability; [issue-00016](../../issues/closed/issue-00016.md) — регистр CRA labels. [issue-00053](../../issues/closed/issue-00053.md) касается отсутствующего DataField Temporary и отделена от перевода.
 
 ## Подстановки и внешний контракт
 

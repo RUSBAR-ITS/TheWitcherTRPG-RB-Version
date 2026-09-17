@@ -628,7 +628,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00054.md"
+          "docs/issues/closed/issue-00054.md"
         ]
       },
       "basis": "455:70–90 старый table selector;530и562 два HTMLсписка."

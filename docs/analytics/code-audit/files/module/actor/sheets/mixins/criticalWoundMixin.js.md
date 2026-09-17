@@ -74,7 +74,7 @@ Named export criticalWoundMixin присоединяется Object.assign к Wi
 
 ## Связанные проблемы
 
-[issue-00054](../../../../../../../issues/potential/issue-00054.md), [issue-00121](../../../../../../../issues/potential/issue-00121.md), [issue-00127](../../../../../../../issues/potential/issue-00127.md). Повторный вывод уже зарегистрирован ранее; операции перехода и завершение Promise разобраны в этой порции.
+[issue-00054](../../../../../../../issues/closed/issue-00054.md), [issue-00121](../../../../../../../issues/potential/issue-00121.md), [issue-00127](../../../../../../../issues/potential/issue-00127.md). Повторный вывод уже зарегистрирован ранее; операции перехода и завершение Promise разобраны в этой порции.
 
 ## История актуализации
 

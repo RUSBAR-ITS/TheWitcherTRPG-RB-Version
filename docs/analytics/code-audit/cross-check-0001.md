@@ -460,10 +460,10 @@
 | [issue-00050](../../issues/potential/issue-00050.md) | Основание сохранено | B04: E04 сохраняет start=null; core инициализирует start для Actor, получатель Item; истечение в мире не проверено. |
 | [issue-00051](../../issues/potential/issue-00051.md) | Основание сохранено | B04: autocomplete выбирает config по parent.documentName, transfer не читает; мастер пути выбирает другим способом. |
 | [issue-00052](../../issues/potential/issue-00052.md) | Основание сохранено | B04: wizardAction изменяет document.system.changes и update({changes}), основную несохранённую форму не собирает. |
-| [issue-00053](../../issues/potential/issue-00053.md) | Основание сохранено | B04: E01 подтвердил отсутствие applyAfterCalculations; HBS обращается к нему без условия. |
-| [issue-00054](../../issues/potential/issue-00054.md) | Основание сохранено | B04: Два перебора одной коллекции: include crit-wounds-table и локальный each; общая причина для двух листов. |
-| [issue-00055](../../issues/potential/issue-00055.md) | Основание сохранено | B04: Повторная вставка wizard/datalist без очистки; ограничение частичным рендером сохранённых частей остаётся. |
-| [issue-00056](../../issues/potential/issue-00056.md) | Основание сохранено | B04: Item-конфигурация подключает управление, но не раскрытие effect-description; Actor-listener содержит его отдельно. |
+| [issue-00053](../../issues/closed/issue-00053.md) | Основание сохранено | B04: E01 подтвердил отсутствие applyAfterCalculations; HBS обращается к нему без условия. |
+| [issue-00054](../../issues/closed/issue-00054.md) | Основание сохранено | B04: Два перебора одной коллекции: include crit-wounds-table и локальный each; общая причина для двух листов. |
+| [issue-00055](../../issues/closed/issue-00055.md) | Основание сохранено | B04: Повторная вставка wizard/datalist без очистки; ограничение частичным рендером сохранённых частей остаётся. |
+| [issue-00056](../../issues/closed/issue-00056.md) | Основание сохранено | B04: Item-конфигурация подключает управление, но не раскрытие effect-description; Actor-listener содержит его отдельно. |
 | [issue-00057](../../issues/potential/issue-00057.md) | Основание сохранено | B05: I06: PARTS={} у общего листа; NoteData/шаблон сами не регистрируют специальный лист. |
 | [issue-00058](../../issues/potential/issue-00058.md) | Основание сохранено | B05: I06: маршрут Actor вызывает отсутствующий метод; границы Item-наследников и ActiveEffect-метода ядра сохранены. |
 | [issue-00059](../../issues/potential/issue-00059.md) | Основание сохранено | B05: Системный _onDrop не вызывает super/Hook; наличие hook в текущем ItemSheetV2 ранее проверено, код не изменён. |
@@ -572,7 +572,7 @@
 | [issue-00162](../../issues/potential/issue-00162.md) | Основание сохраняется | B09: Нет очистки в модели/документе; ссылки не являются embedded-владением контейнера. |
 | [issue-00163](../../issues/potential/issue-00163.md) | Основание сохраняется | B09: carry отсутствует в Drop/calcWeight; Q03 допускает self даже при carry0. |
 | [issue-00164](../../issues/potential/issue-00164.md) | Основание сохраняется | B10: J01:9/10+REC3 отправляет12, Full10; обе версии, правило рулбука не утверждается. |
-| [issue-00165](../../issues/potential/issue-00165.md) | Основание сохраняется | B10: allApplicableEffects + дополнительная выборка допускают один объект дважды; условный фасад прежнего теста соответствует геттерам. |
+| [issue-00165](../../issues/closed/issue-00165.md) | Основание сохраняется | B10: allApplicableEffects + дополнительная выборка допускают один объект дважды; условный фасад прежнего теста соответствует геттерам. |
 | [issue-00166](../../issues/potential/issue-00166.md) | Основание сохраняется | B10: J02: prepared enhancementItems обрезается, source IDs не изменяются; не дубль Armor RangeError82. |
 | [issue-00167](../../issues/potential/issue-00167.md) | Основание сохраняется | B10: J05: imported ES module перезаписывает global jQuery; реальная библиотека браузера не запускалась. |
 | [issue-00168](../../issues/potential/issue-00168.md) | Основание сохраняется | B10: J03 + core617–621: три legacy callback имеют переставленные аргументы; delete callback корректен. |
@@ -637,7 +637,7 @@
 | [issue-00227](../../issues/potential/issue-00227.md) | Основание сохраняется | B13: N03: amount−10 увеличивает source до110 и уменьшает target; нет проверок fee/finite. |
 | [issue-00228](../../issues/potential/issue-00228.md) | Основание сохраняется | B13: Проверяется объект rates, не валидность keys/значений; unknown/zero дают NaN/Infinity. |
 | [issue-00229](../../issues/potential/issue-00229.md) | Основание сохраняется | B13: N03: захваченные100 заменены500 во время диалога, запрос всё равно90. |
-| [issue-00230](../../issues/potential/issue-00230.md) | Основание сохраняется | B13: Новый bind/addEventListener при каждом вызове; условие повторного DOM сохранено. |
+| [issue-00230](../../issues/closed/issue-00230.md) | Основание сохраняется | B13: Новый bind/addEventListener при каждом вызове; условие повторного DOM сохранено. |
 | [issue-00231](../../issues/potential/issue-00231.md) | Основание сохраняется | B13: N03: await update/render есть, ChatMessage.create pending не удерживает метод. |
 | [issue-00232](../../issues/potential/issue-00232.md) | Основание сохраняется | B13: N04: реальный producer не передаёт currency, HTML не содержит amount17. |
 | [issue-00233](../../issues/potential/issue-00233.md) | Основание сохраняется | B13: N04: отсутствующий UUID→TypeError; getPlayerActors не проверяет model.logs. |

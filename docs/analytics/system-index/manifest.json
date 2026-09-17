@@ -6,8 +6,8 @@
   "snapshot": {
     "date": "2026-09-17",
     "branch": "dev",
-    "head": "e6f08ebf97752ecd6beff41691be0360e54c4e9e",
-    "source_hash": "68e0499e0eb598fbaa202d52f6cae8141776784f8539c46a56af93ba54fb26d0"
+    "head": "cd850957b949fb124e7dde6b97b941bdc0735625",
+    "source_hash": "1de8d380b9204a99d3aea58d7b3dc5a95679903f6e79a2beca9b868611430805"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
@@ -361,7 +361,7 @@
     }
   },
   "reference_hashes": {
-    "docs/analytics/code-audit/cross-check-0002.md": "802554ad4fa438d354497b75b36c71c2a0fc29c518dc1f6a96d257b0bbbab356",
+    "docs/analytics/code-audit/cross-check-0002.md": "ec352a7fbde670d8cc015b2b1b57b07601afe584183b3ae3dbdb508b890e2a50",
     "docs/issues/potential/issue-00004.md": "cd45839c25c103d993bba24c57ec2f826939110588fcefd90b14f27e267ef48e",
     "docs/issues/potential/issue-00015.md": "929d09b62873d79a5b642813712365406c3a489018b02262c4d4930ccaa45e9a",
     "docs/issues/potential/issue-00012.md": "76a72cbfaebd87bb491ff394bb698d9f217483d225de448abfb6864c26233792",
@@ -383,10 +383,10 @@
     "docs/analytics/system-index/coverage-006.md": "9af0b4d248624f7b92b9c821e537fb91f38e4eb3cf11cab09ed3b8c138598ee8",
     "docs/issues/potential/issue-00052.md": "660ade73fbcefe134a65805d156db3d74e8197ad52f9fb7fc07230977f66c5f3",
     "docs/issues/potential/issue-00051.md": "fbd30ed1ca5f1377893efb15c90009e5c68b8b3c3c7b6f3fe75cfdbf982b945e",
-    "docs/issues/potential/issue-00053.md": "fc73dced1607deef54024ade5a2c2c235463beabb4479af7ad6f263073ed9781",
+    "docs/issues/closed/issue-00053.md": "fe986e0c88458e8cad2ee9c194f3babcdb07f7fc1b8e2def29044c75f054d6ff",
     "docs/issues/closed/issue-00318.md": "97c9593aa07d5708481b824781f9030902ef05d74b6fde49b91163284c7cf476",
-    "docs/issues/potential/issue-00056.md": "ad7ee69300bc00154746a069c28915f2bdd95d0a97cd41fdac1adef7ef1244b8",
-    "docs/analytics/system-index/coverage-007.md": "d13f831ae700ffb141dded99fa031154f080e795d7bd07cbcc653dc5a7787957",
+    "docs/issues/closed/issue-00056.md": "d9c1311768877061cdb098968d844048a60bd43757c6f1c5a77115bf0bce4df1",
+    "docs/analytics/system-index/coverage-007.md": "672640b2637e7b0bf3c9ff35d87b14265228a845110f2ae19c85f21473963d8f",
     "docs/issues/potential/issue-00045.md": "8c03463a379723040e0b3d77ea5f3d16037137d50938898c659df194dfe33df6",
     "docs/issues/potential/issue-00042.md": "75644a66f4699a93513d120a77ead0af8137a9ca3e3eea975d43b642977483b6",
     "docs/issues/potential/issue-00046.md": "201292987b03fd2a0527d1ec7d92595a1fa31d26f6cf1de5592cb93fa0f00de1",
@@ -398,9 +398,9 @@
     "docs/issues/potential/issue-00185.md": "618bce806bedbc5e54ca31edcdde354c2d69a2b41cba9effcee309b9c3aa16b2",
     "docs/issues/potential/issue-00044.md": "ffd5042c5e90e7a55cb88121df8ac283fdb13c62e95a85d7a72dec9c6e8c858b",
     "docs/issues/potential/issue-00008.md": "5535479e6cee468a9a776e19ab0d85c0b528170111623902b533fb549b9868f4",
-    "docs/issues/potential/issue-00054.md": "53982f5b4012b47446b68a40a8895c1c835f3da4674baa928926db8571846362",
+    "docs/issues/closed/issue-00054.md": "75a27b8b0339f7aee261969c898efdf8e67322be500e82ed51e592aeeea869be",
     "docs/issues/potential/issue-00257.md": "c2e1ac3cc87569b3bbb513ded89ba4a7c370e1f3a881bb46f811b969b9a45d72",
-    "docs/analytics/system-index/coverage-008.md": "008c62a455f3f659a8e810d79fa5583da0063d27479019735b6f3da6b4e764b6",
+    "docs/analytics/system-index/coverage-008.md": "014ce9caa9f909d7b5c72e51face2747fe930ab010a2f67547022ab984b95d14",
     "docs/issues/potential/issue-00187.md": "24558d882d188be3ca9121fdf8c391400f4074be7fc7119e7257fdae61ec6845",
     "docs/issues/potential/issue-00188.md": "a8cacb0ec87ab41628296f061e3542f324aab24010000223f7d3e1daab2cf1f9",
     "docs/issues/potential/issue-00189.md": "4563d8e6c240f3088d18e844a65e9137c8c4c35440ae27b4aef97f645edbd471",
@@ -414,13 +414,13 @@
     "docs/issues/closed/issue-00317.md": "5c08f4e0c917893c7d3f6ac9c5e245fe48a73d2407925c7c1aaf3608805031e5",
     "docs/issues/closed/issue-00016.md": "580b773cc6c7ffcefc2c43b3a6a8ced1d2f314b15dfa0f197cad632e8bc3a0ba",
     "docs/issues/closed/issue-00178.md": "892b8f1bd236033a30f6924ec2b12d228df051464fe122a8dd66c1f970f53cf3",
-    "docs/analytics/system-index/coverage-011.md": "d4f181e02dd4c2ad976842b523815ffd67dd8596a7e03940dea5ee2c8562f7aa",
+    "docs/analytics/system-index/coverage-011.md": "e31b19d795fb8a178f8e7a6dccf967d1a4ab7f48600099d66ab8b0009245e89f",
     "docs/issues/potential/issue-00166.md": "6e73af07257b9762dfaa90deda29ae54ea18c89e5641d38be5d3c3ea930725f5",
     "docs/issues/potential/issue-00058.md": "0f5c9f84bfae8adb5e434665e58d38e7d0ab969806792372d4993e0508846a7d",
     "docs/issues/potential/issue-00059.md": "6a7d9b4667e9b9406e488ee839bb55948a6a6af8286a587a2185d36ae6bea93a",
     "docs/issues/potential/issue-00011.md": "ddaf2c030d345c73a1e1cefe142eb1acd02131c94d99d55469c3703efe481ee3",
     "docs/issues/potential/issue-00024.md": "642b7ab8e35d2432d3ed7bfe25e5d48639892794e8f456001a03718a8b3ef902",
-    "docs/issues/potential/issue-00165.md": "ce2ae42ec99264e1db95171cd61229d71fc8091d74efac9351d5e3dc8ba443ea",
+    "docs/issues/closed/issue-00165.md": "94a8f7d4b83a54b4ff17fcc11cf696717537f7f493a7eb9582742901a81c6966",
     "docs/issues/potential/issue-00030.md": "488e5552ab23be8b969bf9612097d6a60ed04859b5280d7dda5bded74132acc2",
     "docs/analytics/system-index/coverage-012.md": "e0e2f5595aa8a7587988b38382a3451458200b4b16fc656a4560af9a8870aa0f",
     "docs/issues/potential/issue-00034.md": "33b53b17bf34f3110af4881ac6b82f6134042b3fd2a7c459172dbe31f66de377",
@@ -632,7 +632,7 @@
     "docs/analytics/system-index/coverage-033.md": "707789452cebf77886e8dafd5e4702257aed67f53807ac3f34453732446ad9b5",
     "docs/analytics/system-index/coverage-034.md": "cc55f13fc6ef47314a8eb4bcee1d13b5736c26c6e43e9e63086ab8a72bfe25d5",
     "docs/issues/closed/issue-00330.md": "deee503cb542ee018699ab6f65fac6cc9d7201364b96ddf744f2a140ee9df7b4",
-    "docs/issues/open/issue-00334.md": "4fc989f599334dd44e5793abce74756d44cebc4b6319b15e57ad2d8a3655e3db"
+    "docs/issues/closed/issue-00334.md": "371e9a816da34685259dec80863bb5b3e4b9dc75c9dd794a99ebd2632390980c"
   },
   "next_ids": {
     "source": 616,
