@@ -1,5 +1,11 @@
 # module/actor/sheets/WitcherMonsterSheet.js
 
+## Актуализация 2026-09-17 — 14.3.1.00030
+
+В #exportLoot (169–237), после checkIfItemHasRollTable и только для not-found, новое количество сравнивается с item._source.system.quantity. Поле определено как StringField в [commonItemData.js](../../data/item/commonItemData.js.md), поэтому рассчитанное число приводится к строке. Неизменная стопка засчитывается без update, следующие Items/генераторы обрабатываются. При реальной записи сохраняются await, проверка возвращённого документа и остановка при отказе. Render ждёт завершения цикла. Контракт API Foundry не изменён.
+
+[Согласование, 6/6 изолированных проверок и оставшийся игровой сценарий](../../../../../../issues/potential/issue-00207.md#noop-fix). Остальные методы не менялись; исторические записи ниже относятся к своим версиям.
+
 ## Актуализация 2026-09-17 — 14.3.1.00029
 
 Явный тип Actor для поиска/создания папки. Поле multiple: min1/step1/required, valueAsNumber; Number.isSafeInteger и значение ≥1 проверяются до папки/Actor.create, при отказе локализованное предупреждение и return. Обработка Items из М05 сохранена. Основные методы: getOrCreateFolder (153–167), #exportLoot (169–234). Зависимость: WITCHER.Monster.lootInvalidMultiplier в en/ru. Проверки: полный модуль в VM с фасадами внешних API; создание/reuse папки, отказ без записей, multiplier1/2, фиксированное количество/формула.

@@ -213,8 +213,11 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
 
                 const result = await item.checkIfItemHasRollTable(newQuantity, tables);
                 if (result.status === 'not-found') {
-                    const saved = await item.update({ 'system.quantity': newQuantity });
-                    if (!saved) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
+                    // Quantity is a StringField; Foundry returns undefined for an unchanged update.
+                    if (item._source.system.quantity !== String(newQuantity)) {
+                        const saved = await item.update({ 'system.quantity': newQuantity });
+                        if (!saved) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
+                    }
                 } else if (result.status !== 'generated') {
                     throw new Error(result.reason);
                 }
