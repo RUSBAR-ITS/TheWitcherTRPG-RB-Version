@@ -1,5 +1,22 @@
 # module/item/sheets/configurations/WitcherConfigurationSheet.js
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Item-конфигурация: раскрытие описания эффекта. Изменение 2026-09-17 по [issue-00334](../../../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| DEFAULT_OPTIONS.actions | К четырём CRUD-actions добавлен displayEffectDescription → статический onDisplayEffectDescription. |
+| _prepareContext | Задаёт context.effectDescriptionAction=displayEffectDescription; этот контракт читает общий effect-part через @root. |
+| onDisplayEffectDescription(event, element) | Останавливает событие, ищет .effect-description только в ближайшей .effect-row и переключает invisible при непустом HTML. При отсутствии строки/описания ничего не записывает. |
+| Существующие методы | Собственный Item-категоризатор с disabled и обработчик CRUD не изменены. Наследники получают новый action/контекст через базовый класс. |
+
+Связанные файлы: [templates/partials/effect-part.hbs](../../../../templates/partials/effect-part.hbs.md), [templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs](../../../../templates/sheets/item/configuration/tabs/activeEffectConfiguration.hbs.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherConfigurationSheet.js) |

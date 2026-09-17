@@ -1,5 +1,21 @@
 # templates/partials/effect-part.hbs
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Общий список эффектов: условное действие описания. Изменение 2026-09-17 по [issue-00334](../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| .effect-display | Получает data-action из @root.effectDescriptionAction только при наличии поля. Item-конфигурация задаёт displayEffectDescription. |
+| Actor | Контекст Actor не задаёт новое поле, поэтому раскрытие остаётся у существующего activeEffectListener. Второй action для Actor не регистрируется. |
+| Остальное представление | Отбор suppressed, owner UUID/local ID, CRUD и скрытый блок описания сохранены. Сам partial не меняет документы. |
+
+Связанные файлы: [module/item/sheets/configurations/WitcherConfigurationSheet.js](../../module/item/sheets/configurations/WitcherConfigurationSheet.js.md), [module/actor/sheets/mixins/activeEffectMixin.js](../../module/actor/sheets/mixins/activeEffectMixin.js.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/effect-part.hbs](../../../../../../templates/partials/effect-part.hbs) |

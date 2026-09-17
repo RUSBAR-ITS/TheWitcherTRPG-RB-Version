@@ -1,5 +1,21 @@
 # templates/partials/crit-wounds-table.hbs
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Единственное представление списка травм. Изменение 2026-09-17 по [issue-00334](../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| each documentsByType.criticalWound | Одна строка на каждый Item, с прежним data-item-id и data-type=critWound. |
+| details/summary | Из прежнего inline-списка перенесено раскрываемое описание: lookup criticalWounds по полному critWound.uuid, затем поле enriched. Источник — WitcherActorSheet._prepareItems. |
+| Редактирование/лечение | Сохранены data-field=system.daysHealed, disabled healingTime и data-action=treatCriticalWound с полным UUID. Тяжесть, лечение, локация и ключи локализации сохранены. |
+
+Связанные файлы: [templates/sheets/actor/partials/character/tab-effects.hbs](../sheets/actor/partials/character/tab-effects.hbs.md), [module/actor/sheets/WitcherActorSheet.js](../../module/actor/sheets/WitcherActorSheet.js.md), [module/actor/sheets/mixins/criticalWoundMixin.js](../../module/actor/sheets/mixins/criticalWoundMixin.js.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/crit-wounds-table.hbs](../../../../../../templates/partials/crit-wounds-table.hbs) |

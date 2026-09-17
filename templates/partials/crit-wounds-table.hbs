@@ -6,24 +6,29 @@
                 <div class="critwound-header">
                     <div class="critwound-info">
                         <div>
-                            <span>{{critWound.name}}</span>
+                            <details>
+                                <summary><span>{{critWound.name}}</span></summary>
+                                <span>{{{lookup (lookup ../criticalWounds critWound.uuid) 'enriched'}}}</span>
+                            </details>
                         </div>
                         <div>
                             <span><u>{{localize "WITCHER.criticalWound.criticalLevel.label"}}:</u>
                                 {{localize (lookup ../config.critLevel critWound.system.criticalLevel)}} |
                             </span>
                             <span><u>{{localize "WITCHER.criticalWound.treatment.label" }}:</u>
-                                {{localize (lookup ../config.critTreatment critWound.system.treatment)}} | </span>
+                                {{localize (lookup ../config.critTreatment critWound.system.treatment)}} |
+                            </span>
                             <span><u>{{localize "WITCHER.criticalWound.location.label"}}:</u>
                                 {{localize (lookup ../config.location critWound.system.location)}}</span>
                         </div>
                     </div>
                     <div class="critwound-days-rest">
-                        <label class="healing-time-lable">{{localize "WITCHER.criticalWound.healingTime.label"}}:
+                        <label
+                            class="healing-time-lable">{{localize "WITCHER.criticalWound.healingTime.label"}}:
                         </label>
                         <div class="healing-time-inputs">
-                            <input class="days-healed inline-edit" data-field="system.daysHealed" type="number"
-                                data-dtype="Number" value="{{critWound.system.daysHealed}}" />
+                            <input class="days-healed inline-edit" data-field="system.daysHealed"
+                                type="number" data-dtype="Number" value="{{critWound.system.daysHealed}}" />
                             /
                             <input class="healing-time" type="number" data-dtype="Number" disabled
                                 value="{{critWound.system.healingTime}}" />
@@ -32,8 +37,8 @@
                 </div>
             </div>
             <div>
-                <button class="treatCriticalWound" data-action="treatCriticalWound" data-id="{{critWound.uuid}}">
-                    {{localize "WITCHER.criticalWound.treat"}}</button>
+                <button class="treatCriticalWound" data-action="treatCriticalWound"
+                    data-id="{{critWound.uuid}}"> {{localize "WITCHER.criticalWound.treat"}}</button>
             </div>
         </li>
     {{/each}}

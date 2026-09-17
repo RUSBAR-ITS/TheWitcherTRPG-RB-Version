@@ -4,6 +4,8 @@ import { temporaryItemImprovementMixin } from './mixins/temporaryItemImprovement
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export class WitcherActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
+    #attributeKeyListId = `witcher-attribute-key-list-${foundry.utils.randomID()}`;
+
     static DEFAULT_OPTIONS = {
         actions: {
             wizard: WitcherActiveEffectConfig.wizardAction
@@ -42,18 +44,28 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         return context;
     }
 
-    _onRender(context, options) {
-        super._onRender(context, options);
+    async _onRender(context, options) {
+        await super._onRender(context, options);
 
+        this._ensureWizardButton();
         this.autocomplete();
+    }
 
-        const addButton = this.element.querySelector('button.inline-control.icon.fa-regular.fa-square-plus');
-        const wizard = document.createElement('a');
-        wizard.setAttribute('data-action', 'wizard');
-        const icon = document.createElement('i');
-        icon.className = 'fa-solid fa-wand-magic-sparkles';
-        wizard.appendChild(icon);
-        addButton.parentNode.insertBefore(wizard, addButton.nextSibling);
+    _ensureWizardButton() {
+        const section = this.element.querySelector("section[data-tab='changes']");
+        const addButton = section?.querySelector('button[data-action="addChange"]');
+        if (!addButton) return;
+
+        let wizard = section.querySelector('[data-witcher-effect-control="wizard"]');
+        if (!wizard) {
+            wizard = document.createElement('a');
+            wizard.dataset.witcherEffectControl = 'wizard';
+            wizard.setAttribute('data-action', 'wizard');
+            const icon = document.createElement('i');
+            icon.className = 'fa-solid fa-wand-magic-sparkles';
+            wizard.appendChild(icon);
+        }
+        addButton.after(wizard);
     }
 
     static async wizardAction() {
@@ -96,16 +108,22 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         });
     }
 
-    async autocomplete() {
+    autocomplete() {
         let html = this.element;
         const effectsSection = html.querySelector("section[data-tab='changes']");
+        if (!effectsSection) return;
+
         const inputFields = effectsSection.querySelectorAll('.key input');
-        const datalist = document.createElement('datalist');
+        let datalist = effectsSection.querySelector('datalist[data-witcher-effect-control="attribute-key-list"]');
+        if (!datalist) {
+            datalist = document.createElement('datalist');
+            datalist.dataset.witcherEffectControl = 'attribute-key-list';
+        }
         const attributeKeyOptions = {};
 
-        datalist.id = 'attribute-key-list';
+        datalist.id = this.#attributeKeyListId;
         inputFields.forEach(inputField => {
-            inputField.setAttribute('list', 'attribute-key-list');
+            inputField.setAttribute('list', this.#attributeKeyListId);
         });
 
         let config;
@@ -126,13 +144,15 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         }
 
         const sortedKeys = Object.keys(attributeKeyOptions).sort();
+        const options = document.createDocumentFragment();
         sortedKeys.forEach(key => {
             const attributeKeyOption = document.createElement('option');
             attributeKeyOption.value = key;
             if (!!attributeKeyOptions[key]) attributeKeyOption.label = attributeKeyOptions[key];
-            datalist.appendChild(attributeKeyOption);
+            options.appendChild(attributeKeyOption);
         });
 
+        datalist.replaceChildren(options);
         effectsSection.append(datalist);
     }
 }

@@ -1,5 +1,20 @@
 # templates/sheets/activeEffect/system-specific.hbs
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Системные поля ActiveEffect с проверкой схемы. Изменение 2026-09-17 по [issue-00334](../../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| applyAfterCalculations | Вызов formGroup обёрнут в #if systemFields.applyAfterCalculations. У temporaryItemImprovement отсутствующее поле больше не передаётся helper. |
+| Остальные ветки | isItemEffect и unless isTemporaryItemImprovement сохранены, как и applySelf/applyOnTarget/applyOnHit/applyOnDamage. Новое поле/фаза в Temporary-модель не добавлены. |
+
+Связанные файлы: [module/activeEffect/WitcherActiveEffectSheet.js](../../../module/activeEffect/WitcherActiveEffectSheet.js.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/activeEffect/system-specific.hbs](../../../../../../../templates/sheets/activeEffect/system-specific.hbs) |

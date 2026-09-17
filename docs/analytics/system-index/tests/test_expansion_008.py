@@ -87,9 +87,9 @@ class EffectLifecycleExpansion(unittest.TestCase):
 
     def test_category_suppression_transfer_and_visibility_are_distinct(self):
         sm=self.source('src-000036');ae=self.source('src-000008');it=self.source('src-000183')
-        self.assertIn('if (e.isDisabled)',sm[33]);self.assertIn('if (e.disabled)',it[100])
-        for literal,line in [('isTemporaryItemImprovement && !e.isAppliedTemporaryItemImprovement',35),
-                             ('else if (e.isTemporary)',37),('else categories.passive',38)]:
+        self.assertIn('if (e.isDisabled)',sm[38]);self.assertIn('if (e.disabled)',it[109])
+        for literal,line in [('isTemporaryItemImprovement && !e.isAppliedTemporaryItemImprovement',40),
+                             ('else if (e.isTemporary)',42),('else categories.passive',43)]:
             self.assertIn(literal,sm[line-1])
         self.assertIn('this.disabled || !(this.parent?.system?.equipped ?? true)',ae[18])
         self.assertIn('this.system.isTransferred',ae[26]);self.assertNotIn('type',ae[26])
@@ -104,18 +104,18 @@ class EffectLifecycleExpansion(unittest.TestCase):
 
     def test_crud_resolves_owner_and_item_config_is_separate(self):
         s=self.source('src-000036');i=self.source('src-000183');h=self.source('src-000531')
-        self.assertIn('parentUuid',s[52]);self.assertIn('fromUuidSync(parentUuid).effects.get(li.dataset.effectId)',s[53])
-        self.assertIn('parentUuid == caller.uuid',s[72]);self.assertIn('effect.delete()',s[73])
-        self.assertIn('effect.update({ disabled: !effect.disabled })',s[76])
-        self.assertNotRegex('\n'.join(s[56:69]), r'(?m)^ {24}type:')
-        self.assertIn('type: game.i18n.localize',s[59])  # i18n argument, not effect.type
-        self.assertNotIn('transfer:','\n'.join(s[56:69]))
-        self.assertIn("li.dataset.effectType === 'temporaryItemImprovement'",i[124])
-        self.assertIn('this.document.effects.get(li.dataset.effectId)',i[118])
-        self.assertEqual([r['location']['line_start'] for r in self.edges('ent-000826','registers')],[20,21,22,23])
+        self.assertIn('parentUuid',s[57]);self.assertIn('fromUuidSync(parentUuid).effects.get(li.dataset.effectId)',s[58])
+        self.assertIn('parentUuid == caller.uuid',s[77]);self.assertIn('effect.delete()',s[78])
+        self.assertIn('effect.update({ disabled: !effect.disabled })',s[81])
+        self.assertNotRegex('\n'.join(s[61:74]), r'(?m)^ {24}type:')
+        self.assertIn('type: game.i18n.localize',s[64])  # i18n argument, not effect.type
+        self.assertNotIn('transfer:','\n'.join(s[61:74]))
+        self.assertIn("li.dataset.effectType === 'temporaryItemImprovement'",i[133])
+        self.assertIn('this.document.effects.get(li.dataset.effectId)',i[127])
+        self.assertEqual([r['location']['line_start'] for r in self.edges('ent-000826','registers')],[20,21,22,23,24])
         self.assertIn('data-effect-id="{{effect.id}}"',h[18])
         self.assertEqual(h[19].count('{{effect.parent.uuid}}'),2)
-        self.assertIn('html().trim()',s[85]);self.assertIn("toggleClass('invisible')",s[86])
+        self.assertIn('html().trim()',s[90]);self.assertIn("toggleClass('invisible')",s[91])
         self.assertNotIn('_onActiveEffectDisplayInfo','\n'.join(i))
         self.assertEqual([x['step'] for x in self.steps('proc-000034')['owner']['next']],['delete','foreign'])
 

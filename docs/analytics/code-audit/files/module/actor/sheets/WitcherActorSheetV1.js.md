@@ -1,5 +1,9 @@
 # module/actor/sheets/WitcherActorSheetV1.js
 
+## Уточнение зависимостей — 14.3.1.00022
+
+Общий prepareActiveEffectCategories теперь исключает повтор полного UUID/ссылки до прежней категоризации; собственный getData V1 не менялся. См. [issue-00334](../../../../../../issues/open/issue-00334.md). Это статическая сверка; новая проверка в Foundry ожидает команды пользователя.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/WitcherActorSheetV1.js](../../../../../../../module/actor/sheets/WitcherActorSheetV1.js) |

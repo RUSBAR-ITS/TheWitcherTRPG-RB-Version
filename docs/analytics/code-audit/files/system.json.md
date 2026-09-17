@@ -5,9 +5,9 @@
 | Исходный файл | [system.json](../../../../system.json) |
 | Тип файла | JSON |
 | Статус анализа | Проверено |
-| Дата проверки | 2026-09-17: план UI-исправлений, 14.3.1.00021 |
+| Дата проверки | 2026-09-17: реализация UI-исправлений, 14.3.1.00022 |
 | Ветка и коммит | dev, база f31925972a627d0d60fd696346f25cb2c311ef14 + рабочее изменение |
-| Изменения относительно коммита | Только version: .00020 → .00021; оформление общего плана issue-00334. |
+| Изменения относительно коммита | Только version: .00021 → .00022; реализация issue-00334, остальные поля сохранены. |
 | Задача и порция | [TASK-0002](../../../tasks/task-0002-system-initialization.md); порция 1 |
 | Запись перекрёстной сверки | [Журнал сверок](../review-log.md) — TASK-0002, порция 1 |
 
@@ -90,7 +90,7 @@
 | Поля и строки | Содержание и действие |
 | --- | --- |
 | `id`, `title`, `description`, `authors` — 2–22 | Идентификатор `TheWitcherTRPG-RB-Version`, название `The Witcher TRPG - RUSBAR Version`, описание и три автора: Stexinator, einToastbrot, Ilya "RUSBAR" Barkalov. ID используется также строками пространства имён в коде. |
-| `compatibility`, `version` — 5–10 | Минимум, проверенное и максимальное поколение — 14; версия форка — `14.3.1.00021`. Это декларация совместимости, а не результат проверки. |
+| `compatibility`, `version` — 5–10 | Минимум, проверенное и максимальное поколение — 14; версия форка — `14.3.1.00022`. Это декларация совместимости, а не результат проверки. |
 | `scripts`, `esmodules`, `styles` — 24–26 | Нет обычных scripts; один ES-модуль и один главный CSS. |
 | `packFolders`, `packs` — 27–91 | Иерархия папок и семь объявлений: Combat, criticalWounds, Character-gen, Character-gen_Sub-tables, Witcher_Lifepath_and_BG_Sub-tables, Life_Event_Sub-tables, Style_and_Values_Sub-tables. Типы — RollTable, кроме criticalWounds (Item). Папка связывает packs по их `name`, а не по имени каталога. |
 | `languages` — 92–133 | Восемь языков: en, es, pt-BR, fr, de, it, ru, pl; код pt-BR связан с файлом ptbr.json. |
@@ -312,3 +312,7 @@ ID TheWitcherTRPG и имя каталога RB-Version не проходят п
 Сопоставленные определения и потребители: [module/TheWitcherTRPG.js](module/TheWitcherTRPG.js.md), [module/setup/registerDataModels.js](module/setup/registerDataModels.js.md), [module/setup/registerSheets.js](module/setup/registerSheets.js.md), [module/setup/settings.js](module/setup/settings.js.md), [styles/witcher-styles.css](styles/witcher-styles.css.md), [utils/packs.mjs](utils/packs.mjs.md).
 
 [Протокол и границы](../review-log.md#task-0004002) — TASK-0004.002; процессы [R002-01](../cross-check-0002.md#r002-01), [R002-02](../cross-check-0002.md#r002-02), [R002-03](../cross-check-0002.md#r002-03), [R002-05](../cross-check-0002.md#r002-05), [R002-07](../cross-check-0002.md#r002-07), [R002-13](../cross-check-0002.md#r002-13). Новые изолированные исполнения ограничены N01/N02 протокола; остальные перечисленные опыты относятся к прежним порциям.
+
+## Исправления интерфейса — 14.3.1.00022
+
+Счётчик версии увеличен один раз для реализации [issue-00334](../../../issues/open/issue-00334.md). Остальные поля манифеста не изменены. Статические проверки выполнены; проверка в Foundry отложена по поручению пользователя.

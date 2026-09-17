@@ -1,5 +1,21 @@
 # templates/sheets/actor/partials/character/tab-effects.hbs
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Вкладка эффектов Character/Monster с одним списком травм. Изменение 2026-09-17 по [issue-00334](../../../../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| Травмы | Сохранены заголовок, addCrit и ровно одно включение crit-wounds-table. Повторный inline each полностью удалён. |
+| Описание | Расширенное details/enriched-представление перенесено в общий partial; функциональность строки не потеряна. |
+| ActiveEffect | Общий effect-part включается как прежде. |
+
+Связанные файлы: [templates/partials/crit-wounds-table.hbs](../../../../partials/crit-wounds-table.hbs.md), [templates/partials/effect-part.hbs](../../../../partials/effect-part.hbs.md), [module/actor/sheets/WitcherCharacterSheet.js](../../../../../module/actor/sheets/WitcherCharacterSheet.js.md), [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/partials/character/tab-effects.hbs](../../../../../../../../../templates/sheets/actor/partials/character/tab-effects.hbs) |

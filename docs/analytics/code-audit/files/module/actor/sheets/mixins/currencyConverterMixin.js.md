@@ -1,5 +1,21 @@
 # module/actor/sheets/mixins/currencyConverterMixin.js
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Обработчик V2-action конвертера валют. Изменение 2026-09-17 по [issue-00334](../../../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| onOpenCurrencyConverter(event) | Заменяет удалённый currencyConverterListeners(html). this — экземпляр листа; return this.actor.handleCurrencyConverter(event) передаёт вызов Actor. |
+| Подписка | Нативного addEventListener/bind в файле больше нет. Регистрация принадлежит WitcherActorSheet.DEFAULT_OPTIONS.actions.openCurrencyConverter. |
+| Данные | Здесь нет расчёта, update или обращения к полям валют. Расчёт и сохранение остаются в отдельной Actor-примеси. |
+
+Связанные файлы: [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md), [module/actor/mixins/currencyConverterMixin.js](../../mixins/currencyConverterMixin.js.md), [templates/sheets/actor/tabs/tab-inventory.hbs](../../../../templates/sheets/actor/tabs/tab-inventory.hbs.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/currencyConverterMixin.js](../../../../../../../../module/actor/sheets/mixins/currencyConverterMixin.js) |

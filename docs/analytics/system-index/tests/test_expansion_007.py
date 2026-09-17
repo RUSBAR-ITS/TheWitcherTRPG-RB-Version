@@ -137,22 +137,24 @@ class EffectEditorExpansion(unittest.TestCase):
                          [('ok',None,'scheduled'),(None,'cancelled','await')])
 
     def test_autocomplete_and_system_tab_conditions(self):
-        source='\n'.join(self.source('src-000005')[98:137])
+        loc=self.data.entities['ent-000698']['location']
+        source='\n'.join(self.source('src-000005')[loc['line_start']-1:loc['line_end']])
         for literal in ["parent.documentName === 'Actor'","parent.documentName === 'Item'",
                         'for (const datamodel in config.dataModels)','schema.apply(function ()',
                         '!(this instanceof foundry.data.fields.SchemaField)',
-                        'attributeKeyOptions[this.fieldPath]',"datalist.id = 'attribute-key-list'"]:
+                        'attributeKeyOptions[this.fieldPath]',"datalist.id = this.#attributeKeyListId"]:
             self.assertIn(literal,source)
         for absent in ['.transfer','parent.type','document.update','await']:self.assertNotIn(absent,source)
         self.assertEqual([r['to'] for r in self.edges('ent-000720','refers')],[f'ent-{n:06}' for n in range(459,485)])
         wizard='\n'.join(self.source('src-000506'))
         self.assertIn('<select id="path">',wizard);self.assertNotIn('name=',wizard)
         hbs=self.source('src-000541')
-        self.assertEqual([i+1 for i,l in enumerate(hbs) if '{{formGroup' in l],[2,4,5,7,8])
-        self.assertIn('{{#if isItemEffect}}',hbs[2])
-        self.assertIn('{{#unless document.isTemporaryItemImprovement}}',hbs[5])
+        self.assertEqual([i+1 for i,l in enumerate(hbs) if '{{formGroup' in l],[3,6,7,9,10])
+        self.assertIn('{{#if systemFields.applyAfterCalculations}}',hbs[1])
+        self.assertIn('{{#if isItemEffect}}',hbs[4])
+        self.assertIn('{{#unless document.isTemporaryItemImprovement}}',hbs[7])
         # .011 adds the concrete English label; the Temporary missing-field stays distinct.
-        self.assertEqual([r['to'] for r in self.edges('ent-000729','reads')],['ent-000176','ent-000731','ent-002011'])
+        self.assertEqual([r['to'] for r in self.edges('ent-000729','reads')],['ent-000176','ent-000731','ent-002011','ent-005361'])
         temporary=(ROOT/'module/data/activeEffects/witcherTemporaryItemImprovementData.js').read_text()
         self.assertNotIn('applyAfterCalculations',temporary)
         self.assertIn('applySelf',temporary);self.assertIn('applyOnTarget',temporary)
@@ -178,7 +180,7 @@ class EffectEditorExpansion(unittest.TestCase):
 
     def test_processes_have_local_reachable_steps_and_participation(self):
         procs=[json.loads(l) for l in (BASE/'data/processes/expansion-007.jsonl').read_text().splitlines()]
-        self.assertEqual(len(procs),9);self.assertEqual(sum(len(p['steps']) for p in procs),42)
+        self.assertEqual(len(procs),9);self.assertEqual(sum(len(p['steps']) for p in procs),41)
         for p in procs:
             steps={s['id']:s for s in p['steps']};pending=[p['steps'][0]['id']];seen=set();exits=set()
             while pending:

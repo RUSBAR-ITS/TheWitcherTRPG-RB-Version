@@ -51,6 +51,9 @@ export default class WitcherActorSheet extends HandlebarsApplicationMixin(ActorS
         form: {
             submitOnChange: true,
             closeOnSubmit: false
+        },
+        actions: {
+            openCurrencyConverter: currencyConverterMixin.onOpenCurrencyConverter
         }
     };
 
@@ -241,7 +244,6 @@ export default class WitcherActorSheet extends HandlebarsApplicationMixin(ActorS
         this.criticalWoundListener(html);
         this.noteListener(html);
         this.healListeners(html);
-        this.currencyConverterListeners(html);
 
         this.itemContextMenu(html);
     }
@@ -318,6 +320,5 @@ Object.assign(WitcherActorSheet.prototype, deathsaveMixin);
 Object.assign(WitcherActorSheet.prototype, criticalWoundMixin);
 Object.assign(WitcherActorSheet.prototype, noteMixin);
 Object.assign(WitcherActorSheet.prototype, healMixin);
-Object.assign(WitcherActorSheet.prototype, currencyConverterMixin);
 
 Object.assign(WitcherActorSheet.prototype, itemContextMenu);

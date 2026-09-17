@@ -1,5 +1,21 @@
 # module/actor/sheets/mixins/activeEffectMixin.js
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Категории Actor-эффектов без повторных строк. Изменение 2026-09-17 по [issue-00334](../../../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| prepareActiveEffectCategories(effects) | Локальный Set исключает повтор полного e.uuid; при отсутствии UUID используется сама ссылка e. Сохраняется первый экземпляр и исходный порядок. |
+| Категоризация | После уникальности сохранён приоритет isDisabled → неприменённое temporaryItemImprovement → isTemporary → passive. Разные UUID с одинаковыми name/id не объединяются. |
+| Граница | Обработка меняет только представление категорий; ActiveEffect и порядок применения модификаторов не изменяет. onManageActiveEffect, _onActiveEffectDisplayInfo и activeEffectListener сохранены. |
+
+Связанные файлы: [module/actor/sheets/WitcherActorSheet.js](../WitcherActorSheet.js.md), [module/actor/sheets/WitcherActorSheetV1.js](../WitcherActorSheetV1.js.md), [templates/partials/effect-part.hbs](../../../../templates/partials/effect-part.hbs.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/activeEffectMixin.js](../../../../../../../../module/actor/sheets/mixins/activeEffectMixin.js) |

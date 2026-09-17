@@ -81,12 +81,13 @@ class CriticalWoundExpansion(unittest.TestCase):
         self.assertTrue(any(r['to']==self.q['Actor.allApplicableEffects']for r in self.edges('criticalWound/effect-lifecycle','refers')))
         self.assertIn('canHaveTemporaryItemImprovement',self.source(531)[6])
 
-    def test_ui_identifiers_drop_and_two_views(self):
+    def test_ui_identifiers_drop_and_single_view(self):
         m=self.source(38);h=self.source(530);f=self.source(599);tab=self.source(562);drop=self.source(167)
         self.assertIn('event.target.dataset.id',m[14]);self.assertIn('_onCriticalWoundRemove',m[23])
         self.assertFalse([e for e in self.data.entities.values()if e['qualified_name'].endswith('._onCriticalWoundRemove')])
-        self.assertIn('data-item-id="{{critWound.id}}"',h[3]);self.assertIn('data-id="{{critWound.uuid}}"',h[34]);self.assertIn('data-field="system.daysHealed"',h[24]);self.assertIn('disabled',h[27])
-        self.assertNotIn('delete-crit','\n'.join(h+tab));self.assertIn('crit-wounds-table.hbs',tab[7]);self.assertIn('criticalWound',tab[10])
+        self.assertIn('data-item-id="{{critWound.id}}"',h[3]);self.assertIn('data-id="{{critWound.uuid}}"',h[40]);self.assertIn('data-field="system.daysHealed"',h[29]);self.assertIn('disabled',h[32])
+        self.assertNotIn('delete-crit','\n'.join(h+tab));self.assertIn('crit-wounds-table.hbs',tab[7]);self.assertNotIn('{{#each', '\n'.join(tab));self.assertEqual('\n'.join(tab).count('crit-wounds-table.hbs'),1)
+        self.assertIn("lookup (lookup ../criticalWounds critWound.uuid) 'enriched'",h[10]);self.assertIn('<details>','\n'.join(h))
         self.assertNotIn('sterilized','\n'.join(f));self.assertIn('formGroup systemFields.followUp',f[33]);self.assertIn("'system.followUp': item.uuid",drop[18]);self.assertNotIn('await','\n'.join(drop[16:21]))
         self.assertTrue(any(r['from']==self.q['sheet.itemMixin._onItemInlineEdit']and r['kind']=='writes'for r in self.data.incoming[self.q['CriticalWoundData.daysHealed']]))
         self.assertIn('crit.system.heal({ sterilized: isSterilized })',self.source(42)[87])

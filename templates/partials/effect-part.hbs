@@ -19,7 +19,7 @@
                     <li class="item effect-row flexrow draggable" data-effect-id="{{effect.id}}"
                         data-parent-id="{{effect.parent.uuid}}" data-parent-uuid="{{effect.parent.uuid}}">
                         <div class="effect-first-row">
-                            <a class="effect-display">
+                            <a class="effect-display" {{#if @root.effectDescriptionAction}}data-action="{{@root.effectDescriptionAction}}"{{/if}}>
                                 <div class="item-name effect-name flexrow ">
                                     <img class="item-image item-list-image" src="{{effect.img}}" alt="image of active effect"/>
                                     <p>{{effect.name}}</p>

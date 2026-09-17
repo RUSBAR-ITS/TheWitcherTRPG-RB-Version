@@ -1,5 +1,22 @@
 # module/actor/sheets/WitcherActorSheet.js
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Базовый V2-лист Actor: маршрут открытия конвертера. Изменение 2026-09-17 по [issue-00334](../../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| DEFAULT_OPTIONS.actions.openCurrencyConverter | Регистрирует currencyConverterMixin.onOpenCurrencyConverter; Foundry вызывает его с this=экземпляр листа. |
+| activateListeners(html) | Вызов currencyConverterListeners удалён. Остальные ручные listeners сохранены. |
+| Подключение примеси | Импорт sheet.currencyConverterMixin остаётся для actions; Object.assign этой примеси к prototype удалён. |
+| _prepareContext / _prepareItems | Сбор effects и enriched-травм не менялся. Общий категоризатор теперь исключает повторные UUID во входе. |
+
+Связанные файлы: [module/actor/sheets/mixins/currencyConverterMixin.js](mixins/currencyConverterMixin.js.md), [module/actor/sheets/mixins/activeEffectMixin.js](mixins/activeEffectMixin.js.md), [templates/sheets/actor/tabs/tab-inventory.hbs](../../../templates/sheets/actor/tabs/tab-inventory.hbs.md), [templates/partials/crit-wounds-table.hbs](../../../templates/partials/crit-wounds-table.hbs.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/WitcherActorSheet.js](../../../../../../../module/actor/sheets/WitcherActorSheet.js) |

@@ -1,5 +1,23 @@
 # module/activeEffect/WitcherActiveEffectSheet.js
 
+## Текущая реализация — issue-00334, 14.3.1.00022
+
+Редактор ActiveEffect и его элементы на вкладке changes. Изменение 2026-09-17 по [issue-00334](../../../../../issues/open/issue-00334.md); основание — исходники, а не новая браузерная приёмка.
+
+| Сущность / действие | Текущий контракт |
+| --- | --- |
+| _onRender(context, options) | async; ожидает super._onRender, затем вызывает _ensureWizardButton и синхронный autocomplete. |
+| _ensureWizardButton() | Новый метод: ищет свою кнопку по data-witcher-effect-control=wizard; создаёт только при отсутствии. Если addChange отсутствует, выходит. Существующую кнопку размещает после addChange. |
+| #attributeKeyListId | Новое приватное поле: ID списка уникален для экземпляра окна и стабилен при его повторных рендерах; создаётся через foundry.utils.randomID(). |
+| autocomplete() | Теперь синхронный. Переиспользует datalist с собственным marker, обновляет его options через DocumentFragment/replaceChildren и list текущих key inputs. Без changes возвращается. Значения key/value/priority формы не записывает. |
+| wizardAction / CONFIG | Мастер и выбор всех моделей по parent.documentName сохранены; ограничения 00051/00052 не устранены этой работой. |
+
+Связанные файлы: [module/activeEffect/mixins/baseMixin.js](mixins/baseMixin.js.md), [module/activeEffect/mixins/temporaryItemImprovementMixin.js](mixins/temporaryItemImprovementMixin.js.md), [templates/sheets/activeEffect/system-specific.hbs](../../templates/sheets/activeEffect/system-specific.hbs.md).
+
+Сверены код, маршруты графа и адресные статические проверки. Проверки в работающем Foundry отложены до команды пользователя после перезапуска/настройки доступа. Датированные результаты ниже относятся к прежним срезам; прежние утверждения об изменённых методах заменены контрактом этой секции.
+
+## Исторический анализ до 14.3.1.00022
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/activeEffect/WitcherActiveEffectSheet.js](../../../../../../module/activeEffect/WitcherActiveEffectSheet.js) |

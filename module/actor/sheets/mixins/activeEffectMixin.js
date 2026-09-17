@@ -29,8 +29,13 @@ export let activeEffectMixin = {
             }
         };
 
-        // Iterate over active effects, classifying them into categories
+        // An Item improvement may also be present in allApplicableEffects.
+        const seen = new Set();
         for (let e of effects) {
+            const identity = e.uuid || e;
+            if (seen.has(identity)) continue;
+            seen.add(identity);
+
             if (e.isDisabled) categories.inactive.effects.push(e);
             else if (e.isTemporaryItemImprovement && !e.isAppliedTemporaryItemImprovement)
                 categories.temporaryItemImprovement.effects.push(e);

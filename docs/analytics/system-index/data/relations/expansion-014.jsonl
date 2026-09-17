@@ -196,8 +196,8 @@
 {"id":"rel-008655","kind":"defines","from":"ent-003703","to":"ent-003807","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet._onEditEffect","line_start":94,"line_end":94},"basis":"source_read"}
 {"id":"rel-008656","kind":"defines","from":"ent-003703","to":"ent-003808","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet._oRemoveEffect","line_start":108,"line_end":108},"basis":"source_read"}
 {"id":"rel-008657","kind":"defines","from":"ent-000825","to":"ent-003809","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.DEFAULT_OPTIONS.form","line_start":15,"line_end":15},"basis":"source_read"}
-{"id":"rel-008658","kind":"defines","from":"ent-000825","to":"ent-003810","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.PARTS","line_start":27,"line_end":27},"basis":"source_read"}
-{"id":"rel-008659","kind":"defines","from":"ent-000825","to":"ent-003811","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.TABS","line_start":45,"line_end":45},"basis":"source_read"}
+{"id":"rel-008658","kind":"defines","from":"ent-000825","to":"ent-003810","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.PARTS","line_start":28,"line_end":28},"basis":"source_read"}
+{"id":"rel-008659","kind":"defines","from":"ent-000825","to":"ent-003811","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.TABS","line_start":46,"line_end":46},"basis":"source_read"}
 {"id":"rel-008660","kind":"defines","from":"ent-003703","to":"ent-003812","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet.DEFAULT_OPTIONS.actions","line_start":5,"line_end":5},"basis":"source_read"}
 {"id":"rel-008661","kind":"defines","from":"ent-003703","to":"ent-003813","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet.PARTS","line_start":12,"line_end":12},"basis":"source_read"}
 {"id":"rel-008662","kind":"defines","from":"ent-003703","to":"ent-003814","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet.TABS","line_start":31,"line_end":31},"basis":"source_read"}
@@ -229,7 +229,7 @@
 {"id":"rel-008688","kind":"defines","from":"src-000594","to":"ent-003823","location":{"source":"src-000594","symbol":"templates/sheets/item/configuration/tabs/general.hbs","line_start":1,"line_end":1},"basis":"source_read"}
 {"id":"rel-008689","kind":"defines","from":"src-000613","to":"ent-003824","location":{"source":"src-000613","symbol":"templates/sheets/item/weapon-sheet.hbs","line_start":1,"line_end":1},"basis":"source_read"}
 {"id":"rel-008690","kind":"renders","from":"ent-000500","to":"ent-003824","location":{"source":"src-000181","symbol":"WitcherWeaponSheet.PARTS","line_start":10,"line_end":10},"basis":"source_read"}
-{"id":"rel-008691","kind":"renders","from":"ent-003810","to":"ent-003823","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.PARTS","line_start":36,"line_end":36},"basis":"source_read"}
+{"id":"rel-008691","kind":"renders","from":"ent-003810","to":"ent-003823","location":{"source":"src-000183","symbol":"WitcherConfigurationSheet.PARTS","line_start":37,"line_end":37},"basis":"source_read"}
 {"id":"rel-008692","kind":"renders","from":"ent-003813","to":"ent-003821","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet.PARTS","line_start":16,"line_end":16},"basis":"source_read"}
 {"id":"rel-008693","kind":"renders","from":"ent-003813","to":"ent-003822","location":{"source":"src-000186","symbol":"WitcherPropertiesConfigurationSheet.PARTS","line_start":21,"line_end":21},"basis":"source_read"}
 {"id":"rel-008694","kind":"reads","from":"ent-003820","to":"ent-003516","location":{"source":"src-000585","symbol":"templates/sheets/item/configuration/partials/attackOptionsPart.hbs","line_start":2,"line_end":2},"basis":"source_read"}

@@ -20,7 +20,8 @@ export default class WitcherConfigurationSheet extends HandlebarsApplicationMixi
             create: WitcherConfigurationSheet.onManageActiveEffect,
             toggle: WitcherConfigurationSheet.onManageActiveEffect,
             edit: WitcherConfigurationSheet.onManageActiveEffect,
-            delete: WitcherConfigurationSheet.onManageActiveEffect
+            delete: WitcherConfigurationSheet.onManageActiveEffect,
+            displayEffectDescription: WitcherConfigurationSheet.onDisplayEffectDescription
         }
     };
 
@@ -60,10 +61,18 @@ export default class WitcherConfigurationSheet extends HandlebarsApplicationMixi
 
         // Prepare active effects for easier access
         context.effects = this.prepareActiveEffectCategories(this.item.effects);
+        context.effectDescriptionAction = 'displayEffectDescription';
 
         context.systemFields = this.document.system.schema.fields;
 
         return context;
+    }
+
+    static onDisplayEffectDescription(event, element) {
+        event.preventDefault();
+        event.stopPropagation();
+        const description = element.closest('.effect-row')?.querySelector('.effect-description');
+        if (description?.innerHTML.trim()) description.classList.toggle('invisible');
     }
 
     /**
