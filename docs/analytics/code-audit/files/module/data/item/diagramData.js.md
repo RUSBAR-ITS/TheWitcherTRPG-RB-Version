@@ -92,7 +92,7 @@ CONFIG.Item.dataModels.diagrams регистрируется registerDataModels.
 
 ## Связанные проблемы
 
-[issue-00095](../../../../../../issues/potential/issue-00095.md), [issue-00097](../../../../../../issues/potential/issue-00097.md), [issue-00101](../../../../../../issues/potential/issue-00101.md), [issue-00037](../../../../../../issues/potential/issue-00037.md), [issue-00038](../../../../../../issues/potential/issue-00038.md), [issue-00041](../../../../../../issues/potential/issue-00041.md). 95 — потеря данных листом; 97 — миграция; 101 — разные признаки режима. Остальные — ранее описанные границы изготовления.
+[issue-00095](../../../../../../issues/closed/issue-00095.md), [issue-00097](../../../../../../issues/potential/issue-00097.md), [issue-00101](../../../../../../issues/potential/issue-00101.md), [issue-00037](../../../../../../issues/potential/issue-00037.md), [issue-00038](../../../../../../issues/potential/issue-00038.md), [issue-00041](../../../../../../issues/potential/issue-00041.md). 95 — потеря данных листом; 97 — миграция; 101 — разные признаки режима. Остальные — ранее описанные границы изготовления.
 
 ## История актуализации
 
@@ -102,7 +102,7 @@ CONFIG.Item.dataModels.diagrams регистрируется registerDataModels.
 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
-Полностью разобран потребитель [RepairSystem](../../../../../../../module/item/systems/repair.js). Он читает craftingComponents/name/uuid и craftingDC, но не quantity требования, resultQuantity, associatedItemUuid, isFormulae или alchemyComponents. Каждая строка ремонта получает required1; это фиксация алгоритма, соответствие рулбуку не утверждается. UUID отсутствующего компонента может дать null и прервать подготовку ([issue-00105](../../../../../../issues/potential/issue-00105.md)); только unknown требования скрываются в чате из-за caller guard ([issue-00107](../../../../../../issues/potential/issue-00107.md)). Реальная DiagramData сохраняет допустимые UUID; ошибочный 15-символьный ID диагностического входа был исправлен до итоговых сценариев, это не issue системы.
+Полностью разобран потребитель [RepairSystem](../../../../../../../module/item/systems/repair.js). Он читает craftingComponents/name/uuid и craftingDC, но не quantity требования, resultQuantity, associatedItemUuid, isFormulae или alchemyComponents. Каждая строка ремонта получает required1; это фиксация алгоритма, соответствие рулбуку не утверждается. UUID отсутствующего компонента может дать null и прервать подготовку ([issue-00105](../../../../../../issues/closed/issue-00105.md)); только unknown требования скрываются в чате из-за caller guard ([issue-00107](../../../../../../issues/potential/issue-00107.md)). Реальная DiagramData сохраняет допустимые UUID; ошибочный 15-символьный ID диагностического входа был исправлен до итоговых сценариев, это не issue системы.
 
 ## Уточнение TASK-0003.026
 

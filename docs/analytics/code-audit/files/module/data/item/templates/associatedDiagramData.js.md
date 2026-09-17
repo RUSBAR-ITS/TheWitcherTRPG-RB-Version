@@ -72,7 +72,7 @@ WeaponData и ArmorData напрямую импортируют две named-ф�
 
 ## Связанные проблемы
 
-[issue-00077](../../../../../../../issues/potential/issue-00077.md), [issue-00080](../../../../../../../issues/potential/issue-00080.md), [issue-00096](../../../../../../../issues/potential/issue-00096.md). Границы до раскрытия, UI-drop и неверный путь описания в partial.
+[issue-00077](../../../../../../../issues/potential/issue-00077.md), [issue-00080](../../../../../../../issues/potential/issue-00080.md), [issue-00096](../../../../../../../issues/closed/issue-00096.md). Границы до раскрытия, UI-drop и неверный путь описания в partial.
 
 ## История актуализации
 

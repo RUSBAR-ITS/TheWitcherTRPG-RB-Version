@@ -727,7 +727,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00130.md"
+          "docs/issues/closed/issue-00130.md"
         ]
       },
       "basis": "Прежняя issue как доказательство/граница, без нового игрового исполнения."

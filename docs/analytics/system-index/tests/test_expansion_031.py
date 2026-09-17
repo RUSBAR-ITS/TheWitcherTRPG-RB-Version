@@ -124,7 +124,8 @@ class MagicItemEditorExpansion(unittest.TestCase):
     def test_core_issue_evidence_and_partial_limits(self):
         for e in json.loads((BASE/'examples/expansion-031-queries.json').read_text())['core_evidence']:self.assertEqual(hashlib.sha256(Path(e['path']).read_bytes()).hexdigest(),e['sha256'])
         for q,n in [('magic/getUsedSkill-fallback',64),('magic/template-source-migration',128),('RitualData/component-uuid-resolution',130),('RitualSheet/component-identity-and-persistence',132),('SpellConfiguration/inherited-region-guard',74),('magic/text-status-active-effect-separation',133)]:
-            e=self.data.entities[self.q[q]];self.assertEqual(e['boundary']['kind'],'dynamic');self.assertIn(f'docs/issues/potential/issue-{n:05}.md',{r['path']for r in e['refs']})
+            status='closed' if n==130 else 'potential'
+            e=self.data.entities[self.q[q]];self.assertEqual(e['boundary']['kind'],'dynamic');self.assertIn(f'docs/issues/{status}/issue-{n:05}.md',{r['path']for r in e['refs']})
         for s in [115,123,125,170,177,179,187,540,602,609,611,597,502,151,76,135,117,11]:self.assertEqual(self.data.sources[f'src-{s:06}']['coverage']['definitions']['state'],'partial')
     def test_graph_addresses_reverse_edges_facets_and_processes(self):
         d=self.data

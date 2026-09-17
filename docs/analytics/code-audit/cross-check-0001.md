@@ -502,8 +502,8 @@
 | [issue-00092](../../issues/potential/issue-00092.md) | Основание сохранено | B06: R01: addsTempHp отсутствует в четырёхполевой схеме, HBS запрашивает его при isConsumable. |
 | [issue-00093](../../issues/potential/issue-00093.md) | Основание сохранено | B06: MutagenSheet не переопределяет configuration, в отличие от Alchemical/Valuable; данные расхода в модели есть. |
 | [issue-00094](../../issues/potential/issue-00094.md) | Основание сохранено | B06: R03 повторил рендер настоящего component-sheet и Missing helper select; selectOptions существует отдельно. |
-| [issue-00095](../../issues/potential/issue-00095.md) | Основание сохранено | B06: R02: неразрешённый UUID сохраняет Saved в модели, но knownCraftingComponents теряет name; источник ошибки —лист. |
-| [issue-00096](../../issues/potential/issue-00096.md) | Основание сохранено | B06: Оба partial читают верхний description, модель хранит system.description; не путать с обогащением текста. |
+| [issue-00095](../../issues/closed/issue-00095.md) | Основание сохранено | B06: R02: неразрешённый UUID сохраняет Saved в модели, но knownCraftingComponents теряет name; источник ошибки —лист. |
+| [issue-00096](../../issues/closed/issue-00096.md) | Основание сохранено | B06: Оба partial читают верхний description, модель хранит system.description; не путать с обогащением текста. |
 | [issue-00097](../../issues/potential/issue-00097.md) | Основание сохранено | B06: R02: старый associatedItem и alchemyDC перезаписывают новые UUID/craftingDC при isFormulae=false. |
 | [issue-00098](../../issues/closed/issue-00098.md) | Основание сохранено | B06: В исходнике три вызова с пробелом перед WITCHER; lookup строки не нормализует этот ключ автоматически. |
 | [issue-00099](../../issues/closed/issue-00099.md) | Основание сохранено | B06: remove-ссылка имеет actions.add, пустая add-ссылка —actions.remove; действие удаления определяется классом. |
@@ -512,7 +512,7 @@
 | [issue-00102](../../issues/potential/issue-00102.md) | Основание сохранено | B06: R04: настоящий RepairData не имеет damagedLocations, обычный repairItem падает; getRestoreReliabilityData также отсутствует ниже. |
 | [issue-00103](../../issues/potential/issue-00103.md) | Основание сохранено | B06: Незарегистрированная woundsAffectSkillBase читается до Roll; дополнительная незакрытая скобка только при внешнем true. Полный ремонт не заявлен. |
 | [issue-00104](../../issues/potential/issue-00104.md) | Основание сохранено | B06: R04: owned quantity0 отмечается нехваткой, но допуск проходит только после диагностической подстановки damagedLocations; раньше мешает issue102. |
-| [issue-00105](../../issues/potential/issue-00105.md) | Основание сохранено | B06: R04: missingComponents=[null] приводит к TypeError oc.img; prepareData добавляет неразрешённый результат без проверки. |
+| [issue-00105](../../issues/closed/issue-00105.md) | Основание сохранено | B06: R04: missingComponents=[null] приводит к TypeError oc.img; prepareData добавляет неразрешённый результат без проверки. |
 | [issue-00106](../../issues/potential/issue-00106.md) | Основание сохранено | B06: R05: суммы глобальных полей пишутся в первый total-price; подписи listener не ограничены конкретным окном. |
 | [issue-00107](../../issues/potential/issue-00107.md) | Основание сохранено | B06: R05: unknown-only даёт showComponents0, блок HBS скрыт; списки данных при этом не исчезают. |
 | [issue-00108](../../issues/potential/issue-00108.md) | Основание сохранено | B06: owner.items читается до owner-guard; собственно repair process —следующий независимый этап, см. дополнение .040. |
@@ -537,7 +537,7 @@
 | [issue-00127](../../issues/potential/issue-00127.md) | Основание сохранено | B07: P04 и source recoverActor: heal/treat/обёртки и ChatMessage.create не ждут записи; не объявлено успешным реальным отдыхом. |
 | [issue-00128](../../issues/potential/issue-00128.md) | Основание сохраняется | B08: Смешанный перенос заменяет templateProperties; G01; numeric0 пропускается. |
 | [issue-00129](../../issues/potential/issue-00129.md) | Основание сохраняется | B08: Ritual HBS пишет прежние корневые пути, потребитель читает вложенные. |
-| [issue-00130](../../issues/potential/issue-00130.md) | Основание сохраняется | B08: G01: UUID остаётся в source, но теряется в fallback для DOM. |
+| [issue-00130](../../issues/closed/issue-00130.md) | Основание сохраняется | B08: G01: UUID остаётся в source, но теряется в fallback для DOM. |
 | [issue-00131](../../issues/potential/issue-00131.md) | Основание сохраняется | B08: G02: редактируется первый дубль UUID, удаляются все. |
 | [issue-00132](../../issues/potential/issue-00132.md) | Основание сохраняется | B08: G02: изменение prepared-массива и ранний возврат при pending update. |
 | [issue-00133](../../issues/potential/issue-00133.md) | Основание сохраняется | B08: G01 и castSpell: отсутствует показ selfEffects; применение Object.values отдельно работает. |
@@ -563,13 +563,13 @@
 | [issue-00153](../../issues/potential/issue-00153.md) | Основание сохраняется | B09: Q01: false→true, true/checked→false даже у name. |
 | [issue-00154](../../issues/potential/issue-00154.md) | Основание сохраняется | B09: Шаблон заголовка и partial дают 12/13 ячеек; прежний DOM-тест сопоставлен. |
 | [issue-00155](../../issues/closed/issue-00155.md) | Основание сохраняется | B09: Три буквальные английские подписи подтверждены исходным HBS. |
-| [issue-00156](../../issues/potential/issue-00156.md) | Основание сохраняется | B09: Q03: null resolver прерывает prepare; remove также не проверяет Item. |
-| [issue-00157](../../issues/potential/issue-00157.md) | Основание сохраняется | B09: Q03: push до update, два независимых запроса; реальная атомарность БД не проверялась. |
-| [issue-00158](../../issues/potential/issue-00158.md) | Основание сохраняется | B09: Q03: remove отсутствующего UUID сбрасывает isStored; членство глобально не проверяется. |
-| [issue-00159](../../issues/potential/issue-00159.md) | Основание сохраняется | B09: Q03: self принимается; цикл из двух разрешён той же проверкой, рекурсивного обхода нет. |
-| [issue-00160](../../issues/potential/issue-00160.md) | Основание сохраняется | B09: Q03: внешняя сумма3 игнорирует storedWeight30 вложенного, его calcWeight0. |
-| [issue-00161](../../issues/potential/issue-00161.md) | Основание сохраняется | B09: Исходный UUID сохраняется и update вызывается у источника; серверные права не обходились. |
-| [issue-00162](../../issues/potential/issue-00162.md) | Основание сохраняется | B09: Нет очистки в модели/документе; ссылки не являются embedded-владением контейнера. |
+| [issue-00156](../../issues/closed/issue-00156.md) | Основание сохраняется | B09: Q03: null resolver прерывает prepare; remove также не проверяет Item. |
+| [issue-00157](../../issues/closed/issue-00157.md) | Основание сохраняется | B09: Q03: push до update, два независимых запроса; реальная атомарность БД не проверялась. |
+| [issue-00158](../../issues/closed/issue-00158.md) | Основание сохраняется | B09: Q03: remove отсутствующего UUID сбрасывает isStored; членство глобально не проверяется. |
+| [issue-00159](../../issues/closed/issue-00159.md) | Основание сохраняется | B09: Q03: self принимается; цикл из двух разрешён той же проверкой, рекурсивного обхода нет. |
+| [issue-00160](../../issues/closed/issue-00160.md) | Основание сохраняется | B09: Q03: внешняя сумма3 игнорирует storedWeight30 вложенного, его calcWeight0. |
+| [issue-00161](../../issues/closed/issue-00161.md) | Основание сохраняется | B09: Исходный UUID сохраняется и update вызывается у источника; серверные права не обходились. |
+| [issue-00162](../../issues/closed/issue-00162.md) | Основание сохраняется | B09: Нет очистки в модели/документе; ссылки не являются embedded-владением контейнера. |
 | [issue-00163](../../issues/potential/issue-00163.md) | Основание сохраняется | B09: carry отсутствует в Drop/calcWeight; Q03 допускает self даже при carry0. |
 | [issue-00164](../../issues/potential/issue-00164.md) | Основание сохраняется | B10: J01:9/10+REC3 отправляет12, Full10; обе версии, правило рулбука не утверждается. |
 | [issue-00165](../../issues/closed/issue-00165.md) | Основание сохраняется | B10: allApplicableEffects + дополнительная выборка допускают один объект дважды; условный фасад прежнего теста соответствует геттерам. |
@@ -579,7 +579,7 @@
 | [issue-00169](../../issues/potential/issue-00169.md) | Основание сохраняется | B10: giftItem не ждёт addItem/emit перед remove; барьер входа168 отделён от тела. |
 | [issue-00170](../../issues/potential/issue-00170.md) | Основание сохраняется | B10: Пустой chooser оставляет OK, который читает отсутствующее поле. |
 | [issue-00171](../../issues/potential/issue-00171.md) | Основание сохраняется | B10: Три операции установки и предварительный push не объединены; не дубль166. |
-| [issue-00172](../../issues/potential/issue-00172.md) | Основание сохраняется | B10: Monster меняет prepared equipped перед source toObject; фактическая цепочка Actor.addItem сопоставлена. |
+| [issue-00172](../../issues/closed/issue-00172.md) | Основание сохраняется | B10: Monster меняет prepared equipped перед source toObject; фактическая цепочка Actor.addItem сопоставлена. |
 | [issue-00173](../../issues/potential/issue-00173.md) | Основание сохраняется | B10: J04: HTML summary теряет subtype, создаётся общий component. |
 | [issue-00174](../../issues/potential/issue-00174.md) | Основание сохраняется | B10: J03: quantity0 не мешает consume/remove; эффект расходования в тесте pending. |
 | [issue-00175](../../issues/potential/issue-00175.md) | Основание сохраняется | B10: getSpeaker получает name; core instanceof Actor и прежние tests20 подтверждают fallback. |
@@ -695,7 +695,7 @@
 | [00044](../../issues/potential/issue-00044.md), [00257](../../issues/potential/issue-00257.md), [00258](../../issues/closed/issue-00258.md) | Разные потери данных: копирование эффекта, очистка duration моделью сообщения и очистка модификатора критического эффекта в Defense. Для процесса важны все границы схем, а не только объект до ChatMessage.create. |
 | [00087](../../issues/potential/issue-00087.md), [00180](../../issues/potential/issue-00180.md) | Миграция сопротивлений и устаревший интерфейс брони используют близкие поля, но ошибки возникают при разных действиях. Старый шаблон не следует автоматически считать текущим зарегистрированным интерфейсом. |
 | [00072](../../issues/potential/issue-00072.md), [00112](../../issues/potential/issue-00112.md) | Основной навык профессии: перебор доступных защит и доступность настройки в редакторе — отдельные ограничения. Отсутствие настройки в UI не доказывает отсутствия поля в модели. |
-| [00095](../../issues/potential/issue-00095.md), [00105](../../issues/potential/issue-00105.md), [00216](../../issues/potential/issue-00216.md) | Недоступный UUID компонента: потеря имени в редакторе рецепта, исключение в подготовке ремонта, потеря имени в сообщении разбора. Одинаковое внешнее условие, разные потребители и результаты. |
+| [00095](../../issues/closed/issue-00095.md), [00105](../../issues/closed/issue-00105.md), [00216](../../issues/potential/issue-00216.md) | Недоступный UUID компонента: потеря имени в редакторе рецепта, исключение в подготовке ремонта, потеря имени в сообщении разбора. Одинаковое внешнее условие, разные потребители и результаты. |
 | [00128](../../issues/potential/issue-00128.md), [00129](../../issues/potential/issue-00129.md) | Миграция параметров области и форма ритуала со старыми путями. Это переход данных и текущая запись формы; одна коррекция не покрывает обе стадии. |
 | [00138](../../issues/potential/issue-00138.md), [00143](../../issues/potential/issue-00143.md), [00144](../../issues/potential/issue-00144.md), [00145](../../issues/potential/issue-00145.md) | Области: неверный аргумент Promise.all, отсутствие результата при отмене, выбор сцены, отсутствующие участники/Actor. Более ранний сбой может мешать дойти до следующего; изолированная проверка нижней ветви не означает прохождение всего процесса. |
 | [00148](../../issues/potential/issue-00148.md), [00149](../../issues/potential/issue-00149.md), [00151](../../issues/potential/issue-00151.md), [00152](../../issues/potential/issue-00152.md) | Улика: отмена выбора навыка, выбор Actor, передача DC и ожидание результата. Это разные контракты одного действия. |

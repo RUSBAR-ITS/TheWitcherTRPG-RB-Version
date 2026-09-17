@@ -389,7 +389,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00157.md"
+          "docs/issues/closed/issue-00157.md"
         ]
       },
       "basis": "Ссылка на существующую датированную проверку, не новое runtime воспроизведение."
@@ -403,7 +403,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00156.md"
+          "docs/issues/closed/issue-00156.md"
         ]
       },
       "basis": "Ссылка на существующую датированную проверку, не новое runtime воспроизведение."
@@ -417,7 +417,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00162.md"
+          "docs/issues/closed/issue-00162.md"
         ]
       },
       "basis": "Ссылка на существующую датированную проверку, не новое runtime воспроизведение."

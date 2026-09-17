@@ -7,11 +7,11 @@
     "date": "2026-09-17",
     "branch": "dev",
     "head": "add157e57c566428aa54e1f7da3ec96d6fc061db",
-    "source_hash": "8531990ac30790512dfa8f355e32057b38a8e3c23484a2350853d97daacc355d"
+    "source_hash": "2f7d072ddaa9cb7e47af0b2506c91402c5286f39a0ee6a65cc31ddc9f3dc16d9"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
-    "registry_sha256": "875106fc059232b9d9e2539a4f1af6510935a480c456f4e5670a0d867d894e54",
+    "registry_sha256": "e34b78b19e8d50d0a04888b9086dc409acfaf700e4780d0775108bbcf3fcc70a",
     "source_count": 621,
     "selected_sources": [
       "src-000002",
@@ -253,7 +253,7 @@
       "src-000620",
       "src-000621"
     ],
-    "semantic_scope": ".00035: issue-00333 П01–П07; containers template/import/move/extract/delete, item context/ritual/drop and isolated checks. Browser acceptance pending; global coverage partial.",
+    "semantic_scope": ".00037: issue-00333 and 16 related cards closed by user after .00035 implementation/acceptance and .00036 accepted limitations. Reference paths updated; runtime graph and global partial coverage unchanged.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -372,7 +372,7 @@
     }
   },
   "reference_hashes": {
-    "docs/analytics/code-audit/cross-check-0002.md": "3e9c26bd97bc94d6e9517d5157f4b9332c065033157af0bd5583c9ab0b4a2160",
+    "docs/analytics/code-audit/cross-check-0002.md": "6303715b9c9258db1b48ddd664f51053c7cfe79a08f34f89e6156533105a78d2",
     "docs/issues/closed/issue-00004.md": "9ec3384effc5cbfe1e9f0b37359e824509224da0531004af3ae31b2a92a1c6df",
     "docs/issues/potential/issue-00015.md": "028040b87ec92ff1e03b3889e3a011b8f2f1361343f91a89498384cfa675455e",
     "docs/issues/potential/issue-00012.md": "76a72cbfaebd87bb491ff394bb698d9f217483d225de448abfb6864c26233792",
@@ -436,7 +436,7 @@
     "docs/analytics/system-index/coverage-012.md": "e0e2f5595aa8a7587988b38382a3451458200b4b16fc656a4560af9a8870aa0f",
     "docs/issues/potential/issue-00034.md": "33b53b17bf34f3110af4881ac6b82f6134042b3fd2a7c459172dbe31f66de377",
     "docs/issues/potential/issue-00116.md": "be8d6b707313378473972a666af2904bc6e7c5dc244f551c2adc0851e6f5a441",
-    "docs/issues/potential/issue-00172.md": "76c4bb63efb151c8e3a740733fc14ac87313e75292b149651cf91a55bc23a55d",
+    "docs/issues/closed/issue-00172.md": "177073f1f03b6db06d99a7390ee0fdeda2aea749df6493439a76d4163afa5dad",
     "docs/issues/potential/issue-00225.md": "54691653067465c434c9b6065f390dcb3a1114f8044504b09392c908427db703",
     "docs/issues/potential/issue-00153.md": "260274511afb5587f711d6a9b0fd6c40e1fcddf68d8ff8a00ea64e33cf62ae01",
     "docs/issues/potential/issue-00175.md": "019d5e1cde985c7a16a8cdef932c03f9d61b2659d27b27c7b79e8fba1d68f0e9",
@@ -569,15 +569,15 @@
     "docs/issues/potential/issue-00203.md": "ec63f06e911dd5028d37712613064072b4dda364e4772b86a9647ecd9374c3bc",
     "docs/issues/closed/issue-00205.md": "9486a0d31d6330ca79375fa64ea22f75484319278891b279d3109cb8548357fe",
     "docs/analytics/system-index/coverage-024.md": "3c83e8f58fe2e2bfbe55d9b7e965a278bfea9a5e76f76e9980bc8f4d4a48bac2",
-    "docs/issues/potential/issue-00156.md": "dc840b44e1e50719be55bb1e72c84f8df8f48398868ce8694490e72a9cac3486",
-    "docs/issues/potential/issue-00158.md": "28c8e5344ef06415a6527e432a8ef0e67442cd4d657be6a97fe20857f1f24912",
-    "docs/issues/potential/issue-00159.md": "7aa4d954e124f27a210933eee115ea02773cb798b5aaab03e419a6692b318082",
-    "docs/issues/potential/issue-00160.md": "2e78d2577cda6e35696590b3d9cb03ad14dee8c908b2b7d8ff33d2d022329a15",
-    "docs/issues/potential/issue-00157.md": "00ef7e3e5cd98c8e110f7c0735b1416300a17fc57785f566b91541c20bbf40eb",
-    "docs/issues/potential/issue-00161.md": "668b10745b09f388bf0ff0382c557b338e6b3d5aaebc79575c747d88b85e312f",
+    "docs/issues/closed/issue-00156.md": "4ec2b1819a296b3df6a4ce2d1472d46fba7d81e07524612e3c45fbd096517a00",
+    "docs/issues/closed/issue-00158.md": "3e0eff9eaaaed67636394c3ec993fac2357eed3b0f7eb208f73a682c70992540",
+    "docs/issues/closed/issue-00159.md": "194e268ef84ec9fe7356fa5247ab3d5ffa727eac7e8b603b9f1c9477e521ba63",
+    "docs/issues/closed/issue-00160.md": "4e7bfaa9e2dadc9e428991d9af0201b3471483866457f3eec3c0aa17d97d8cf8",
+    "docs/issues/closed/issue-00157.md": "c1469e3286331409cdd888e0878b3cc5061ce57e7c409a8e13cad3df4b1f9e85",
+    "docs/issues/closed/issue-00161.md": "f4f8568b963d37b5ebf4d92b647f6cf2581998dc7ac04c64d05a3cc7c0dfe578",
     "docs/issues/potential/issue-00163.md": "95f452d3039b9cd96e0a1b467c0115206d0de64a08eeb1f5fe1403a232d21333",
-    "docs/issues/potential/issue-00162.md": "2f0f578c1ae21cbe6ed9a663588c425bd5fee2067790ff8d443859f15a8fe9ef",
-    "docs/analytics/system-index/coverage-025.md": "481c4e2a58d15bb37791f3010f2ea2e88725fc47a265f21d36f80ff307f65274",
+    "docs/issues/closed/issue-00162.md": "e6f8cc43524c1ae288160604f87c44194356952c788f42f597e3eb6e619596b9",
+    "docs/analytics/system-index/coverage-025.md": "ac27411aa0ee2a3ac816aa6b789ff5ee79921e5aa62929d48b3132d8657971bf",
     "docs/issues/potential/issue-00170.md": "157f6985ae4d92a65f2095f695f39457a56167e625dd41c6611810b199b70fa2",
     "docs/issues/potential/issue-00171.md": "8ea9f54457facadaa6b33a5ca2504f5fd8538246459ee11581f2cb4655ac723b",
     "docs/analytics/system-index/coverage-026.md": "6f025a63e28c3f7e6c4692adc210ef416424ca900b1debc572c4f993e34ae906",
@@ -608,7 +608,7 @@
     "docs/issues/potential/issue-00029.md": "cbca517ee069e628d59421b470c2de215e93b4265b903f892a059861bbd26082",
     "docs/issues/potential/issue-00200.md": "6b49e6ce9ec83f210d3809fbc8fc9d8067e866628aa94b8223196eca7e90766f",
     "docs/analytics/system-index/coverage-030.md": "129244e25193c503150cf4d347403e161e7b4401f1ec4c5c28a2380f76e01e41",
-    "docs/issues/potential/issue-00130.md": "c2b8c750a48ec12715ebbd7f1a221b620a60c67343d7668a4f6569c24c5effa0",
+    "docs/issues/closed/issue-00130.md": "645c32ccaac665c973f3aba802042d7c7667aa99b430b3e28527ff94858ff44d",
     "docs/issues/potential/issue-00131.md": "67db2ba59c24ec7f9208f55fe01111eb832c6b92e65887a5a8174a0d2149b67b",
     "docs/issues/potential/issue-00128.md": "9ffd6a28c9e06b8376d26f30a043f121b95eaa0cb1b0b485e9d245c1259a6a1d",
     "docs/issues/potential/issue-00129.md": "61368e93b4320dc393782c9daff2b9186bf3661ced88cda7d6b1766efa287a79",
@@ -620,7 +620,7 @@
     "docs/issues/potential/issue-00136.md": "d24ad9de848b449cede5b3a91239744d35f1418b6f9347dab736ce12f8bfa6bf",
     "docs/issues/closed/issue-00137.md": "5add4ec63b482d850bd41f19bdec53f0c1bc98eff3695926eaf9973e0f8a6d0f",
     "docs/issues/potential/issue-00135.md": "102c3d610201241db8d6b39e927eae44a09d9503fc230e1118fd56fb40a98139",
-    "docs/analytics/system-index/coverage-031.md": "1728204c65eef50004b69f51439616a7ace1ce801031b75f86595a1631c3ce9a",
+    "docs/analytics/system-index/coverage-031.md": "29bc93d52a1e23986a49c70f9b2c58ee6ca3a77a4ddb4aa9d4e62f8d7e295095",
     "docs/issues/potential/issue-00246.md": "4a5f7c786090920f1cd393ff1dfb285ed82251294e03124c6f7ad44b4015b731",
     "docs/issues/potential/issue-00254.md": "66343a11d7a382d593d834dd3b978f2321c78bb4e6fdba8a51d114bd3db444ee",
     "docs/issues/potential/issue-00245.md": "51d04ac2ed8d08a1185c1bc41d3d6ee446357b6e830e617d0f17af7ac00b02ab",
@@ -641,11 +641,12 @@
     "docs/issues/potential/issue-00076.md": "8bd95414831ab0b20100ff2cc9b6de2f144f23dbfdf56939e56f00ea1780dde3",
     "docs/issues/closed/issue-00147.md": "5bd999d627403d04068a7336e9bb7a3c1a7b5fcc71b00b6dabf80eebe8612902",
     "docs/analytics/system-index/coverage-033.md": "707789452cebf77886e8dafd5e4702257aed67f53807ac3f34453732446ad9b5",
-    "docs/analytics/system-index/coverage-034.md": "cc55f13fc6ef47314a8eb4bcee1d13b5736c26c6e43e9e63086ab8a72bfe25d5",
+    "docs/analytics/system-index/coverage-034.md": "69decb6f2b722c8794084af2bc3eb1d18b6c26f27974488bd02e31ab86af3ebc",
     "docs/issues/closed/issue-00330.md": "0e7cb10d7cf3a5cfee2a52ee60dc0f25958469bac52b1ea476e8e2a75d6fac1a",
     "docs/issues/closed/issue-00334.md": "38bb15a07056ee24261525309e84632b71519442ab192a2e3d769dce2320fa16",
-    "docs/issues/closed/issue-00332.md": "ba56eca1eee898c3764d0525315285b86401458179664b22b22b450b05782c42",
-    "docs/issues/open/issue-00333.md": "e609aa50683f6819da3992993af7ca50ea333ca230a7194a9b6de53ed0487f42"
+    "docs/issues/closed/issue-00332.md": "37fcd6a878330400a36a2e5b65c16036a6a9dca476489566f5b1b871732b783c",
+    "docs/issues/closed/issue-00333.md": "a7cbedc78c57e6c980330fd42cdc006e8f080be35330594423e0ceafbfbb216d",
+    "docs/documentation/known-limitations.md": "b248504050b74264f999d4e4c896f9a65d5eaa37f06bebabbe7b20c2708d87fa"
   },
   "next_ids": {
     "source": 622,

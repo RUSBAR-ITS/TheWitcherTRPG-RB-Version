@@ -94,7 +94,7 @@ Character и Monster получают weapons от _prepareWeapons общего 
 
 ## Связанные проблемы
 
-[issue-00063](../../../../../../../../../issues/potential/issue-00063.md), [issue-00166](../../../../../../../../../issues/potential/issue-00166.md), [issue-00168](../../../../../../../../../issues/potential/issue-00168.md), [issue-00171](../../../../../../../../../issues/potential/issue-00171.md), [issue-00172](../../../../../../../../../issues/potential/issue-00172.md), [issue-00175](../../../../../../../../../issues/potential/issue-00175.md), [issue-00177](../../../../../../../../../issues/potential/issue-00177.md). Наблюдения остаются potential. Прежние issues сопоставлены по конкретному маршруту; отсутствие новой карточки не означает проверки исправности всей подсистемы.
+[issue-00063](../../../../../../../../../issues/potential/issue-00063.md), [issue-00166](../../../../../../../../../issues/potential/issue-00166.md), [issue-00168](../../../../../../../../../issues/potential/issue-00168.md), [issue-00171](../../../../../../../../../issues/potential/issue-00171.md), [issue-00172](../../../../../../../../../issues/closed/issue-00172.md), [issue-00175](../../../../../../../../../issues/potential/issue-00175.md), [issue-00177](../../../../../../../../../issues/potential/issue-00177.md). Наблюдения остаются potential. Прежние issues сопоставлены по конкретному маршруту; отсутствие новой карточки не означает проверки исправности всей подсистемы.
 
 ## История актуализации
 
