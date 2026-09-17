@@ -1,5 +1,15 @@
 # module/data/item/criticalWoundData.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М09, частично; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+heal считает дни в локальной переменной, не меняя prepared daysHealed до сохранения. Возвращает parent.update только при непустом updates либо Promise treat при завершении срока. Сам treat сохранён: внутренние create/delete пока не ожидаются и порядок замены не исправлен (TASK-0009 / 00121). Поэтому возврат Promise из heal не означает полной готовности перехода травмы.
+
+Непосредственные зависимости и потребители: [module/actor/sheets/mixins/healMixin.js](../../../../../../../module/actor/sheets/mixins/healMixin.js), [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../../../module/actor/sheets/mixins/criticalWoundMixin.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js) |

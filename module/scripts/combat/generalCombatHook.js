@@ -3,7 +3,8 @@ import { applyDamageFromStatus } from '../combat/applyDamage.js';
 export async function applyGeneralCombatHooks(combat) {
     if (!game.user.isActiveGM) return;
 
-    let actor = combat.combatants.get(combat.current.combatantId).actor;
+    const actor = combat.combatants.get(combat.current.combatantId)?.actor;
+    if (!actor) return;
     applyMonsterRegeneration(actor);
     applyCombatEffects(actor);
 }
@@ -60,6 +61,7 @@ async function applyCombatEffect(actor, status) {
 
     if (status.damage && status.damage.amount > 0) {
         let damage = {
+            type: status.damage.type,
             properties: {
                 spDamage: status.damage.spDamage,
                 damageToAllLocations: status.damage.allLocations,

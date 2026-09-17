@@ -1,5 +1,15 @@
 # module/actor/mixins/damageMixin.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М04; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+applyCritWound использует явный location.critEffect либо getRandomInt(6)+(critEffectModifier??0). Единственный кандидат выбирается как прежде. Проверка пустого набора и повторное получение травмы не исправлены: TASK-0009.
+
+Непосредственные зависимости и потребители: [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js), [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js) |

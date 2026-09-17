@@ -249,68 +249,84 @@ export default class WitcherItem extends Item {
         roll.toMessage(messageData);
     }
 
+    /** Find every matching table, including duplicate names within the same pack. */
+    getLootRollTables() {
+        return game.packs.filter(pack => pack.documentName === 'RollTable').flatMap(pack =>
+            pack.index.filter(table => table.name === this.name).map(table => ({ pack, id: table._id }))
+        );
+    }
+
     /**
-     *
-     * @param Number newQuantity
-     * @returns info whether we generated item with the help of the roll table
+     * Resolve all table results before writing loot. The generator stays until
+     * item writes complete; a later chat failure reports generatorRemoved=true.
+     * Callers must not automatically retry or use normal loot on failure.
+     * @returns {Promise<{status: string, records: object[], reason?: string}>}
      */
-    async checkIfItemHasRollTable(newQuantity) {
-        // search for the compendium pack in the world roll tables by name of the generator
-        const compendiumPack = game.packs
-            .filter(p => p.metadata.type === 'RollTable')
-            .filter(c => c.index.find(r => r.name === this.name));
-
-        if (!compendiumPack || compendiumPack.length == 0) {
-            // Provided item does not have associated roll table
-            // this item should appear in loot sheet as is
-            return false;
-        } else if (compendiumPack.length == 1) {
-            // get id of the needed table generator in the compendium pack
-            const tableId = compendiumPack[0].index.getName(this.name)._id;
-
+    async checkIfItemHasRollTable(newQuantity, tables = this.getLootRollTables()) {
+        if (!tables.length) return { status: 'not-found', records: [] };
+        const records = [];
+        let generatorRemoved = false;
+        try {
+            if (tables.length !== 1) {
+                throw new Error(game.i18n.localize('WITCHER.Monster.lootAmbiguousTable'));
+            }
+            if (!Number.isFinite(newQuantity) || newQuantity < 0) {
+                throw new Error(game.i18n.localize('WITCHER.Monster.lootInvalidQuantity'));
+            }
+            const table = await tables[0].pack.getDocument(tables[0].id);
+            const resolved = [];
             for (let i = 0; i < newQuantity; i++) {
-                let roll = await compendiumPack[0].getDocument(tableId).then(el => el.roll());
-                let res = roll.results[0];
-                let pack = game.packs.get(res.documentCollection);
-                await pack?.getIndex();
-                let genItem = await pack?.getDocument(res.documentId);
-
-                if (!genItem) {
-                    return ui.notifications.error(
-                        `${game.i18n.localize('WITCHER.Monster.exportLootInvalidItemError')}`
-                    );
+                const { results } = await table.roll();
+                if (!results.length) throw new Error(game.i18n.localize('WITCHER.Monster.lootEmptyTable'));
+                for (const result of results) {
+                    const item = result.type === 'document' && result.documentUuid
+                        ? await foundry.utils.fromUuid(result.documentUuid) : null;
+                    if (item?.documentName !== 'Item') {
+                        throw new Error(game.i18n.localize('WITCHER.Monster.lootInvalidResult'));
+                    }
+                    // Prepare display data before any writes, too.
+                    resolved.push({ item, html: await result.getHTML() });
                 }
-
-                // add generated item to the loot sheet
-                let itemInLoot = this.actor.items.find(i => i.name === genItem.name && i.type === genItem.type);
-                if (!itemInLoot) {
-                    await Item.create(genItem, { parent: this.actor });
-                } else {
-                    // if we have already generated item in the loot sheet - increase it's count instead of creation
-                    let itemToUpdate = itemInLoot[0] ? itemInLoot[0] : itemInLoot;
-                    let itemToUpdateCount = itemToUpdate.system.quantity;
-                    itemToUpdate.update({ 'system.quantity': ++itemToUpdateCount });
-                }
-
-                let successMessage = `${game.i18n.localize('WITCHER.Monster.exportLootGenerated')}: ${genItem.name}`;
-                ui.notifications.info(`${successMessage}`);
-
-                //whisper info about generated items from the roll table
-                let chatData = {
-                    user: game.user._id,
-                    content: `${successMessage} ${res.getChatText()}`,
-                    whisper: game.users.filter(u => u.isGM).map(u => u._id)
-                };
-                ChatMessage.create(chatData, {});
             }
 
-            // remove basic item from the loot sheet
-            // this item used for generation the actual item from the roll table
-            await this.actor.items.get(this.id).delete();
+            for (const { item } of resolved) {
+                // Never use the generator itself as the destination stack.
+                const existing = this.actor.items.find(other =>
+                    other.id !== this.id && other.name === item.name && other.type === item.type
+                );
+                let saved;
+                if (existing) {
+                    saved = await existing.update({ 'system.quantity': Number(existing.system.quantity) + 1 });
+                } else {
+                    saved = await Item.create(item.toObject(), { parent: this.actor });
+                }
+                if (!saved) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
+                records.push({ uuid: saved.uuid, name: saved.name, action: existing ? 'updated' : 'created' });
+            }
 
-            return true;
-        } else {
-            return ui.notifications.error(`${game.i18n.localize('WITCHER.Monster.exportLootToManyRollTablesError')}`);
+            const deleted = await this.delete();
+            if (!deleted) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
+            generatorRemoved = true;
+            // Confirmation follows all item writes and generator removal.
+            for (const { item, html } of resolved) {
+                const successMessage = game.i18n.format('WITCHER.Monster.lootGeneratedItem', { item: item.name });
+                await ChatMessage.create({
+                    user: game.user.id,
+                    content: `${foundry.utils.escapeHTML(successMessage)} ${html}`,
+                    whisper: game.users.filter(user => user.isGM).map(user => user.id)
+                });
+                ui.notifications.info(successMessage);
+            }
+            return { status: 'generated', records, generatorRemoved };
+        } catch (error) {
+            console.error('TheWitcherTRPG | Loot generation', this.uuid, error);
+            const reason = error.message ?? String(error);
+            ui.notifications.error(game.i18n.format('WITCHER.Monster.lootGenerationFailed', {
+                item: this.name, count: records.length, reason,
+                generator: game.i18n.localize(generatorRemoved
+                    ? 'WITCHER.Monster.lootGeneratorRemoved' : 'WITCHER.Monster.lootGeneratorRetained')
+            }));
+            return { status: records.length || generatorRemoved ? 'partial' : 'failed', records, reason, generatorRemoved };
         }
     }
 

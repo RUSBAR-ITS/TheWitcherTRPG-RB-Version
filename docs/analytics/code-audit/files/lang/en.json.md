@@ -1,5 +1,15 @@
 # lang/en.json
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М01, М05; [реализация и пределы проверок](../../../../issues/open/issue-00332.md).
+
+Добавлены 13 сообщений: WITCHER.Compendium.{missingPack,expectedItemPack,criticalWoundsIndexFailed} и десять WITCHER.Monster.loot* для результатов/отказов генерации. Старые ключи и переводы не удалялись. Подстановки en/ru сверяются статически; отображение в Foundry ещё не проверено.
+
+Непосредственные зависимости и потребители: [module/TheWitcherTRPG.js](../../../../../module/TheWitcherTRPG.js), [module/item/witcherItem.js](../../../../../module/item/witcherItem.js), [module/actor/sheets/WitcherMonsterSheet.js](../../../../../module/actor/sheets/WitcherMonsterSheet.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [lang/en.json](../../../../../lang/en.json) |

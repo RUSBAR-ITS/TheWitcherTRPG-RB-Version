@@ -248,7 +248,7 @@ export default class WitcherActorSheetV1 extends foundry.appv1.sheets.ActorSheet
                             ui.notifications.info(game.i18n.localize('WITCHER.Dialog.fullStaInfo'));
                             return;
                         }
-                        this.actor.update({
+                        await this.actor.update({
                             'system.derivedStats.sta.value':
                                 this.actor.system.derivedStats.sta.value + this.actor.system.derivedStats.rec.value
                         });
@@ -262,7 +262,7 @@ export default class WitcherActorSheetV1 extends foundry.appv1.sheets.ActorSheet
                             ui.notifications.info(game.i18n.localize('WITCHER.Dialog.fullStaInfo'));
                             return;
                         }
-                        this.actor.update({ 'system.derivedStats.sta.value': this.actor.system.derivedStats.sta.max });
+                        await this.actor.update({ 'system.derivedStats.sta.value': this.actor.system.derivedStats.sta.max });
                     }
                 }
             ]

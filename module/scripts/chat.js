@@ -7,12 +7,12 @@ export function chatMessageListeners(message, html) {
     html.querySelector('button.request-repair')?.addEventListener('click', onRepairRequest);
 }
 
-function onShield(event) {
+async function onShield(event) {
     let shield = event.currentTarget.getAttribute('data-shield');
     let actorUuid = event.currentTarget.getAttribute('data-actor');
 
     let actor = fromUuidSync(actorUuid);
-    actor?.update({ 'system.derivedStats.shield.value': shield });
+    await actor?.update({ 'system.derivedStats.shield.value': shield });
 
     let messageContent = `${actor.name} ${game.i18n.localize('WITCHER.Combat.shieldApplied')} ${shield}`;
     let messageData = {
@@ -20,10 +20,10 @@ function onShield(event) {
         content: messageContent,
         speaker: ChatMessage.getSpeaker({ actor: actor })
     };
-    ChatMessage.create(messageData);
+    return ChatMessage.create(messageData);
 }
 
-function onHeal(event) {
+async function onHeal(event) {
     let heal = parseInt(event.currentTarget.getAttribute('data-heal'));
     let actorUuid = event.currentTarget.getAttribute('data-actor');
 
@@ -36,7 +36,7 @@ function onHeal(event) {
         target?.system.derivedStats.hp.value + heal > target?.system.derivedStats.hp.max
             ? target?.system.derivedStats.hp.max - target?.system.derivedStats.hp.value
             : heal;
-    target?.update({ 'system.derivedStats.hp.value': target.system.derivedStats.hp.value + heal });
+    await target?.update({ 'system.derivedStats.hp.value': target.system.derivedStats.hp.value + heal });
 
     let messageContent = `${actor.name} ${game.i18n.format('WITCHER.Combat.healed', { heal: heal, target: target.name })}`;
     let messageData = {
@@ -44,7 +44,7 @@ function onHeal(event) {
         content: messageContent,
         speaker: ChatMessage.getSpeaker({ actor: actor })
     };
-    ChatMessage.create(messageData);
+    return ChatMessage.create(messageData);
 }
 
 async function onRepairRequest(event) {

@@ -10,6 +10,7 @@ import { registerSettings } from './setup/settings.js';
 
 import WitcherItem from './item/witcherItem.js';
 import WitcherActor from './actor/witcherActor.js';
+import WitcherRollTable from './rollTable/witcherRollTable.js';
 
 import { registerDataModels } from './setup/registerDataModels.js';
 import { registerSheets } from './setup/registerSheets.js';
@@ -31,6 +32,7 @@ Hooks.once('init', function () {
     CONFIG.statusEffects = CONFIG.WITCHER.statusEffects;
     CONFIG.Item.documentClass = WitcherItem;
     CONFIG.Actor.documentClass = WitcherActor;
+    CONFIG.RollTable.documentClass = WitcherRollTable;
     CONFIG.ActiveEffect.documentClass = WitcherActiveEffect;
     CONFIG.ActiveEffect.expiryAction = 'delete';
 
@@ -60,11 +62,24 @@ Hooks.on('renderChatMessageHTML', (message, html, data) => {
 Hooks.on('renderActiveEffectConfig', async (activeEffectConfig, html, data) => {});
 
 Hooks.once('ready', async function () {
-    //Wait till packs are loaded for index
-    const criticalWounds = game.packs.get(game.settings.get('TheWitcherTRPG-RB-Version', 'criticalWoundsPack'));
-    await criticalWounds.getIndex({
-        fields: ['system.criticalLevel', 'system.location', 'system.lesserEffect', 'system.treatment']
-    });
+    // Indexing an optional configured pack must not interrupt independent startup work.
+    const packId = game.settings.get('TheWitcherTRPG-RB-Version', 'criticalWoundsPack');
+    const criticalWounds = game.packs.get(packId);
+    try {
+        if (!criticalWounds) throw new Error(game.i18n.localize('WITCHER.Compendium.missingPack'));
+        if (criticalWounds.documentName !== 'Item') {
+            throw new Error(game.i18n.localize('WITCHER.Compendium.expectedItemPack'));
+        }
+        await criticalWounds.getIndex({
+            fields: ['system.criticalLevel', 'system.location', 'system.lesserEffect', 'system.treatment']
+        });
+    } catch (error) {
+        console.error('TheWitcherTRPG | Critical wounds index', packId, error);
+        ui.notifications.error(game.i18n.format('WITCHER.Compendium.criticalWoundsIndexFailed', {
+            pack: criticalWounds?.metadata.label ?? packId,
+            reason: error.message ?? String(error)
+        }));
+    }
 
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
     Hooks.on('hotbarDrop', (bar, data, slot) => {

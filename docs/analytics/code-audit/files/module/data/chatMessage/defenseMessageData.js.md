@@ -1,5 +1,15 @@
 # module/data/chatMessage/defenseMessageData.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М04; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+В crit добавлено числовое поле critEffectModifier с initial=0. Оно сохраняет поправку выбора меньшего/большего эффекта в typed ChatMessage; это не critLocationModifier и не изменение criticalLevel.
+
+Непосредственные зависимости и потребители: [module/actor/mixins/defenseMixin.js](../../../../../../../module/actor/mixins/defenseMixin.js), [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/chatMessage/defenseMessageData.js](../../../../../../../module/data/chatMessage/defenseMessageData.js) |

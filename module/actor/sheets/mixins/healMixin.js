@@ -85,9 +85,11 @@ export let healMixin = {
             'system.derivedStats.vigor.value': this.actor.system.derivedStats.vigor.max
         });
 
-        this.actor.items.documentsByType.criticalWound.forEach(crit => crit.system.heal({ sterilized: isSterilized }));
+        for (const crit of [...this.actor.items.documentsByType.criticalWound]) {
+            await crit.system.heal({ sterilized: isSterilized });
+        }
 
-        ChatMessage.create({
+        await ChatMessage.create({
             content: await foundry.applications.handlebars.renderTemplate(
                 'systems/TheWitcherTRPG-RB-Version/templates/chat/heal/resting-status.hbs',
                 dialogData

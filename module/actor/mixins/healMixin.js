@@ -19,7 +19,7 @@ export let healMixin = {
             style: CONST.CHAT_MESSAGE_STYLES.OTHER
         };
 
-        ChatMessage.create(chatData);
+        return ChatMessage.create(chatData);
     },
 
 };

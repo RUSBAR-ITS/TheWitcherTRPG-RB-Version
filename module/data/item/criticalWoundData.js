@@ -66,10 +66,11 @@ export default class CriticalWoundData extends foundry.abstract.TypeDataModel {
 
     async heal({ sterilized }) {
         let updates = {};
+        let daysHealed = this.daysHealed;
         if (this.treatment == 'treated') {
-            this.daysHealed += 1;
+            daysHealed += 1;
             if (sterilized && !this.sterilized) {
-                this.daysHealed += 2;
+                daysHealed += 2;
                 updates = {
                     ...updates,
                     'system.sterilized': true
@@ -77,18 +78,15 @@ export default class CriticalWoundData extends foundry.abstract.TypeDataModel {
             }
             updates = {
                 ...updates,
-                'system.daysHealed': this.daysHealed
+                'system.daysHealed': daysHealed
             };
         }
 
-        if (this.daysHealed >= this.healingTime && this.criticalLevel != 'deadly') {
-            //remove crit
-            this.treat();
-        } else {
-            if (Object.keys(updates)) {
-                this.parent.update(updates);
-            }
+        if (daysHealed >= this.healingTime && this.criticalLevel != 'deadly') {
+            // TASK-0009: treat still does not await its own create/delete operations.
+            return this.treat();
         }
+        if (Object.keys(updates).length) return this.parent.update(updates);
     }
 
     async treat() {

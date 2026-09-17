@@ -1,5 +1,15 @@
 # module/data/actor/templates/common/combatEffectsData.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М07; [реализация и пределы проверок](../../../../../../../../issues/open/issue-00332.md).
+
+TypedObjectField(turnStartEffects) использует новый TurnStartEffectField вместо общего SchemaField. Только damage.modifier использует TurnStartDamageModifierField. ADD объекта объединяет явно заданные поля по priority, не складывает базовые amount; отсутствующие поля дельты не стирают уже заданный modifier. Числовой ADD отсутствующего modifier начинает с нуля. Сам по себе modifier не создаёт положительный amount. heal.modifier и остальные SchemaField не менялись.
+
+Непосредственные зависимости и потребители: [module/data/fields/turnStartEffectField.js](../../../../../../../../../module/data/fields/turnStartEffectField.js), [module/scripts/combat/generalCombatHook.js](../../../../../../../../../module/scripts/combat/generalCombatHook.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/actor/templates/common/combatEffectsData.js](../../../../../../../../../module/data/actor/templates/common/combatEffectsData.js) |

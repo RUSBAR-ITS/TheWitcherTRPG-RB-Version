@@ -1,5 +1,15 @@
 # packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Treated__Me9fgalLrB0i9Z2O.json
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М07; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+У числового бонуса bleed.damage.modifier +2 priority изменён с null на 60 по подтверждению пользователя. Он применяется после штатной OVERRIDE-записи статуса (50); остальные changes/описание/ID/ссылки сохранены. Сам бонус не включает кровотечение.
+
+Непосредственные зависимости и потребители: [module/data/fields/turnStartEffectField.js](../../../../../../../module/data/fields/turnStartEffectField.js), [module/data/actor/templates/common/combatEffectsData.js](../../../../../../../module/data/actor/templates/common/combatEffectsData.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 ## Текущий срез — 14.3.1.00016
 
 | Поле | Значение |

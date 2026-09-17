@@ -1,7 +1,8 @@
 export async function countdownDurationOfRegions(combat, update, options, userId) {
     if (!game.user.isActiveGM) return;
 
-    let actorUuid = combat.combatants.get(combat.current.combatantId).actor.uuid;
+    const actorUuid = combat.combatants.get(combat.current.combatantId)?.actor?.uuid;
+    if (!actorUuid || !game.scenes.active) return;
 
     let toDelete = [];
     game.scenes.active.regions

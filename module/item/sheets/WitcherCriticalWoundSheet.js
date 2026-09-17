@@ -15,7 +15,7 @@ export default class WitcherCriticalWoundSheet extends WitcherItemSheet {
     };
 
     async _onDropItem(event, item) {
-        this.document.update({
+        return this.document.update({
             'system.followUp': item.uuid
         });
     }

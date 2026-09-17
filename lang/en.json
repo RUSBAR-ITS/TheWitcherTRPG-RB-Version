@@ -39,6 +39,11 @@
         }
     },
     "WITCHER": {
+        "Compendium": {
+            "missingPack": "The configured compendium was not found.",
+            "expectedItemPack": "An Item compendium is required.",
+            "criticalWoundsIndexFailed": "Cannot index critical wounds from {pack}: {reason}"
+        },
         "Name": "Name",
         "Type": "Type",
         "Percentage": "Percentage",
@@ -749,6 +754,16 @@
             "Equipped": "Eq"
         },
         "Monster": {
+            "lootAmbiguousTable": "More than one table matches this generator.",
+            "lootInvalidQuantity": "The number of table rolls must be a finite non-negative number.",
+            "lootEmptyTable": "The table returned no results.",
+            "lootInvalidResult": "A table result does not reference an available Item.",
+            "lootWriteCancelled": "Saving an item or removing the generator was cancelled.",
+            "lootGeneratedItem": "Generated item: {item}",
+            "lootGeneratorRemoved": "The generator has been removed.",
+            "lootGeneratorRetained": "The generator has been retained.",
+            "lootGenerationFailed": "Loot generator “{item}”: {reason} Saved item results: {count}. {generator} Do not retry automatically.",
+            "lootExportIncomplete": "Loot export stopped at “{item}”: {reason} Completed original entries: {count}/{total}. Saved changes have been retained.",
             "HeadArmor": "Armor Head",
             "UpperArmor": "Armor Upper",
             "LowerArmor": "Armor Lower",

@@ -39,6 +39,11 @@
         }
     },
     "WITCHER": {
+        "Compendium": {
+            "missingPack": "Выбранный компедиум не найден.",
+            "expectedItemPack": "Требуется компедиум предметов.",
+            "criticalWoundsIndexFailed": "Не удалось загрузить индекс травм из {pack}: {reason}"
+        },
         "Name": "Имя",
         "Type": "Тип",
         "Percentage": "Процент",
@@ -750,6 +755,16 @@
             "Equipped": "Экип."
         },
         "Monster": {
+            "lootAmbiguousTable": "Найдено несколько таблиц с именем генератора.",
+            "lootInvalidQuantity": "Число бросков таблицы должно быть конечным неотрицательным числом.",
+            "lootEmptyTable": "Таблица не выдала ни одного результата.",
+            "lootInvalidResult": "Результат таблицы не ссылается на доступный предмет.",
+            "lootWriteCancelled": "Сохранение предмета или удаление генератора отменено.",
+            "lootGeneratedItem": "Создан предмет: {item}",
+            "lootGeneratorRemoved": "Генератор удалён.",
+            "lootGeneratorRetained": "Генератор сохранён.",
+            "lootGenerationFailed": "Генератор добычи «{item}»: {reason} Сохранено результатов: {count}. {generator} Не запускайте повторно автоматически.",
+            "lootExportIncomplete": "Экспорт добычи остановлен на «{item}»: {reason} Завершено исходных позиций: {count}/{total}. Уже записанные изменения сохранены.",
             "HeadArmor": "Головная броня",
             "UpperArmor": "Корпусная броня",
             "LowerArmor": "Ножная броня",

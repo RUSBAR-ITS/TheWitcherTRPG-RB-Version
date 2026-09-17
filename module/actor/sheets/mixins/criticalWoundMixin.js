@@ -1,7 +1,7 @@
 export let criticalWoundMixin = {
     async _onCriticalWoundAdd(event) {
         event.preventDefault();
-        this.actor.createEmbeddedDocuments('Item', [
+        return this.actor.createEmbeddedDocuments('Item', [
             {
                 name: game.i18n.localize('TYPES.Item.criticalWound'),
                 type: 'criticalWound'
@@ -13,7 +13,7 @@ export let criticalWoundMixin = {
         event.preventDefault();
 
         const crit = fromUuidSync(event.target.dataset.id);
-        crit.system.treat();
+        return crit.system.treat();
     },
 
     criticalWoundListener(html) {

@@ -1,5 +1,15 @@
 # module/setup/config.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М02; [реализация и пределы проверок](../../../../../issues/open/issue-00332.md).
+
+В skillMap ключ commonsp совпадает с entry.name и полем IntData.commonsp. Все 52 пары ключ/name/путь схемы сверены; costMultiplier=2 и локализации сохранены. Старый commonspeech не является alias; миграции не добавлены.
+
+Непосредственные зависимости и потребители: [module/data/actor/templates/common/skills/intData.js](../../../../../../module/data/actor/templates/common/skills/intData.js), [module/activeEffect/witcherActiveEffect.js](../../../../../../module/activeEffect/witcherActiveEffect.js), [module/activeEffect/mixins/baseMixin.js](../../../../../../module/activeEffect/mixins/baseMixin.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/setup/config.js](../../../../../../module/setup/config.js) |

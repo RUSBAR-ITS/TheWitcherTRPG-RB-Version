@@ -323,7 +323,7 @@ export let damageMixin = {
         if (possibleWounds.length == 1) {
             wound = possibleWounds[0];
         } else {
-            let woundRoll = crit.location.critEffect ?? getRandomInt(6) + crit.critEffectModifier;
+            let woundRoll = crit.location.critEffect ?? getRandomInt(6) + (crit.critEffectModifier ?? 0);
             if (woundRoll > 4) {
                 wound = possibleWounds.find(criticalWound => criticalWound.system.lesserEffect === false);
             } else {

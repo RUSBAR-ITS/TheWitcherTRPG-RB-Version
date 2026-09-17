@@ -63,8 +63,8 @@
 {"id":"rel-013666","kind":"defines","from":"ent-003423","to":"ent-004956","location":{"source":"src-000021","symbol":"actor.rewardsMixin.addIpReward","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-013667","kind":"defines","from":"ent-000622","to":"ent-004957","location":{"source":"src-000049","symbol":"Rewards.getPlayerActors","line_start":6,"line_end":6},"basis":"source_read"}
 {"id":"rel-013668","kind":"defines","from":"ent-000622","to":"ent-004958","location":{"source":"src-000049","symbol":"Rewards.ipRewardDialog","line_start":10,"line_end":10},"basis":"source_read"}
-{"id":"rel-013669","kind":"defines","from":"ent-000620","to":"ent-004959","location":{"source":"src-000004","symbol":"game.api.rewards.ip","line_start":40,"line_end":40},"basis":"source_read"}
-{"id":"rel-013670","kind":"refers","from":"ent-004959","to":"ent-000623","location":{"source":"src-000004","symbol":"game.api.rewards.ip","line_start":40,"line_end":40},"basis":"source_read"}
+{"id":"rel-013669","kind":"defines","from":"ent-000620","to":"ent-004959","location":{"source":"src-000004","symbol":"game.api.rewards.ip","line_start":42,"line_end":42},"basis":"source_read"}
+{"id":"rel-013670","kind":"refers","from":"ent-004959","to":"ent-000623","location":{"source":"src-000004","symbol":"game.api.rewards.ip","line_start":42,"line_end":42},"basis":"source_read"}
 {"id":"rel-013671","kind":"calls","from":"ent-004956","to":"ent-004959","location":{"source":"src-000021","symbol":"actor.rewardsMixin.addIpReward","line_start":3,"line_end":3},"basis":"source_read","payload":"[this]","context":"Запуск без await/return."}
 {"id":"rel-013672","kind":"calls","from":"ent-004953","to":"ent-004956","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._addIpReward","line_start":449,"line_end":449},"basis":"source_read","context":"Без await/return"}
 {"id":"rel-013673","kind":"calls","from":"ent-000623","to":"ent-004958","location":{"source":"src-000049","symbol":"Rewards.handoutIpRewards","line_start":60,"line_end":60},"basis":"source_read","context":"await"}

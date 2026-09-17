@@ -83,7 +83,7 @@ class DefenseExpansion(unittest.TestCase):
         for a,n in [(315,7),(316,10),(317,13),(318,15)]:self.assertIn(f'totalAttack - {n}',s[a-1])
         for a,t in [(207,'await this.handleCritLocation(attackDamageObject)'),(208,'attackDamageObject.location = crit.location'),(209,'crit.critEffectModifier = attackDamageObject.crit.critEffectModifier'),(356,"originalLocation.includes('random')"),(357,"new Roll('2d6+' + attackDamageObject.crit.critLocationModifier)"),(393,'return attackDamageObject.location')]:self.assertIn(t,s[a-1])
         self.assertNotIn('RollTable','\n'.join(s));self.assertEqual(sum('getRandomInt(2)' in line for line in s[355:395]),2)
-        d=self.source(97);self.assertNotIn('critEffectModifier','\n'.join(d));self.assertIn('modifier: new fields.NumberField()',d[29]);self.assertIn('modifier: new fields.StringField',self.source(101)[7])
+        d=self.source(97);self.assertIn('critEffectModifier: new fields.NumberField({ initial: 0 })','\n'.join(d));self.assertIn('modifier: new fields.NumberField()',d[30]);self.assertIn('modifier: new fields.StringField',self.source(101)[7])
         self.assertIn('critLocationModifier: new fields.NumberField()',self.source(99)[4]);self.assertIn('critEffectModifier: new fields.NumberField()',self.source(99)[5])
         for e in self.new['entities']:
             if e['kind']!='field' or e['owner']!=self.q['DefenseMessageData'] or e['name']=='metadata':continue

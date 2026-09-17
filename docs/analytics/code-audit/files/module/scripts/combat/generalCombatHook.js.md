@@ -1,5 +1,15 @@
 # module/scripts/combat/generalCombatHook.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М06, М07; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+applyGeneralCombatHooks дополнительно пропускает отсутствующего текущего Actor. В applyCombatEffect damageObject.type берётся из status.damage.type, поэтому тип доходит до DamageInstance. Фильтр перехода находится в setup/hooks.js; прямой вызов этого модуля его не выполняет. Обход записей, guard amount и существующие границы ожидания applyDamageFromStatus/Actor.applyDamage сохранены; heal.modifier не исправлялся.
+
+Непосредственные зависимости и потребители: [module/setup/hooks.js](../../../../../../../module/setup/hooks.js), [module/data/actor/templates/common/combatEffectsData.js](../../../../../../../module/data/actor/templates/common/combatEffectsData.js), [module/scripts/combat/applyDamage.js](../../../../../../../module/scripts/combat/applyDamage.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/combat/generalCombatHook.js](../../../../../../../module/scripts/combat/generalCombatHook.js) |

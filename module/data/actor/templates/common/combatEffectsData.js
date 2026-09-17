@@ -1,4 +1,5 @@
 import TemporaryEffects from "./temporaryEffectsData.js";
+import TurnStartEffectField, { TurnStartDamageModifierField } from "../../../fields/turnStartEffectField.js";
 
 const fields = foundry.data.fields;
 
@@ -17,12 +18,12 @@ export default function combatEffects() {
             })
         ),
         turnStartEffects: new fields.TypedObjectField(
-            new fields.SchemaField({
+            new TurnStartEffectField({
                 name: new fields.StringField(),
                 img: new fields.StringField(),
                 damage: new fields.SchemaField({
                     amount: new fields.NumberField({ initial: 0 }),
-                    modifier: new fields.NumberField({ initial: 0 }),
+                    modifier: new TurnStartDamageModifierField({ initial: 0 }),
                     allLocations: new fields.BooleanField({ initial: false }),
                     type: new fields.StringField(),
                     ignoreArmor: new fields.BooleanField({ initial: false }),

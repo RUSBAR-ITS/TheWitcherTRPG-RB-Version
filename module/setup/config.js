@@ -310,7 +310,7 @@ WITCHER.skillMap = {
         label: 'WITCHER.skills.education.label',
         name: 'education'
     },
-    commonspeech: {
+    commonsp: {
         attribute: WITCHER.statMap.int,
         label: 'WITCHER.skills.commonSpeech.label',
         rollLabel: 'WITCHER.skills.commonSpeech.rollLabel',

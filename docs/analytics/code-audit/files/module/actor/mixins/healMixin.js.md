@@ -1,5 +1,15 @@
 # module/actor/mixins/healMixin.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М09; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+createHealMessage возвращает Promise ChatMessage.create после await renderTemplate. calculateHealValue и пределы HP не менялись; сам этот метод не сохраняет HP.
+
+Непосредственные зависимости и потребители: [module/scripts/combat/generalCombatHook.js](../../../../../../../module/scripts/combat/generalCombatHook.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/healMixin.js](../../../../../../../module/actor/mixins/healMixin.js) |

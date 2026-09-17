@@ -1,5 +1,15 @@
 # module/actor/sheets/mixins/criticalWoundMixin.js
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М09, частично; [реализация и пределы проверок](../../../../../../../issues/open/issue-00332.md).
+
+_onCriticalWoundAdd возвращает createEmbeddedDocuments; _onTreat возвращает crit.system.treat(). Внутренние записи treat не исправлены, поэтому это не гарантирует завершения замены травмы.
+
+Непосредственные зависимости и потребители: [module/data/item/criticalWoundData.js](../../../../../../../../module/data/item/criticalWoundData.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../../../../module/actor/sheets/mixins/criticalWoundMixin.js) |

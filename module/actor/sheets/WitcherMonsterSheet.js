@@ -187,25 +187,42 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
             folder: folder?.id
         });
 
-        newLoot.items.forEach(async item => {
-            let newQuantity = item.system.quantity;
-            if (typeof newQuantity === 'string' && item.system.quantity.includes('d')) {
-                let total = 0;
-                for (let i = 0; i < multiplier; i++) {
-                    let roll = await new Roll(item.system.quantity).evaluate({ async: true });
-                    total += Math.ceil(roll.total);
+        // Normalize original ordinary stacks first, so a later multiplier cannot
+        // multiply items already added by a generator. New items are not reprocessed.
+        const items = [...newLoot.items].map(item => ({ item, tables: item.getLootRollTables() }));
+        items.sort((a, b) => Number(!!a.tables.length) - Number(!!b.tables.length));
+        let completed = 0;
+        for (const { item, tables } of items) {
+            try {
+                let newQuantity = item.system.quantity;
+                if (typeof newQuantity === 'string' && newQuantity.includes('d')) {
+                    let total = 0;
+                    for (let i = 0; i < multiplier; i++) {
+                        let roll = await new Roll(item.system.quantity).evaluate({ async: true });
+                        total += Math.ceil(roll.total);
+                    }
+                    newQuantity = total;
+                } else {
+                    newQuantity = Number(newQuantity) * multiplier;
                 }
-                newQuantity = total;
-            } else {
-                newQuantity = Number(newQuantity) * multiplier;
-            }
 
-            let itemGeneratedFromRollTable = await item.checkIfItemHasRollTable(newQuantity);
-
-            if (!itemGeneratedFromRollTable) {
-                item.update({ 'system.quantity': newQuantity });
+                const result = await item.checkIfItemHasRollTable(newQuantity, tables);
+                if (result.status === 'not-found') {
+                    const saved = await item.update({ 'system.quantity': newQuantity });
+                    if (!saved) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
+                } else if (result.status !== 'generated') {
+                    throw new Error(result.reason);
+                }
+                completed++;
+            } catch (error) {
+                console.error('TheWitcherTRPG | Loot export', newLoot.uuid, error);
+                ui.notifications.error(game.i18n.format('WITCHER.Monster.lootExportIncomplete', {
+                    count: completed, total: items.length, item: item.name, reason: error.message ?? String(error)
+                }));
+                // Preserve the saved part for inspection; no automatic retry or rollback.
+                break;
             }
-        });
+        }
 
         await newLoot.sheet.render(true);
     }

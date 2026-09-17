@@ -1,5 +1,15 @@
 # packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach_5gnx9xNF52ap9PYi.json
 
+## Актуализация 2026-09-17 — 14.3.1.00026
+
+М02; [реализация и пределы проверок](../../../../../../issues/open/issue-00332.md).
+
+Только путь навыка system.skills.int.commonspeech.activeEffectModifiers исправлен на system.skills.int.commonsp.activeEffectModifiers. Значения изменений, ID, описание и followUp сохранены.
+
+Непосредственные зависимости и потребители: [module/setup/config.js](../../../../../../../module/setup/config.js), [module/data/actor/templates/common/skills/intData.js](../../../../../../../module/data/actor/templates/common/skills/intData.js).
+
+Основание: чтение текущего diff относительно `cd6fe2678105977ac220ab59e5fc87e6b3c6a343`; только статические проверки. Датированный разбор ниже сохраняет исходные доказательства и прежние адреса строк; изменённые контракты заменены описанием выше. Игровое исполнение этой версии пока не проверено.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach_5gnx9xNF52ap9PYi.json](../../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach_5gnx9xNF52ap9PYi.json) |
