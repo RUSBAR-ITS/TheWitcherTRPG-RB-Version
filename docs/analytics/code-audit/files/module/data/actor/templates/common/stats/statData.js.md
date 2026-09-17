@@ -143,7 +143,7 @@ Complex изменяет totalModifiers у BODY/REF/DEX/SPD/INT/WILL. Все ц�
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): множители 0.25/0.5 адресуют max как целочисленный NumberField — 5 становится 1/3; value после calculateStat остаётся 5. Это относится к SPD ног и BODY/SPD Heart Damage. Случай правой исходной ноги отдельно блокируется disabled; включение диагностической копии не исправляет расхождение max/value ([issue-00036](../../../../../../../../../issues/potential/issue-00036.md)/[issue-00329](../../../../../../../../../issues/potential/issue-00329.md)).
+[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): множители 0.25/0.5 адресуют max как целочисленный NumberField — 5 становится 1/3; value после calculateStat остаётся 5. Это относится к SPD ног и BODY/SPD Heart Damage. Случай правой исходной ноги отдельно блокируется disabled; включение диагностической копии не исправляет расхождение max/value ([issue-00036](../../../../../../../../../issues/potential/issue-00036.md)/[issue-00329](../../../../../../../../../issues/closed/issue-00329.md)).
 
 [Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

@@ -5,7 +5,7 @@
 | Поле | Значение |
 | --- | --- |
 | Источник | [packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Treated__3SwpPbi2ddEJkebh.json](../../../../../../../packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Compound_Leg_Fracture__Right___Treated__3SwpPbi2ddEJkebh.json) |
-| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../../issues/open/issue-00331.md) |
+| Проверено | 2026-09-16; `dev`; база `095395276b97f0ffe916495e26be3938cf8fdcf8` + исправление [issue-00331 / К01](../../../../../../issues/closed/issue-00331.md) |
 | Тип / назначение | Экспорт Item criticalWound: шаблон травмы, его эффекты и следующий этап лечения |
 | Имя / ID | Compound Leg Fracture (Right - Treated) / `3SwpPbi2ddEJkebh` |
 | Строк / SHA-256 | 104 / `cd65b84b34813a10efeb6a8901382951d702f7c6c55e93a8d81a1923a9d51752` |
@@ -47,7 +47,7 @@ B16: исправить сторону в имени эффекта. Остал�
 
 ### Проверка и границы
 
-Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../../issues/open/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
+Источник входит в 48 изменённых JSON [issue-00331 / К01](../../../../../../issues/closed/issue-00331.md). Все 226 JSON разобраны; 316 documentUuid/followUp разрешимы. Временная сборка шести пакетов и обратное извлечение совпали с исходниками, включая неизменённые документы. Полный клиент Foundry и действующие packs не проверялись; копии уже импортированных документов мира не обновлялись.
 
 Проверки настоящих Roll/методов RollTable и потребителей травм, фасады окружения и нерешённые ограничения 00320/00328/00036 перечислены в issue-00331. Значения Actor и жизненный цикл эффектов этой порцией повторно не проверялись.
 
@@ -169,9 +169,9 @@ JSON не вводит собственных функций или обрабо
 
 Контрольный Actor: восемь unmodifiedMax=5, HP.value=25, dodge.value=athletics.value=8 до эффектов, броня/вес=0. Результат: INT=5, WILL=5, REF=5, DEX=5, BODY=5, SPD=3; BODY.max=5, SPD.max=5; RUN=9, LEAP.value=1, LEAP.max=3, ENC=50, STUN=5, REC=5, HP.max=25, RESOLVE.max=25, FOCUS.max=15; healingTime=10. Навыки: dodge.value=8, dodge.activeEffectModifiers=-2; athletics.value=8, athletics.activeEffectModifiers=-2. Статусы=`[]`; turnStartEffects={}. Значения прочитаны непосредственно из подготовленных полей; сериализация DataModel/toObject возвращает источник и не заменяет такую проверку.
 
-В цепочках правых переломов у stabilized перепутаны rightArm/rightLeg, при переходе к treated возвращается исходная локация — [issue-00327](../../../../../../issues/potential/issue-00327.md). Модель/treat не исправляют это поле.
+В цепочках правых переломов у stabilized перепутаны rightArm/rightLeg, при переходе к treated возвращается исходная локация — [issue-00327](../../../../../../issues/closed/issue-00327.md). Модель/treat не исправляют это поле.
 
-Настоящий addActiveEffects('dodge') при displayRollsDetails=true дал `" +-2[Compound Leg Fracture (Left - Treated)]"`: эффект подписан левой ногой — [issue-00326](../../../../../../issues/potential/issue-00326.md).
+Настоящий addActiveEffects('dodge') при displayRollsDetails=true дал `" +-2[Compound Leg Fracture (Left - Treated)]"`: эффект подписан левой ногой — [issue-00326](../../../../../../issues/closed/issue-00326.md).
 
 ## Проверки и доказательства
 
@@ -183,7 +183,7 @@ JSON не вводит собственных функций или обрабо
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/potential/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/potential/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/potential/issue-00288.md) — повтор name/type. [issue-00327](../../../../../../issues/potential/issue-00327.md) — локации стабилизированных правых переломов. [issue-00326](../../../../../../issues/potential/issue-00326.md) — имя левой ноги у правого Item. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/potential/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/potential/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/potential/issue-00288.md) — повтор name/type. [issue-00327](../../../../../../issues/closed/issue-00327.md) — локации стабилизированных правых переломов. [issue-00326](../../../../../../issues/closed/issue-00326.md) — имя левой ноги у правого Item. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 

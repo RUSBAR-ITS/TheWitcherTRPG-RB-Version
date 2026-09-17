@@ -694,7 +694,7 @@
 | [packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json](packsJson/lifepath/Romance__Problematic_Love_l7k0hSL3iRzjJcYs.json.md) | Задаёт десять текстовых обстоятельств проблемных отношений; подтаблица Romance. |
 | [packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json](packsJson/lifepath/Romance__Romantic_Tragedy_Jmvpwp9FRwRhDWZu.json.md) | Задаёт десять текстовых исходов романтической трагедии; подтаблица Romance. |
 
-[Перекрёстная сверка](../review-log.md#task-0003053): 21 RollTable, 139 результатов, рекурсия и inline-броски. Зарегистрирована [issue-00319](../../../issues/potential/issue-00319.md); JSON не менялись.
+[Перекрёстная сверка](../review-log.md#task-0003053): 21 RollTable, 139 результатов, рекурсия и inline-броски. Зарегистрирована [issue-00319](../../../issues/closed/issue-00319.md); JSON не менялись.
 
 ## Подтаблицы создания персонажа — TASK-0003.054
 

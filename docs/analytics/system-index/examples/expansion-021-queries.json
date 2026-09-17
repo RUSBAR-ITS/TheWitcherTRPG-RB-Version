@@ -556,7 +556,7 @@
         "includes_refs": [
           "docs/issues/potential/issue-00002.md",
           "docs/issues/potential/issue-00289.md",
-          "docs/issues/potential/issue-00324.md"
+          "docs/issues/closed/issue-00324.md"
         ]
       },
       "basis": "14:315–335 pack/индекс/candidate guards отсутствуют."
@@ -614,7 +614,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00325.md"
+          "docs/issues/closed/issue-00325.md"
         ]
       },
       "basis": "Три JSON одной цепочки, не чтение runtime pack."

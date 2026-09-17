@@ -105,7 +105,7 @@ lookup system.location:18 сопоставлен с двумя stabilized Diffic
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): location всех 22 Item совпадает со своей семьёй; семь цепочек имеют кнопочный маршрут treat через UUID, у Decapitation followUp=null. Сам treat не проверяет текст о невозможности стабилизации/лечения и в конечной ветви запрашивает delete. Весь пакет содержит пять переходов со сменой location ([issue-00325](../../../../../issues/potential/issue-00325.md)/[issue-00327](../../../../../issues/potential/issue-00327.md)); шаблон лишь выводит сохранённую локацию. Браузер и клики не запускались.
+[Deadly](../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): location всех 22 Item совпадает со своей семьёй; семь цепочек имеют кнопочный маршрут treat через UUID, у Decapitation followUp=null. Сам treat не проверяет текст о невозможности стабилизации/лечения и в конечной ветви запрашивает delete. Весь пакет содержит пять переходов со сменой location ([issue-00325](../../../../../issues/closed/issue-00325.md)/[issue-00327](../../../../../issues/closed/issue-00327.md)); шаблон лишь выводит сохранённую локацию. Браузер и клики не запускались.
 
 [Протокол и ограничения](../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

@@ -145,7 +145,7 @@ P01–P03/P09/P10/P13/P14 .050 применяются к неизменному 
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-Итог всех семи пакетов: 226 JSON / 36650 строк — 128 RollTable, 94 Item и четыре Folder; 995 результатов, 79 эффектов, 360 changes. Реальное поле BasePackage.schema.get('packs') Foundry 14 очистило семь путей .db до путей каталогов, соответствующих экспортам и packFolders. Compile/extract читают каталоги рекурсивно; CLI не запускались. 252 documentUuid разрешимы, две цели Mounted Control Loss отсутствуют ([issue-00323](../../../../issues/potential/issue-00323.md)); 62 followUp разрешимы, циклов нет. [Deadly](../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершает технический анализ экспортов, не проверку установленной БД.
+Итог всех семи пакетов: 226 JSON / 36650 строк — 128 RollTable, 94 Item и четыре Folder; 995 результатов, 79 эффектов, 360 changes. Реальное поле BasePackage.schema.get('packs') Foundry 14 очистило семь путей .db до путей каталогов, соответствующих экспортам и packFolders. Compile/extract читают каталоги рекурсивно; CLI не запускались. 252 documentUuid разрешимы, две цели Mounted Control Loss отсутствуют ([issue-00323](../../../../issues/closed/issue-00323.md)); 62 followUp разрешимы, циклов нет. [Deadly](../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершает технический анализ экспортов, не проверку установленной БД.
 
 [Протокол и ограничения](../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

@@ -90,7 +90,7 @@
 
 ## Связанные проблемы
 
-[issue-00325](../../../../../../issues/potential/issue-00325.md) — поле локации одного дочернего Item; [issue-00121](../../../../../../issues/potential/issue-00121.md), [issue-00127](../../../../../../issues/potential/issue-00127.md) и [issue-00288](../../../../../../issues/potential/issue-00288.md) — общие потребители. Наличие этих проблем не означает дефекта самой папки.
+[issue-00325](../../../../../../issues/closed/issue-00325.md) — поле локации одного дочернего Item; [issue-00121](../../../../../../issues/potential/issue-00121.md), [issue-00127](../../../../../../issues/potential/issue-00127.md) и [issue-00288](../../../../../../issues/potential/issue-00288.md) — общие потребители. Наличие этих проблем не означает дефекта самой папки.
 
 ## История актуализации
 
@@ -116,7 +116,7 @@
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-После [Deadly](../Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершено чтение всех 98 JSON criticalWounds. Повтор строгих моделей/потребителей охватил 94 Item/4 Folder/79 эффектов/360 changes, 62 перехода и 48 выборов. Статическая сверка подтверждает 31 цепочку из трёх Item плюс конечную Decapitation, без циклов/отсутствующих UUID. Пять смен location относятся к прежним [issue-00325](../../../../../../issues/potential/issue-00325.md)/[issue-00327](../../../../../../issues/potential/issue-00327.md); Complex first-find — [issue-00324](../../../../../../issues/potential/issue-00324.md); единственный disabled относится к Deadly [issue-00329](../../../../../../issues/potential/issue-00329.md). Исторические итоги данной порции сохранены.
+После [Deadly](../Deadly_uofXQEP6HBtekOAO/_Folder.json.md) завершено чтение всех 98 JSON criticalWounds. Повтор строгих моделей/потребителей охватил 94 Item/4 Folder/79 эффектов/360 changes, 62 перехода и 48 выборов. Статическая сверка подтверждает 31 цепочку из трёх Item плюс конечную Decapitation, без циклов/отсутствующих UUID. Пять смен location относятся к прежним [issue-00325](../../../../../../issues/closed/issue-00325.md)/[issue-00327](../../../../../../issues/closed/issue-00327.md); Complex first-find — [issue-00324](../../../../../../issues/closed/issue-00324.md); единственный disabled относится к Deadly [issue-00329](../../../../../../issues/closed/issue-00329.md). Исторические итоги данной порции сохранены.
 
 [Протокол и ограничения](../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

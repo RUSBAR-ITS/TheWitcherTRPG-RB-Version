@@ -168,7 +168,7 @@ Difficult использует восемь multiply по dodge.value/athletics.
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): enabled-множители ног по 0.25 меняют dodge.value/athletics.value с 8 до 2. Единственный disabled правого none оставляет 8; его включение только в памяти восстанавливает 2 ([issue-00329](../../../../../../../../../issues/potential/issue-00329.md)). У Eye activeEffectModifiers Awareness −5/−3/−1, value остаётся 0. Весь пакет: три неизвестных пути commonspeech подтверждены отдельно от объявленного commonsp ([issue-00004](../../../../../../../../../issues/potential/issue-00004.md)); остальные найденные числовые поля типизированы.
+[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): enabled-множители ног по 0.25 меняют dodge.value/athletics.value с 8 до 2. Единственный disabled правого none оставляет 8; его включение только в памяти восстанавливает 2 ([issue-00329](../../../../../../../../../issues/closed/issue-00329.md)). У Eye activeEffectModifiers Awareness −5/−3/−1, value остаётся 0. Весь пакет: три неизвестных пути commonspeech подтверждены отдельно от объявленного commonsp ([issue-00004](../../../../../../../../../issues/potential/issue-00004.md)); остальные найденные числовые поля типизированы.
 
 [Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 
