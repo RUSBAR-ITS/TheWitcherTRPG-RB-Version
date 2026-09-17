@@ -1,5 +1,27 @@
 # module/data/item/criticalWoundData.js
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Данные травмы и адаптер операций.
+
+**Методы и действия:** Схема 14 полей/getters .002 сохранены. heal/treat/stabilize возвращают операции общего сервиса; модель сама не начисляет дни и не создаёт/удаляет стадии. Никаких treatment/deadly gates сверх canHeal.
+
+**Непосредственные зависимости/потребители:** [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js), [module/data/dataUtils.js](../../../../../../../module/data/dataUtils.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
+## Актуализация 2026-09-17 — 14.3.1.00048, TASK-0009.002
+
+**Назначение:** Модель настраиваемой травмы.
+
+**Методы, сущности, действия:** defineSchema задаёт 14 полей, включая ручной ID, три флага, две ссылки и healingDuration. validateJoint проверяет включённый срок. healingStatus/healingTime/healingTimeDisplay/healingTimeHint вычисляются лениво из BODY.value. followUp, сохраняемый healingTime и calculateHealingTime удалены. Heal и treat защищены флагами/проверкой срока; treat использует treatedWound и проверяет получателя, ожидает create и возвращает delete. Это промежуточный lifecycle: отдельный Item вместо замены с сохранением UUID, нет очереди; heal пока содержит treated/deadly gates и вызывает treat. Завершение в .003–.005.
+
+**Зависимости и потребители:** [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js), [module/data/dataUtils.js](../../../../../../../module/data/dataUtils.js), [module/actor/sheets/mixins/healMixin.js](../../../../../../../module/actor/sheets/mixins/healMixin.js), [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../../../module/actor/sheets/mixins/criticalWoundMixin.js).
+
+Проверки: настоящий TypeDataModel/поля/Roll Foundry 14.367, компиляция Handlebars; лист/DOM/UUID lookup/запись представлены фасадами. Браузер/сохранение после reload не проверялись. [Протокол](../../../../../task-0009-002-checks.md).
+
+Датированные материалы ниже описывают прежние срезы; изменённое поведение приведено выше.
+
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
 М09, частично; [реализация и пределы проверок](../../../../../../issues/closed/issue-00332.md).

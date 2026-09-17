@@ -1,4 +1,5 @@
 import { createEnrichedText } from '../dataUtils.js';
+import { evaluateHealingDuration, transitionWound, healWound } from '../../item/criticalWoundOperations.js';
 
 const fields = foundry.data.fields;
 
@@ -17,6 +18,22 @@ export default class CriticalWoundData extends foundry.abstract.TypeDataModel {
             }),
             treatment: new fields.StringField({ initial: 'none', label: 'WITCHER.criticalWound.treatment.label' }),
             location: new fields.StringField({ initial: 'torso' }),
+            woundTypeId: new fields.StringField({
+                initial: '',
+                label: 'WITCHER.criticalWound.woundTypeId.label',
+                hint: 'WITCHER.criticalWound.woundTypeId.hint'
+            }),
+            cannotStabilize: new fields.BooleanField({
+                initial: true,
+                label: 'WITCHER.criticalWound.cannotStabilize'
+            }),
+            cannotTreat: new fields.BooleanField({ initial: true, label: 'WITCHER.criticalWound.cannotTreat' }),
+            canHeal: new fields.BooleanField({ initial: false, label: 'WITCHER.criticalWound.canHeal' }),
+            healingDuration: new fields.StringField({
+                initial: '',
+                label: 'WITCHER.criticalWound.healingDuration.label',
+                hint: 'WITCHER.criticalWound.healingDuration.hint'
+            }),
             lesserEffect: new fields.BooleanField({
                 initial: false,
                 label: 'WITCHER.criticalWound.lesserEffect.label',
@@ -24,38 +41,49 @@ export default class CriticalWoundData extends foundry.abstract.TypeDataModel {
             }),
 
             daysHealed: new fields.NumberField({ initial: 0 }),
-            healingTime: new fields.NumberField({ initial: 0 }),
             sterilized: new fields.BooleanField({ initial: false }),
 
-            followUp: new fields.DocumentUUIDField({
+            stabilizedWound: new fields.DocumentUUIDField({
                 type: 'Item',
-                label: 'WITCHER.criticalWound.followUp',
-                hint: 'WITCHER.criticalWound.followUpHint'
+                initial: null,
+                nullable: true,
+                label: 'WITCHER.criticalWound.stabilizedWound.label',
+                hint: 'WITCHER.criticalWound.stabilizedWound.hint'
+            }),
+            treatedWound: new fields.DocumentUUIDField({
+                type: 'Item',
+                initial: null,
+                nullable: true,
+                label: 'WITCHER.criticalWound.treatedWound.label',
+                hint: 'WITCHER.criticalWound.treatedWound.hint'
             })
         };
     }
 
-    prepareDerivedData() {
-        super.prepareDerivedData();
-
-        let actor = this.parent.parent;
-        if (actor) {
-            this.calculateHealingTime(actor);
+    static validateJoint(data) {
+        if (!data.canHeal) return;
+        const result = evaluateHealingDuration(data.healingDuration);
+        if (result.error && result.error !== 'missingBody') {
+            throw new Error(game.i18n.localize(`WITCHER.criticalWound.errors.${result.error}`));
         }
     }
 
-    calculateHealingTime(actor) {
-        switch (this.criticalLevel) {
-            case 'simple':
-                this.healingTime = Math.max(8 - actor.system.stats.body.max, 1);
-                break;
-            case 'complex':
-                this.healingTime = Math.max(12 - actor.system.stats.body.max, 1);
-                break;
-            case 'difficult':
-                this.healingTime = Math.max(15 - actor.system.stats.body.max, 1);
-                break;
-        }
+    get healingStatus() {
+        if (!this.canHeal) return { value: null, error: 'healingDisabled' };
+        return evaluateHealingDuration(this.healingDuration, this.parent?.parent);
+    }
+
+    get healingTime() {
+        return this.healingStatus.value;
+    }
+
+    get healingTimeDisplay() {
+        return this.healingTime ?? '—';
+    }
+
+    get healingTimeHint() {
+        const { error } = this.healingStatus;
+        return error ? game.i18n.localize(`WITCHER.criticalWound.errors.${error}`) : this.healingDuration;
     }
 
     async enrichedText() {
@@ -64,39 +92,16 @@ export default class CriticalWoundData extends foundry.abstract.TypeDataModel {
         };
     }
 
-    async heal({ sterilized }) {
-        let updates = {};
-        let daysHealed = this.daysHealed;
-        if (this.treatment == 'treated') {
-            daysHealed += 1;
-            if (sterilized && !this.sterilized) {
-                daysHealed += 2;
-                updates = {
-                    ...updates,
-                    'system.sterilized': true
-                };
-            }
-            updates = {
-                ...updates,
-                'system.daysHealed': daysHealed
-            };
-        }
-
-        if (daysHealed >= this.healingTime && this.criticalLevel != 'deadly') {
-            // TASK-0009: treat still does not await its own create/delete operations.
-            return this.treat();
-        }
-        if (Object.keys(updates).length) return this.parent.update(updates);
+    heal(options) {
+        return healWound(this.parent, options);
     }
 
-    async treat() {
-        if (this.followUp) {
-            let actor = this.parent.parent;
-            let followUpItem = await fromUuid(this.followUp);
-            actor.createEmbeddedDocuments('Item', [followUpItem]);
-        }
+    treat() {
+        return transitionWound(this.parent, 'treat');
+    }
 
-        this.parent.delete();
+    stabilize() {
+        return transitionWound(this.parent, 'stabilize');
     }
 
     get canHaveTemporaryItemImprovement() {

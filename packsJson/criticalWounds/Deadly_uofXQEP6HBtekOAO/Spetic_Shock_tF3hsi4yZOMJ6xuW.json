@@ -14,9 +14,14 @@
     "location": "torso",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.LM6Kkh0ib6ux4WQp"
+    "woundTypeId": "septic-shock",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.LM6Kkh0ib6ux4WQp",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.vkr5MXhnalPp8yJJ"
   },
   "effects": [
     {

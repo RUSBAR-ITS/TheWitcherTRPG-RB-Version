@@ -14,9 +14,14 @@
     "location": "leftLeg",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.lck0EEySmuLZXMrA"
+    "woundTypeId": "dismembered-leg",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.lck0EEySmuLZXMrA",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.eYEp1CPif98mDm2U"
   },
   "effects": [
     {

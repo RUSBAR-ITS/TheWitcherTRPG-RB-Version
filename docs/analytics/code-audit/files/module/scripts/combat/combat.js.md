@@ -1,5 +1,15 @@
 # module/scripts/combat/combat.js
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Контекст боевого чата.
+
+**Методы и действия:** Callback назначения травмы теперь возвращает applyCritWound после getInteractActor. Интерфейс и действие урона не переписаны.
+
+**Непосредственные зависимости/потребители:** [module/actor/mixins/damageMixin.js](../../../../../../../module/actor/mixins/damageMixin.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/combat/combat.js](../../../../../../../module/scripts/combat/combat.js) |

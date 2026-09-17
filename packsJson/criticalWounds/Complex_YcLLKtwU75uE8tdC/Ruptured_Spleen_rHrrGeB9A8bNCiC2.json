@@ -13,9 +13,14 @@
     "location": "torso",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.d8uhnIErEmsGtf94"
+    "woundTypeId": "ruptured-spleen",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.d8uhnIErEmsGtf94",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.kFcie7Io28kKittg"
   },
   "effects": [],
   "folder": "YcLLKtwU75uE8tdC",

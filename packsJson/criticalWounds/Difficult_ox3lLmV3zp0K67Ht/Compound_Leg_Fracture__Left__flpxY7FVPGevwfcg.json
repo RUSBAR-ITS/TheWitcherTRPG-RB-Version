@@ -14,9 +14,14 @@
     "location": "leftLeg",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.NiGtzaHs4dUj8Pmd"
+    "woundTypeId": "compound-leg-fracture",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.NiGtzaHs4dUj8Pmd",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.kfyfxEVsMRUDDk1A"
   },
   "effects": [
     {

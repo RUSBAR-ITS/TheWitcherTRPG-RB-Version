@@ -12,9 +12,14 @@
     "treatment": "treated",
     "location": "head",
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "cracked-jaw",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": true,
+    "healingDuration": "max(8-@body,1)",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [
     {

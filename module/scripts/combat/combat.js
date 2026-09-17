@@ -88,7 +88,7 @@ export function addCritMessageContextOptions(html, options) {
             icon: '<i class="fas fa-user-minus"></i>',
             visible: wasCritted,
             onClick: async (pointer, target) => {
-                (await getInteractActor()).applyCritWound(game.messages.get(target.dataset.messageId).system.crit);
+                return (await getInteractActor()).applyCritWound(game.messages.get(target.dataset.messageId).system.crit);
             }
         }
     );

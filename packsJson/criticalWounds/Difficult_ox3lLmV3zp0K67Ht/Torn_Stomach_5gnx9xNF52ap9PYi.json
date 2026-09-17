@@ -14,9 +14,14 @@
     "location": "torso",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.EpF0FD1nFXJTJ5Tj"
+    "woundTypeId": "torn-stomach",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.EpF0FD1nFXJTJ5Tj",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Mg1jn99OitVPdvje"
   },
   "effects": [
     {

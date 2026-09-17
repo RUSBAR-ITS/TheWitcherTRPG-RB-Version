@@ -1,5 +1,17 @@
 # module/item/sheets/WitcherCriticalWoundSheet.js
 
+## Актуализация 2026-09-17 — 14.3.1.00048, TASK-0009.002
+
+**Назначение:** Основной лист критической травмы.
+
+**Методы, сущности, действия:** Поле configuration создаёт специализированный лист. PARTS.main сохранён. _onDropItem больше не пишет неоднозначный followUp: показывает подсказку открыть конкретное поле конфигурации. Имя, описание, локация, степень и метка стадии остаются на основном листе.
+
+**Зависимости и потребители:** [module/item/sheets/WitcherItemSheet.js](../../../../../../../module/item/sheets/WitcherItemSheet.js), [module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js](../../../../../../../module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js), [templates/sheets/item/criticalWound-sheet.hbs](../../../../../../../templates/sheets/item/criticalWound-sheet.hbs).
+
+Проверки: настоящий TypeDataModel/поля/Roll Foundry 14.367, компиляция Handlebars; лист/DOM/UUID lookup/запись представлены фасадами. Браузер/сохранение после reload не проверялись. [Протокол](../../../../../task-0009-002-checks.md).
+
+Датированные материалы ниже описывают прежние срезы; изменённое поведение приведено выше.
+
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
 М09; [реализация и пределы проверок](../../../../../../issues/closed/issue-00332.md).

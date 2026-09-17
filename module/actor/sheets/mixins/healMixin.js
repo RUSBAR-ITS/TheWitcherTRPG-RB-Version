@@ -1,3 +1,4 @@
+import { reportWoundResult } from '../../../item/criticalWoundOperations.js';
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export let healMixin = {
@@ -86,7 +87,12 @@ export let healMixin = {
         });
 
         for (const crit of [...this.actor.items.documentsByType.criticalWound]) {
-            await crit.system.heal({ sterilized: isSterilized });
+            const result = await crit.system.heal({ sterilized: isSterilized });
+            if (result.status === 'failed' || result.status === 'rejected') {
+                reportWoundResult(result);
+                ui.notifications.warn(game.i18n.localize('WITCHER.criticalWound.errors.incompleteRest'));
+                return result;
+            }
         }
 
         await ChatMessage.create({

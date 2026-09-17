@@ -1,5 +1,25 @@
 # packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json
 
+## Актуальный контракт — 14.3.1.00049
+
+Шаблон criticalWound; существующие UUID, имя, описание, effects/changes/statuses/priority/transfer и папка сохранены. `followUp` и сохраняемый `healingTime` удалены. Новые данные управляют общими операциями, специальных правил по ID в коде нет.
+
+| Поле | Значение |
+| --- | --- |
+| `woundTypeId` | `"heart-damage"` |
+| `location` | `"torso"` |
+| `treatment` | `"stabilized"` |
+| `cannotStabilize` | `true` |
+| `cannotTreat` | `false` |
+| `canHeal` | `false` |
+| `healingDuration` | `""` |
+| `stabilizedWound` | `null` |
+| `treatedWound` | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Me9fgalLrB0i9Z2O"` |
+| `daysHealed` | `0` |
+| `sterilized` | `false` |
+
+Используется через [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js) и [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js). Цели с тем же ID/местом проверены; полный список — [матрица](../../../../../critical-wounds-content-matrix.md). JSON/сборка/установка сверены; [протокол](../../../../../task-0009-lifecycle-checks.md). Численный пересчёт эффектов остаётся TASK-0010. Старые датированные сведения ниже не описывают новые переходы.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json](../../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Heart_Damage__Stabilized__O8EM4quPU4A5VOHH.json) |

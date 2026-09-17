@@ -14,9 +14,14 @@
     "location": "torso",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.O8EM4quPU4A5VOHH"
+    "woundTypeId": "heart-damage",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.O8EM4quPU4A5VOHH",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.Me9fgalLrB0i9Z2O"
   },
   "effects": [
     {

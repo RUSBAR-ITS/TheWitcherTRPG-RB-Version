@@ -14,9 +14,14 @@
     "location": "head",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AFkm8KjxkwYxOCQo"
+    "woundTypeId": "concussion",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AFkm8KjxkwYxOCQo",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.ItXAMwWil2A7IqRv"
   },
   "effects": [
     {

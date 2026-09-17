@@ -14,9 +14,14 @@
     "location": "leftArm",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.tdcGSOZGCUhNArDc"
+    "woundTypeId": "compound-arm-fracture",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.tdcGSOZGCUhNArDc",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.zaKPfDQFGTR8FKju"
   },
   "effects": [
     {

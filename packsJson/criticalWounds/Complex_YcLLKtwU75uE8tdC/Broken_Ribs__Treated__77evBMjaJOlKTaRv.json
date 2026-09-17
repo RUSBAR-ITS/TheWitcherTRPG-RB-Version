@@ -12,9 +12,14 @@
     "location": "torso",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "broken-ribs",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": true,
+    "healingDuration": "max(12-@body,1)",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [
     {

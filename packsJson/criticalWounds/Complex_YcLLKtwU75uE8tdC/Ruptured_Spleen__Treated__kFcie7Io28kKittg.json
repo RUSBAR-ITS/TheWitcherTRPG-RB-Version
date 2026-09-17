@@ -12,9 +12,14 @@
     "location": "torso",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "ruptured-spleen",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": true,
+    "healingDuration": "max(12-@body,1)",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [
     {

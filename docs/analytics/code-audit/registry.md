@@ -1,5 +1,16 @@
 # Реестр файлов системы
 
+**Актуализация .00049:** изменённые JS/шаблон/ru/en и 94 карточки JSON травм пересмотрены по [реализации TASK-0009](../task-0009-lifecycle-checks.md). Состав исходников 624; компедиум собран/установлен, проверка мира ожидается.
+
+Актуализация **14.3.1.00048**: TASK-0009.002, три новых файла; текущий реестр **624 файла**. Код модели/редактора проверен изолированно, мир не запускался.
+
+| Файл | Назначение | Документация | Проверка |
+| --- | --- | --- | --- |
+| [module/item/criticalWoundOperations.js](../../../module/item/criticalWoundOperations.js) | Общие проверки травм — первая часть сервиса. | [Карточка](files/module/item/criticalWoundOperations.js.md) | Изолированные проверки .002; Б01/Б13 ожидаются |
+| [module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js](../../../module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js) | Редактор настроек и адресных переходов травмы. | [Карточка](files/module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js.md) | Изолированные проверки .002; Б01/Б13 ожидаются |
+| [templates/sheets/item/configuration/tabs/criticalWoundGeneral.hbs](../../../templates/sheets/item/configuration/tabs/criticalWoundGeneral.hbs) | Вкладка настроек травмы. | [Карточка](files/templates/sheets/item/configuration/tabs/criticalWoundGeneral.hbs.md) | Изолированные проверки .002; Б01/Б13 ожидаются |
+
+
 Актуализация **14.3.1.00035**: [issue-00333](../../issues/closed/issue-00333.md#implementation-00035), четыре новых модуля и 21 обновлённая карточка исходников. Реестр содержит 621 файл; игровые проверки ещё не выполнялись.
 
 | Файл | Назначение | Документация | Проверка |

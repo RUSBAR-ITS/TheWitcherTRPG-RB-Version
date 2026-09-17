@@ -1,5 +1,27 @@
 # lang/en.json
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Английские подписи.
+
+**Методы и действия:** Добавлены те же stabilize и 20 причин отказа/неподтверждённой записи/частичного отдыха, что в ru; старые ключи сохранены.
+
+**Непосредственные зависимости/потребители:** [module/item/criticalWoundOperations.js](../../../../../module/item/criticalWoundOperations.js), [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../module/actor/sheets/mixins/criticalWoundMixin.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
+## Актуализация 2026-09-17 — 14.3.1.00048, TASK-0009.002
+
+**Назначение:** Английские подписи настроек травм.
+
+**Методы, сущности, действия:** Добавлены ID, запреты, заживление, ссылки, подсказка Drop и восемь причин отказа. Прежние ключи, включая followUp, сохранены. Метки стадий и игровой контент не меняются.
+
+**Зависимости и потребители:** [module/data/item/criticalWoundData.js](../../../../../module/data/item/criticalWoundData.js), [module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js](../../../../../module/item/sheets/configurations/WitcherCriticalWoundConfigurationSheet.js), [templates/sheets/item/configuration/tabs/criticalWoundGeneral.hbs](../../../../../templates/sheets/item/configuration/tabs/criticalWoundGeneral.hbs).
+
+Проверки: настоящий TypeDataModel/поля/Roll Foundry 14.367, компиляция Handlebars; лист/DOM/UUID lookup/запись представлены фасадами. Браузер/сохранение после reload не проверялись. [Протокол](../../../task-0009-002-checks.md).
+
+Датированные материалы ниже описывают прежние срезы; изменённое поведение приведено выше.
+
 ## Актуальное поведение — issue-00333 / 14.3.1.00035
 
 Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../issues/closed/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.

@@ -13,9 +13,14 @@
     "location": "torso",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "heart-damage",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [
     {

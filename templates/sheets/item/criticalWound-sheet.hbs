@@ -23,14 +23,14 @@
                     <input class="days-healed" name="system.daysHealed" type="number" data-dtype="Number"
                         value="{{document.system.daysHealed}}" />
                     /
-                    <input class="healing-time" name="system.healingTime" type="number" data-dtype="Number" disabled
-                        value="{{document.system.healingTime}}" />
+                    <input class="healing-time" type="text" disabled title="{{document.system.healingTimeHint}}"
+                        value="{{document.system.healingTimeDisplay}}" />
                 </div>
             </div>
         </div>
         <br>
         {{formInput enrichedText.description.systemField value=enrichedText.description.value enriched=enrichedText.description.enriched toggled=true}}
         {{formGroup systemFields.lesserEffect value=document.system.lesserEffect localize=true}}
-        {{formGroup systemFields.followUp value=document.system.followUp localize=true}}
+        <p class="hint">{{document.system.healingTimeHint}}</p>
     </div>
 </section>

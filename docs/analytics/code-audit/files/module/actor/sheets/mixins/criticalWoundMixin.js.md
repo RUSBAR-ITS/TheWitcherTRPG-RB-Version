@@ -1,5 +1,15 @@
 # module/actor/sheets/mixins/criticalWoundMixin.js
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Кнопки травм на Actor.
+
+**Методы и действия:** Создание: запрос ручного ID/места и native factory; две кнопки вызывают отдельные stabilize/treat через currentTarget, проверяя живой Item и владельца. Ошибки переводятся сервисом. Неиспользуемый remove-listener удалён.
+
+**Непосредственные зависимости/потребители:** [module/item/criticalWoundOperations.js](../../../../../../../../module/item/criticalWoundOperations.js), [module/data/item/criticalWoundData.js](../../../../../../../../module/data/item/criticalWoundData.js), [templates/partials/crit-wounds-table.hbs](../../../../../../../../templates/partials/crit-wounds-table.hbs). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
 М09, частично; [реализация и пределы проверок](../../../../../../../issues/closed/issue-00332.md).

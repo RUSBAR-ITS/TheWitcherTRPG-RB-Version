@@ -73,7 +73,7 @@ Hooks.once('ready', async function () {
             throw new Error(game.i18n.localize('WITCHER.Compendium.expectedItemPack'));
         }
         await criticalWounds.getIndex({
-            fields: ['system.criticalLevel', 'system.location', 'system.lesserEffect', 'system.treatment']
+            fields: ['system.criticalLevel', 'system.location', 'system.lesserEffect', 'system.treatment', 'system.woundTypeId']
         });
     } catch (error) {
         console.error('TheWitcherTRPG | Critical wounds index', packId, error);

@@ -1,5 +1,15 @@
 # module/actor/sheets/mixins/itemMixin.js
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Drop Item в лист Actor.
+
+**Методы и действия:** Внешняя criticalWound передаётся в actor.addItem как Document до toObject. Предшествующие собственная сортировка/контейнерные маршруты сохранены; результат сообщается через reportWoundResult.
+
+**Непосредственные зависимости/потребители:** [module/item/criticalWoundOperations.js](../../../../../../../../module/item/criticalWoundOperations.js), [module/actor/witcherActor.js](../../../../../../../../module/actor/witcherActor.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
 ## Актуальное поведение — issue-00333 / 14.3.1.00035
 
 Дата: 2026-09-17. Ветка dev. [Реализация и границы проверки](../../../../../../../issues/closed/issue-00333.md#implementation-00035). Ниже описан текущий код; браузерная приёмка ожидает перезапуска пользователем.

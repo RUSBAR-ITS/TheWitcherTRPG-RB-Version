@@ -13,9 +13,14 @@
     "location": "rightArm",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.hKgvgj4lJ74wPt8N"
+    "woundTypeId": "dismembered-arm",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.hKgvgj4lJ74wPt8N",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.gPeOdwZ0OTVF9E3w"
   },
   "effects": [
     {

@@ -13,9 +13,14 @@
     "location": "leftArm",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "dismembered-arm",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [],
   "flags": {},

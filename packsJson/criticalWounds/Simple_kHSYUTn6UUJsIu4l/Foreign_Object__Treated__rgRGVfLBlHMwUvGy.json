@@ -12,9 +12,14 @@
     "location": "torso",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "foreign-object",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": true,
+    "healingDuration": "max(8-@body,1)",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [],
   "folder": "kHSYUTn6UUJsIu4l",

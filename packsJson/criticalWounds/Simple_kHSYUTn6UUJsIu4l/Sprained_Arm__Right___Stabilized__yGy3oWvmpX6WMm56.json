@@ -13,9 +13,14 @@
     "location": "rightArm",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.YiusbDXfFDhqwtQT"
+    "woundTypeId": "sprained-arm",
+    "cannotStabilize": true,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": null,
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.YiusbDXfFDhqwtQT"
   },
   "effects": [],
   "ownership": {

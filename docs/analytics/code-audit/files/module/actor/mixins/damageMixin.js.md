@@ -1,5 +1,27 @@
 # module/actor/mixins/damageMixin.js
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Повреждения и игровое назначение травмы.
+
+**Методы и действия:** applyCritWound ожидает selectInitialWound и installWound(reason=game). Чат после applied; сбой чата предупреждает без повторного применения. Общий расчёт урона/характеристик не изменён.
+
+**Непосредственные зависимости/потребители:** [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
+## Актуализация 2026-09-17 — 14.3.1.00048, TASK-0009.002
+
+**Назначение:** Боевые повреждения и выбор травмы.
+
+**Методы, сущности, действия:** Удалён неиспользуемый calculateHealingTime с BODY.max. Остальной файл, включая applyCritWound и его ограничения, не изменён. Новое место расчёта — criticalWoundOperations/model; damageMixin их не импортирует. Выбор/получение остаются .004, численные эффекты — TASK-0010.
+
+**Зависимости и потребители:** [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js), [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js).
+
+Проверки: настоящий TypeDataModel/поля/Roll Foundry 14.367, компиляция Handlebars; лист/DOM/UUID lookup/запись представлены фасадами. Браузер/сохранение после reload не проверялись. [Протокол](../../../../../task-0009-002-checks.md).
+
+Датированные материалы ниже описывают прежние срезы; изменённое поведение приведено выше.
+
 ## Актуализация 2026-09-17 — 14.3.1.00026
 
 М04; [реализация и пределы проверок](../../../../../../issues/closed/issue-00332.md).

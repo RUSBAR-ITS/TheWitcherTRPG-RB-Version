@@ -30,15 +30,22 @@
                             <input class="days-healed inline-edit" data-field="system.daysHealed"
                                 type="number" data-dtype="Number" value="{{critWound.system.daysHealed}}" />
                             /
-                            <input class="healing-time" type="number" data-dtype="Number" disabled
-                                value="{{critWound.system.healingTime}}" />
+                            <input class="healing-time" type="text" disabled title="{{critWound.system.healingTimeHint}}"
+                                value="{{critWound.system.healingTimeDisplay}}" />
                         </div>
                     </div>
                 </div>
             </div>
             <div>
+                {{#unless critWound.system.cannotStabilize}}
+                    <button data-action="stabilizeCriticalWound" data-id="{{critWound.uuid}}">
+                        {{localize "WITCHER.criticalWound.stabilize"}}
+                    </button>
+                {{/unless}}
+                {{#unless critWound.system.cannotTreat}}
                 <button class="treatCriticalWound" data-action="treatCriticalWound"
                     data-id="{{critWound.uuid}}"> {{localize "WITCHER.criticalWound.treat"}}</button>
+                {{/unless}}
             </div>
         </li>
     {{/each}}

@@ -1,5 +1,27 @@
 # templates/partials/crit-wounds-table.hbs
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Единственный общий список травм Actor.
+
+**Методы и действия:** Независимые кнопки stabilize/treat скрыты cannotStabilize/cannotTreat. UUID/дни/срок .002 сохранены; действие задаётся data-action, новые списки не добавлены.
+
+**Непосредственные зависимости/потребители:** [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../../module/actor/sheets/mixins/criticalWoundMixin.js), [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
+## Актуализация 2026-09-17 — 14.3.1.00048, TASK-0009.002
+
+**Назначение:** Единая таблица травм Actor.
+
+**Методы, сущности, действия:** Срок выводится через healingTimeDisplay/healingTimeHint. Существующая кнопка лечения скрыта при cannotTreat. Кнопка стабилизации и полный переход остаются .003. Единственный список сохранён.
+
+**Зависимости и потребители:** [module/data/item/criticalWoundData.js](../../../../../../module/data/item/criticalWoundData.js), [module/actor/sheets/mixins/criticalWoundMixin.js](../../../../../../module/actor/sheets/mixins/criticalWoundMixin.js).
+
+Проверки: настоящий TypeDataModel/поля/Roll Foundry 14.367, компиляция Handlebars; лист/DOM/UUID lookup/запись представлены фасадами. Браузер/сохранение после reload не проверялись. [Протокол](../../../../task-0009-002-checks.md).
+
+Датированные материалы ниже описывают прежние срезы; изменённое поведение приведено выше.
+
 ## Текущая реализация — issue-00334, 14.3.1.00022
 
 Единственное представление списка травм. Изменение 2026-09-17 по [issue-00334](../../../../../issues/closed/issue-00334.md); основание — исходники, а не новая браузерная приёмка.

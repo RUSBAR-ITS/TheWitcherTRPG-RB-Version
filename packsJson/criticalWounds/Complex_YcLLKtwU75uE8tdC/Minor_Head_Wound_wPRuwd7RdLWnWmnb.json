@@ -13,9 +13,14 @@
     "location": "head",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.EnwgL7ApZTdHgMbD"
+    "woundTypeId": "minor-head-wound",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.EnwgL7ApZTdHgMbD",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.KsYEWWO5KlPHSdCy"
   },
   "effects": [
     {

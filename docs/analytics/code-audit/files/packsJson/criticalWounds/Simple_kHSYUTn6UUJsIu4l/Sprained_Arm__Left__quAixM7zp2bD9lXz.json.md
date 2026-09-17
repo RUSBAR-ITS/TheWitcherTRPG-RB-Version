@@ -1,5 +1,25 @@
 # packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left__quAixM7zp2bD9lXz.json
 
+## Актуальный контракт — 14.3.1.00049
+
+Шаблон criticalWound; существующие UUID, имя, описание, effects/changes/statuses/priority/transfer и папка сохранены. `followUp` и сохраняемый `healingTime` удалены. Новые данные управляют общими операциями, специальных правил по ID в коде нет.
+
+| Поле | Значение |
+| --- | --- |
+| `woundTypeId` | `"sprained-arm"` |
+| `location` | `"leftArm"` |
+| `treatment` | `"none"` |
+| `cannotStabilize` | `false` |
+| `cannotTreat` | `false` |
+| `canHeal` | `false` |
+| `healingDuration` | `""` |
+| `stabilizedWound` | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.01Seyu22NaDnctCi"` |
+| `treatedWound` | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.q5vr9VLD2tEkL1ux"` |
+| `daysHealed` | `0` |
+| `sterilized` | `false` |
+
+Используется через [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js) и [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js). Цели с тем же ID/местом проверены; полный список — [матрица](../../../../../critical-wounds-content-matrix.md). JSON/сборка/установка сверены; [протокол](../../../../../task-0009-lifecycle-checks.md). Численный пересчёт эффектов остаётся TASK-0010. Старые датированные сведения ниже не описывают новые переходы.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left__quAixM7zp2bD9lXz.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Sprained_Arm__Left__quAixM7zp2bD9lXz.json) |

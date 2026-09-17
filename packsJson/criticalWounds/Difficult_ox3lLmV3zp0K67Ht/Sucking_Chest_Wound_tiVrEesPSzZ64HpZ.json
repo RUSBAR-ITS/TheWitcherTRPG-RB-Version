@@ -14,9 +14,14 @@
     "location": "torso",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.cfQ2OHPNVVKMDsDo"
+    "woundTypeId": "sucking-chest-wound",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.cfQ2OHPNVVKMDsDo",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.wFul3Zr7mMaKjA5I"
   },
   "effects": [
     {

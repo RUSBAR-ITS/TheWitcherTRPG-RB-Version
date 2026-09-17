@@ -13,9 +13,14 @@
     "location": "leftLeg",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.eblucqnyOS7lb5E5"
+    "woundTypeId": "sprained-leg",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.eblucqnyOS7lb5E5",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.f7NaW1AMnrSLGkd3"
   },
   "effects": [
     {

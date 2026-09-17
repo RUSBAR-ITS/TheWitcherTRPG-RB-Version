@@ -1,5 +1,17 @@
 # templates/sheets/item/criticalWound-sheet.hbs
 
+## Актуализация 2026-09-17 — 14.3.1.00048, TASK-0009.002
+
+**Назначение:** Форма травмы: описание и прогресс.
+
+**Методы, сущности, действия:** Сохранены метаданные, описание и daysHealed. Удалён formGroup followUp. healingTimeDisplay/healingTimeHint показывают срок или «—»; у computed output нет сохраняемого имени system.healingTime.
+
+**Зависимости и потребители:** [module/item/sheets/WitcherCriticalWoundSheet.js](../../../../../../../module/item/sheets/WitcherCriticalWoundSheet.js), [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js).
+
+Проверки: настоящий TypeDataModel/поля/Roll Foundry 14.367, компиляция Handlebars; лист/DOM/UUID lookup/запись представлены фасадами. Браузер/сохранение после reload не проверялись. [Протокол](../../../../../task-0009-002-checks.md).
+
+Датированные материалы ниже описывают прежние срезы; изменённое поведение приведено выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/item/criticalWound-sheet.hbs](../../../../../../../templates/sheets/item/criticalWound-sheet.hbs) |

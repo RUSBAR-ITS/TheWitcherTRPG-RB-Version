@@ -266,7 +266,7 @@
 {"id":"rel-002665","kind":"imports","from":"src-000480","to":"src-000453","location":{"source":"src-000480","symbol":"styles/witcher-styles.css","line_start":38,"line_end":38},"basis":"source_read"}
 {"id":"rel-002666","kind":"refers","from":"ent-001000","to":"ent-000977","location":{"source":"src-000453","symbol":"modifier-configuration.css/selector","line_start":2,"line_end":2},"basis":"source_read","context":"Содержимое окна-потребителя через PARTS; HBS не создаёт window-content."}
 {"id":"rel-002667","kind":"refers","from":"ent-001000","to":"ent-000978","location":{"source":"src-000453","symbol":"modifier-configuration.css/selector","line_start":2,"line_end":2},"basis":"source_read","context":"Содержимое окна-потребителя через PARTS; HBS не создаёт window-content."}
-{"id":"rel-002668","kind":"imports","from":"src-000047","to":"src-000009","location":{"source":"src-000047","symbol":"module/actor/witcherActor.js","line_start":18,"line_end":18},"basis":"source_read"}
-{"id":"rel-002669","kind":"mixes","from":"ent-000277","to":"ent-000963","location":{"source":"src-000047","symbol":"WitcherActor","line_start":453,"line_end":453},"basis":"source_read"}
+{"id":"rel-002668","kind":"imports","from":"src-000047","to":"src-000009","location":{"source":"src-000047","symbol":"module/actor/witcherActor.js","line_start":19,"line_end":19},"basis":"source_read"}
+{"id":"rel-002669","kind":"mixes","from":"ent-000277","to":"ent-000963","location":{"source":"src-000047","symbol":"WitcherActor","line_start":455,"line_end":455},"basis":"source_read"}
 {"id":"rel-002670","kind":"imports","from":"src-000055","to":"src-000073","location":{"source":"src-000055","symbol":"module/data/actor/commonActorData.js","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-002671","kind":"calls","from":"ent-000140","to":"ent-000965","location":{"source":"src-000055","symbol":"CommonActorData.defineSchema","line_start":37,"line_end":37},"basis":"source_read"}

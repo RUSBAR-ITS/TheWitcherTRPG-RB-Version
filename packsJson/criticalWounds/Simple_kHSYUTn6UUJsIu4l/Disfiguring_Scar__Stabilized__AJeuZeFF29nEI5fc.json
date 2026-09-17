@@ -12,10 +12,15 @@
     "treatment": "stabilized",
     "location": "head",
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.kbeASc2PnnkYc5SR",
-    "lesserEffect": true
+    "lesserEffect": true,
+    "woundTypeId": "disfiguring-scar",
+    "cannotStabilize": true,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": null,
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.kbeASc2PnnkYc5SR"
   },
   "effects": [
     {

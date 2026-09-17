@@ -14,9 +14,14 @@
     "location": "torso",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.2c4PbGjd0segbvmr"
+    "woundTypeId": "cracked-ribs",
+    "cannotStabilize": false,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.2c4PbGjd0segbvmr",
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.oe4y6zxH2WUR9gSj"
   },
   "effects": [
     {

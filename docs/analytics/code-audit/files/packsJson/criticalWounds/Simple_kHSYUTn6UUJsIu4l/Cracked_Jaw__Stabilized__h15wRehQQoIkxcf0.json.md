@@ -1,5 +1,25 @@
 # packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Stabilized__h15wRehQQoIkxcf0.json
 
+## Актуальный контракт — 14.3.1.00049
+
+Шаблон criticalWound; существующие UUID, имя, описание, effects/changes/statuses/priority/transfer и папка сохранены. `followUp` и сохраняемый `healingTime` удалены. Новые данные управляют общими операциями, специальных правил по ID в коде нет.
+
+| Поле | Значение |
+| --- | --- |
+| `woundTypeId` | `"cracked-jaw"` |
+| `location` | `"head"` |
+| `treatment` | `"stabilized"` |
+| `cannotStabilize` | `true` |
+| `cannotTreat` | `false` |
+| `canHeal` | `false` |
+| `healingDuration` | `""` |
+| `stabilizedWound` | `null` |
+| `treatedWound` | `"Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.AODuTRNu2RtJJhLD"` |
+| `daysHealed` | `0` |
+| `sterilized` | `false` |
+
+Используется через [module/item/criticalWoundOperations.js](../../../../../../../module/item/criticalWoundOperations.js) и [module/data/item/criticalWoundData.js](../../../../../../../module/data/item/criticalWoundData.js). Цели с тем же ID/местом проверены; полный список — [матрица](../../../../../critical-wounds-content-matrix.md). JSON/сборка/установка сверены; [протокол](../../../../../task-0009-lifecycle-checks.md). Численный пересчёт эффектов остаётся TASK-0010. Старые датированные сведения ниже не описывают новые переходы.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Stabilized__h15wRehQQoIkxcf0.json](../../../../../../../packsJson/criticalWounds/Simple_kHSYUTn6UUJsIu4l/Cracked_Jaw__Stabilized__h15wRehQQoIkxcf0.json) |

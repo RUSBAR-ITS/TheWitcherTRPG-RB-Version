@@ -1,3 +1,4 @@
+import { reportWoundResult } from '../../../item/criticalWoundOperations.js';
 import { importToActor, runContainerAction } from '../../../item/containerOperations.js';
 import { WITCHER } from '../../../setup/config.js';
 import WitcherItem from '../../../item/witcherItem.js';
@@ -26,6 +27,7 @@ export let itemMixin = {
                 })
             );
         }
+        if (item.type === 'criticalWound') return reportWoundResult(await this.actor.addItem(item));
         item = item.toObject ? item.toObject() : foundry.utils.deepClone(item);
 
         if (this._isUniqueItem(item)) {

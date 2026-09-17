@@ -12,9 +12,14 @@
     "location": "head",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.yHU7iYTocbAok2wH"
+    "woundTypeId": "lost-teeth",
+    "cannotStabilize": true,
+    "cannotTreat": false,
+    "canHeal": false,
+    "healingDuration": "",
+    "stabilizedWound": null,
+    "treatedWound": "Compendium.TheWitcherTRPG-RB-Version.criticalWounds.Item.yHU7iYTocbAok2wH"
   },
   "effects": [
     {

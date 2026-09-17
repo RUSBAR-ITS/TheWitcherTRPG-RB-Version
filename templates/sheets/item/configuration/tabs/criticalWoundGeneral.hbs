@@ -1,0 +1,26 @@
+<section class="tab {{tabs.general.cssClass}} scrollable standard-form" data-group="primary" data-tab="general">
+    {{formGroup systemFields.woundTypeId value=item.system.woundTypeId localize=true}}
+    {{formGroup systemFields.cannotStabilize value=item.system.cannotStabilize localize=true}}
+    <div class="form-group" data-wound-target="stabilizedWound">
+        <label>{{localize 'WITCHER.criticalWound.stabilizedWound.label'}}</label>
+        <div class="form-fields">
+            <input type="text" name="system.stabilizedWound" value="{{item.system.stabilizedWound}}" />
+        </div>
+        <p class="hint">{{localize 'WITCHER.criticalWound.stabilizedWound.hint'}}</p>
+    </div>
+    {{formGroup systemFields.cannotTreat value=item.system.cannotTreat localize=true}}
+    <div class="form-group" data-wound-target="treatedWound">
+        <label>{{localize 'WITCHER.criticalWound.treatedWound.label'}}</label>
+        <div class="form-fields">
+            <input type="text" name="system.treatedWound" value="{{item.system.treatedWound}}" />
+        </div>
+        <p class="hint">{{localize 'WITCHER.criticalWound.treatedWound.hint'}}</p>
+    </div>
+    {{formGroup systemFields.canHeal value=item.system.canHeal localize=true}}
+    {{formGroup systemFields.healingDuration value=item.system.healingDuration localize=true}}
+    <div class="form-group">
+        <label>{{localize 'WITCHER.criticalWound.healingTime.label'}}</label>
+        <div class="form-fields"><output title="{{item.system.healingTimeHint}}">{{item.system.healingTimeDisplay}}</output></div>
+        <p class="hint">{{item.system.healingTimeHint}}</p>
+    </div>
+</section>

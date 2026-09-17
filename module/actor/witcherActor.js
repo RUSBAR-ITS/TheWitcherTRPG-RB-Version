@@ -1,3 +1,4 @@
+import { installWound } from '../item/criticalWoundOperations.js';
 import { getRandomInt } from '../scripts/helper.js';
 import { WITCHER } from '../setup/config.js';
 import { modifierMixin } from './mixins/modifierMixin.js';
@@ -257,6 +258,7 @@ export default class WitcherActor extends Actor {
     }
 
     async addItem(addItem, numberOfItem = 1, forcecreate = false) {
+        if (addItem.type === 'criticalWound') return installWound(this, addItem);
         let foundItem = this.items.find(item => item.name == addItem.name && item.type == addItem.type);
         if (foundItem && !forcecreate && !foundItem.system.isStored) {
             await foundItem.update({ 'system.quantity': Number(foundItem.system.quantity) + Number(numberOfItem) });

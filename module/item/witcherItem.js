@@ -1,3 +1,4 @@
+import { WOUND_INTERNAL, createWoundDocuments, validateWoundUpdates, withWoundQueue } from './criticalWoundOperations.js';
 import { CONTAINER_INTERNAL, serializeContainer, contentOf } from './containerTemplates.js';
 import { createContainerDocuments, deleteContainerDocuments } from './containerOperations.js';
 import { extendedRoll } from '../scripts/rolls/extendedRoll.js';
@@ -12,13 +13,28 @@ import { defenseOptionMixin } from './mixins/defenseOptionMixin.js';
 export default class WitcherItem extends Item {
     /** Native entry points also cover directory imports and Actor embedded creation. */
     static async createDocuments(data = [], operation = {}) {
-        if (operation[CONTAINER_INTERNAL]) return super.createDocuments(data, operation);
-        return createContainerDocuments(
-            data,
-            operation,
-            (documents, options) => super.createDocuments(documents, options),
-            (ids, options) => super.deleteDocuments(ids, options)
-        );
+        const create = (rows, options) => options[CONTAINER_INTERNAL]
+            ? super.createDocuments(rows, options)
+            : createContainerDocuments(rows, options,
+                (documents, context) => super.createDocuments(documents, context),
+                (ids, context) => super.deleteDocuments(ids, context));
+        if (!operation[WOUND_INTERNAL] && operation.parent?.documentName === 'Actor' &&
+            data.some(item => item.type === 'criticalWound')) {
+            return createWoundDocuments(data, operation, create);
+        }
+        return create(data, operation);
+    }
+
+    static async updateDocuments(changes = [], operation = {}) {
+        const actor = operation.parent;
+        if (!operation[WOUND_INTERNAL] && actor?.documentName === 'Actor' &&
+            changes.some(row => row.type === 'criticalWound' || actor.items.get(row._id)?.type === 'criticalWound')) {
+            return withWoundQueue(actor, () => {
+                validateWoundUpdates(actor, changes);
+                return super.updateDocuments(changes, operation);
+            });
+        }
+        return super.updateDocuments(changes, operation);
     }
 
     static async deleteDocuments(ids = [], operation = {}) {

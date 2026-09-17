@@ -13,9 +13,14 @@
     "location": "rightLeg",
     "lesserEffect": false,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "compound-leg-fracture",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": true,
+    "healingDuration": "max(15-@body,1)",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [
     {

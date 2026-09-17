@@ -1,3 +1,4 @@
+import { installWound, selectInitialWound, reportWoundResult } from '../../item/criticalWoundOperations.js';
 import { getRandomInt } from '../../scripts/helper.js';
 import { applyActiveEffectToActorViaId } from '../../scripts/temporaryEffects/applyActiveEffect.js';
 import { applyStatusEffectToActor } from '../../scripts/statusEffects/applyStatusEffect.js';
@@ -310,47 +311,25 @@ export let damageMixin = {
     },
 
     async applyCritWound(crit) {
-        let location = crit.location;
-
-        let possibleWounds = game.packs
-            .get(game.settings.get('TheWitcherTRPG-RB-Version', 'criticalWoundsPack'))
-            .index.filter(criticalWound => criticalWound.system.treatment == 'none')
-            .filter(criticalWound => criticalWound.system.location == location.name)
-            .filter(criticalWound => criticalWound.system.criticalLevel == crit.criticalLevel);
-
         let wound;
-
-        if (possibleWounds.length == 1) {
-            wound = possibleWounds[0];
-        } else {
-            let woundRoll = crit.location.critEffect ?? getRandomInt(6) + (crit.critEffectModifier ?? 0);
-            if (woundRoll > 4) {
-                wound = possibleWounds.find(criticalWound => criticalWound.system.lesserEffect === false);
-            } else {
-                wound = possibleWounds.find(criticalWound => criticalWound.system.lesserEffect === true);
-            }
+        try {
+            wound = await selectInitialWound(crit, () => getRandomInt(6));
+        } catch (error) {
+            return reportWoundResult({ status: 'rejected', itemUuid: null, removed: false,
+                reason: error.reason ?? 'invalidPack' });
         }
-
-        //convert index to real item
-        wound = await fromUuid(wound.uuid);
-        this.addItem(wound);
-
-        const chatData = {
-            content: `<div>${wound.name}</div><div>${wound.system.description}</div>`,
-            speaker: ChatMessage.getSpeaker({ actor: this }),
-            style: CONST.CHAT_MESSAGE_STYLES.OTHER
-        };
-        ChatMessage.create(chatData);
-    },
-
-    calculateHealingTime(criticalLevel) {
-        switch (criticalLevel) {
-            case 'simple':
-                return Math.max(8 - this.system.stats.body.max, 1);
-            case 'complex':
-                return Math.max(12 - this.system.stats.body.max, 1);
-            case 'difficult':
-                return Math.max(15 - this.system.stats.body.max, 1);
+        const result = reportWoundResult(await installWound(this, wound, { reason: 'game' }));
+        if (result.status !== 'applied') return result;
+        try {
+            await ChatMessage.create({
+                content: `<div>${foundry.utils.escapeHTML(wound.name)}</div><div>${wound.system.description}</div>`,
+                speaker: ChatMessage.getSpeaker({ actor: this }),
+                style: CONST.CHAT_MESSAGE_STYLES.OTHER
+            });
+        } catch (error) {
+            console.error('TheWitcherTRPG | Wound chat after application', error);
+            ui.notifications.warn(game.i18n.localize('WITCHER.criticalWound.errors.chatFailed'));
         }
+        return result;
     }
 };

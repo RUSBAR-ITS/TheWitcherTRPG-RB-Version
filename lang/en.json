@@ -620,7 +620,58 @@
                 "label": "Lesser Effect",
                 "hint": "used by aimed criticals"
             },
-            "treat": "Treat"
+            "treat": "Treat",
+            "woundTypeId": {
+                "label": "Wound type ID",
+                "hint": "Enter the same ID for every stage of this wound. Case matters; left and right locations are distinguished separately."
+            },
+            "cannotStabilize": "Cannot be stabilized",
+            "cannotTreat": "Cannot be treated",
+            "canHeal": "Allow healing over time",
+            "healingDuration": {
+                "label": "Healing duration (days or formula)",
+                "hint": "Enter the duration before enabling healing. Use a positive number or a formula, e.g. max(8-@body,1). @body is current BODY. Allowed: +, -, *, /, parentheses, min, max, floor, ceil, round, abs. No dice."
+            },
+            "stabilizedWound": {
+                "label": "Wound after stabilization",
+                "hint": "Drop a stage of the same wound and location here, or enter its UUID. If stabilization is allowed, an empty link is a configuration error."
+            },
+            "treatedWound": {
+                "label": "Wound after treatment",
+                "hint": "Drop a stage of the same wound and location here, or enter its UUID. If treatment is allowed, an empty link means complete removal of this wound and its effects."
+            },
+            "dropInConfiguration": "Open the wound configuration (gear) and drop the stage into its stabilization or treatment field.",
+            "errors": {
+                "invalidFormula": "Invalid healing formula. Only numbers, @body, arithmetic and the listed functions are allowed.",
+                "invalidDuration": "The healing duration must be a finite number greater than zero.",
+                "missingBody": "The duration needs an actor with a current BODY value; a template has no actor.",
+                "healingDisabled": "Healing over time is disabled for this wound.",
+                "invalidTarget": "Select an available critical wound Item.",
+                "unavailableTarget": "This wound is not available to the current user.",
+                "selfTarget": "A wound cannot transition to itself.",
+                "differentWound": "The target must have the same nonempty wound type ID and the same location.",
+                "invalidOwner": "The wound must belong to an Actor.",
+                "permission": "You do not have permission to change this wound.",
+                "missingWound": "The wound no longer belongs to this Actor.",
+                "missingId": "Set the wound family identifier.",
+                "invalidLocation": "Set a valid wound location.",
+                "invalidData": "The wound data could not be validated; no change was made.",
+                "invalidInitialStage": "Game acquisition requires the initial, unstabilized wound stage.",
+                "duplicateWound": "Multiple wounds share a family identifier and location. Resolve the ambiguity; no changes were made.",
+                "uncertainWrite": "The wound write could not be confirmed. Check its current state before repeating the action.",
+                "writeCancelled": "The wound write was cancelled or not confirmed. Check its state.",
+                "invalidAction": "Unknown wound action.",
+                "actionForbidden": "This action is disabled by the wound settings.",
+                "missingStabilized": "Stabilization requires a target wound.",
+                "conflict": "The wound changed during the operation. Check its current state.",
+                "invalidProgress": "Healing progress must be a nonnegative number.",
+                "invalidPack": "The selected wound compendium is unavailable or is not an Item compendium.",
+                "ambiguousPack": "The compendium contains ambiguous wound variants. Check family identifiers, stages and effect variants.",
+                "missingCandidate": "The selected compendium has no matching initial wound.",
+                "incompleteRest": "Wound recovery did not finish. Resources and some wounds may already have changed; check them before repeating the entire rest.",
+                "chatFailed": "The wound was applied, but the chat message failed. Do not apply the wound again."
+            },
+            "stabilize": "Stabilize"
         },
         "Enhancement": {
             "Stopping": "Stopping",

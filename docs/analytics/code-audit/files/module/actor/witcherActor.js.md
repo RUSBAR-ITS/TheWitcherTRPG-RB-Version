@@ -1,5 +1,15 @@
 # module/actor/witcherActor.js
 
+## Актуализация 2026-09-17 — 14.3.1.00049
+
+**Назначение:** Общий Actor; специальный вход добавления травмы.
+
+**Методы и действия:** В начале addItem criticalWound передаётся в installWound с исходным Document. Quantity/forcecreate для других типов сохранены. Сортировка своих предметов не считается повторным получением.
+
+**Непосредственные зависимости/потребители:** [module/item/criticalWoundOperations.js](../../../../../../module/item/criticalWoundOperations.js), [module/item/witcherItem.js](../../../../../../module/item/witcherItem.js). Foundry Document/Roll/Collection/UI — внешние API.
+
+[Проверки и пределы](../../../../task-0009-lifecycle-checks.md). Ниже сохранены датированные срезы; для изменённых операций действует описание .00049.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/witcherActor.js](../../../../../../module/actor/witcherActor.js) |

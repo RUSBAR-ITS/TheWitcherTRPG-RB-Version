@@ -13,9 +13,14 @@
     "location": "torso",
     "lesserEffect": true,
     "daysHealed": 0,
-    "healingTime": 0,
     "sterilized": false,
-    "followUp": null
+    "woundTypeId": "sucking-chest-wound",
+    "cannotStabilize": true,
+    "cannotTreat": true,
+    "canHeal": true,
+    "healingDuration": "max(15-@body,1)",
+    "stabilizedWound": null,
+    "treatedWound": null
   },
   "effects": [
     {
