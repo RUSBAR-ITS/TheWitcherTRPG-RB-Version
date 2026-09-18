@@ -1,5 +1,11 @@
 # templates/sheets/activeEffect/modifier-settings.hbs
 
+## Текущее состояние — 14.3.1.00074
+
+Вместо select multiple используется сворачиваемый details с native multi-checkbox. selectOptions помечает сохранённые excludedDerived, имя поля прежнее. Summary показывает выбранные подписи или локализованное отсутствие выбора. Потребители — change.hbs и wizard.hbs; контекст/события — WitcherActiveEffectSheet, значения — modifierContext.
+
+[Проверки и границы](../../../../../task-0010-013-browser-checks.md#checkboxes-00074): локальный стенд; повтор в мире ожидается после запуска. Предыдущие датированные сведения сохранены ниже.
+
 ## Текущее состояние — 14.3.1.00073
 
 Общий partial получает класс witcher-modifier-settings; строки шести галочек — modifier-flag, исключения производных — stacked. styles/activeEffect.css отдаёт названиям свободную ширину; данные/имена полей/обработчики сохраняются. Потребители: wizard.hbs и change.hbs; контекст и переключение каналов — WitcherActiveEffectSheet/modifierContext.

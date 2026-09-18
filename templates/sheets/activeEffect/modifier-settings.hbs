@@ -9,13 +9,14 @@
             <p class="hint">{{localize hint}}</p>
         </div>
     {{/each}}
-    <div class="form-group stacked">
-        <label>{{localize "WITCHER.Effect.Modifier.excludedDerived"}}</label>
-        <div class="form-fields">
-            <select name="{{modifierPrefix}}.excludedDerived" multiple data-modifier-exclusions {{disabled (not settings.affectsParameter)}}>
-                {{selectOptions derivedChoices selected=settings.excludedDerived}}
-            </select>
-        </div>
+    <details class="modifier-exclusions">
+        <summary>
+            {{localize "WITCHER.Effect.Modifier.excludedDerived"}}
+            <span data-modifier-exclusions-summary>{{excludedDerivedSummary}}</span>
+        </summary>
+        <multi-checkbox name="{{modifierPrefix}}.excludedDerived" data-modifier-exclusions {{disabled (not settings.affectsParameter)}}>
+            {{selectOptions derivedChoices selected=settings.excludedDerived}}
+        </multi-checkbox>
         <p class="hint">{{localize "WITCHER.Effect.Modifier.excludedDerivedHint"}}</p>
-    </div>
+    </details>
 </fieldset>

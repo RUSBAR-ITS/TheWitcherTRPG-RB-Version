@@ -1,5 +1,11 @@
 # styles/activeEffect.css
 
+## Текущее состояние — 14.3.1.00074
+
+Добавлены scoped стили .modifier-exclusions: заметный заголовок, переносимая подпись выбранного, адаптивные колонки native multi-checkbox и подписанные галочки без сжатия. Прокрутка мастера и остальные формы сохранены.
+
+[Проверки и границы](../../../task-0010-013-browser-checks.md#checkboxes-00074): локальный стенд; повтор в мире ожидается после запуска. Предыдущие датированные сведения сохранены ниже.
+
 ## Текущее состояние — 14.3.1.00073
 
 К прежнему списку эффектов добавлено оформление редактора. .witcher-modifier-settings .modifier-flag — сетка minmax(0,1fr)/auto, подсказка на обе колонки. .witcher-effect-wizard ограничивает размер viewport и прокручивает dialog-content отдельно от footer; классы назначают WitcherActiveEffectSheet.js и modifier-settings.hbs. Подключение через существующий witcher-styles.css неизменно.

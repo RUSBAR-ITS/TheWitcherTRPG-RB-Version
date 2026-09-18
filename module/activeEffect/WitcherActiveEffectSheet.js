@@ -54,10 +54,13 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
 
     _modifierEditorContext(change, prefix) {
         const settings = modifierSettings(change);
+        const derivedChoices = derivedModifierChoices();
         return {
             settings,
             modifierPrefix: prefix,
-            derivedChoices: derivedModifierChoices(),
+            derivedChoices,
+            excludedDerivedSummary: settings.excludedDerived.map(key => derivedChoices[key]).join(', ') ||
+                game.i18n.localize('WITCHER.Effect.Modifier.excludedDerivedNone'),
             modifierInputs: Object.keys(MODIFIER_DEFAULTS).map(key => ({
                 key, name: `${prefix}.${key}`, value: settings[key], label: `WITCHER.Effect.Modifier.${key}`,
                 hint: `WITCHER.Effect.Modifier.${key}Hint`,
@@ -103,10 +106,10 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
             const input = this.form?.querySelector(`[name="system.changes.${index}.${key}"]`);
             if (input) change[key] = input.checked;
         }
-        // An empty multiple select has no submitted value; it means clearing the list.
+        // Read the native multi-checkbox array, including an explicitly empty selection.
         if (this.form?.querySelector(`[name="system.changes.${index}.excludedDerived"]`)) {
             const select = this.form.querySelector(`[name="system.changes.${index}.excludedDerived"]`);
-            change.excludedDerived = select.disabled ? [] : Array.from(select.selectedOptions, option => option.value);
+            change.excludedDerived = select.disabled ? [] : [...select.value];
         }
     }
 
@@ -124,11 +127,24 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         const select = container.querySelector('[data-modifier-exclusions]');
         if (select) {
             select.disabled = !settings.affectsParameter;
-            if (select.disabled) for (const option of select.options) option.selected = false;
+            if (select.disabled) select.value = [];
+            this._syncExclusionSummary(container);
         }
     }
 
+    _syncExclusionSummary(container) {
+        const select = container.querySelector('[data-modifier-exclusions]');
+        const summary = container.querySelector('[data-modifier-exclusions-summary]');
+        if (!select || !summary) return;
+        const choices = derivedModifierChoices();
+        summary.textContent = select.value.map(key => choices[key]).join(', ') ||
+            game.i18n.localize('WITCHER.Effect.Modifier.excludedDerivedNone');
+    }
+
     async _onChangeForm(formConfig, event) {
+        if (event.target.matches('[data-modifier-exclusions]')) {
+            this._syncExclusionSummary(event.target.closest('[data-modifier-settings]'));
+        }
         const field = event.target.dataset.modifierFlag;
         if (field) this._syncModifierControls(event.target.closest('[data-modifier-settings]'), field);
         await super._onChangeForm(formConfig, event);
@@ -219,6 +235,9 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
             modal: true,
             render: (_event, dialog) => {
                 dialog.element.addEventListener('change', event => {
+                    if (event.target.matches('[data-modifier-exclusions]')) {
+                        this._syncExclusionSummary(event.target.closest('[data-modifier-settings]'));
+                    }
                     if (event.target.dataset.modifierFlag) {
                         this._syncModifierControls(event.target.closest('[data-modifier-settings]'), event.target.dataset.modifierFlag);
                     }

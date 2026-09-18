@@ -56,7 +56,7 @@ class ModifierEditorIndex(unittest.TestCase):
             data = json.loads((ROOT / path).read_text())['WITCHER']['Effect']['Modifier']
             leaves = {k + '.' + a: b for k, v in data.items() if isinstance(v, dict) for a, b in v.items()}
             leaves.update({k: v for k, v in data.items() if isinstance(v, str)})
-            self.assertEqual(len(leaves), 30)
+            self.assertEqual(len(leaves), 31)
             lines = (ROOT / path).read_text().splitlines()
             for key, value in leaves.items():
                 entity = self.data.entities[self.q[lang + '::WITCHER.Effect.Modifier.' + key]]

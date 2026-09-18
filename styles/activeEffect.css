@@ -134,3 +134,32 @@ a.effect-control {
 .witcher-effect-wizard .form-footer {
     flex: 0 0 auto;
 }
+
+/* Explicit checks remain legible regardless of the selected-option text colour. */
+.witcher-modifier-settings .modifier-exclusions > summary {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.witcher-modifier-settings [data-modifier-exclusions-summary] {
+    display: block;
+    margin: 0.25rem 0 0.5rem;
+    font-weight: normal;
+    overflow-wrap: anywhere;
+}
+
+.witcher-modifier-settings multi-checkbox[data-modifier-exclusions] {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    margin: 0.5rem 0;
+}
+
+.witcher-modifier-settings [data-modifier-exclusions] > label.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: normal;
+}
+
+.witcher-modifier-settings [data-modifier-exclusions] input[type="checkbox"] {
+    flex: 0 0 auto;
+}

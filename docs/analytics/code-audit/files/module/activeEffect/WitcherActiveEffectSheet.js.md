@@ -1,5 +1,11 @@
 # module/activeEffect/WitcherActiveEffectSheet.js
 
+## Текущее состояние — 14.3.1.00074
+
+_modifierEditorContext передаёт подпись текущих исключений; _syncExclusionSummary получает массив value штатного multi-checkbox и локализованные названия из modifierContext. Обработчики основного редактора и мастера обновляют summary при change. _processChangeSubmission читает value, включая пустой массив; _syncModifierControls очищает/блокирует контрол при выключенном affectsParameter. Модель, сохранение прочих полей, расчёты и closeOnSubmit не менялись.
+
+[Проверки и границы](../../../../task-0010-013-browser-checks.md#checkboxes-00074): локальный стенд; повтор в мире ожидается после запуска. Предыдущие датированные сведения сохранены ниже.
+
 ## Текущее состояние — 14.3.1.00073
 
 wizardAction передаёт DialogV2.prompt класс witcher-effect-wizard и position.width=720. Этот класс связывает окно с styles/activeEffect.css; сохранение/каналы/состав строк прежние. Общий partial modifier-settings.hbs оформляет флаги и в мастере, и в строке AE.

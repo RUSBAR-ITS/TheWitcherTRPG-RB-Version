@@ -1424,6 +1424,7 @@
                 "optionalOnRollHint": "The player confirms whether the bonus or penalty applies. Unchecked for each new roll.",
                 "excludedDerived": "Exclude from derived calculations",
                 "excludedDerivedHint": "Optional. Select the derived values whose calculation should ignore this change to their input parameter.",
+                "excludedDerivedNone": "None selected",
                 "effectTypeId": "Effect type identifier",
                 "effectTypeIdHint": "Shared identifier for repeated applications of an effect. This is not the document UUID.",
                 "nonStacking": "Does not stack",
