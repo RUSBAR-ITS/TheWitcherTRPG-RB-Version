@@ -1,5 +1,11 @@
 # styles/activeEffect.css
 
+## Текущее состояние — 14.3.1.00073
+
+К прежнему списку эффектов добавлено оформление редактора. .witcher-modifier-settings .modifier-flag — сетка minmax(0,1fr)/auto, подсказка на обе колонки. .witcher-effect-wizard ограничивает размер viewport и прокручивает dialog-content отдельно от footer; классы назначают WitcherActiveEffectSheet.js и modifier-settings.hbs. Подключение через существующий witcher-styles.css неизменно.
+
+[Исправление и проверки](../../../task-0010-013-browser-checks.md#fixes-00073). Локальные проверки, без запуска Foundry; повтор в мире ожидается. Ниже сохранены предыдущие датированные сведения.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [styles/activeEffect.css](../../../../../styles/activeEffect.css) |

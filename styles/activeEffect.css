@@ -94,3 +94,43 @@ a.effect-control {
     width: 100%;
 }
 
+/* Modifier settings share the available line with a compact checkbox column. */
+.witcher-modifier-settings .form-group.modifier-flag {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.witcher-modifier-settings .modifier-flag > .form-fields {
+    width: auto;
+}
+
+.witcher-modifier-settings .modifier-flag > .hint {
+    grid-column: 1 / -1;
+}
+
+/* Scroll fields only: the wizard's confirmation button stays outside the scroller. */
+.application.witcher-effect-wizard {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+}
+
+.witcher-effect-wizard .window-content,
+.witcher-effect-wizard .dialog-form {
+    min-height: 0;
+}
+
+.witcher-effect-wizard .dialog-form {
+    overflow: hidden;
+}
+
+.witcher-effect-wizard .dialog-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-right: 0.5rem;
+}
+
+.witcher-effect-wizard .form-footer {
+    flex: 0 0 auto;
+}

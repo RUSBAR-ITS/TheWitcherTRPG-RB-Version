@@ -1,0 +1,4 @@
+{"id":"rel-016349","kind":"defines","from":"ent-000535","to":"ent-005853","location":{"source":"src-000481","symbol":"manifest.documentTypes.Actor.mystery","line_start":173,"line_end":173},"basis":"source_read"}
+{"id":"rel-016350","kind":"defines","from":"ent-000535","to":"ent-005854","location":{"source":"src-000481","symbol":"manifest.documentTypes.Item.clue","line_start":178,"line_end":178},"basis":"source_read"}
+{"id":"rel-016351","kind":"defines","from":"ent-000535","to":"ent-005855","location":{"source":"src-000481","symbol":"manifest.documentTypes.Item.obstacle","line_start":193,"line_end":193},"basis":"source_read"}
+{"id":"rel-016352","kind":"defines","from":"ent-000535","to":"ent-005856","location":{"source":"src-000481","symbol":"manifest.documentTypes.Item.skill","line_start":208,"line_end":208},"basis":"source_read"}

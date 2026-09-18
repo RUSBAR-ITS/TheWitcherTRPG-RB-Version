@@ -40,8 +40,8 @@ class RegistrationExpansion(unittest.TestCase):
     def test_manifest_and_all_model_assignments_are_separate(self):
         # Expectations taken from the declarations, including Item.base and implicit AE/Chat base.
         manifest = json.loads((ROOT / 'system.json').read_text())
-        self.assertEqual(set(manifest['documentTypes']['Actor']), {'character','monster','loot'})
-        self.assertEqual(set(manifest['documentTypes']['Item']), set('alchemical armor component container criticalWound diagrams enhancement hex homeland mount mutagen note profession race ritual spell valuable weapon'.split()))
+        self.assertEqual(set(manifest['documentTypes']['Actor']), {'character','monster','loot','mystery'})
+        self.assertEqual(set(manifest['documentTypes']['Item']), set('alchemical armor clue component container criticalWound diagrams enhancement hex homeland mount mutagen note obstacle profession race ritual skill spell valuable weapon'.split()))
         specs = {
             'Actor': 'character:CharacterData monster:MonsterData loot:LootData mystery:MysteryActorData',
             'Item': 'base:CommonItemData alchemical:AlchemicalData armor:ArmorData container:ContainerData component:ComponentData criticalWound:CriticalWoundData diagrams:DiagramData enhancement:EnhancementData mount:MountData mutagen:MutagenData note:NoteData profession:ProfessionData homeland:HomelandData race:RaceData spell:SpellData hex:HexData ritual:RitualData valuable:ValuableData weapon:WeaponData clue:ClueData obstacle:ObstacleData skill:SkillItemData',

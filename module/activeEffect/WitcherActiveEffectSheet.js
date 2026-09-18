@@ -213,6 +213,8 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         );
 
         return DialogV2.prompt({
+            classes: ['witcher-effect-wizard'],
+            position: { width: 720 },
             content: dialogTemplate,
             modal: true,
             render: (_event, dialog) => {

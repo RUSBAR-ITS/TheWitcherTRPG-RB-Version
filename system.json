@@ -7,7 +7,7 @@
         "verified": "14",
         "maximum": "14"
     },
-    "version": "14.3.1.00071",
+    "version": "14.3.1.00073",
     "authors": [
         {
             "name": "Stexinator",
@@ -169,11 +169,13 @@
                     "monsterLore"
                 ]
             },
-            "loot": {}
+            "loot": {},
+            "mystery": {}
         },
         "Item": {
             "alchemical": {},
             "armor": {},
+            "clue": {},
             "component": {},
             "container": {},
             "criticalWound": {
@@ -188,6 +190,7 @@
             "mount": {},
             "mutagen": {},
             "note": {},
+            "obstacle": {},
             "profession": {
                 "htmlFields": [
                     "notes",
@@ -202,6 +205,7 @@
                 ]
             },
             "ritual": {},
+            "skill": {},
             "spell": {},
             "valuable": {},
             "weapon": {}

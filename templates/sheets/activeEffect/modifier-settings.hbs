@@ -1,7 +1,7 @@
-<fieldset data-modifier-settings>
+<fieldset class="witcher-modifier-settings" data-modifier-settings>
     <legend>{{localize "WITCHER.Effect.Modifier.settings"}}</legend>
     {{#each modifierInputs}}
-        <div class="form-group">
+        <div class="form-group modifier-flag">
             <label>{{localize label}}</label>
             <div class="form-fields">
                 <input type="checkbox" name="{{name}}" data-modifier-flag="{{key}}" {{checked value}} {{disabled disabled}}>
@@ -9,7 +9,7 @@
             <p class="hint">{{localize hint}}</p>
         </div>
     {{/each}}
-    <div class="form-group">
+    <div class="form-group stacked">
         <label>{{localize "WITCHER.Effect.Modifier.excludedDerived"}}</label>
         <div class="form-fields">
             <select name="{{modifierPrefix}}.excludedDerived" multiple data-modifier-exclusions {{disabled (not settings.affectsParameter)}}>
