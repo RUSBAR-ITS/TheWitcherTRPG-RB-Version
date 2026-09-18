@@ -1,3 +1,5 @@
+import { validateEffectDuration } from '../../activeEffect/effectApplication.js';
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
 import {
     applyActiveEffectToActor,
@@ -19,18 +21,8 @@ export let castSpellMixin = {
             actor: this
         };
 
-        let rollFormula = '1d10+';
-        rollFormula += !displayRollDetails
-            ? `${this.system.stats.will.value}`
-            : `${this.system.stats.will.value}[${game.i18n.localize(CONFIG.WITCHER.statMap.will.label)}]`;
-
-        let usedSkill = spellItem.system.getUsedSkill();
-
-        rollFormula +=
-            `+${this.system.skills.will[usedSkill.name].value}` +
-            (displayRollDetails ? `[${game.i18n.localize(usedSkill.label)}]` : '');
-        rollFormula += this.addActiveEffects(usedSkill.name);
-        rollFormula += this.addAttackModifiers();
+        let rollFormula = '';
+        const usedSkill = spellItem.system.getUsedSkill();
 
         let armorEnc = this.getArmorEcumbrance();
         if (armorEnc > 0) {
@@ -110,6 +102,11 @@ export let castSpellMixin = {
                 rejectClose: true
             });
 
+        const check = await prepareCheck(this, { target: { kind: 'builtin', key: usedSkill.name },
+            action: 'attack' }, { manual: customModifier });
+        if (!check) return null;
+        rollFormula = check.formula + rollFormula;
+
         let origStaCost = staCostTotal;
 
         staCostTotal -= Number(focusValue) + Number(secondFocusValue);
@@ -145,16 +142,6 @@ export let castSpellMixin = {
         }
         templateInfo.staCostDisplay = staCostDisplay;
 
-        if (customModifier < 0) {
-            rollFormula += !displayRollDetails
-                ? ` ${customModifier}`
-                : ` ${customModifier}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-        }
-        if (customModifier > 0) {
-            rollFormula += !displayRollDetails
-                ? ` +${customModifier}`
-                : ` +${customModifier}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-        }
         if (isExtraAttack) {
             rollFormula += !displayRollDetails ? ` -3` : ` -3[${game.i18n.localize('WITCHER.Dialog.attackExtra')}]`;
         }
@@ -163,7 +150,8 @@ export let castSpellMixin = {
 
         if (spellItem.system.duration) {
             let durationText = spellItem.system.duration;
-            damage.duration = durationText.replace(/\D/g, '');
+            const durationNumber = durationText.replace(/\D/g, '');
+            if (durationNumber !== '') damage.duration = Number(durationNumber);
             if (spellItem.system.duration.match(/\d+d\d+/g)) {
                 let durationSubstrings = spellItem.system.duration.split(' ');
                 let roll = await new Roll(durationSubstrings.shift()).evaluate();
@@ -175,6 +163,8 @@ export let castSpellMixin = {
 
             templateInfo.durationText = durationText;
         }
+
+        validateEffectDuration(damage.duration);
 
         if (spellItem.system.causeDamages) {
             let dmg = spellItem.system.damage || '0';
@@ -253,14 +243,14 @@ export let castSpellMixin = {
             Object.values(spellItem.system.selfEffects ?? {})?.forEach(effect =>
                 applyStatusEffectToActor(this.uuid, effect.statusEffect, damage.duration)
             );
-            applyActiveEffectToActor(
+            await applyActiveEffectToActor(
                 this.uuid,
                 spellItem.effects?.filter(effect => effect.system.applySelf),
                 damage.duration
             );
 
             applyStatusEffectToTargets(spellItem.system.onCastEffects, damage.duration);
-            applyActiveEffectToTargets(
+            await applyActiveEffectToTargets(
                 spellItem.effects?.filter(effect => effect.system.applyOnTarget),
                 damage.duration
             );

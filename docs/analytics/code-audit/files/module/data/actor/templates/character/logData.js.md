@@ -1,5 +1,7 @@
 # module/data/actor/templates/character/logData.js
 
+**Актуальный потребитель .00064:** покупка builtin навыка/характеристики больше не вызывает addIpReward. parameterAdvancement.purchaseParameter формирует копию ipLog и единый Actor.update. Сам Log и выдача наград/валюты не изменены;00028 исправлена только в части покупки.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/actor/templates/character/logData.js](../../../../../../../../../module/data/actor/templates/character/logData.js) |

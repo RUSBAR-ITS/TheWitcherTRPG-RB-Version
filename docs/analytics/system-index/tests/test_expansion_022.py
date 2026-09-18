@@ -87,7 +87,7 @@ class HealingExpansion(unittest.TestCase):
     def test_death_threshold_counter_and_no_death_writer(self):
         s=self.source(41);x=self.source(202)
         for at,t in [(8,"'system.deathSaves': 0"),(13,'this.actor.system.deathSaves + 1'),(18,'this.actor.system.derivedStats.hp.value > 0'),(19,'this.actor.system.derivedStats.stun.value'),(20,'Math.floor((this.actor.system.stats.body.max + this.actor.system.stats.will.max) / 2)'),(22,'Math.min(stunBase, 10)'),(24,'stunBase -= this.actor.system.deathSaves'),(37,'config.reversal = true'),(38,'config.showSuccess = true'),(39,'config.showCrit = false'),(42,'await extendedRoll(`1d10`, messageData, config)')]:self.assertIn(t,s[at-1])
-        self.assertIn('config.threshold >= 0',x[64]);self.assertIn('evaluatedRoll.total < config.threshold',x[70]);self.assertNotIn('showSuccess','\n'.join(x));self.assertNotIn('.update','\n'.join(s[15:43]));self.assertNotIn('dead','\n'.join(s[15:43]).lower().replace('deathsaves',''))
+        self.assertIn('Number.isFinite(config.threshold)','\n'.join(x));self.assertIn('evaluatedRoll.total < config.threshold','\n'.join(x));self.assertIn('config.threshold <= 1','\n'.join(x));self.assertNotIn('showSuccess','\n'.join(x));self.assertNotIn('.update','\n'.join(s[15:43]));self.assertNotIn('dead','\n'.join(s[15:43]).lower().replace('deathsaves',''))
         writes=self.edges('sheet.deathsaveMixin._onDeathSaveRoll','writes');self.assertEqual({r['to']for r in writes},{self.q['RollConfig.'+n]for n in ['reversal','showSuccess','showCrit','threshold']})
         self.assertNotIn('heal-button','\n'.join(self.source(564)));self.assertIn('heal-button','\n'.join(self.source(520)))
 

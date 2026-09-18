@@ -100,40 +100,82 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.stats.int.totalModifiers",
+            "value": -3,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.stats.will.totalModifiers",
+            "value": -3,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [
+              "sta"
+            ],
+            "phase": "initial"
+          },
+          {
+            "key": "system.stats.ref.totalModifiers",
+            "value": -3,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.stats.dex.totalModifiers",
+            "value": -3,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.derivedStats.sta.max",
+            "value": 0.25,
+            "priority": null,
+            "type": "multiply",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.stats.int.totalModifiers",
-          "mode": 2,
-          "value": "-3",
-          "priority": null
-        },
-        {
-          "key": "system.stats.will.totalModifiers",
-          "mode": 2,
-          "value": "-3",
-          "priority": null
-        },
-        {
-          "key": "system.stats.ref.totalModifiers",
-          "mode": 2,
-          "value": "-3",
-          "priority": null
-        },
-        {
-          "key": "system.stats.dex.totalModifiers",
-          "mode": 2,
-          "value": "-3",
-          "priority": null
-        },
-        {
-          "key": "system.derivedStats.sta.max",
-          "mode": 1,
-          "value": "0.25",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

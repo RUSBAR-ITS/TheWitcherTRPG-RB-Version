@@ -1,5 +1,5 @@
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
-import { addPart } from '../../scripts/helper.js';
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 
@@ -7,7 +7,6 @@ const DialogV2 = foundry.applications.api.DialogV2;
 
 export let verbalCombatMixin = {
     async verbalCombat() {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
             'systems/TheWitcherTRPG-RB-Version/templates/dialog/verbal-combat.hbs',
             {
@@ -38,14 +37,6 @@ export let verbalCombatMixin = {
         let verbalCombat = CONFIG.WITCHER.verbalCombat[group][verbal];
         let vcName = verbalCombat.name;
 
-        let vcStatName = verbalCombat.skill?.attribute.label ?? 'WITCHER.Context.unavailable';
-        let vcStat = verbalCombat.skill ? this.system.stats[verbalCombat.skill.attribute.name]?.value : 0;
-
-        let vcSkillName = verbalCombat.skill?.label ?? 'WITCHER.Context.unavailable';
-        let vcSkill = verbalCombat.skill
-            ? this.system.skills[verbalCombat.skill.attribute.name][verbalCombat.skill.name]?.value
-            : 0;
-
         let vcDmg = verbalCombat.baseDmg
             ? `${verbalCombat.baseDmg}+${this.system.stats[verbalCombat.dmgStat.name].value}[${game.i18n.localize(verbalCombat.dmgStat?.label)}]`
             : game.i18n.localize('WITCHER.verbalCombat.None');
@@ -55,16 +46,12 @@ export let verbalCombatMixin = {
 
         let effect = verbalCombat.effect;
 
-        let rollFormula = `1d10`;
-
-        if (verbalCombat.skill) {
-            rollFormula += (addPart(vcStat, vcStatName));
-            rollFormula += (addPart(vcSkill, vcSkillName));
-
-            rollFormula += (this.addActiveEffects(verbalCombat.skill.name));
-        }
-
-        rollFormula += (addPart(customModifier, 'WITCHER.Settings.Custom', 'hide'));
+        const check = await prepareCheck(this, {
+            target: verbalCombat.skill ? { kind: 'builtin', key: verbalCombat.skill.name } : null,
+            action: 'verbalAttack'
+        }, { manual: customModifier });
+        if (!check) return null;
+        const rollFormula = check.formula;
 
         let flavor = `
                             <div class="verbal-combat-attack-message">
@@ -81,7 +68,7 @@ export let verbalCombatMixin = {
 
         let config = new RollConfig();
         config.showCrit = true;
-        extendedRoll(rollFormula, messageData, config, this.createVerbalCombatFlags(verbalCombat, vcDmg));
+        return extendedRoll(rollFormula, messageData, config, this.createVerbalCombatFlags(verbalCombat, vcDmg));
     },
 
     createVerbalCombatFlags(verbalCombat, vcDamage) {

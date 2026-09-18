@@ -1,3 +1,4 @@
+import { registerEffectExpiry } from './activeEffect/effectExpiry.js';
 import { WITCHER } from './setup/config.js';
 import * as Chat from './scripts/chat.js';
 import * as VerbalCombat from './scripts/verbalCombat/verbalCombat.js';
@@ -37,6 +38,7 @@ Hooks.once('init', function () {
     CONFIG.RollTable.documentClass = WitcherRollTable;
     CONFIG.ActiveEffect.documentClass = WitcherActiveEffect;
     CONFIG.ActiveEffect.expiryAction = 'delete';
+    registerEffectExpiry();
 
     game.api = {
         applyActiveEffectToActorViaId,

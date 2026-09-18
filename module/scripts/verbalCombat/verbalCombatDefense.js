@@ -1,3 +1,4 @@
+import { prepareCheck } from '../rolls/prepareCheck.js';
 import { extendedRoll } from '../rolls/extendedRoll.js';
 import { getInteractActor } from '../helper.js';
 import { RollConfig } from '../rollConfig.js';
@@ -42,7 +43,6 @@ async function executeDefense(actor, messageId, totalAttack) {
 }
 
 async function executeDefenseCallback(actor, totalAttack, html) {
-    let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
     let checkedBox = document.querySelector('input[name="verbalCombat"]:checked');
     if (!checkedBox) return;
@@ -56,40 +56,18 @@ async function executeDefenseCallback(actor, totalAttack, html) {
     let verbalCombat = CONFIG.WITCHER.verbalCombat.Defenses[verbal];
     let vcName = verbalCombat.name;
 
-    let vcStatName = verbalCombat.skill?.attribute.label ?? 'WITCHER.Context.unavailable';
-    let vcStat = verbalCombat.skill ? actor.system.stats[verbalCombat.skill.attribute.name]?.value : 0;
-
-    let vcSkillName = verbalCombat.skill?.label ?? 'WITCHER.Context.unavailable';
-    let vcSkill = verbalCombat.skill
-        ? actor.system.skills[verbalCombat.skill.attribute.name][verbalCombat.skill.name]?.value
-        : 0;
-
     let vcDmg = verbalCombat.baseDmg
         ? `${verbalCombat.baseDmg}+${actor.system.stats[verbalCombat.dmgStat.name].value}[${game.i18n.localize(verbalCombat.dmgStat?.label)}]`
         : game.i18n.localize('WITCHER.verbalCombat.None');
 
     let effect = verbalCombat.effect;
 
-    let rollFormula = `1d10`;
-
-    if (verbalCombat.skill) {
-        rollFormula += !displayRollDetails
-            ? ` +${vcStat} +${vcSkill}`
-            : ` +${vcStat}[${game.i18n.localize(vcStatName)}] +${vcSkill}[${game.i18n.localize(vcSkillName)}]`;
-        rollFormula += actor.addActiveEffects(verbalCombat.skill.name);
-    }
-
-    let customAtt = html.find('[name=customModifiers]')[0].value;
-    if (customAtt < 0) {
-        rollFormula += !displayRollDetails
-            ? `${customAtt}`
-            : `${customAtt}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-    }
-    if (customAtt > 0) {
-        rollFormula += !displayRollDetails
-            ? `+${customAtt}`
-            : `+${customAtt}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-    }
+    const check = await prepareCheck(actor, {
+        target: verbalCombat.skill ? { kind: 'builtin', key: verbalCombat.skill.name } : null,
+        action: 'verbalDefense', comparison: '>=', threshold: Number(totalAttack)
+    }, { manual: html.find('[name=customModifiers]')[0].value });
+    if (!check) return null;
+    const rollFormula = check.formula;
 
     let messageData = new ChatMessageData(actor);
     messageData.flavor = `
@@ -103,7 +81,7 @@ async function executeDefenseCallback(actor, totalAttack, html) {
         ? `<button class="vcDamage" > ${game.i18n.localize('WITCHER.table.Damage')}</button>`
         : '';
 
-    let config = createRollConfig(vcSkill, totalAttack);
+    let config = createRollConfig(verbalCombat.skill, check.threshold);
     config.showCrit = true;
     await extendedRoll(rollFormula, messageData, config, actor.createVerbalCombatFlags(verbalCombat, vcDmg));
 }
@@ -112,7 +90,7 @@ function createRollConfig(skill, totalAttack) {
     let config = new RollConfig();
     config.showResult = true;
     config.defense = true;
-    config.threshold = totalAttack;
-    config.thresholdDesc = skill.label;
+    config.threshold = Number(totalAttack);
+    config.thresholdDesc = skill?.label ?? '';
     return config;
 }

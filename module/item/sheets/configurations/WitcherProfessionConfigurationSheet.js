@@ -5,7 +5,7 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
     static DEFAULT_OPTIONS = {
         actions: {
             addEffectDamageProperties: WitcherProfessionConfigurationSheet._onAddEffectDamageProperties,
-            removeEffect: WitcherProfessionConfigurationSheet._oRemoveEffectDamageProperties,
+            removeEffectDamageProperties: WitcherProfessionConfigurationSheet._oRemoveEffectDamageProperties,
             addThreshold: WitcherProfessionConfigurationSheet._onAddThreshold,
             removeThreshold: WitcherProfessionConfigurationSheet._oRemoveThreshold
         }
@@ -59,6 +59,7 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
 
     async _preparePartContext(partId, context, options) {
         let partContext = {
+            item: context.item,
             config: CONFIG.WITCHER,
             tab: context.tabs[partId],
             partId: partId
@@ -101,12 +102,12 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
 
     static async _onAddEffectDamageProperties(event, element) {
         event.preventDefault();
-        let skillName = element.dataset.target;
+        let path = element.dataset.target;
 
-        let skillObject = this.findSkillWithName(skillName);
+        let skillObject = this.findSkillByPath(path);
 
         let id = foundry.utils.randomID();
-        this.item.update({
+        return this.item.update({
             [`system.${skillObject.path}.skillAttack.damageProperties.effects.${id}`]: { percentage: 0 }
         });
     }
@@ -122,32 +123,31 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
             value = element.checked;
         }
 
-        let skillName = element.closest('.list-item').dataset.target;
-        let skillObject = this.findSkillWithName(skillName);
+        let path = element.closest('.list-item').dataset.target;
+        let skillObject = this.findSkillByPath(path);
 
-        this.item.update({
+        return this.item.update({
             [`system.${skillObject.path}.skillAttack.damageProperties.effects.${effectId}.${field}`]: value
         });
     }
 
-    static async _oRemoveEffectDamageProperties(event) {
+    static async _oRemoveEffectDamageProperties(event, element) {
         event.preventDefault();
-        let element = event.currentTarget;
         let effectId = element.closest('.list-item').dataset.id;
 
-        let skillName = element.closest('.list-item').dataset.target;
-        let skillObject = this.findSkillWithName(skillName);
+        let path = element.closest('.list-item').dataset.target;
+        let skillObject = this.findSkillByPath(path);
 
-        this.item.update({ [`system.${skillObject.path}.skillAttack.damageProperties.effects.-=${effectId}`]: null });
+        return this.item.update({ [`system.${skillObject.path}.skillAttack.damageProperties.effects.-=${effectId}`]: null });
     }
 
     static async _onAddThreshold(event, element) {
         event.preventDefault();
-        let skillName = element.dataset.target;
-        let skillObject = this.findSkillWithName(skillName);
+        let path = element.dataset.target;
+        let skillObject = this.findSkillByPath(path);
 
         let id = foundry.utils.randomID();
-        this.item.update({
+        return this.item.update({
             [`system.${skillObject.path}.thresholds.thresholds.${id}`]: { value: 0 }
         });
     }
@@ -159,10 +159,10 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
         let field = element.dataset.field;
         let value = element.value;
 
-        let skillName = element.closest('.list-item').dataset.target;
-        let skillObject = this.findSkillWithName(skillName);
+        let path = element.closest('.list-item').dataset.target;
+        let skillObject = this.findSkillByPath(path);
 
-        this.item.update({
+        return this.item.update({
             [`system.${skillObject.path}.thresholds.thresholds.${id}.${field}`]: value
         });
     }
@@ -171,42 +171,18 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
         event.preventDefault();
         let id = element.closest('.list-item').dataset.id;
 
-        let skillName = element.closest('.list-item').dataset.target;
-        let skillObject = this.findSkillWithName(skillName);
+        let path = element.closest('.list-item').dataset.target;
+        let skillObject = this.findSkillByPath(path);
 
-        this.item.update({ [`system.${skillObject.path}.thresholds.thresholds.-=${id}`]: null });
+        return this.item.update({ [`system.${skillObject.path}.thresholds.thresholds.-=${id}`]: null });
         //v14
         // this.item.update({ [`${target}.${id}`]: _del });
     }
 
-    findSkillWithName(skillName) {
-        let skillPath = this.document;
-
-        if (this.findSkillWithNameInSkillPath(skillPath.system.skillPath1, skillName)) {
-            let skill = this.findSkillWithNameInSkillPath(skillPath.system.skillPath1, skillName);
-            return { skill: skill.skill, path: 'skillPath1.' + skill.path };
-        }
-        if (this.findSkillWithNameInSkillPath(skillPath.system.skillPath2, skillName)) {
-            let skill = this.findSkillWithNameInSkillPath(skillPath.system.skillPath2, skillName);
-            return { skill: skill.skill, path: 'skillPath2.' + skill.path };
-        }
-        if (this.findSkillWithNameInSkillPath(skillPath.system.skillPath3, skillName)) {
-            let skill = this.findSkillWithNameInSkillPath(skillPath.system.skillPath3, skillName);
-            return { skill: skill.skill, path: 'skillPath3.' + skill.path };
-        }
-    }
-
-    findSkillWithNameInSkillPath(skillPath, skillName) {
-        if (skillPath.skill1.skillName === skillName) {
-            return { skill: skillPath.skill1, path: 'skill1' };
-        }
-        if (skillPath.skill2.skillName === skillName) {
-            return { skill: skillPath.skill2, path: 'skill2' };
-        }
-        if (skillPath.skill3.skillName === skillName) {
-            return { skill: skillPath.skill3, path: 'skill3' };
-        }
-
-        return null;
+    findSkillByPath(path) {
+        if (!/^(definingSkill|skillPath[1-3]\.skill[1-3])$/.test(path)) throw new TypeError('Invalid profession slot');
+        const skill = foundry.utils.getProperty(this.item.system, path);
+        if (!skill) throw new TypeError('Unknown profession slot');
+        return { skill, path };
     }
 }

@@ -1,5 +1,14 @@
 # module/scripts/temporaryEffects/applyActiveEffect.js
 
+## Текущее состояние — 14.3.1.00068 (TASK-0010.009)
+
+2026-09-18. **Назначение:** Доставка эффекта на Actor/цели/по UUID.
+
+**Методы, сущности, действия и зависимости:** Три входа ожидают результат. ViaId фильтрует applyWhen либо ожидает GM query. applyActiveEffectToActor сериализует источник; запрос владельцу передаёт все AE и duration, владелец выбирает оружие и создаёт обычные эффекты в общей withParameterChanges. Отдельный private-передатчик улучшений удалён: доставка одна. Нет owner/GM — остаётся TASK-0011.
+
+[Проверки доставки и пакетного истечения](../../../../../task-0010-009-checks.md). Браузерная приёмка впереди. Ниже, если присутствуют, сохранены описания прежних срезов.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/temporaryEffects/applyActiveEffect.js](../../../../../../../module/scripts/temporaryEffects/applyActiveEffect.js) |

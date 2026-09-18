@@ -43,22 +43,38 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.stats.int.totalModifiers",
+            "value": -1,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.stats.dex.totalModifiers",
+            "value": -1,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.stats.int.totalModifiers",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        },
-        {
-          "key": "system.stats.dex.totalModifiers",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

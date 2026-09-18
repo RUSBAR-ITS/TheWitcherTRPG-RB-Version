@@ -1,5 +1,19 @@
 # module/actor/sheets/mixins/statMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Stat Save: prepareCheck(stat,<,value либо luck.max,promptManual), manual/optional меняют порог, не куб. FaceDown берёт WILL через prepareCheck и добавляет прежнюю reputation. Проверка узнавания по reputation и ресурсные кнопки прежние.
+
+[Исходник](../../../../../../../../module/actor/sheets/mixins/statMixin.js); [проверка и пределы](../../../../../../task-0010-008-checks.md).
+
+## Текущее состояние — 14.3.1.00064
+
+2026-09-18, TASK-0010.006. **Назначение:** Обработчики характеристик и событий листа.
+
+**Методы, сущности, действия и зависимости:** statListener подключает data-action=level-up-stat к Actor.levelUpStat по data-stat. Это отдельная кнопка type=button, а не submit ручной базы. Остальные бросковые/ресурсные действия прежние; новая зависимость — actor.skillMixin.levelUpStat.
+
+[Исходник](../../../../../../../../module/actor/sheets/mixins/statMixin.js), [проверки/границы](../../../../../../task-0010-006-checks.md). Ниже, если есть, сохранены датированные предыдущие срезы; изменённые операции описаны здесь.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/statMixin.js](../../../../../../../../module/actor/sheets/mixins/statMixin.js) |

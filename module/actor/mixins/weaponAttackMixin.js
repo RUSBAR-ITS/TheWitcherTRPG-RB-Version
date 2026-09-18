@@ -1,3 +1,5 @@
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
+import { resolveRollTarget } from '../rollContext.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 
@@ -29,11 +31,11 @@ export let weaponAttackMixin = {
 
         let attack = weapon.getItemAttack(options);
         if (options.skillReplacement) {
-            attack.skill = options.skillReplacement.skillName;
-            attack.alias = options.skillReplacement.skillName;
+            attack.skill = resolveRollTarget(this, options.skillReplacement).label;
+            attack.alias = attack.skill;
         }
 
-        if (!attack.skill) {
+        if (!options.skillReplacement && !attack.skill) {
             return ui.notifications.error(`${game.i18n.localize('WITCHER.Weapon.error.noAttackSkill')}`);
         }
         let messageDataFlavor = `<h1> ${game.i18n.localize('WITCHER.Dialog.attack')}: ${weapon.name}</h1>`;
@@ -140,6 +142,17 @@ export let weaponAttackMixin = {
         damage.strike = strike;
         damage.type = damageType;
 
+        const preparedAttacks = [];
+        if (!weapon.system.rollOnlyDmg) {
+            for (let i = 0; i < attacknumber; i++) {
+                const formula = await this.constructBaseAttackFormula(CONFIG.WITCHER.skillMap[attack.skill], {
+                    target: options.skillReplacement, strike, manual: customAtt
+                });
+                if (formula === null) return null;
+                preparedAttacks.push(formula);
+            }
+        }
+
         if (isExtraAttack) {
             let newSta = this.system.derivedStats.sta.value - 3;
 
@@ -177,15 +190,7 @@ export let weaponAttackMixin = {
         damage.properties = damage.properties.toObject(false);
 
         for (let i = 0; i < attacknumber; i++) {
-            let attFormula = '1d10+';
-            let skill = CONFIG.WITCHER.skillMap[attack.skill];
-            if (options.skillReplacement) {
-                attFormula += !displayRollDetails
-                    ? `${this.system.stats[options.skillReplacement.stat].value}+${options.skillReplacement.level ?? 0}`
-                    : `${this.system.stats[options.skillReplacement.stat].value}[${game.i18n.localize(CONFIG.WITCHER.statMap[options.skillReplacement.stat].label)}]+${options.skillReplacement.level ?? 0}[${options.skillReplacement.skillName}]`;
-            } else {
-                attFormula += this.constructBaseAttackFormula(skill);
-            }
+            let attFormula = preparedAttacks[i] ?? '1d10';
 
             if (weapon.system.accuracy < 0) {
                 attFormula += !displayRollDetails
@@ -253,12 +258,6 @@ export let weaponAttackMixin = {
                     : `+${customAim}[${game.i18n.localize('WITCHER.Dialog.customModifier')}]`;
             }
 
-            if (customAtt != '0') {
-                attFormula += !displayRollDetails
-                    ? `+${customAtt}`
-                    : `+${customAtt}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-            }
-
             switch (range) {
                 case 'pointBlank':
                     attFormula = !displayRollDetails
@@ -290,7 +289,7 @@ export let weaponAttackMixin = {
             damage.formula = damageFormula + damageModifcation;
 
             attFormula += this.handleAttackLocation(location, damage, displayRollDetails);
-            attFormula += this.handleStrikeType(strike, displayRollDetails);
+            attFormula += this.handleStrikeType(strike, displayRollDetails, false);
 
             messageDataFlavor = `<div class="attack-message"><h1><img src="${weapon.img}" class="item-img" />${game.i18n.localize('WITCHER.Attack.name')}: ${weapon.name}</h1>`;
             messageDataFlavor += `<span>  ${game.i18n.localize('WITCHER.Armor.Location')}: ${damage.location.alias} </span>`;
@@ -312,17 +311,10 @@ export let weaponAttackMixin = {
         }
     },
 
-    constructBaseAttackFormula(skill) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
-
-        let attFormula = !displayRollDetails
-            ? `${this.system.stats[skill.attribute.name].value}+${this.system.skills[skill.attribute.name][skill.name].value}`
-            : `${this.system.stats[skill.attribute.name].value}[${game.i18n.localize(skill.attribute.label)}]+${this.system.skills[skill.attribute.name][skill.name].value}[${game.i18n.localize(skill.label)}]`;
-
-        attFormula += this.addActiveEffects(skill.name);
-        attFormula += this.addAttackModifiers();
-
-        return attFormula;
+    async constructBaseAttackFormula(skill, { target, strike = null, manual = 0 } = {}) {
+        const check = await prepareCheck(this, { target: target ?? { kind: 'builtin', key: skill.name },
+            action: 'attack', strike }, { manual });
+        return check?.formula ?? null;
     },
 
     mergeDamageProperties(properties, additionalProperties) {
@@ -364,7 +356,7 @@ export let weaponAttackMixin = {
             : `${touchedLocation.modifier}[${touchedLocation.alias}]`;
     },
 
-    handleStrikeType(strike, displayRollDetails) {
+    handleStrikeType(strike, displayRollDetails, includeLifepath = true) {
         let formula = '';
         let strikeConfig = CONFIG.WITCHER.weapon.attacks[strike];
         if (strikeConfig.attackPenality) {
@@ -372,8 +364,8 @@ export let weaponAttackMixin = {
             formula += !displayRollDetails ? `` : `[${game.i18n.localize(strikeConfig.label)}]`;
         }
 
-        if (this.system.lifepathModifiers.attacks[strike]) {
-            formula += `+${this.system.lifepathModifiers.attacks[strike]}`;
+        if (includeLifepath && this.system.lifepathModifiers.attacks[strike]) {
+            formula += `+${this.system.lifepathModifiers.attacks[strike].value}`;
             formula += displayRollDetails ? `[${game.i18n.localize('WITCHER.Actor.Lifepath.Bonus')}]` : '';
         }
 

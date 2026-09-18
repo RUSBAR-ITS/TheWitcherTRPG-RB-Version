@@ -1,5 +1,15 @@
 # templates/sheets/actor/configuration/app/edit-skills.hbs
 
+## Текущее состояние — 14.3.1.00064
+
+2026-09-18, TASK-0010.006. **Назначение:** Ручные builtin навыки и покупка уровня.
+
+**Методы, сущности, действия и зависимости:** Кнопка level-up имеет type=button и рендерится только при @root.canPurchase. Сохранённые базы/флаги и prepared показания остаются разделены. Контекст — WitcherModifiersConfiguration; действие — sheet.skillMixin→actor.skillMixin.
+
+[Исходник](../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs), [проверки/границы](../../../../../../../task-0010-006-checks.md). Ниже, если есть, сохранены датированные предыдущие срезы; изменённые операции описаны здесь.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs) |

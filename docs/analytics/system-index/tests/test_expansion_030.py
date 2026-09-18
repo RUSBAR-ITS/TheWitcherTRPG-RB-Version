@@ -21,13 +21,12 @@ class SkillDevelopmentExpansion(unittest.TestCase):
         self.assertEqual({c['question']for c in cases},{f'IQ-{n:02}'for n in range(1,9)})
         for c in cases:
             with self.subTest(case=c['id']):
-                run=run_cli([*c['command'],'--format','json'],cwd='/tmp');self.assertEqual(run.returncode,0,run.stderr)
-                out=json.loads(run.stdout);rows=out['items'];first=rows[0]if rows else{}
+                out=self.data.query(query.parser().parse_args([*c['command'],'--no-verify']));rows=out['items'];first=rows[0]if rows else{}
                 actual=dict(ids=[r['id']for r in rows if'id'in r],from_ids=sorted({r['from']for r in rows if'from'in r}),to_ids=sorted({r['to']for r in rows if'to'in r}),next_steps=[v['step']for v in first.get('next',[])if'step'in v],next_exits=[v['exit']for v in first.get('next',[])if'exit'in v],depth_limited=out.get('traversal',{}).get('depth_limited'),resolution=first.get('boundary',{}).get('kind'),refs=[v['path']for v in rows if'path'in v])
                 for key,value in c['expected'].items():
                     if key.startswith('includes_'):self.assertTrue(set(value)<=set(actual[key[9:]]),(key,actual))
                     else:self.assertEqual(actual[key],value,key)
-                self.assertEqual(out['freshness']['state'],'current');self.assertEqual(out['coverage']['state'],'partial')
+                self.assertEqual(out['coverage']['state'],'partial') # Freshness checked once by the stage verifier.
 
     def body(self,s,a=1,b=None):return '\n'.join(self.source(s)[a-1:b])
     def targets(self,q,kind):return {r['to']for r in self.edges(q,kind)}
@@ -37,19 +36,20 @@ class SkillDevelopmentExpansion(unittest.TestCase):
         self.assertEqual(self.body(54).count('new fields.SchemaField(skillTraining())'),4)
         for s in [69,72]:
             for text in ['min:','max:','integer:']:self.assertNotIn(text,self.body(s))
-        level='actor.skillMixin.levelUpSkill'
+        level='parameterAdvancement.purchaseParameter'
         self.assertIn(self.q['Skill.value'],self.targets(level,'writes'))
         self.assertNotIn(self.q['SkillItemData.value'],self.targets(level,'writes'))
         self.assertNotIn(self.q['professionSkill().level'],self.targets(level,'writes'))
-    def test_level_price_shadowed_variable_and_update_boundaries(self):
-        s=self.body(22,7,40)
-        for text in ['CONFIG.WITCHER.skillMap[skillName]','this.system.skills[attribute.name][skillName].value','Math.max(skillValue, 1) * (skillMapEntry.costMultiplier ?? 1)','let magicalCost = 0','let magicalCost = levelUpCost','if (magicalIp < levelUpCost)','levelUpCost -= magicalCost','magicalCost * -1, true','levelUpCost * -1, false','++skillValue','this.system.magic.magicImprovementPoints - magicalCost']:self.assertIn(text,s)
-        self.assertNotIn('await ',s);self.assertNotIn('return ',s);self.assertNotIn('modifiedValue',s)
-        self.assertEqual(s.count('let magicalCost ='),2)
-        self.assertEqual(self.body(209).count('costMultiplier: 2'),12)
-        self.assertIn("magicSkills = ['spellcast', 'ritcraft', 'hexweave']",self.body(209))
-        p=self.data.processes['proc-000417'];self.assertEqual([x['step']for x in p['steps'][2]['next']if'step'in x],['partial','magic-log'])
-        self.assertEqual(p['steps'][-1]['next'][0]['flow'],'scheduled')
+    def test_level_price_and_single_awaited_purchase(self):
+        text=(ROOT/'module/actor/parameterAdvancement.js').read_text()
+        self.assertIn('await actor.update(patch)',text)
+        self.assertNotIn('logs.addIpReward(',text)
+        self.assertIn('parameterAdvancement.purchaseParameter',self.q)
+        self.assertIn(self.q['parameterAdvancement.purchaseParameter'],self.targets('actor.skillMixin.levelUpSkill','calls'))
+        self.assertNotIn(self.q['Log.addIpReward'],self.targets('actor.skillMixin.levelUpSkill','calls'))
+        p=self.data.processes['proc-000417']
+        self.assertEqual(p['steps'][-1]['next'][0]['flow'],'await')
+        self.assertEqual(p['steps'][-1]['entity'],self.q['parameterAdvancement.purchaseParameter'])
     def test_log_push_absolute_updates_and_no_returned_promise(self):
         s=self.body(70,14,29)
         for text in ['this.ipLog.push({ label: label, ip: ip, isMagic: isMagic })','if (!isMagic)','if (isMagic)','this.parent.improvementPoints + ip','this.parent.magic.magicImprovementPoints + ip']:self.assertIn(text,s)
@@ -97,7 +97,7 @@ class SkillDevelopmentExpansion(unittest.TestCase):
         self.assertTrue({self.q[q]for q in ['Log.ipLog','ipLog().label','ipLog().ip','ipLog().isMagic']}<=self.targets('templates/sheets/actor/rewards/ip.hbs','reads'))
     def test_core_issue_evidence_and_partial_limits(self):
         for e in json.loads((BASE/'examples/expansion-030-queries.json').read_text())['core_evidence']:self.assertEqual(hashlib.sha256(Path(e['path']).read_bytes()).hexdigest(),e['sha256'])
-        for q,n in [('actor.skillMixin.levelUpSkill/guards-and-scope',17),('Log.addIpReward/pending-absolute-updates',28),('WitcherCharacterSheet._saveIpSpending/negative-string',200),('Rewards.handoutIpRewards/recipient-contract',233)]:
+        for q,n in [('Log.addIpReward/pending-absolute-updates',28),('WitcherCharacterSheet._saveIpSpending/negative-string',200),('Rewards.handoutIpRewards/recipient-contract',233)]:
             e=self.data.entities[self.q[q]];self.assertEqual(e['boundary']['kind'],'dynamic');self.assertIn(f'docs/issues/potential/issue-{n:05}.md',{r['path']for r in e['refs']})
         for s in [22,45,29,69,70,72,26,49,21,527,525,575,574,54]:self.assertEqual(self.data.sources[f'src-{s:06}']['coverage']['definitions']['state'],'partial')
     def test_graph_addresses_reverse_edges_facets_and_processes(self):
@@ -123,7 +123,7 @@ class SkillDevelopmentExpansion(unittest.TestCase):
             for s in p['steps']:
                 for rid in s['relations']:self.assertEqual(d.relations[rid]['from'],s['entity'])
                 self.assertIn(p['id'],d.sources[s['location']['source']]['coverage']['processes']['included'])
-        # Historical portion counts, not a cap on later extensions.
-        self.assertEqual({k:len(v)for k,v in self.new.items()},{'entities':63,'relations':214,'processes':9})
+        # TASK-0010.006 retires obsolete local variables/guards, not their IDs.
+        self.assertTrue({'ent-004949','ent-004950','ent-004951','ent-004952','ent-004995'}.isdisjoint(d.entities))
 
 if __name__=='__main__':unittest.main()

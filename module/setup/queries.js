@@ -8,7 +8,7 @@ const system = 'TheWitcherTRPG-RB-Version';
 
 async function applyTemporaryItemImprovementsToActor(queryData, { timeout }) {
     let actor = fromUuidSync(queryData.actorUuid);
-    actor.applyTemporaryItemImprovements(queryData.effects);
+    await actor.applyTemporaryItemImprovements(queryData.effects, queryData.duration);
     return true;
 }
 
@@ -31,14 +31,14 @@ async function query(queryData, { timeout }) {
     ];
 
     if (queryData.function in callableFunctions) {
-        callableFunctions[queryData.function](...queryData.data);
+        await callableFunctions[queryData.function](...queryData.data);
         return true;
     }
 
     if (callableEntityFunctions.includes(queryData.function)) {
         let entity = fromUuidSync(queryData.uuid);
-        entity[queryData.function]?.(...queryData.data);
-        entity.system[queryData.function]?.(...queryData.data);
+        await entity[queryData.function]?.(...queryData.data);
+        await entity.system[queryData.function]?.(...queryData.data);
         return true;
     }
 

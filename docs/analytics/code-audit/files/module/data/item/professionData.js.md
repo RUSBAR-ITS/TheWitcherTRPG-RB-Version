@@ -1,5 +1,11 @@
 # module/data/item/professionData.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** findDefenseSkillData добавляет skillOverride.target={kind:profession,itemId:this.parent.id,path:skillPathN.skillM}. Старые display-поля сохранены; defenseMixin выбирает реальную модель по адресу. Поиск первого применимого path и отсутствие definingSkill в списке защит не менялись.
+
+[Исходник](../../../../../../../module/data/item/professionData.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/professionData.js](../../../../../../../module/data/item/professionData.js) |

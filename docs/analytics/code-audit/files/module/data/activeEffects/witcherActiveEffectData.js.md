@@ -1,5 +1,15 @@
 # module/data/activeEffects/witcherActiveEffectData.js
 
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Модель base AE и валидация новых настроек.
+
+**Сущности, действия и зависимости:** ModifierChangeField добавляет defaults только числовым строкам; ModifierChangesField поднимает отказ элемента при частичном update. effectIdentityFields/validateEffectIdentity задают общие поля типа, validateModifierChange проверяет сочетания. defineSchema сохраняет пять полей native changes, клонируя их options, и добавляет flags. validateJoint проверяет ID. Зависимости: modifierContext.js и native ActiveEffectTypeDataModel/fields; экспорт identity используют временные улучшения.
+
+[Исходник](../../../../../../../module/data/activeEffects/witcherActiveEffectData.js), [проверки и границы](../../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/activeEffects/witcherActiveEffectData.js](../../../../../../../module/data/activeEffects/witcherActiveEffectData.js) |

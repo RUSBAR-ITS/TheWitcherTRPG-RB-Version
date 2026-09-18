@@ -43,322 +43,738 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.skills.int.awareness.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.business.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.deduction.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.education.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.commonsp.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.eldersp.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.dwarven.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.monster.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.socialetq.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.streetwise.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.tactics.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.teaching.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.wilderness.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.brawling.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.dodge.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.melee.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.riding.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.sailing.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.smallblades.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.staffspear.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.swordsmanship.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.courage.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.hexweave.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.intimidation.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.spellcast.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.resistmagic.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.resistcoerc.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.ritcraft.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.dex.archery.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.dex.athletics.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.dex.crossbow.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.dex.sleight.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.dex.stealth.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.alchemy.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.crafting.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.disguise.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.firstaid.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.forgery.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.picklock.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.cra.trapcraft.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.body.physique.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.body.endurance.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.charisma.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.deceit.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.finearts.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.gambling.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.grooming.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.perception.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.leadership.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.persuasion.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.performance.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.seduction.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.skills.int.awareness.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.business.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.deduction.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.education.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.commonsp.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.eldersp.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.dwarven.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.monster.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.socialetq.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.streetwise.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.tactics.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.teaching.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.wilderness.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.brawling.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.dodge.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.melee.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.riding.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.sailing.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.smallblades.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.staffspear.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.swordsmanship.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.courage.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.hexweave.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.intimidation.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.spellcast.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.resistmagic.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.resistcoerc.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.ritcraft.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.dex.archery.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.dex.athletics.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.dex.crossbow.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.dex.sleight.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.dex.stealth.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.alchemy.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.crafting.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.disguise.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.firstaid.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.forgery.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.picklock.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.cra.trapcraft.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.body.physique.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.body.endurance.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.charisma.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.deceit.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.finearts.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.gambling.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.grooming.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.perception.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.leadership.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.persuasion.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.performance.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.seduction.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

@@ -1,5 +1,11 @@
 # module/actor/mixins/professionMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Клик передаёт ID профессии+slot, resolveRollTarget выбирает модель. Удалены два findSkillWithName. Skill/threshold/usage/direct attack/weapon ветви передают тот же адрес и возвращают Promise. prepareCheck учитывает actual stat/own/allSkills/attack один раз; weapon replacement заменяет базу. Отмена прекращает usage до сообщения/AE. ChatMessageData получает Actor; источником usage служит выбранная профессия. Временные HP и доставка остаются своими задачами.
+
+[Исходник](../../../../../../../module/actor/mixins/professionMixin.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/professionMixin.js](../../../../../../../module/actor/mixins/professionMixin.js) |

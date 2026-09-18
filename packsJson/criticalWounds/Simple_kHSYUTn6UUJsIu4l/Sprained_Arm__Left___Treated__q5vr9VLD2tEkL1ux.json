@@ -43,16 +43,24 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.skills.body.physique.activeEffectModifiers",
+            "value": -1,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.skills.body.physique.activeEffectModifiers",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

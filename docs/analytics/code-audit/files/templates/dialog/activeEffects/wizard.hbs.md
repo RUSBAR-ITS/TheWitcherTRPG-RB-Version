@@ -1,5 +1,15 @@
 # templates/dialog/activeEffects/wizard.hbs
 
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Форма выбора путей для мастера эффекта.
+
+**Сущности, действия и зависимости:** Select получает name=path для FormDataExtended; при modifierWizard включается modifier-settings.hbs. Другие вызовы того же шаблона без этого флага сохраняют прежний выбор пути. Контекст задаёт WitcherActiveEffectConfig.wizardAction.
+
+[Исходник](../../../../../../../templates/dialog/activeEffects/wizard.hbs), [проверки и границы](../../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/dialog/activeEffects/wizard.hbs](../../../../../../../templates/dialog/activeEffects/wizard.hbs) |

@@ -1,5 +1,19 @@
 # module/actor/mixins/skillMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** rollSkill передаёт context/action и threshold=null. rollSkillCheck вызывает prepareCheck по builtin key; сохраняет socialStanding/armor поправки. rollCustomSkillCheck получает Item по ID, проверяет type, вызывает prepareCheck по Item-адресу; нет повторных own/manual/group добавок. Отмена до extendedRoll. Прокачка .006 прежняя.
+
+[Исходник](../../../../../../../module/actor/mixins/skillMixin.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
+## Текущее состояние — 14.3.1.00064
+
+2026-09-18, TASK-0010.006. **Назначение:** Покупка встроенных навыков/характеристик и существующие броски навыков.
+
+**Методы, сущности, действия и зависимости:** levelUpSkill сразу проверяет тип, берёт устойчивый builtin key из CONFIG.WITCHER.skillMap, multiplier и magicSkills, затем вызывает purchaseParameter. levelUpStat принимает только девять основных ключей и multiplier10. Один source level+1, баланс и журнал сохраняются вместе. Старые локальные две magicalCost и независимые Log.update удалены. Бросковые методы не менялись, их подключение к rollExtra впереди.
+
+[Исходник](../../../../../../../module/actor/mixins/skillMixin.js), [проверки/границы](../../../../../task-0010-006-checks.md). Ниже, если есть, сохранены датированные предыдущие срезы; изменённые операции описаны здесь.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/skillMixin.js](../../../../../../../module/actor/mixins/skillMixin.js) |

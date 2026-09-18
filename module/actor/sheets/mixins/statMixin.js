@@ -1,7 +1,7 @@
 import { extendedRoll } from '../../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../../scripts/rollConfig.js';
 import ChatMessageData from '../../../chatMessage/chatMessageData.js';
-import { getCustomModifier } from '../../../scripts/helper.js';
+import { prepareCheck } from '../../../scripts/rolls/prepareCheck.js';
 
 export let statMixin = {
     /** Do not delete. This method is here to give external modules the possibility to make skill rolls. */
@@ -9,6 +9,12 @@ export let statMixin = {
         let stat = event.currentTarget.closest('.stat-display').dataset.stat;
         let statValue = stat != 'luck' ? this.actor.system.stats[stat].value : this.actor.system.stats[stat].max;
         let statName = `WITCHER.St${stat.charAt(0).toUpperCase() + stat.slice(1)}`;
+
+        const check = await prepareCheck(this.actor, { target: { kind: 'stat', key: stat },
+            action: 'statSave', comparison: '<', threshold: statValue }, { promptManual: true,
+            title: `${game.i18n.localize('WITCHER.Dialog.savingThrow')}: ${game.i18n.localize(statName)}` });
+        if (!check) return null;
+        statValue = check.threshold;
 
         let messageData = new ChatMessageData(this.actor);
         messageData.flavor = `
@@ -18,21 +24,13 @@ export let statMixin = {
         </div>
         <hr />`;
 
-        let parts = ['1d10'];
-
-        parts.push(
-            await getCustomModifier(
-                `${game.i18n.localize('WITCHER.Dialog.savingThrow')}: ${game.i18n.localize(statName)}`
-            )
-        );
-
         let config = new RollConfig();
         config.showCrit = true;
         config.showSuccess = true;
         config.reversal = true;
         config.threshold = statValue;
         config.thresholdDesc = statName;
-        await extendedRoll(parts.filter(part => part).join('+'), messageData, config);
+        return extendedRoll(check.formula, messageData, config);
     },
 
     async _onReputation(event) {
@@ -70,7 +68,10 @@ export let statMixin = {
                         let repValue = this.actor.system.reputation.value;
 
                         let messageData = new ChatMessageData(this.actor);
-                        let rollFormula = `1d10 + ${Number(repValue)}[${game.i18n.localize('WITCHER.Reputation')}] + ${Number(this.actor.system.stats.will.value)}[${game.i18n.localize('WITCHER.StWill')}]`;
+                        const check = await prepareCheck(this.actor, { target: { kind: 'stat', key: 'will' },
+                            action: 'faceDown' });
+                        if (!check) return null;
+                        let rollFormula = check.formula + `+${Number(repValue)}[${game.i18n.localize('WITCHER.Reputation')}]`;
                         messageData.flavor = `
                 <h2>${game.i18n.localize('WITCHER.ReputationTitle')}: ${game.i18n.localize('WITCHER.ReputationFaceDown.Title')}</h2>
                 <div class="roll-summary">
@@ -120,6 +121,9 @@ export let statMixin = {
     },
 
     statListener(html) {
+        html.querySelectorAll('[data-action="level-up-stat"]').forEach(button =>
+            button.addEventListener('click', event => this.actor.levelUpStat(button.dataset.stat))
+        );
         html = $(html);
         html.find('.stat-roll').on('click', this._onStatSaveRoll.bind(this));
         html.find('.reputation-roll').on('click', this._onReputation.bind(this));

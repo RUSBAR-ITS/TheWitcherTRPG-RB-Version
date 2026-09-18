@@ -100,28 +100,54 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.stats.spd.max",
+            "value": 0.25,
+            "priority": null,
+            "type": "multiply",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.stats.body.max",
+            "value": 0.25,
+            "priority": null,
+            "type": "multiply",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [
+              "sta"
+            ],
+            "phase": "initial"
+          },
+          {
+            "key": "system.derivedStats.sta.max",
+            "value": 0.25,
+            "priority": null,
+            "type": "multiply",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.stats.spd.max",
-          "mode": 1,
-          "value": "0.25",
-          "priority": null
-        },
-        {
-          "key": "system.stats.body.max",
-          "mode": 1,
-          "value": "0.25",
-          "priority": null
-        },
-        {
-          "key": "system.derivedStats.sta.max",
-          "mode": 1,
-          "value": "0.25",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

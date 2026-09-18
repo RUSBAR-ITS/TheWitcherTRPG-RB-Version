@@ -1,5 +1,11 @@
 # module/actor/sheets/mixins/customSkillMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Listener поддерживает прежний #custom-rollable и новый data-action=rollCustomSkill. CRUD ручных строк использует стабильный ID, копию списка, числовое value, whitelist name/value; неизвестный ID не удаляет последнюю строку. Возвращает Promise update. Текущий character partial сам не добавляет новый интерфейс ручного списка.
+
+[Исходник](../../../../../../../../module/actor/sheets/mixins/customSkillMixin.js); [проверка и пределы](../../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/customSkillMixin.js](../../../../../../../../module/actor/sheets/mixins/customSkillMixin.js) |

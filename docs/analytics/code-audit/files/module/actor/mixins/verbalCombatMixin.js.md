@@ -1,5 +1,11 @@
 # module/actor/mixins/verbalCombatMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** prepareCheck получает выбранный builtin/пустую цель, action verbalAttack и manual. Общие физические attackModifier не включаются автоматически; штатный skill/stat контекст сохраняется. Возвращает extendedRoll или null при отмене.
+
+[Исходник](../../../../../../../module/actor/mixins/verbalCombatMixin.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/verbalCombatMixin.js](../../../../../../../module/actor/mixins/verbalCombatMixin.js) |

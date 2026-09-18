@@ -8,6 +8,7 @@ export default function damageData() {
     return {
         itemUuid: new fields.DocumentUUIDField(),
         formula: new fields.StringField(),
+        duration: new fields.NumberField({ nullable: true, initial: null, integer: true, min: 0 }),
         crit: new fields.SchemaField(critData()),
         strike: new fields.StringField(),
         type: new fields.StringField(),

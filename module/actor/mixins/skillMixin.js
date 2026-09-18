@@ -1,68 +1,47 @@
+import { purchaseParameter } from '../parameterAdvancement.js';
 import ChatMessageData from "../../chatMessage/chatMessageData.js";
-import { getCustomModifier } from "../../scripts/helper.js";
+import { prepareCheck } from "../../scripts/rolls/prepareCheck.js";
 import { RollConfig } from "../../scripts/rollConfig.js";
 import { extendedRoll } from "../../scripts/rolls/extendedRoll.js";
 
 export let skillMixin = {
     async levelUpSkill(skillName) {
-        let skillMapEntry = CONFIG.WITCHER.skillMap[skillName];
-        let attribute = skillMapEntry.attribute;
-        let skillValue = this.system.skills[attribute.name][skillName].value;
-
-        let isMagical = CONFIG.WITCHER.magicSkills.includes(skillName);
-
-        let levelUpCost = Math.max(skillValue, 1) * (skillMapEntry.costMultiplier ?? 1);
-        let magicalCost = 0;
-
-        let logLabel = game.i18n.localize(skillMapEntry.label) + ' ' + skillValue + ' -> ' + (skillValue + 1);
-
-        if (isMagical) {
-            let magicalIp = this.system.magic.magicImprovementPoints;
-            let magicalCost = levelUpCost;
-
-            if (magicalIp < levelUpCost) {
-                magicalCost = magicalIp;
-            }
-            levelUpCost -= magicalCost;
-
-            this.system.logs.addIpReward(logLabel, magicalCost * -1, true);
-        }
-
-        if (levelUpCost) {
-            this.system.logs.addIpReward(logLabel, levelUpCost * -1, false);
-        }
-
-        this.update({
-            [`system.skills.${attribute.name}.${skillName}.value`]: ++skillValue,
-            'system.magic.magicImprovementPoints': this.system.magic.magicImprovementPoints - magicalCost,
-            'system.improvementPoints': this.system.improvementPoints - levelUpCost
+        if (this.type !== 'character') return purchaseParameter(this, '');
+        const skill = CONFIG.WITCHER.skillMap[skillName];
+        if (!skill) return false;
+        return purchaseParameter(this, `system.skills.${skill.attribute.name}.${skillName}`, {
+            multiplier: skill.costMultiplier ?? 1,
+            magical: CONFIG.WITCHER.magicSkills.includes(skillName), label: skill.label
         });
     },
 
-    async rollSkill(skillName, threshold = -1) {
-        return this.rollSkillCheck(CONFIG.WITCHER.skillMap[skillName], threshold);
+    async levelUpStat(statName) {
+        if (!['int', 'ref', 'dex', 'body', 'spd', 'emp', 'cra', 'will', 'luck'].includes(statName)) return false;
+        return purchaseParameter(this, `system.stats.${statName}`, {
+            multiplier: 10, label: this.system.stats[statName].label
+        });
     },
 
-    async rollSkillCheck(skillMapEntry, threshold = -1) {
+    async rollSkill(skillName, threshold = null, context = {}) {
+        return this.rollSkillCheck(CONFIG.WITCHER.skillMap[skillName], threshold, context);
+    },
+
+    async rollSkillCheck(skillMapEntry, threshold = null, { action = 'skill' } = {}) {
         let attribute = skillMapEntry.attribute;
         let attributeLabel = game.i18n.localize(attribute.label);
-        let attributeValue = this.system.stats[attribute.name].value;
 
         let skillName = skillMapEntry.name;
         let skillLabel = game.i18n.localize(skillMapEntry.rollLabel ?? skillMapEntry.label);
-        let skillValue = this.system.skills[attribute.name][skillName].value;
 
         let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         let messageData = new ChatMessageData(this, `${attributeLabel}: ${skillLabel} Check`);
 
-        let rollFormula = '1d10 +';
-        if (!this.system.dontAddAttr) {
-            rollFormula += !displayRollDetails ? `${attributeValue} +` : `${attributeValue}[${attributeLabel}] +`;
-        }
-
-        rollFormula += !displayRollDetails ? `${skillValue}` : `${skillValue}[${skillLabel}]`;
-        rollFormula += this.addActiveEffects(skillMapEntry.name);
+        const check = await prepareCheck(this, { target: { kind: 'builtin', key: skillName },
+            action, comparison: '>', threshold }, { promptManual: true,
+            title: `${game.i18n.localize('WITCHER.Dialog.Skill')}: ${skillLabel}` });
+        if (!check) return null;
+        let rollFormula = check.formula;
 
         rollFormula += this.addSocialStanding(attribute, skillName);
 
@@ -73,7 +52,6 @@ export let skillMixin = {
                 : `-${armorEnc}[${game.i18n.localize('WITCHER.Armor.EncumbranceValue')}]`;
         }
 
-        rollFormula += await getCustomModifier(`${game.i18n.localize('WITCHER.Dialog.Skill')}: ${skillLabel}`);
 
         let config = new RollConfig();
         config.showCrit = true;
@@ -132,39 +110,23 @@ export let skillMixin = {
     },
 
     async rollCustomSkillCheck(event) {
-        let customSkill = this.items.find(item => item.id == event.currentTarget.closest('.item').dataset.itemId);
+        const itemId = event.currentTarget.dataset.itemId ?? event.currentTarget.closest('.item')?.dataset.itemId;
+        const customSkill = this.items.get(itemId);
+        if (customSkill?.type !== 'skill') return null;
 
         let attribute = CONFIG.WITCHER.statMap[customSkill.system.attribute];
         let attributeLabel = game.i18n.localize(attribute.label);
-        let attributeValue = this.system.stats[attribute.name].value;
 
         let skillLabel = customSkill.name;
-        let skillValue = customSkill.system.value;
 
-        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
         let messageData = new ChatMessageData(this, `${attributeLabel}: ${skillLabel} Check`);
 
-        let rollFormula;
-        if (this.system.dontAddAttr) {
-            rollFormula = !displayRollDetails ? `1d10+${skillValue}` : `1d10+${skillValue}[${skillLabel}]`;
-        } else {
-            rollFormula = !displayRollDetails
-                ? `1d10+${attributeValue}+${skillValue}`
-                : `1d10+${attributeValue}[${attributeLabel}]+${skillValue}[${skillLabel}]`;
-        }
-
-        rollFormula += this.addActiveEffects(customSkill.name);
-        customSkill.system.modifiers?.forEach(mod => {
-            if (mod.value < 0) {
-                rollFormula += !displayRollDetails ? ` ${mod.value}` : ` ${mod.value}[${mod.name}]`;
-            }
-            if (mod.value > 0) {
-                rollFormula += !displayRollDetails ? ` +${mod.value}` : ` +${mod.value}[${mod.name}]`;
-            }
+        const check = await prepareCheck(this, { target: { kind: 'item', itemId: customSkill.id } }, {
+            promptManual: true, title: `${game.i18n.localize('WITCHER.Dialog.Skill')}: ${skillLabel}`
         });
-
-        rollFormula += await getCustomModifier(`${game.i18n.localize('WITCHER.Dialog.Skill')}: ${skillLabel}`);
+        if (!check) return null;
+        const rollFormula = check.formula;
 
         let config = new RollConfig();
         config.showCrit = true;

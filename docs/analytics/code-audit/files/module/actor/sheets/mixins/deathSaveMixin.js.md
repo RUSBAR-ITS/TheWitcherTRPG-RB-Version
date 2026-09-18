@@ -1,5 +1,11 @@
 # module/actor/sheets/mixins/deathSaveMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Сохраняет существующую базу STUN либо BODY/WILL, min10 и deathSaves. prepareCheck с derived stun/action deathSave/< добавляет только связанные roll/full/optional поправки STUN к порогу; showCrit=false. Произвольный BODY/skill roll-only не наследуется. Отмена до extendedRoll, счётчик здесь не записывается.
+
+[Исходник](../../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js); [проверка и пределы](../../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/deathSaveMixin.js](../../../../../../../../module/actor/sheets/mixins/deathSaveMixin.js) |

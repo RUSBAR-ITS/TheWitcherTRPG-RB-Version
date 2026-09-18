@@ -39,6 +39,18 @@
         }
     },
     "WITCHER": {
+        "EffectApplication": {
+            "invalidDuration": "Effect duration must be a non-negative whole number of rounds.",
+            "writeFailed": "The effect could not be saved or replaced completely. Check the current effects."
+        },
+        "ParameterAdvancement": {
+            "characterOnly": "Only characters can buy advancements.",
+            "invalidTarget": "Cannot advance this parameter.",
+            "atCap": "The parameter has reached its advancement limit.",
+            "notEnoughIP": "Not enough improvement points.",
+            "writeCancelled": "The advancement was not saved.",
+            "correctionFailed": "The change was saved, but parameter normalization failed. Check the acquired levels and current resource values."
+        },
         "Compendium": {
             "missingPack": "The configured compendium was not found.",
             "expectedItemPack": "An Item compendium is required.",
@@ -1394,6 +1406,40 @@
                 "applyAP": "Apply AP to Multi",
                 "Item": {
                     "damage": "Damage"
+                }
+            },
+            "Modifier": {
+                "settings": "Modifier settings",
+                "affectsParameter": "Apply to parameter",
+                "affectsParameterHint": "Changes the value of a statistic or skill.",
+                "affectsRoll": "Apply to roll",
+                "affectsRollHint": "Changes the check only, without changing the parameter itself.",
+                "fullEffect": "Use full effect",
+                "fullEffectHint": "The bonus or penalty clipped by the parameter limits is also included in the roll.",
+                "shiftsCap": "Shift cap",
+                "shiftsCapHint": "Applies the same operation to the parameter cap. Can act without changing the parameter value.",
+                "affectsAdvancement": "Affect advancement",
+                "affectsAdvancementHint": "Counts towards advancement cost and eligibility. Can act independently of the parameter value.",
+                "optionalOnRoll": "Choose when rolling",
+                "optionalOnRollHint": "The player confirms whether the bonus or penalty applies. Unchecked for each new roll.",
+                "excludedDerived": "Exclude from derived calculations",
+                "excludedDerivedHint": "Optional. Select the derived values whose calculation should ignore this change to their input parameter.",
+                "effectTypeId": "Effect type identifier",
+                "effectTypeIdHint": "Shared identifier for repeated applications of an effect. This is not the document UUID.",
+                "nonStacking": "Does not stack",
+                "nonStackingHint": "Reapplying this effect type replaces the previous application and restarts its duration. Requires a type identifier.",
+                "baseCap": "Base cap",
+                "baseCapHint": "The limit before shifts from effects. This is not the parameter value or current resource pool.",
+                "savedBase": "Base value",
+                "currentValue": "Effective value",
+                "calculatedBase": "Calculated automatically",
+                "errors": {
+                    "typeIdRequired": "A non-stacking effect requires an effect type identifier.",
+                    "channels": "Apply to parameter and Apply to roll are mutually exclusive.",
+                    "rollOnly": "A roll modifier cannot shift the cap, affect advancement, use the full effect or exclude derived calculations.",
+                    "parameterOnly": "Full effect and derived exclusions require a parameter modifier.",
+                    "optionalOnly": "Choosing when rolling requires a roll modifier.",
+                    "unsupported": "These settings require a supported numeric parameter and an add, multiply or override operation."
                 }
             }
         },

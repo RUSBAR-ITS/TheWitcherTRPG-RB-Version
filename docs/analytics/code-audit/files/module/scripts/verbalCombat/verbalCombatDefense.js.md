@@ -1,5 +1,11 @@
 # module/scripts/verbalCombat/verbalCombatDefense.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Callback использует prepareCheck(actual skill,verbalDefense,>=,Number(totalAttack),manual), отмена до Roll. createRollConfig получает объект навыка для подписи и числовой threshold. Старое связывание контекстного меню/глобальный DOM selector — TASK-0011, прямой callback не доказывает работу UI.
+
+[Исходник](../../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/verbalCombat/verbalCombatDefense.js](../../../../../../../module/scripts/verbalCombat/verbalCombatDefense.js) |

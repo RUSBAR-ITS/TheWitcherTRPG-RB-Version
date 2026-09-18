@@ -1,5 +1,15 @@
 # module/actor/sheets/configurations/WitcherModifiersConfiguration.js
 
+## Текущее состояние — 14.3.1.00064
+
+2026-09-18, TASK-0010.006. **Назначение:** Редактор сохранённых баз и действий прокачки.
+
+**Методы, сущности, действия и зависимости:** _prepareContext выставляет canPurchase только character; базы/currentValue остаются раздельными. _processFormData расширяет native данные, разрешает только существующие primary базы/baseCap, builtin value/baseCap/флаги, ручные derived базы через общий isManualDerivedStat и reputation.unmodifiedMax. Автоматические max/value/базы не попадают в payload. Зависимости — derivedStatData, Foundry utils/form lifecycle; подписи/ручной режим .003/.005 сохранены.
+
+[Исходник](../../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js), [проверки/границы](../../../../../../task-0010-006-checks.md). Ниже, если есть, сохранены датированные предыдущие срезы; изменённые операции описаны здесь.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/configurations/WitcherModifiersConfiguration.js](../../../../../../../../module/actor/sheets/configurations/WitcherModifiersConfiguration.js) |

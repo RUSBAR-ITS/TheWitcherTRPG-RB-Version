@@ -12,7 +12,7 @@ export let consumeMixin = {
 
         this.actor.applyStatus(properties.effects);
         this.actor.removeStatus(this.system.consumeProperties.removesEffects);
-        applyActiveEffectToActorViaId(this.actor.uuid, this.uuid, 'applySelf');
+        await applyActiveEffectToActorViaId(this.actor.uuid, this.uuid, 'applySelf');
         this.createConsumeMessage(messageInfos);
     },
 

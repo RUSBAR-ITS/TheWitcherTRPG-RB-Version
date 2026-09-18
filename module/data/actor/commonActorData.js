@@ -1,3 +1,4 @@
+import { derivedStatBase, isManualDerivedStat, RESOURCE_STATS } from './derivedStatData.js';
 import currency from './templates/common/currencyData.js';
 import adrenaline from './templates/common/adrenalineData.js';
 import skills from './templates/common/skills/skillsData.js';
@@ -74,20 +75,14 @@ export default class CommonActorData extends foundry.abstract.TypeDataModel {
         this.stats.luck.max = this.stats.luck.unmodifiedMax;
         this.reputation.max = this.reputation.unmodifiedMax;
 
-        const baseMax = Math.floor((this.stats.body.unmodifiedMax + this.stats.will.unmodifiedMax) / 2);
-
-        this.derivedStats.stun.unmodifiedMax = Math.clamp(baseMax, 1, 10);
-
-        this.derivedStats.run.unmodifiedMax = this.stats.spd.unmodifiedMax * 3;
-        this.derivedStats.leap.unmodifiedMax = Math.floor((this.stats.spd.unmodifiedMax * 3) / 5);
-        this.derivedStats.enc.unmodifiedMax = this.stats.body.unmodifiedMax * 10;
-        this.derivedStats.rec.unmodifiedMax = baseMax;
-        this.derivedStats.woundTreshold.unmodifiedMax = baseMax;
-
-        this.derivedStats.resolve.unmodifiedMax = (this.stats.will.unmodifiedMax + this.stats.int.unmodifiedMax) * 5;
-        this.derivedStats.focus.unmodifiedMax = (this.stats.will.value + this.stats.int.value) * 3;
-
-        this.derivedStats.vigor.max = this.derivedStats.vigor.unmodifiedMax;
+        const base = key => isManualDerivedStat(key, this.customStat)
+            ? this.derivedStats[key].unmodifiedMax
+            : derivedStatBase(key, stat => this.stats[stat].unmodifiedMax, base);
+        for (const [key, stat] of Object.entries(this.derivedStats)) {
+            if (!isManualDerivedStat(key, this.customStat)) stat.unmodifiedMax = Math.floor(base(key));
+            stat.max = stat.unmodifiedMax;
+            if (!RESOURCE_STATS.includes(key)) stat.value = stat.max;
+        }
     }
 
     calcCurrencyWeight() {

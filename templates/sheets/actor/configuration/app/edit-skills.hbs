@@ -6,9 +6,18 @@
                     <span>{{localize skill.label}} <input class='header-stat stat-max'
                             name='system.skills.{{@root.skillKey}}.{{skillName}}.value' type='number'
                             value='{{skill.value}}' placeholder='0' data-dtype='Number' /></span>
-                    <button data-action="level-up"
+                    {{#if @root.canPurchase}}
+                    <button type="button" data-action="level-up"
                         data-skill="{{skillName}}">{{localize "WITCHER.skills.levelUp"}}</button>
+                    {{/if}}
                 </summary>
+                <div>
+                    <span>{{localize 'WITCHER.Effect.Modifier.currentValue'}}: {{skill.currentValue}}</span>
+                    <label title="{{localize 'WITCHER.Effect.Modifier.baseCapHint'}}">{{localize 'WITCHER.Effect.Modifier.baseCap'}}
+                        <input name='system.skills.{{@root.skillKey}}.{{skillName}}.baseCap' type='number'
+                            value='{{skill.baseCap}}' data-dtype='Number' />
+                    </label>
+                </div>
                 <div>
 
                     <label>{{localize "WITCHER.skills.profession"}}:

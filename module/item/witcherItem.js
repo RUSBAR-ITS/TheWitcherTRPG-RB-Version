@@ -1,3 +1,5 @@
+import { assignedItemData } from '../activeEffect/effectFamilies.js';
+import { parameterActor, withParameterChanges } from '../actor/parameterPersistence.js';
 import { WOUND_INTERNAL, createWoundDocuments, validateWoundUpdates, withWoundQueue } from './criticalWoundOperations.js';
 import { CONTAINER_INTERNAL, serializeContainer, contentOf } from './containerTemplates.js';
 import { createContainerDocuments, deleteContainerDocuments } from './containerOperations.js';
@@ -13,33 +15,41 @@ import { defenseOptionMixin } from './mixins/defenseOptionMixin.js';
 export default class WitcherItem extends Item {
     /** Native entry points also cover directory imports and Actor embedded creation. */
     static async createDocuments(data = [], operation = {}) {
-        const create = (rows, options) => options[CONTAINER_INTERNAL]
-            ? super.createDocuments(rows, options)
-            : createContainerDocuments(rows, options,
-                (documents, context) => super.createDocuments(documents, context),
-                (ids, context) => super.deleteDocuments(ids, context));
-        if (!operation[WOUND_INTERNAL] && operation.parent?.documentName === 'Actor' &&
-            data.some(item => item.type === 'criticalWound')) {
-            return createWoundDocuments(data, operation, create);
-        }
-        return create(data, operation);
+        return withParameterChanges(parameterActor(operation.parent), async () => {
+            data = assignedItemData(data, operation.parent);
+            const create = (rows, options) => options[CONTAINER_INTERNAL]
+                ? super.createDocuments(rows, options)
+                : createContainerDocuments(rows, options,
+                    (documents, context) => super.createDocuments(documents, context),
+                    (ids, context) => super.deleteDocuments(ids, context));
+            if (!operation[WOUND_INTERNAL] && operation.parent?.documentName === 'Actor' &&
+                data.some(item => item.type === 'criticalWound')) {
+                return createWoundDocuments(data, operation, create);
+            }
+            return create(data, operation);
+        });
     }
 
     static async updateDocuments(changes = [], operation = {}) {
-        const actor = operation.parent;
-        if (!operation[WOUND_INTERNAL] && actor?.documentName === 'Actor' &&
-            changes.some(row => row.type === 'criticalWound' || actor.items.get(row._id)?.type === 'criticalWound')) {
-            return withWoundQueue(actor, () => {
-                validateWoundUpdates(actor, changes);
-                return super.updateDocuments(changes, operation);
-            });
-        }
-        return super.updateDocuments(changes, operation);
+        return withParameterChanges(parameterActor(operation.parent), async () => {
+            const actor = operation.parent;
+            changes = assignedItemData(changes, actor, { update: true });
+            if (!operation[WOUND_INTERNAL] && actor?.documentName === 'Actor' &&
+                changes.some(row => row.type === 'criticalWound' || actor.items.get(row._id)?.type === 'criticalWound')) {
+                return withWoundQueue(actor, () => {
+                    validateWoundUpdates(actor, changes);
+                    return super.updateDocuments(changes, operation);
+                });
+            }
+            return super.updateDocuments(changes, operation);
+        });
     }
 
     static async deleteDocuments(ids = [], operation = {}) {
-        if (operation[CONTAINER_INTERNAL]) return super.deleteDocuments(ids, operation);
-        return deleteContainerDocuments(ids, operation, (targets, options) => super.deleteDocuments(targets, options));
+        return withParameterChanges(parameterActor(operation.parent), async () => {
+            if (operation[CONTAINER_INTERNAL]) return super.deleteDocuments(ids, operation);
+            return deleteContainerDocuments(ids, operation, (targets, options) => super.deleteDocuments(targets, options));
+        });
     }
 
     toCompendium(pack, options = {}) {

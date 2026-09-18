@@ -83,6 +83,7 @@ export default class ProfessionData extends CommonItemData {
             ...this[path][skill].skillDefense.defenseProperties.createDefenseOption(attack),
 
             skillOverride: {
+                target: { kind: 'profession', itemId: this.parent.id, path: `${path}.${skill}` },
                 skillMapEntry: {
                     label: this[path][skill].skillName,
                     attribute: {

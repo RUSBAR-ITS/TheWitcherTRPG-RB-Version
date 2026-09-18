@@ -2,8 +2,25 @@
     {{#unless (eq (localize details.label) (localize 'WITCHER.Actor.Stat.Toxicity'))}}
         <div>
             <span>{{localize details.label}}</span>
-            <input class='header-stat stat-max' name='system.{{@root.type}}.{{stat}}.unmodifiedMax' type='number'
-                value='{{details.max}}' placeholder='0' data-dtype='Number' />
+            {{#if @root.canPurchase}}
+                {{#if (eq @root.type 'stats')}}
+                    <button type="button" data-action="level-up-stat" data-stat="{{stat}}">{{localize 'WITCHER.skills.levelUp'}}</button>
+                {{/if}}
+            {{/if}}
+            {{#if (or (eq @root.type 'stats') details.canEditBase)}}
+                <label>{{localize 'WITCHER.Effect.Modifier.savedBase'}}
+                    <input class='header-stat stat-max' name='system.{{@root.type}}.{{stat}}.unmodifiedMax' type='number'
+                        value='{{details.unmodifiedMax}}' placeholder='0' data-dtype='Number' />
+                </label>
+            {{else}}
+                <span>{{localize 'WITCHER.Effect.Modifier.calculatedBase'}}</span>
+            {{/if}}
+            <span>{{localize 'WITCHER.Effect.Modifier.currentValue'}}: {{details.currentValue}}</span>
+            {{#if details.hasBaseCap}}
+                <label title="{{localize 'WITCHER.Effect.Modifier.baseCapHint'}}">{{localize 'WITCHER.Effect.Modifier.baseCap'}}
+                    <input name='system.{{@root.type}}.{{stat}}.baseCap' type='number' value='{{details.baseCap}}' data-dtype='Number' />
+                </label>
+            {{/if}}
         </div>
     {{/unless}}
 {{/each}}
@@ -12,6 +29,6 @@
     <div>
         <span>{{localize 'WITCHER.Reputation'}}</span>
         <input class='header-stat stat-max' name='system.reputation.unmodifiedMax' type='number'
-            value='{{reputation.max}}' placeholder='0' data-dtype='Number' />
+            value='{{reputation.unmodifiedMax}}' placeholder='0' data-dtype='Number' />
     </div>
 {{/if}}

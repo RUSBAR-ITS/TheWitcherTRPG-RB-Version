@@ -1,5 +1,11 @@
 # module/scripts/investigation/rollClue.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Валидирует выбор из availableSkills, отсутствие Actor/отмена возвращают null. Делегирует Actor.rollSkill(chosen,null,{action:investigation}), получая общий контекст; реконструкция clue/выдача результата прежние.
+
+[Исходник](../../../../../../../module/scripts/investigation/rollClue.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/investigation/rollClue.js](../../../../../../../module/scripts/investigation/rollClue.js) |

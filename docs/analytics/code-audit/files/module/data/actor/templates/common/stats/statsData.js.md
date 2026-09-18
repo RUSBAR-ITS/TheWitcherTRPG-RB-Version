@@ -1,5 +1,15 @@
 # module/data/actor/templates/common/stats/statsData.js
 
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Состав основных характеристик Actor.
+
+**Сущности, действия и зависимости:** Девять основных полей вызывают stat(label,0,true), toxicity сохраняет отдельную базу100 без baseCap. Зависимость — statData.js.
+
+[Исходник](../../../../../../../../../../module/data/actor/templates/common/stats/statsData.js), [проверки и границы](../../../../../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/actor/templates/common/stats/statsData.js](../../../../../../../../../../module/data/actor/templates/common/stats/statsData.js) |

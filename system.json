@@ -7,7 +7,7 @@
         "verified": "14",
         "maximum": "14"
     },
-    "version": "14.3.1.00052",
+    "version": "14.3.1.00071",
     "authors": [
         {
             "name": "Stexinator",
@@ -22,13 +22,20 @@
         }
     ],
     "scripts": [],
-    "esmodules": ["module/TheWitcherTRPG.js"],
-    "styles": ["styles/witcher-styles.css"],
+    "esmodules": [
+        "module/TheWitcherTRPG.js"
+    ],
+    "styles": [
+        "styles/witcher-styles.css"
+    ],
     "packFolders": [
         {
             "name": "Witcher TRPG System",
             "sorting": "m",
-            "packs": ["Combat", "criticalWounds"],
+            "packs": [
+                "Combat",
+                "criticalWounds"
+            ],
             "folders": [
                 {
                     "name": "Character Generation",
@@ -156,7 +163,11 @@
         "Actor": {
             "character": {},
             "monster": {
-                "htmlFields": ["common", "academicKnowledge", "monsterLore"]
+                "htmlFields": [
+                    "common",
+                    "academicKnowledge",
+                    "monsterLore"
+                ]
             },
             "loot": {}
         },
@@ -166,7 +177,9 @@
             "component": {},
             "container": {},
             "criticalWound": {
-                "htmlFields": ["description"]
+                "htmlFields": [
+                    "description"
+                ]
             },
             "diagrams": {},
             "enhancement": {},
@@ -176,10 +189,17 @@
             "mutagen": {},
             "note": {},
             "profession": {
-                "htmlFields": ["notes", "definingSkill.definition", "*.*.definition"]
+                "htmlFields": [
+                    "notes",
+                    "definingSkill.definition",
+                    "*.*.definition"
+                ]
             },
             "race": {
-                "htmlFields": ["description", "*.description"]
+                "htmlFields": [
+                    "description",
+                    "*.description"
+                ]
             },
             "ritual": {},
             "spell": {},

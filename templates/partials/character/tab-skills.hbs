@@ -22,7 +22,7 @@
                         {{/each}}
 
                         {{#each (lookup ../customSkills skillKey)}}
-                            {{> "systems/TheWitcherTRPG-RB-Version/templates/partials/character/custom-skill-display.hbs"}}
+                            {{> "systems/TheWitcherTRPG-RB-Version/templates/partials/character/custom-skill-display.hbs" item=this}}
                         {{/each}}
                     </div>
                 </details>
@@ -46,7 +46,7 @@
                     {{/each}}
 
                     {{#each (lookup ../customSkills skillKey)}}
-                        {{> "systems/TheWitcherTRPG-RB-Version/templates/partials/character/custom-skill-display.hbs"}}
+                        {{> "systems/TheWitcherTRPG-RB-Version/templates/partials/character/custom-skill-display.hbs" item=this}}
                     {{/each}}
                 </div>
             </details>

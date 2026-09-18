@@ -42,70 +42,150 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.skills.will.spellcast.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.ritcraft.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.hexweave.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.charisma.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.persuasion.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.seduction.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.leadership.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.emp.deceit.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.int.socialetq.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.will.intimidation.activeEffectModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": true,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.skills.will.spellcast.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.ritcraft.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.hexweave.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.charisma.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.persuasion.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.seduction.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.leadership.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.emp.deceit.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.int.socialetq.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        },
-        {
-          "key": "system.skills.will.intimidation.activeEffectModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

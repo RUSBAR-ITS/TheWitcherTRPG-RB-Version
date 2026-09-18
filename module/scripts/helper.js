@@ -1,3 +1,5 @@
+import { formatRollModifier } from './rolls/rollModifiers.js';
+
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export function getCurrentCharacter() {
@@ -75,16 +77,9 @@ export function getRandomInt(max) {
 }
 
 export function addPart(value, details, hideZero = false) {
-    let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
-    if (value == 0 && hideZero) {
-        return '';
-    }
-
-    let part = `+${value}`;
-    if (displayRollDetails) {
-        part += `[${game.i18n.localize(details)}]`;
-    }
-    return part;
+    return formatRollModifier(value, details ? game.i18n.localize(details) : '', {
+        details: game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails'), hideZero
+    });
 }
 
 export async function getCustomModifier(title) {
@@ -103,4 +98,21 @@ export async function getCustomModifier(title) {
     });
 
     return addPart(customModifier, 'WITCHER.Settings.Custom', true);
+}
+
+/** Numeric manual input for a check; closing the prompt cancels the caller. */
+export async function getCustomModifierValue(title) {
+    return DialogV2.prompt({
+        window: { title },
+        content: `<label>${game.i18n.localize('WITCHER.Dialog.customModifier')}: <input type="number" step="any" name="customModifiers" value="0"></label>`,
+        ok: {
+            label: game.i18n.localize('WITCHER.Button.Continue'),
+            callback: (_event, button) => {
+                const value = Number(button.form.elements.customModifiers.value);
+                if (!Number.isFinite(value)) throw new TypeError('A manual modifier must be finite');
+                return value;
+            }
+        },
+        rejectClose: false
+    }).then(value => value ?? null);
 }

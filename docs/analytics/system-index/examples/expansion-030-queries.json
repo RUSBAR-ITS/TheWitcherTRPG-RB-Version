@@ -102,11 +102,10 @@
       ],
       "expected": {
         "includes_to_ids": [
-          "ent-001002",
-          "ent-004947"
+          "ent-005783"
         ]
       },
-      "basis": "22:28/32 журнал и35 отдельный update без await."
+      "basis": "TASK-0010.006: единый purchaseParameter вместо Log/additional update."
     },
     {
       "id": "E030-07",
@@ -139,12 +138,11 @@
       ],
       "expected": {
         "includes_from_ids": [
-          "ent-000300",
           "ent-000623",
           "ent-004954"
         ]
       },
-      "basis": "22:28/32,29:457,49:69 три разных входа журнала."
+      "basis": "TASK-0010.006: Log вызывают награды/линейка жизни; покупка исключена."
     },
     {
       "id": "E030-09",
@@ -216,14 +214,14 @@
         "--access",
         "writes",
         "--scope",
-        "src-000022"
+        "src-000632"
       ],
       "expected": {
         "includes_from_ids": [
-          "ent-000300"
+          "ent-005783"
         ]
       },
-      "basis": "22:36 только builtin значение."
+      "basis": "TASK-0010.006: единый payload purchaseParameter."
     },
     {
       "id": "E030-13",
@@ -234,14 +232,14 @@
         "--access",
         "writes",
         "--scope",
-        "src-000022"
+        "src-000632"
       ],
       "expected": {
         "includes_from_ids": [
-          "ent-000300"
+          "ent-005783"
         ]
       },
-      "basis": "22:37 внешний magicalCost=0."
+      "basis": "TASK-0010.006: единый payload purchaseParameter."
     },
     {
       "id": "E030-14",
@@ -331,7 +329,7 @@
           "ent-000300"
         ]
       },
-      "basis": "22:14 optional множитель цены."
+      "basis": "TASK-0010.006: multiplier передаётся общему helper из skillMap."
     },
     {
       "id": "E030-19",
@@ -406,23 +404,23 @@
         "process",
         "proc-000417",
         "--offset",
-        "2",
+        "3",
         "--limit",
         "1"
       ],
       "expected": {
         "ids": [
-          "magic"
+          "funds"
         ],
         "next_steps": [
-          "partial",
-          "magic-log"
+          "log"
         ],
         "next_exits": [
-          "failed"
+          "failed",
+          "done"
         ]
       },
-      "basis": "22:23 развилка достаточности magic."
+      "basis": "TASK-0010.006: недостаток средств — отказ, достаток — log/payload."
     },
     {
       "id": "E030-24",
@@ -599,14 +597,14 @@
       "question": "IQ-08",
       "command": [
         "details",
-        "ent-004995"
+        "ent-005783"
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00017.md"
+          "docs/analytics/task-0010-006-checks.md"
         ]
       },
-      "basis": "Связь с прежним issue; нового игрового воспроизведения нет."
+      "basis": "TASK-0010.006: новый маршрут покупки и проверенные пределы вместо прежнего guards boundary."
     },
     {
       "id": "E030-32",
@@ -678,7 +676,7 @@
       "expected": {
         "depth_limited": true
       },
-      "basis": "Глубина1 не раскрывает вложенные Log/Actor/update процессы."
+      "basis": "TASK-0010.006: глубина1 не раскрывает реализацию purchaseParameter."
     }
   ],
   "core_evidence": [

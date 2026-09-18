@@ -1,5 +1,15 @@
 # module/data/actor/templates/common/stats/statData.js
 
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Фабрика stat с необязательным базовым потолком.
+
+**Сущности, действия и зависимости:** Новый третий аргумент capped=false; при true добавляется NumberField baseCap initial10. Остальная форма stat прежняя. Native fields и lang ru/en используются для подписи. Вычислитель не менялся.
+
+[Исходник](../../../../../../../../../../module/data/actor/templates/common/stats/statData.js), [проверки и границы](../../../../../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/actor/templates/common/stats/statData.js](../../../../../../../../../../module/data/actor/templates/common/stats/statData.js) |

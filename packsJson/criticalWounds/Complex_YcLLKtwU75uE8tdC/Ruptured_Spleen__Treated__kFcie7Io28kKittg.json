@@ -42,16 +42,24 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.derivedStats.stun.totalModifiers",
+            "value": -2,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.derivedStats.stun.totalModifiers",
-          "mode": 2,
-          "value": "-2",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

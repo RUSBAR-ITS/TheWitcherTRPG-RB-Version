@@ -1,3 +1,6 @@
-<select id="path">
+<select id="path" name="path">
     {{selectOptions selects valueAttr="value" labelAttr="label" localize=true}}
 </select>
+{{#if modifierWizard}}
+    {{> "systems/TheWitcherTRPG-RB-Version/templates/sheets/activeEffect/modifier-settings.hbs"}}
+{{/if}}

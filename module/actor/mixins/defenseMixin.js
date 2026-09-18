@@ -1,3 +1,5 @@
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
+import { combatModifierFormula } from './modifierMixin.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import { applyStatusEffectToActor } from '../../scripts/statusEffects/applyStatusEffect.js';
@@ -130,21 +132,16 @@ export let defenseMixin = {
     ) {
         let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
 
-        if (!this.handleExtraDefense(extraDefense)) {
-            return;
-        }
-        let skillMapEntry = skillOverride?.skillMapEntry ?? CONFIG.WITCHER.skillMap[skillName];
-
-        let stat = this.system.stats[skillMapEntry.attribute.name].value;
-        let skill = skillOverride?.skill ?? this.system.skills[skillMapEntry.attribute.name][skillName];
-        let skillValue = skill.value;
-
-        let displayFormula = `1d10 + ${game.i18n.localize(skillMapEntry.attribute.labelShort)} + ${game.i18n.localize(skillMapEntry.label)}`;
-
-        let rollFormula = '1d10+';
-        rollFormula += !displayRollDetails
-            ? `${stat}+${skillValue}`
-            : `${stat}[${game.i18n.localize(skillMapEntry.attribute.labelShort)}] +${skillValue}[${game.i18n.localize(skillMapEntry.label)}]`;
+        const skillMapEntry = skillOverride?.skillMapEntry ?? CONFIG.WITCHER.skillMap[skillName];
+        const stunned = skillName !== 'resistmagic' && this.statuses.has('stun');
+        const check = stunned ? null : await prepareCheck(this, {
+            target: skillOverride?.target ?? { kind: 'builtin', key: skillName },
+            action: 'defense', comparison: '>=', threshold: Number(totalAttack)
+        }, { manual: customDef });
+        if (!stunned && !check) return null;
+        if (!this.handleExtraDefense(extraDefense)) return null;
+        const displayFormula = `1d10 + ${game.i18n.localize(skillMapEntry.attribute.labelShort)} + ${game.i18n.localize(skillMapEntry.label)}`;
+        let rollFormula = check?.formula ?? '10[Stun]';
 
         if (modifier < 0) {
             rollFormula += !displayRollDetails
@@ -166,21 +163,13 @@ export let defenseMixin = {
                 : `+${modifier}[${game.i18n.localize(defenseAction.label)}]`;
         }
 
-        if (customDef != '0') {
-            rollFormula += !displayRollDetails
-                ? `+${customDef}`
-                : ` +${customDef}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-        }
-
         rollFormula = this.handleLifepathModifier(
             rollFormula,
             defenseAction.value,
             this.items.get(defenseItemId)?.type
         );
-        rollFormula += this.addActiveEffects(skillName);
-        rollFormula += this.addDefenseModifiers();
 
-        if (skillName != 'resistmagic' && this.statuses.find(status => status == 'stun')) {
+        if (stunned) {
             rollFormula = '10[Stun]';
         }
 
@@ -240,18 +229,14 @@ export let defenseMixin = {
 
         let message = await roll.toMessage(messageData);
 
-        this.handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, {
+        await this.handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, {
             stagger,
             block
         });
     },
 
     addDefenseModifiers() {
-        let modifiers = '';
-        Object.values(this.system.combatEffects.defenseModifier).forEach(mod => {
-            modifiers += mod.value !== 0 ? ` ${mod.value}[${game.i18n.localize(mod.name)}]` : '';
-        });
-        return modifiers;
+        return combatModifierFormula(this, 'defenseModifier');
     },
 
     handleExtraDefense(extraDefense) {
@@ -293,7 +278,7 @@ export let defenseMixin = {
         let config = new RollConfig();
         config.showResult = false;
         config.defense = true;
-        config.threshold = totalAttack;
+        config.threshold = Number(totalAttack);
         config.thresholdDesc = skill.label;
         return config;
     },
@@ -394,9 +379,9 @@ export let defenseMixin = {
         }
     },
 
-    handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, { stagger, block }) {
+    async handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, { stagger, block }) {
         if (roll.total < totalAttack) {
-            applyActiveEffectToActorViaId(
+            await applyActiveEffectToActorViaId(
                 this.uuid,
                 attackDamageObject.itemUuid,
                 'applyOnHit',
@@ -431,7 +416,10 @@ export let defenseMixin = {
     },
 
     async stunSave(modifier = 0) {
-        let stunValue = this.system.derivedStats.stun.value + modifier;
+        const check = await prepareCheck(this, { target: { kind: 'derived', key: 'stun' },
+            action: 'stunSave', comparison: '<', threshold: this.system.derivedStats.stun.value + Number(modifier) });
+        if (!check) return null;
+        const stunValue = check.threshold;
         let stunName = 'WITCHER.Actor.DerStat.Stun';
 
         let messageData = new ChatMessageData(this);

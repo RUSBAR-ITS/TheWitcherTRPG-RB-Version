@@ -3,7 +3,7 @@ export let customSkillMixin = {
         html = $(html);
         let thisActor = this.actor;
 
-        html.find('#custom-rollable').on('click', thisActor.rollCustomSkillCheck.bind(thisActor));
+        html.find('#custom-rollable, [data-action=rollCustomSkill]').on('click', thisActor.rollCustomSkillCheck.bind(thisActor));
         html.find('.remove-custom-skill').on('click', this.removeCustomSkill.bind(this));
 
         html.find('.custom-skill-modifier-display').on('click', this.customSkillModifierDisplay.bind(this));
@@ -27,8 +27,9 @@ export let customSkillMixin = {
     async _onAddCustomSkillModifier(event) {
         let customSkill = this.actor.items.find(item => item.id == event.currentTarget.closest('.item').dataset.itemId);
         let newModifierList = customSkill.system.modifiers ?? [];
-        newModifierList.push({ name: 'Modifier', value: 0 });
-        customSkill.update({
+        newModifierList = foundry.utils.deepClone(newModifierList);
+        newModifierList.push({ id: foundry.utils.randomID(), name: 'Modifier', value: 0 });
+        return customSkill.update({
             'system.modifiers': newModifierList
         });
     },
@@ -38,10 +39,11 @@ export let customSkillMixin = {
 
         let prevModList = customSkill.system.modifiers;
         const newModList = Object.values(prevModList).map(details => details);
-        const idxToRm = newModList.findIndex(v => v.id === event.target.dataset.id);
+        const idxToRm = newModList.findIndex(v => v.id === event.currentTarget.closest('.list-modifiers').dataset.id);
+        if (idxToRm < 0) return;
         newModList.splice(idxToRm, 1);
 
-        customSkill.update({ 'system.modifiers': newModList });
+        return customSkill.update({ 'system.modifiers': newModList });
     },
 
     async _onEditCustomSkillModifier(event) {
@@ -52,11 +54,12 @@ export let customSkillMixin = {
 
         let field = element.dataset.field;
         let value = element.value;
-        let modifiers = customSkill.system.modifiers;
+        let modifiers = foundry.utils.deepClone(customSkill.system.modifiers);
 
         let objIndex = modifiers.findIndex(obj => obj.id == itemId);
-        modifiers[objIndex][field] = value;
+        if (objIndex < 0 || !['name', 'value'].includes(field)) return;
+        modifiers[objIndex][field] = field === 'value' ? Number(value) : value;
 
-        customSkill.update({ 'system.modifiers': modifiers });
+        return customSkill.update({ 'system.modifiers': modifiers });
     }
 };

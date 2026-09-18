@@ -5,15 +5,15 @@ const fields = foundry.data.fields;
 export default class Stats extends foundry.abstract.DataModel {
     static defineSchema() {
         return {
-            int: new fields.SchemaField(stat('WITCHER.Actor.Stat.Int')),
-            ref: new fields.SchemaField(stat('WITCHER.Actor.Stat.Ref')),
-            dex: new fields.SchemaField(stat('WITCHER.Actor.Stat.Dex')),
-            body: new fields.SchemaField(stat('WITCHER.Actor.Stat.Body')),
-            spd: new fields.SchemaField(stat('WITCHER.Actor.Stat.Spd')),
-            emp: new fields.SchemaField(stat('WITCHER.Actor.Stat.Emp')),
-            cra: new fields.SchemaField(stat('WITCHER.Actor.Stat.Cra')),
-            will: new fields.SchemaField(stat('WITCHER.Actor.Stat.Will')),
-            luck: new fields.SchemaField(stat('WITCHER.Actor.Stat.Luck')),
+            int: new fields.SchemaField(stat('WITCHER.Actor.Stat.Int', 0, true)),
+            ref: new fields.SchemaField(stat('WITCHER.Actor.Stat.Ref', 0, true)),
+            dex: new fields.SchemaField(stat('WITCHER.Actor.Stat.Dex', 0, true)),
+            body: new fields.SchemaField(stat('WITCHER.Actor.Stat.Body', 0, true)),
+            spd: new fields.SchemaField(stat('WITCHER.Actor.Stat.Spd', 0, true)),
+            emp: new fields.SchemaField(stat('WITCHER.Actor.Stat.Emp', 0, true)),
+            cra: new fields.SchemaField(stat('WITCHER.Actor.Stat.Cra', 0, true)),
+            will: new fields.SchemaField(stat('WITCHER.Actor.Stat.Will', 0, true)),
+            luck: new fields.SchemaField(stat('WITCHER.Actor.Stat.Luck', 0, true)),
             toxicity: new fields.SchemaField(stat('WITCHER.Actor.Stat.Toxicity', 100))
         };
     }

@@ -1,10 +1,40 @@
+import { createEffectDocuments, updateEffectDocuments, isFamilySuppressed } from './effectFamilies.js';
+import { initializeEffectStart } from './effectApplication.js';
+import { parameterActor, withParameterChanges } from '../actor/parameterPersistence.js';
+import { routesParameterChange } from '../actor/parameterPreparation.js';
+
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export default class WitcherActiveEffect extends ActiveEffect {
+    static async createDocuments(data = [], operation = {}) {
+        return withParameterChanges(parameterActor(operation.parent), () =>
+            createEffectDocuments(data, operation, (rows, context) => super.createDocuments(rows, context)));
+    }
+
+    static async updateDocuments(changes = [], operation = {}) {
+        return withParameterChanges(parameterActor(operation.parent), () =>
+            updateEffectDocuments(changes, operation, (rows, context) => super.updateDocuments(rows, context)));
+    }
+
+    static async deleteDocuments(ids = [], operation = {}) {
+        return withParameterChanges(parameterActor(operation.parent), () => super.deleteDocuments(ids, operation));
+    }
+
+    /** Numeric rows are consumed by the system calculator, not a second time by core. */
+    shouldApplyChange(change, options) {
+        if (!super.shouldApplyChange(change, options)) return false;
+        if (options?.witcherNumeric) return true;
+        return !(this.type === 'base' && routesParameterChange(this.actor, change));
+    }
+
     get isSuppressed() {
+        return this.isSourceSuppressed || isFamilySuppressed(this);
+    }
+
+    get isSourceSuppressed() {
         if (
-            this.parent.system.isActive === false ||
-            this.parent.system.equipped === false ||
+            this.parent?.system?.isActive === false ||
+            this.parent?.system?.equipped === false ||
             this.system.applySelf === true ||
             this.system.applyOnTarget === true ||
             this.system.applyOnHit === true ||
@@ -12,7 +42,13 @@ export default class WitcherActiveEffect extends ActiveEffect {
         )
             return true;
 
-        return false;
+        return super.isSuppressed;
+    }
+
+    // A superseded source keeps aging; suppression must not pause its clock.
+    get isExpiryTrackable() {
+        return this.persisted && !this.inCompendium && this.isEmbedded &&
+            !this.disabled && !this.isSourceSuppressed && !!this.start && this.isTemporary;
     }
 
     get isDisabled() {
@@ -37,31 +73,18 @@ export default class WitcherActiveEffect extends ActiveEffect {
 
     /** @inheritDoc */
     async _preCreate(data, options, user) {
+        const actor = parameterActor(this.parent);
+        if (actor && data.start == null) {
+            const source = this.toObject();
+            source.start = null;
+            initializeEffectStart(source, actor);
+            const clock = { start: source.start, duration: source.duration };
+            this.updateSource(clock);
+            // Core respects explicit start fields. Queue correction runs only here.
+            Object.assign(data, clock);
+        }
         const allowed = await super._preCreate(data, options, user);
         if (allowed === false) return false;
-
-        if (
-            (this.parent instanceof foundry.documents.Actor || this.system.isTransferred) &&
-            this.start?.combat?.started
-        ) {
-            // Set start combatant to targeted actor's combatant, if present.
-            // Adjust the duration of round-based effects depending on the current turn order.
-            // If the target combatant has not acted yet (or is currently acting) we may need to decrease the duration.
-            const effectUpdate = {};
-            const combat = this.start.combat;
-            const combatant = combat.getCombatantsByActor(this.parent)[0];
-            if (combatant && combatant.turnNumber !== null) {
-                effectUpdate.start = { combatant: combatant.id };
-                const { units, value, expiry } = this.duration;
-                if (units === 'rounds' && ['turnStart', 'turnEnd'].includes(expiry)) {
-                    const isTurn = combatant.turnNumber === this.start.combat.turn;
-                    const upcoming = combatant.turnNumber > this.start.combat.turn;
-                    const decreaseDuration = upcoming || (expiry === 'turnEnd' && isTurn);
-                    if (decreaseDuration) effectUpdate.duration = { value: value - 1 };
-                }
-            }
-            this.updateSource(effectUpdate);
-        }
 
         for await (let change of this._source.system.changes) {
             if (change.key.includes('@skill')) {
@@ -111,10 +134,24 @@ export default class WitcherActiveEffect extends ActiveEffect {
         const allowed = await super._preUpdate(data, options, user);
         if (allowed === false) return false;
 
-        let phase = data.system?.applyAfterCalculations ? 'final' : 'initial';
+        const hasFlag = Object.hasOwn(data.system ?? {}, 'applyAfterCalculations') ||
+            Object.hasOwn(data, 'system.applyAfterCalculations');
+        const current = this._source?.system?.applyAfterCalculations ?? this.system.applyAfterCalculations;
+        const next = hasFlag ? (data.system?.applyAfterCalculations ?? data['system.applyAfterCalculations']) : current;
+        const phase = next ? 'final' : 'initial';
+        const changes = data.system?.changes ?? data['system.changes'];
+        const phaseChanged = hasFlag && next !== current;
+        if (!changes && !phaseChanged) return;
 
-        data.system?.changes.forEach(change => {
-            change.phase = phase;
-        });
+        // Explicitly switching the effect's phase moves all rows. Otherwise retain
+        // submitted per-row phases and use the effect setting only for missing ones.
+        const source = changes ?? this._source?.system?.changes ?? this.system.changes;
+        const updated = foundry.utils.deepClone(Object.values(source ?? {})).map(change => ({
+            ...change,
+            phase: phaseChanged ? phase : (change.phase ?? phase)
+        }));
+        data.system ??= {};
+        data.system.changes = updated;
+        delete data['system.changes'];
     }
 }

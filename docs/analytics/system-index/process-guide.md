@@ -69,8 +69,8 @@
 - _preUpdate ожидает super и останавливается при строго false. Затем читает только data.system?.applyAfterCalculations. Отсутствующий system пропускает обход; существующий system без подходящего changes может вызвать ошибку. Phase записывается в payload, сохранение выполняет Foundry.
 - Неизвестный skillMap-ключ возвращает пустую строку addActiveEffects ещё до групп. Имена effects служат подписью уже подготовленного числа; отсутствие имени не меняет арифметическую операцию поля.
 - rollSkillCheck читает stat.value до проверки dontAddAttr. Getter modifiedValue здесь не вызывается; собственный Item.activeEffectModifiers в rollCustomSkillCheck тоже не читается.
-- getCustomModifier ожидает prompt с rejectClose=true; отмена передаёт rejection caller. addPart принимает строку и не валидирует формулу как Roll.
-- extendedRoll ожидает evaluate и toMessage. Критический провал сохраняет полную fumbleAmount до ограничения вычитаемого. Порог зависит от threshold/defense/reversal; showSuccess не читается.
+- getCustomModifier ожидает prompt с rejectClose=true; отмена передаёт rejection caller. addPart в .00065 требует численную конечную поправку через общий formatRollModifier; подпись не участвует в вычислении.
+- extendedRoll ожидает evaluate и toMessage. Критический провал сохраняет полную fumbleAmount до ограничения вычитаемого. В .00065 null означает отсутствие порога; конечное число, включая−1/0, — проверку. Для reversal <= приT<=0 и < приT<=1 — явный провал даже при критическом0; обычные сравнения прежние. showSuccess не читается.
 - После toMessage вызовы setFlag не ожидаются. При showResult=false возвращается Roll с messageData, без создания сообщения здесь и без применения отдельного flags. Callback DOM возвращает Promise броска, но EventTarget его не ожидает.
 - Неперехваченные ошибки и внешние продолжения отмечены выходами. Partial не обещает исчерпывающей схемы всех исключений внешних конструкторов, библиотек и неверных произвольных данных.
 

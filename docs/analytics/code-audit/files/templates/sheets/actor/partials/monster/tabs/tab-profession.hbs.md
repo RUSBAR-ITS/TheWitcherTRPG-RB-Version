@@ -1,5 +1,11 @@
 # templates/sheets/actor/partials/monster/tabs/tab-profession.hbs
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Существующий definingSkill передаёт явный data-skill-path; девять слотов этим старым шаблоном по-прежнему не выводятся.
+
+[Исходник](../../../../../../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs); [проверка и пределы](../../../../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/partials/monster/tabs/tab-profession.hbs](../../../../../../../../../../templates/sheets/actor/partials/monster/tabs/tab-profession.hbs) |

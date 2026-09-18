@@ -1,3 +1,4 @@
+import { isManualDerivedStat } from '../../../data/actor/derivedStatData.js';
 const { HandlebarsApplicationMixin } = foundry.applications.api;
 const { ActorSheetV2 } = foundry.applications.sheets;
 import { skillMixin } from '../mixins/skillMixin.js';
@@ -51,6 +52,23 @@ export default class WitcherModifiersConfiguration extends HandlebarsApplication
         this.skillListener(html);
     }
 
+    _processFormData(event, form, formData) {
+        const data = super._processFormData(event, form, formData);
+        const flat = foundry.utils.flattenObject(data);
+        const allowed = {};
+        for (const [path, value] of Object.entries(flat)) {
+            let match = /^system\.derivedStats\.([^.]+)\.unmodifiedMax$/.exec(path);
+            if (match && isManualDerivedStat(match[1], this.document.system.customStat)) allowed[path] = value;
+            match = /^system\.stats\.([^.]+)\.(unmodifiedMax|baseCap)$/.exec(path);
+            if (match && this.document.system.stats[match[1]] &&
+                (match[2] !== 'baseCap' || Object.hasOwn(this.document.system.stats[match[1]], 'baseCap'))) allowed[path] = value;
+            match = /^system\.skills\.([^.]+)\.([^.]+)\.(value|baseCap|isProfession|isPickup|isLearned)$/.exec(path);
+            if (match && this.document.system.skills[match[1]]?.[match[2]]) allowed[path] = value;
+            if (path === 'system.reputation.unmodifiedMax') allowed[path] = value;
+        }
+        return foundry.utils.expandObject(allowed);
+    }
+
     async _prepareContext(options) {
         const context = await super._prepareContext(options);
         context.config = CONFIG.WITCHER;
@@ -59,7 +77,34 @@ export default class WitcherModifiersConfiguration extends HandlebarsApplication
             return obj;
         }, {});
 
-        context.system = this.document.system;
+        const prepared = this.document.system;
+        const source = this.document.toObject().system;
+        const statRows = group => Object.fromEntries(Object.entries(prepared[group]).map(([key, value]) => {
+            const raw = source[group]?.[key] ?? {};
+            const resource = ['hp', 'sta', 'resolve', 'focus', 'vigor', 'shield'].includes(key);
+            const canEditBase = group === 'stats' || isManualDerivedStat(key, prepared.customStat);
+            return [key, {
+                ...value,
+                unmodifiedMax: raw.unmodifiedMax,
+                baseCap: raw.baseCap,
+                hasBaseCap: Number.isFinite(raw.baseCap),
+                currentValue: resource || key === 'luck' ? value.max : value.value,
+                canEditBase
+            }];
+        }));
+        const skills = Object.fromEntries(Object.entries(prepared.skills).map(([attribute, group]) => [attribute,
+            Object.fromEntries(Object.entries(group).map(([key, skill]) => [key, {
+                ...skill,
+                value: source.skills[attribute][key].value,
+                baseCap: source.skills[attribute][key].baseCap,
+                currentValue: skill.modifiedValue ?? skill.value + (skill.activeEffectModifiers ?? 0)
+            }]))
+        ]));
+        context.system = {
+            ...prepared, stats: statRows('stats'), derivedStats: statRows('derivedStats'), skills,
+            reputation: { ...prepared.reputation, unmodifiedMax: source.reputation?.unmodifiedMax }
+        };
+        context.canPurchase = this.document.type === 'character';
         context.skillKey = this.skillKey;
         context.type = this.type;
 

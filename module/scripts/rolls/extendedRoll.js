@@ -62,13 +62,15 @@ export async function extendedRoll(rollFormula, messageData, config = new RollCo
     messageData.system.rollTotal = evaluatedRoll.total;
 
     //calculate overall success/failure for the attack/defense
-    if (config.threshold >= 0) {
+    if (Number.isFinite(config.threshold)) {
         let success;
         if (!config.reversal) {
             success = config.defense ? evaluatedRoll.total >= config.threshold : evaluatedRoll.total > config.threshold;
             evaluatedRoll.options.rollOver = evaluatedRoll.total - config.threshold;
         } else {
-            success = config.defense ? evaluatedRoll.total <= config.threshold : evaluatedRoll.total < config.threshold;
+            const impossible = config.defense ? config.threshold <= 0 : config.threshold <= 1;
+            success = !impossible && (config.defense
+                ? evaluatedRoll.total <= config.threshold : evaluatedRoll.total < config.threshold);
             evaluatedRoll.options.rollOver = config.threshold - evaluatedRoll.total;
         }
 

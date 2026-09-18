@@ -2246,52 +2246,82 @@ WITCHER.statusEffects = [
             {
                 key: 'system.skills.emp.seduction.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.emp.persuasion.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.emp.leadership.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.emp.charisma.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.emp.deceit.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.int.socialetq.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.will.intimidation.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.will.resistcoerc.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.emp.perception.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             },
             {
                 key: 'system.skills.emp.gambling.activeEffectModifiers',
                 type: 'add',
-                value: -3
+                value: -3,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             }
         ]
     },
@@ -2333,17 +2363,20 @@ WITCHER.statusEffects = [
             {
                 key: 'system.combatEffects.attackModifier.blinded',
                 type: 'override',
-                value: '{ "name": "WITCHER.statusEffects.blinded", "value": "-2" }'
+                value: '{ "name": "WITCHER.statusEffects.blinded", "value": "-3" }'
             },
             {
                 key: 'system.combatEffects.defenseModifier.blinded',
                 type: 'override',
-                value: '{ "name": "WITCHER.statusEffects.blinded", "value": "-2" }'
+                value: '{ "name": "WITCHER.statusEffects.blinded", "value": "-3" }'
             },
             {
                 key: 'system.skills.int.awareness.activeEffectModifiers',
                 type: 'add',
-                value: -5
+                value: -5,
+                affectsParameter: false,
+                affectsRoll: true,
+                optionalOnRoll: true
             }
         ]
     },

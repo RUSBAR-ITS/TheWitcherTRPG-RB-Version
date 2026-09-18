@@ -43,28 +43,52 @@
         "applySelf": false,
         "applyOnTarget": false,
         "applyOnHit": false,
-        "applyOnDamage": false
+        "applyOnDamage": false,
+        "changes": [
+          {
+            "key": "system.stats.spd.totalModifiers",
+            "value": -1,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": true,
+            "affectsRoll": false,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.ref.dodge.activeEffectModifiers",
+            "value": -1,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          },
+          {
+            "key": "system.skills.dex.athletics.activeEffectModifiers",
+            "value": -1,
+            "priority": null,
+            "type": "add",
+            "affectsParameter": false,
+            "affectsRoll": true,
+            "fullEffect": false,
+            "shiftsCap": false,
+            "affectsAdvancement": false,
+            "optionalOnRoll": false,
+            "excludedDerived": [],
+            "phase": "initial"
+          }
+        ]
       },
-      "changes": [
-        {
-          "key": "system.stats.spd.totalModifiers",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        },
-        {
-          "key": "system.skills.ref.dodge.activeEffectModifiers",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        },
-        {
-          "key": "system.skills.dex.athletics.activeEffectModifiers",
-          "mode": 2,
-          "value": "-1",
-          "priority": null
-        }
-      ],
       "description": "",
       "tint": "#ffffff",
       "transfer": true,

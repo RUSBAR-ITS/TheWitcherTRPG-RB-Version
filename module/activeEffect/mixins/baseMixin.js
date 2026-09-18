@@ -92,12 +92,12 @@ export let baseMixin = {
             strongStrikeAttackBonus: {
                 group: game.i18n.localize('WITCHER.Effect.wizard.lifepath'),
                 label: label + 'strongStrikeAttackBonus',
-                value: path + 'attacks.strong'
+                value: path + 'attacks.strong.value'
             },
             jointStrikeAttackBonus: {
                 group: game.i18n.localize('WITCHER.Effect.wizard.lifepath'),
                 label: label + 'jointStrikeAttackBonus',
-                value: path + 'attacks.joint'
+                value: path + 'attacks.joint.value'
             },
             shieldParryBonus: {
                 group: game.i18n.localize('WITCHER.Effect.wizard.lifepath'),

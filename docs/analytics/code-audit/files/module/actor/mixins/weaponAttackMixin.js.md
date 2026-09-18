@@ -1,5 +1,11 @@
 # module/actor/mixins/weaponAttackMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** constructBaseAttackFormula асинхронно вызывает prepareCheck для actual builtin/замещающего profession адреса, action attack и strike. Все fresh выборы серии завершаются до STA/ammo/throwable; null прекращает всё действие до расходов. Каждый удар использует готовую основу, старый навык не добавляется. handleStrikeType читает .value; в основном пути lifepath уже учтён collector и не повторяется. Damage-only не получает skill chooser.
+
+[Исходник](../../../../../../../module/actor/mixins/weaponAttackMixin.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/weaponAttackMixin.js](../../../../../../../module/actor/mixins/weaponAttackMixin.js) |

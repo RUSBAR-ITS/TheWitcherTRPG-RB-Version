@@ -1,5 +1,14 @@
 # module/data/chatMessage/templates/damageData.js
 
+## Текущее состояние — 14.3.1.00068 (TASK-0010.009)
+
+2026-09-18. **Назначение:** Общая сохраняемая схема урона.
+
+**Методы, сущности, действия и зависимости:** Добавлено duration: nullable NumberField, integer, min=0, initial=null. AttackMessageData и DamageMessageData включают поле через эту общую schema. Producer нормализует и проверяет число до сообщения; отсутствие не превращается в0.
+
+[Проверки доставки и пакетного истечения](../../../../../../task-0010-009-checks.md). Браузерная приёмка впереди. Ниже, если присутствуют, сохранены описания прежних срезов.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/chatMessage/templates/damageData.js](../../../../../../../../module/data/chatMessage/templates/damageData.js) |

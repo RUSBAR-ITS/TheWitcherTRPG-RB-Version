@@ -30,7 +30,7 @@ export let damageMixin = {
             .forEach(effect => applyStatusEffectToActor(this.uuid, effect.statusEffect, damageObject.duration));
 
         if (damageObject.itemUuid) {
-            applyActiveEffectToActorViaId(this.uuid, damageObject.itemUuid, 'applyOnDamage', damageObject.duration);
+            await applyActiveEffectToActorViaId(this.uuid, damageObject.itemUuid, 'applyOnDamage', damageObject.duration);
         }
     },
 

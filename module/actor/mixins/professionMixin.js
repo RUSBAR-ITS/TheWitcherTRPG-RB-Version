@@ -1,7 +1,9 @@
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
+import { resolveRollTarget } from '../rollContext.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
-import { getActorOwner, getCustomModifier } from '../../scripts/helper.js';
+import { getActorOwner } from '../../scripts/helper.js';
 
 const DialogV2 = foundry.applications.api.DialogV2;
 
@@ -28,25 +30,28 @@ export let professionMixin = {
     },
 
     async _onProfessionRoll(event) {
-        let name = event.currentTarget.closest('.profession-display').dataset.name;
-        let skill = this.findSkillWithName(name).skill;
+        const element = event.currentTarget.closest('.profession-display');
+        const skillTarget = { kind: 'profession', itemId: element.closest('.item').dataset.itemId,
+            path: element.dataset.skillPath };
+        const skill = resolveRollTarget(this, skillTarget).model;
 
         if (skill.skillAttack.isAttack) {
-            this.doProfessionAttackRoll(skill);
+            return this.doProfessionAttackRoll(skillTarget);
         } else if (skill.skillUsage.hasCustomEffect) {
-            this.doProfessionSkillUsage(skill);
+            return this.doProfessionSkillUsage(skillTarget);
         } else if (skill.thresholds.hasThresholds) {
-            this.doProfessionThreshold(skill);
+            return this.doProfessionThreshold(skillTarget);
         } else {
-            this.doProfessionSkillRoll(skill);
+            return this.doProfessionSkillRoll(skillTarget);
         }
     },
 
-    async doProfessionAttackRoll(skill) {
+    async doProfessionAttackRoll(skillTarget) {
+        const skill = resolveRollTarget(this, skillTarget).model;
         let skillAttack = skill.skillAttack;
 
         if (skillAttack.usesWeapon) {
-            return this.doProfessionWeaponAttackRoll(skill);
+            return this.doProfessionWeaponAttackRoll(skillTarget);
         }
 
         let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
@@ -150,12 +155,9 @@ export let professionMixin = {
         };
         damage.type = damageType;
 
-        let attFormula = '1d10+';
-        attFormula += !displayRollDetails
-            ? `${this.system.stats[skill.stat].value}+${skill.level ?? 0}`
-            : `${this.system.stats[skill.stat].value}[${game.i18n.localize(CONFIG.WITCHER.statMap[skill.stat].label)}]+${skill.level ?? 0}[${skill.skillName}]`;
-
-        attFormula += this.addActiveEffects(attack.name);
+        const check = await prepareCheck(this, { target: skillTarget, action: 'attack' }, { manual: customAtt });
+        if (!check) return null;
+        let attFormula = check.formula;
 
         if (targetOutsideLOS) {
             attFormula += !displayRollDetails
@@ -194,12 +196,6 @@ export let professionMixin = {
                 : `+2[${game.i18n.localize('WITCHER.Dialog.attackIsSilhouetted')}]`;
         }
 
-        if (customAtt != '0') {
-            attFormula += !displayRollDetails
-                ? `+${customAtt}`
-                : `+${customAtt}[${game.i18n.localize('WITCHER.Settings.Custom')}]`;
-        }
-
         if (customDmg != '0') {
             damageFormula += !displayRollDetails
                 ? `+${customDmg}`
@@ -229,7 +225,8 @@ export let professionMixin = {
         await extendedRoll(attFormula, messageData);
     },
 
-    async doProfessionWeaponAttackRoll(skill) {
+    async doProfessionWeaponAttackRoll(skillTarget) {
+        const skill = resolveRollTarget(this, skillTarget).model;
         let weapons = this.items
             .filter(item => item.type === 'weapon')
             .filter(weapon => weapon.system.attackOptions.has([...skill.skillAttack.attackOptions][0]));
@@ -253,13 +250,14 @@ export let professionMixin = {
         });
 
         let weapon = this.items.get(itemId);
-        this.weaponAttack(weapon, {
-            skillReplacement: skill,
+        return this.weaponAttack(weapon, {
+            skillReplacement: skillTarget,
             additionalDamageProperties: skill.skillAttack.damageProperties
         });
     },
 
-    async doProfessionSkillUsage(skill) {
+    async doProfessionSkillUsage(skillTarget) {
+        const skill = resolveRollTarget(this, skillTarget).model;
         let target;
         if (skill.skillUsage.applyOnTarget) {
             target = game.user.targets.first()?.actor;
@@ -275,16 +273,17 @@ export let professionMixin = {
             let temporaryHealth = skill.skillUsage.temporaryHealth;
             let targetStat = target.system.stats[temporaryHealth.difficultyCheck.stat];
             let threshold = targetStat.max * temporaryHealth.difficultyCheck.multiplier;
-            let roll = await this.doProfessionSkillRoll(skill, {
+            let roll = await this.doProfessionSkillRoll(skillTarget, {
                 threshold,
                 showResult: false
             });
-            roll.toMessage(roll.messageData);
+            if (!roll) return null;
+            await roll.toMessage(roll.messageData);
 
             if (roll.options.rollOver > 0) {
                 let queryData = {};
                 queryData.actorUuid = target.uuid;
-                queryData.itemUuid = this.getList('profession')[0].uuid;
+                queryData.itemUuid = this.items.get(skillTarget.itemId).uuid;
 
                 let duration = eval(
                     temporaryHealth.temporaryHp.duration.replace('@level', skill.level).match(/\d+\*?\d+/g)[0]
@@ -320,7 +319,8 @@ export let professionMixin = {
         }
     },
 
-    async doProfessionThreshold(skill) {
+    async doProfessionThreshold(skillTarget) {
+        const skill = resolveRollTarget(this, skillTarget).model;
         let thresholds = Object.entries(skill.thresholds.thresholds);
 
         let choosenThreshold;
@@ -342,74 +342,23 @@ export let professionMixin = {
             });
         }
 
-        this.doProfessionSkillRoll(skill, {
+        return this.doProfessionSkillRoll(skillTarget, {
             threshold: skill.thresholds.thresholds[choosenThreshold].value,
             thresholdDesc: skill.thresholds.thresholds[choosenThreshold].name
         });
     },
 
-    async doProfessionSkillRoll(
-        skill,
-        { threshold, thresholdDesc, showResult = true } = { threshold: 0, showResult: true }
-    ) {
-        let displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
-        let stat = skill.stat;
-        let level = skill.level || 0;
-
-        let definition = skill.definition;
-        let statValue = this.system.stats[stat].value;
-        let statName = CONFIG.WITCHER.statMap[stat].label;
-
-        let rollFormula = !displayRollDetails
-            ? `1d10+${statValue}+${level}`
-            : `1d10+${statValue}[${game.i18n.localize(statName)}]+${level}[${skill.skillName}]`;
-
-        rollFormula += await getCustomModifier(
-            `${game.i18n.localize('WITCHER.Dialog.profession.skill')}: ${skill.skillName}`
-        );
-
-        let messageData = new ChatMessageData(this.actor, `<h2>${skill.skillName}</h2>${definition}`);
-
-        let config = new RollConfig();
-        config.showCrit = true;
-        config.threshold = threshold;
+    async doProfessionSkillRoll(skillTarget, { threshold = null, thresholdDesc = '', showResult = true } = {}) {
+        const skill = resolveRollTarget(this, skillTarget).model;
+        const check = await prepareCheck(this, { target: skillTarget, threshold, comparison: '>' }, {
+            promptManual: true,
+            title: `${game.i18n.localize('WITCHER.Dialog.profession.skill')}: ${skill.skillName}`
+        });
+        if (!check) return null;
+        const messageData = new ChatMessageData(this, `<h2>${skill.skillName}</h2>${skill.definition}`);
+        const config = new RollConfig({ showResult });
+        config.threshold = check.threshold;
         config.thresholdDesc = thresholdDesc;
-        config.showResult = showResult;
-        return extendedRoll(rollFormula, messageData, config);
-    },
-
-    findSkillWithName(skillName) {
-        let profession = this.getList('profession')[0];
-
-        if (profession.system.definingSkill.skillName === skillName) {
-            return { skill: profession.system.definingSkill, path: 'definingSkill' };
-        }
-
-        if (this.findSkillWithNameInSkillPath(profession.system.skillPath1, skillName)) {
-            let skill = this.findSkillWithNameInSkillPath(profession.system.skillPath1, skillName);
-            return { skill: skill.skill, path: 'skillPath1.' + skill.path };
-        }
-        if (this.findSkillWithNameInSkillPath(profession.system.skillPath2, skillName)) {
-            let skill = this.findSkillWithNameInSkillPath(profession.system.skillPath2, skillName);
-            return { skill: skill.skill, path: 'skillPath2.' + skill.path };
-        }
-        if (this.findSkillWithNameInSkillPath(profession.system.skillPath3, skillName)) {
-            let skill = this.findSkillWithNameInSkillPath(profession.system.skillPath3, skillName);
-            return { skill: skill.skill, path: 'skillPath3.' + skill.path };
-        }
-    },
-
-    findSkillWithNameInSkillPath(skillPath, skillName) {
-        if (skillPath.skill1.skillName === skillName) {
-            return { skill: skillPath.skill1, path: 'skill1' };
-        }
-        if (skillPath.skill2.skillName === skillName) {
-            return { skill: skillPath.skill2, path: 'skill2' };
-        }
-        if (skillPath.skill3.skillName === skillName) {
-            return { skill: skillPath.skill3, path: 'skill3' };
-        }
-
-        return null;
+        return extendedRoll(check.formula, messageData, config);
     }
 };

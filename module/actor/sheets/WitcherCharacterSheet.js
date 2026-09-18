@@ -1,3 +1,4 @@
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import WitcherActorSheet from './WitcherActorSheet.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
@@ -293,27 +294,20 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
                 Craft: {
                     label: `${game.i18n.localize('WITCHER.Dialog.ButtonCraft')}`,
                     callback: async html => {
-                        let stat = this.actor.system.stats.cra.value;
-                        let statName = game.i18n.localize(this.actor.system.stats.cra.label);
-                        let skill = this.actor.system.skills.cra.alchemy.value;
-                        let skillName = game.i18n.localize(this.actor.system.skills.cra.alchemy.label);
+                        const skillKey = item.isAlchemicalCraft() ? 'alchemy' : 'crafting';
+                        let skillName = game.i18n.localize(this.actor.system.skills.cra[skillKey].label);
                         let hasDiagram = html.find('[name=hasDiagram]').prop('checked');
                         let realCraft = html.find('[name=realCraft]').prop('checked');
                         skillName = skillName.replace(' (2)', '');
                         (messageData.flavor = `<h1>${game.i18n.localize('WITCHER.Dialog.CraftingAlchemycal')}</h1>`),
                             (messageData.flavor += `<label>${game.i18n.localize('WITCHER.Dialog.Crafting')}:</label> <b>${item.name}</b> <br />`),
                             (messageData.flavor += `<label>${game.i18n.localize('WITCHER.Dialog.after')}:</label> <b>${item.system.craftingTime}</b> <br />`),
-                            (messageData.flavor += `${game.i18n.localize('WITCHER.Diagram.alchemyDC')} ${item.system.alchemyDC}`);
+                            (messageData.flavor += `${game.i18n.localize(`WITCHER.Diagram.${skillKey === 'alchemy' ? 'alchemyDC' : 'craftingDC'}`)} ${skillKey === 'alchemy' ? item.system.alchemyDC : item.system.craftingDC}`);
 
-                        if (!item.isAlchemicalCraft()) {
-                            stat = this.actor.system.stats.cra.value;
-                            skill = this.actor.system.skills.cra.crafting.value;
-                            messageData.flavor = `${game.i18n.localize('WITCHER.Diagram.craftingDC')} ${item.system.craftingDC}`;
-                        }
-
-                        let rollFormula = !displayRollDetails
-                            ? `1d10+${stat}+${skill}`
-                            : `1d10+${stat}[${statName}]+${skill}[${skillName}]`;
+                        const check = await prepareCheck(this.actor, { target: { kind: 'builtin', key: skillKey },
+                            action: 'alchemy' });
+                        if (!check) return null;
+                        let rollFormula = check.formula;
 
                         if (hasDiagram) {
                             rollFormula += !displayRollDetails
@@ -321,19 +315,18 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
                                 : `+2[${game.i18n.localize('WITCHER.Dialog.Diagram')}]`;
                         }
 
-                        rollFormula += this.actor.addActiveEffects('alchemy');
 
                         let config = new RollConfig();
                         config.showCrit = true;
                         config.showSuccess = true;
-                        config.threshold = item.system.alchemyDC;
+                        config.threshold = skillKey === 'alchemy' ? item.system.alchemyDC : item.system.craftingDC;
                         config.thresholdDesc = skillName;
                         config.messageOnSuccess = game.i18n.localize('WITCHER.craft.ItemsSuccessfullyCrafted');
                         config.messageOnFailure = game.i18n.localize('WITCHER.craft.ItemsNotCrafted');
 
                         if (realCraft) {
                             if (areCraftComponentsEnough) {
-                                item.realCraft(rollFormula, messageData, config);
+                                return item.realCraft(rollFormula, messageData, config);
                             } else {
                                 return ui.notifications.error(
                                     game.i18n.localize('WITCHER.Dialog.NoComponents') +
@@ -386,9 +379,6 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
                 Craft: {
                     label: `${game.i18n.localize('WITCHER.Dialog.ButtonCraft')}`,
                     callback: async html => {
-                        let stat = this.actor.system.stats.cra.value;
-                        let statName = game.i18n.localize(this.actor.system.stats.cra.label);
-                        let skill = this.actor.system.skills.cra.crafting.value;
                         let skillName = game.i18n.localize(this.actor.system.skills.cra.crafting.label);
                         let hasDiagram = html.find('[name=hasDiagram]').prop('checked');
                         let realCraft = html.find('[name=realCraft]').prop('checked');
@@ -398,10 +388,10 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
                             (messageData.flavor += `<label>${game.i18n.localize('WITCHER.Dialog.after')}:</label> <b>${item.system.craftingTime}</b> <br />`),
                             (messageData.flavor += `${game.i18n.localize('WITCHER.Diagram.craftingDC')} ${item.system.craftingDC}`);
 
-                        let rollFormula = '1d10 +';
-                        rollFormula += !displayRollDetails
-                            ? `${stat} + ${skill}`
-                            : `${stat}[${statName}] + ${skill}[${skillName}]`;
+                        const check = await prepareCheck(this.actor, { target: { kind: 'builtin', key: 'crafting' },
+                            action: 'craft' });
+                        if (!check) return null;
+                        let rollFormula = check.formula;
 
                         if (hasDiagram) {
                             rollFormula += !displayRollDetails
@@ -409,7 +399,6 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
                                 : `+2[${game.i18n.localize('WITCHER.Dialog.Diagram')}]`;
                         }
 
-                        rollFormula += this.actor.addActiveEffects('crafting');
 
                         let config = new RollConfig();
                         config.showCrit = true;
@@ -421,7 +410,7 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
 
                         if (realCraft) {
                             if (areCraftComponentsEnough) {
-                                item.realCraft(rollFormula, messageData, config);
+                                return item.realCraft(rollFormula, messageData, config);
                             } else {
                                 return ui.notifications.error(
                                     game.i18n.localize('WITCHER.Dialog.NoComponents') +

@@ -5,7 +5,7 @@ export var RollConfig = (function () {
             showResult: true
         }) {
             this.defense = false;
-            this.threshold = -1;
+            this.threshold = null;
             this.showCrit = true;
             this.showSuccess = true;
             this.showResult = options.showResult;

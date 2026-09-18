@@ -1,5 +1,15 @@
 # module/activeEffect/WitcherActiveEffectSheet.js
 
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Редактор строк, их настроек и мастер групповых изменений.
+
+**Сущности, действия и зависимости:** _readFormData использует штатную обработку формы; _modifierEditorContext/шаблоны рисуют настройки. _processChangeSubmission сохраняет native десериализацию и читает disabled checkbox явно. _syncModifierControls/_onChangeForm переключают UI без записи документа. addChangeAction и wizardAction копируют актуальные формы и возвращают Promise submit; cancel не пишет. autocomplete/_renderChange используют modifierContext.getEffectTargetType; custom render остаётся native. Зависимости: modifierContext, прежние mixins, новые HBS, native ActiveEffectConfig/FormDataExtended/DialogV2.
+
+[Исходник](../../../../../../module/activeEffect/WitcherActiveEffectSheet.js), [проверки и границы](../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 ## Текущая реализация — issue-00334, 14.3.1.00022
 
 Редактор ActiveEffect и его элементы на вкладке changes. Изменение 2026-09-17 по [issue-00334](../../../../../issues/closed/issue-00334.md); основание — исходники, а не новая браузерная приёмка.

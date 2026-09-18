@@ -66,16 +66,14 @@ class DefenseExpansion(unittest.TestCase):
         self.assertIn('return this.defenseProperties.isApplicableDefense(attack)',self.source(125)[70])
 
     def test_defense_formula_cost_and_independent_roll_configuration(self):
-        s=self.source(16);formula='\n'.join(s[130:185])
-        self.assertLess(formula.index('this.handleExtraDefense'),formula.index('let skillMapEntry'))
-        for a,token in [(138,'this.system.stats[skillMapEntry.attribute.name].value'),(139,'skillOverride?.skill ??'),(156,'weapon?.system.defenseProperties?.parrying'),(158,'Math.abs(modifier)'),(169,"customDef != '0'"),(180,'this.addActiveEffects(skillName)'),(181,'this.addDefenseModifiers()'),(183,"skillName != 'resistmagic'"),(184,"rollFormula = '10[Stun]'"),(259,'sta.value - 1'),(260,'newSta < 0'),(265,"'system.derivedStats.sta.value': newSta"),(281,"action === 'parrythrown'")]:self.assertIn(token,s[a-1])
-        self.assertNotIn('await','\n'.join(s[256:270]));self.assertIn("value: 'parryThrown'",self.source(209)[252])
-        own='\n'.join(s[248:255]);self.assertIn('Object.values(this.system.combatEffects.defenseModifier)',own);self.assertIn('` ${mod.value}',own)
-        self.assertIn('TypedObjectField',self.source(74)[12])
-        q='actor.defenseMixin.skillDefense';out={r['to'] for r in self.edges(q,'calls')};self.assertIn(self.q['actor.defenseMixin.addDefenseModifiers'],out);self.assertNotIn(self.q['actor.modifierMixin.addDefenseModifiers'],out)
-        self.assertIn('config.showResult = false',s[293]);self.assertIn('config.defense = true',s[294]);self.assertIn('config.threshold = totalAttack',s[295])
-        self.assertIn('evaluatedRoll.total >= config.threshold',self.source(202)[67]);self.assertIn('evaluatedRoll.total < config.threshold',self.source(202)[70])
-        self.assertFalse(any(p['entry']['entity']==self.q['extendedRoll'] for p in self.new['processes']))
+        s='\n'.join(self.source(16))
+        self.assertLess(s.index('this.handleExtraDefense'),s.index('let skillMapEntry'))
+        for token in ['this.system.stats[skillMapEntry.attribute.name].value','skillOverride?.skill ??','weapon?.system.defenseProperties?.parrying','Math.abs(modifier)',"customDef != '0'",'this.addActiveEffects(skillName)','this.addDefenseModifiers()',"rollFormula = '10[Stun]'",'sta.value - 1','newSta < 0',"'system.derivedStats.sta.value': newSta"]:self.assertIn(token,s)
+        self.assertIn("return combatModifierFormula(this, 'defenseModifier')",s)
+        self.assertIn(self.q['combatModifierFormula'],{r['to']for r in self.edges('actor.defenseMixin.addDefenseModifiers','calls')})
+        out={r['to']for r in self.edges('actor.defenseMixin.skillDefense','calls')};self.assertIn(self.q['actor.defenseMixin.addDefenseModifiers'],out);self.assertNotIn(self.q['actor.modifierMixin.addDefenseModifiers'],out)
+        for token in ['config.showResult = false','config.defense = true','config.threshold = totalAttack']:self.assertIn(token,s)
+        ext='\n'.join(self.source(202));self.assertIn('evaluatedRoll.total >= config.threshold',ext);self.assertIn('evaluatedRoll.total < config.threshold',ext)
 
     def test_crit_thresholds_raw_model_distinction_and_locations(self):
         s=self.source(16);crit='\n'.join(s[309:353]);triples=re.findall(r"criticalLevel: '(\w+)',\s+critdamage: (\d+),\s+bonusdamage: (\d+)",crit)

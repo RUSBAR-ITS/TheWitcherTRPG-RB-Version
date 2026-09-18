@@ -5,6 +5,8 @@ const DialogV2 = foundry.applications.api.DialogV2
 export async function rollClue(clueItem) {
     let actor = await getInteractActor()
 
+    if (!actor) return null;
+
     let availableSkills = clueItem.system.skillsUsed;
 
     let choosenSkill;
@@ -40,5 +42,6 @@ export async function rollClue(clueItem) {
         })
     }
 
-    actor.rollSkill(choosenSkill);
+    if (!availableSkills.includes(choosenSkill)) return null;
+    return actor.rollSkill(choosenSkill, null, { action: 'investigation' });
 }

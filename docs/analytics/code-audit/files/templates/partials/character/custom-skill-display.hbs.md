@@ -1,5 +1,11 @@
 # templates/partials/character/custom-skill-display.hbs
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Получает item, выводит item.name и system.modifiedValue, состояние system; data-action=rollCustomSkill/data-item-id. Не использует builtin имя как key. Экранирование Handlebars сохранено.
+
+[Исходник](../../../../../../../templates/partials/character/custom-skill-display.hbs); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/character/custom-skill-display.hbs](../../../../../../../templates/partials/character/custom-skill-display.hbs) |

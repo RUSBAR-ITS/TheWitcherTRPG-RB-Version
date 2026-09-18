@@ -1,5 +1,11 @@
 # module/scripts/rollConfig.js
 
+## Текущее состояние
+
+**14.3.1.00065, TASK-0010.007.** RollConfig.threshold по умолчанию null. Конечное число, включая0/−1, задаёт реальное сравнение. defense/reversal сохраняют прежнее соответствие >/>=/</<=. showCrit остаётся отдельной существующей настройкой.
+
+[Исходник](../../../../../../module/scripts/rollConfig.js); [проверка и пределы](../../../../task-0010-007-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/rollConfig.js](../../../../../../module/scripts/rollConfig.js) |

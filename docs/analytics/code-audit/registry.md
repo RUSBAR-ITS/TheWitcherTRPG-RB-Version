@@ -1,5 +1,71 @@
 # Реестр файлов системы
 
+**Актуализация .00071:** TASK-0010.012 — статический итог; исходники реализации и компедиум .011 сохранены. Изменена только версия system.json и его карточка; общий состав 641 исходник прежний. [Доказательства и границы .013](../task-0010-012-static-acceptance.md).
+
+**Актуализация .00070:** установлен компедиум травм, обновлена версия манифеста/карточка. Состав641 исходник прежний; базы LevelDB в пофайловый аудит не входят. [Протокол](../task-0010-011-pack-installation.md).
+
+
+**Актуализация .00069:** TASK-0010.010;62 JSON критических травм, config.js и версия манифеста, состав641 файл прежний. [Матрица/проверки](../task-0010-010-content-matrix.md); карточки затронутых файлов обновлены.
+
+
+**Актуализация .00068:** TASK-0010.009, три новых модуля, реестр641 файл. [Локальные результаты](../task-0010-009-checks.md).
+
+| Файл | Назначение | Документация |
+| --- | --- | --- |
+| [module/activeEffect/effectApplication.js](../../../module/activeEffect/effectApplication.js) | Копия, длительность, часы и проверка записи | [Карточка](files/module/activeEffect/effectApplication.js.md) |
+| [module/activeEffect/effectFamilies.js](../../../module/activeEffect/effectFamilies.js) | Семейства, назначение и выбор активного источника | [Карточка](files/module/activeEffect/effectFamilies.js.md) |
+| [module/activeEffect/effectExpiry.js](../../../module/activeEffect/effectExpiry.js) | Пересчёт после всего пакета истечения | [Карточка](files/module/activeEffect/effectExpiry.js.md) |
+
+**Актуализация .00067:** исправление issue-00111; JS конфигурации и версия изменены, связанный HBS проверен без изменения. Новых исходников нет, реестр638 файлов. [Проверки](../issue-00111-checks.md).
+
+**Актуализация .00066:** TASK-0010.008,29 исходников,1 новый файл; реестр **638 файлов**. [Проверки](../task-0010-008-checks.md).
+
+| Файл | Назначение | Документация |
+| --- | --- | --- |
+| [module/scripts/rolls/prepareCheck.js](../../../module/scripts/rolls/prepareCheck.js) | Подготовка игровой проверки | [Карточка](files/module/scripts/rolls/prepareCheck.js.md) |
+
+**Актуализация .00065:** TASK-0010.007,12 исходников,4 новых файла; реестр **637 файлов**. [Проверки](../task-0010-007-checks.md).
+
+| Файл | Назначение | Документация |
+| --- | --- | --- |
+| [module/actor/rollContext.js](../../../module/actor/rollContext.js) | Адреса и числовые вклады одной проверки. | [Карточка](files/module/actor/rollContext.js.md) |
+| [module/scripts/rolls/rollModifiers.js](../../../module/scripts/rolls/rollModifiers.js) | Единый формат численного вклада в Roll. | [Карточка](files/module/scripts/rolls/rollModifiers.js.md) |
+| [module/scripts/rolls/conditionalModifiers.js](../../../module/scripts/rolls/conditionalModifiers.js) | Выбор условных строк после определения контекста. | [Карточка](files/module/scripts/rolls/conditionalModifiers.js.md) |
+| [templates/dialog/conditional-modifiers.hbs](../../../templates/dialog/conditional-modifiers.hbs) | Список условных строк без сохранённого выбора. | [Карточка](files/templates/dialog/conditional-modifiers.hbs.md) |
+
+
+**Актуализация .00064:** TASK-0010.006,13 исходников,2 новых модуля; реестр **633 файла**. [Проверки](../task-0010-006-checks.md).
+
+| Файл | Назначение | Документация | Проверка |
+| --- | --- | --- | --- |
+| [module/actor/parameterAdvancement.js](../../../module/actor/parameterAdvancement.js) | Расчёт допуска/цены и покупка уровня. | [Карточка](files/module/actor/parameterAdvancement.js.md) | TASK-0010.006; браузер в .013 |
+| [module/actor/parameterPersistence.js](../../../module/actor/parameterPersistence.js) | Сохранение ограничений после завершённого изменения воздействий. | [Карточка](files/module/actor/parameterPersistence.js.md) | TASK-0010.006; браузер в .013 |
+
+
+**Актуализация .00063:** TASK-0010.005, семь исходников включая два новых модуля; реестр **631 файл**. [Проверки](../task-0010-005-checks.md).
+
+| Файл | Назначение | Документация | Проверка |
+| --- | --- | --- | --- |
+| [module/actor/derivedPreparation.js](../../../module/actor/derivedPreparation.js) | Расчёт производных с исключениями по строкам эффекта. | [Описание](files/module/actor/derivedPreparation.js.md) | TASK-0010.005 |
+| [module/data/actor/derivedStatData.js](../../../module/data/actor/derivedStatData.js) | Общие формулы и граница ручной базы. | [Описание](files/module/data/actor/derivedStatData.js.md) | TASK-0010.005 |
+
+**Актуализация .00062:** TASK-0010.004, пять изменённых исходников, два новых модуля; текущий реестр **629 файлов**. [Проверки](../task-0010-004-checks.md).
+
+| Файл | Назначение | Документация | Проверка |
+| --- | --- | --- | --- |
+| [module/activeEffect/parameterCalculation.js](../../../module/activeEffect/parameterCalculation.js) | Чистая арифметика числовых модификаторов. | [Карточка](files/module/activeEffect/parameterCalculation.js.md) | Изолированная .004; браузер в .013 |
+| [module/actor/parameterPreparation.js](../../../module/actor/parameterPreparation.js) | Маршрутизация и временные входы расчёта Actor. | [Карточка](files/module/actor/parameterPreparation.js.md) | Изолированная .004; браузер в .013 |
+
+
+**Актуализация .00061:** TASK-0010.003 — 20 исходников, включая три новых файла. Текущий реестр **627 файлов**. [Реализация/проверки](../task-0010-003-checks.md); новые числовые настройки ещё не применяются.
+
+| Файл | Назначение | Документация | Проверка |
+| --- | --- | --- | --- |
+| [module/activeEffect/modifierContext.js](../../../module/activeEffect/modifierContext.js) | Общие настройки и определение цели числового модификатора. | [Карточка](files/module/activeEffect/modifierContext.js.md) | Статическая .003; браузер в .013 |
+| [templates/sheets/activeEffect/change.hbs](../../../templates/sheets/activeEffect/change.hbs) | Строка числового изменения с раскрываемыми настройками. | [Карточка](files/templates/sheets/activeEffect/change.hbs.md) | Статическая .003; браузер в .013 |
+| [templates/sheets/activeEffect/modifier-settings.hbs](../../../templates/sheets/activeEffect/modifier-settings.hbs) | Общая форма шести флагов и исключений производных. | [Карточка](files/templates/sheets/activeEffect/modifier-settings.hbs.md) | Статическая .003; браузер в .013 |
+
+
 **Актуализация .00049:** изменённые JS/шаблон/ru/en и 94 карточки JSON травм пересмотрены по [реализации TASK-0009](../task-0009-lifecycle-checks.md). Состав исходников 624; компедиум собран/установлен, проверка мира ожидается.
 
 Актуализация **14.3.1.00048**: TASK-0009.002, три новых файла; текущий реестр **624 файла**. Код модели/редактора проверен изолированно, мир не запускался.

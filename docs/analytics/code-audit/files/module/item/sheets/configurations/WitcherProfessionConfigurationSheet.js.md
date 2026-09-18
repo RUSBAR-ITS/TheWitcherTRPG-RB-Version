@@ -1,5 +1,11 @@
 # module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js
 
+## Текущее состояние
+
+**14.3.1.00067, issue-00111.** Регистрация removeEffectDamageProperties соответствует HBS; _oRemoveEffectDamageProperties(event,element) получает ближайшую строку от element. Путь слота/ID/return Item.update из .008 сохранены. Все шесть CRUD используют findSkillByPath; имя не адрес. Подключение удаления проверено локально через тела core dispatcher; браузерная приёмка впереди.
+
+[Исходник](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js); [проверка и пределы](../../../../../../issue-00111-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) |

@@ -1,5 +1,11 @@
 # module/actor/mixins/modifierMixin.js
 
+## Текущее состояние
+
+**14.3.1.00065, TASK-0010.007.** combatModifierFormula читает prepared combat .value и rollExtra и передаёт числа/подписи в rollModifiers.formatRollContributions. addAttackModifiers и addDefenseModifiers делегируют ему. addActiveEffects сохраняет legacy builtin API, извлекает подписи из prepared rows либо appliedEffects, безопасно сопоставляет группы через optional includes. Утерянное имя не уничтожает число. Это не новый общий сборщик; полная замена игровых формул — .008.
+
+[Исходник](../../../../../../../module/actor/mixins/modifierMixin.js); [проверка и пределы](../../../../../task-0010-007-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/modifierMixin.js](../../../../../../../module/actor/mixins/modifierMixin.js) |

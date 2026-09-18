@@ -1,3 +1,5 @@
+import { effectIdentityFields, validateEffectIdentity } from './witcherActiveEffectData.js';
+
 const fields = foundry.data.fields;
 
 export default class WitcherTemporaryItemImprovementData extends foundry.data.ActiveEffectTypeDataModel {
@@ -8,6 +10,7 @@ export default class WitcherTemporaryItemImprovementData extends foundry.data.Ac
     static defineSchema() {
         return {
             ...super.defineSchema(),
+            ...effectIdentityFields(),
             applySelf: new fields.BooleanField({
                 initial: false,
                 label: 'WITCHER.Effect.applySelf'
@@ -18,5 +21,9 @@ export default class WitcherTemporaryItemImprovementData extends foundry.data.Ac
             }),
             isTransferred: new fields.BooleanField({ initial: false })
         };
+    }
+
+    static validateJoint(data) {
+        validateEffectIdentity(data);
     }
 }

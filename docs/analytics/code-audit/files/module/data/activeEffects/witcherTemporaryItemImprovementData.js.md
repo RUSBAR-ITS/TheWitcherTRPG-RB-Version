@@ -1,5 +1,15 @@
 # module/data/activeEffects/witcherTemporaryItemImprovementData.js
 
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Модель временного улучшения Item с идентификатором типа.
+
+**Сущности, действия и зависимости:** Добавлены только общие identity-поля и validateJoint из witcherActiveEffectData.js. Схема changes остаётся нативной. Запрет повторного применения ещё не реализован; прежние applySelf/Target сохраняются.
+
+[Исходник](../../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js), [проверки и границы](../../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/activeEffects/witcherTemporaryItemImprovementData.js](../../../../../../../module/data/activeEffects/witcherTemporaryItemImprovementData.js) |

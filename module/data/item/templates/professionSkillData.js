@@ -11,6 +11,8 @@ export default function professionSkill() {
         stat: new fields.StringField({ initial: '' }),
         definition: new fields.HTMLField({ initial: '' }),
         level: new fields.NumberField({ initial: 0 }),
+        activeEffectModifiers: new fields.NumberField({ initial: 0 }),
+        baseCap: new fields.NumberField({ initial: 10, required: true, nullable: false, label: 'WITCHER.Effect.Modifier.baseCap' }),
 
         skillAttack: new fields.SchemaField(skillAttack()),
         skillDefense: new fields.SchemaField(skillDefense()),

@@ -1,5 +1,11 @@
 # templates/partials/character/tab-skills.hbs
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Оба списка custom skills передают item=this; встроенные навыки и прочие вкладки прежние. Общий partial используется текущими Character/Monster листами.
+
+[Исходник](../../../../../../../templates/partials/character/tab-skills.hbs); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/character/tab-skills.hbs](../../../../../../../templates/partials/character/tab-skills.hbs) |

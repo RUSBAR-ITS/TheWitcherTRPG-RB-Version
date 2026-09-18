@@ -1,3 +1,6 @@
+import { PARAMETER_INTERNAL, inParameterOperation, prepareParameterUpdate } from './parameterPersistence.js';
+import { calculateDerivedParameter, derivedStatInput } from './derivedPreparation.js';
+import { calculateActorParameter, prepareParameterInputs, prepareSkillParameters, resetParameterPreparation } from './parameterPreparation.js';
 import { installWound } from '../item/criticalWoundOperations.js';
 import { getRandomInt } from '../scripts/helper.js';
 import { WITCHER } from '../setup/config.js';
@@ -20,6 +23,20 @@ import { adrenalineMixin } from './mixins/adrenalineMixin.js';
 import { skillMixin } from './mixins/skillMixin.js';
 
 export default class WitcherActor extends Actor {
+    _initialize(options = {}) {
+        this._parameterPreview = options.parameterPreview === true;
+        super._initialize(options);
+    }
+
+    static async updateDocuments(updates = [], operation = {}) {
+        if (operation[PARAMETER_INTERNAL] || operation.pack) return super.updateDocuments(updates, operation);
+        const changes = updates.map(patch => {
+            const actor = operation.parent?.actor ?? game.actors?.get(patch._id);
+            return actor && !inParameterOperation(actor) ? prepareParameterUpdate(actor, patch) : patch;
+        });
+        return super.updateDocuments(changes, operation);
+    }
+
     /**
      * An array of ActiveEffect instances which are present on the Actor or Items which have a limited duration.
      * @type {ActiveEffect[]}
@@ -31,6 +48,11 @@ export default class WitcherActor extends Actor {
             .map(item => item.effects.filter(effect => effect.isAppliedTemporaryItemImprovement))
             .flat();
         return temporaryEffects.concat(temporaryItemImprovements);
+    }
+
+    prepareBaseData() {
+        super.prepareBaseData();
+        resetParameterPreparation(this);
     }
 
     prepareDerivedData() {
@@ -45,72 +67,53 @@ export default class WitcherActor extends Actor {
             .flat()
             .filter(effect => effect.statusEffect)
             .map(effect => WITCHER.armorEffects.find(armorEffect => armorEffect.id == effect.statusEffect));
-        this.applyStatus(armorEffects);
+        if (!this._parameterPreview) this.applyStatus(armorEffects);
 
+        prepareParameterInputs(this);
         this.calculateStats();
+        prepareSkillParameters(this);
         this.calculateFixedDerivedStats();
-        this.calculateStats();
         this.calculateDerivedStats();
         this.calculateAttackStats();
     }
 
     calculateStats() {
-        this.calculateStat('int');
-        this.calculateStat('ref');
-        this.calculateStat('dex');
-        this.calculateStat('body');
-        this.calculateStat('spd');
-        this.calculateStat('emp');
-        this.calculateStat('cra');
-        this.calculateStat('will');
-
-        this.system.stats.toxicity.max += this.system.stats.toxicity.totalModifiers;
-        this.system.stats.luck.max += this.system.stats.luck.totalModifiers;
+        // Prepare all uninjured maxima first: BODY/WILL also provide the existing
+        // encumbrance/wound-threshold inputs. Do not run native phases twice.
+        for (const [key, stat] of Object.entries(this.system.stats)) {
+            stat.max = calculateActorParameter(this, `system.stats.${key}`).value;
+        }
+        const threshold = calculateDerivedParameter(this, 'woundTreshold', { store: false }).value;
+        const { deathState, woundThreshold } = this.system.healthState;
+        deathState.applied = !deathState.ignored && this.system.derivedStats.hp.value <= 0;
+        woundThreshold.applied = !deathState.applied && !woundThreshold.ignored &&
+            this.system.derivedStats.hp.value < threshold;
+        const encumbrance = this.calculateWeigthEncumbrance();
+        const armor = this.getArmorEcumbrance();
+        for (const key of ['int', 'ref', 'dex', 'body', 'spd', 'emp', 'cra', 'will']) {
+            this.calculateStat(key, { encumbrance, armor });
+        }
         this.system.reputation.value = this.system.reputation.max;
     }
 
-    calculateStat(stat) {
-        let totalModifiers = this.system.stats[stat].totalModifiers;
-
-        //Adjust for encumbrance
-        if (stat === 'ref' || stat === 'dex' || stat === 'spd') {
-            if (stat === 'ref' || stat === 'dex') {
-                let armorEnc = this.getArmorEcumbrance();
-                totalModifiers += -armorEnc - this.calculateWeigthEncumbrance();
-            }
-
-            totalModifiers -= this.calculateWeigthEncumbrance();
+    calculateStat(stat, { encumbrance = this.calculateWeigthEncumbrance(), armor = this.getArmorEcumbrance() } = {}) {
+        const changes = [];
+        if (['ref', 'dex', 'spd'].includes(stat)) {
+            changes.push({ type: 'add', value: -encumbrance, affectsParameter: true });
         }
-
-        let divider = 1;
-
-        //Adjust for hp
-        let HPvalue = this.system.derivedStats.hp.value;
-        let { deathState, woundThreshold } = this.system.healthState;
-
-        deathState.applied = false;
-        if (!deathState.ignored && HPvalue <= 0) {
-            deathState.applied = true;
-            divider += 2;
-        } else {
-            woundThreshold.applied = false;
-
-            let isWounded = !woundThreshold.ignored && HPvalue < this.system.derivedStats.woundTreshold.value;
-            if (isWounded) {
-                woundThreshold.applied = true;
-                if (stat === 'ref' || stat === 'dex' || stat === 'int' || stat === 'will') {
-                    divider += 1;
-                }
-            }
+        if (['ref', 'dex'].includes(stat)) {
+            changes.push({ type: 'add', value: -armor, affectsParameter: true });
         }
-
-        this.system.stats[stat].value = Math.floor((this.system.stats[stat].unmodifiedMax + totalModifiers) / divider);
+        const { deathState, woundThreshold } = this.system.healthState;
+        const divider = deathState.applied ? 3
+            : woundThreshold.applied && ['ref', 'dex', 'int', 'will'].includes(stat) ? 2 : 1;
+        if (divider !== 1) changes.push({ type: 'multiply', value: 1 / divider, affectsParameter: true });
+        this.system.stats[stat].value = calculateActorParameter(this, `system.stats.${stat}`, changes).value;
     }
 
     calculateWeigthEncumbrance() {
-        let bodyTotalModifiers = this.system.stats.body.totalModifiers;
         let currentEncumbrance =
-            (this.system.stats.body.max + bodyTotalModifiers) * 10 + this.system.derivedStats.enc.totalModifiers;
+            calculateDerivedParameter(this, 'enc', { uninjured: true, store: false }).value;
         var totalWeights = this.getTotalWeight();
 
         let encDiff = 0;
@@ -122,75 +125,29 @@ export default class WitcherActor extends Actor {
     }
 
     calculateFixedDerivedStats() {
-        const base = Math.floor((this.system.stats.body.value + this.system.stats.will.value) / 2);
-        const baseMax = Math.floor((this.system.stats.body.max + this.system.stats.will.max) / 2);
-
-        this.system.derivedStats.stun.value = Math.clamp(base, 1, 10) + this.system.derivedStats.stun.totalModifiers;
-        this.system.derivedStats.stun.max = Math.clamp(baseMax, 1, 10);
-
-        this.system.derivedStats.run.value =
-            this.system.stats.spd.value * 3 + this.system.derivedStats.run.totalModifiers;
-        this.system.derivedStats.run.max = this.system.stats.spd.value * 3;
-
-        this.system.derivedStats.leap.value = Math.floor(
-            (this.system.stats.spd.value * 3) / 5 + this.system.derivedStats.leap.totalModifiers
-        );
-        this.system.derivedStats.leap.max = Math.floor((this.system.stats.spd.max * 3) / 5);
-
-        this.system.derivedStats.enc.value =
-            this.system.stats.body.value * 10 + this.system.derivedStats.enc.totalModifiers;
-        this.system.derivedStats.enc.max = this.system.stats.body.value * 10;
-
-        this.system.derivedStats.rec.value = base + this.system.derivedStats.rec.totalModifiers;
-        this.system.derivedStats.rec.max = baseMax;
-
-        this.system.derivedStats.woundTreshold.value = baseMax + this.system.derivedStats.woundTreshold.totalModifiers;
-        this.system.derivedStats.woundTreshold.max = baseMax;
+        for (const key of ['stun', 'run', 'leap', 'enc', 'rec', 'woundTreshold']) {
+            const stat = this.system.derivedStats[key];
+            const result = calculateDerivedParameter(this, key);
+            stat.unmodifiedMax = Math.floor(result.base);
+            stat.value = result.value;
+            stat.max = ['stun', 'leap', 'rec', 'woundTreshold'].includes(key)
+                ? calculateDerivedParameter(this, key, { uninjured: true, store: false }).value : result.value;
+        }
     }
 
     calculateDerivedStats() {
-        this.calculateDerivedStat('hp');
-        this.calculateDerivedStat('sta');
-        this.calculateDerivedStat('resolve');
-        this.calculateDerivedStat('focus');
-        this.calculateDerivedStat('vigor');
+        for (const key of ['hp', 'sta', 'resolve', 'focus', 'vigor', 'shield']) this.calculateDerivedStat(key);
     }
 
     calculateDerivedStat(stat) {
-        let totalModifiers = this.system.derivedStats[stat].totalModifiers;
-        let divider = 1;
-
-        const base = Math.floor((this.system.stats.body.value + this.system.stats.will.value) / 2);
-        if (!this.system.customStat && (stat === 'hp' || stat === 'sta')) {
-            this.system.derivedStats[stat].unmodifiedMax = base * 5;
-        }
-
-        let modifiedMax = this.system.derivedStats[stat].unmodifiedMax + totalModifiers;
-
-        if (stat === 'resolve' || stat === 'focus') {
-            divider += 1;
-        }
-
-        if (!this.system.customStat) {
-            if (stat === 'hp' || stat === 'sta') {
-                modifiedMax = Math.floor((base * 5 + totalModifiers) / divider);
-            } else if (stat === 'resolve') {
-                modifiedMax =
-                    Math.floor((this.system.stats.will.value + this.system.stats.int.value) / divider) * 5 +
-                    totalModifiers;
-            } else if (stat === 'focus') {
-                modifiedMax =
-                    Math.floor((this.system.stats.will.value + this.system.stats.int.value) / divider) * 3 +
-                    totalModifiers;
-            }
-        }
-
-        this.system.derivedStats[stat].max = modifiedMax;
-        this.system.derivedStats[stat].totalModifiers = totalModifiers;
+        const result = calculateDerivedParameter(this, stat);
+        this.system.derivedStats[stat].unmodifiedMax = Math.floor(result.base);
+        this.system.derivedStats[stat].max = result.value;
     }
 
     calculateAttackStats() {
-        const meleeBonus = Math.ceil((this.system.stats.body.value - 6) / 2) * 2;
+        const body = derivedStatInput(this, 'body', ['bodyDamage']);
+        const meleeBonus = Math.ceil((body - 6) / 2) * 2;
         this.system.attackStats.meleeBonus += meleeBonus;
         this.system.attackStats.punch.value = `1d6+${meleeBonus}`;
         this.system.attackStats.kick.value = `1d6+${4 + meleeBonus}`;

@@ -1,0 +1,8 @@
+<div class="witcher-conditional-modifiers">
+    {{#each candidates}}
+    <label class="form-group">
+        <input type="checkbox" name="modifier-{{index}}">
+        <span>{{label}} — {{target}} ({{operation}} {{value}})</span>
+    </label>
+    {{/each}}
+</div>

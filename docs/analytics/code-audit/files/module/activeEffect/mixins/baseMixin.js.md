@@ -1,5 +1,11 @@
 # module/activeEffect/mixins/baseMixin.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** getLifepathSuggestions выдаёт system.lifepathModifiers.attacks.strong.value и joint.value; имя/value объекта остаются отдельными. Остальные предложения мастера не менялись.
+
+[Исходник](../../../../../../../module/activeEffect/mixins/baseMixin.js); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/activeEffect/mixins/baseMixin.js](../../../../../../../module/activeEffect/mixins/baseMixin.js) |

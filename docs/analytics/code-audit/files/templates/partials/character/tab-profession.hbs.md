@@ -1,5 +1,11 @@
 # templates/partials/character/tab-profession.hbs
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Десять .profession-display передают data-skill-path definingSkill/skillPathN.skillM внутри item с ID профессии; имя остаётся подписью.
+
+[Исходник](../../../../../../../templates/partials/character/tab-profession.hbs); [проверка и пределы](../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/character/tab-profession.hbs](../../../../../../../templates/partials/character/tab-profession.hbs) |

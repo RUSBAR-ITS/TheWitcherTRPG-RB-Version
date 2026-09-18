@@ -1,5 +1,11 @@
 # templates/sheets/item/configuration/partials/profession/skillPathPart.hbs
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Вызовы skillPathSkillPart передают skillPath=(concat partId .skillN), а не имя навыка; Item доступен через context.
+
+[Исходник](../../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs); [проверка и пределы](../../../../../../../../task-0010-008-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/item/configuration/partials/profession/skillPathPart.hbs](../../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) |

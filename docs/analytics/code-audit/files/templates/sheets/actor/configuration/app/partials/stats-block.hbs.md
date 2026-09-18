@@ -1,5 +1,15 @@
 # templates/sheets/actor/configuration/app/partials/stats-block.hbs
 
+## Текущее состояние — 14.3.1.00064
+
+2026-09-18, TASK-0010.006. **Назначение:** Ручные базы характеристик и кнопки покупки.
+
+**Методы, сущности, действия и зависимости:** При canPurchase и type=stats показывает level-up-stat с data-stat и type=button. У монстров и производных покупка не рендерится. Поля source/baseCap/currentValue и Репутация сохранены; statListener вызывает Actor.levelUpStat.
+
+[Исходник](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs), [проверки/границы](../../../../../../../../task-0010-006-checks.md). Ниже, если есть, сохранены датированные предыдущие срезы; изменённые операции описаны здесь.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/configuration/app/partials/stats-block.hbs](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs) |

@@ -1,4 +1,8 @@
 <section class="tab scrollable{{#if tab.active}} active{{/if}}" data-group="{{tab.group}}" data-tab="{{tab.id}}">
+    {{#if systemFields.effectTypeId}}
+        {{formGroup systemFields.effectTypeId value=document.system.effectTypeId localize=true}}
+        {{formGroup systemFields.nonStacking value=document.system.nonStacking localize=true}}
+    {{/if}}
     {{#if systemFields.applyAfterCalculations}}
         {{formGroup systemFields.applyAfterCalculations value=document.system.applyAfterCalculations localize=true}}
     {{/if}}

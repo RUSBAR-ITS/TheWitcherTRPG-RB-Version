@@ -1,5 +1,6 @@
 import { baseMixin } from './mixins/baseMixin.js';
 import { temporaryItemImprovementMixin } from './mixins/temporaryItemImprovementMixin.js';
+import { MODIFIER_DEFAULTS, derivedModifierChoices, getEffectTargetType, modifierSettings, supportsModifierChange, switchModifierChannel } from './modifierContext.js';
 
 const DialogV2 = foundry.applications.api.DialogV2;
 
@@ -8,7 +9,8 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
 
     static DEFAULT_OPTIONS = {
         actions: {
-            wizard: WitcherActiveEffectConfig.wizardAction
+            wizard: WitcherActiveEffectConfig.wizardAction,
+            addChange: WitcherActiveEffectConfig.addChangeAction
         }
     };
 
@@ -20,7 +22,9 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         duration: { template: 'templates/sheets/active-effect/duration.hbs' },
         changes: {
             template: 'templates/sheets/active-effect/changes.hbs',
-            templates: ['templates/sheets/active-effect/change.hbs'],
+            templates: ['templates/sheets/active-effect/change.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/sheets/activeEffect/change.hbs',
+                'systems/TheWitcherTRPG-RB-Version/templates/sheets/activeEffect/modifier-settings.hbs'],
             scrollable: ['ol[data-changes]']
         },
         systemSpecific: {
@@ -42,6 +46,113 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         const context = await super._prepareContext(options);
         context.systemFields = this.document.system.schema.fields;
         return context;
+    }
+
+    _readFormData() {
+        return this._processFormData(null, this.form, new foundry.applications.ux.FormDataExtended(this.form));
+    }
+
+    _modifierEditorContext(change, prefix) {
+        const settings = modifierSettings(change);
+        return {
+            settings,
+            modifierPrefix: prefix,
+            derivedChoices: derivedModifierChoices(),
+            modifierInputs: Object.keys(MODIFIER_DEFAULTS).map(key => ({
+                key, name: `${prefix}.${key}`, value: settings[key], label: `WITCHER.Effect.Modifier.${key}`,
+                hint: `WITCHER.Effect.Modifier.${key}Hint`,
+                disabled: key === 'fullEffect' ? !settings.affectsParameter
+                    : ['shiftsCap', 'affectsAdvancement'].includes(key) ? settings.affectsRoll
+                    : key === 'optionalOnRoll' ? !settings.affectsRoll : false
+            }))
+        };
+    }
+
+    async _renderChange(context) {
+        const change = foundry.utils.deepClone(context.change);
+        const changeType = ActiveEffect.CHANGE_TYPES[change.type];
+        const targetType = context.targetType ?? getEffectTargetType(this.document);
+        // Preserve registered custom renderers and native non-numeric/Item/Token rows.
+        if (targetType !== 'Actor' || !supportsModifierChange(change) || changeType?.render) {
+            return super._renderChange({ ...context, change });
+        }
+        if (typeof change.value !== 'string') change.value = JSON.stringify(change.value);
+        for (const key of ['key', 'type', 'value', 'phase', 'priority']) {
+            change[`${key}Path`] = `system.changes.${context.index}.${key}`;
+        }
+        return foundry.applications.handlebars.renderTemplate(
+            'systems/TheWitcherTRPG-RB-Version/templates/sheets/activeEffect/change.hbs', {
+                ...context, change, changeType,
+                ...this._modifierEditorContext(change, `system.changes.${context.index}`)
+            }
+        );
+    }
+
+    _processChangeSubmission(change, index) {
+        super._processChangeSubmission(change, index);
+        if (!supportsModifierChange(change)) {
+            for (const key of [...Object.keys(MODIFIER_DEFAULTS), 'excludedDerived']) delete change[key];
+            return;
+        }
+        const prior = this.document._source.system.changes[index];
+        const sameTarget = prior?.key === change.key && prior?.type === change.type;
+        Object.assign(change, modifierSettings({ ...(sameTarget ? prior : {}), ...change }));
+        // FormDataExtended omits disabled inputs. Read the row's explicit UI state
+        // so switching channels cannot revive a previously saved incompatible flag.
+        for (const key of Object.keys(MODIFIER_DEFAULTS)) {
+            const input = this.form?.querySelector(`[name="system.changes.${index}.${key}"]`);
+            if (input) change[key] = input.checked;
+        }
+        // An empty multiple select has no submitted value; it means clearing the list.
+        if (this.form?.querySelector(`[name="system.changes.${index}.excludedDerived"]`)) {
+            const select = this.form.querySelector(`[name="system.changes.${index}.excludedDerived"]`);
+            change.excludedDerived = select.disabled ? [] : Array.from(select.selectedOptions, option => option.value);
+        }
+    }
+
+    _syncModifierControls(container, changedField) {
+        const inputs = Array.from(container.querySelectorAll('[data-modifier-flag]'));
+        if (!inputs.length) return;
+        const settings = switchModifierChannel(Object.fromEntries(inputs.map(input => [input.dataset.modifierFlag, input.checked])), changedField);
+        for (const input of inputs) {
+            const key = input.dataset.modifierFlag;
+            input.checked = settings[key];
+            input.disabled = key === 'fullEffect' ? !settings.affectsParameter
+                : ['shiftsCap', 'affectsAdvancement'].includes(key) ? settings.affectsRoll
+                : key === 'optionalOnRoll' ? !settings.affectsRoll : false;
+        }
+        const select = container.querySelector('[data-modifier-exclusions]');
+        if (select) {
+            select.disabled = !settings.affectsParameter;
+            if (select.disabled) for (const option of select.options) option.selected = false;
+        }
+    }
+
+    async _onChangeForm(formConfig, event) {
+        const field = event.target.dataset.modifierFlag;
+        if (field) this._syncModifierControls(event.target.closest('[data-modifier-settings]'), field);
+        await super._onChangeForm(formConfig, event);
+        const row = event.target.closest('li[data-index]');
+        const changesTarget = event.target.name === 'transfer' ||
+            /^system\.(applySelf|applyOnTarget|applyOnHit|applyOnDamage)$/.test(event.target.name);
+        if (!changesTarget && !(row && /\.(key|type)$/.test(event.target.name))) return;
+
+        const submitted = this._readFormData();
+        const changes = Object.values(submitted.system?.changes ?? {});
+        const targetType = getEffectTargetType(this.document, submitted);
+        const rows = changesTarget ? this.element.querySelectorAll('li[data-index]') : [row];
+        for (const current of rows) {
+            const index = Number(current.dataset.index);
+            const change = changes[index];
+            if (!change) continue;
+            const changeTypes = Object.fromEntries(Object.entries(ActiveEffect.CHANGE_TYPES)
+                .map(([type, config]) => [type, game.i18n.localize(config.label)]));
+            const rendered = await this._renderChange({ change, index, targetType,
+                fields: this.document.system.schema.fields.changes.element.fields,
+                changeTypes, defaultPriority: ActiveEffect.CHANGE_TYPES[change.type]?.defaultPriority ?? 0 });
+            current.outerHTML = rendered;
+        }
+        this.autocomplete(targetType);
     }
 
     async _onRender(context, options) {
@@ -68,12 +179,24 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         addButton.after(wizard);
     }
 
+    static async addChangeAction() {
+        const submitted = this._readFormData();
+        const changes = foundry.utils.deepClone(Object.values(submitted.system?.changes ?? {}));
+        changes.push({
+            ...this.document.system.schema.fields.changes.element.getInitialValue(),
+            phase: submitted.system?.applyAfterCalculations ? 'final' : 'initial'
+        });
+        return this.submit({ updateData: { system: { changes } } });
+    }
+
     static async wizardAction() {
         let selects;
+        const initial = this._readFormData();
+        const targetType = getEffectTargetType(this.document, initial);
 
         switch (this.document.type) {
             case 'base':
-                selects = this.getActiveEffectsBasePaths();
+                selects = targetType === 'Actor' ? this.getActiveEffectsBasePaths() : this.getActiveEffectsItemImprovementPaths();
                 break;
             case 'temporaryItemImprovement':
                 selects = this.getActiveEffectsItemImprovementPaths();
@@ -83,32 +206,44 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
         const dialogTemplate = await foundry.applications.handlebars.renderTemplate(
             'systems/TheWitcherTRPG-RB-Version/templates/dialog/activeEffects/wizard.hbs',
             {
-                selects: selects
+                selects,
+                modifierWizard: this.document.type === 'base' && targetType === 'Actor',
+                ...this._modifierEditorContext({}, 'modifier')
             }
         );
 
-        DialogV2.prompt({
+        return DialogV2.prompt({
             content: dialogTemplate,
             modal: true,
+            render: (_event, dialog) => {
+                dialog.element.addEventListener('change', event => {
+                    if (event.target.dataset.modifierFlag) {
+                        this._syncModifierControls(event.target.closest('[data-modifier-settings]'), event.target.dataset.modifierFlag);
+                    }
+                });
+            },
             ok: {
-                callback: (event, button, dialog) => {
-                    let paths = button.form.elements.path.value.split(',');
-                    let newChanges = this.document.system.changes;
-                    paths.forEach(path => {
-                        newChanges.push({
-                            key: path
-                        });
-                    });
-
-                    this.document.update({
-                        changes: newChanges
-                    });
+                callback: async (event, button) => {
+                    const wizard = foundry.utils.expandObject(new foundry.applications.ux.FormDataExtended(button.form).object);
+                    const paths = button.form.elements.path.value.split(',').filter(Boolean);
+                    const submitted = this._readFormData();
+                    const newChanges = foundry.utils.deepClone(Object.values(submitted.system?.changes ?? {}));
+                    const schema = this.document.system.schema.fields.changes.element;
+                    for (const key of paths) {
+                        const change = { ...schema.getInitialValue(), key,
+                            phase: submitted.system?.applyAfterCalculations ? 'final' : 'initial' };
+                        if (this.document.type === 'base' && targetType === 'Actor' && supportsModifierChange(change)) {
+                            Object.assign(change, modifierSettings(wizard.modifier));
+                        }
+                        newChanges.push(change);
+                    }
+                    return this.submit({ updateData: { system: { changes: newChanges } } });
                 }
             }
         });
     }
 
-    autocomplete() {
+    autocomplete(targetType = getEffectTargetType(this.document)) {
         let html = this.element;
         const effectsSection = html.querySelector("section[data-tab='changes']");
         if (!effectsSection) return;
@@ -126,14 +261,7 @@ export class WitcherActiveEffectConfig extends foundry.applications.sheets.Activ
             inputField.setAttribute('list', this.#attributeKeyListId);
         });
 
-        let config;
-        if (this.document.parent.documentName === 'Actor') {
-            config = CONFIG.Actor;
-        }
-
-        if (this.document.parent.documentName === 'Item') {
-            config = CONFIG.Item;
-        }
+        const config = CONFIG[targetType];
 
         for (const datamodel in config.dataModels) {
             config.dataModels[datamodel].schema.apply(function () {

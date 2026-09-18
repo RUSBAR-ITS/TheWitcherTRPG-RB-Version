@@ -1,3 +1,4 @@
+import { prepareCheck } from '../../../scripts/rolls/prepareCheck.js';
 import ChatMessageData from '../../../chatMessage/chatMessageData.js';
 import { RollConfig } from '../../../scripts/rollConfig.js';
 import { extendedRoll } from '../../../scripts/rolls/extendedRoll.js';
@@ -23,6 +24,11 @@ export let deathsaveMixin = {
 
         stunBase -= this.actor.system.deathSaves;
 
+        const check = await prepareCheck(this.actor, { target: { kind: 'derived', key: 'stun' },
+            action: 'deathSave', comparison: '<', threshold: stunBase });
+        if (!check) return null;
+        stunBase = check.threshold;
+
         let messageData = new ChatMessageData(
             this.actor,
             `
@@ -39,7 +45,7 @@ export let deathsaveMixin = {
         config.showCrit = false;
         config.threshold = stunBase;
 
-        await extendedRoll(`1d10`, messageData, config);
+        return extendedRoll(check.formula, messageData, config);
     },
 
     deathSaveListener(html) {

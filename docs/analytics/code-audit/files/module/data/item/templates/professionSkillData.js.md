@@ -1,5 +1,21 @@
 # module/data/item/templates/professionSkillData.js
 
+## Текущее состояние
+
+**14.3.1.00066, TASK-0010.008.** Добавлен activeEffectModifiers:Number initial0 к каждому professionSkill; level/baseCap и вложенные attack/defense/usage/thresholds сохранены. Собственный бонус читает rollContext через явный адрес слота.
+
+[Исходник](../../../../../../../../module/data/item/templates/professionSkillData.js); [проверка и пределы](../../../../../../task-0010-008-checks.md).
+
+## Текущее состояние — 14.3.1.00061
+
+2026-09-18, TASK-0010.003. **Назначение:** Схема отдельного навыка профессии.
+
+**Сущности, действия и зависимости:** Добавлен baseCap initial10; используются существующие native fields. Отдельная адресация и редакторы профессии — .008, арифметика навыка не менялась.
+
+[Исходник](../../../../../../../../module/data/item/templates/professionSkillData.js), [проверки и границы](../../../../../../task-0010-003-checks.md). Статическая проверка; игровая приёмка не проводилась. Численный контракт следующих стадий ещё не внедрён.
+
+## Предыдущие датированные проверки
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/templates/professionSkillData.js](../../../../../../../../module/data/item/templates/professionSkillData.js) |

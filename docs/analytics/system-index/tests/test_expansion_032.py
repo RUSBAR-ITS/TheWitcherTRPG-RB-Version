@@ -103,8 +103,8 @@ class MagicCastExpansion(unittest.TestCase):
         b=self.body(11,227,270)
         markers=['const chatMessage = await','damage.properties =','let messageData =','new RollConfig({ showResult: false })','await extendedRoll','await roll.toMessage','createSpellRegion?.','if (!roll.options.fumble)','return roll']
         self.assertEqual([b.index(x)for x in markers],sorted(b.index(x)for x in markers))
-        self.assertNotIn('difficultyCheck',self.body(11));self.assertIn('difficultyCheck',self.body(487));self.assertIn('threshold = -1',self.body(201))
-        self.assertIn('config.threshold >= 0',self.body(202))
+        self.assertNotIn('difficultyCheck',self.body(11));self.assertIn('difficultyCheck',self.body(487));self.assertIn('threshold = null',self.body(201))
+        self.assertIn('Number.isFinite(config.threshold)',self.body(202))
         post=self.body(11,250,266);self.assertNotIn('await ',post)
         for q in ['applyStatusEffectToActor','applyStatusEffectToTargets','applyActiveEffectToActor','applyActiveEffectToTargets']:self.assertIn(self.q[q],self.targets('actor.castSpellMixin.castSpell','calls'))
         self.assertIn('Object.values(spellItem.system.selfEffects ?? {})',post);self.assertIn('applyStatusEffectToTargets(spellItem.system.onCastEffects,',post)

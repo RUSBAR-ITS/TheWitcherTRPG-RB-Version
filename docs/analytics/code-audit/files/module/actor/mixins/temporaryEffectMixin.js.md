@@ -1,5 +1,14 @@
 # module/actor/mixins/temporaryEffectMixin.js
 
+## Текущее состояние — 14.3.1.00068 (TASK-0010.009)
+
+2026-09-18. **Назначение:** Назначение временного улучшения выбранному оружию.
+
+**Методы, сущности, действия и зависимости:** applyTemporaryItemImprovements(effects,duration) вызывает appliedEffectData, сохраняет system/changes/семейство, выставляет isTransferred и transfer=false. Ожидает createEmbeddedDocuments до сообщения; повтор заменяет только применённые улучшения. Источник не изменяется. Нет доступного оружия/отмена выбора — отдельная существующая UI-граница.
+
+[Проверки доставки и пакетного истечения](../../../../../task-0010-009-checks.md). Браузерная приёмка впереди. Ниже, если присутствуют, сохранены описания прежних срезов.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/temporaryEffectMixin.js](../../../../../../../module/actor/mixins/temporaryEffectMixin.js) |

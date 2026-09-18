@@ -1,3 +1,4 @@
+import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import { emitForGM } from '../../scripts/socket/socketMessage.js';
@@ -201,7 +202,8 @@ class Repair {
     }
 
     async commonRepair(data, simulate) {
-        const rollFormula = this.prepareRollFormula(data);
+        const rollFormula = await this.prepareRollFormula(data);
+        if (rollFormula === null) return null;
 
         let config = this.prepareRollConfig(data);
         let messageData = await this.initMessageData(data);
@@ -221,25 +223,10 @@ class Repair {
         data.item.system.repair();
     }
 
-    prepareRollFormula(data) {
-        const stat = data.executor.system.stats.cra.value;
-        const statName = game.i18n.localize(CONFIG.WITCHER.statMap.cra.label);
-
-        const skill = data.executor.system.skills.cra.crafting.value;
-
-        const displayRollDetails = game.settings.get('TheWitcherTRPG-RB-Version', 'displayRollsDetails');
-
-        let rollFormula = '';
-        if (game.settings.get('TheWitcherTRPG-RB-Version', 'woundsAffectSkillBase')) {
-            rollFormula += '(';
-        }
-
-        rollFormula += displayRollDetails
-            ? `1d10+${stat}[${statName}]+${skill}[${data.skillName}]`
-            : `1d10 + ${stat} + ${skill}`;
-        rollFormula += data.executor.addActiveEffects('crafting');
-
-        return rollFormula;
+    async prepareRollFormula(data) {
+        const check = await prepareCheck(data.executor, { target: { kind: 'builtin', key: 'crafting' },
+            action: 'repair' });
+        return check?.formula ?? null;
     }
 
     prepareRollConfig(data, reliabilityToRestore) {

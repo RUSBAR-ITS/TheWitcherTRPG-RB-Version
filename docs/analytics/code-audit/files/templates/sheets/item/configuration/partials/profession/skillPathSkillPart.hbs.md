@@ -1,5 +1,11 @@
 # templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs
 
+## Текущее состояние
+
+**14.3.1.00067, issue-00111.** Шаблон не изменён в .00067. Его removeEffectDamageProperties теперь зарегистрирован в конфигурации профессии; button и вложенная иконка приводят к выбранным slot/ID. Локально проверены definingSkill и два path-слота, имена не адрес. Другие data-target/data-item-id и формы из .008 сохранены.
+
+[Исходник](../../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs); [проверка и пределы](../../../../../../../../issue-00111-checks.md).
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs](../../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) |

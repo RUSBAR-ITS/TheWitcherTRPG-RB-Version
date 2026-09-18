@@ -27,7 +27,7 @@
                     {{/if}}
                     <table class="item-bottom-table">
                         <tr>
-                            <th><a data-action="addEffectDamageProperties" data-target="{{skill.skillName}}"
+                            <th><a data-action="addEffectDamageProperties" data-target="{{skillPath}}" data-item-id="{{item.id}}"
                                     title="{{localize "WITCHER.Item.AddEffect"}}"><i class="fas fa-plus"></i></a>
                             </th>
                             <th>{{localize "WITCHER.Item.Effect"}}</th>
@@ -35,7 +35,7 @@
                             <th>{{localize "WITCHER.Percentage"}}</th>
                         </tr>
                         {{#each skill.skillAttack.damageProperties.effects as |effect id|}}
-                            <tr class="list-item" data-id="{{id}}" data-target="{{../skill.skillName}}">
+                            <tr class="list-item" data-id="{{id}}" data-target="{{../skillPath}}" data-item-id="{{../item.id}}">
                                 <td>
                                     <a data-action="removeEffectDamageProperties"
                                         title="{{localize "WITCHER.Item.RemoveEffect"}}"><i
@@ -92,14 +92,14 @@
             {{#if skill.thresholds.hasThresholds}}
                 <table class="item-bottom-table">
                     <tr>
-                        <th><a data-action="addThreshold" data-target="{{skill.skillName}}"
+                        <th><a data-action="addThreshold" data-target="{{skillPath}}" data-item-id="{{item.id}}"
                                 title="{{localize "WITCHER.Item.AddEffect"}}"><i class="fas fa-plus"></i></a>
                         </th>
                         <th>{{localize "WITCHER.profession.skillPath.skill.thresholds.name"}}</th>
                         <th>{{localize "WITCHER.profession.skillPath.skill.thresholds.thresholdValue"}}</th>
                     </tr>
                     {{#each skill.thresholds.thresholds as |threshold id|}}
-                        <tr class="list-item" data-id="{{id}}" data-target="{{../skill.skillName}}">
+                        <tr class="list-item" data-id="{{id}}" data-target="{{../skillPath}}" data-item-id="{{../item.id}}">
                             <td>
                                 <a data-action="removeThreshold" title="{{localize "WITCHER.Item.RemoveEffect"}}"><i
                                         class="fas fa-minus"></i></a>
