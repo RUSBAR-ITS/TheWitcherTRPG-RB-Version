@@ -6,8 +6,8 @@
   "snapshot": {
     "date": "2026-09-19",
     "branch": "dev",
-    "head": "c9bdbf3a4f89b97bb3de3c49f2c8f74bf72c9473",
-    "source_hash": "4b8e76066671cea4376990726b4fa2910fd1240649d1a3d94c85d5c700c414b5"
+    "head": "9307a3477307258d92670f2f26515d51dac5e702",
+    "source_hash": "1d145999a9b05fba591d40a518513f786525f4527693ff754c3003b4f8acb8c8"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
