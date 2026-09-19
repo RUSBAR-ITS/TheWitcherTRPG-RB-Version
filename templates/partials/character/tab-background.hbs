@@ -4,10 +4,10 @@
             <div class="background scrollable general-section">
                 <div class="general-homeland">
                     {{localize "WITCHER.Homeland"}}
-                    {{#unless homeland}}
+                    {{#unless hasItemHomeland}}
                         <div class="homeland-select">
                             <select name="system.general.homeland.value" class="details" id="homeland-select">
-                                {{selectOptions config.homelands selected=system.general.homeland.value localize=true}}
+                                {{selectOptions config.homelands selected=system.general.homeland.value blank=(localize 'WITCHER.Editor.notSpecified') localize=true}}
                             </select>
                             {{#if (eq system.general.homeland.value "other")}}
                                 <input class="details hometailOther" name="system.general.homeland.otherValue"
@@ -15,12 +15,9 @@
                             {{/if}}
                         </div>
                     {{/unless}}
-                    {{#if homeland}}
+                    {{#if hasItemHomeland}}
                         <div class="homeland-select">
-                            <label> {{localize (lookup config.homelands homeland.system.value)}} </label>
-                            {{#if (eq homeland.system.value "other")}}
-                                <label class="details hometailOther">{{homeland.system.otherValue}}</label>
-                            {{/if}}
+                            <label>{{homelandLabel}}</label>
                         </div>
                     {{/if}}
                 </div>
@@ -44,7 +41,7 @@
                 <div class="general-info">
                     {{localize 'WITCHER.character.socialStanding'}}
                     <select name='system.general.socialStanding'>
-                        {{selectOptions config.socialStanding selected=system.general.socialStanding localize=true}}
+                        {{selectOptions config.socialStanding selected=system.general.socialStanding blank=(localize 'WITCHER.Editor.notSpecified') localize=true}}
                     </select>
                 </div>
             </div>

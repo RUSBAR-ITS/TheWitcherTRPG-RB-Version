@@ -39,6 +39,20 @@
         }
     },
     "WITCHER": {
+        "Editor": {
+            "parameter": "Attribute",
+            "base": "Base",
+            "effective": "Effective",
+            "cap": "Base limit",
+            "action": "Action",
+            "increaseAttribute": "Increase attribute",
+            "notSpecified": "Not specified",
+            "details": "Skill details",
+            "automatic": "Auto",
+            "parametersTitle": "Attributes",
+            "skillsTitle": "Skills",
+            "derivedTitle": "Derived statistics"
+        },
         "EffectApplication": {
             "invalidDuration": "Effect duration must be a non-negative whole number of rounds.",
             "writeFailed": "The effect could not be saved or replaced completely. Check the current effects."

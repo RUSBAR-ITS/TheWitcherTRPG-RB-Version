@@ -1,5 +1,12 @@
 # module/actor/sheets/WitcherCharacterSheet.js
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. _prepareCharacterData добавляет headerSummary (шесть позиций с прочерками), hasItemHomeland/homelandLabel. Заполненный Item.homeland приоритетен; пустой/неизвестный/other без текста использует Actor.general.homeland. Читает CONFIG.WITCHER.homelands/socialStanding; пустые ключи не локализуются. DEFAULT_OPTIONS.classes добавляет witcher-character для области стилей. Раса/профессия — Item.name, пол/возраст/socialStanding — Actor; источник не переписывается.
+
+[Исходник](../../../../../../../module/actor/sheets/WitcherCharacterSheet.js), [реализация и проверки](../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** Оба callback используют prepareCheck по фактическому crafting/alchemy перед realCraft/extendedRoll; при отмене исполнение не вызывается. Условие hasDiagram+2 и изготовление сохранены. skill/DC подпись соответствует выбранному навыку; возвращается Promise realCraft. Дефекты интерфейса/компонентов TASK-0011 здесь не исправлены.

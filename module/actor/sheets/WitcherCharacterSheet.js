@@ -16,6 +16,7 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
 
     /** @override */
     static DEFAULT_OPTIONS = {
+        classes: ['witcher-character'],
         position: {
             width: 900
         },
@@ -155,6 +156,21 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
         context.profession = actor.getList('profession')[0];
         context.homeland = actor.getList('homeland')[0];
         context.race = actor.getList('race')[0];
+
+        // Presentation only: never save placeholders or select defaults into the Actor.
+        const text = value => typeof value === 'string' ? value.trim() : '';
+        const choiceLabel = (choices, value) => Object.hasOwn(choices, value)
+            ? game.i18n.localize(choices[value]) : '';
+        const homelandLabel = homeland => homeland?.value === 'other'
+            ? text(homeland.otherValue) : choiceLabel(CONFIG.WITCHER.homelands, homeland?.value);
+        const itemHomeland = homelandLabel(context.homeland?.system);
+        context.hasItemHomeland = Boolean(itemHomeland);
+        context.homelandLabel = itemHomeland || homelandLabel(actor.system.general.homeland);
+        context.headerSummary = [
+            text(context.race?.name), text(context.profession?.name), text(actor.system.gender),
+            actor.system.general.age || '', context.homelandLabel,
+            choiceLabel(CONFIG.WITCHER.socialStanding, actor.system.general.socialStanding)
+        ].map(value => value || '-').join(' - ');
 
         context.enrichedText = {
             ...context.enrichedText,

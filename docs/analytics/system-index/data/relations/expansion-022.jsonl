@@ -172,13 +172,13 @@
 {"id":"rel-011778","kind":"reads","from":"ent-004541","to":"ent-004544","location":{"source":"src-000494","symbol":"heal/resting-status.hbs","line_start":9,"line_end":9},"basis":"source_read"}
 {"id":"rel-011779","kind":"reads","from":"ent-004541","to":"ent-004550","location":{"source":"src-000494","symbol":"heal/resting-status.hbs","line_start":20,"line_end":20},"basis":"source_read","condition":"actualWoundList truthy"}
 {"id":"rel-011780","kind":"reads","from":"ent-004542","to":"ent-004544","location":{"source":"src-000513","symbol":"heal/heal-rest.hbs","line_start":11,"line_end":11},"basis":"source_read"}
-{"id":"rel-011781","kind":"defines","from":"src-000520","to":"ent-004564","location":{"source":"src-000520","symbol":"character/header.death-roll","line_start":49,"line_end":49},"basis":"source_read"}
+{"id":"rel-011781","kind":"defines","from":"src-000520","to":"ent-004564","location":{"source":"src-000520","symbol":"character/header.death-roll","line_start":9,"line_end":9},"basis":"source_read"}
 {"id":"rel-011782","kind":"handles","from":"ent-003549","to":"ent-004564","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin.deathSaveListener","line_start":53,"line_end":53},"basis":"source_read"}
-{"id":"rel-011783","kind":"defines","from":"src-000520","to":"ent-004565","location":{"source":"src-000520","symbol":"character/header.heal-button","line_start":51,"line_end":51},"basis":"source_read"}
+{"id":"rel-011783","kind":"defines","from":"src-000520","to":"ent-004565","location":{"source":"src-000520","symbol":"character/header.heal-button","line_start":11,"line_end":11},"basis":"source_read"}
 {"id":"rel-011784","kind":"handles","from":"ent-003552","to":"ent-004565","location":{"source":"src-000042","symbol":"sheet.healMixin.healListeners","line_start":114,"line_end":114},"basis":"source_read"}
-{"id":"rel-011785","kind":"defines","from":"src-000520","to":"ent-004566","location":{"source":"src-000520","symbol":"character/header.death-minus","line_start":61,"line_end":61},"basis":"source_read"}
+{"id":"rel-011785","kind":"defines","from":"src-000520","to":"ent-004566","location":{"source":"src-000520","symbol":"character/header.death-minus","line_start":21,"line_end":21},"basis":"source_read"}
 {"id":"rel-011786","kind":"handles","from":"ent-003549","to":"ent-004566","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin.deathSaveListener","line_start":54,"line_end":54},"basis":"source_read"}
-{"id":"rel-011787","kind":"defines","from":"src-000520","to":"ent-004567","location":{"source":"src-000520","symbol":"character/header.death-plus","line_start":66,"line_end":66},"basis":"source_read"}
+{"id":"rel-011787","kind":"defines","from":"src-000520","to":"ent-004567","location":{"source":"src-000520","symbol":"character/header.death-plus","line_start":26,"line_end":26},"basis":"source_read"}
 {"id":"rel-011788","kind":"handles","from":"ent-003549","to":"ent-004567","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin.deathSaveListener","line_start":55,"line_end":55},"basis":"source_read"}
 {"id":"rel-011789","kind":"defines","from":"src-000564","to":"ent-004568","location":{"source":"src-000564","symbol":"monster/header.death-roll","line_start":25,"line_end":25},"basis":"source_read"}
 {"id":"rel-011790","kind":"handles","from":"ent-003549","to":"ent-004568","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin.deathSaveListener","line_start":53,"line_end":53},"basis":"source_read"}
@@ -186,7 +186,7 @@
 {"id":"rel-011792","kind":"handles","from":"ent-003549","to":"ent-004569","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin.deathSaveListener","line_start":54,"line_end":54},"basis":"source_read"}
 {"id":"rel-011793","kind":"defines","from":"src-000564","to":"ent-004570","location":{"source":"src-000564","symbol":"monster/header.death-plus","line_start":39,"line_end":39},"basis":"source_read"}
 {"id":"rel-011794","kind":"handles","from":"ent-003549","to":"ent-004570","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin.deathSaveListener","line_start":55,"line_end":55},"basis":"source_read"}
-{"id":"rel-011795","kind":"reads","from":"src-000520","to":"ent-003325","location":{"source":"src-000520","symbol":"src-000520","line_start":64,"line_end":64},"basis":"source_read"}
+{"id":"rel-011795","kind":"reads","from":"src-000520","to":"ent-003325","location":{"source":"src-000520","symbol":"src-000520","line_start":24,"line_end":24},"basis":"source_read"}
 {"id":"rel-011796","kind":"reads","from":"src-000564","to":"ent-003325","location":{"source":"src-000564","symbol":"src-000564","line_start":37,"line_end":37},"basis":"source_read"}
 {"id":"rel-011797","kind":"refers","from":"ent-003593","to":"ent-004571","location":{"source":"src-000017","symbol":"actor.healMixin.calculateHealValue","line_start":4,"line_end":4},"basis":"source_read"}
 {"id":"rel-011798","kind":"refers","from":"ent-004531","to":"ent-004572","location":{"source":"src-000042","symbol":"sheet.healMixin._onHeal","line_start":46,"line_end":46},"basis":"source_read"}

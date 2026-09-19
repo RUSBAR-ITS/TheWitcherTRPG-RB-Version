@@ -21,7 +21,8 @@ export default class WitcherModifiersConfiguration extends HandlebarsApplication
             resizable: true
         },
         position: {
-            width: 520
+            width: 820,
+            height: 620
         },
         classes: ['witcher', 'sheet', 'actor', 'modifier-configuration'],
         form: {
@@ -33,12 +34,24 @@ export default class WitcherModifiersConfiguration extends HandlebarsApplication
 
     static PARTS = {
         stats: {
-            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/configuration/app/edit-stats.hbs'
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/configuration/app/edit-stats.hbs',
+            scrollable: ['']
         },
         skills: {
-            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/configuration/app/edit-skills.hbs'
+            template: 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/configuration/app/edit-skills.hbs',
+            scrollable: ['']
         }
     };
+
+    get title() {
+        const key = this.type === 'skill' ? 'skillsTitle' : this.type === 'derivedStats' ? 'derivedTitle' : 'parametersTitle';
+        return `${game.i18n.localize(`WITCHER.Editor.${key}`)}: ${this.document.name}`;
+    }
+
+    _configureRenderOptions(options) {
+        super._configureRenderOptions(options);
+        options.parts = [this.type === 'skill' ? 'skills' : 'stats'];
+    }
 
     async _onRender(context, options) {
         await super._onRender(context, options);
@@ -85,6 +98,7 @@ export default class WitcherModifiersConfiguration extends HandlebarsApplication
             const canEditBase = group === 'stats' || isManualDerivedStat(key, prepared.customStat);
             return [key, {
                 ...value,
+                label: CONFIG.WITCHER.statMap[key]?.label ?? value.label,
                 unmodifiedMax: raw.unmodifiedMax,
                 baseCap: raw.baseCap,
                 hasBaseCap: Number.isFinite(raw.baseCap),

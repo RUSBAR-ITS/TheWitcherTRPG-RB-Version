@@ -4,10 +4,10 @@
   "purpose": "system_index",
   "approval": "approved",
   "snapshot": {
-    "date": "2026-09-18",
+    "date": "2026-09-19",
     "branch": "dev",
-    "head": "0537500936de736ce898b0173670c82714b72f23",
-    "source_hash": "3a2f6a548c98deb0997b91426e18dc5b7540d41441248f656d10647e5a8c0666"
+    "head": "60475d6d7cd7d035a8cc8d89ddfc1c069b83b5a3",
+    "source_hash": "ff03773564fd7c99935c0ed30266294c4d75e041c7caebf81a48de091bfad987"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
@@ -273,7 +273,7 @@
       "src-000640",
       "src-000641"
     ],
-    "semantic_scope": ".00037: issue-00333 and 16 related cards closed by user after .00035 implementation/acceptance and .00036 accepted limitations. Reference paths updated; runtime graph and global partial coverage unchanged. TASK-0010.003 .00061: model/editor metadata and source/effective UI; calculator and delivery pending. TASK-0010.004 .00062: primary/builtin numerical preparation; dependent derived/progression/roll integration pending. TASK-0010.005 .00063: derived inputs, edge exclusions, resource capacity and manual bases; writes/roll/browser integration pending. TASK-0010.006 .00064: advancement and persistence boundaries; roll/stacking/pack/browser integration pending. TASK-0010.007 .00065: roll context/conditional dialog and threshold boundary; consumer/stacking/pack/browser integration pending. TASK-0010.008 .00066: consumer integration and explicit item/profession addressing; stacking/pack/browser integration pending. issue-00111 .00067: profession delete action and delegated element fixed; browser pending. TASK-0010.009 .00068: effect families, delivery, duration and batch expiry normalization; pack/browser acceptance pending. TASK-0010.010 .00069: numeric wound JSON and conditional status rows configured; installed pack build and browser acceptance pending. TASK-0010.011 .00070: criticalWounds database installed and readback equal to JSON; static acceptance summary and browser acceptance pending. TASK-0010.012 .00071: consolidated local acceptance, current coverage limits, 25 issues remain unclosed; browser acceptance .013 pending. TASK-0010.013 .00072: partial live acceptance of .00071, real QA documents/UI/two clients/reload/expiry; wizard layout and missing Item.skill block completion. Full B01-B19 coverage is not claimed; see browser report. .00073: wizard layout and four declared document types fixed; local checks only, live retest pending. .00074: collapsible native exclusion checkboxes and selection summary; local checks, live test blocked by HTTP502.",
+    "semantic_scope": ".00037: issue-00333 and 16 related cards closed by user after .00035 implementation/acceptance and .00036 accepted limitations. Reference paths updated; runtime graph and global partial coverage unchanged. TASK-0010.003 .00061: model/editor metadata and source/effective UI; calculator and delivery pending. TASK-0010.004 .00062: primary/builtin numerical preparation; dependent derived/progression/roll integration pending. TASK-0010.005 .00063: derived inputs, edge exclusions, resource capacity and manual bases; writes/roll/browser integration pending. TASK-0010.006 .00064: advancement and persistence boundaries; roll/stacking/pack/browser integration pending. TASK-0010.007 .00065: roll context/conditional dialog and threshold boundary; consumer/stacking/pack/browser integration pending. TASK-0010.008 .00066: consumer integration and explicit item/profession addressing; stacking/pack/browser integration pending. issue-00111 .00067: profession delete action and delegated element fixed; browser pending. TASK-0010.009 .00068: effect families, delivery, duration and batch expiry normalization; pack/browser acceptance pending. TASK-0010.010 .00069: numeric wound JSON and conditional status rows configured; installed pack build and browser acceptance pending. TASK-0010.011 .00070: criticalWounds database installed and readback equal to JSON; static acceptance summary and browser acceptance pending. TASK-0010.012 .00071: consolidated local acceptance, current coverage limits, 25 issues remain unclosed; browser acceptance .013 pending. TASK-0010.013 .00072: partial live acceptance of .00071, real QA documents/UI/two clients/reload/expiry; wizard layout and missing Item.skill block completion. Full B01-B19 coverage is not claimed; see browser report. .00073: wizard layout and four declared document types fixed; local checks only, live retest pending. .00074: collapsible native exclusion checkboxes and selection summary; local checks, live test blocked by HTTP502. .00077: Skill instance labels, editor layout/part selection, prepared header/fallback homeland and empty selects, inventory geometry/scoped typography. Local tests; live acceptance pending HTTP502.",
     "global_coverage": "partial"
   },
   "parts": {
@@ -521,7 +521,7 @@
     "docs/issues/potential/issue-00010.md": "0933b2251cce2e3a96f86c52c49be9c6c191d1ded846554559e720b6246a9dca",
     "docs/issues/potential/issue-00011.md": "ddaf2c030d345c73a1e1cefe142eb1acd02131c94d99d55469c3703efe481ee3",
     "docs/issues/potential/issue-00012.md": "b8050428a3f7dc956bfed5a963e870eb710f583dfee66dce9f907ed956eb9a7c",
-    "docs/issues/potential/issue-00015.md": "da8efa43dd61c521e7fbc1fe53302c1852d83ec1949474077eef6a1a16c3562c",
+    "docs/issues/potential/issue-00015.md": "e8a6860455b188b595d1fce65b24d9ba1908820f18df2c8c3b85b7609bc68a73",
     "docs/issues/potential/issue-00017.md": "d12fa75cd1dddae02adba8afb0dfe0d71d2dae30c19fa7c64b670e46546594f8",
     "docs/issues/potential/issue-00019.md": "0f5171b378e77707b780d95882c96dfc379ffb13e6495a3942e446faadcdb9e1",
     "docs/issues/potential/issue-00022.md": "e74c93033c6c458ff5b50b1436e21178d868d4d9eb55a1739e10a5ed729b9e7a",
@@ -710,12 +710,13 @@
     "docs/issues/potential/issue-00299.md": "e19a757b5dde3fe4ceeef515f739a4e8eb3b7e0a7a98e59d73fedf8a62abd5d7",
     "docs/issues/potential/issue-00300.md": "f97eecb9deacd997f84898d8e540c9b975eefa7be920d135ab8f199ec965fb29",
     "docs/issues/potential/issue-00301.md": "337edef7991f0556d9d13b61a2e05ae5c90f462fb8867b92f5942c102b45f69d",
-    "docs/analytics/task-0010-013-browser-checks.md": "0e14475afe211c8e271cafbee44ae7808f3b80e5546a1e697450b52116bc077f"
+    "docs/analytics/task-0010-013-browser-checks.md": "8772ba8b3f5969917a4428b23f208aba651e21729e22bc79b1c8a9059fba3270",
+    "docs/analytics/task-0010-ui-fixes.md": "33882c825d8cfdc511ab592e43b622895f3d09c55404e6cb50da6d922abb2a7a"
   },
   "next_ids": {
     "source": 642,
-    "entity": 5860,
-    "relation": 16364,
+    "entity": 5890,
+    "relation": 16441,
     "process": 493
   },
   "retired_ids": [

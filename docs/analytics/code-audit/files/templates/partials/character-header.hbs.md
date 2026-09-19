@@ -1,5 +1,12 @@
 # templates/partials/character-header.hbs
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. Шесть метаданных выводятся подготовленной строкой headerSummary, Handlebars экранирует текст. Прямое конструирование динамических ключей homeland/socialStanding удалено; источник/приоритет определяет _prepareCharacterData. Действия шапки прежние; закрыт тег ссылки open-rewards.
+
+[Исходник](../../../../../../templates/partials/character-header.hbs), [реализация и проверки](../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/character-header.hbs](../../../../../../templates/partials/character-header.hbs) |

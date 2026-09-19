@@ -1,5 +1,12 @@
 # templates/sheets/actor/configuration/app/edit-stats.hbs
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. Прокручиваемая modifier-list с общей шапкой колонок; выбирает source/prepared контекст stats или derivedStats, подключает stats-block. Локализация колонок WITCHER.Editor; запись остаётся в существующем обработчике.
+
+[Исходник](../../../../../../../../../templates/sheets/actor/configuration/app/edit-stats.hbs), [реализация и проверки](../../../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/configuration/app/edit-stats.hbs](../../../../../../../../../templates/sheets/actor/configuration/app/edit-stats.hbs) |

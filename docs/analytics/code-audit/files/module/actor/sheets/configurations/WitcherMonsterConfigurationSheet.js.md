@@ -1,5 +1,12 @@
 # module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. _getSkills передаёт label текущего экземпляра навыка в каждую строку. HBS получает подпись явно для formGroup(isVisible); общей схеме подпись не назначается. Список предусмотренных навыков и запись isVisible прежние; issue-00018 вне порции.
+
+[Исходник](../../../../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js), [реализация и проверки](../../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../../../../../../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) |

@@ -1,4 +1,12 @@
-<div class="edit-stats">
+<div class="edit-stats modifier-list scrollable">
+    <div class="modifier-row modifier-columns" aria-hidden="true">
+        <span>{{localize 'WITCHER.Editor.parameter'}}</span>
+        <span>{{localize 'WITCHER.Editor.base'}}</span>
+        <span>{{localize 'WITCHER.Editor.effective'}}</span>
+        <span>{{localize 'WITCHER.Editor.cap'}}</span>
+        <span>{{localize 'WITCHER.Editor.action'}}</span>
+    </div>
+
     {{#if (eq type 'stats')}}
         {{#with system.stats as |stats|}}
             {{> 'systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/configuration/app/partials/stats-block.hbs' stats=stats reputation=../system.reputation}}

@@ -3,8 +3,8 @@
 {"id":"rel-016177","kind":"defines","from":"ent-004845","to":"ent-005817","location":{"source":"src-000185","symbol":"WitcherProfessionConfigurationSheet.findSkillByPath","line_start":182,"line_end":182},"basis":"source_read"}
 {"id":"rel-016178","kind":"defines","from":"src-000024","to":"ent-005818","location":{"source":"src-000024","symbol":"actor.verbalCombatMixin.verbalCombat","line_start":9,"line_end":9},"basis":"source_read"}
 {"id":"rel-016179","kind":"defines","from":"src-000208","to":"ent-005819","location":{"source":"src-000208","symbol":"verbalCombatDefense.prepareCheck","line_start":65,"line_end":65},"basis":"source_read"}
-{"id":"rel-016180","kind":"defines","from":"src-000029","to":"ent-005820","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._alchemyCraft","line_start":259,"line_end":259},"basis":"source_read"}
-{"id":"rel-016181","kind":"defines","from":"src-000029","to":"ent-005821","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._craftingCraft","line_start":347,"line_end":347},"basis":"source_read"}
+{"id":"rel-016180","kind":"defines","from":"src-000029","to":"ent-005820","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._alchemyCraft","line_start":275,"line_end":275},"basis":"source_read"}
+{"id":"rel-016181","kind":"defines","from":"src-000029","to":"ent-005821","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._craftingCraft","line_start":363,"line_end":363},"basis":"source_read"}
 {"id":"rel-016182","kind":"defines","from":"src-000191","to":"ent-005822","location":{"source":"src-000191","symbol":"Repair.prepareRollFormula","line_start":226,"line_end":226},"basis":"source_read"}
 {"id":"rel-016183","kind":"defines","from":"src-000191","to":"ent-005823","location":{"source":"src-000191","symbol":"Repair.commonRepair","line_start":204,"line_end":204},"basis":"source_read"}
 {"id":"rel-016184","kind":"defines","from":"src-000199","to":"ent-005824","location":{"source":"src-000199","symbol":"rollClue","line_start":5,"line_end":5},"basis":"source_read"}
@@ -37,8 +37,8 @@
 {"id":"rel-016211","kind":"calls","from":"ent-004538","to":"ent-005815","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin._onDeathSaveRoll","line_start":27,"line_end":27},"basis":"source_read"}
 {"id":"rel-016212","kind":"calls","from":"ent-005818","to":"ent-005815","location":{"source":"src-000024","symbol":"actor.verbalCombatMixin.verbalCombat","line_start":49,"line_end":49},"basis":"source_read"}
 {"id":"rel-016213","kind":"calls","from":"ent-005819","to":"ent-005815","location":{"source":"src-000208","symbol":"verbalCombatDefense.prepareCheck","line_start":65,"line_end":65},"basis":"source_read"}
-{"id":"rel-016214","kind":"calls","from":"ent-005820","to":"ent-005815","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._alchemyCraft","line_start":307,"line_end":307},"basis":"source_read"}
-{"id":"rel-016215","kind":"calls","from":"ent-005821","to":"ent-005815","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._craftingCraft","line_start":391,"line_end":391},"basis":"source_read"}
+{"id":"rel-016214","kind":"calls","from":"ent-005820","to":"ent-005815","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._alchemyCraft","line_start":323,"line_end":323},"basis":"source_read"}
+{"id":"rel-016215","kind":"calls","from":"ent-005821","to":"ent-005815","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._craftingCraft","line_start":407,"line_end":407},"basis":"source_read"}
 {"id":"rel-016216","kind":"calls","from":"ent-005822","to":"ent-005815","location":{"source":"src-000191","symbol":"Repair.prepareRollFormula","line_start":227,"line_end":227},"basis":"source_read"}
 {"id":"rel-016217","kind":"calls","from":"ent-000301","to":"ent-000302","location":{"source":"src-000022","symbol":"actor.skillMixin.rollSkill","line_start":26,"line_end":26},"basis":"source_read"}
 {"id":"rel-016218","kind":"calls","from":"ent-005824","to":"ent-000301","location":{"source":"src-000199","symbol":"rollClue","line_start":46,"line_end":46},"basis":"source_read"}
@@ -117,7 +117,7 @@
 {"id":"rel-016291","kind":"calls","from":"ent-004890","to":"ent-000369","location":{"source":"src-000020","symbol":"actor.professionMixin.doProfessionSkillRoll","line_start":362,"line_end":362},"basis":"source_read"}
 {"id":"rel-016292","kind":"calls","from":"ent-005818","to":"ent-000369","location":{"source":"src-000024","symbol":"actor.verbalCombatMixin.verbalCombat","line_start":71,"line_end":71},"basis":"source_read"}
 {"id":"rel-016293","kind":"calls","from":"ent-005819","to":"ent-000369","location":{"source":"src-000208","symbol":"verbalCombatDefense.prepareCheck","line_start":86,"line_end":86},"basis":"source_read"}
-{"id":"rel-016294","kind":"calls","from":"ent-005820","to":"ent-000369","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._alchemyCraft","line_start":339,"line_end":339},"basis":"source_read"}
-{"id":"rel-016295","kind":"calls","from":"ent-005821","to":"ent-000369","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._craftingCraft","line_start":423,"line_end":423},"basis":"source_read"}
+{"id":"rel-016294","kind":"calls","from":"ent-005820","to":"ent-000369","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._alchemyCraft","line_start":355,"line_end":355},"basis":"source_read"}
+{"id":"rel-016295","kind":"calls","from":"ent-005821","to":"ent-000369","location":{"source":"src-000029","symbol":"WitcherCharacterSheet._craftingCraft","line_start":439,"line_end":439},"basis":"source_read"}
 {"id":"rel-016296","kind":"calls","from":"ent-000953","to":"ent-000369","location":{"source":"src-000046","symbol":"sheet.statMixin._onStatSaveRoll","line_start":33,"line_end":33},"basis":"source_read"}
 {"id":"rel-016297","kind":"calls","from":"ent-004538","to":"ent-000369","location":{"source":"src-000041","symbol":"sheet.deathsaveMixin._onDeathSaveRoll","line_start":48,"line_end":48},"basis":"source_read"}

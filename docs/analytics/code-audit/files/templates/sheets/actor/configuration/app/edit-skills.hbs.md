@@ -1,5 +1,12 @@
 # templates/sheets/actor/configuration/app/edit-skills.hbs
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. Grid-строки выбранной группы: имя Skill.label, source.value, currentValue, baseCap, прежняя кнопка level-up. Флаги и activeEffectModifiers в details; имена полей и действия сохранены. Потребляет context.skillKey/canPurchase и WITCHER.Editor.
+
+[Исходник](../../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs), [реализация и проверки](../../../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 ## Текущее состояние — 14.3.1.00064
 
 2026-09-18, TASK-0010.006. **Назначение:** Ручные builtin навыки и покупка уровня.

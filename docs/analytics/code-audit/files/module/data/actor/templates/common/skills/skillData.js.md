@@ -1,5 +1,12 @@
 # module/data/actor/templates/common/skills/skillData.js
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. Skill: восемь полей, getter modifiedValue; defineSchema() без аргумента. _initialize(options) вызывает super и берёт this.schema.label из собственного EmbeddedDataField. label — подготовленное значение, source не мигрируется; isVisible не получает общий label. Зависимости: Foundry DataModel/EmbeddedDataField, семь групп навыков; потребители — Character/Monster, HBS навыков и конфигурация видимости.
+
+[Исходник](../../../../../../../../../../module/data/actor/templates/common/skills/skillData.js), [реализация и проверки](../../../../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 ## Текущее состояние — 14.3.1.00061
 
 2026-09-18, TASK-0010.003. **Назначение:** Фабрика встроенного навыка Actor.

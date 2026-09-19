@@ -1,5 +1,12 @@
 # styles/configurations/modifier-configuration.css
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. Ограниченный экраном редактор, flex window-content и прокручиваемая modifier-list; пятиколоночные Grid-строки, sticky шапка, равные числовые поля, подробности навыков. При контейнере<=40rem действия переходят на отдельную строку. Область только modifier-configuration; типографика из character/sheet.css.
+
+[Исходник](../../../../../../styles/configurations/modifier-configuration.css), [реализация и проверки](../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [styles/configurations/modifier-configuration.css](../../../../../../styles/configurations/modifier-configuration.css) |

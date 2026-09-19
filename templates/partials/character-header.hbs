@@ -1,47 +1,7 @@
 <div class='char-header-center'>
     <h1><input class='charname' name='name' type='text' value='{{actor.name}}'
             placeholder='{{localize "WITCHER.Actor.Name"}}' /></h1>
-    <div class='char-general'>
-        <span>
-            {{race.name}}
-            -
-        </span>
-        <span>
-            {{profession.name}}
-            -
-        </span>
-        <span>
-            {{system.gender}}
-            -
-        </span>
-        <span>
-            {{system.general.age}}
-            -
-        </span>
-        <span>
-            {{#unless homeland}}
-                {{#if (eq system.general.homeland.value 'other')}}
-                    {{system.general.homeland.otherValue}}
-                    -
-                {{else}}
-                    {{localize (concat 'WITCHER.Homelands.' system.general.homeland.value)}}
-                    -
-                {{/if}}
-            {{/unless}}
-            {{#if homeland}}
-                {{#if (eq homeland.system.value 'other')}}
-                    {{homeland.system.otherValue}}
-                    -
-                {{else}}
-                    {{localize (concat 'WITCHER.Homelands.' homeland.system.value)}}
-                    -
-                {{/if}}
-            {{/if}}
-        </span>
-        <span>
-            {{localize (concat 'WITCHER.socialStanding.' system.general.socialStanding)}}
-        </span>
-    </div>
+    <div class='char-general'>{{headerSummary}}</div>
     <div class="char-actions">
         <div class='char-button-list'>
             <a class='button-roll init-roll' data-tooltip="{{localize 'WITCHER.Actor.Initiative'}}"><i class="fa-solid fa-user-ninja"></i></a>
@@ -55,7 +15,7 @@
         </div>
         <div class="improvement-points action">
             <h3>{{localize 'WITCHER.rewards.dialog.ip'}} {{system.improvementPoints}}</h3>
-            <a class="open-rewards"><i class="fa-solid fa-clipboard-list"></i>
+            <a class="open-rewards"><i class="fa-solid fa-clipboard-list"></i></a>
         </div>
         <div class='death-section action'>
             <a class='death-minus' data-tooltip="{{localize 'WITCHER.Actor.deathSaves.reset'}}"><i class='fa-solid fa-rotate-left'></i></a>

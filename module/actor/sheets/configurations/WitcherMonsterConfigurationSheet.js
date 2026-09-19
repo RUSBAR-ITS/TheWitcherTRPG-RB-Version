@@ -73,6 +73,7 @@ export default class WitcherMonsterConfigurationSheet extends HandlebarsApplicat
                     .reduce((obj, skill) => {
                         let attribute = CONFIG.WITCHER.skillMap[skill].attribute.name;
                         obj[skill] = {
+                            label: this.actor.system.skills[attribute][skill].label,
                             isVisible: this.actor.system.schema.getField(['skills', attribute, skill, 'isVisible']),
                             isVisibleValue: foundry.utils.getProperty(
                                 data,

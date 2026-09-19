@@ -27,3 +27,72 @@
         }
     }
 }
+/* Shared type scale, limited to the character and parameter/skill editors. */
+.application.sheet.witcher:is(.witcher-character, .modifier-configuration) {
+    --witcher-ui-small: var(--font-size-12, 0.75rem);
+    --witcher-ui-body: var(--font-size-14, 0.875rem);
+    --witcher-ui-section: var(--font-size-18, 1.125rem);
+    --witcher-ui-value: var(--font-size-24, 1.5rem);
+    --witcher-ui-name: var(--font-size-32, 2rem);
+    --witcher-ui-font: Arial, 'Liberation Sans', sans-serif;
+
+    .window-content {
+        font-family: var(--witcher-ui-font);
+        font-size: var(--witcher-ui-body);
+        line-height: 1.35;
+    }
+    .window-content :is(input, select, textarea, button) {
+        font-family: var(--witcher-ui-font);
+        font-size: var(--witcher-ui-body);
+        line-height: 1.35;
+    }
+}
+
+.application.sheet.witcher.witcher-character {
+    .window-content {
+        grid-template-columns: 130px minmax(0, 1fr);
+        grid-template-rows: max-content max-content minmax(0, 1fr);
+        gap: 0.75rem 1.25rem;
+    }
+    .window-content > .tab[data-group=primary] { min-height: 0; min-width: 0; }
+    .window-content > .sheet-tabs { margin: 0; padding: 0.5rem; flex-wrap: wrap; gap: 0.25rem; }
+    .sheet-tabs a { font-size: var(--witcher-ui-body); line-height: 1.35; }
+
+    .window-content :is(h1, h2, h3, h4),
+    .skill-column summary > span,
+    .currency-section > span,
+    .skill-ip > span,
+    .char-stat-title {
+        font-family: var(--witcher-ui-font);
+        font-size: var(--witcher-ui-section);
+        line-height: 1.3;
+    }
+    .window-content .char-header-center input.charname {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: var(--witcher-ui-name);
+        line-height: 1.2;
+        padding: 0.2rem 0.5rem;
+        width: 100%;
+    }
+    .char-general { font-size: var(--witcher-ui-body); overflow-wrap: anywhere; }
+    .char-actions { flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .char-actions .action { width: auto; min-width: 7rem; gap: 0.5rem; padding: 0.25rem 0.5rem; }
+    .char-actions :is(.action h3, .death-counter h3) { font-size: var(--witcher-ui-value); line-height: 1.2; }
+    .char-stat-button .label > span,
+    .char-derived-button .label > span { font-size: var(--witcher-ui-section); }
+    .char-stat-button.skill .label > span { font-size: var(--witcher-ui-body); }
+    .char-stat-button .skill-icons,
+    .char-stat-button .modifiers,
+    .char-derived-button .modifiers { font-size: var(--witcher-ui-small); }
+    .char-sidebar :is(.progress-header, .optional-name) { font-size: var(--witcher-ui-body); }
+    .char-sidebar :is(.progress-text, .progress-text input, .progress-total) { font-size: var(--witcher-ui-section); }
+    .window-content .char-sidebar :is(.optional-info h3, .optional-info input) { font-size: var(--witcher-ui-value); }
+    .list-header :is(h2, h3), .section-header :is(h2, h3) { font-size: var(--witcher-ui-section); }
+    .currency-section span { font-size: inherit; }
+    .currency-section > span { font-size: var(--witcher-ui-section); }
+    .currency-list { flex-wrap: wrap; }
+    .currency { flex: 1 1 4.5rem; }
+    .carry-labels { font-size: var(--witcher-ui-small); }
+    .tab[data-tab=inventory] > * { flex: 0 0 auto; }
+    .char-stat-button, .char-derived-button { min-width: 0; }
+}

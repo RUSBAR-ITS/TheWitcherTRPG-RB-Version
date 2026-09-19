@@ -6,7 +6,7 @@
             </summary>
             <table class="table-skills">
                 {{#each skills as |skillProperties|}}
-                    {{formGroup skillProperties.isVisible value=skillProperties.isVisibleValue localize=true}}
+                    {{formGroup skillProperties.isVisible value=skillProperties.isVisibleValue label=skillProperties.label localize=true}}
                 {{/each}}
             </table>
         </details>

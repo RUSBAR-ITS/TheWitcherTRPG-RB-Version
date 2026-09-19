@@ -1,5 +1,79 @@
 .application.sheet.witcher.actor.modifier-configuration:not(.extended-sheet) {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+    min-width: min(34rem, calc(100vw - 2rem));
+
     .window-content {
-        display: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        min-height: 0;
+        overflow: hidden;
+        padding: 0.75rem;
+        container-type: inline-size;
+    }
+
+    .modifier-list {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: auto;
+        padding-right: 0.25rem;
+    }
+
+    .modifier-row {
+        display: grid;
+        grid-template-columns: minmax(8rem, 1fr) 4rem 4.5rem 5.5rem 10.5rem;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.25rem;
+        border-bottom: 1px solid var(--color-border-light-tertiary);
+    }
+
+    .modifier-columns {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: var(--background-color, light-dark(#eee, #17151e));
+        font-weight: bold;
+        font-size: var(--witcher-ui-small);
+        text-align: center;
+    }
+
+    .modifier-columns > :first-child { text-align: left; }
+    .modifier-name { overflow-wrap: anywhere; }
+    .modifier-value, .modifier-auto { text-align: center; font-variant-numeric: tabular-nums; }
+    .modifier-auto { font-size: var(--witcher-ui-small); }
+
+    .modifier-row input[type=number] {
+        width: 100%;
+        min-width: 0;
+        height: 2rem;
+        padding: 0.25rem;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .modifier-actions button {
+        width: 100%;
+        height: auto;
+        min-height: 2rem;
+        padding: 0.25rem 0.5rem;
+        white-space: normal;
+    }
+
+    .modifier-details {
+        padding: 0.25rem 0.25rem 0.5rem;
+        border-bottom: 1px solid var(--color-border-light-tertiary);
+    }
+    .modifier-details > summary { cursor: pointer; font-size: var(--witcher-ui-small); }
+    .modifier-flags { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; padding-top: 0.5rem; }
+    .modifier-flags label { display: flex; align-items: center; gap: 0.4rem; }
+    .modifier-flags input { flex: 0 0 auto; margin: 0; }
+    .skill-modifiers { font-size: var(--witcher-ui-small); margin: 0.5rem 0 0; }
+
+    @container (max-width: 40rem) {
+        .modifier-row { grid-template-columns: minmax(7rem, 1fr) 3.5rem 4rem 5rem; }
+        .modifier-actions { grid-column: 1 / -1; justify-self: end; width: 11rem; }
+        .modifier-columns > :last-child { display: none; }
     }
 }

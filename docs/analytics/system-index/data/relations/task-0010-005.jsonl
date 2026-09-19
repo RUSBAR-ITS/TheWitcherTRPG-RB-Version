@@ -27,7 +27,7 @@
 {"id":"rel-016041","kind":"calls","from":"ent-005780","to":"ent-005779","location":{"source":"src-000631","symbol":"derivedPreparation.calculateDerivedParameter","line_start":24,"line_end":24},"basis":"source_read"}
 {"id":"rel-016042","kind":"calls","from":"ent-005780","to":"ent-005780","location":{"source":"src-000631","symbol":"derivedPreparation.calculateDerivedParameter","line_start":25,"line_end":25},"basis":"source_read"}
 {"id":"rel-016043","kind":"calls","from":"ent-005780","to":"ent-005761","location":{"source":"src-000631","symbol":"derivedPreparation.calculateDerivedParameter","line_start":28,"line_end":28},"basis":"source_read"}
-{"id":"rel-016044","kind":"calls","from":"ent-000944","to":"ent-005776","location":{"source":"src-000032","symbol":"WitcherModifiersConfiguration._prepareContext","line_start":85,"line_end":85},"basis":"source_read"}
+{"id":"rel-016044","kind":"calls","from":"ent-000944","to":"ent-005776","location":{"source":"src-000032","symbol":"WitcherModifiersConfiguration._prepareContext","line_start":98,"line_end":98},"basis":"source_read"}
 {"id":"rel-016045","kind":"reads","from":"ent-000141","to":"ent-000147","location":{"source":"src-000055","symbol":"CommonActorData.prepareBaseData","line_start":65,"line_end":65},"basis":"source_read"}
 {"id":"rel-016046","kind":"writes","from":"ent-000141","to":"ent-000002","location":{"source":"src-000055","symbol":"CommonActorData.prepareBaseData","line_start":83,"line_end":83},"basis":"source_read"}
 {"id":"rel-016047","kind":"writes","from":"ent-000141","to":"ent-000003","location":{"source":"src-000055","symbol":"CommonActorData.prepareBaseData","line_start":82,"line_end":82},"basis":"source_read"}

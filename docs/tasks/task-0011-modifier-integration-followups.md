@@ -9,16 +9,18 @@
 
 ## Цель и границы
 
-Устранить смежные дефекты, которые формируют неверные исходные значения или мешают пользоваться результатами [TASK-0010](task-0010-parameter-limits.md#related-issues). Не расширять этим заданием общий контракт модификаторов. Состав — **12 issues** ниже; карточки пока остаются в прежних каталогах. Точные способы исправления и спорные значения подтверждаются перед кодом. Большинство карточек содержит более ранние воспроизведения: перед каждой порцией сверить актуальные исходники и затронутые связи графа.
+Устранить смежные дефекты, которые формируют неверные исходные значения или мешают пользоваться результатами [TASK-0010](task-0010-parameter-limits.md#related-issues). Не расширять этим заданием общий контракт модификаторов. Состав после переноса 00015 — **11 issues** ниже; карточки пока остаются в прежних каталогах. Точные способы исправления и спорные значения подтверждаются перед кодом. Большинство карточек содержит более ранние воспроизведения: перед каждой порцией сверить актуальные исходники и затронутые связи графа.
 
 Обычный порядок — после TASK-0010. Если один из дефектов блокирует её приёмку, можно вынести соответствующую порцию раньше по отдельному поручению пользователя. Зависимости от вычислителя требуют его актуального контракта, а не завершения всех независимых подпунктов.
+
+**Уточнение 2026-09-19, .00076:** [issue-00015](../issues/potential/issue-00015.md) перенесена в [TASK-0010.014](task-0010-parameter-limits.md#task-0010014) по поручению пользователя. Подписи новой модели, карточки и настройки монстра входят в эту подзадачу; повторно выполнять их здесь не требуется. Компоновка редакторов — [TASK-0010.015](task-0010-parameter-limits.md#task-0010015). Issue-00167 остаётся отдельной работой этой очереди; перенос 00015 не означает исправления или закрытия обеих карточек.
 
 ## Порции работы
 
 | Порция | Issues | План и граница | Проверка после исправления |
 | --- | --- | --- | --- |
 | 01. Ресурсы | [00164](../issues/potential/issue-00164.md), [00203](../issues/potential/issue-00203.md) | Ограничение действия восстановления действующим максимумом STA; уточнить смысл сердечка и используемый максимум HP | REC у полного/неполного/изменённого max; согласованный индикатор под эффектом и после reload |
-| 02. Редактор навыков | [00015](../issues/potential/issue-00015.md), [00167](../issues/potential/issue-00167.md) | Передача подписи вложенной модели; устранение присваивания объектом глобальной jQuery | Подписи ru/en и видимость навыков монстра; после редактирования работают другие окна |
+| 02. Редактор навыков | [00167](../issues/potential/issue-00167.md) | Устранение присваивания объектом глобальной jQuery; подписи и компоновка переданы в TASK-0010.014/.015 | После редактирования работают другие окна; не дублировать приёмку 00015 |
 | 03. Словесный бой | [00302](../issues/potential/issue-00302.md), [00303](../issues/potential/issue-00303.md) | Актуальные DOM-обработчики контекстного меню и чтение выбранной радиокнопки из собственного диалога | Атака/защита через чат; два открытых окна с разными выборами не влияют друг на друга |
 | 04. Алхимия и ремонт | [00037](../issues/potential/issue-00037.md), [00102](../issues/potential/issue-00102.md) | Согласовать вызовы с существующими методами Item/моделей; данные повреждений и результат ремонта | Получить список компонентов, провести крафт/ремонт; отмена не расходует ресурсы. Формула ремонта 00103 остаётся в TASK-0010 |
 | 05. Штраф брони | [00254](../issues/potential/issue-00254.md), [00277](../issues/potential/issue-00277.md) | Перепроверить компенсацию EV и выбор экипированной брони на хранении; закрепить ожидаемое поведение до кода | EV0/1/3 с меньшей/равной/большей компенсацией; броня надета, в сумке, извлечена |
@@ -46,10 +48,6 @@
 | [templates/partials/character-header.hbs](../../templates/partials/character-header.hbs) | [00164](../issues/potential/issue-00164.md) |
 | [templates/sheets/actor/partials/character/sidebar.hbs](../../templates/sheets/actor/partials/character/sidebar.hbs) | [00203](../issues/potential/issue-00203.md) |
 | [module/data/actor/templates/common/stats/derivedStatsData.js](../../module/data/actor/templates/common/stats/derivedStatsData.js) | [00203](../issues/potential/issue-00203.md) |
-| [module/data/actor/templates/common/skills/skillData.js](../../module/data/actor/templates/common/skills/skillData.js) | [00015](../issues/potential/issue-00015.md) |
-| [module/data/actor/templates/common/skills/bodyData.js](../../module/data/actor/templates/common/skills/bodyData.js) | [00015](../issues/potential/issue-00015.md) |
-| [module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js](../../module/actor/sheets/configurations/WitcherMonsterConfigurationSheet.js) | [00015](../issues/potential/issue-00015.md) |
-| [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs) | [00015](../issues/potential/issue-00015.md) |
 | [module/actor/sheets/mixins/skillMixin.js](../../module/actor/sheets/mixins/skillMixin.js) | [00167](../issues/potential/issue-00167.md) |
 | [module/scripts/verbalCombat/verbalCombat.js](../../module/scripts/verbalCombat/verbalCombat.js) | [00302](../issues/potential/issue-00302.md) |
 | [module/scripts/verbalCombat/verbalCombatDefense.js](../../module/scripts/verbalCombat/verbalCombatDefense.js) | [00302](../issues/potential/issue-00302.md), [00303](../issues/potential/issue-00303.md) |

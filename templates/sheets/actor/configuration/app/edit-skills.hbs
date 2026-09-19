@@ -1,56 +1,40 @@
-<div class="edit-stats">
+<div class="edit-stats modifier-list scrollable">
+    <div class="modifier-row modifier-columns" aria-hidden="true">
+        <span>{{localize 'WITCHER.skills.name'}}</span>
+        <span>{{localize 'WITCHER.Editor.base'}}</span>
+        <span>{{localize 'WITCHER.Editor.effective'}}</span>
+        <span>{{localize 'WITCHER.Editor.cap'}}</span>
+        <span>{{localize 'WITCHER.Editor.action'}}</span>
+    </div>
     {{#with (lookup system.skills skillKey) as |skillGroup|}}
         {{#each skillGroup as |skill skillName|}}
-            <details>
-                <summary style="display: flex; gap: 10px;">
-                    <span>{{localize skill.label}} <input class='header-stat stat-max'
-                            name='system.skills.{{@root.skillKey}}.{{skillName}}.value' type='number'
-                            value='{{skill.value}}' placeholder='0' data-dtype='Number' /></span>
-                    {{#if @root.canPurchase}}
-                    <button type="button" data-action="level-up"
-                        data-skill="{{skillName}}">{{localize "WITCHER.skills.levelUp"}}</button>
-                    {{/if}}
-                </summary>
-                <div>
-                    <span>{{localize 'WITCHER.Effect.Modifier.currentValue'}}: {{skill.currentValue}}</span>
-                    <label title="{{localize 'WITCHER.Effect.Modifier.baseCapHint'}}">{{localize 'WITCHER.Effect.Modifier.baseCap'}}
-                        <input name='system.skills.{{@root.skillKey}}.{{skillName}}.baseCap' type='number'
-                            value='{{skill.baseCap}}' data-dtype='Number' />
-                    </label>
+            <div class="modifier-entry" data-skill="{{skillName}}">
+                <div class="modifier-row">
+                    <span class="modifier-name">{{localize skill.label}}</span>
+                    <input name="system.skills.{{@root.skillKey}}.{{skillName}}.value" type="number" value="{{skill.value}}" data-dtype="Number"
+                        aria-label="{{localize skill.label}}: {{localize 'WITCHER.Effect.Modifier.savedBase'}}" />
+                    <output class="modifier-value" title="{{localize 'WITCHER.Effect.Modifier.currentValue'}}">{{skill.currentValue}}</output>
+                    <input name="system.skills.{{@root.skillKey}}.{{skillName}}.baseCap" type="number" value="{{skill.baseCap}}" data-dtype="Number"
+                        title="{{localize 'WITCHER.Effect.Modifier.baseCapHint'}}"
+                        aria-label="{{localize skill.label}}: {{localize 'WITCHER.Effect.Modifier.baseCap'}}" />
+                    <div class="modifier-actions">
+                        {{#if @root.canPurchase}}
+                            <button type="button" data-action="level-up" data-skill="{{skillName}}">{{localize 'WITCHER.skills.levelUp'}}</button>
+                        {{/if}}
+                    </div>
                 </div>
-                <div>
-
-                    <label>{{localize "WITCHER.skills.profession"}}:
-                        <input class="skill-checkbox" type="checkbox"
-                            name="system.skills.{{@root.skillKey}}.{{skillName}}.isProfession"
-                            {{checked skill.isProfession}} />
-                    </label>
-                    <label>{{localize "WITCHER.skills.pickup"}}:
-                        <input class="skill-checkbox" type="checkbox"
-                            name="system.skills.{{@root.skillKey}}.{{skillName}}.isPickup" {{checked skill.isPickup}} />
-                    </label>
-                    <label>{{localize "WITCHER.skills.learn"}}:
-                        <input class="skill-checkbox" type="checkbox"
-                            name="system.skills.{{@root.skillKey}}.{{skillName}}.isLearned"
-                            {{checked skill.isLearned}} />
-                    </label>
-                </div>
-                <div class='skill-modifiers'>
+                <details class="modifier-details">
+                    <summary>{{localize 'WITCHER.Editor.details'}}</summary>
+                    <div class="modifier-flags">
+                        <label><input class="skill-checkbox" type="checkbox" name="system.skills.{{@root.skillKey}}.{{skillName}}.isProfession" {{checked skill.isProfession}} />{{localize 'WITCHER.skills.profession'}}</label>
+                        <label><input class="skill-checkbox" type="checkbox" name="system.skills.{{@root.skillKey}}.{{skillName}}.isPickup" {{checked skill.isPickup}} />{{localize 'WITCHER.skills.pickup'}}</label>
+                        <label><input class="skill-checkbox" type="checkbox" name="system.skills.{{@root.skillKey}}.{{skillName}}.isLearned" {{checked skill.isLearned}} />{{localize 'WITCHER.skills.learn'}}</label>
+                    </div>
                     {{#if skill.activeEffectModifiers}}
-                        <tr>
-                            <td colspan="3">
-                                <div class="list-modifiers">
-                                    <input class="medium skill-mod-edit" type="text"
-                                        value="{{localize "WITCHER.activeEffect.tab"}}" disabled />
-                                    <input class="small skill-mod-edit" type="number"
-                                        value="{{skill.activeEffectModifiers}}" disabled />
-                                </div>
-                            </td>
-                        </tr>
+                        <p class="skill-modifiers">{{localize 'WITCHER.activeEffect.tab'}}: {{skill.activeEffectModifiers}}</p>
                     {{/if}}
-                </div>
-
-            </details>
+                </details>
+            </div>
         {{/each}}
     {{/with}}
 </div>

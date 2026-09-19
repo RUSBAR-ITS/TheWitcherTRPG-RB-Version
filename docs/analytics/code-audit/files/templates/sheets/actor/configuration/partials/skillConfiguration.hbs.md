@@ -1,5 +1,12 @@
 # templates/sheets/actor/configuration/partials/skillConfiguration.hbs
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. formGroup isVisible получает label=skillProperties.label из _getSkills; не рассчитывает подпись по общим метаданным поля. Существующие названия полей/флаги и группы прежние.
+
+[Исходник](../../../../../../../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs), [реализация и проверки](../../../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/configuration/partials/skillConfiguration.hbs](../../../../../../../../../templates/sheets/actor/configuration/partials/skillConfiguration.hbs) |

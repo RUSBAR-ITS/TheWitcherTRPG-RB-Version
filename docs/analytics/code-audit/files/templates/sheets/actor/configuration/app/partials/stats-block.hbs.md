@@ -1,5 +1,12 @@
 # templates/sheets/actor/configuration/app/partials/stats-block.hbs
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. Полное имя, ввод source.unmodifiedMax при canEditBase, currentValue только output, source.baseCap при наличии, level-up-stat с отдельным Editor.increaseAttribute. Toxicity исключается по ключу, не сравнению перевода. Репутация без искусственного потолка; общий isManualDerivedStat определяет ручные поля.
+
+[Исходник](../../../../../../../../../../templates/sheets/actor/configuration/app/partials/stats-block.hbs), [реализация и проверки](../../../../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 ## Текущее состояние — 14.3.1.00064
 
 2026-09-18, TASK-0010.006. **Назначение:** Ручные базы характеристик и кнопки покупки.

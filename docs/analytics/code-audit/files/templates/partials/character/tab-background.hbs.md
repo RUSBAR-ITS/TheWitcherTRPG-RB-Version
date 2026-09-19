@@ -1,5 +1,12 @@
 # templates/partials/character/tab-background.hbs
 
+## Текущее состояние — 14.3.1.00077
+
+2026-09-19, TASK-0010.014–.018. hasItemHomeland/homelandLabel совпадают с представлением шапки. Пустой Item не скрывает поля Actor; select родины и socialStanding имеют blank=Editor.notSpecified. Пустое значение не заменяется first-option. Существующие name/path и остальные поля предыстории прежние.
+
+[Исходник](../../../../../../../templates/partials/character/tab-background.hbs), [реализация и проверки](../../../../../task-0010-ui-fixes.md). Локальная проверка пройдена; реальная игровая/визуальная приёмка ожидается (HTTP502). Следующие датированные разделы описывают прежние срезы.
+
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/character/tab-background.hbs](../../../../../../../templates/partials/character/tab-background.hbs) |

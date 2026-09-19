@@ -39,6 +39,20 @@
         }
     },
     "WITCHER": {
+        "Editor": {
+            "parameter": "Параметр",
+            "base": "База",
+            "effective": "Итог",
+            "cap": "Базовый предел",
+            "action": "Действие",
+            "increaseAttribute": "Повысить параметр",
+            "notSpecified": "Не указано",
+            "details": "Подробности навыка",
+            "automatic": "Расчёт",
+            "parametersTitle": "Параметры",
+            "skillsTitle": "Навыки",
+            "derivedTitle": "Производные параметры"
+        },
         "EffectApplication": {
             "invalidDuration": "Длительность эффекта должна быть целым неотрицательным числом раундов.",
             "writeFailed": "Не удалось полностью сохранить или заменить эффект. Проверьте текущие эффекты."
