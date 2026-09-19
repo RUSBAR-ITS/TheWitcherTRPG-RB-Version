@@ -1,5 +1,11 @@
 # module/setup/config.js
 
+## Текущее состояние — 14.3.1.00082
+
+2026-09-19, TASK-0010.019. В statMap у stun/run/leap/enc/rec/woundTreshold/hp/sta добавлено поле labelFull с ключом WITCHER.Editor.parameters.<key>. Потребители — WitcherCharacterSheet._prepareCharacterData и WitcherModifiersConfiguration._prepareContext; labelShort/имена/формулы сохранены.
+
+[Реализация, синтетические проверки и границы](../../../../task-0010-019-visual-checks.md). Ниже сохранены описания датированных прежних срезов.
+
 ## Текущие настройки статусов — 14.3.1.00069
 
 TASK-0010.010: 11 навыковых строк в intoxication/blinded — affectsParameter=false, affectsRoll=true, optionalOnRoll=true. Это условные штрафы Словесной дуэли и зрительного Внимания. Численные штрафы характеристик/множитель STA сохраняют стандартный параметрический канал. Также по согласованию пользователя у blinded attackModifier/defenseModifier изменены с−2 на−3 по с.161. Остальные статусы и конфигурационные разделы не переоформляются. Потребители — нативный fromStatusEffect, модель WitcherActiveEffectData и сборщик rollContext; IDs/иконки сохранены. [Матрица и локальные проверки](../../../../task-0010-010-content-matrix.md). Датированные выводы ниже сохраняются вне этой дельты.

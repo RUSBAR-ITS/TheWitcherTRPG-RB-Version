@@ -18,7 +18,8 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
     static DEFAULT_OPTIONS = {
         classes: ['witcher-character'],
         position: {
-            width: 900
+            width: 1125,
+            height: 800
         },
         actions: {
             openAttributeDialog: this.#openAttributeDialog,
@@ -181,6 +182,9 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
                 ...(await context.race?.system.enrichedText())
             }
         };
+
+        context.parameterLabels = Object.fromEntries(Object.entries(CONFIG.WITCHER.statMap)
+            .map(([key, stat]) => [key, stat.labelFull ?? stat.label ?? stat.labelShort]));
 
         context.totalStats = this.calc_total_stats(context);
         context.totalSkills = this.calc_total_skills(context);

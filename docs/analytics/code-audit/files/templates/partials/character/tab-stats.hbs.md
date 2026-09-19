@@ -1,5 +1,11 @@
 # templates/partials/character/tab-stats.hbs
 
+## Текущее состояние — 14.3.1.00082
+
+2026-09-19, TASK-0010.019. Две подписи плиток читают @root.parameterLabels по ключам stat/derStat. Числа, фильтрация состава по details.label, data-* и обработчики прежние. Контекст создаёт WitcherCharacterSheet._prepareCharacterData. Без найденной подписи шаблон использует прежний details.label: WitcherMonsterSheet также подключает этот PARTS и сохраняет свои подписи.
+
+[Реализация, синтетические проверки и границы](../../../../../task-0010-019-visual-checks.md). Ниже сохранены описания датированных прежних срезов.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/character/tab-stats.hbs](../../../../../../../templates/partials/character/tab-stats.hbs) |

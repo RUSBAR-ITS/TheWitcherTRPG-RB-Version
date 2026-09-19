@@ -48,9 +48,12 @@
     }
 }
 
-.application.sheet.witcher.witcher-character {
+.application.sheet.witcher.actor.witcher-character:not(.extended-sheet) {
+    --witcher-sidebar-width: 10.15625rem;
+    max-height: calc(100dvh - 2rem);
+    max-width: calc(100vw - 2rem);
     .window-content {
-        grid-template-columns: 130px minmax(0, 1fr);
+        grid-template-columns: var(--witcher-sidebar-width) minmax(0, 1fr);
         grid-template-rows: max-content max-content minmax(0, 1fr);
         gap: 0.75rem 1.25rem;
     }
@@ -95,4 +98,117 @@
     .carry-labels { font-size: var(--witcher-ui-small); }
     .tab[data-tab=inventory] > * { flex: 0 0 auto; }
     .char-stat-button, .char-derived-button { min-width: 0; }
+}
+
+/* TASK-0010.019: shared dimensions, independent of the selected tab. */
+.application.sheet.witcher.actor.witcher-character:not(.extended-sheet) {
+    .window-content { min-height: 0; overflow: hidden; }
+    .window-content > .tab[data-group=primary] { overflow: auto; align-content: start; }
+    .window-content > .tab[data-group=primary] > * { flex-shrink: 0; }
+
+    .char-sidebar { min-height: 0; min-width: 0; }
+    .char-sidebar :is(.status-section, .progress-container, .optional-stats-section, .optional-stat) {
+        width: 100%;
+        max-width: none;
+        flex-shrink: 0;
+    }
+    .char-sidebar :is(.status-section, .optional-stats-section) { width: var(--witcher-sidebar-width); }
+    .char-sidebar :is(progress, .progress-header, .optional-name, .optional-info) {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .char-sidebar :is(.progress-header, .optional-name) {
+        white-space: nowrap;
+        min-height: 1.75rem;
+        height: auto;
+        margin: 0;
+        padding: 0.25rem;
+    }
+    .char-sidebar .optional-name { gap: 0.3rem; }
+
+    .tab[data-tab=stats] .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
+        grid-auto-rows: 4rem;
+        gap: 0.5rem;
+    }
+    .tab[data-tab=stats] .stat-grid > * {
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 0.4rem 0.6rem;
+        box-sizing: border-box;
+        text-transform: none;
+    }
+    .tab[data-tab=stats] .stat-grid .label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        white-space: nowrap;
+    }
+
+    /* The last column is always reserved for controls, with add at its right edge. */
+    .tab[data-tab=inventory], .tab[data-tab=magic] {
+        --witcher-list-control-width: 4.5rem;
+        --witcher-list-value-width: 4.5rem;
+    }
+    .tab[data-tab=magic] { --witcher-list-control-width: 2rem; }
+    :is(.tab[data-tab=inventory], .tab[data-tab=magic]) {
+        :is(.weapon-section, .armor-section, .valuable-section, .component-section, .spell-section, .magic-section) {
+            margin: 0;
+            padding: 0;
+            min-width: 0;
+        }
+        .list-header, .section-header {
+            grid-template-columns: 1.5rem minmax(0, 1fr) max-content;
+            column-gap: 0.75rem;
+            min-height: calc(3rem + 2px);
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            box-sizing: border-box;
+        }
+        :is(.list-header, .section-header) > :is(h2, h3) { min-width: 0; }
+        .list-details {
+            grid-template-columns: 2.5rem minmax(0, 1fr) max-content;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0.5rem;
+        }
+        .list-label {
+            justify-self: end;
+            align-items: center;
+            gap: 0;
+            min-width: 0;
+        }
+        .list-label > span {
+            flex: 0 0 var(--witcher-list-value-width);
+            width: var(--witcher-list-value-width);
+            height: auto;
+            min-height: 2rem;
+            padding: 0.25rem;
+            box-sizing: border-box;
+        }
+        .list-label > span:has(.add-item), .list-label > .list-controls {
+            flex-basis: var(--witcher-list-control-width);
+            width: var(--witcher-list-control-width);
+            justify-content: flex-end;
+        }
+        :is(.list-header, .section-header) > .list-label:not(:has(.add-item))::after {
+            content: '';
+            flex: 0 0 var(--witcher-list-control-width);
+        }
+        .list-label .add-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            min-height: 1.5rem;
+            margin-left: auto;
+        }
+    }
+    .tab[data-tab=magic] :is(.list-header, .section-header) > :is(h2, h3) { white-space: nowrap; }
 }

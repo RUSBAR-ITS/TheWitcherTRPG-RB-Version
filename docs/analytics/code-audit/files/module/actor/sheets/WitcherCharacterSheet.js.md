@@ -1,5 +1,11 @@
 # module/actor/sheets/WitcherCharacterSheet.js
 
+## Текущее состояние — 14.3.1.00082
+
+2026-09-19, TASK-0010.019. DEFAULT_OPTIONS задаёт базовый размер 1125×800. _prepareCharacterData добавляет parameterLabels из CONFIG.WITCHER.statMap (labelFull → label → labelShort), потребитель — tab-stats.hbs. Фильтрация плиток и модель данных прежние.
+
+[Реализация, синтетические проверки и границы](../../../../../task-0010-019-visual-checks.md). Ниже сохранены описания датированных прежних срезов.
+
 ## Текущее состояние — 14.3.1.00077
 
 2026-09-19, TASK-0010.014–.018. _prepareCharacterData добавляет headerSummary (шесть позиций с прочерками), hasItemHomeland/homelandLabel. Заполненный Item.homeland приоритетен; пустой/неизвестный/other без текста использует Actor.general.homeland. Читает CONFIG.WITCHER.homelands/socialStanding; пустые ключи не локализуются. DEFAULT_OPTIONS.classes добавляет witcher-character для области стилей. Раса/профессия — Item.name, пол/возраст/socialStanding — Actor; источник не переписывается.

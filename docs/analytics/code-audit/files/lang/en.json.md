@@ -1,5 +1,11 @@
 # lang/en.json
 
+## Текущее состояние — 14.3.1.00082
+
+2026-09-19, TASK-0010.019. Добавлены восемь полных подписей WITCHER.Editor.parameters: Stun, Run, Leap, Encumbrance, Recovery, Wound threshold, Maximum hit points, Maximum stamina. Потребители через statMap.labelFull — плитки персонажа и редактор; прежние ключи сохранены.
+
+[Реализация, синтетические проверки и границы](../../../task-0010-019-visual-checks.md). Ниже сохранены описания датированных прежних срезов.
+
 ## Текущее состояние — 14.3.1.00077
 
 2026-09-19, TASK-0010.014–.018. Добавлены те же 12 ключей WITCHER.Editor, включая Increase attribute / Not specified. Прежние ключи сохранены. Потребители — WitcherModifiersConfiguration, edit-stats/edit-skills/stats-block, tab-background.

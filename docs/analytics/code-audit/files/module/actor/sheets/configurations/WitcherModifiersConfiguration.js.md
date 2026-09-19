@@ -1,5 +1,11 @@
 # module/actor/sheets/configurations/WitcherModifiersConfiguration.js
 
+## Текущее состояние — 14.3.1.00082
+
+2026-09-19, TASK-0010.019. statRows.label выбирает statMap.labelFull → statMap.label → value.label. Полные имена производных отделены от model labels; пути сохранения/покупки уровня и PARTS прежние.
+
+[Реализация, синтетические проверки и границы](../../../../../../task-0010-019-visual-checks.md). Ниже сохранены описания датированных прежних срезов.
+
 ## Текущее состояние — 14.3.1.00077
 
 2026-09-19, TASK-0010.014–.018. DEFAULT_OPTIONS.position 820×620; PARTS со scrollable. Новый getter title локализует назначение редактора, _configureRenderOptions выбирает одну часть stats/skills. _prepareContext использует полное имя из CONFIG.WITCHER.statMap, сохраняет разделение source-базы и currentValue. _processFormData/покупка прежние: isManualDerivedStat, statMixin, skillMixin. Зависит от ключей WITCHER.Editor ru/en и шаблонов app/edit-*.

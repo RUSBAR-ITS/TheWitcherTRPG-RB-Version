@@ -61,7 +61,7 @@
 {"id":"rel-013880","kind":"embeds","from":"ent-000414","to":"ent-003733","location":{"source":"src-000125","symbol":"SpellData","line_start":57,"line_end":57},"basis":"source_read"}
 {"id":"rel-013881","kind":"defines","from":"ent-000414","to":"ent-005048","location":{"source":"src-000125","symbol":"SpellData.getUsedSkill","line_start":62,"line_end":68},"basis":"source_read"}
 {"id":"rel-013883","kind":"reads","from":"ent-005048","to":"ent-000196","location":{"source":"src-000125","symbol":"SpellData.getUsedSkill","line_start":64,"line_end":64},"basis":"source_read"}
-{"id":"rel-013884","kind":"defines","from":"ent-000192","to":"ent-005049","location":{"source":"src-000209","symbol":"WITCHER.magic","line_start":712,"line_end":731},"basis":"source_read"}
+{"id":"rel-013884","kind":"defines","from":"ent-000192","to":"ent-005049","location":{"source":"src-000209","symbol":"WITCHER.magic","line_start":720,"line_end":739},"basis":"source_read"}
 {"id":"rel-013885","kind":"reads","from":"ent-005006","to":"ent-005049","location":{"source":"src-000115","symbol":"HexData.getUsedSkill","line_start":25,"line_end":26},"basis":"source_read"}
 {"id":"rel-013886","kind":"reads","from":"ent-005022","to":"ent-005049","location":{"source":"src-000123","symbol":"RitualData.getUsedSkill","line_start":42,"line_end":43},"basis":"source_read"}
 {"id":"rel-013887","kind":"reads","from":"ent-005048","to":"ent-005049","location":{"source":"src-000125","symbol":"SpellData.getUsedSkill","line_start":65,"line_end":66},"basis":"source_read"}

@@ -98,7 +98,7 @@ export default class WitcherModifiersConfiguration extends HandlebarsApplication
             const canEditBase = group === 'stats' || isManualDerivedStat(key, prepared.customStat);
             return [key, {
                 ...value,
-                label: CONFIG.WITCHER.statMap[key]?.label ?? value.label,
+                label: CONFIG.WITCHER.statMap[key]?.labelFull ?? CONFIG.WITCHER.statMap[key]?.label ?? value.label,
                 unmodifiedMax: raw.unmodifiedMax,
                 baseCap: raw.baseCap,
                 hasBaseCap: Number.isFinite(raw.baseCap),

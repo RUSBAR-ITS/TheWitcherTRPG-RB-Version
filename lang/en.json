@@ -51,7 +51,17 @@
             "automatic": "Auto",
             "parametersTitle": "Attributes",
             "skillsTitle": "Skills",
-            "derivedTitle": "Derived statistics"
+            "derivedTitle": "Derived statistics",
+            "parameters": {
+                "stun": "Stun",
+                "run": "Run",
+                "leap": "Leap",
+                "enc": "Encumbrance",
+                "rec": "Recovery",
+                "woundTreshold": "Wound threshold",
+                "hp": "Maximum hit points",
+                "sta": "Maximum stamina"
+            }
         },
         "EffectApplication": {
             "invalidDuration": "Effect duration must be a non-negative whole number of rounds.",

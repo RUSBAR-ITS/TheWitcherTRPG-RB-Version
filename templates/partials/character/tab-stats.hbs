@@ -9,7 +9,7 @@
                 {{#unless (eq (localize details.label) (localize 'WITCHER.Actor.Stat.Toxicity'))}}
                     <a class='stat-display char-stat-button stat-roll' data-stat='{{stat}}'>
                         <div class="label">
-                            <span>{{localize details.label}}</span>
+                            <span>{{#if (lookup @root.parameterLabels stat)}}{{localize (lookup @root.parameterLabels stat)}}{{else}}{{localize details.label}}{{/if}}</span>
                             {{#if (gte details.value 0)}}
                                 <span>+{{details.value}}</span>
                             {{else}}
@@ -85,7 +85,7 @@
             }}
                 <div class='stat-display char-derived-button' data-type='derStat' data-stat='{{derStat}}'>
                     <div class="label">
-                        <span>{{localize details.label}}</span>
+                        <span>{{#if (lookup @root.parameterLabels derStat)}}{{localize (lookup @root.parameterLabels derStat)}}{{else}}{{localize details.label}}{{/if}}</span>
                         {{#if (gte details.value 0)}}
                             <span>+{{details.value}}</span>
                         {{else}}

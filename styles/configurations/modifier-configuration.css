@@ -77,3 +77,23 @@
         .modifier-columns > :last-child { display: none; }
     }
 }
+
+/* Share intrinsic name width across all rows in each statistics editor. */
+.application.sheet.witcher.actor.modifier-configuration:not(.extended-sheet) {
+    .modifier-stats {
+        display: grid;
+        grid-template-columns: max-content 4rem 4.5rem 5.5rem 10.5rem;
+        column-gap: clamp(10px, 1rem, 20px);
+        align-content: start;
+    }
+    .modifier-stats .modifier-row {
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+        column-gap: inherit;
+        padding-inline: 0;
+    }
+    .modifier-stats .modifier-name { white-space: nowrap; overflow-wrap: normal; }
+    @container (max-width: 40rem) {
+        .modifier-stats { grid-template-columns: max-content 3.5rem 4rem 5rem; }
+    }
+}
