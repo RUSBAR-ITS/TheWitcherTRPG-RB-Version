@@ -21,7 +21,7 @@
                                 value="{{weapon.system.reliable}}" data-dtype="Number" /> | <span>{{weapon.system.maxReliability}}</span>
                             </span>
                         </span>
-                        <span><input class="inline-edit item-quantity" data-field="system.quantity" type="text"
+                        <span><input class="inline-edit item-quantity" data-field="system.quantity" type="number" min="0" step="1" required
                                 value="{{weapon.system.quantity}}" data-dtype="Number" /></span>
                         <span class="list-controls">
                             <a class="item-chat" data-tooltip="{{localize 'WITCHER.Item.sendToChat'}}">

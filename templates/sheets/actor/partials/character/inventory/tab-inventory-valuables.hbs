@@ -13,10 +13,20 @@
                             <i class="fa-solid fa-book"></i>
                         </span>
                     </a>
-                    <div>{{valuable.name}}</div>
+                    <div>
+                        <span>{{valuable.name}}</span>
+                        {{#if ../showLootFormula}}
+                        <label class="loot-quantity-formula">
+                            <span>{{localize "WITCHER.Item.LootQuantityFormula"}}</span>
+                            <input class="inline-edit" data-field="system.lootQuantityFormula" type="text"
+                                value="{{valuable.system.lootQuantityFormula}}" placeholder="1d6+2"
+                                data-tooltip="{{localize 'WITCHER.Item.LootQuantityFormulaHint'}}" />
+                        </label>
+                        {{/if}}
+                    </div>
                     <div class="list-label">
                         <span>
-                            <input class="inline-edit item-quantity" data-field="system.quantity" type="text" value="{{valuable.system.quantity}}" data-dtype="Number" />
+                            <input class="inline-edit item-quantity" data-field="system.quantity" type="number" min="0" step="1" required value="{{valuable.system.quantity}}" data-dtype="Number" />
                         </span>
                         <span class="list-controls">
                             <a class="item-chat" data-tooltip="{{localize 'WITCHER.Item.sendToChat'}}">

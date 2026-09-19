@@ -3,6 +3,8 @@ import { importToActor, runContainerAction } from '../../../item/containerOperat
 import { WITCHER } from '../../../setup/config.js';
 import WitcherItem from '../../../item/witcherItem.js';
 
+import { parseItemQuantity, parseLootQuantityFormula } from '../../../data/item/commonItemData.js';
+
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export let itemMixin = {
@@ -146,6 +148,18 @@ export let itemMixin = {
         let itemId = element.closest('.item').dataset.itemId;
         let item = this.actor.items.get(itemId);
         let field = element.dataset.field;
+        if (field === 'system.quantity' || field === 'system.lootQuantityFormula') {
+            let value;
+            try {
+                value = field === 'system.quantity'
+                    ? parseItemQuantity(element.value) : parseLootQuantityFormula(element.value);
+            } catch (error) {
+                element.value = item.system[field.slice(7)];
+                ui.notifications.warn(error.message);
+                return;
+            }
+            return item.update({ [field]: value });
+        }
         // Edit checkbox values
         let value = element.value;
         if (value == 'false') {

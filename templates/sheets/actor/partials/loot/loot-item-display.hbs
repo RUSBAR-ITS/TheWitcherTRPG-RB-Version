@@ -9,7 +9,7 @@
 {{/if}}
 <td><a class="item-edit"><i class="fas fa-edit"></i></a></td>
 <td><img src="{{item.img}}" class="item-img dragable" draggable="true" data-id="{{item._id}}" /></td>
-<td><input class="inline-edit item-quantity" data-field="system.quantity" type="text" value="{{item.system.quantity}}"
+<td><input class="inline-edit item-quantity" data-field="system.quantity" type="number" min="0" step="1" required value="{{item.system.quantity}}"
         data-dtype="Number" /></td>
 <td><input class="inline-edit" data-field="name" type="text" value="{{item.name}}" placeholder="{{localize 'WITCHER.Name'}}" /></td>
 <td><input class="inline-edit Weight-info" data-field="system.weight" type="text" value="{{item.system.weight}}"

@@ -1,5 +1,9 @@
 # module/scripts/effectDelivery.js
 
+## Текущее состояние — 14.3.1.00114
+
+saveDelivery читает `message.toObject(true)` и сравнивает content строго, полный `flags[deliveryScope].effectDelivery` — через `foundry.utils.equals`. При совпадении запись пропускается; проверка доступности исполнителей при повторном нажатии сохраняется. При различии по-прежнему ожидается update; отсутствие подтверждения/исключение остаётся ошибкой. Отправка эффектов следует только после сохранения sending; неизвестный результат требует needsReview. Дополнительные внешние зависимости: Document.toObject и foundry.utils.equals. [Проверки и границы](../../../../task-0011-static-checks.md#browser-fixes-00114).
+
 ## Текущее состояние — 14.3.1.00108 / TASK-0011.008
 
 2026-09-19. Сервис дополнен deliveryVisibility (исходные whisper/blind либо native текущий messageMode), reportDeliveryConsequence (HBS-предупреждение, при невозможности записи notification), createItemEffectDelivery (resolveEffectSource → createEffectDelivery только готовых AE), applyParryStagger (duration1 на заданного Actor) и applyCriticalAdrenaline (optional off/no-op, местное право, прежний whitelist query). Ошибка источника не создаёт пустую повторяемую карточку; предупреждение содержит UUID источника/адресата/исходного сообщения. createDeliverySnapshot допускает отсутствие оригинального сообщения и хранит null; список действует по прежней машине .007. Новые потребители: professionMixin, defenseMixin, damageMixin, consumeMixin; новый шаблон effect-delivery-warning.hbs. Парирование/адреналин не возвращают расходы и не меняют исходный бросок.
@@ -40,7 +44,7 @@
 | collectSpellEffects | Четыре канала self/target, фиксированные AE и duration; без бросков и записи |
 | deliverySnapshot / canSendDelivery | Чтение версии1 flags; только автор и обычное право update сообщения |
 | renderDelivery | HBS карточки, локализованные состояния/причины, явный duration0 |
-| saveDelivery | Ожидаемые content и flags одним update; отмена без Document считается ошибкой |
+| saveDelivery | Совпавшие с source content/flags не записываются; иначе ожидаемый update, отмена без Document считается ошибкой |
 | interruptedDelivery | Прерванное sending → needsReview; подтверждённое сохраняется, неизвестное не повторяется |
 | sendEffectDelivery | Проверка всех исполнителей; waiting при любом отказе до записи; сохранить sending, затем последовательные ожидаемые Actor-пакеты; complete или needsReview |
 | createEffectDelivery | Нет воздействий → нет карточки; ChatMessage типа base со speaker/author и исходными whisper/blind; первая отправка автоматически |

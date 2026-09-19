@@ -16,7 +16,7 @@
                     <div>{{enhancement.name}}</div>
                     <div class="list-label">
                         <span>
-                            <input class="inline-edit item-quantity" data-field="system.quantity" type="text" value="{{enhancement.system.quantity}}" data-dtype="Number" />
+                            <input class="inline-edit item-quantity" data-field="system.quantity" type="number" min="0" step="1" required value="{{enhancement.system.quantity}}" data-dtype="Number" />
                         </span>
                         <span class="list-controls">
                             <a class="item-chat" data-tooltip="{{localize 'WITCHER.Item.sendToChat'}}">

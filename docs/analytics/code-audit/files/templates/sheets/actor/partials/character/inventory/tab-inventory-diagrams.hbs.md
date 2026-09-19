@@ -1,5 +1,11 @@
 # templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+Ввод system.quantity сделан числовым: type=number,min=0,step=1,required; значение берётся из CommonItemData.quantity. Обработчик sheet.itemMixin._onItemInlineEdit проверяет целое неотрицательное значение до Item.update, отклоняя пустой/дробный ввод. Расположение остальных колонок и действия предметов сохранены.
+
+[Результаты107 статических проверок и границы](../../../../../../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs](../../../../../../../../../../templates/sheets/actor/partials/character/inventory/tab-inventory-diagrams.hbs) |

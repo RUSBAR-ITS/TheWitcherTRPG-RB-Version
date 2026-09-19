@@ -6,8 +6,8 @@
   "snapshot": {
     "date": "2026-09-19",
     "branch": "dev",
-    "head": "3f0538de820dcd83265ef38d00adaa3002d1d650",
-    "source_hash": "5f889c999a14272c425d357ec7010971256fac89a2fcf971d3af1b9f8f4f63da"
+    "head": "9bed0cb62ec9e3e58e7cd6d19d94ba67349fdb0c",
+    "source_hash": "f5ed5e6dc670d82f7d1b5b0875f5432c8e862bd148cbb7e73d807e0c0f75db52"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
@@ -331,7 +331,8 @@
       "data/entities/task-0011-004.jsonl",
       "data/entities/task-0011-006.jsonl",
       "data/entities/task-0011-007.jsonl",
-      "data/entities/task-0011-008.jsonl"
+      "data/entities/task-0011-008.jsonl",
+      "data/entities/task-0011-quantity.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -381,7 +382,8 @@
       "data/relations/task-0011-005.jsonl",
       "data/relations/task-0011-006.jsonl",
       "data/relations/task-0011-007.jsonl",
-      "data/relations/task-0011-008.jsonl"
+      "data/relations/task-0011-008.jsonl",
+      "data/relations/task-0011-quantity.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -646,7 +648,7 @@
     "docs/issues/potential/issue-00182.md": "20f8874c1ede11caf162af68aa4d2b3f04067771129339d87fefa03ccbbcd9a3",
     "docs/issues/potential/issue-00183.md": "1a9945b58511ef6c998a48ca52de63d06db6faff101ed86af5a8c9ad858e90a6",
     "docs/issues/potential/issue-00184.md": "945ef944d9ddf6e71757f904f0812b6d6e61a18bc7799b25aaf8630139d45190",
-    "docs/issues/potential/issue-00185.md": "a65669c7db6026b1e34b9f4bd98b3d3a41de8d1dee388ef3b18e91befc11ee36",
+    "docs/issues/potential/issue-00185.md": "61591b597c22887cd2522b7f4d9c76174110aad86a825745378a6b5719cd9359",
     "docs/issues/closed/issue-00187.md": "0c8a6175f68a003601ae2f11ba7dbbbaced894256157884f3808a72c3b8e8f07",
     "docs/issues/potential/issue-00188.md": "a8cacb0ec87ab41628296f061e3542f324aab24010000223f7d3e1daab2cf1f9",
     "docs/issues/potential/issue-00189.md": "4563d8e6c240f3088d18e844a65e9137c8c4c35440ae27b4aef97f645edbd471",
@@ -729,12 +731,12 @@
     "docs/analytics/task-0010-ui-fixes.md": "ed1c40cc25fa3f5fb446fa47d1f22524c3ac632d3fb992ef9f0c27c2fdfa58da",
     "docs/analytics/task-0010-019-visual-checks.md": "f669e86d738e11fb68067ea2bb8f47f322fec74c31894af2f6b8c160457b6700",
     "docs/analytics/task-0010-regression-2026-09-19.md": "d1f8c22a7fe463143b7d3379e263814f3345d118a7df74d756a8ecc4466595e0",
-    "docs/analytics/task-0011-static-checks.md": "b7a8beddf28bf12d835a094bf2d4567d96b31bcc135ced1ccc50a76ac4f7ea5f"
+    "docs/analytics/task-0011-static-checks.md": "93f2b1922577b4d5d0db6f11efc8fdc13c6c9cfbeaf8a57f3bb3230691606226"
   },
   "next_ids": {
     "source": 646,
-    "entity": 5947,
-    "relation": 16645,
+    "entity": 5963,
+    "relation": 16699,
     "process": 494
   },
   "retired_ids": [

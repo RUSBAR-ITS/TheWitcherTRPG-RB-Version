@@ -9,7 +9,7 @@
 
     <div class="valuable-section">
         {{#if loots}}
-            {{> "systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs" valuables=loots header=(localize "WITCHER.Loot.Name") hasQuantity=true}}
+            {{> "systems/TheWitcherTRPG-RB-Version/templates/sheets/actor/partials/character/inventory/tab-inventory-valuables.hbs" valuables=loots showLootFormula=true header=(localize "WITCHER.Loot.Name") hasQuantity=true}}
         {{/if}}
         <button data-action="exportLoot" class="export-loot">{{localize "WITCHER.Monster.exportLoot"}}</button>
     </div>

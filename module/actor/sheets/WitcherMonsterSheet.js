@@ -2,6 +2,8 @@ import WitcherMonsterConfigurationSheet from './configurations/WitcherMonsterCon
 import WitcherActorSheet from './WitcherActorSheet.js';
 import WitcherModifiersConfiguration from '../../actor/sheets/configurations/WitcherModifiersConfiguration.js';
 
+import { parseItemQuantity, parseLootQuantityFormula } from '../../data/item/commonItemData.js';
+
 const DialogV2 = foundry.applications.api.DialogV2;
 
 export default class WitcherMonsterSheet extends WitcherActorSheet {
@@ -184,6 +186,18 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
             return;
         }
 
+        // Validate configuration before creating the loot Actor, without rolling dice.
+        try {
+            for (const item of this.actor.items) {
+                if (!item.system.schema.fields.quantity) continue;
+                parseItemQuantity(item.system.quantity);
+                parseLootQuantityFormula(item.system.lootQuantityFormula);
+            }
+        } catch (error) {
+            ui.notifications.warn(error.message);
+            return;
+        }
+
         let folder = await this.getOrCreateFolder();
         let newLoot = await Actor.create({
             ...this.actor.toObject(),
@@ -194,28 +208,31 @@ export default class WitcherMonsterSheet extends WitcherActorSheet {
 
         // Normalize original ordinary stacks first, so a later multiplier cannot
         // multiply items already added by a generator. New items are not reprocessed.
-        const items = [...newLoot.items].map(item => ({ item, tables: item.getLootRollTables() }));
+        const items = [...newLoot.items].filter(item => item.system.schema.fields.quantity)
+            .map(item => ({ item, tables: item.getLootRollTables() }));
         items.sort((a, b) => Number(!!a.tables.length) - Number(!!b.tables.length));
         let completed = 0;
         for (const { item, tables } of items) {
             try {
-                let newQuantity = item.system.quantity;
-                if (typeof newQuantity === 'string' && newQuantity.includes('d')) {
-                    let total = 0;
+                const formula = parseLootQuantityFormula(item.system.lootQuantityFormula);
+                let newQuantity = parseItemQuantity(item.system.quantity) * multiplier;
+                if (formula) {
+                    newQuantity = 0;
                     for (let i = 0; i < multiplier; i++) {
-                        let roll = await new Roll(item.system.quantity).evaluate({ async: true });
-                        total += Math.ceil(roll.total);
+                        const roll = await new Roll(formula).evaluate({ async: true });
+                        if (!Number.isFinite(roll.total) || roll.total < 0) {
+                            throw new Error(game.i18n.localize('WITCHER.Monster.lootInvalidQuantity'));
+                        }
+                        newQuantity += Math.floor(roll.total);
                     }
-                    newQuantity = total;
-                } else {
-                    newQuantity = Number(newQuantity) * multiplier;
                 }
+                newQuantity = parseItemQuantity(newQuantity);
 
                 const result = await item.checkIfItemHasRollTable(newQuantity, tables);
                 if (result.status === 'not-found') {
-                    // Quantity is a StringField; Foundry returns undefined for an unchanged update.
-                    if (item._source.system.quantity !== String(newQuantity)) {
-                        const saved = await item.update({ 'system.quantity': newQuantity });
+                    // Both stored fields must already match before skipping a no-op update.
+                    if (item._source.system.quantity !== newQuantity || item._source.system.lootQuantityFormula !== '') {
+                        const saved = await item.update({ 'system.quantity': newQuantity, 'system.lootQuantityFormula': '' });
                         if (!saved) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
                     }
                 } else if (result.status !== 'generated') {

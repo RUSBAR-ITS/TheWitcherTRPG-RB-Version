@@ -1,5 +1,11 @@
 # module/actor/sheets/mixins/itemMixin.js
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+_onItemInlineEdit отдельно обрабатывает system.quantity и system.lootQuantityFormula через parseItemQuantity/parseLootQuantityFormula из module/data/item/commonItemData.js. При неверном вводе возвращает прежнее значение поля и локализованное предупреждение, не пишет Item. Успешный quantity передаёт числом, формулу строкой. Эти поля не проходят преобразование строк true/false/checked; остальные ветви обработчика прежние.
+
+[Результаты107 статических проверок и границы](../../../../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 ## Актуализация 2026-09-17 — 14.3.1.00049
 
 **Назначение:** Drop Item в лист Actor.

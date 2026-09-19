@@ -111,6 +111,17 @@ export async function createContainerDocuments(inputs, operation, rawCreate, raw
     const { flat, rootIds } = expandTemplates(inputs, operation);
     const collection = collectionFor(operation.parent);
     if (flat.some(data => collection.has(data._id))) throw containerError('conflict');
+    // Derive expected stored values from input and schema before the write.
+    const expected = new Map(flat.map(data => {
+        const fields = CONFIG.Item.dataModels[data.type]?.schema.fields ?? {};
+        const values = {};
+        for (const key of ['quantity', 'lootQuantityFormula']) {
+            if (!fields[key]) continue;
+            values[key] = fields[key].clean(data.system?.[key]);
+            fields[key].validate(values[key], { strict: true, fallback: false });
+        }
+        return [data._id, values];
+    }));
     try {
         const created = await rawCreate(flat, { ...operation, keepId: true });
         const byId = new Map(created.map(doc => [doc.id, doc]));
@@ -122,7 +133,7 @@ export async function createContainerDocuments(inputs, operation, rawCreate, raw
                 doc.type !== data.type ||
                 (data.type === 'container' && !equal(contentOf(doc), data.system.content)) ||
                 (data.system?.isStored !== undefined && doc.system.isStored !== data.system.isStored) ||
-                (data.system?.quantity !== undefined && String(doc.system.quantity) !== String(data.system.quantity))
+                Object.entries(expected.get(data._id)).some(([key, value]) => doc._source.system[key] !== value)
             ) {
                 throw containerError('writeFailed');
             }

@@ -335,6 +335,9 @@
             "tooMuch": "There is too much armor equipped of the same type"
         },
         "Item": {
+            "LootQuantityFormula": "Loot quantity formula",
+            "LootQuantityFormulaHint": "Replaces the fixed quantity when exporting monster loot. Each result is rounded down.",
+            "InvalidQuantity": "Quantity must be a whole number of 0 or more.",
             "Equipped": "Equipped",
             "NotEquipped": "Not Equipped",
             "sendToChat": "Send to Chat",
@@ -888,6 +891,7 @@
             "Equipped": "Eq"
         },
         "Monster": {
+            "lootInvalidFormula": "Invalid loot quantity formula.",
             "lootInvalidMultiplier": "Enter a positive whole number of monsters.",
             "lootAmbiguousTable": "More than one table matches this generator.",
             "lootInvalidQuantity": "The number of table rolls must be a finite non-negative number.",

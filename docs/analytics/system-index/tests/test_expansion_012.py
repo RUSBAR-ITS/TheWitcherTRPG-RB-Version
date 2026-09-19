@@ -45,12 +45,12 @@ class DocumentsExpansion(unittest.TestCase):
         for q,n,line,literal in [
             ('CommonActorData.defineSchema',55,18,'defineSchema'),('CommonActorData.prepareBaseData',55,63,'prepareBaseData'),
             ('LootData.defineSchema',56,6,'defineSchema'),('LootData.calcCurrencyWeight',56,14,'calcCurrencyWeight'),
-            ('CommonItemData.quantity',109,7,'new fields.StringField'),('CommonItemData.calcWeight',109,18,'calcWeight'),
-            ('CommonItemData.canBeRepaired',109,26,'canBeRepaired'),('createEnrichedText',102,1,'createEnrichedText')]:
+            ('CommonItemData.quantity',109,31,'new ItemQuantityField'),('CommonItemData.calcWeight',109,43,'calcWeight'),
+            ('CommonItemData.canBeRepaired',109,51,'canBeRepaired'),('createEnrichedText',102,1,'createEnrichedText')]:
             e=self.data.entities[self.q[q]];self.assertEqual((e['location']['source'],e['location']['line_start']),(f'src-{n:06}',line))
             self.assertIn(literal,self.source(n)[line-1])
-        self.assertIn("quantity: new fields.StringField",self.source(109)[6])
-        self.assertIn('this.isCarried && !this.isStored ? this.quantity * this.weight : 0',self.source(109)[18])
+        self.assertIn("quantity: new ItemQuantityField",self.source(109)[30])
+        self.assertIn('this.isCarried && !this.isStored ? this.quantity * this.weight : 0',self.source(109)[43])
         self.assertEqual({r['to'] for r in self.edges('CommonItemData.calcWeight','reads')},
                          {self.q['CommonItemData.'+n] for n in ['quantity','weight','isStored','isCarried']})
         self.assertEqual([r['to'] for r in self.edges('LootData','extends')],[self.q['foundry.abstract.TypeDataModel']])

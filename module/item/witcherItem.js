@@ -349,7 +349,7 @@ export default class WitcherItem extends Item {
             if (tables.length !== 1) {
                 throw new Error(game.i18n.localize('WITCHER.Monster.lootAmbiguousTable'));
             }
-            if (!Number.isFinite(newQuantity) || newQuantity < 0) {
+            if (!Number.isInteger(newQuantity) || newQuantity < 0) {
                 throw new Error(game.i18n.localize('WITCHER.Monster.lootInvalidQuantity'));
             }
             const table = await tables[0].pack.getDocument(tables[0].id);
@@ -379,7 +379,9 @@ export default class WitcherItem extends Item {
                 if (existing) {
                     saved = await existing.update({ 'system.quantity': Number(existing.system.quantity) + 1 });
                 } else {
-                    saved = await Item.create(item.toObject(), { parent: this.actor });
+                    const data = item.toObject();
+                    if (item.system.schema.fields.lootQuantityFormula) data.system.lootQuantityFormula = '';
+                    saved = await Item.create(data, { parent: this.actor });
                 }
                 if (!saved) throw new Error(game.i18n.localize('WITCHER.Monster.lootWriteCancelled'));
                 records.push({ uuid: saved.uuid, name: saved.name, action: existing ? 'updated' : 'created' });

@@ -1,5 +1,15 @@
 # module/data/item/commonItemData.js
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+Схема CommonItemData теперь содержит9 полей. quantity — ItemQuantityField (NumberField, initial1, required, not nullable, integer,min0); lootQuantityFormula — отдельный StringField(initial='',trim=true). description/weight/cost/sourcebook/isHidden/isStored/isCarried и calcWeight сохраняют назначение; формула не участвует в весе.
+
+Новые сущности: ItemQuantityField._cleanType сохраняет число до валидации без округления/обрезания; parseItemQuantity преобразует непустую числовую строку и отвергает нецелое/отрицательное; parseLootQuantityFormula убирает крайние пробелы, проверяет непустую формулу через Foundry Roll.validate. Ошибки используют ru/en ключи WITCHER.Item.InvalidQuantity и WITCHER.Monster.lootInvalidFormula. Прямых импортов файлов нет; внешние зависимости — Foundry fields/TypeDataModel/Roll/game.i18n.
+
+Потребители новых экспортов: WitcherItemSheet._processFormData, sheet.itemMixin._onItemInlineEdit и WitcherMonsterSheet.#exportLoot. Модель принимает числовую строку "6" как6, поэтому ремонт продолжает применять Number.isFinite без локального обхода. Сырые JSON ''/null очищаются штатно в0/1; запрет пустого ручного ввода обеспечивают формы. Ниже — историческая схема из8 полей и проверки старого StringField, не текущий контракт.
+
+[Результаты107 статических проверок и границы](../../../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/commonItemData.js](../../../../../../../module/data/item/commonItemData.js) |

@@ -1,5 +1,11 @@
 # styles/monster/inventory.css
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+Добавлен компактный flex-блок .loot-quantity-formula с подписью и полем формулы под названием предмета на листе монстра. Контракт разметки задаёт character/inventory/tab-inventory-valuables.hbs при showLootFormula=true. Поле не занимает колонку количества/действий; расчётов в CSS нет.
+
+[Результаты107 статических проверок и границы](../../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [styles/monster/inventory.css](../../../../../../styles/monster/inventory.css) |

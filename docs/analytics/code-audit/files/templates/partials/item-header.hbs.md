@@ -1,5 +1,11 @@
 # templates/partials/item-header.hbs
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+При наличии systemFields.quantity отображает quantity как number(min0,step1,required), затем отдельный lootQuantityFormula с локализованными подписью/подсказкой и примером1d6+2. Модели без количества не получают эти поля. Данные готовит WitcherItemSheet._prepareContext, сохранение проверяет _processFormData; оба поля задаёт CommonItemData.
+
+[Результаты107 статических проверок и границы](../../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/partials/item-header.hbs](../../../../../../templates/partials/item-header.hbs) |

@@ -67,7 +67,7 @@ class InventoryExpansion(unittest.TestCase):
             e=self.data.entities[self.q[name]];self.assertEqual((e['location']['source'],e['location']['line_start']),(f'src-{n:06}',line));self.assertIn(literal,self.source(n)[line-1])
         self.assertEqual(self.q['item.consumeMixin.consume'],'ent-000867')
         self.assertEqual(self.data.entities[self.q['CommonItemData.quantity']]['owner'],self.q['CommonItemData'])
-        self.assertIn('StringField',self.source(109)[6])
+        self.assertIn('ItemQuantityField',self.source(109)[30])
         self.assertEqual({e['name'] for e in self.new['entities'] if e['owner']==self.q['ConsumablePropertiesData'] and e['kind']=='field'},{'doesHeal','heal','effects','removesEffects'})
         self.assertNotRegex('\n'.join(self.source(142)),r'\bid\s*:')
         self.assertNotIn('addsTempHp','\n'.join(self.source(137)))

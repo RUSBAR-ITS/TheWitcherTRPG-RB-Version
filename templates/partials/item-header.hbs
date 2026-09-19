@@ -22,14 +22,21 @@
         </itemimage>
 
         <table class="information">
+            {{#if systemFields.quantity}}
             <tr class="item-header-tablerow">
                 <td>
                     <label>{{localize "WITCHER.Item.Quantity"}}</label>
                 </td>
                 <td>
-                    <input type="text" name="system.quantity" value="{{item.system.quantity}}" data-dtype="Number" />
+                    <input type="number" min="0" step="1" required name="system.quantity" value="{{item.system.quantity}}" data-dtype="Number" />
                 </td>
             </tr>
+            <tr class="item-header-tablerow">
+                <td><label>{{localize "WITCHER.Item.LootQuantityFormula"}}</label></td>
+                <td><input type="text" name="system.lootQuantityFormula" value="{{item.system.lootQuantityFormula}}"
+                    placeholder="1d6+2" data-tooltip="{{localize 'WITCHER.Item.LootQuantityFormulaHint'}}" /></td>
+            </tr>
+            {{/if}}
             <tr class="item-header-tablerow">
                 <td>
                     <label>{{localize "WITCHER.Item.Weight"}}</label>

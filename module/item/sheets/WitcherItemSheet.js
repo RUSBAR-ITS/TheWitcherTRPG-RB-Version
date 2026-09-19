@@ -1,3 +1,4 @@
+import { parseItemQuantity, parseLootQuantityFormula } from '../../data/item/commonItemData.js';
 import { linkedItemContext } from './helpers/linkedItemContext.js';
 import WitcherConfigurationSheet from './configurations/WitcherConfigurationSheet.js';
 
@@ -87,6 +88,18 @@ export default class WitcherItemSheet extends HandlebarsApplicationMixin(ItemShe
         if (event.target.dataset.action === 'editEffect') {
             this._onEditEffect(event, event.target);
         }
+    }
+
+    _processFormData(event, form, formData) {
+        const data = super._processFormData(event, form, formData);
+        if (Object.hasOwn(data.system ?? {}, 'quantity')) {
+            // Read the raw control: FormDataExtended can turn an empty number into null.
+            data.system.quantity = parseItemQuantity(form.elements.namedItem('system.quantity')?.value ?? data.system.quantity);
+        }
+        if (Object.hasOwn(data.system ?? {}, 'lootQuantityFormula')) {
+            data.system.lootQuantityFormula = parseLootQuantityFormula(data.system.lootQuantityFormula);
+        }
+        return data;
     }
 
     activateListeners(html) {}

@@ -1,5 +1,11 @@
 # templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+При включении общего character/inventory/tab-inventory-valuables.hbs передаёт showLootFormula=true, поэтому добыча монстра имеет отдельный ввод формулы под названием. Остальные потребители partial эту строку не включают; счётчик количества остаётся числовым. Экспорт читает поле в WitcherMonsterSheet.#exportLoot.
+
+[Результаты107 статических проверок и границы](../../../../../../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs](../../../../../../../../../../templates/sheets/actor/partials/monster/tabs/tab-inventory.hbs) |

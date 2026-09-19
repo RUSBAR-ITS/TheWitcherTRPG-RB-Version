@@ -1,5 +1,11 @@
 # lang/ru.json
 
+## Актуализация 2026-09-19 — 14.3.1.00115
+
+Добавлены4 ключа: WITCHER.Item.LootQuantityFormula, WITCHER.Item.LootQuantityFormulaHint, WITCHER.Item.InvalidQuantity и WITCHER.Monster.lootInvalidFormula. Подпись/подсказка используются item-header.hbs и monster-веткой tab-inventory-valuables.hbs; ошибки — parseItemQuantity/parseLootQuantityFormula в CommonItemData, через формы и экспорт. Соответствующие ru/en ключи парные; прежние ключи не удалялись.
+
+[Результаты107 статических проверок и границы](../../../task-0011-static-checks.md#quantity-installed-00115). Ниже сохранён исходный пофайловый аудит на его дату; при расхождении текущий контракт описан выше.
+
 ## Дополнение 14.3.1.00108
 
 TASK-0011.008 добавляет WITCHER.EffectDelivery: предупреждение/источник, инструкции ручного статуса и адреналина, проверку неизвестного исхода, подписи шести последствий и причины invalidSource/sourceUnavailable. Потребители — effectDelivery.js и effect-delivery-warning.hbs; прежние ключи не удалялись. [Рендер ru/en и пределы](../../../task-0011-static-checks.md#task-0011008).
