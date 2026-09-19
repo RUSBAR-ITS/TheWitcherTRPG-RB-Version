@@ -71,29 +71,31 @@ class ResourceFormExpansion(unittest.TestCase):
         stat='\n'.join(self.source(90));self.assertIn('value: new fields.NumberField({ initial: 0 })',stat)
         for src,typ in [(560,'character'),(565,'monster')]:
             txt='\n'.join(self.source(src));self.assertIn("max='99'",txt)
-            for role,literal in [('wound-state','hp.unmodifiedMax'),('temporaryHpSum','temporaryHpSum'),('vigor-display','vigor.max')]:
+            for role,literal in [('wound-state','hp.max'),('temporaryHpSum','temporaryHpSum'),('vigor-display','vigor.max')]:
                 e=self.data.entities[self.q[typ+'/sidebar.hbs.'+role]];loc=e['location']
                 self.assertIn(literal,'\n'.join(self.source(src)[loc['line_start']-1:loc['line_end']]))
             self.assertIn('woundTreshold.value',txt)
             self.assertNotIn('temporaryHpSum',re.search(r'<input[^>]+name=.[^\n]*hp.value.*?>',txt,re.S)[0])
-        derived='\n'.join(self.source(47)[157:189])
-        self.assertNotIn('.value =',derived);self.assertIn('.max = modifiedMax',derived)
-        self.assertIn('!this.system.customStat',derived)
-        self.assertIn('this.system.stats.toxicity.max +=',self.source(47)[65])
+        for typ in ['character','monster']:
+            eid=self.q[typ+'/sidebar.hbs.wound-state']
+            reads={r['to'] for r in self.data.outgoing[eid] if r['kind']=='reads'}
+            self.assertIn(self.q['stat().max'],reads)
+            self.assertNotIn(self.q['stat().unmodifiedMax'],reads)
 
-    def test_recovery_guards_arithmetic_and_unawaited_update(self):
+    def test_recovery_guards_cap_and_awaited_update(self):
         for src,cls,base in [(27,'WitcherActorSheet',259),(28,'WitcherActorSheetV1',236)]:
-            text='\n'.join(self.source(src)[base-1:base+34])
+            loc=self.data.entities[self.q[cls+'._onRecoverSta']]['location']
+            text='\n'.join(self.source(src)[loc['line_start']-1:loc['line_end']])
             self.assertEqual(text.count('this.actor.system.derivedStats.sta.value >= this.actor.system.derivedStats.sta.max'),2)
             self.assertIn('this.actor.system.derivedStats.sta.value + this.actor.system.derivedStats.rec.value',text)
             self.assertIn("'system.derivedStats.sta.value': this.actor.system.derivedStats.sta.max",text)
-            self.assertNotIn('Math.min',text);self.assertNotIn('Math.clamp',text);self.assertNotIn('await this.actor.update',text);self.assertNotIn('return this.actor.update',text)
+            self.assertIn('Math.min',text);self.assertEqual(text.count('await this.actor.update'),2)
             self.assertNotIn('ChatMessage',text)
             for act in ['recovery','full']:
                 cb=self.q[cls+'._onRecoverSta/'+act+'.callback']
                 p=next(p for p in self.new['processes']if p['entry']['entity']==cb)
                 st={s['id']:s for s in p['steps']};self.assertEqual([e['step']for e in st['guard']['next']if 'step'in e],['notify','write'])
-                self.assertEqual(st['write']['next'][0]['flow'],'scheduled')
+                self.assertEqual(st['write']['next'][0]['flow'],'await')
                 self.assertEqual({r['to']for r in self.data.outgoing[cb]if r['kind']=='writes'},{self.q['DerivedStats.sta'],self.q['stat().value']})
         self.assertIn('recover-sta','\n'.join(self.source(520)));self.assertNotIn('recover-sta','\n'.join(self.source(564)))
         self.assertIn('await this.actor.update','\n'.join(self.source(42)[77:86]));self.assertIn('Math.min','\n'.join(self.source(42)[77:86]))

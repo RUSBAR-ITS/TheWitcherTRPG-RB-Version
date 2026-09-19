@@ -1,5 +1,11 @@
 # templates/sheets/actor/partials/character/sidebar.hbs
 
+## Текущее состояние — 14.3.1.00101, TASK-0011.001
+
+2026-09-19: wound-state сравнивает текущие HP.value с действующим HP.max вместо unmodifiedMax. При полном/превышенном запасе сердце целое; иначе прежние порог и зелёный/оранжевый цвет. temporaryHpSum и текущие ресурсы не изменяются.
+
+Зависимости: существующие prepared-поля Actor; для callback — DialogV2/Actor.update, для панели — gte/localize. Новых методов или полей нет. [Результаты36 локальных сценариев и пределы проверки](../../../../../../../task-0011-static-checks.md#task-0011001). Игровая B01 ожидается; прежние разделы ниже описывают датированные срезы.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/actor/partials/character/sidebar.hbs](../../../../../../../../../templates/sheets/actor/partials/character/sidebar.hbs) |

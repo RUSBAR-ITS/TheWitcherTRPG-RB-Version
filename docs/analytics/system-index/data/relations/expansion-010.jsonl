@@ -84,8 +84,8 @@
 {"id":"rel-002484","kind":"imports","from":"src-000031","to":"src-000032","location":{"source":"src-000031","symbol":"module/actor/sheets/WitcherMonsterSheet.js","line_start":3,"line_end":3},"basis":"source_read"}
 {"id":"rel-002485","kind":"imports","from":"src-000031","to":"src-000033","location":{"source":"src-000031","symbol":"module/actor/sheets/WitcherMonsterSheet.js","line_start":1,"line_end":1},"basis":"source_read"}
 {"id":"rel-002486","kind":"mixes","from":"ent-000393","to":"ent-000952","location":{"source":"src-000032","symbol":"WitcherModifiersConfiguration","line_start":129,"line_end":129},"basis":"source_read"}
-{"id":"rel-002487","kind":"mixes","from":"ent-000387","to":"ent-000952","location":{"source":"src-000027","symbol":"WitcherActorSheet","line_start":312,"line_end":312},"basis":"source_read"}
-{"id":"rel-002488","kind":"mixes","from":"ent-000390","to":"ent-000952","location":{"source":"src-000028","symbol":"WitcherActorSheetV1","line_start":290,"line_end":290},"basis":"source_read"}
+{"id":"rel-002487","kind":"mixes","from":"ent-000387","to":"ent-000952","location":{"source":"src-000027","symbol":"WitcherActorSheet","line_start":314,"line_end":314},"basis":"source_read"}
+{"id":"rel-002488","kind":"mixes","from":"ent-000390","to":"ent-000952","location":{"source":"src-000028","symbol":"WitcherActorSheetV1","line_start":292,"line_end":292},"basis":"source_read"}
 {"id":"rel-002489","kind":"calls","from":"ent-000395","to":"ent-000960","location":{"source":"src-000032","symbol":"WitcherModifiersConfiguration.activateListeners","line_start":64,"line_end":64},"basis":"source_read"}
 {"id":"rel-002490","kind":"calls","from":"ent-000389","to":"ent-000960","location":{"source":"src-000027","symbol":"WitcherActorSheet.activateListeners","line_start":236,"line_end":236},"basis":"source_read"}
 {"id":"rel-002491","kind":"calls","from":"ent-000392","to":"ent-000960","location":{"source":"src-000028","symbol":"WitcherActorSheetV1.activateListeners","line_start":211,"line_end":211},"basis":"source_read"}

@@ -6,8 +6,8 @@
   "snapshot": {
     "date": "2026-09-19",
     "branch": "dev",
-    "head": "9307a3477307258d92670f2f26515d51dac5e702",
-    "source_hash": "1d145999a9b05fba591d40a518513f786525f4527693ff754c3003b4f8acb8c8"
+    "head": "7557e294d27102e59338e79a7796b81a299f6077",
+    "source_hash": "13916642a9ad8f93ef739d101d1917f6af2e0a673687a799c242b0aa2ad764c6"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
@@ -619,7 +619,7 @@
     "docs/issues/potential/issue-00149.md": "a13a0ac936beffc5768debd8d07bf0f8b4eff1c5c42350c12ce9048046261943",
     "docs/issues/potential/issue-00153.md": "9caa1223c27308f3a034d36c2039c54fecf06480319f9e30ed8518b8b8361434",
     "docs/issues/potential/issue-00163.md": "95f452d3039b9cd96e0a1b467c0115206d0de64a08eeb1f5fe1403a232d21333",
-    "docs/issues/potential/issue-00164.md": "4a4489c2e5c5c86958462394b4d968e3da9b807a074ce6978c8b9a31428f37c2",
+    "docs/issues/potential/issue-00164.md": "8b3b3d5b18bfd9a4aceb2f10fc14ed2c0b3753424d3b4d71f533a908be8cc4e9",
     "docs/issues/potential/issue-00166.md": "6e73af07257b9762dfaa90deda29ae54ea18c89e5641d38be5d3c3ea930725f5",
     "docs/issues/potential/issue-00167.md": "ad27145db78bdb7397dc98aadc59e07365c7d68bee5cbcfc07989c5871c09b2b",
     "docs/issues/potential/issue-00168.md": "1f253621764444fe790e311d37fe3effc7abdb83a9b168b4ca5bcfc484367a4b",
@@ -644,7 +644,7 @@
     "docs/issues/closed/issue-00196.md": "d17e82372820d9bb62b404347698e286a5da01426471abf6b147b9597dcfd90b",
     "docs/issues/potential/issue-00197.md": "2f7fb32731f1e0bc8a6462d018dcc1a3978646db071abcf633e5c48f033aeea4",
     "docs/issues/potential/issue-00200.md": "6b49e6ce9ec83f210d3809fbc8fc9d8067e866628aa94b8223196eca7e90766f",
-    "docs/issues/potential/issue-00203.md": "e83ce5988f756f179541faa6e29009249099e323b586fd8ba7101c62046f84af",
+    "docs/issues/potential/issue-00203.md": "d5fb91ac3294f7324a1818aa1c0f082b2242e0b9d13901874b3d4d89f79e0444",
     "docs/issues/closed/issue-00204.md": "8162ea4bfd45d215cc397e64557e51e448980b5819e569a2d69c7fb7b8fc9b93",
     "docs/issues/potential/issue-00213.md": "df1c4f49321e6fb38ed72c789ea498c70da4dc374a1c2b87d55edf9debd94758",
     "docs/issues/potential/issue-00225.md": "54691653067465c434c9b6065f390dcb3a1114f8044504b09392c908427db703",
@@ -714,7 +714,8 @@
     "docs/analytics/task-0010-013-browser-checks.md": "bb011eb585171586a391f62fa2f519b7640305db1812277ce52aeca1aeb7b440",
     "docs/analytics/task-0010-ui-fixes.md": "ed1c40cc25fa3f5fb446fa47d1f22524c3ac632d3fb992ef9f0c27c2fdfa58da",
     "docs/analytics/task-0010-019-visual-checks.md": "f669e86d738e11fb68067ea2bb8f47f322fec74c31894af2f6b8c160457b6700",
-    "docs/analytics/task-0010-regression-2026-09-19.md": "d1f8c22a7fe463143b7d3379e263814f3345d118a7df74d756a8ecc4466595e0"
+    "docs/analytics/task-0010-regression-2026-09-19.md": "d1f8c22a7fe463143b7d3379e263814f3345d118a7df74d756a8ecc4466595e0",
+    "docs/analytics/task-0011-static-checks.md": "badd8affaabf09a3d80d426aa96c3feeac75b3203abab39a2a4ddc043cbca132"
   },
   "next_ids": {
     "source": 642,

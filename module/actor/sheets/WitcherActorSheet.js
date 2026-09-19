@@ -274,8 +274,10 @@ export default class WitcherActorSheet extends HandlebarsApplicationMixin(ActorS
                             return;
                         }
                         await this.actor.update({
-                            'system.derivedStats.sta.value':
+                            'system.derivedStats.sta.value': Math.min(
+                                this.actor.system.derivedStats.sta.max,
                                 this.actor.system.derivedStats.sta.value + this.actor.system.derivedStats.rec.value
+                            )
                         });
                     }
                 },
