@@ -1,5 +1,11 @@
 # module/actor/mixins/verbalCombatMixin.js
 
+## Текущее состояние — 14.3.1.00103
+
+2026-09-19, TASK-0011.003. DialogV2.callback читает radio и manual из button.form. Нет radio — уведомление InvalidAction и null; после prompt проверяются собственные group/action в CONFIG до чтения параметров. Сохранены набор действий, фактический builtin skill, dmgStat/формула урона, verbalAttack, createVerbalCombatFlags и общая цепочка prepareCheck/extendedRoll. Отмена prompt по-прежнему следует rejectClose:true; отмена общего выбора модификаторов возвращает null.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011003): 38 локальных сценариев прошли, игровая B03 ещё не запускалась. Ниже сохранены описания датированных прежних срезов; утверждения о глобальном выборе radio, DOM/jQuery меню и преждевременном завершении наших операций заменены этой секцией в пределах указанного изменения.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** prepareCheck получает выбранный builtin/пустую цель, action verbalAttack и manual. Общие физические attackModifier не включаются автоматически; штатный skill/stat контекст сохраняется. Возвращает extendedRoll или null при отмене.

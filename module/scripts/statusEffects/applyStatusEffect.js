@@ -1,4 +1,8 @@
-import { getActorOwner, getCurrentCharacter } from '../helper.js';
+import { getCurrentCharacter } from '../helper.js';
+import { deliverActorEffects, notifyEffectDelivery } from '../effectDelivery.js';
+
+const boundStatusLinks = new WeakSet();
+const pendingStatuses = new Set();
 
 export function addStatusEffectChatListeners(html) {
     // setup chat listener messages for each message as some need the message context instead of chatlog context.
@@ -15,70 +19,49 @@ export function addStatusEffectChatListeners(html) {
 export const chatMessageListeners = async (message, html) => {
     if (!html.querySelector('a.apply-status')) return;
 
-    html.querySelectorAll('a.apply-status').forEach(status =>
-        status.addEventListener('click', event => onApplyStatus(event))
-    );
+    html.querySelectorAll('a.apply-status').forEach(status => {
+        if (boundStatusLinks.has(status)) return;
+        boundStatusLinks.add(status);
+        status.addEventListener('click', event => onApplyStatus(event));
+    });
 };
 
 export async function onApplyStatus(event) {
-    let statusId = event.currentTarget.dataset.status;
-    let target = getCurrentCharacter();
-
-    applyStatusEffectToActor(target.uuid, statusId, event.currentTarget.dataset.duration);
+    event.preventDefault();
+    const { status: statusId, actorUuid, duration } = event.currentTarget.dataset;
+    let key;
+    try {
+        const target = actorUuid ? await fromUuid(actorUuid) : getCurrentCharacter();
+        if (!target || (actorUuid && !target.canUserModify(game.user, 'update'))) {
+            return notifyEffectDelivery({ state: 'refused', reason: 'permission' });
+        }
+        const pendingKey = `${target.uuid}:${statusId}`;
+        if (pendingStatuses.has(pendingKey)) return;
+        key = pendingKey;
+        pendingStatuses.add(key);
+        return await applyStatusEffectToActor(target.uuid, statusId, duration);
+    } catch (error) {
+        console.error('Witcher manual status failed', error);
+        return notifyEffectDelivery({ state: 'unknown', reason: 'responseUnconfirmed' });
+    } finally {
+        if (key) pendingStatuses.delete(key);
+    }
 }
 
 export async function applyStatusEffectToTargets(statusEffects, duration) {
-    let targets = game.user.targets;
-
-    if (targets.size == 0) return;
-
-    targets.forEach(target => {
-        let actorUuid = target.actor.uuid;
-        Object.values(statusEffects).forEach(effect =>
-            applyStatusEffectToActor(actorUuid, effect.statusEffect, duration)
-        );
-    });
+    const results = [];
+    for (const target of game.user.targets) {
+        for (const effect of Object.values(statusEffects)) {
+            results.push(await applyStatusEffectToActor(target.actor.uuid, effect.statusEffect, duration));
+        }
+    }
+    return results;
 }
 
 export async function applyStatusEffectToActor(actorUuid, statusEffectId, duration) {
-    let actor = fromUuidSync(actorUuid);
-
-    if (!actor) return;
-
-    if (!actor.isOwner) {
-        getActorOwner(actor).query('TheWitcherTRPG-RB-Version.query', {
-            function: 'applyStatusEffectToActor',
-            data: [actorUuid, statusEffectId, duration]
-        });
-        return;
-    }
-
-    //only try to apply it when not already present
-    if (
-        statusEffectId &&
-        !actor.appliedEffects.find(effect => effect.statuses.find(status => status == statusEffectId))
-    ) {
-        await actor.toggleStatusEffect(statusEffectId);
-
-        handleStatusCounterIntegration(actor, statusEffectId, duration);
-
-        if (actor.system.statusEffectImmunities?.find(immunity => immunity == statusEffectId)) {
-            //untoggle it so people see it was tried to be applied but failed
-            setTimeout(() => {
-                actor.toggleStatusEffect(statusEffectId);
-            }, 1000);
-        }
-    }
-}
-
-function handleStatusCounterIntegration(target, statusId, duration) {
-    if (!game.modules.get('statuscounter')?.active) return;
-
-    if (!duration || duration == 0) return;
-
-    let statusEffect = CONFIG.WITCHER.statusEffects.querySelector(statusEffect => statusEffect.id == statusId);
-
-    let effectCounter = EffectCounter.getAllCounters(target).querySelector(effects => effects.path == statusEffect.img);
-    effectCounter.setValue(parseInt(duration));
-    effectCounter.changeType('statuscounter.countdown_round', target);
+    // HTML dataset values are strings; zero remains an explicit duration.
+    if (typeof duration === 'string') duration = duration.trim() ? Number(duration) : undefined;
+    return notifyEffectDelivery(await deliverActorEffects(actorUuid, [
+        { kind: 'status', statusId: statusEffectId ?? '', duration }
+    ]));
 }

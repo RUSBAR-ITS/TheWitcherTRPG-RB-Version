@@ -23,7 +23,7 @@
 {"id":"rel-016161","kind":"calls","from":"ent-000296","to":"ent-005811","location":{"source":"src-000019","symbol":"actor.modifierMixin.addActiveEffects","line_start":33,"line_end":33},"basis":"source_read"}
 {"id":"rel-016162","kind":"calls","from":"ent-000297","to":"ent-005810","location":{"source":"src-000019","symbol":"actor.modifierMixin.addAttackModifiers","line_start":37,"line_end":37},"basis":"source_read"}
 {"id":"rel-016163","kind":"calls","from":"ent-000298","to":"ent-005810","location":{"source":"src-000019","symbol":"actor.modifierMixin.addDefenseModifiers","line_start":41,"line_end":41},"basis":"source_read"}
-{"id":"rel-016164","kind":"calls","from":"ent-003438","to":"ent-005810","location":{"source":"src-000016","symbol":"actor.defenseMixin.addDefenseModifiers","line_start":239,"line_end":239},"basis":"source_read"}
+{"id":"rel-016164","kind":"calls","from":"ent-003438","to":"ent-005810","location":{"source":"src-000016","symbol":"actor.defenseMixin.addDefenseModifiers","line_start":234,"line_end":234},"basis":"source_read"}
 {"id":"rel-016165","kind":"calls","from":"ent-000361","to":"ent-005807","location":{"source":"src-000198","symbol":"addPart","line_start":80,"line_end":80},"basis":"source_read"}
 {"id":"rel-016166","kind":"defines","from":"ent-000821","to":"ent-005813","location":{"source":"src-000074","symbol":"combatEffects.attackModifier","line_start":8,"line_end":8},"basis":"source_read"}
 {"id":"rel-016167","kind":"reads","from":"ent-005810","to":"ent-004084","location":{"source":"src-000019","symbol":"combatModifierFormula","line_start":9,"line_end":9},"basis":"source_read"}

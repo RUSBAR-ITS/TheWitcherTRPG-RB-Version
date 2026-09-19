@@ -1,5 +1,17 @@
 # module/scripts/statusEffects/applyStatusEffect.js
 
+## Текущее состояние — 14.3.1.00108 / TASK-0011.008
+
+2026-09-19. onApplyStatus читает data-actor-uuid: async fromUuid и проверка местного canUserModify(update), без подмены текущим токеном. Без UUID остаётся getCurrentCharacter. Await прежней обёртки использует present/no-op локального статуса; pendingStatuses ограничивает одновременный местный клик по одному Actor/status, WeakSet не удваивает подписку. Отсутствующий Actor/ошибка дают контролируемое уведомление. Новые ссылки создаёт effectDelivery.js/reportDeliveryConsequence через effect-delivery-warning.hbs; старые ссылки продолжают работать.
+
+[Локальные проверки и границы B08](../../../../../task-0011-static-checks.md#task-0011008). Ниже — прежние датированные срезы; утверждения о прямых query/неожидаемой доставке заменены этим разделом.
+
+## Текущее состояние — 14.3.1.00106 / TASK-0011.006
+
+applyStatusEffectToActor нормализует строковый duration из dataset (явный0 сохраняется), передаёт statusId в deliverActorEffects и возвращает JSON-результат с предупреждением при отказе/неизвестном исходе. applyStatusEffectToTargets ожидает каждый статус каждого Actor; onApplyStatus возвращает Promise. Локальное применение, counter и иммунитет вынесены в effectDeliveryLocal.js. Старый неиспользуемый массовый listener не перерабатывался. Адресация ручной ссылки всё ещё через getCurrentCharacter; явный Actor для парирования появится в .008.
+
+[Проверки S06 и границы](../../../../../task-0011-static-checks.md#task-0011006). Ниже сохранены исторические описания; при расхождении актуален этот раздел.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/statusEffects/applyStatusEffect.js](../../../../../../../module/scripts/statusEffects/applyStatusEffect.js) |

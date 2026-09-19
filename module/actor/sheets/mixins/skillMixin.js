@@ -24,12 +24,12 @@ export let skillMixin = {
     },
 
     skillListener(html) {
-        jQuery = $(html);
+        const $html = $(html);
         let thisActor = this.actor;
         let skillMap = this.skillMap;
 
-        jQuery.find('.profession-roll').on('click', event => thisActor._onProfessionRoll(event));
-        jQuery.find('.skill-display').on('click', this._onSkillDisplay.bind(this));
+        $html.find('.profession-roll').on('click', event => thisActor._onProfessionRoll(event));
+        $html.find('.skill-display').on('click', this._onSkillDisplay.bind(this));
 
         html.querySelectorAll('[data-action=rollSkill]').forEach(skill =>
             skill.addEventListener('click', event => thisActor.rollSkillCheck(skillMap[skill.dataset.skill]))

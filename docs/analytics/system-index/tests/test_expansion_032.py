@@ -63,21 +63,26 @@ class MagicCastExpansion(unittest.TestCase):
         for n in range(1,5):self.assertIn(f'this.system.focus{n}.value > 0',focus)
         writes=[r for r in self.data.incoming[self.q['focus().value']]if r['kind']=='writes'and r['location']['source']=='src-000011'];self.assertEqual(writes,[])
     def test_will_formula_compensation_and_metadata_are_separate(self):
-        b=self.body(11,22,48)
-        self.assertIn('this.system.stats.will.value',b);self.assertIn('this.system.skills.will[usedSkill.name].value',b)
-        self.assertIn('armorEnc > 0',b);self.assertNotIn('Math.min',b)
-        self.assertIn('this.addActiveEffects(usedSkill.name)',b);self.assertIn('this.addAttackModifiers()',b)
-        self.assertIn('attack: spellItem.getItemAttack()',self.body(11,238,243))
+        b='\n'.join(self.source(11))
+        self.assertIn('Math.min(armorEnc, Math.max(0, this.system.lifepathModifiers.ignoredEvWhenCasting))',b)
+        self.assertIn('armorEnc > 0',b)
+        self.assertIn('const check = await prepareCheck',b)
+        self.assertIn("action: 'attack' }, { manual: customModifier }",b)
+        self.assertIn('rollFormula = check.formula + rollFormula',b)
+        self.assertIn('attack: spellItem.getItemAttack()',b)
         self.assertIn(self.q['actor.armorMixin.getArmorEcumbrance'],self.targets('actor.castSpellMixin.castSpell','calls'))
         refs=self.data.entities[self.q['magic-cast/ev-compensation']]['refs'];self.assertIn('docs/issues/potential/issue-00254.md',{r['path']for r in refs})
-    def test_cost_guard_and_fire_and_forget_update(self):
-        b=self.body(11,113,133)
+    def test_cost_guard_and_awaited_update(self):
+        b=self.body(11)
         self.assertLess(b.index('let origStaCost = staCostTotal'),b.index('staCostTotal -= Number(focusValue)'))
-        self.assertIn('staCostTotal += 3',b);self.assertIn('staCostTotal < 1',b);self.assertIn('staCostTotal = 1',b)
-        self.assertIn('if (newSta < 0)',b);self.assertIn("'system.derivedStats.sta.value': newSta",b);self.assertNotIn('await ',b)
-        self.assertNotIn('isFinite',b);self.assertNotIn('vigor',self.body(11,13,270))
-        writes=[r for r in self.edges('actor.castSpellMixin.castSpell','writes')if r['to']==self.q['DerivedStats.sta']];self.assertTrue(any(r['location']['line_start']==132 for r in writes))
-        p=self.process('Исходная сила и фактическая оплата STA');st={s['id']:s for s in p['steps']};self.assertEqual(st['write']['next'][0]['flow'],'scheduled');self.assertEqual([e['exit']for e in st['guard']['next']if'exit'in e],['skipped'])
+        for token in ['staCostTotal += 3', 'staCostTotal < 1', 'staCostTotal = 1', 'if (newSta < 0)', "'system.derivedStats.sta.value': newSta", 'const paid = await this.update', 'if (!paid) return']:
+            self.assertIn(token,b)
+        self.assertLess(b.index('if (!paid) return'),b.index('await extendedRoll'))
+        writes=[r for r in self.edges('actor.castSpellMixin.castSpell','writes')if r['to']==self.q['DerivedStats.sta']]
+        self.assertTrue(any("'system.derivedStats.sta.value': newSta" in self.source(11)[r['location']['line_start']-1] for r in writes))
+        p=self.process('Исходная сила и фактическая оплата STA');st={s['id']:s for s in p['steps']}
+        self.assertEqual(st['write']['next'][0]['flow'],'await')
+        self.assertIn('skipped',{e.get('exit')for e in st['write']['next']})
     def test_limited_multiplier_and_prepared_percentage_alias(self):
         b=self.body(11,272,286);self.assertIn('parseInt(origStaCost)',b);self.assertIn("value.replace('/STA', '')",b);self.assertIn("value.split('d')[0]",b);self.assertIn('return staminaMulti * value',b);self.assertNotIn('new Roll',b)
         self.assertIn('properties: this.system.damageProperties',self.body(159,8,19))
@@ -100,16 +105,20 @@ class MagicCastExpansion(unittest.TestCase):
         self.assertIn('{{spellItem.system.alternateRitualComponents}}',self.body(487));self.assertNotIn('#each spellItem.system.alternateRitualComponents',self.body(487))
         self.assertIn('#each spell.system.alternateRitualComponents',self.body(561));self.assertNotIn('spell.system.ritualComponents',self.body(561))
     def test_roll_threshold_order_and_effect_waits(self):
-        b=self.body(11,227,270)
-        markers=['const chatMessage = await','damage.properties =','let messageData =','new RollConfig({ showResult: false })','await extendedRoll','await roll.toMessage','createSpellRegion?.','if (!roll.options.fumble)','return roll']
+        b=self.body(11)
+        markers=['const chatMessage = await','damage.properties =','let messageData =','new RollConfig({ showResult: false })','await extendedRoll','await roll.toMessage','createSpellRegion?.','if (!roll.options.fumble)','await createEffectDelivery','return roll']
         self.assertEqual([b.index(x)for x in markers],sorted(b.index(x)for x in markers))
-        self.assertNotIn('difficultyCheck',self.body(11));self.assertIn('difficultyCheck',self.body(487));self.assertIn('threshold = null',self.body(201))
-        self.assertIn('Number.isFinite(config.threshold)',self.body(202))
-        post=self.body(11,250,266);self.assertNotIn('await ',post)
-        for q in ['applyStatusEffectToActor','applyStatusEffectToTargets','applyActiveEffectToActor','applyActiveEffectToTargets']:self.assertIn(self.q[q],self.targets('actor.castSpellMixin.castSpell','calls'))
-        self.assertIn('Object.values(spellItem.system.selfEffects ?? {})',post);self.assertIn('applyStatusEffectToTargets(spellItem.system.onCastEffects,',post)
-        self.assertIn('Object.values(statusEffects)',self.body(205,30,41));self.assertNotIn('onCastEffects:',self.body(115));self.assertNotIn('onCastEffects:',self.body(123))
-        p=self.process('После сообщения: region, fumble, статусы и AE');st={s['id']:s for s in p['steps']};self.assertEqual(st['region']['next'][0]['flow'],'scheduled');self.assertEqual([x['step']for x in st['fumble']['next']],['status-self','return'])
+        self.assertNotIn('difficultyCheck',b);self.assertIn('difficultyCheck',self.body(487))
+        calls=self.targets('actor.castSpellMixin.castSpell','calls')
+        for name in ['effectDelivery.collectSpellEffects','effectDelivery.createEffectDelivery']:
+            self.assertIn(self.q[name],calls)
+        for name in ['applyStatusEffectToActor','applyStatusEffectToTargets','applyActiveEffectToActor','applyActiveEffectToTargets']:
+            self.assertNotIn(self.q[name],calls)
+        self.assertIn('collectSpellEffects(this, spellItem, damage.duration)',b)
+        p=self.process('После сообщения: region, fumble, статусы и AE');st={s['id']:s for s in p['steps']}
+        self.assertEqual(st['region']['next'][0]['flow'],'scheduled')
+        self.assertEqual([x['step']for x in st['fumble']['next']],['delivery','return'])
+        self.assertEqual(st['delivery']['next'][0]['flow'],'await')
     def test_chat_action_consumers_and_region_handoff(self):
         h=self.body(487);self.assertIn('data-heal="{{damage.heal}}"',h);self.assertIn('data-shield="{{damage.shield}}"',h);self.assertNotIn('fumble',h)
         heal=self.body(193,26,48);self.assertIn('parseInt(',heal);self.assertIn('game.user.targets.first()?.actor',heal);self.assertIn('canvas.tokens.controlled[0]?.actor',heal);self.assertIn('game.user.character',heal)

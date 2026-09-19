@@ -1,5 +1,11 @@
 # templates/dialog/verbal-combat-defense.hbs
 
+## Текущее состояние — 14.3.1.00103
+
+2026-09-19, TASK-0011.003. Каждый input[name=verbalCombat] вложен в собственный label, общих id/for нет. data-group явно Defenses; value остаётся ключом defenses. Форма и имя customModifiers сохранены. Потребитель executeDefenseCallback читает только свой корень, валидирует ключ Defenses и передаёт выбор/manual в prepareCheck.
+
+[Проверки и границы](../../../../task-0011-static-checks.md#task-0011003): 38 локальных сценариев прошли, игровая B03 ещё не запускалась. Ниже сохранены описания датированных прежних срезов; утверждения о глобальном выборе radio, DOM/jQuery меню и преждевременном завершении наших операций заменены этой секцией в пределах указанного изменения.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/dialog/verbal-combat-defense.hbs](../../../../../../templates/dialog/verbal-combat-defense.hbs) |

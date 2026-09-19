@@ -3,9 +3,10 @@
     <div>
         {{#each defenses as |verbalData verbalName|}}
             <div>
-                <input name="verbalCombat" type="radio" id={{verbalName}} value={{verbalName}}
-                    data-group={{groupName}} />
-                <label for={{verbalName}}>{{localize (concat verbalData.name)}}</label>
+                <label>
+                    <input name="verbalCombat" type="radio" value="{{verbalName}}" data-group="Defenses" />
+                    {{localize (concat verbalData.name)}}
+                </label>
             </div>
         {{/each}}
         <label>{{localize "WITCHER.Dialog.customModifier"}}: <input name="customModifiers" value=0></label>

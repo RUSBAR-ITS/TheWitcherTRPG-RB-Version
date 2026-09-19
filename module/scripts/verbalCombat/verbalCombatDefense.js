@@ -5,13 +5,20 @@ import { RollConfig } from '../rollConfig.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
 
 export function addVerbalCombatDefenseMessageContextOptions(html, options) {
-    let canDefend = li => li.querySelector('.verbal-combat-attack-message')?.length;
+    let canDefend = li => Boolean(li.querySelector('.verbal-combat-attack-message'));
     options.push({
         label: `${game.i18n.localize('WITCHER.Context.Defense')}`,
         icon: '<i class="fas fa-shield-alt"></i>',
         visible: canDefend,
         callback: async li => {
-            executeDefense(await getInteractActor(), li.dataset.messageId, li.find('.dice-total')[0].innerText);
+            const total = li.querySelector('.dice-total')?.textContent?.trim();
+            if (!total || !Number.isFinite(Number(total))) {
+                ui.notifications.warn(game.i18n.localize('WITCHER.verbalCombat.InvalidTotal'));
+                return;
+            }
+            const actor = await getInteractActor();
+            if (!actor) return;
+            await executeDefense(actor, li.dataset.messageId, Number(total));
         }
     });
     return options;
@@ -44,16 +51,20 @@ async function executeDefense(actor, messageId, totalAttack) {
 
 async function executeDefenseCallback(actor, totalAttack, html) {
 
-    let checkedBox = document.querySelector('input[name="verbalCombat"]:checked');
-    if (!checkedBox) return;
-    let verbal = checkedBox.value;
-
-    if (verbal == 'Counterargue') {
-        actor.verbalCombat();
-        return;
+    const root = html?.querySelector ? html : html?.[0];
+    const checkedBox = root?.querySelector('input[name="verbalCombat"]:checked');
+    const verbal = checkedBox?.value;
+    const defenses = CONFIG.WITCHER.verbalCombat.Defenses;
+    if (!checkedBox || checkedBox.dataset.group !== 'Defenses' || !Object.hasOwn(defenses ?? {}, verbal)) {
+        ui.notifications.warn(game.i18n.localize('WITCHER.verbalCombat.InvalidAction'));
+        return null;
     }
 
-    let verbalCombat = CONFIG.WITCHER.verbalCombat.Defenses[verbal];
+    if (verbal == 'Counterargue') {
+        return actor.verbalCombat();
+    }
+
+    let verbalCombat = defenses[verbal];
     let vcName = verbalCombat.name;
 
     let vcDmg = verbalCombat.baseDmg
@@ -65,7 +76,7 @@ async function executeDefenseCallback(actor, totalAttack, html) {
     const check = await prepareCheck(actor, {
         target: verbalCombat.skill ? { kind: 'builtin', key: verbalCombat.skill.name } : null,
         action: 'verbalDefense', comparison: '>=', threshold: Number(totalAttack)
-    }, { manual: html.find('[name=customModifiers]')[0].value });
+    }, { manual: root.querySelector('[name=customModifiers]')?.value ?? 0 });
     if (!check) return null;
     const rollFormula = check.formula;
 

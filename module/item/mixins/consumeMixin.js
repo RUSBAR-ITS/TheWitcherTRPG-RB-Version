@@ -1,4 +1,4 @@
-import { applyActiveEffectToActorViaId } from '../../scripts/temporaryEffects/applyActiveEffect.js';
+import { createItemEffectDelivery } from '../../scripts/effectDelivery.js';
 
 export let consumeMixin = {
     async consume() {
@@ -12,8 +12,8 @@ export let consumeMixin = {
 
         this.actor.applyStatus(properties.effects);
         this.actor.removeStatus(this.system.consumeProperties.removesEffects);
-        await applyActiveEffectToActorViaId(this.actor.uuid, this.uuid, 'applySelf');
-        this.createConsumeMessage(messageInfos);
+        const message = await this.createConsumeMessage(messageInfos);
+        await createItemEffectDelivery({ actor: this.actor, itemUuid: this.uuid, applyWhen: 'applySelf', message });
     },
 
     async createConsumeMessage(messageInfos) {
@@ -37,6 +37,6 @@ export let consumeMixin = {
             style: CONST.CHAT_MESSAGE_STYLES.OTHER
         };
 
-        ChatMessage.create(chatData);
+        return ChatMessage.create(chatData);
     }
 };

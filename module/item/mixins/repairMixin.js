@@ -6,7 +6,7 @@ export let repairMixin = {
     },
 
     restoreReliability() {
-        RepairSystem.restoreReliability(this);
+        return RepairSystem.restoreReliability(this);
     },
 
 };

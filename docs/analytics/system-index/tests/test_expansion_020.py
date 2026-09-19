@@ -43,17 +43,21 @@ class ChatDeliveryExpansion(unittest.TestCase):
 
 
     def test_chat_registration_is_separate_from_execution(self):
-        entry=self.source(4);combat=self.source(195);chat=self.source(193)
-        self.assertIn("Hooks.on('renderChatMessageHTML'",entry[51])
-        for at,name in [(53,'attackChatMessageListeners'),(54,'defenseChatMessageListeners'),(57,'chatMessageListeners')]:self.assertIn(name,entry[at-1])
-        self.assertIn("html.querySelector('button.damage')?.addEventListener('click', _ => onDamage(message))",combat[15])
-        for at,selector in [(27,'button.stun'),(33,'button.crit-stun')]:self.assertIn("querySelectorAll('"+selector+"')",combat[at-1])
-        for at,button in [(5,'shield'),(6,'heal'),(7,'request-repair')]:self.assertIn("querySelector('button."+button+"')",chat[at-1])
-        self.assertNotIn('message.', '\n'.join(chat[3:8]));self.assertNotIn('fumble','\n'.join(chat[3:8]))
+        entry='\n'.join(self.source(4));combat='\n'.join(self.source(195));chat='\n'.join(self.source(193))
+        self.assertIn("Hooks.on('renderChatMessageHTML'",entry)
+        for name in ['attackChatMessageListeners','defenseChatMessageListeners','chatMessageListeners']:
+            self.assertIn(name+'(message, html)',entry)
+        self.assertIn("html.querySelector('button.damage')?.addEventListener('click', _ => onDamage(message))",combat)
+        for selector in ['button.stun','button.crit-stun']:
+            self.assertIn("querySelectorAll('"+selector+"')",combat)
+        for button in ['shield','heal','request-repair']:
+            self.assertIn("querySelector('button."+button+"')",chat)
+        self.assertIn('bindEffectDelivery(message, html)',chat)
         regs=[r for r in self.data.outgoing['ent-000629']if r['kind']=='registers']
-        self.assertEqual({r['to'] for r in regs},{self.q[x]for x in ['onShield','onHeal','onRepairRequest']})
-        self.assertEqual(self.data.entities[self.q['onHeal']]['location']['line_start'],26)
-        self.assertIn('element = $(element)',combat[5]);self.assertIn('await attackChatMessageListeners(message, element)',combat[10])
+        self.assertEqual({r['to']for r in regs},{self.q[x]for x in ['onShield','onHeal','onRepairRequest']})
+        self.assertEqual(self.data.entities[self.q['onHeal']]['location']['line_start'],28)
+        self.assertIn(self.q['effectDelivery.bindEffectDelivery'],{r['to']for r in self.data.outgoing['ent-000629']if r['kind']=='calls'})
+        self.assertIn('element = $(element)',combat);self.assertIn('await attackChatMessageListeners(message, element)',combat)
         self.assertFalse([r for r in self.data.incoming[self.q['addAttackChatListeners']]if r['kind']=='calls'])
 
     def test_selected_documents_and_shield_writer(self):
@@ -73,26 +77,35 @@ class ChatDeliveryExpansion(unittest.TestCase):
 
     def test_repair_input_and_delivery_use_distinct_identifiers(self):
         s=self.source(193);h=self.source(504);socket=self.source(217);repair=self.source(191)
-        for at,t in [(51,'await getInteractActor()'),(53,'event.target.dataset.owner'),(54,'game.actors?.get(ownerId)'),(56,'event.target.dataset.item'),(57,'owner.items?.get(itemId)'),(59,'if (actor && owner && item)'),(60,'await RepairSystem.processRequest(owner, item, actor)')]:self.assertIn(t,s[at-1])
+        location=self.data.entities[self.q['onRepairRequest']]['location']
+        handler='\n'.join(s[location['line_start']-1:location['line_end']])
+        for text in ['await getInteractActor()', 'event.target.dataset.owner', 'game.actors?.get(ownerId)',
+                     'event.target.dataset.item', 'owner.items?.get(itemId)', 'if (actor && owner && item)',
+                     'await RepairSystem.processRequest(owner, item, actor)']:
+            self.assertIn(text,handler)
         self.assertIn('data-owner="{{data.actor.id}}"',h[69]);self.assertIn('data-item="{{data.item.id}}"',h[69])
-        self.assertIn("emitForGM('restoreReliability', [data.item.uuid])",repair[271]);self.assertIn('message.data.shift()',socket[16])
+        self.assertIn("await gm.query('TheWitcherTRPG-RB-Version.query'", '\n'.join(repair))
+        self.assertIn("function: 'restoreReliability', uuid: item.uuid, data: []", '\n'.join(repair))
+        self.assertNotIn('emitForGM', '\n'.join(repair))
         self.assertTrue(any(r['to']==self.q['Repair.processRequest'] for r in self.edges('onRepairRequest','calls')))
         self.assertTrue(any(r['to']==self.q['Repair.restoreReliability'] for r in self.edges('item.repairMixin.restoreReliability','calls')))
-        self.assertTrue(any(r['to']==self.q['emitForGM'] for r in self.edges('Repair._doRepair','calls')))
+        self.assertTrue(any(r['to']==self.q['Repair._restoreItem'] for r in self.edges('Repair._doRepair','calls')))
+        self.assertTrue(any(r['to']==self.q['query'] for r in self.edges('Repair._restoreItem','calls')))
+        self.assertTrue(any(r['to']==self.q['Repair.restoreReliability'] for r in self.edges('Repair._restoreItem','calls')))
+        for model in ['WeaponData.repair','ArmorData.repair']:
+            self.assertTrue(any(r['to']==self.q[model] for r in self.edges('Repair.restoreReliability','calls')))
 
     def test_queries_whitelists_and_return_boundaries(self):
-        s=self.source(213);region=self.source(150)
-        self.assertIn('queryData.function in callableFunctions',s[32]);self.assertIn('callableEntityFunctions.includes(queryData.function)',s[37])
-        self.assertEqual(re.findall(r"'([^']+)'",'\n'.join(s[21:31])),['addItem','applyTemporaryItemImprovements','addAdrenaline','restoreReliability','addBehaviorsToRegionUuids'])
-        for at,t in [(10,'fromUuidSync(queryData.actorUuid)'),(11,'actor.applyTemporaryItemImprovements(queryData.effects)'),(34,'callableFunctions[queryData.function](...queryData.data)'),(39,'fromUuidSync(queryData.uuid)'),(40,'entity[queryData.function]?.(...queryData.data)'),(41,'entity.system[queryData.function]?.(...queryData.data)'),(45,'return false')]:self.assertIn(t,s[at-1])
-        self.assertNotIn('await','\n'.join(s));self.assertEqual(sum('timeout' in l for l in s),2)
-        self.assertEqual([i+1 for i,l in enumerate(s)if 'return true'in l],[12,35,42])
-        self.assertIn('addBehaviorsToRegionUuids',region[11]);self.assertIn('this.parent.parent',region[16])
+        s='\n'.join(self.source(213))
+        self.assertIn('await callableFunctions[queryData.function](...queryData.data)',s)
+        self.assertIn('await entity.system[queryData.function]?.(...queryData.data)',s)
+        self.assertIn('CONFIG.queries[DELIVERY_QUERY] = receiveEffectDelivery',s)
+        self.assertIn('CONFIG.queries[SOURCE_QUERY] = readEffectSource',s)
         methods={r['to']for r in self.edges('query','calls')}
         self.assertTrue({self.q[x]for x in ['WitcherActor.addItem','actor.temporaryEffectMixin.applyTemporaryItemImprovements','actor.adrenalineMixin.addAdrenaline','item.repairMixin.restoreReliability']}<=methods)
         self.assertNotIn(self.q['RegionProperties.addBehaviorsToRegionUuids'],methods)
-        for pid in [45,46]:
-            p=self.data.processes[f'proc-{pid:06}'];self.assertTrue(any(r['path'].endswith('coverage-020.md')for r in p['refs']))
+        registrations={r['to']for r in self.edges('registerQueries','registers')}
+        self.assertTrue({self.q[x]for x in ['effectDelivery.readEffectSource','effectDelivery.receiveEffectDelivery']}<=registrations)
 
     def test_socket_envelope_guard_and_unawaited_receiver(self):
         s=self.source(204);r=self.source(217)

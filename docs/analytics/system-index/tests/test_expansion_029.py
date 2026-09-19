@@ -79,17 +79,17 @@ class ProfessionExecutionExpansion(unittest.TestCase):
         p=self.data.processes['proc-000411'];self.assertEqual([n['step']for n in p['steps'][0]['next']if 'step'in n],['launch','prompt'])
         self.assertEqual(p['steps'][-1]['next'][0]['flow'],'scheduled')
     def test_temporary_health_target_dc_payload_and_delivery(self):
-        s=self.body(262,321);c='actor.professionMixin.doProfessionSkillUsage'
-        for snippet in ['game.user.targets.first()?.actor','target = this','targetStat.max * temporaryHealth.difficultyCheck.multiplier','await this.doProfessionSkillRoll','showResult: false','roll.toMessage(roll.messageData)','roll.options.rollOver > 0',"value.includes('d')",'new ActiveEffect','duration: { rounds: duration }',"function: 'applyActiveEffectToActor'",'data: [target.uuid, [newEffect]]']:self.assertIn(snippet,s)
-        self.assertNotIn('applySelf',s);self.assertNotIn('await roll.toMessage',s);self.assertNotIn('await getActorOwner',s);self.assertNotIn('this.update(',s)
-        self.assertIn(".replace('@level', skill.level).match(/\\d+\\*?\\d+/g)[0]",s)
+        source='\n'.join(self.source(20));s=source[source.index('async doProfessionSkillUsage'):source.index('async doProfessionThreshold')];c='actor.professionMixin.doProfessionSkillUsage'
+        for snippet in ['game.user.targets.first()?.actor','target = this','targetStat.max * temporaryHealth.difficultyCheck.multiplier','await this.doProfessionSkillRoll','showResult: false','await roll.toMessage(roll.messageData)','roll.options.rollOver > 0',"value.includes('d')",'new ActiveEffect','duration: { rounds: duration }','await createEffectDelivery','actorUuid: target.uuid','effects: [newEffect]']:
+            self.assertIn(snippet,s)
+        self.assertNotIn('getActorOwner',s);self.assertNotIn('queryData',s);self.assertNotIn('this.update(',s)
         self.assertIn('value: `{"name": "${skill.skillName}", "value": ${value}}`',s)
-        self.assertIn('icon:',s);self.assertNotIn('img:',s)
+        self.assertIn('icon:',s)
         self.assertIn(self.q['TemporaryEffects.temporaryHp'],self.targets(c+'.newEffect','passes'))
         self.assertNotIn(self.q['TemporaryEffects.temporaryHp'],self.targets(c,'writes'))
-        self.assertIn(self.q['applyActiveEffectToActor'],self.targets(c+'.queryPayload','passes'))
-        q='\n'.join(self.source(213));self.assertIn('return true',q);self.assertIn('createEmbeddedDocuments', '\n'.join(self.source(206)))
-        dmg='\n'.join(self.source(14));self.assertIn('JSON.parse(change.value)',dmg)
+        self.assertIn(self.q['effectDelivery.createEffectDelivery'],self.targets(c+'.deliveryPayload','passes'))
+        self.assertIn(self.q['effectDelivery.reportDeliveryConsequence'],self.targets(c,'calls'))
+
     def test_core_and_issue_evidence_are_not_runtime_confirmation(self):
         for e in json.loads((BASE/'examples/expansion-029-queries.json').read_text())['core_evidence']:self.assertEqual(hashlib.sha256(Path(e['path']).read_bytes()).hexdigest(),e['sha256'])
         for q,n in [('attack-without-item-uuid',239),('temporary-health-payload',294),('regular-speaker',236),('weapon-selection',242),('threshold-selection',115)]:

@@ -1,5 +1,11 @@
 # module/actor/mixins/armorMixin.js
 
+## Текущее состояние — 14.3.1.00105
+
+2026-09-19, TASK-0011.005. getArmorEcumbrance отбирает type=armor/equipped/!isStored и один раз вычитает ignoredArmorEncumbrance с минимумом0. Старое сочетание isStored=true/equipped=true больше не даёт EV. Естественная броня, getLocationArmor/getList, слои и SP не менялись.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011005): 72 локальных сценария, B05 впереди. Ниже — датированные прежние срезы; утверждения о сохранении equipped при хранении и неограниченной компенсации EV заменены этим разделом.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/armorMixin.js](../../../../../../../module/actor/mixins/armorMixin.js) |

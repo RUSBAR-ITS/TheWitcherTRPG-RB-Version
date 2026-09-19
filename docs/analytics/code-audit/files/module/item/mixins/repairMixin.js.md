@@ -1,5 +1,11 @@
 # module/item/mixins/repairMixin.js
 
+## Текущее состояние — 14.3.1.00104
+
+2026-09-19, TASK-0011.004. restoreReliability возвращает RepairSystem.restoreReliability(this). Завершение model.repair → parent.update передаётся Item и существующему query. Методы этой примеси остаются интерфейсом Item.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011004): 38 локальных сценариев; B04 впереди. Ниже датированные предыдущие срезы, утверждения о разрывах этой цепочки заменены настоящим разделом.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/item/mixins/repairMixin.js](../../../../../../../module/item/mixins/repairMixin.js) |

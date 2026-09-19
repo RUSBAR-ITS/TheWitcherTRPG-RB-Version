@@ -1,5 +1,11 @@
 # module/actor/mixins/defenseMixin.js
 
+## Текущее состояние — 14.3.1.00108 / TASK-0011.008
+
+2026-09-19. skillDefense сначала публикует исходный результат, затем при crit ожидает applyCriticalAdrenaline из effectDelivery.js. Отсутствие исполнителя/ответа не теряет крит. handleDefenseResults получает message в options: попадание ожидает createItemEffectDelivery(applyOnHit, raw duration), парирование — applyParryStagger(attacker, message). Прямые query/getActorOwner и старые effect wrappers удалены из этой примеси; getRandomInt сохранён. Снятие stun, износ блока и их прежние границы не перерабатывались.
+
+[Локальные проверки и границы B08](../../../../../task-0011-static-checks.md#task-0011008). Ниже — прежние датированные срезы; утверждения о прямых query/неожидаемой доставке заменены этим разделом.
+
 ## Текущее состояние — 14.3.1.00068 (TASK-0010.009)
 
 2026-09-18. **Назначение:** Защита и применение эффекта при попадании.

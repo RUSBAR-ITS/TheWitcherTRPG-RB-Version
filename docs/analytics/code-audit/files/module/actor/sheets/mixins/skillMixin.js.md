@@ -1,5 +1,9 @@
 # module/actor/sheets/mixins/skillMixin.js
 
+## Текущее состояние — 14.3.1.00102
+
+2026-09-19, TASK-0011.002: `skillListener` хранит результат `$(html)` в локальной `const $html`. Глобальные `$` и `jQuery` не изменяются, наличие отдельного глобального имени `jQuery` не требуется. Подписки, actor/skillMap и нативные клики сохранены. [Проверки и границы](../../../../../../task-0011-static-checks.md#task-0011002): 6/6 локальных сценариев, браузер B02 впереди. Основные таблицы ниже актуализированы в этой области; датированные опыты 2026-09-11–14 описывают прежнюю ошибку.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/sheets/mixins/skillMixin.js](../../../../../../../../module/actor/sheets/mixins/skillMixin.js) |
@@ -24,7 +28,7 @@
 | Сущность | Вид и место определения | Назначение | Доступность или регистрация | Действия и жизненный цикл |
 | --- | --- | --- | --- | --- |
 | skillMixin | export let, весь файл | Три метода листа | Object.assign прототипов листов и конфигурации | Сумма контекста; события клика |
-| jQuery | Присваивание в skillListener | Контейнер результата $(html) | Глобальное имя без локального объявления | Заменяет глобальную функцию объектом; при отсутствующем глобальном binding бросает ReferenceError |
+| $html | Локальная const в skillListener | Обёртка результата $(html) | Только внутри регистрации текущего листа | Поиск profession-roll/skill-display и привязка click, без записи в глобальные имена |
 
 ## Основные функции и методы
 
@@ -32,7 +36,7 @@
 | --- | --- | --- | --- | --- |
 | calc_total_skills(context) | context.system.skills, label/value каждой модели | Число totalSkills | Два for..in; локализует label; удваивает value, если подпись содержит '(2)' | Не читает costMultiplier, Item-навыки, профессию, isVisible и флаги выбора. Зависит от наличия label и переводов |
 | _onSkillDisplay(event) | closest('.skill').dataset.skilltype и actor.system.pannels | Нет возвращаемого результата | preventDefault; инвертирует system.pannels.<skilltype>IsOpen | actor.update не ожидается и не возвращается |
-| skillListener(html) | DOM с querySelectorAll, actor и skillMap | Регистрация четырёх групп обработчиков | profession-roll → _onProfessionRoll; skill-display → _onSkillDisplay; rollSkill → rollSkillCheck; level-up → levelUpSkill | jQuery = $(html) меняет глобальную переменную; неизвестный data-skill передаёт undefined; проверки возможности повышения нет |
+| skillListener(html) | DOM с querySelectorAll, actor и skillMap | Регистрация четырёх групп обработчиков | profession-roll → _onProfessionRoll; skill-display → _onSkillDisplay; rollSkill → rollSkillCheck; level-up → levelUpSkill | const $html хранит обёртку локально; неизвестный data-skill передаёт undefined; проверки возможности повышения нет |
 
 ## Используемые сущности и зависимости
 
@@ -43,7 +47,7 @@
 | Skill.label/value; Pannels | [module/data/actor/templates/common/skills/skillData.js](../../../../../../../../module/data/actor/templates/common/skills/skillData.js); [module/data/actor/templates/character/pannelsData.js](../../../../../../../../module/data/actor/templates/character/pannelsData.js) | Поля моделей | Суммирование и состояние старого списка | calc_total_skills / _onSkillDisplay |
 | WITCHER.skillMap | [module/setup/config.js](../../../../../../../../module/setup/config.js) | Контекст this.skillMap листа | Преобразование ключа DOM в описание навыка | skillListener |
 | Шаблоны строк и редактора | [templates/partials/character/skill-display.hbs](../../../../../../../../templates/partials/character/skill-display.hbs); [templates/partials/character/custom-skill-display.hbs](../../../../../../../../templates/partials/character/custom-skill-display.hbs); [templates/partials/monster/monster-skill-tab.hbs](../../../../../../../../templates/partials/monster/monster-skill-tab.hbs); [templates/partials/monster/monster-skill-display.hbs](../../../../../../../../templates/partials/monster/monster-skill-display.hbs); [templates/sheets/actor/configuration/app/edit-skills.hbs](../../../../../../../../templates/sheets/actor/configuration/app/edit-skills.hbs) | DOM-контракт | data-action=rollSkill/level-up, skill-display и skilltype | Буквальные селекторы и атрибуты |
-| $, jQuery, HTMLElement; game.i18n | Foundry и браузер; переводы — lang/en.json, lang/ru.json | Внешний API | Обёртка DOM, регистрация событий и поиск '(2)' в переводе | Прямые вызовы; ES module выполняется в строгом режиме |
+| $, HTMLElement; game.i18n | Foundry и браузер; переводы — lang/en.json, lang/ru.json | Внешний API | Обёртка DOM, регистрация событий и поиск '(2)' в переводе | Прямые вызовы; ES module выполняется в строгом режиме |
 
 ## Известные потребители
 
@@ -58,7 +62,7 @@
 
 ## Данные и изменения состояния
 
-Суммирование не изменяет Actor. В нём коэффициент определяется переводом label, а не skillMap.costMultiplier. Старый переключатель пишет system.pannels; клики делегируют мутации и броски Actor. Присваивание jQuery — отдельное глобальное изменение, не поле контекста.
+Суммирование не изменяет Actor. В нём коэффициент определяется переводом label, а не skillMap.costMultiplier. Старый переключатель пишет system.pannels; клики делегируют мутации и броски Actor. Обёртка $html локальна; глобальные имена $/jQuery не изменяются.
 
 ## Проверки и доказательства
 

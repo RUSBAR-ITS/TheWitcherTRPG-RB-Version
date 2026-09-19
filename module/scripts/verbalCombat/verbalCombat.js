@@ -13,17 +13,20 @@ export function addVerbalCombatChatListeners(html) {
 }
 
 export function addVerbalCombatMessageContextOptions(html, options) {
-    let canApplyVcDamage = li => li.querySelector('.verbalcombat-damage-message')?.length;
+    let canApplyVcDamage = li => Boolean(li.querySelector('.verbalcombat-damage-message'));
     options.push({
         label: `${game.i18n.localize('WITCHER.Context.applyDmg')}`,
         icon: '<i class="fas fa-user-minus"></i>',
         visible: canApplyVcDamage,
         callback: async li => {
-            applyVerbalCombatDamage(
-                await getInteractActor(),
-                li.querySelector('.dice-total')[0].innerText,
-                li.dataset.messageId
-            );
+            const total = li.querySelector('.dice-total')?.textContent?.trim();
+            if (!total || !Number.isFinite(Number(total))) {
+                ui.notifications.warn(game.i18n.localize('WITCHER.verbalCombat.InvalidTotal'));
+                return;
+            }
+            const actor = await getInteractActor();
+            if (!actor) return;
+            await applyVerbalCombatDamage(actor, Number(total), li.dataset.messageId);
         }
     });
     return options;
@@ -51,5 +54,5 @@ export async function rollDamage(verbalCombat, damage) {
 
 export async function applyVerbalCombatDamage(targetActor, totalDamage, messageId) {
     let currentResolve = targetActor.system.derivedStats.resolve.value;
-    targetActor.update({ 'system.derivedStats.resolve.value': currentResolve - Math.floor(totalDamage) });
+    await targetActor.update({ 'system.derivedStats.resolve.value': currentResolve - Math.floor(totalDamage) });
 }

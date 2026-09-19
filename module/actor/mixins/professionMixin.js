@@ -3,7 +3,7 @@ import { resolveRollTarget } from '../rollContext.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
-import { getActorOwner } from '../../scripts/helper.js';
+import { createEffectDelivery, reportDeliveryConsequence } from '../../scripts/effectDelivery.js';
 
 const DialogV2 = foundry.applications.api.DialogV2;
 
@@ -278,13 +278,9 @@ export let professionMixin = {
                 showResult: false
             });
             if (!roll) return null;
-            await roll.toMessage(roll.messageData);
+            const message = await roll.toMessage(roll.messageData);
 
             if (roll.options.rollOver > 0) {
-                let queryData = {};
-                queryData.actorUuid = target.uuid;
-                queryData.itemUuid = this.items.get(skillTarget.itemId).uuid;
-
                 let duration = eval(
                     temporaryHealth.temporaryHp.duration.replace('@level', skill.level).match(/\d+\*?\d+/g)[0]
                 );
@@ -311,10 +307,16 @@ export let professionMixin = {
                     duration: { rounds: duration }
                 });
 
-                getActorOwner(target).query('TheWitcherTRPG-RB-Version.query', {
-                    function: 'applyActiveEffectToActor',
-                    data: [target.uuid, [newEffect]]
-                });
+                try {
+                    await createEffectDelivery({ actor: this, item: this.items.get(skillTarget.itemId), message,
+                        targets: [{ actorUuid: target.uuid, name: target.name,
+                            entries: [{ kind: 'activeEffects', effects: [newEffect] }] }] });
+                } catch (error) {
+                    console.error('Witcher profession consequence failed', error);
+                    await reportDeliveryConsequence({ actor: target, message,
+                        itemUuid: this.items.get(skillTarget.itemId).uuid, applyWhen: 'profession',
+                        result: { state: 'unknown', reason: 'responseUnconfirmed' } });
+                }
             }
         }
     },

@@ -182,6 +182,7 @@ export function expandTemplates(inputs, operation) {
                     if (root.ownership) data.ownership = cloneData(root.ownership);
                 }
                 data.system.isStored = true;
+                if (data.system.equipped !== undefined) data.system.equipped = false;
                 mapping.set(node.sourceUuid, uuidFor(data._id));
                 pairs.push({ data, items: node.items });
                 childIds.push(uuidFor(data._id));

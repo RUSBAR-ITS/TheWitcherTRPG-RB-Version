@@ -24,10 +24,9 @@
 {"id":"rel-016322","kind":"calls","from":"ent-000317","to":"ent-005833","location":{"source":"src-000008","symbol":"WitcherActiveEffect._preCreate","line_start":80,"line_end":80},"basis":"source_read"}
 {"id":"rel-016323","kind":"calls","from":"ent-005480","to":"ent-005846","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":19,"line_end":19},"basis":"source_read"}
 {"id":"rel-016324","kind":"calls","from":"ent-005618","to":"ent-005846","location":{"source":"src-000192","symbol":"WitcherItem.updateDocuments","line_start":36,"line_end":36},"basis":"source_read"}
-{"id":"rel-016325","kind":"calls","from":"ent-000783","to":"ent-005830","location":{"source":"src-000206","symbol":"applyActiveEffectToActor","line_start":28,"line_end":28},"basis":"source_read"}
-{"id":"rel-016326","kind":"calls","from":"ent-000783","to":"ent-005832","location":{"source":"src-000206","symbol":"applyActiveEffectToActor","line_start":38,"line_end":38},"basis":"source_read"}
-{"id":"rel-016327","kind":"calls","from":"ent-000783","to":"ent-005789","location":{"source":"src-000206","symbol":"applyActiveEffectToActor","line_start":35,"line_end":35},"basis":"source_read"}
-{"id":"rel-016328","kind":"calls","from":"ent-000783","to":"ent-000775","location":{"source":"src-000206","symbol":"applyActiveEffectToActor","line_start":36,"line_end":36},"basis":"source_read"}
+{"id":"rel-016325","kind":"calls","from":"ent-005925","to":"ent-005830","location":{"source":"src-000643","symbol":"effectDeliveryLocal.applyLocalActiveEffects","line_start":4,"line_end":4},"basis":"source_read"}
+{"id":"rel-016326","kind":"calls","from":"ent-005925","to":"ent-005832","location":{"source":"src-000643","symbol":"effectDeliveryLocal.applyLocalActiveEffects","line_start":4,"line_end":4},"basis":"source_read"}
+{"id":"rel-016328","kind":"calls","from":"ent-005925","to":"ent-000775","location":{"source":"src-000643","symbol":"effectDeliveryLocal.applyLocalActiveEffects","line_start":4,"line_end":4},"basis":"source_read","context":"await существующего выбора Item/записи/сообщения; исключение передаётся receiver."}
 {"id":"rel-016329","kind":"calls","from":"ent-000775","to":"ent-005832","location":{"source":"src-000023","symbol":"actor.temporaryEffectMixin.applyTemporaryItemImprovements","line_start":32,"line_end":32},"basis":"source_read"}
 {"id":"rel-016330","kind":"calls","from":"ent-005846","to":"ent-005833","location":{"source":"src-000640","symbol":"effectFamilies.assignedItemData","line_start":141,"line_end":141},"basis":"source_read"}
 {"id":"rel-016331","kind":"calls","from":"ent-005844","to":"ent-005834","location":{"source":"src-000640","symbol":"effectFamilies.createEffectDocuments","line_start":92,"line_end":92},"basis":"source_read"}
@@ -36,7 +35,6 @@
 {"id":"rel-016334","kind":"imports","from":"src-000008","to":"src-000640","location":{"source":"src-000008","symbol":"src-000008","line_start":1,"line_end":1},"basis":"source_read"}
 {"id":"rel-016335","kind":"imports","from":"src-000008","to":"src-000639","location":{"source":"src-000008","symbol":"src-000008","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-016336","kind":"imports","from":"src-000192","to":"src-000640","location":{"source":"src-000192","symbol":"src-000192","line_start":1,"line_end":1},"basis":"source_read"}
-{"id":"rel-016337","kind":"imports","from":"src-000206","to":"src-000639","location":{"source":"src-000206","symbol":"src-000206","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-016338","kind":"imports","from":"src-000023","to":"src-000639","location":{"source":"src-000023","symbol":"src-000023","line_start":1,"line_end":1},"basis":"source_read"}
 {"id":"rel-016339","kind":"imports","from":"src-000011","to":"src-000639","location":{"source":"src-000011","symbol":"src-000011","line_start":1,"line_end":1},"basis":"source_read"}
 {"id":"rel-016340","kind":"defines","from":"src-000641","to":"ent-005850","location":{"source":"src-000641","symbol":"src-000641","line_start":6,"line_end":6},"basis":"source_read"}

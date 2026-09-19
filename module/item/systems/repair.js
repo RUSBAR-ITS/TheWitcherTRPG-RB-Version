@@ -1,7 +1,6 @@
 import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
-import { emitForGM } from '../../scripts/socket/socketMessage.js';
 import { costEditMixin } from '../mixins/costEditMixin.js';
 
 const DialogV2 = foundry.applications.api.DialogV2;
@@ -185,19 +184,12 @@ class Repair {
     }
 
     async repairItem(data, options) {
-        if (!options.simulate) {
-            if (data.missingComponents.length || data.unknownComponents.length) {
-                return ui.notifications.error(game.i18n.localize('WITCHER.Repair.alerts.notEnoughComponents'));
-            }
-            if (!data.damagedLocations.length) {
-                return ui.notifications.warn(game.i18n.localize('WITCHER.Repair.alerts.itemIsAlreadyRepaired'));
-            }
-        }
+        if ((!options.simulate || options.gmRepair) && !this._canRepair(data, !options.gmRepair)) return null;
 
         if (options.gmRepair) {
-            await this.gmRepair(data);
+            return this.gmRepair(data);
         } else {
-            await this.commonRepair(data, options.simulate);
+            return this.commonRepair(data, options.simulate);
         }
     }
 
@@ -212,15 +204,16 @@ class Repair {
         const success = roll.total > config.threshold;
 
         if (!simulate) {
-            this._doRepair(data, success);
+            if (!await this._doRepair(data, success)) return null;
         }
 
-        roll.toMessage(messageData);
+        await roll.toMessage(messageData);
     }
 
     async gmRepair(data) {
-        await this.sendRepairInfoToChat(data, false);
-        data.item.system.repair();
+        const content = await this.renderChatTemplate(data, false);
+        if (!await this._restoreItem(data.item)) return null;
+        await this.sendRepairInfoToChat(data, false, content);
     }
 
     async prepareRollFormula(data) {
@@ -265,23 +258,64 @@ class Repair {
         );
     }
 
-    _doRepair(data, success) {
-        data.ownedComponents.forEach(c => {
-            data.executor.removeItem(c._id, 1);
-        });
-
-        if (success) {
-            if (data.item.canUserModify(game.user, 'update')) {
-                const updateData = this.getRestoreReliabilityData(data.damagedLocations);
-                data.item.update(updateData);
-            } else {
-                emitForGM('restoreReliability', [data.item.uuid]);
+    _canRepair(data, consumeComponents) {
+        if (!data.item.system.canBeRepaired || !data.damagedLocations.length) {
+            ui.notifications.warn(game.i18n.localize('WITCHER.Repair.alerts.itemIsAlreadyRepaired'));
+            return false;
+        }
+        if (consumeComponents) {
+            const quantities = new Map();
+            for (const component of data.ownedComponents) {
+                quantities.set(component.id, (quantities.get(component.id) ?? 0) + 1);
+            }
+            const insufficient = [...quantities].some(([id, required]) => {
+                const quantity = data.executor.items.get(id)?.system.quantity;
+                return !Number.isFinite(quantity) || quantity < required;
+            });
+            if (data.missingComponents.length || data.unknownComponents.length || insufficient) {
+                ui.notifications.error(game.i18n.localize('WITCHER.Repair.alerts.notEnoughComponents'));
+                return false;
             }
         }
+        if (!data.item.canUserModify(game.user, 'update') && !game.users.activeGM) {
+            ui.notifications.error(game.i18n.localize('WITCHER.Repair.alerts.noActiveGM'));
+            return false;
+        }
+        return true;
     }
 
-    async sendRepairInfoToChat(data, isRequest) {
-        const content = await this.renderChatTemplate(data, isRequest);
+    async _doRepair(data, success) {
+        if (!this._canRepair(data, true)) return false;
+        for (const component of data.ownedComponents) {
+            await data.executor.removeItem(component.id, 1);
+        }
+        return success ? this._restoreItem(data.item) : true;
+    }
+
+    async _restoreItem(item) {
+        if (item.canUserModify(game.user, 'update')) {
+            await this.restoreReliability(item);
+            return true;
+        }
+        const gm = game.users.activeGM;
+        if (!gm) {
+            ui.notifications.error(game.i18n.localize('WITCHER.Repair.alerts.noActiveGM'));
+            return false;
+        }
+        try {
+            const result = await gm.query('TheWitcherTRPG-RB-Version.query', {
+                function: 'restoreReliability', uuid: item.uuid, data: []
+            });
+            if (result === true) return true;
+        } catch (error) {
+            console.error('TheWitcherTRPG | Repair result could not be confirmed', item.uuid, error);
+        }
+        ui.notifications.warn(game.i18n.localize('WITCHER.Repair.alerts.unconfirmedRepair'));
+        return false;
+    }
+
+    async sendRepairInfoToChat(data, isRequest, content = null) {
+        content ??= await this.renderChatTemplate(data, isRequest);
 
         const chatData = {
             content: content,
@@ -289,11 +323,11 @@ class Repair {
             style: CONST.CHAT_MESSAGE_STYLES.OTHER
         };
 
-        ChatMessage.create(chatData);
+        await ChatMessage.create(chatData);
     }
 
     restoreReliability(item) {
-        item.system.repair();
+        return item.system.repair();
     }
 }
 
@@ -307,6 +341,10 @@ class RepairData {
         this.unknownComponents = unknownComponents;
         this.artisan = artisan;
         this.additionalCost = 0;
+    }
+
+    get damagedLocations() {
+        return this.item.system.damagedLocations ?? [];
     }
 
     get enchantsCount() {

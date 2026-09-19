@@ -1,11 +1,11 @@
 import { installWound, selectInitialWound, reportWoundResult } from '../../item/criticalWoundOperations.js';
 import { getRandomInt } from '../../scripts/helper.js';
-import { applyActiveEffectToActorViaId } from '../../scripts/temporaryEffects/applyActiveEffect.js';
+import { createItemEffectDelivery } from '../../scripts/effectDelivery.js';
 import { applyStatusEffectToActor } from '../../scripts/statusEffects/applyStatusEffect.js';
 import { DamageInstance } from '../../scripts/damageInstance.js';
 
 export let damageMixin = {
-    async applyDamage(dialogData, damageInstances, damageObject, derivedStat) {
+    async applyDamage(dialogData, damageInstances, damageObject, derivedStat, message) {
         damageInstances = await this.handleShield(damageInstances);
 
         if (!damageObject.properties.bypassesShield) {
@@ -30,7 +30,8 @@ export let damageMixin = {
             .forEach(effect => applyStatusEffectToActor(this.uuid, effect.statusEffect, damageObject.duration));
 
         if (damageObject.itemUuid) {
-            await applyActiveEffectToActorViaId(this.uuid, damageObject.itemUuid, 'applyOnDamage', damageObject.duration);
+            await createItemEffectDelivery({ actor: this, itemUuid: damageObject.itemUuid,
+                applyWhen: 'applyOnDamage', duration: damageObject.duration, message });
         }
     },
 

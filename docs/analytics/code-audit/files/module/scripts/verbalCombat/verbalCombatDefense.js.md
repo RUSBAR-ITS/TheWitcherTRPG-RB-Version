@@ -1,5 +1,11 @@
 # module/scripts/verbalCombat/verbalCombatDefense.js
 
+## Текущее состояние — 14.3.1.00103
+
+2026-09-19, TASK-0011.003. Меню использует native DOM, Boolean маркера и проверку total (0 допустим), получает Actor прежним helper и ожидает executeDefense. executeDefenseCallback читает radio/manual только из своего HTMLElement или html[0] jQuery. Проверяет data-group=Defenses и собственный ключ CONFIG до обращения к действию; неверный выбор уведомляет InvalidAction и возвращает null. Counterargue возвращает Promise actor.verbalCombat. Остальные формулы, >=, flags и цепочка prepareCheck/extendedRoll сохранены. Core legacy Dialog закрывает окно после вызова callback, не ожидая его Promise.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011003): 38 локальных сценариев прошли, игровая B03 ещё не запускалась. Ниже сохранены описания датированных прежних срезов; утверждения о глобальном выборе radio, DOM/jQuery меню и преждевременном завершении наших операций заменены этой секцией в пределах указанного изменения.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** Callback использует prepareCheck(actual skill,verbalDefense,>=,Number(totalAttack),manual), отмена до Roll. createRollConfig получает объект навыка для подписи и числовой threshold. Старое связывание контекстного меню/глобальный DOM selector — TASK-0011, прямой callback не доказывает работу UI.

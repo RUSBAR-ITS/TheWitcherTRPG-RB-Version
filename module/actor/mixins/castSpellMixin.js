@@ -1,13 +1,9 @@
 import { validateEffectDuration } from '../../activeEffect/effectApplication.js';
 import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
-import {
-    applyActiveEffectToActor,
-    applyActiveEffectToTargets
-} from '../../scripts/temporaryEffects/applyActiveEffect.js';
+import { collectSpellEffects, createEffectDelivery, notifyEffectDelivery } from '../../scripts/effectDelivery.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
-import { applyStatusEffectToActor, applyStatusEffectToTargets } from '../../scripts/statusEffects/applyStatusEffect.js';
 
 const DialogV2 = foundry.applications.api.DialogV2;
 
@@ -25,16 +21,17 @@ export let castSpellMixin = {
         const usedSkill = spellItem.system.getUsedSkill();
 
         let armorEnc = this.getArmorEcumbrance();
+        const armorCompensation = Math.min(armorEnc, Math.max(0, this.system.lifepathModifiers.ignoredEvWhenCasting));
         if (armorEnc > 0) {
             rollFormula += !displayRollDetails
                 ? ` -${armorEnc}${
-                      this.system.lifepathModifiers.ignoredEvWhenCasting > 0
-                          ? ` +${this.system.lifepathModifiers.ignoredEvWhenCasting}`
+                      armorCompensation > 0
+                          ? ` +${armorCompensation}`
                           : ''
                   }`
                 : ` -${armorEnc}[${game.i18n.localize('WITCHER.Armor.EncumbranceValue')}]${
-                      this.system.lifepathModifiers.ignoredEvWhenCasting > 0
-                          ? ` +${this.system.lifepathModifiers.ignoredEvWhenCasting}[${game.i18n.localize('WITCHER.Actor.Lifepath.Bonus')}]`
+                      armorCompensation > 0
+                          ? ` +${armorCompensation}[${game.i18n.localize('WITCHER.Actor.Lifepath.Bonus')}]`
                           : ''
                   }`;
         }
@@ -125,9 +122,10 @@ export let castSpellMixin = {
             return ui.notifications.error(game.i18n.localize('WITCHER.Spell.notEnoughSta'));
         }
 
-        this.update({
+        const paid = await this.update({
             'system.derivedStats.sta.value': newSta
         });
+        if (!paid) return ui.notifications.error(game.i18n.localize('WITCHER.EffectDelivery.staminaUnconfirmed'));
 
         let staCostDisplay = `${origStaCost}[${game.i18n.localize('WITCHER.Spell.Short.StaCost')}]`;
 
@@ -235,25 +233,18 @@ export let castSpellMixin = {
         let config = new RollConfig({ showResult: false });
 
         let roll = await extendedRoll(rollFormula, messageData, config);
-        await roll.toMessage(messageData);
+        const rollMessage = await roll.toMessage(messageData);
 
         spellItem.system.createSpellRegion?.(roll, damage, { stamina: origStaCost });
 
         if (!roll.options.fumble) {
-            Object.values(spellItem.system.selfEffects ?? {})?.forEach(effect =>
-                applyStatusEffectToActor(this.uuid, effect.statusEffect, damage.duration)
-            );
-            await applyActiveEffectToActor(
-                this.uuid,
-                spellItem.effects?.filter(effect => effect.system.applySelf),
-                damage.duration
-            );
-
-            applyStatusEffectToTargets(spellItem.system.onCastEffects, damage.duration);
-            await applyActiveEffectToTargets(
-                spellItem.effects?.filter(effect => effect.system.applyOnTarget),
-                damage.duration
-            );
+            try {
+                await createEffectDelivery({ actor: this, item: spellItem, message: rollMessage,
+                    targets: collectSpellEffects(this, spellItem, damage.duration) });
+            } catch (error) {
+                console.error('Witcher spell effect delivery failed', error);
+                notifyEffectDelivery({ state: 'unknown', reason: 'responseUnconfirmed' });
+            }
         }
 
         return roll;

@@ -1,5 +1,11 @@
 # module/item/systems/repair.js
 
+## Текущее состояние — 14.3.1.00104
+
+2026-09-19, TASK-0011.004. RepairData.damagedLocations делегирует массив модели. _canRepair проверяет повреждения, missing/unknown и актуальные количества executor.items (повторные ID суммируются по одной единице), а также местное право/activeGM. repairItem проверяет до броска, _doRepair — ещё раз перед последовательным await removeItem. При успехе _restoreItem ждёт model.repair либо существующий GM.query restoreReliability. Нет подтверждения — предупреждение и false без автоповтора/отката. commonRepair ждёт исполнение/чат. GM-путь сохраняет HTML повреждений до восстановления, публикует после; sendRepairInfoToChat принимает optional content. Simulation без расхода/восстановления; DC и строгое > прежние. emitForGM и getRestoreReliabilityData в цепочке больше нет. Импорт socketMessage удалён; добавлены два ключа Repair.alerts ru/en. Общий dispatcher и HBS не менялись.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011004): 38 локальных сценариев; B04 впереди. Ниже датированные предыдущие срезы, утверждения о разрывах этой цепочки заменены настоящим разделом.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** prepareRollFormula асинхронно вызывает prepareCheck builtin crafting/action repair; commonRepair ждёт результат, null прекращает путь до конфигурации/исполнения. Нет woundsAffectSkillBase, двойного штрафа и лишней скобки. Остальной repair executor00102 не исправлен, сквозной ремонт не заявлен.

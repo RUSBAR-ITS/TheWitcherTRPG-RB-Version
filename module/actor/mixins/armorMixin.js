@@ -1,7 +1,7 @@
 export let armorMixin = {
     getArmorEcumbrance() {
         let encumbranceModifier = -this.system.lifepathModifiers.ignoredArmorEncumbrance;
-        let armors = this.items.filter(item => item.type == 'armor' && item.system.equipped);
+        let armors = this.items.filter(item => item.type == 'armor' && item.system.equipped && !item.system.isStored);
         armors.forEach(item => {
             encumbranceModifier += item.system.encumb;
         });

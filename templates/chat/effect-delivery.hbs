@@ -1,0 +1,19 @@
+<div class="witcherTRPG effect-delivery">
+    <h3>{{localize "WITCHER.EffectDelivery.title"}}: {{action.name}}</h3>
+    {{#if action.messageUuid}}<p><a class="content-link" data-link data-uuid="{{action.messageUuid}}"><i class="fas fa-dice"></i> {{localize "WITCHER.EffectDelivery.originalAction"}}</a></p>{{/if}}
+    <p><strong>{{stateLabel}}</strong></p>
+    {{#each targets}}
+    <h4>{{name}}</h4>
+    {{#if resultLabel}}<p>{{resultLabel}}</p>{{/if}}
+    <ul>
+        {{#each entries}}
+        <li>{{name}}{{#if hasDuration}} ({{duration}} {{localize "WITCHER.EffectDelivery.rounds"}}){{/if}} — {{resultLabel}}</li>
+        {{/each}}
+    </ul>
+    {{/each}}
+    {{#if needsReview}}<p>{{localize "WITCHER.EffectDelivery.reviewHelp"}}</p>{{/if}}
+    {{#if waiting}}
+    <p>{{localize "WITCHER.EffectDelivery.waitingHelp"}}</p>
+    <button type="button" class="send-effect-delivery"><i class="fas fa-paper-plane"></i> {{localize "WITCHER.EffectDelivery.send"}}</button>
+    {{/if}}
+</div>

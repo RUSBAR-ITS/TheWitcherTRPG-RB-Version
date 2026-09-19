@@ -1,5 +1,31 @@
 # lang/en.json
 
+## Дополнение 14.3.1.00108
+
+TASK-0011.008 добавляет WITCHER.EffectDelivery: предупреждение/источник, инструкции ручного статуса и адреналина, проверку неизвестного исхода, подписи шести последствий и причины invalidSource/sourceUnavailable. Потребители — effectDelivery.js и effect-delivery-warning.hbs; прежние ключи не удалялись. [Рендер ru/en и пределы](../../../task-0011-static-checks.md#task-0011008).
+
+## Дополнение 14.3.1.00107
+
+TASK-0011.007 расширяет WITCHER.EffectDelivery: заголовок/ссылка/кнопка, сроки, состояния waiting/sending/complete/needsReview, причины результатов и предупреждение о неподтверждённом списании STA. Потребители — effectDelivery.js, новый effect-delivery.hbs и castSpellMixin.js. Все прежние ключи/значения сохранены. [Проверки карточки ru/en](../../../task-0011-static-checks.md#task-0011007), игровая B07 впереди.
+
+## 14.3.1.00106 / TASK-0011.006
+
+Added WITCHER.EffectDelivery.refused/unconfirmed for refused/unconfirmed delivery. Existing translations preserved.
+
+[Локальная проверка](../../../task-0011-static-checks.md#task-0011006).
+
+## Текущее состояние — 14.3.1.00104
+
+2026-09-19, TASK-0011.004. Добавлены только WITCHER.Repair.alerts.noActiveGM и unconfirmedRepair, потребитель RepairSystem._canRepair/_restoreItem. Прежние ключи/тексты сохранены.
+
+[Проверки и границы](../../../task-0011-static-checks.md#task-0011004): 38 локальных сценариев; B04 впереди. Ниже датированные предыдущие срезы, утверждения о разрывах этой цепочки заменены настоящим разделом.
+
+## Текущее состояние — 14.3.1.00103
+
+2026-09-19, TASK-0011.003. Добавлены только WITCHER.verbalCombat.InvalidTotal и InvalidAction: уведомления о неверном результате сообщения и выборе действия в текущем окне. Потребители — два context-menu extenders, Actor.verbalCombat и executeDefenseCallback. Прежние ключи/тексты сохранены.
+
+[Проверки и границы](../../../task-0011-static-checks.md#task-0011003): 38 локальных сценариев прошли, игровая B03 ещё не запускалась. Ниже сохранены описания датированных прежних срезов; утверждения о глобальном выборе radio, DOM/jQuery меню и преждевременном завершении наших операций заменены этой секцией в пределах указанного изменения.
+
 ## Текущее состояние — 14.3.1.00082
 
 2026-09-19, TASK-0010.019. Добавлены восемь полных подписей WITCHER.Editor.parameters: Stun, Run, Leap, Encumbrance, Recovery, Wound threshold, Maximum hit points, Maximum stamina. Потребители через statMap.labelFull — плитки персонажа и редактор; прежние ключи сохранены.

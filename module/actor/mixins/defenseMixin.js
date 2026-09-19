@@ -2,9 +2,8 @@ import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import { combatModifierFormula } from './modifierMixin.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
 import { RollConfig } from '../../scripts/rollConfig.js';
-import { applyStatusEffectToActor } from '../../scripts/statusEffects/applyStatusEffect.js';
-import { applyActiveEffectToActorViaId } from '../../scripts/temporaryEffects/applyActiveEffect.js';
-import { getActorOwner, getRandomInt } from '../../scripts/helper.js';
+import { createItemEffectDelivery, applyParryStagger, applyCriticalAdrenaline } from '../../scripts/effectDelivery.js';
+import { getRandomInt } from '../../scripts/helper.js';
 import ChatMessageData from '../../chatMessage/chatMessageData.js';
 
 const DialogV2 = foundry.applications.api.DialogV2;
@@ -197,13 +196,6 @@ export let defenseMixin = {
             attackDamageObject.location = crit.location;
             crit.critEffectModifier = attackDamageObject.crit.critEffectModifier;
 
-            //adrenaline dice added to attacker
-            let attackerActor = fromUuidSync(attacker);
-            getActorOwner(attackerActor).query('TheWitcherTRPG-RB-Version.query', {
-                uuid: attacker,
-                function: 'addAdrenaline',
-                data: []
-            });
         }
 
         const chatMessageCrit = crit
@@ -229,9 +221,12 @@ export let defenseMixin = {
 
         let message = await roll.toMessage(messageData);
 
+        if (crit) await applyCriticalAdrenaline(attacker, message);
+
         await this.handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, {
             stagger,
-            block
+            block,
+            message
         });
     },
 
@@ -379,19 +374,15 @@ export let defenseMixin = {
         }
     },
 
-    async handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, { stagger, block }) {
+    async handleDefenseResults(roll, { totalAttack, attackDamageObject, attacker }, defenseItemId, { stagger, block, message }) {
         if (roll.total < totalAttack) {
-            await applyActiveEffectToActorViaId(
-                this.uuid,
-                attackDamageObject.itemUuid,
-                'applyOnHit',
-                attackDamageObject.duration
-            );
+            await createItemEffectDelivery({ actor: this, itemUuid: attackDamageObject.itemUuid,
+                applyWhen: 'applyOnHit', duration: attackDamageObject.duration, message });
 
             this.removeStatus([{ statusEffect: 'stun' }]);
         } else {
             if (stagger) {
-                applyStatusEffectToActor(attacker, 'staggered', 1);
+                await applyParryStagger(attacker, message);
             }
 
             if (block) {

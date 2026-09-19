@@ -1,5 +1,11 @@
 # module/actor/mixins/adrenalineMixin.js
 
+## Текущее состояние — 14.3.1.00108 / TASK-0011.008
+
+2026-09-19. addAdrenaline при включённой настройке await update(value+1), проверяет возвращённый Document и возвращает его; отменённая запись вызывает ошибку. При optional off записи нет. effectDelivery.js/applyCriticalAdrenaline использует метод напрямую при местном праве либо через прежний setup/queries.js; await dispatcher теперь означает завершение этой записи. Существующая кнопка statMixin остаётся потребителем. Предел/формула начисления прежние.
+
+[Локальные проверки и границы B08](../../../../../task-0011-static-checks.md#task-0011008). Ниже — прежние датированные срезы; утверждения о прямых query/неожидаемой доставке заменены этим разделом.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/actor/mixins/adrenalineMixin.js](../../../../../../../module/actor/mixins/adrenalineMixin.js) |

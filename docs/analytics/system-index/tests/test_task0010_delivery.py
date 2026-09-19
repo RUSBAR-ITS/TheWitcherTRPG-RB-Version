@@ -12,9 +12,53 @@ class DeliveryIndex(unittest.TestCase):
         return {r['to'] for r in self.data.outgoing[self.q[name]] if r['kind'] == 'calls'}
 
     def test_delivery_shares_copy_and_outer_parameter_operation(self):
-        self.assertIn(self.q['effectApplication.appliedEffectData'], self.calls('applyActiveEffectToActor'))
+        self.assertIn(self.q['effectDelivery.deliverActorEffects'], self.calls('applyActiveEffectToActor'))
+        self.assertIn(self.q['effectDeliveryLocal.applyLocalActiveEffects'], self.calls('effectDelivery.receiveEffectDelivery'))
+        self.assertIn(self.q['effectApplication.appliedEffectData'], self.calls('effectDeliveryLocal.applyLocalActiveEffects'))
         self.assertIn(self.q['effectApplication.appliedEffectData'], self.calls('actor.temporaryEffectMixin.applyTemporaryItemImprovements'))
-        self.assertIn(self.q['parameterPersistence.withParameterChanges'], self.calls('applyActiveEffectToActor'))
+        self.assertIn(self.q['parameterPersistence.withParameterChanges'], self.calls('effectDelivery.receiveEffectDelivery'))
+
+    def test_grouped_delivery_and_chat_are_connected(self):
+        for caller,callee in [
+            ('actor.castSpellMixin.castSpell','effectDelivery.collectSpellEffects'),
+            ('actor.castSpellMixin.castSpell','effectDelivery.createEffectDelivery'),
+            ('chatMessageListeners','effectDelivery.bindEffectDelivery'),
+            ('effectDelivery.createEffectDelivery','effectDelivery.sendEffectDelivery'),
+            ('effectDelivery.sendEffectDelivery','effectDelivery.getEffectExecutor'),
+            ('effectDelivery.sendEffectDelivery','effectDelivery.deliverActorEffects'),
+            ('effectDelivery.bindEffectDelivery','effectDelivery.sendEffectDelivery')]:
+            self.assertIn(self.q[callee],self.calls(caller))
+        service=self.q['effectDelivery.renderDelivery'];template=self.q['templates/chat/effect-delivery.hbs']
+        self.assertIn(template,{r['to']for r in self.data.outgoing[service]if r['kind']=='renders'})
+        p=self.data.processes['proc-000493'];steps={s['id']:s for s in p['steps']}
+        self.assertIn('waiting',{n.get('exit')for n in steps['preflight']['next']})
+        self.assertEqual(steps['persist']['next'][0]['step'],'deliver')
+        self.assertEqual(steps['persist']['next'][0]['flow'],'await')
+        self.assertEqual({n['exit']for n in steps['deliver']['next']if 'exit'in n},{'complete','review'})
+
+    def test_consequence_consumers_and_boundaries(self):
+        for caller,callee in [
+            ('actor.professionMixin.doProfessionSkillUsage','effectDelivery.createEffectDelivery'),
+            ('actor.defenseMixin.handleDefenseResults','effectDelivery.createItemEffectDelivery'),
+            ('actor.defenseMixin.handleDefenseResults','effectDelivery.applyParryStagger'),
+            ('actor.defenseMixin.skillDefense','effectDelivery.applyCriticalAdrenaline'),
+            ('actor.damageMixin.applyDamage','effectDelivery.createItemEffectDelivery'),
+            ('item.consumeMixin.consume','effectDelivery.createItemEffectDelivery'),
+            ('effectDelivery.createItemEffectDelivery','effectDelivery.resolveEffectSource'),
+            ('effectDelivery.createItemEffectDelivery','effectDelivery.createEffectDelivery'),
+            ('effectDelivery.applyCriticalAdrenaline','effectDelivery.getEffectExecutor'),
+            ('effectDelivery.applyCriticalAdrenaline','actor.adrenalineMixin.addAdrenaline'),
+            ('onApplyStatus','fromUuid')]:
+            self.assertIn(self.q[callee],self.calls(caller))
+        self.assertNotIn(self.q['getActorOwner'],self.calls('actor.professionMixin.doProfessionSkillUsage'))
+        steps={s['id']:s for s in self.data.processes['proc-000198']['steps']}
+        self.assertEqual(steps['crit-location']['next'][0]['step'],'crit-html')
+        self.assertEqual(steps['message']['next'][0]['step'],'adrenaline')
+        self.assertEqual(steps['adrenaline']['next'][0]['flow'],'await')
+        steps={s['id']:s for s in self.data.processes['proc-000149']['steps']}
+        self.assertEqual(steps['message']['next'][0]['step'],'active')
+        self.assertEqual(steps['message']['next'][0]['flow'],'await')
+        self.assertEqual(self.data.processes['proc-000077']['steps'][-1]['next'][0]['flow'],'await')
 
     def test_native_creation_and_nested_items_reach_family_and_clock(self):
         self.assertIn(self.q['effectFamilies.createEffectDocuments'], self.calls('WitcherActiveEffect.createDocuments'))

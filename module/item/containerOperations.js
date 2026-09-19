@@ -157,7 +157,11 @@ function locationPatches(item, target) {
     }
     if (target && !contentOf(target).includes(item.uuid))
         patches.push({ '_id': target.id, 'system.content': [...contentOf(target), item.uuid] });
-    if (item.system.isStored !== !!target) patches.push({ '_id': item.id, 'system.isStored': !!target });
+    const itemPatch = { _id: item.id };
+    if (item.system.isStored !== !!target) itemPatch['system.isStored'] = !!target;
+    if ((target || item.system.isStored) && item.system.equipped !== undefined && item.system.equipped !== false)
+        itemPatch['system.equipped'] = false;
+    if (Object.keys(itemPatch).length > 1) patches.push(itemPatch);
     return patches;
 }
 
@@ -179,11 +183,13 @@ async function relocate(item, target) {
     return item;
 }
 
-async function createCopy(source, owner, { equipped } = {}) {
+async function createCopy(source, owner, { equipped, stored = false } = {}) {
     requireDestination(owner);
     const data = copyData(source);
     data._id = foundry.utils.randomID();
     if (equipped !== undefined) data.system.equipped = equipped;
+    data.system.isStored = stored;
+    if (stored && data.system.equipped !== undefined) data.system.equipped = false;
     if (source.type !== 'container') {
         const uuid = owner ? `${owner.uuid}.Item.${data._id}` : `Item.${data._id}`;
         for (const effect of data.effects ?? []) {
@@ -353,7 +359,10 @@ async function place(source, owner, target, { sourceContainer, equipped } = {}) 
             ...(target ? [target] : []),
             ...(parent ? [parent] : [])
         ]);
-        const created = await createCopy(source, owner, { equipped });
+        const created = await createCopy(source, owner, {
+            equipped: sourceContainer && source.system.equipped !== undefined ? false : equipped,
+            stored: !!target
+        });
         try {
             assertUnchanged(originals);
             if (target) await relocate(created, target);

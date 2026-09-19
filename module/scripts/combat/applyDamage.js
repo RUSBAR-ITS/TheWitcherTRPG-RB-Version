@@ -117,7 +117,8 @@ async function applyDamageFromMessage(actor, totalDamage, messageId, derivedStat
         dialogData,
         [DamageInstance.create(totalDamage).setType(damageProperties.type)],
         damageProperties,
-        derivedStat
+        derivedStat,
+        game.messages.get(messageId)
     );
 }
 

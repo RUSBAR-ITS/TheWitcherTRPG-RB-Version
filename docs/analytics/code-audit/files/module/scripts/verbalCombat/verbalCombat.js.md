@@ -1,5 +1,11 @@
 # module/scripts/verbalCombat/verbalCombat.js
 
+## Текущее состояние — 14.3.1.00103
+
+2026-09-19, TASK-0011.003. `addVerbalCombatMessageContextOptions(html, options)` принимает native HTMLElement сообщения: Boolean маркера, проверка непустого конечного total через textContent, затем Actor через getInteractActor. Неверный total уведомляет новым ключом InvalidTotal; отсутствие Actor обрабатывает прежний helper. Callback ожидает applyVerbalCombatDamage, который ожидает Actor.update. Формула resolve.value − floor(totalDamage) и отсутствие общего clamp сохранены. Остальные функции и неиспользуемый массовый listener не менялись.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011003): 38 локальных сценариев прошли, игровая B03 ещё не запускалась. Ниже сохранены описания датированных прежних срезов; утверждения о глобальном выборе radio, DOM/jQuery меню и преждевременном завершении наших операций заменены этой секцией в пределах указанного изменения.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/scripts/verbalCombat/verbalCombat.js](../../../../../../../module/scripts/verbalCombat/verbalCombat.js) |

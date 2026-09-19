@@ -63,6 +63,53 @@
                 "sta": "Maximum stamina"
             }
         },
+        "EffectDelivery": {
+            "refused": "Effects could not be applied. Check the source, the actor, and the availability of an authorized user.",
+            "unconfirmed": "Effect application was not confirmed. Some changes may already have been saved; check the actor before applying again.",
+            "title": "Effect application",
+            "originalAction": "Original roll",
+            "rounds": "rounds",
+            "send": "Send results",
+            "waitingHelp": "All recipients are checked before sending. If any recipient has no available authorized user, no effects are applied to anyone. Sending again does not reroll or spend resources.",
+            "reviewHelp": "Delivery finished without full confirmation. Check the listed effects on the actors and complete the application manually. Sending again is disabled.",
+            "staminaUnconfirmed": "Stamina expenditure was not confirmed. Check the resource before trying again.",
+            "states": {
+                "waiting": "Waiting to send",
+                "sending": "Sending",
+                "complete": "Application complete",
+                "needsReview": "Manual review needed"
+            },
+            "results": {
+                "pending": "Not sent",
+                "notSent": "Not sent",
+                "applied": "Applied",
+                "present": "Already active",
+                "immune": "Immune",
+                "empty": "No effects to apply",
+                "finished": "Application complete",
+                "noExecutor": "No available owner or GM",
+                "actorUnavailable": "Actor unavailable",
+                "permission": "No permission to update",
+                "invalidRequest": "Invalid effect data",
+                "writeUnconfirmed": "Changes not confirmed",
+                "responseUnconfirmed": "Result not confirmed",
+                "sourceUnavailable": "Effect source is unavailable",
+                "invalidSource": "Invalid source or application trigger"
+            },
+            "consequenceWarning": "Action consequence was not confirmed",
+            "effectSource": "Effect source",
+            "checkBeforeManual": "The delivery outcome is unknown. Check the actor before applying anything manually: the change may already have been saved.",
+            "manualStatus": "The attacker or GM can apply this status to the specified actor using the link. An already active status will not be duplicated.",
+            "manualAdrenaline": "Check the adrenaline award. If this point has not been received, add it with the + button on the attacker’s sheet; do not repeat the roll.",
+            "actions": {
+                "applySelf": "Item effects on its owner",
+                "applyOnHit": "Effects on hit",
+                "applyOnDamage": "Effects on damage",
+                "profession": "Profession ability effect",
+                "status": "Parry consequence",
+                "adrenaline": "Adrenaline for a critical wound"
+            }
+        },
         "EffectApplication": {
             "invalidDuration": "Effect duration must be a non-negative whole number of rounds.",
             "writeFailed": "The effect could not be saved or replaced completely. Check the current effects."
@@ -1371,6 +1418,8 @@
         "ReputationFaceDown.Title": "Reputation Face-Down",
         "verbalCombat": {
             "Title": "Verbal Combat",
+            "InvalidTotal": "This message does not contain a valid verbal combat roll total.",
+            "InvalidAction": "Select an available verbal combat action in this dialog.",
             "DialogTitle": "Performing a verbal combat action",
             "EmpatheticAttacks": "Empathetic Attacks",
             "AntagonisticAttacks": "Antagonistic Attacks",
@@ -1651,7 +1700,9 @@
                 "itemIsAlreadyRepaired": "This item is already fully repaired",
                 "noDiagram": "No associated diagram found for this item",
                 "invalidDiagram": "The type of this diagram is not valid for this item",
-                "unavailableComponent": "Cannot prepare repair: component “{name}” ({uuid}) is unavailable or has no valid cost. Correct the reference and try again."
+                "unavailableComponent": "Cannot prepare repair: component “{name}” ({uuid}) is unavailable or has no valid cost. Correct the reference and try again.",
+                "noActiveGM": "No active GM is available to restore this item.",
+                "unconfirmedRepair": "The repair result could not be confirmed. Materials may already have been spent. Check the item before trying again."
             }
         },
         "ComponentsList": {

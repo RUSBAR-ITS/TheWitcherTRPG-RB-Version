@@ -288,7 +288,7 @@ export default class WitcherCharacterSheet extends WitcherActorSheet {
         let areCraftComponentsEnough = true;
 
         content += `<div class="components-display">`;
-        let alchemyCraftComponents = item.populateAlchemyCraftComponentsList();
+        let alchemyCraftComponents = item.alchemyCraftComponentsList;
         alchemyCraftComponents
             .filter(a => a.quantity > 0)
             .forEach(a => {

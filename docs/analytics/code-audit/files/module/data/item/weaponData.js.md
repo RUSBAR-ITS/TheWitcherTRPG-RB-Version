@@ -1,5 +1,11 @@
 # module/data/item/weaponData.js
 
+## Текущее состояние — 14.3.1.00104
+
+2026-09-19, TASK-0011.004. Новый getter damagedLocations возвращает одну локализованную строку reliable/maxReliability при повреждении либо []. repair() возвращает Promise parent.update. Базовые пределы canBeRepaired/repair сохранены; потребитель — RepairData/RepairSystem и прежние HBS.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011004): 38 локальных сценариев; B04 впереди. Ниже датированные предыдущие срезы, утверждения о разрывах этой цепочки заменены настоящим разделом.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/weaponData.js](../../../../../../../module/data/item/weaponData.js) |

@@ -93,8 +93,32 @@ export default class ArmorData extends CommonItemData {
         );
     }
 
+    get damagedLocations() {
+        const locations = [];
+        if (this.reliability < this.reliabilityMax) {
+            locations.push({
+                label: game.i18n.localize('WITCHER.Repair.damagedLocations.shield'),
+                reliabilityValue: this.reliability,
+                maxReliabilityValue: this.reliabilityMax
+            });
+        }
+        for (const [key, label] of Object.entries({
+            head: 'Head', torso: 'Torso', leftArm: 'leftArm', rightArm: 'rightArm',
+            leftLeg: 'leftLeg', rightLeg: 'rightLeg'
+        })) {
+            if (this[key].stoppingPower < this[key].maxStoppingPower) {
+                locations.push({
+                    label: game.i18n.localize(`WITCHER.Location.${label}`),
+                    reliabilityValue: this[key].stoppingPower,
+                    maxReliabilityValue: this[key].maxStoppingPower
+                });
+            }
+        }
+        return locations;
+    }
+
     async repair() {
-        this.parent.update({
+        return this.parent.update({
             'system.reliability': this.reliabilityMax,
             'system.head.stoppingPower': this.head.maxStoppingPower,
             'system.torso.stoppingPower': this.torso.maxStoppingPower,

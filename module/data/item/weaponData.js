@@ -62,8 +62,18 @@ export default class WeaponData extends CommonItemData {
         return this.associatedDiagramUuid && this.reliable < this.maxReliability;
     }
 
+    get damagedLocations() {
+        return this.reliable < this.maxReliability
+            ? [{
+                label: game.i18n.localize('WITCHER.Repair.damagedLocations.weapon'),
+                reliabilityValue: this.reliable,
+                maxReliabilityValue: this.maxReliability
+            }]
+            : [];
+    }
+
     async repair() {
-        this.parent.update({ 'system.reliable': this.maxReliability });
+        return this.parent.update({ 'system.reliable': this.maxReliability });
     }
 
     prepareDerivedData() {

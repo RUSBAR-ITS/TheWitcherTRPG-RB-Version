@@ -1,5 +1,11 @@
 # module/actor/mixins/professionMixin.js
 
+## Текущее состояние — 14.3.1.00108 / TASK-0011.008
+
+2026-09-19. doProfessionSkillUsage сохраняет исходный ChatMessage и передаёт createEffectDelivery из scripts/effectDelivery.js готовый newEffect, выбранного Actor и Item профессии. Удалены неиспользуемый queryData и прямой getActorOwner.query. Ошибка карточки идёт в reportDeliveryConsequence; повтор не вызывает doProfessionSkillRoll и не пересчитывает duration/value. Формула temporaryHP, eval, legacy root changes/icon/duration.rounds сохранены, это отдельная TASK-0012: успешная доставка не означает исправления механики временных ПЗ.
+
+[Локальные проверки и границы B08](../../../../../task-0011-static-checks.md#task-0011008). Ниже — прежние датированные срезы; утверждения о прямых query/неожидаемой доставке заменены этим разделом.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** Клик передаёт ID профессии+slot, resolveRollTarget выбирает модель. Удалены два findSkillWithName. Skill/threshold/usage/direct attack/weapon ветви передают тот же адрес и возвращают Promise. prepareCheck учитывает actual stat/own/allSkills/attack один раз; weapon replacement заменяет базу. Отмена прекращает usage до сообщения/AE. ChatMessageData получает Actor; источником usage служит выбранная профессия. Временные HP и доставка остаются своими задачами.

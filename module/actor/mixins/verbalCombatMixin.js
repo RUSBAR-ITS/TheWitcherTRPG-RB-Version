@@ -13,12 +13,16 @@ export let verbalCombatMixin = {
                 verbalCombat: CONFIG.WITCHER.verbalCombat
             }
         );
-        let { group, verbal, customModifier } = await DialogV2.prompt({
+        const selection = await DialogV2.prompt({
             window: { title: game.i18n.localize('WITCHER.verbalCombat.DialogTitle') },
             content: dialogTemplate,
             ok: {
                 callback: (event, button, dialog) => {
-                    let checkedBox = document.querySelector('input[name="verbalCombat"]:checked');
+                    const checkedBox = button.form.querySelector('input[name="verbalCombat"]:checked');
+                    if (!checkedBox) {
+                        ui.notifications.warn(game.i18n.localize('WITCHER.verbalCombat.InvalidAction'));
+                        return null;
+                    }
                     let group = checkedBox.dataset.group;
                     let verbal = checkedBox.value;
 
@@ -34,7 +38,15 @@ export let verbalCombatMixin = {
             rejectClose: true
         });
 
-        let verbalCombat = CONFIG.WITCHER.verbalCombat[group][verbal];
+        if (!selection) return null;
+        const { group, verbal, customModifier } = selection;
+        const groups = CONFIG.WITCHER.verbalCombat;
+        const actions = groups[group];
+        if (!Object.hasOwn(groups, group) || !Object.hasOwn(actions ?? {}, verbal)) {
+            ui.notifications.warn(game.i18n.localize('WITCHER.verbalCombat.InvalidAction'));
+            return null;
+        }
+        let verbalCombat = actions[verbal];
         let vcName = verbalCombat.name;
 
         let vcDmg = verbalCombat.baseDmg

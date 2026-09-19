@@ -1,5 +1,11 @@
 # module/actor/sheets/WitcherCharacterSheet.js
 
+## Текущее состояние — 14.3.1.00104
+
+2026-09-19, TASK-0011.004. _alchemyCraft читает существующий getter item.alchemyCraftComponentsList вместо отсутствующего метода. Девять субстанций, рецепт +2, выбор alchemy/crafting, prepareCheck и realCraft сохранены. На фасадах пройден путь до создания результата/списания; атомарность серверных записей не заявляется.
+
+[Проверки и границы](../../../../../task-0011-static-checks.md#task-0011004): 38 локальных сценариев; B04 впереди. Ниже датированные предыдущие срезы, утверждения о разрывах этой цепочки заменены настоящим разделом.
+
 ## Текущее состояние — 14.3.1.00082
 
 2026-09-19, TASK-0010.019. DEFAULT_OPTIONS задаёт базовый размер 1125×800. _prepareCharacterData добавляет parameterLabels из CONFIG.WITCHER.statMap (labelFull → label → labelShort), потребитель — tab-stats.hbs. Фильтрация плиток и модель данных прежние.

@@ -1,7 +1,9 @@
 import { getInteractActor } from './helper.js';
 import RepairSystem from '../item/systems/repair.js';
+import { bindEffectDelivery } from './effectDelivery.js';
 
 export function chatMessageListeners(message, html) {
+    void bindEffectDelivery(message, html).catch(error => console.error('Witcher delivery card render failed', error));
     html.querySelector('button.shield')?.addEventListener('click', onShield);
     html.querySelector('button.heal')?.addEventListener('click', onHeal);
     html.querySelector('button.request-repair')?.addEventListener('click', onRepairRequest);

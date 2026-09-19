@@ -1,0 +1,12 @@
+<div class="witcherTRPG effect-delivery-warning">
+    <h3>{{localize "WITCHER.EffectDelivery.consequenceWarning"}}</h3>
+    <p>{{actionLabel}} — <a class="content-link" data-link data-uuid="{{actorUuid}}">{{actorName}}</a>: {{reasonLabel}}</p>
+    {{#if messageUuid}}<p><a class="content-link" data-link data-uuid="{{messageUuid}}">{{localize "WITCHER.EffectDelivery.originalAction"}}</a></p>{{/if}}
+    {{#if itemUuid}}<p><a class="content-link" data-link data-uuid="{{itemUuid}}">{{localize "WITCHER.EffectDelivery.effectSource"}}</a></p>{{/if}}
+    {{#if unknown}}<p>{{localize "WITCHER.EffectDelivery.checkBeforeManual"}}</p>{{/if}}
+    {{#if statusId}}
+    <p>{{localize "WITCHER.EffectDelivery.manualStatus"}}</p>
+    <a class="apply-status" data-actor-uuid="{{actorUuid}}" data-status="{{statusId}}" data-duration="{{duration}}">{{statusName}} ({{duration}} {{localize "WITCHER.EffectDelivery.rounds"}})</a>
+    {{/if}}
+    {{#if adrenaline}}<p>{{localize "WITCHER.EffectDelivery.manualAdrenaline"}}</p>{{/if}}
+</div>

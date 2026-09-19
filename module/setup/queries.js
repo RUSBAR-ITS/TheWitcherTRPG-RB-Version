@@ -3,6 +3,7 @@ import {
     applyActiveEffectToActorViaId
 } from '../scripts/temporaryEffects/applyActiveEffect.js';
 import { applyStatusEffectToActor } from '../scripts/statusEffects/applyStatusEffect.js';
+import { DELIVERY_QUERY, SOURCE_QUERY, receiveEffectDelivery, readEffectSource } from '../scripts/effectDelivery.js';
 
 const system = 'TheWitcherTRPG-RB-Version';
 
@@ -46,6 +47,8 @@ async function query(queryData, { timeout }) {
 }
 
 export function registerQueries() {
+    CONFIG.queries[DELIVERY_QUERY] = receiveEffectDelivery;
+    CONFIG.queries[SOURCE_QUERY] = readEffectSource;
     CONFIG.queries[`${system}.applyTemporaryItemImprovements`] = applyTemporaryItemImprovementsToActor;
     CONFIG.queries[`${system}.query`] = query;
 }

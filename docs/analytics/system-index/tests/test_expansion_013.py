@@ -101,12 +101,12 @@ class InventoryExpansion(unittest.TestCase):
         for r in templates:self.assertIn('data-field="system.quantity"',self.source(int(r['location']['source'][4:]))[r['location']['line_start']-1])
 
     def test_consume_delegation_hp_and_message(self):
-        s=self.source(157);self.assertIn('await this.actor.calculateHealValue',s[7])
-        for n in [9,13,14,15,16]:self.assertNotIn('await',s[n-1])
-        self.assertIn("this.actor.uuid, this.uuid, 'applySelf'",s[14]);self.assertNotIn('duration',s[14])
-        self.assertNotIn('quantity','\n'.join(s));self.assertNotIn('percentage','\n'.join(s))
-        self.assertEqual({r['to'] for r in self.edges('item.consumeMixin.consume','calls')},{self.q[x] for x in ['actor.healMixin.calculateHealValue','Document.update/Actor','WitcherActor.applyStatus','WitcherActor.removeStatus','applyActiveEffectToActorViaId','item.consumeMixin.createConsumeMessage']})
-        self.assertIn('hp.max',self.source(17)[6]);self.assertIn('parseInt',s[7]);self.assertIn('await',s[28]);self.assertNotIn('await',s[39])
+        s='\n'.join(self.source(157))
+        for token in ['await this.actor.calculateHealValue','this.actor.applyStatus(properties.effects)','this.actor.removeStatus','const message = await this.createConsumeMessage','await createItemEffectDelivery','return ChatMessage.create(chatData)']:
+            self.assertIn(token,s)
+        self.assertLess(s.index('const message = await'),s.index('await createItemEffectDelivery'))
+        self.assertIn("applyWhen: 'applySelf', message",s);self.assertNotIn('quantity',s)
+        self.assertEqual({r['to'] for r in self.edges('item.consumeMixin.consume','calls')},{self.q[x] for x in ['actor.healMixin.calculateHealValue','Document.update/Actor','WitcherActor.applyStatus','WitcherActor.removeStatus','effectDelivery.createItemEffectDelivery','item.consumeMixin.createConsumeMessage']})
         self.assertNotIn('removesEffects','\n'.join(self.source(496)))
 
     def test_menu_socket_query_and_actor_identity(self):

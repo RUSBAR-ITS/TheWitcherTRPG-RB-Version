@@ -140,48 +140,27 @@ class EffectLifecycleExpansion(unittest.TestCase):
             self.assertEqual(self.data.relations[rid]['from'],'ent-000775')
 
     def test_ordinary_effect_mutation_clone_and_query_payload(self):
-        s=self.source('src-000206')
-        for line,literal in [(15,'fromUuidSync(itemUuid)'),(18,'game.users.activeGM.query'),(27,'effect.system[applyWhen]'),
-            (33,'fromUuidSync(actorUuid)'),(37,'effect.duration.rounds = duration ?? effect.duration.rounds'),
-            (38,'applyTemporaryItemImprovements(actor, activeEffects)'),(40,'!actor.isOwner'),
-            (43,'data: [actorUuid, activeEffects.filter'),(52,'new ActiveEffect(effect)'),(55,'effect.clone('),
-            (58,"'system.applySelf': false"),(59,"'system.applyOnTarget': false"),
-            (60,"'system.applyOnHit': false"),(61,"'system.applyOnDamage': false"),
-            (63,'parent: actor'),(67,'await actor.createEmbeddedDocuments'),(74,'effects: activeEffects')]:
-            self.assertIn(literal,s[line-1])
-        self.assertNotIn('duration',s[42]);self.assertNotIn('await',s[37])
-        self.assertNotIn('isTransferred','\n'.join(s[47:65]))
-        steps=self.steps('proc-000037')
-        self.assertEqual([n['step'] for n in steps['duration']['next'] if 'step' in n],['temporary'])
-        self.assertEqual([n['flow'] for n in steps['create']['next']],['await','await'])
-        self.assertFalse(any(r['to']=='ent-000319' for r in self.edges('ent-000783','calls')))
-        # Source line67 references the creation lifecycle; line41 independently
-        # references the query registration added in .020.
-        creation_refs=[r['to'] for r in self.edges('ent-000783','refers')
-                       if r['location']['source']=='src-000206' and r['location']['line_start']==67]
-        self.assertEqual(creation_refs,['ent-000317'])
+        q={e['qualified_name']:e['id'] for e in self.data.entities.values()}
+        calls=lambda n:{r['to'] for r in self.edges(q[n],'calls')}
+        self.assertIn(q['effectDelivery.resolveEffectSource'],calls('applyActiveEffectToActorViaId'))
+        self.assertIn(q['effectDelivery.deliverActorEffects'],calls('applyActiveEffectToActor'))
+        self.assertIn(q['effectDeliveryLocal.applyLocalActiveEffects'],calls('effectDelivery.receiveEffectDelivery'))
+        self.assertIn(q['effectApplication.appliedEffectData'],calls('effectDeliveryLocal.applyLocalActiveEffects'))
+        self.assertNotIn(q['query'],calls('applyActiveEffectToActorViaId'))
+        self.assertNotIn(q['User.query'],calls('effectDelivery.readEffectSource'))
+        self.assertEqual(self.data.entities['ent-000860']['location']['source'],'src-000643')
+        self.assertEqual(self.data.entities['ent-000863']['location']['source'],'src-000642')
 
     def test_status_target_counter_timer_and_query_return_boundaries(self):
-        s=self.source('src-000205');q=self.source('src-000213');hp=self.source('src-000198')
-        for line,literal in [(5,"querySelector('.chat-message').each"),(16,"querySelector('a.apply-status')"),
-            (25,'getCurrentCharacter()'),(27,'target.uuid'),(31,'game.user.targets'),
-            (59,'actor.appliedEffects.find'),(61,'await actor.toggleStatusEffect(statusEffectId)'),
-            (63,'handleStatusCounterIntegration'),(65,'statusEffectImmunities?.find'),
-            (67,'setTimeout'),(68,'actor.toggleStatusEffect(statusEffectId)'),(69,'1000'),
-            (75,"game.modules.get('statuscounter')?.active"),(77,'!duration || duration == 0'),
-            (79,'CONFIG.WITCHER.statusEffects.querySelector'),(81,'EffectCounter.getAllCounters(target).querySelector')]:
-            self.assertIn(literal,s[line-1])
-        self.assertIn('canvas.tokens.controlled[0]?.actor',hp[3]);self.assertIn('game.user.character',hp[3])
-        self.assertNotIn('active:',s[60]);self.assertNotIn('active:',s[67])
-        self.assertIn('if (queryData.function in callableFunctions)',q[32])
-        self.assertIn('callableFunctions[queryData.function](...queryData.data)',q[33])
-        self.assertIn('return true',q[34]);self.assertNotIn('await','\n'.join(q[8:46]))
-        self.assertIn('entity.system[queryData.function]?.',q[40])
-        self.assertTrue(any(r['to']=='ent-000879' for r in self.edges('ent-000787','refers')))
-        self.assertEqual([n.get('step') for n in self.steps('proc-000040')['counter']['next'] if 'step' in n],['immune'])
-        self.assertEqual(self.steps('proc-000040')['timer']['relations'],
-                         [r['id'] for r in self.edges('ent-000780','registers')])
-        self.assertEqual(self.data.processes['proc-000041']['entry']['entity'],'ent-000789')
+        q={e['qualified_name']:e['id'] for e in self.data.entities.values()}
+        calls=lambda n:{r['to'] for r in self.edges(q[n],'calls')}
+        self.assertIn(q['effectDelivery.deliverActorEffects'],calls('applyStatusEffectToActor'))
+        self.assertIn(q['effectDeliveryLocal.applyLocalStatus'],calls('effectDelivery.receiveEffectDelivery'))
+        self.assertNotIn(q['User.query'],calls('effectDelivery.receiveEffectDelivery'))
+        self.assertIn(q['handleStatusCounterIntegration'],calls('effectDeliveryLocal.applyLocalStatus'))
+        self.assertEqual(self.data.entities[q['handleStatusCounterIntegration']]['location']['source'],'src-000643')
+        self.assertIn('issue00003',self.data.processes['proc-000042']['scope'])
+        self.assertEqual(self.data.processes['proc-000041']['entry']['entity'],q['effectDeliveryLocal.applyLocalStatus'])
 
     def test_item_phase_priority_and_actor_collections(self):
         item=self.source('src-000192');sh=self.source('src-000027');act=self.source('src-000047')
