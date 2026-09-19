@@ -1,5 +1,13 @@
 # templates/sheets/item/component-sheet.hbs
 
+## Актуальное состояние — 14.3.1.00118, TASK-0011.011
+
+В трёх списках больше нет отсутствующего helper select. Категории задаются прежними пятью options, selected определяется eq/if; substanceType и rarity формируются штатным selectOptions по config.substanceTypes / config.Availability с localize=true и blank="". Пустой вариант сохраняет пустое поле модели. Для текущего непустого кода вне словаря добавляется выбранный экранированный option; type=component подписан через WITCHER.Item.CraftingMaterial, сам код не меняется. Новые зависимости шаблона: core selectOptions, built-in lookup/unless, уже зарегистрированный or. Старый select больше не требуется.
+
+item/config/systemFields по-прежнему приходят из WitcherItemSheet; PARTS/регистрация/submit прежние. Условие type=substances сохраняется: скрытие селектора не создаёт поля для очистки значения. quantity и lootQuantityFormula передаются через существующий item-header; quantityObtainable/location/forage остаются отдельными текстовыми полями. Новых функций/записей/миграций/ключей локализации нет.
+
+[46 локальных проверок и ограничения](../../../../../task-0011-static-checks.md#component-00118) прошли с настоящими core helpers/DOM/FormDataExtended и моделью ComponentData. Живой Foundry пока недоступен; сохранение в БД и реальный рендер окна ожидают B11. Подробные узлы HBS в графе остаются not_indexed, PARTS ent-000526 / класс ent-000456 не менялись. Далее сохранён первоначальный анализ; описание отсутствующего select ниже относится к версии до .00118.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/item/component-sheet.hbs](../../../../../../../templates/sheets/item/component-sheet.hbs) |

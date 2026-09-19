@@ -206,7 +206,7 @@ async function renderDelivery(snapshot) {
 }
 
 async function saveDelivery(message, snapshot) {
-    const content = await renderDelivery(snapshot);
+    const content = message.schema.fields.content.clean(await renderDelivery(snapshot));
     const source = message.toObject(true);
     if (content === source.content && foundry.utils.equals(source.flags?.[deliveryScope]?.effectDelivery, snapshot)) return;
     const saved = await message.update({ content, [`flags.${deliveryScope}.effectDelivery`]: snapshot });

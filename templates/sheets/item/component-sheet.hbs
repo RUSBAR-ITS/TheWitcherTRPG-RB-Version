@@ -4,24 +4,29 @@
         <div class="item-column">
             <label>{{localize "WITCHER.Type"}}</label>
             <select name="system.type" id="type-select">
-                {{#select item.system.type}}
-                    <option value="crafting-material">{{localize "WITCHER.Item.CraftingMaterial"}}</option>
-                    <option value="animal-parts">{{localize "WITCHER.Item.Hides&AnimalParts"}}</option>
-                    <option value="alchemical">{{localize "WITCHER.Item.AlchemicalTreatments"}}</option>
-                    <option value="minerals">{{localize "WITCHER.Item.Ingots&Minerals"}}</option>
-                    <option value="substances">{{localize "WITCHER.Inventory.Substances"}}</option>
-                {{/select}}
+                <option value="" {{#if (eq item.system.type "")}}selected{{/if}}></option>
+                <option value="crafting-material" {{#if (eq item.system.type "crafting-material")}}selected{{/if}}>{{localize "WITCHER.Item.CraftingMaterial"}}</option>
+                <option value="animal-parts" {{#if (eq item.system.type "animal-parts")}}selected{{/if}}>{{localize "WITCHER.Item.Hides&AnimalParts"}}</option>
+                <option value="alchemical" {{#if (eq item.system.type "alchemical")}}selected{{/if}}>{{localize "WITCHER.Item.AlchemicalTreatments"}}</option>
+                <option value="minerals" {{#if (eq item.system.type "minerals")}}selected{{/if}}>{{localize "WITCHER.Item.Ingots&Minerals"}}</option>
+                <option value="substances" {{#if (eq item.system.type "substances")}}selected{{/if}}>{{localize "WITCHER.Inventory.Substances"}}</option>
+                {{#if item.system.type}}
+                    {{#unless (or (eq item.system.type "crafting-material") (eq item.system.type "animal-parts") (eq item.system.type "alchemical") (eq item.system.type "minerals") (eq item.system.type "substances"))}}
+                        <option value="{{item.system.type}}" selected>{{#if (eq item.system.type "component")}}{{localize "WITCHER.Item.CraftingMaterial"}}{{else}}{{item.system.type}}{{/if}}</option>
+                    {{/unless}}
+                {{/if}}
             </select>
         </div>
         <div class="item-column">
             {{#if (eq item.system.type "substances")}}
                 <label>{{localize "WITCHER.Inventory.Substance"}}:</label>
                 <select name="system.substanceType" id="substanceType-select">
-                    {{#select item.system.substanceType}}
-                        {{#each config.substanceTypes as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.substanceTypes selected=item.system.substanceType blank="" localize=true}}
+                    {{#if item.system.substanceType}}
+                        {{#unless (lookup config.substanceTypes item.system.substanceType)}}
+                            <option value="{{item.system.substanceType}}" selected>{{item.system.substanceType}}</option>
+                        {{/unless}}
+                    {{/if}}
                 </select>
             {{/if}}
         </div>
@@ -36,11 +41,12 @@
         <tr>
             <td>
                 <select name="system.rarity" id="avail-select">
-                    {{#select item.system.rarity}}
-                        {{#each config.Availability as |name value|}}
-                            <option value="{{value}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.Availability selected=item.system.rarity blank="" localize=true}}
+                    {{#if item.system.rarity}}
+                        {{#unless (lookup config.Availability item.system.rarity)}}
+                            <option value="{{item.system.rarity}}" selected>{{item.system.rarity}}</option>
+                        {{/unless}}
+                    {{/if}}
                 </select>
             </td>
             <td><input type="text" name="system.location" value="{{item.system.location}}" /></td>
