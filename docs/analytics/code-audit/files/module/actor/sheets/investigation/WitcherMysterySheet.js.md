@@ -88,7 +88,7 @@ getList возвращает документы, а не копии и не то
 
 ## Связанные проблемы
 
-[issue-00005](../../../../../../../issues/potential/issue-00005.md), [issue-00148](../../../../../../../issues/potential/issue-00148.md), [issue-00149](../../../../../../../issues/potential/issue-00149.md), [issue-00151](../../../../../../../issues/potential/issue-00151.md), [issue-00152](../../../../../../../issues/potential/issue-00152.md), [issue-00153](../../../../../../../issues/potential/issue-00153.md), [issue-00154](../../../../../../../issues/potential/issue-00154.md), [issue-00155](../../../../../../../issues/closed/issue-00155.md). 5 — доступность типа; остальные связаны с цепочкой броска, асинхронностью, inline-преобразованием и основной формой.
+[issue-00005](../../../../../../../issues/closed/issue-00005.md), [issue-00148](../../../../../../../issues/potential/issue-00148.md), [issue-00149](../../../../../../../issues/potential/issue-00149.md), [issue-00151](../../../../../../../issues/potential/issue-00151.md), [issue-00152](../../../../../../../issues/potential/issue-00152.md), [issue-00153](../../../../../../../issues/potential/issue-00153.md), [issue-00154](../../../../../../../issues/potential/issue-00154.md), [issue-00155](../../../../../../../issues/closed/issue-00155.md). 5 — доступность типа; остальные связаны с цепочкой броска, асинхронностью, inline-преобразованием и основной формой.
 
 ## История актуализации
 

@@ -121,7 +121,7 @@ NumberField не задаёт ограничения диапазона и це�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../../../issues/potential/issue-00015.md), [issue-00016](../../../../../../../../../issues/closed/issue-00016.md), [issue-00017](../../../../../../../../../issues/potential/issue-00017.md), [issue-00018](../../../../../../../../../issues/potential/issue-00018.md). Все остаются potential; код системы не исправлялся.
+[issue-00004](../../../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../../../issues/closed/issue-00015.md), [issue-00016](../../../../../../../../../issues/closed/issue-00016.md), [issue-00017](../../../../../../../../../issues/closed/issue-00017.md), [issue-00018](../../../../../../../../../issues/potential/issue-00018.md). Все остаются potential; код системы не исправлялся.
 
 ## История актуализации
 
@@ -129,7 +129,7 @@ NumberField не задаёт ограничения диапазона и це�
 
 ## Уточнение TASK-0003.005
 
-2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Полностью описан [Log](../../character/logData.js.md) — потребитель levelUpSkill. Повторная проверка с настоящим Log показала два payloads для magic: 6 из журнала и 10 из levelUpSkill; дополнена [issue-00017](../../../../../../../../../issues/potential/issue-00017.md). [skillTrainingData](../../character/skillTrainingData.js.md) задаёт отдельные ручные слоты name/value, не экземпляры Skill; их кнопка списывает обычные IP и не повышает system.skills.
+2026-09-10, `c9eac1ffb28fdf69935d500fff26d4d0ad1d1609`. Полностью описан [Log](../../character/logData.js.md) — потребитель levelUpSkill. Повторная проверка с настоящим Log показала два payloads для magic: 6 из журнала и 10 из levelUpSkill; дополнена [issue-00017](../../../../../../../../../issues/closed/issue-00017.md). [skillTrainingData](../../character/skillTrainingData.js.md) задаёт отдельные ручные слоты name/value, не экземпляры Skill; их кнопка списывает обычные IP и не повышает system.skills.
 
 [Сверка TASK-0003.005](../../../../../../../review-log.md#task-0003005).
 

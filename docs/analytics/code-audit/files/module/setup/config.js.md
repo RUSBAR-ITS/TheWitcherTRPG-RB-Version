@@ -392,7 +392,7 @@ TASK-0010.010: 11 навыковых строк в intoxication/blinded — affe
 
 Все 52 записи skillMap сопоставлены с семью группами реальной схемы CommonActorData по attribute.name/name: пути существуют, лишних или недостающих навыков не найдено. Полные группы и индекс путей из компедиумов — в [карточке skills](../data/actor/templates/common/skills/skillsData.js.md). Ключ commonspeech отличается от name=commonsp; дополненная [issue-00004](../../../../../issues/closed/issue-00004.md) содержит проявления в подсказках, конфигурации, кнопках, формулах и трёх JSON.
 
-Сверка label/rollLabel с восемью языками обнаружила отсутствующие ключи picklock.label и trapcraft.label/rollLabel; подробности — [issue-00016](../../../../../issues/closed/issue-00016.md). Стоимость из magicSkills/skillMap используется в levelUpSkill; наблюдение расхода магических очков записано в [issue-00017](../../../../../issues/potential/issue-00017.md). Это уточнение потребителей справочника, не изменение его значений.
+Сверка label/rollLabel с восемью языками обнаружила отсутствующие ключи picklock.label и trapcraft.label/rollLabel; подробности — [issue-00016](../../../../../issues/closed/issue-00016.md). Стоимость из magicSkills/skillMap используется в levelUpSkill; наблюдение расхода магических очков записано в [issue-00017](../../../../../issues/closed/issue-00017.md). Это уточнение потребителей справочника, не изменение его значений.
 
 Результаты и пределы проверок — в [журнале TASK-0003.002](../../../review-log.md#task-0003002).
 

@@ -117,7 +117,7 @@ CSS не читает Actor/Item напрямую и не выполняет upd
 
 ## Связанные проблемы
 
-[issue-00018](../../../../issues/potential/issue-00018.md), [issue-00030](../../../../issues/potential/issue-00030.md), [issue-00187](../../../../issues/potential/issue-00187.md), [issue-00188](../../../../issues/potential/issue-00188.md), [issue-00192](../../../../issues/potential/issue-00192.md). Связь с конкретным условием, шаблоном или каскадом описана выше. Статусы остаются potential; CSS-анализ не подтверждает исправление или закрытие.
+[issue-00018](../../../../issues/potential/issue-00018.md), [issue-00030](../../../../issues/potential/issue-00030.md), [issue-00187](../../../../issues/closed/issue-00187.md), [issue-00188](../../../../issues/potential/issue-00188.md), [issue-00192](../../../../issues/closed/issue-00192.md). Связь с конкретным условием, шаблоном или каскадом описана выше. Статусы остаются potential; CSS-анализ не подтверждает исправление или закрытие.
 
 ## История актуализации
 

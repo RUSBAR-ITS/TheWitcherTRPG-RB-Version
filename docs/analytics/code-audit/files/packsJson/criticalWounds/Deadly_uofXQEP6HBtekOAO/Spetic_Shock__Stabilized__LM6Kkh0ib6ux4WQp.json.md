@@ -201,7 +201,7 @@ JSON не вводит собственных функций или обрабо
 
 Контрольный Actor: восемь unmodifiedMax=5, HP.value=25, dodge.value=athletics.value=8 до эффектов, броня/вес=0. Результат: INT=4, WILL=4, REF=4, DEX=4, BODY=5, SPD=5; BODY.max=5, SPD.max=5; RUN=15, LEAP.value=3, LEAP.max=3, ENC=50, STUN=4, REC=4, HP.max=20, HP.value=25, RESOLVE.max=20, FOCUS.max=12, STA.max=20, STA.value=0; healingTime=0. Навыки: dodge.value=8, dodge.activeEffectModifiers=0; athletics.value=8, athletics.activeEffectModifiers=0; awareness.value=0, awareness.activeEffectModifiers=0. Статусы=`[]`; turnStartEffects={}. После initial, до расчётов: `{"staMax":0,"spdMax":5,"bodyMax":5}`. Значения прочитаны непосредственно из подготовленных полей; DataModel.toObject возвращает источник и не заменяет такую проверку.
 
-STA.max до initial равен 0 в этом свежем Actor; множитель оставляет 0. calculateDerivedStats затем заново присваивает максимум через BODY.value/WILL.value и STA.totalModifiers: получено 20. Это проверка перезаписи поля, а не доказательство сохранения множителя до final — [issue-00036](../../../../../../issues/potential/issue-00036.md).
+STA.max до initial равен 0 в этом свежем Actor; множитель оставляет 0. calculateDerivedStats затем заново присваивает максимум через BODY.value/WILL.value и STA.totalModifiers: получено 20. Это проверка перезаписи поля, а не доказательство сохранения множителя до final — [issue-00036](../../../../../../issues/closed/issue-00036.md).
 
 Имя Spetic Shock сохранено ровно как в экспорте; переименование данных не выполнялось. Последовательность INT/WILL/REF/DEX.totalModifiers: −3 → −1 → отсутствие. В none/stabilized дополнительно STA.max ×0.25/×0.5; treated использует STA.totalModifiers −5 и даёт STA.max=20 при базовых характеристиках 5. Poison amount=3 задан только в none, длительность у него пустая, в отличие от однокруговых bleed.
 
@@ -217,7 +217,7 @@ STA.max до initial равен 0 в этом свежем Actor; множите
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00036](../../../../../../issues/potential/issue-00036.md) — max/value и перезапись производного максимума. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00036](../../../../../../issues/closed/issue-00036.md) — max/value и перезапись производного максимума. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 

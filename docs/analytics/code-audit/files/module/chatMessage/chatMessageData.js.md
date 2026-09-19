@@ -82,7 +82,7 @@ Default-export class без наследования. constructor сразу в�
 
 ## Связанные проблемы
 
-[issue-00005](../../../../../issues/potential/issue-00005.md), [issue-00126](../../../../../issues/potential/issue-00126.md), [issue-00175](../../../../../issues/potential/issue-00175.md), [issue-00182](../../../../../issues/potential/issue-00182.md). issue-00126/00175 и новая issue-00182 относятся к вызывающим местам, передающим неподходящий actor; контейнер сам UUID/имя в Actor не преобразует. issue-00005 — отдельное наблюдение о регистрации типов.
+[issue-00005](../../../../../issues/closed/issue-00005.md), [issue-00126](../../../../../issues/potential/issue-00126.md), [issue-00175](../../../../../issues/potential/issue-00175.md), [issue-00182](../../../../../issues/potential/issue-00182.md). issue-00126/00175 и новая issue-00182 относятся к вызывающим местам, передающим неподходящий actor; контейнер сам UUID/имя в Actor не преобразует. issue-00005 — отдельное наблюдение о регистрации типов.
 
 ## История актуализации
 

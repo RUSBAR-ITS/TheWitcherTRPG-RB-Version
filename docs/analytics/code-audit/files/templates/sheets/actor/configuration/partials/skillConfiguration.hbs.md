@@ -75,7 +75,7 @@ PARTS.skills WitcherMonsterConfigurationSheet. Контекст _getSkills пе�
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../../issues/potential/issue-00015.md), [issue-00018](../../../../../../../../issues/potential/issue-00018.md). Прежние issues дополнены контекстом настоящей модели; нового issue о неверных именах input нет.
+[issue-00004](../../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../../issues/closed/issue-00015.md), [issue-00018](../../../../../../../../issues/potential/issue-00018.md). Прежние issues дополнены контекстом настоящей модели; нового issue о неверных именах input нет.
 
 ## История актуализации
 

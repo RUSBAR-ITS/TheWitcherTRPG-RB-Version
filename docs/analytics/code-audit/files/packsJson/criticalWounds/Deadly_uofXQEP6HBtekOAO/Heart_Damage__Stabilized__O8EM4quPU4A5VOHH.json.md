@@ -139,9 +139,9 @@ JSON не вводит собственных функций или обрабо
 
 Контрольный Actor: восемь unmodifiedMax=5, HP.value=25, dodge.value=athletics.value=8 до эффектов, броня/вес=0. Результат: INT=5, WILL=5, REF=5, DEX=5, BODY=5, SPD=5; BODY.max=3, SPD.max=3; RUN=15, LEAP.value=3, LEAP.max=1, ENC=50, STUN=5, REC=5, HP.max=25, HP.value=25, RESOLVE.max=25, FOCUS.max=15, STA.max=25, STA.value=0; healingTime=0. Навыки: dodge.value=8, dodge.activeEffectModifiers=0; athletics.value=8, athletics.activeEffectModifiers=0; awareness.value=0, awareness.activeEffectModifiers=0. Статусы=`[]`; turnStartEffects={}. После initial, до расчётов: `{"staMax":0,"spdMax":3,"bodyMax":3}`. Значения прочитаны непосредственно из подготовленных полей; DataModel.toObject возвращает источник и не заменяет такую проверку.
 
-Множитель адресует max, а calculateStat читает unmodifiedMax+totalModifiers: SPD.value/BODY.value не вычисляются из изменённого max. Целочисленный NumberField округляет 5×0.25 до 1, 5×0.5 до 3. RUN и LEAP.value используют value, LEAP.max — max; последствия различаются — [issue-00036](../../../../../../issues/potential/issue-00036.md). Выключенное изменение сюда не применяется.
+Множитель адресует max, а calculateStat читает unmodifiedMax+totalModifiers: SPD.value/BODY.value не вычисляются из изменённого max. Целочисленный NumberField округляет 5×0.25 до 1, 5×0.5 до 3. RUN и LEAP.value используют value, LEAP.max — max; последствия различаются — [issue-00036](../../../../../../issues/closed/issue-00036.md). Выключенное изменение сюда не применяется.
 
-STA.max до initial равен 0 в этом свежем Actor; множитель оставляет 0. calculateDerivedStats затем заново присваивает максимум через BODY.value/WILL.value и STA.totalModifiers: получено 25. Это проверка перезаписи поля, а не доказательство сохранения множителя до final — [issue-00036](../../../../../../issues/potential/issue-00036.md).
+STA.max до initial равен 0 в этом свежем Actor; множитель оставляет 0. calculateDerivedStats затем заново присваивает максимум через BODY.value/WILL.value и STA.totalModifiers: получено 25. Это проверка перезаписи поля, а не доказательство сохранения множителя до final — [issue-00036](../../../../../../issues/closed/issue-00036.md).
 
 В Deadly calculateHealingTime не имеет отдельной ветви и оставляет экспортный healingTime=0. heal прибавляет дни treated, но условие criticalLevel != deadly запрещает автоматический treat независимо от числа дней. Ручной treat всё равно доступен, включая удаление конечного Item. None/stabilized инициируют update({}); записи не ожидаются.
 
@@ -155,7 +155,7 @@ STA.max до initial равен 0 в этом свежем Actor; множите
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00036](../../../../../../issues/potential/issue-00036.md) — max/value и перезапись производного максимума. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00036](../../../../../../issues/closed/issue-00036.md) — max/value и перезапись производного максимума. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 

@@ -461,8 +461,8 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00194.md",
-          "docs/issues/potential/issue-00195.md"
+          "docs/issues/closed/issue-00194.md",
+          "docs/issues/closed/issue-00195.md"
         ],
         "includes_anchors": [
           "r003-10",

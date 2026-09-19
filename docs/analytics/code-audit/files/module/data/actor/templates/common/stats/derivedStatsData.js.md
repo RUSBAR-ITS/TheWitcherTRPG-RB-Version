@@ -220,7 +220,7 @@ Treated Cracked Ribs напрямую задаёт enc.totalModifiers=-10: пр�
 
 2026-09-14; rusbar-main, 1cae095ac2f0f009fb1358a888a7afcf5ea5ec2e. Исходник не изменён.
 
-[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): Heart Damage none/stabilized и Spetic Shock none/stabilized используют STA.max ×0.25/×0.5 в initial. В свежем Actor исходный STA.max=0; после initial он 0, после calculateDerivedStats — 25/25/15/20 соответственно. Spetic treated меняет STA.totalModifiers на −5 и даёт max=20. Примеры фиксируют порядок перезаписи, не сохранение первоначального множителя ([issue-00036](../../../../../../../../../issues/potential/issue-00036.md)).
+[Deadly](../../../../../../packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/_Folder.json.md): Heart Damage none/stabilized и Spetic Shock none/stabilized используют STA.max ×0.25/×0.5 в initial. В свежем Actor исходный STA.max=0; после initial он 0, после calculateDerivedStats — 25/25/15/20 соответственно. Spetic treated меняет STA.totalModifiers на −5 и даёт max=20. Примеры фиксируют порядок перезаписи, не сохранение первоначального множителя ([issue-00036](../../../../../../../../../issues/closed/issue-00036.md)).
 
 [Протокол и ограничения](../../../../../../../review-log.md#task-0003061). Настоящие модели/методы исполнены с явными фасадами окружения и перехватом записи; полный клиентский lifecycle, мир, БД и серверный запуск не проверены.
 

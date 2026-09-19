@@ -90,7 +90,7 @@ main.init публикует ссылки game.api.rewards.ip/currency. Оба h
 
 ## Связанные проблемы
 
-[issue-00028](../../../../../../issues/potential/issue-00028.md), [issue-00030](../../../../../../issues/potential/issue-00030.md), [issue-00017](../../../../../../issues/potential/issue-00017.md), [issue-00232](../../../../../../issues/potential/issue-00232.md), [issue-00233](../../../../../../issues/potential/issue-00233.md), [issue-00234](../../../../../../issues/closed/issue-00234.md), [issue-00235](../../../../../../issues/potential/issue-00235.md). issue17 относится к иной операции levelUpSkill: выдача isMagic=true здесь увеличивает правильный пул. Issue30 — соседняя неподдержанная IP-форма monster; новый233 фиксирует самостоятельный путь наград. Асинхронный риск уточняет28, а не создаёт её дубликат.
+[issue-00028](../../../../../../issues/potential/issue-00028.md), [issue-00030](../../../../../../issues/potential/issue-00030.md), [issue-00017](../../../../../../issues/closed/issue-00017.md), [issue-00232](../../../../../../issues/potential/issue-00232.md), [issue-00233](../../../../../../issues/potential/issue-00233.md), [issue-00234](../../../../../../issues/closed/issue-00234.md), [issue-00235](../../../../../../issues/potential/issue-00235.md). issue17 относится к иной операции levelUpSkill: выдача isMagic=true здесь увеличивает правильный пул. Issue30 — соседняя неподдержанная IP-форма monster; новый233 фиксирует самостоятельный путь наград. Асинхронный риск уточняет28, а не создаёт её дубликат.
 
 ## История актуализации
 

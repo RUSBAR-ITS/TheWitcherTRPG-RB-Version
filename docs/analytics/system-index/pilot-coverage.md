@@ -63,11 +63,11 @@
 ## Различия, которые важно сохранять при чтении графа
 
 - stat().value, Skill.value и SkillItemData.value — разные определения. Контейнеры Stats/DerivedStats используют общую фабрику stat; конкретный путь экземпляра хранится в payload/context обращения.
-- Skill.modifiedValue читает value + activeEffectModifiers. Обычный rollSkillCheck читает Skill.value и отдельно вызывает addActiveEffects; это не вызов getter. Собственный rollCustomSkillCheck читает Item.system.value, затем передаёт Item.name в helper встроенных навыков; его собственное activeEffectModifiers не читается ([issue-00190](../../issues/potential/issue-00190.md)).
+- Skill.modifiedValue читает value + activeEffectModifiers. Обычный rollSkillCheck читает Skill.value и отдельно вызывает addActiveEffects; это не вызов getter. Собственный rollCustomSkillCheck читает Item.system.value, затем передаёт Item.name в helper встроенных навыков; его собственное activeEffectModifiers не читается ([issue-00190](../../issues/closed/issue-00190.md)).
 - actor.skillMixin и sheet.skillMixin — разные объекты с разными файлами/владельцами. Клик хранится отдельным handler, а установка listener — registers. Связь calls идёт из callback, не означает немедленный бросок при установке listener.
 - prepareDerivedData вызывает calculateStats дважды, в строках 49 и 51. Это два разных отношения. У REF/DEX вызовы calculateWeigthEncumbrance также сохранены в двух местах. Включение этих связей не означает нового исполнения расчётов.
 - CommonActorData.prepareBaseData выполняет копирование баз. Stats.prepareBaseData не записан как его вызов: Foundry не обходит так произвольные вложенные модели.
-- В _preUpdate читается флаг из **частичного payload** data.system, а не старый флаг документа. change.phase записывается во входной changes. [issue-00043](../../issues/potential/issue-00043.md) содержит прежние воспроизведения и уточнение пути мастера.
+- В _preUpdate читается флаг из **частичного payload** data.system, а не старый флаг документа. change.phase записывается во входной changes. [issue-00043](../../issues/closed/issue-00043.md) содержит прежние воспроизведения и уточнение пути мастера.
 - Основной active getter и применение changes принадлежат Foundry. Системный isDisabled не приравнен к проверке active. Значения applySelf/OnTarget/OnHit/OnDamage участвуют в isSuppressed.
 - showSuccess задаётся в RollConfig и вызывающих методах, но extendedRoll его не читает. toMessage ожидается, последующие setFlag — нет. Отложенный messageData и публикация — разные ветви.
 - addDefenseModifiers из modifierMixin объявлен, но позднее заменён defenseMixin при Object.assign. Из этого определения не построен ложный вызов действующего метода Actor.

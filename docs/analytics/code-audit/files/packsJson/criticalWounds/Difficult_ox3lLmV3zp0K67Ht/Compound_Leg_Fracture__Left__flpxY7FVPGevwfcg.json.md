@@ -158,7 +158,7 @@ JSON не вводит собственных функций или обрабо
 
 JSON-строка объекта успешно мигрирует; ADD применяется к SchemaField и не создаёт запись. Реальный applyCombatEffects не вызвал урон от этого Item — [issue-00328](../../../../../../issues/closed/issue-00328.md). В отдельных диагностических копиях bleed/suffocation/acid override создавал структуру, очищал ignoreArmor в boolean true и передавал amount=2/3/4 до перехваченного Actor.applyDamage. Экспорт не менялся. В acid-контроле следующий этап терял type — [issue-00021](../../../../../../issues/closed/issue-00021.md); это отдельный достигнутый путь, исходный ADD его не достигает.
 
-Множитель изменяет SPD.max и два skill.value. calculateStat читает unmodifiedMax+totalModifiers, поэтому SPD.value остаётся 5. NumberField max целочисленный: 5×0.25 → 1, 5×0.5 → 3. RUN/LEAP.value читают value, LEAP.max зависит от изменённого max — [issue-00036](../../../../../../issues/potential/issue-00036.md).
+Множитель изменяет SPD.max и два skill.value. calculateStat читает unmodifiedMax+totalModifiers, поэтому SPD.value остаётся 5. NumberField max целочисленный: 5×0.25 → 1, 5×0.5 → 3. RUN/LEAP.value читают value, LEAP.max зависит от изменённого max — [issue-00036](../../../../../../issues/closed/issue-00036.md).
 
 ## Проверки и доказательства
 
@@ -170,7 +170,7 @@ JSON-строка объекта успешно мигрирует; ADD прим
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00328](../../../../../../issues/closed/issue-00328.md) — ADD объекта периодического урона; [issue-00021](../../../../../../issues/closed/issue-00021.md) — потеря типа в отдельном положительном контроле. [issue-00036](../../../../../../issues/potential/issue-00036.md) — max/value характеристики. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00328](../../../../../../issues/closed/issue-00328.md) — ADD объекта периодического урона; [issue-00021](../../../../../../issues/closed/issue-00021.md) — потеря типа в отдельном положительном контроле. [issue-00036](../../../../../../issues/closed/issue-00036.md) — max/value характеристики. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 

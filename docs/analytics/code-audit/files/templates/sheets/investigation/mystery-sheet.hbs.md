@@ -88,7 +88,7 @@ WitcherMysterySheet.PARTS.header загружает файл; module/setup/handl
 
 ## Связанные проблемы
 
-[issue-00016](../../../../../../issues/closed/issue-00016.md) — подписи picklock/trapcraft в общем словаре навыков; группа 17. [issue-00005](../../../../../../issues/potential/issue-00005.md), [issue-00154](../../../../../../issues/potential/issue-00154.md), [issue-00155](../../../../../../issues/closed/issue-00155.md). Тип тайны, несоответствие столбцов улик и непереводимые подписи.
+[issue-00016](../../../../../../issues/closed/issue-00016.md) — подписи picklock/trapcraft в общем словаре навыков; группа 17. [issue-00005](../../../../../../issues/closed/issue-00005.md), [issue-00154](../../../../../../issues/potential/issue-00154.md), [issue-00155](../../../../../../issues/closed/issue-00155.md). Тип тайны, несоответствие столбцов улик и непереводимые подписи.
 
 ## История актуализации
 

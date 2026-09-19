@@ -88,7 +88,7 @@ HTML option строится строкой: value=weapon.id, data-itemId=weapon
 
 ## Связанные проблемы
 
-[issue-00042](../../../../../../issues/potential/issue-00042.md) — потеря changes; [issue-00046](../../../../../../issues/potential/issue-00046.md) — пустой список оружия; [issue-00050](../../../../../../issues/potential/issue-00050.md) — начало длительности; [issue-00008](../../../../../../issues/potential/issue-00008.md) — асинхронные маршруты Queries.
+[issue-00042](../../../../../../issues/closed/issue-00042.md) — потеря changes; [issue-00046](../../../../../../issues/potential/issue-00046.md) — пустой список оружия; [issue-00050](../../../../../../issues/closed/issue-00050.md) — начало длительности; [issue-00008](../../../../../../issues/potential/issue-00008.md) — асинхронные маршруты Queries.
 
 ## История актуализации
 

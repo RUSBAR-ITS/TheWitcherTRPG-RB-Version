@@ -79,7 +79,7 @@ PARTS.stats WitcherModifiersConfiguration; контекст type/system. type='s
 
 ## Связанные проблемы
 
-[issue-00194](../../../../../../../../issues/potential/issue-00194.md), [issue-00195](../../../../../../../../issues/potential/issue-00195.md). Обе проблемы локализованы в контрактах формы с моделью и подготовкой Actor.
+[issue-00194](../../../../../../../../issues/closed/issue-00194.md), [issue-00195](../../../../../../../../issues/closed/issue-00195.md). Обе проблемы локализованы в контрактах формы с моделью и подготовкой Actor.
 
 ## История актуализации
 

@@ -198,7 +198,7 @@ JSON не вводит собственных функций или обрабо
 
 Контрольный Actor: восемь unmodifiedMax=5, HP.value=25, dodge.value=athletics.value=8 до эффектов, броня/вес=0. Результат: INT=5, WILL=5, REF=5, DEX=5, BODY=5, SPD=5; BODY.max=5, SPD.max=3; RUN=15, LEAP.value=3, LEAP.max=1, ENC=50, STUN=5, REC=5, HP.max=25, RESOLVE.max=25, FOCUS.max=15; healingTime=10. Навыки: dodge.value=4, dodge.activeEffectModifiers=0; athletics.value=4, athletics.activeEffectModifiers=0. Статусы=`[]`; turnStartEffects={}. Значения прочитаны непосредственно из подготовленных полей; сериализация DataModel/toObject возвращает источник и не заменяет такую проверку.
 
-Множитель изменяет SPD.max и два skill.value. calculateStat читает unmodifiedMax+totalModifiers, поэтому SPD.value остаётся 5. NumberField max целочисленный: 5×0.25 → 1, 5×0.5 → 3. RUN/LEAP.value читают value, LEAP.max зависит от изменённого max — [issue-00036](../../../../../../issues/potential/issue-00036.md).
+Множитель изменяет SPD.max и два skill.value. calculateStat читает unmodifiedMax+totalModifiers, поэтому SPD.value остаётся 5. NumberField max целочисленный: 5×0.25 → 1, 5×0.5 → 3. RUN/LEAP.value читают value, LEAP.max зависит от изменённого max — [issue-00036](../../../../../../issues/closed/issue-00036.md).
 
 В цепочках правых переломов у stabilized перепутаны rightArm/rightLeg, при переходе к treated возвращается исходная локация — [issue-00327](../../../../../../issues/closed/issue-00327.md). Модель/treat не исправляют это поле.
 
@@ -212,7 +212,7 @@ JSON не вводит собственных функций или обрабо
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00036](../../../../../../issues/potential/issue-00036.md) — max/value характеристики. [issue-00327](../../../../../../issues/closed/issue-00327.md) — локации стабилизированных правых переломов. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00036](../../../../../../issues/closed/issue-00036.md) — max/value характеристики. [issue-00327](../../../../../../issues/closed/issue-00327.md) — локации стабилизированных правых переломов. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 

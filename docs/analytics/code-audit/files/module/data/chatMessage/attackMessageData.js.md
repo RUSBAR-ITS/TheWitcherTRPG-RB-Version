@@ -76,7 +76,7 @@ attack: attackOption, skill, alias, itemUuid. damage: itemUuid, formula, crit, s
 
 ## Связанные проблемы
 
-[issue-00239](../../../../../../issues/potential/issue-00239.md), [issue-00257](../../../../../../issues/potential/issue-00257.md), [issue-00183](../../../../../../issues/potential/issue-00183.md). Профессия может отправлять атаку без itemUuid; схема оставляет null. Потеря duration оформлена отдельно. Проверка конструктора fumble не означает поддержку любого наследника.
+[issue-00239](../../../../../../issues/potential/issue-00239.md), [issue-00257](../../../../../../issues/closed/issue-00257.md), [issue-00183](../../../../../../issues/potential/issue-00183.md). Профессия может отправлять атаку без itemUuid; схема оставляет null. Потеря duration оформлена отдельно. Проверка конструктора fumble не означает поддержку любого наследника.
 
 ## История актуализации
 

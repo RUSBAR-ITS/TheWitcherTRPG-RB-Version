@@ -696,7 +696,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00257.md"
+          "docs/issues/closed/issue-00257.md"
         ]
       },
       "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."

@@ -105,7 +105,7 @@ createBaseDamageObject не делает копию properties: последую
 
 ## Связанные проблемы
 
-[00070](../../../../../../issues/potential/issue-00070.md), [00184](../../../../../../issues/potential/issue-00184.md), [00247](../../../../../../issues/potential/issue-00247.md), [00257](../../../../../../issues/potential/issue-00257.md), [00293](../../../../../../issues/potential/issue-00293.md) HTML, [00295](../../../../../../issues/potential/issue-00295.md) неизвестный статус, [00296](../../../../../../issues/closed/issue-00296.md) ключ заголовка.
+[00070](../../../../../../issues/potential/issue-00070.md), [00184](../../../../../../issues/potential/issue-00184.md), [00247](../../../../../../issues/potential/issue-00247.md), [00257](../../../../../../issues/closed/issue-00257.md), [00293](../../../../../../issues/potential/issue-00293.md) HTML, [00295](../../../../../../issues/potential/issue-00295.md) неизвестный статус, [00296](../../../../../../issues/closed/issue-00296.md) ключ заголовка.
 
 [issue-00297](../../../../../../issues/potential/issue-00297.md) — разрыв формы properties в прямом rollOnlyDmg.
 

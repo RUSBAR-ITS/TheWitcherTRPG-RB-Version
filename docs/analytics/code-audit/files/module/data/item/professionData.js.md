@@ -99,7 +99,7 @@ Actor-потребитель различает isAttack → hasCustomEffect →
 
 ## Связанные проблемы
 
-[issue-00071](../../../../../../issues/potential/issue-00071.md), [issue-00072](../../../../../../issues/potential/issue-00072.md), [issue-00109](../../../../../../issues/potential/issue-00109.md), [issue-00110](../../../../../../issues/potential/issue-00110.md), [issue-00112](../../../../../../issues/potential/issue-00112.md), [issue-00116](../../../../../../issues/potential/issue-00116.md), [issue-00118](../../../../../../issues/potential/issue-00118.md). Наблюдения относятся к указанным ветвям; отсутствие автоматического повышения уровней не объявлено ошибкой.
+[issue-00071](../../../../../../issues/potential/issue-00071.md), [issue-00072](../../../../../../issues/potential/issue-00072.md), [issue-00109](../../../../../../issues/potential/issue-00109.md), [issue-00110](../../../../../../issues/closed/issue-00110.md), [issue-00112](../../../../../../issues/potential/issue-00112.md), [issue-00116](../../../../../../issues/potential/issue-00116.md), [issue-00118](../../../../../../issues/potential/issue-00118.md). Наблюдения относятся к указанным ветвям; отсутствие автоматического повышения уровней не объявлено ошибкой.
 
 ## История актуализации
 

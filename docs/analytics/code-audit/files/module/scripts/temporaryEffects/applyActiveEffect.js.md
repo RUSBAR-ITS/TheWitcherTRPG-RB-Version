@@ -93,7 +93,7 @@
 
 ## Связанные проблемы
 
-[issue-00044](../../../../../../issues/potential/issue-00044.md) — длительность копии; [issue-00045](../../../../../../issues/potential/issue-00045.md) — повторная пересылка отсутствующего Item; [issue-00008](../../../../../../issues/potential/issue-00008.md) — завершение Queries и вложенных операций. Ветвь оружия: [issue-00042](../../../../../../issues/potential/issue-00042.md), [issue-00046](../../../../../../issues/potential/issue-00046.md), [issue-00050](../../../../../../issues/potential/issue-00050.md).
+[issue-00044](../../../../../../issues/closed/issue-00044.md) — длительность копии; [issue-00045](../../../../../../issues/potential/issue-00045.md) — повторная пересылка отсутствующего Item; [issue-00008](../../../../../../issues/potential/issue-00008.md) — завершение Queries и вложенных операций. Ветвь оружия: [issue-00042](../../../../../../issues/closed/issue-00042.md), [issue-00046](../../../../../../issues/potential/issue-00046.md), [issue-00050](../../../../../../issues/closed/issue-00050.md).
 
 ## История актуализации
 

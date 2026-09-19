@@ -44,11 +44,11 @@ Input-узлы ссылаются на поле назначения и внеш
 
 В установленном ядре change при submitOnChange запускает сбор **всей формы** через FormDataExtended. Unnamed/disabled элементы пропускаются; readonly по умолчанию включён, поэтому readonly сам по себе не доказывает отсутствие записи. Number input преобразуется в число (пустой — null), checkbox без специального value — Bool. Старый custom-edit читает element.value напрямую и этот маршрут преобразования не использует.
 
-DocumentSheetV2 проверяет isEditable, разворачивает formData.object, валидирует и ждёт _processSubmitData; существующий документ обновляется. Условия permissions/create/ошибок остаются внешними. Соседний prepared max может попасть в исходный unmodifiedMax; [issue-00194](../../issues/potential/issue-00194.md) содержит прежний изолированный опыт. Он не повторялся.
+DocumentSheetV2 проверяет isEditable, разворачивает formData.object, валидирует и ждёт _processSubmitData; существующий документ обновляется. Условия permissions/create/ошибок остаются внешними. Соседний prepared max может попасть в исходный unmodifiedMax; [issue-00194](../../issues/closed/issue-00194.md) содержит прежний изолированный опыт. Он не повторялся.
 
-Читатели баз уже представлены пилотом: CommonActorData.prepareBaseData, Stats.prepareBaseData, WitcherActor.calculateStats/calculateDerivedStat и общий stat().unmodifiedMax. Часть производных баз/максимумов пересчитывается; для HP/STA существенен customStat. Схема NumberField и enabled input не доказывают, что ввод сохранится после подготовки. [issue-00195](../../issues/potential/issue-00195.md), proc-000004/000005. Формулы не переписаны и не скопированы в новые процессы.
+Читатели баз уже представлены пилотом: CommonActorData.prepareBaseData, Stats.prepareBaseData, WitcherActor.calculateStats/calculateDerivedStat и общий stat().unmodifiedMax. Часть производных баз/максимумов пересчитывается; для HP/STA существенен customStat. Схема NumberField и enabled input не доказывают, что ввод сохранится после подготовки. [issue-00195](../../issues/closed/issue-00195.md), proc-000004/000005. Формулы не переписаны и не скопированы в новые процессы.
 
-Кнопка level-up получает **skillName из модели** и прежним ent-000383 передаёт его Actor.levelUpSkill (ent-000300). IP/logs/стоимость — B11, здесь только вход. Commonspeech/commonsp и применение общей кнопки к Monster связаны с прежними [issue-00004](../../issues/closed/issue-00004.md) и [issue-00192](../../issues/potential/issue-00192.md), а не объявлены новыми проблемами.
+Кнопка level-up получает **skillName из модели** и прежним ent-000383 передаёт его Actor.levelUpSkill (ent-000300). IP/logs/стоимость — B11, здесь только вход. Commonspeech/commonsp и применение общей кнопки к Monster связаны с прежними [issue-00004](../../issues/closed/issue-00004.md) и [issue-00192](../../issues/closed/issue-00192.md), а не объявлены новыми проблемами.
 
 ## Ручные ресурсы и входы бросков
 

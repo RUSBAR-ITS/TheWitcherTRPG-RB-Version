@@ -150,7 +150,7 @@
 ## Связанные проблемы
 
 - [issue-00011](../../../../../../issues/potential/issue-00011.md) — условия переноса отсутствующей базовой величины, включая vigor; повторно сверено без дублирования.
-- [issue-00012](../../../../../../issues/potential/issue-00012.md) — два прохода calculateStats в потребителе повторно прибавляют luck/toxicity.
+- [issue-00012](../../../../../../issues/closed/issue-00012.md) — два прохода calculateStats в потребителе повторно прибавляют luck/toxicity.
 - [issue-00030](../../../../../../issues/potential/issue-00030.md) — общая модель не даёт монстру поля опыта/обучения CharacterData.
 - [issue-00031](../../../../../../issues/potential/issue-00031.md) — потребитель statusEffectImmunities монстра ошибается при непустом списке; поле добавляет MonsterData, не CommonActorData.
 

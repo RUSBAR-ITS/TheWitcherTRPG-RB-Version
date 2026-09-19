@@ -101,7 +101,7 @@ Default class WitcherProfessionConfigurationSheet extends WitcherConfigurationSh
 
 ## Связанные проблемы
 
-[issue-00060](../../../../../../../issues/potential/issue-00060.md), [issue-00110](../../../../../../../issues/potential/issue-00110.md), [issue-00111](../../../../../../../issues/potential/issue-00111.md), [issue-00112](../../../../../../../issues/potential/issue-00112.md), [issue-00120](../../../../../../../issues/potential/issue-00120.md). Наблюдения не подтверждены пользователем, код не исправлялся.
+[issue-00060](../../../../../../../issues/potential/issue-00060.md), [issue-00110](../../../../../../../issues/closed/issue-00110.md), [issue-00111](../../../../../../../issues/closed/issue-00111.md), [issue-00112](../../../../../../../issues/potential/issue-00112.md), [issue-00120](../../../../../../../issues/potential/issue-00120.md). Наблюдения не подтверждены пользователем, код не исправлялся.
 
 ## История актуализации
 

@@ -203,13 +203,13 @@ getList/addItem сравнивают тип/имя, не ID источника �
 ## Связанные проблемы
 
 - [issue-00008](../../../../../issues/potential/issue-00008.md) — query не ждёт операций Actor.
-- [issue-00012](../../../../../issues/potential/issue-00012.md) — повторная прибавка luck/toxicity.max.
+- [issue-00012](../../../../../issues/closed/issue-00012.md) — повторная прибавка luck/toxicity.max.
 - [issue-00031](../../../../../issues/potential/issue-00031.md) — неопределённый ID при проверке иммунитетов.
 - [issue-00032](../../../../../issues/potential/issue-00032.md) — потерянный this монстра в static getAllLocations.
-- [issue-00033](../../../../../issues/potential/issue-00033.md) — положительные модификаторы формул без знака операции.
+- [issue-00033](../../../../../issues/closed/issue-00033.md) — положительные модификаторы формул без знака операции.
 - [issue-00034](../../../../../issues/potential/issue-00034.md) — преждевременное завершение операций Actor с предметами.
-- [issue-00035](../../../../../issues/potential/issue-00035.md) — двойной штраф перегруза REF/DEX.
-- [issue-00036](../../../../../issues/potential/issue-00036.md) — изменения max эффектами не доходят до value либо перезаписываются подготовкой.
+- [issue-00035](../../../../../issues/closed/issue-00035.md) — двойной штраф перегруза REF/DEX.
+- [issue-00036](../../../../../issues/closed/issue-00036.md) — изменения max эффектами не доходят до value либо перезаписываются подготовкой.
 
 ## История актуализации
 
@@ -219,7 +219,7 @@ getList/addItem сравнивают тип/имя, не ID источника �
 
 2026-09-10, `c5edcbadd05ff4038a174bd2e2a49785e40ea878`; исходник не изменился относительно исходного среза. Полный разбор основы Item уточнил getTotalWeight: общая модель считает quantity×weight только при isCarried && !isStored, ContainerData добавляет storedWeight, независимые модели могут не иметь calcWeight. isConsumable документа — system.isConsumable ?? false, а не проверка типа. В realCraft сам Item не ожидает Actor.addItem/removeItem, хотя эти методы Actor ожидают свою запись (issue-00038). Item-эффекты обрабатываются до производных данных модели одним проходом без phase, в отличие от Actor. При точечной проверке applyTemporaryItemImprovements установлена потеря system.changes в передаваемом объекте (issue-00042); полный разбор примеси отложен.
 
-Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [issue-00038](../../../../../issues/potential/issue-00038.md); [issue-00042](../../../../../issues/potential/issue-00042.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
+Связанные карточки: [CommonItemData](../data/item/commonItemData.js.md) и [WitcherItem](../item/witcherItem.js.md). [issue-00038](../../../../../issues/potential/issue-00038.md); [issue-00042](../../../../../issues/closed/issue-00042.md). [Перекрёстная сверка](../../../review-log.md#task-0003008). Новая запись уточняет связи; исторические результаты прежних порций сохранены.
 
 ## Уточнение TASK-0003.009
 

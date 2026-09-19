@@ -89,7 +89,7 @@ Default class SkillItemData extends foundry.abstract.TypeDataModel. registerData
 
 ## Связанные проблемы
 
-[issue-00187](../../../../../../issues/potential/issue-00187.md), [issue-00188](../../../../../../issues/potential/issue-00188.md), [issue-00189](../../../../../../issues/potential/issue-00189.md), [issue-00190](../../../../../../issues/potential/issue-00190.md). Контекст текущей строки, отсутствующие группы SPD/LUCK, схема/CRUD modifiers и применение собственных эффектов описаны раздельно.
+[issue-00187](../../../../../../issues/closed/issue-00187.md), [issue-00188](../../../../../../issues/potential/issue-00188.md), [issue-00189](../../../../../../issues/potential/issue-00189.md), [issue-00190](../../../../../../issues/closed/issue-00190.md). Контекст текущей строки, отсутствующие группы SPD/LUCK, схема/CRUD modifiers и применение собственных эффектов описаны раздельно.
 
 ## История актуализации
 

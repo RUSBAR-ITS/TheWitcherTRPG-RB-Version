@@ -551,8 +551,8 @@ Character показывает десять кнопок навыков, Monster
 | --- | --- |
 | [issue-00072](../../issues/potential/issue-00072.md) | definingSkill поддерживает skillDefense в схеме, но отбор ProfessionData рассматривает только девять навыков путей. Отсутствие редактора механики установлено отдельно в112; устаревшая оговорка об ещё не изученном UI снята. .042 проверяла полный chooser на фасадах. |
 | [issue-00109](../../issues/potential/issue-00109.md) | Item-формы передают enriched, Character-HBS использует raw HTML всех15 editor; Monster не готовит enriched профессии. Полный пофайловый разбор уже завершён, что уточнено в issue. Сохранение и реальные UUID не проверены. |
-| [issue-00110](../../issues/potential/issue-00110.md) | CRUD ищет первое совпадение имени среди девяти навыков, Actor сначала проверяет definingSkill. ID строки effects/thresholds не является ID навыка; inline data-field и бросок data-name различены. |
-| [issue-00111](../../issues/potential/issue-00111.md) | HBS action removeEffectDamageProperties не совпадает с зарегистрированным removeEffect; прямой нижний remove использует currentTarget. Старое выполнение core-dispatcher на фасаде не является браузерным кликом. |
+| [issue-00110](../../issues/closed/issue-00110.md) | CRUD ищет первое совпадение имени среди девяти навыков, Actor сначала проверяет definingSkill. ID строки effects/thresholds не является ID навыка; inline data-field и бросок data-name различены. |
+| [issue-00111](../../issues/closed/issue-00111.md) | HBS action removeEffectDamageProperties не совпадает с зарегистрированным removeEffect; прямой нижний remove использует currentTarget. Старое выполнение core-dispatcher на фасаде не является браузерным кликом. |
 | [issue-00112](../../issues/potential/issue-00112.md) | Схема имеет механические поля definingSkill, однако конфигурация строит только три пути по три навыка; general/activeEffects не дают эти поля. Проблема UI отделена от алгоритма защиты72. |
 | [issue-00113](../../issues/potential/issue-00113.md) | applySelf присутствует в SkillUsage и форме, но цель выбирается только по applyOnTarget; иначе используется this. Нет цели при applyOnTarget → сообщение ошибки/возврат; это не lifecycle ActiveEffect. |
 | [issue-00114](../../issues/potential/issue-00114.md) | Duration заменяет первое @level и берёт match(/\d+\*?\d+/g)[0]. Одиночное2 не совпадает; 10 и2*@level при уровне2 обрабатываются. Новый синтаксис выражений не вводился. |
@@ -563,7 +563,7 @@ Character показывает десять кнопок навыков, Monster
 | [issue-00119](../../issues/closed/issue-00119.md) | Три ключа thresholds есть в en и отсутствуют в ru: label hasThresholds в модели, name/thresholdValue в HBS. Поздняя .038 проверяла настоящий Localization с EN fallback. Полный свод двух языков остаётся .016. |
 | [issue-00120](../../issues/potential/issue-00120.md) | Все шесть CRUD вызывают item.update без await/return, _onChangeForm вызывает super и дополнительную ветвь. Датированный pending-update фасад подтвердил раннее завершение; реальная гонка записей не запускалась. |
 | [issue-00236](../../issues/potential/issue-00236.md) | Обычный бросок создаёт ChatMessageData(this.actor), но метод принадлежит Actor. Core getSpeaker применяет fallback вместо владельца способности; прямая атака передаёт this и имеет другой маршрут. |
-| [issue-00237](../../issues/potential/issue-00237.md) | Прямая атака передаёт отсутствующий attack.name в addActiveEffects и не вызывает addAttackModifiers; weapon skillReplacement обходит constructBaseAttackFormula. Уже вошедшие в stat.value эффекты сохраняются. Контракт оружия продолжает .010. |
+| [issue-00237](../../issues/closed/issue-00237.md) | Прямая атака передаёт отсутствующий attack.name в addActiveEffects и не вызывает addAttackModifiers; weapon skillReplacement обходит constructBaseAttackFormula. Уже вошедшие в stat.value эффекты сохраняются. Контракт оружия продолжает .010. |
 | [issue-00238](../../issues/potential/issue-00238.md) | Прямая extra-атака штрафует−3 без проверки/списания STA. В weaponAttack имеется guard STA−3, но update не ожидается (отдельная262). Прежние STA2/3/10 не повторялись, норму по рулбуку аудит не выбирает. |
 | [issue-00239](../../issues/potential/issue-00239.md) | Producer не передаёт itemUuid, AttackMessageData не восстанавливает его из damage.item; onDamage без guard вызывает разрешённый Item.rollDamage. Отсутствующий/удалённый Item имеет ту же границу, .045 не доказывает полный игровой урон. |
 | [issue-00240](../../issues/potential/issue-00240.md) | min(rollOver,cap)+строковое значение вычисляется Roll только при наличии d; +2 даёт value:5+2 в JSON. Эта причина отделена от кавычек117 и object value после миграции294. |
@@ -687,7 +687,7 @@ Character показывает десять кнопок навыков, Monster
 | [issue-00100](../../issues/potential/issue-00100.md) | [R007-15](cross-check-0002.md#r007-15): Пустой input→parseInt NaN→?? сохраняет NaN→additionalCost/итог NaN. Текущее чтение связано с прежними DOM-опытами .016/.017, не с новым запуском. Убрано устаревшее ожидание полного .017; списание NaN из кошелька не утверждается. |
 | [issue-00101](../../issues/potential/issue-00101.md) | [R007-09](cross-check-0002.md#r007-09), [R007-13](cross-check-0002.md#r007-13): isFormulae определяет редактор/HBS, положительный alchemyDC — isAlchemicalCraft и выбор поиска при realCraft. Миграция DC и неправильный formula-button — отдельные причины97/176. Рабочий _craftingCraft .034 не исправляет _alchemyCraft. |
 | [issue-00102](../../issues/potential/issue-00102.md) | [R007-18](cross-check-0002.md#r007-18), [R007-19](cross-check-0002.md#r007-19): RepairData не создаёт damagedLocations; обычный guard падает раньше броска. Нижний _doRepair при успехе/праве обращается к отсутствующему getRestoreReliabilityData. Диагностический remove-before-throw не означает доступный обычный ремонт. |
-| [issue-00103](../../issues/potential/issue-00103.md) | [R007-18](cross-check-0002.md#r007-18): woundsAffectSkillBase не зарегистрирована: настоящий ClientSettings останавливает prepareRollFormula. При ручной true-фасадной настройке остаётся незакрытая скобка. Ошибки основной настройки/синтаксиса и уровни их достижимости разделены. |
+| [issue-00103](../../issues/closed/issue-00103.md) | [R007-18](cross-check-0002.md#r007-18): woundsAffectSkillBase не зарегистрирована: настоящий ClientSettings останавливает prepareRollFormula. При ручной true-фасадной настройке остаётся незакрытая скобка. Ошибки основной настройки/синтаксиса и уровни их достижимости разделены. |
 | [issue-00104](../../issues/potential/issue-00104.md) | [R007-16](cross-check-0002.md#r007-16), [R007-18](cross-check-0002.md#r007-18): Первый найденный компонент quantity0 остаётся owned; row показывает missingQuantity1, но guard проверяет missing/unknown и damagedLocations. Допуск нулевого owned показан за вручную заданным damagedLocations, а не как успешный штатный ремонт. |
 | [issue-00105](../../issues/closed/issue-00105.md) | [R007-16](cross-check-0002.md#r007-16): Не найденный по имени компонент с UUID разрешается в null и попадает в missingComponents; prepareDialogTemplate затем читает oc.img. Это ошибка до диалога, отдельная от отсутствия всего рецепта и нулевого owned. |
 | [issue-00106](../../issues/potential/issue-00106.md) | [R007-15](cross-check-0002.md#r007-15): Cost listener и итог ищутся во всём document; два DOM-набора/повторная подписка используют общий input и первый total-price. .017 фасад подтверждает область поиска, но не доступность двух реальных modal окон. |
@@ -1333,7 +1333,7 @@ Foundry 14.367.0 прочитана из /opt/foundryvtt/package.json; node --ve
 | [Spetic Shock (Treated)](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock__Treated__vkr5MXhnalPp8yJJ.json.md) | vkr5MXhnalPp8yJJ / treated | 5 / 5 | 5 / 5 / 5 / 5 | 20 | 8 / 8 | 0 | нет |
 | [Spetic Shock](files/packsJson/criticalWounds/Deadly_uofXQEP6HBtekOAO/Spetic_Shock_tF3hsi4yZOMJ6xuW.json.md) | tF3hsi4yZOMJ6xuW / none | 5 / 5 | 2 / 2 / 2 / 2 | 15 | 8 / 8 | 0 | poison |
 
-BODY.value/SPD.value во всех этих входах остаются 5. Heart Damage меняет max, но calculateStat считает value через unmodifiedMax+totalModifiers. В свежем Actor STA.max до initial=0, множитель оставляет 0; после calculateDerivedStats у Heart он 25. У Spetic Shock 15/20 выводятся из изменённого WILL.value, а treated даёт 20 через totalModifiers −5. Это подтверждает прежнюю [issue-00036](../../issues/potential/issue-00036.md), не отсутствие всех последствий max: LEAP.max и статически Death save при HP≤0 читают max.
+BODY.value/SPD.value во всех этих входах остаются 5. Heart Damage меняет max, но calculateStat считает value через unmodifiedMax+totalModifiers. В свежем Actor STA.max до initial=0, множитель оставляет 0; после calculateDerivedStats у Heart он 25. У Spetic Shock 15/20 выводятся из изменённого WILL.value, а treated даёт 20 через totalModifiers −5. Это подтверждает прежнюю [issue-00036](../../issues/closed/issue-00036.md), не отсутствие всех последствий max: LEAP.max и статически Death save при HP≤0 читают max.
 
 Проверки included/disabled/transfer/applySelf разделены. Копия правой исходной ноги с единственным изменением disabled=false даёт dodge/athletics=2, SPD.max=1, SPD.value=5; исходник оставляет 8/8, 5/5. Это [новая potential issue-00329](../../issues/closed/issue-00329.md). Статус dead Decapitation присутствует без изменения HP.value=25; подготовка без Item убирает этот статус.
 
@@ -1482,7 +1482,7 @@ fromUuid — Map настоящих Item; индекс — массив наст
 | [Torn Stomach (Stabilized)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Stabilized__EpF0FD1nFXJTJ5Tj.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / -2 | 15 / 3 / 3 | 5 / 5 / 25 |
 | [Torn Stomach (Treated)](files/packsJson/criticalWounds/Difficult_ox3lLmV3zp0K67Ht/Torn_Stomach__Treated__Mg1jn99OitVPdvje.json.md) | 5 / 5 / 5 / 5 / 5 | 5 | 8 / -1 | 15 / 3 / 3 | 5 / 5 / 25 |
 
-Положительное применение множителей: у исходных ног 8×0.25=2 в dodge/athletics; у stabilized 8×0.5=4. SPD.max округляется NumberField(integer=true): 5×0.25→1, 5×0.5→3, но SPD.value=5, поскольку calculateStat читает unmodifiedMax+totalModifiers. Это прежняя [issue-00036](../../issues/potential/issue-00036.md), включая расхождение LEAP.value/max.
+Положительное применение множителей: у исходных ног 8×0.25=2 в dodge/athletics; у stabilized 8×0.5=4. SPD.max округляется NumberField(integer=true): 5×0.25→1, 5×0.5→3, но SPD.value=5, поскольку calculateStat читает unmodifiedMax+totalModifiers. Это прежняя [issue-00036](../../issues/closed/issue-00036.md), включая расхождение LEAP.value/max.
 
 Совместный контроль исходной левой ноги flpxY7FVPGevwfcg и treated правой 3SwpPbi2ddEJkebh дал dodge.value=2/modifier=−2, SPD.value=3/max=1. Отдельный диагностический контроль **того же** skill.value: к копии левой stabilized NiGtzaHs4dUj8Pmd добавлена в памяти ADD +2; реальный порядок multiply(10) → add(20) дал 8×0.5+2=6. Это фактический порядок текущего движка, новое правило вычислений не вводилось. В трёх независимых контролях disabled=true, transfer=false и applySelf=true эффект исключался; без Item dodge.value=8.
 
@@ -3195,7 +3195,7 @@ modifier-configuration.css имеет более специфичный селе
 | --- | --- |
 | Запуск и пустой контекст Combat | [6](../../issues/closed/issue-00006.md) — любое update; [145](../../issues/potential/issue-00145.md) дополнена общей ветвью. Новая[299](../../issues/potential/issue-00299.md) про ожидание записей имеет другую причину. |
 | Выбор Actor и устаревшая кнопка | [149](../../issues/potential/issue-00149.md) уже включала combat/applyDamage, дополнена исполнением без нового дубля; [239](../../issues/potential/issue-00239.md) — Item у onDamage. [108](../../issues/potential/issue-00108.md) — другой repair handler/event.target, не переносится на боевые closures. |
-| Схемы до и после сообщения | [257](../../issues/potential/issue-00257.md) — duration; [258](../../issues/closed/issue-00258.md) — critEffectModifier; [297](../../issues/potential/issue-00297.md) — plain properties в rollOnlyDmg. Успешный обычный AttackMessageData-контроль не устраняет ранний барьер rollOnlyDmg. |
+| Схемы до и после сообщения | [257](../../issues/closed/issue-00257.md) — duration; [258](../../issues/closed/issue-00258.md) — critEffectModifier; [297](../../issues/potential/issue-00297.md) — plain properties в rollOnlyDmg. Успешный обычный AttackMessageData-контроль не устраняет ранний барьер rollOnlyDmg. |
 | Форма предметных воздействий | [70](../../issues/potential/issue-00070.md) — producer/преобразование; [295](../../issues/potential/issue-00295.md) — неизвестный ID; applied-array после сообщения и Item TypedObject различены. |
 | Тип и интенсивность статуса | [21](../../issues/closed/issue-00021.md), [22](../../issues/potential/issue-00022.md) повторены; [291](../../issues/potential/issue-00291.md) получила реальный источник отрицательного итогового damage. |
 | Броня/щиты/общий массив | [282](../../issues/potential/issue-00282.md), [292](../../issues/potential/issue-00292.md) — отдельные SP/shield-записи; [285](../../issues/potential/issue-00285.md) — shared DamageInstance по локациям; [299](../../issues/potential/issue-00299.md) — несколько отдельных status-запросов HP. Это не один дефект. |
@@ -3414,7 +3414,7 @@ PostCSS разобрал CSS; Handlebars и parse5 — HBS. Helpers localize/eq/
 
 ### Проблемы и сопоставление с прежним массивом
 
-Уточнены [25](../../issues/potential/issue-00025.md) (applyAP), [26](../../issues/potential/issue-00026.md) (кратность multiplication), [32](../../issues/potential/issue-00032.md) (список локаций и consumer), [35](../../issues/potential/issue-00035.md) (перегруз отдельно от EV), [83](../../issues/potential/issue-00083.md) (превышение SP) и [254](../../issues/potential/issue-00254.md) (вклад EV в сотворение). Учтены поздние уточнения и [общая промежуточная сверка](cross-check-0001.md). Дубль 00200/00029 и прежние статусы не менялись.
+Уточнены [25](../../issues/potential/issue-00025.md) (applyAP), [26](../../issues/potential/issue-00026.md) (кратность multiplication), [32](../../issues/potential/issue-00032.md) (список локаций и consumer), [35](../../issues/closed/issue-00035.md) (перегруз отдельно от EV), [83](../../issues/potential/issue-00083.md) (превышение SP) и [254](../../issues/potential/issue-00254.md) (вклад EV в сотворение). Учтены поздние уточнения и [общая промежуточная сверка](cross-check-0001.md). Дубль 00200/00029 и прежние статусы не менялись.
 
 - [issue-00277](../../issues/potential/issue-00277.md) — Броня на хранении учитывается в штрафе EV.
 - [issue-00278](../../issues/potential/issue-00278.md) — Повторный класс надетой брони вызывает исключение после предупреждения.
@@ -3798,10 +3798,10 @@ Callbacks чата исполнялись через реальную регис
 | --- | --- |
 | [issue-00255](../../issues/potential/issue-00255.md) | Кнопки щита и лечения обращаются к отсутствующему Actor-источнику |
 | [issue-00256](../../issues/potential/issue-00256.md) | Лечение из чата передаёт отрицательные и нечисловые значения в HP |
-| [issue-00257](../../issues/potential/issue-00257.md) | Схема сообщений удаляет длительность эффектов из damage |
+| [issue-00257](../../issues/closed/issue-00257.md) | Схема сообщений удаляет длительность эффектов из damage |
 | [issue-00258](../../issues/closed/issue-00258.md) | Сообщение защиты теряет модификатор тяжести критической травмы |
 
-Дополнены [issue-00005](../../issues/potential/issue-00005.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00025](../../issues/potential/issue-00025.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00044](../../issues/potential/issue-00044.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00108](../../issues/potential/issue-00108.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00127](../../issues/closed/issue-00127.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00183](../../issues/potential/issue-00183.md), [issue-00184](../../issues/potential/issue-00184.md), [issue-00234](../../issues/closed/issue-00234.md), [issue-00239](../../issues/potential/issue-00239.md), [issue-00249](../../issues/potential/issue-00249.md), [issue-00253](../../issues/potential/issue-00253.md). Границы сравнений записаны в каждой карточке: base допускается ядром; chat.getSpeaker корректно получает источник; schema-очистка duration предшествует clone; formula/fumble проблемы прежние; async-кнопки дополняют issue-00127. Предыдущие проверки query, формул, flags и полного ремонта не объявлены выполненными заново.
+Дополнены [issue-00005](../../issues/closed/issue-00005.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00025](../../issues/potential/issue-00025.md), [issue-00033](../../issues/closed/issue-00033.md), [issue-00044](../../issues/closed/issue-00044.md), [issue-00103](../../issues/closed/issue-00103.md), [issue-00108](../../issues/potential/issue-00108.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00127](../../issues/closed/issue-00127.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00183](../../issues/potential/issue-00183.md), [issue-00184](../../issues/potential/issue-00184.md), [issue-00234](../../issues/closed/issue-00234.md), [issue-00239](../../issues/potential/issue-00239.md), [issue-00249](../../issues/potential/issue-00249.md), [issue-00253](../../issues/potential/issue-00253.md). Границы сравнений записаны в каждой карточке: base допускается ядром; chat.getSpeaker корректно получает источник; schema-очистка duration предшествует clone; formula/fumble проблемы прежние; async-кнопки дополняют issue-00127. Предыдущие проверки query, формул, flags и полного ремонта не объявлены выполненными заново.
 
 Все 258 карточек остаются potential. Регистрация входит в [пункт9 TASK-0003](../../tasks/task-0003-remaining-files.md#общие-требования-к-каждой-подзадаче) и поручение продолжить анализ; это не подтверждение проблемы пользователем, не разрешение исправлять и не закрытие.
 
@@ -3903,7 +3903,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | [issue-00253](../../issues/potential/issue-00253.md) | Сообщение проваленного заклинания сохраняет действующие кнопки лечения и щита |
 | [issue-00254](../../issues/potential/issue-00254.md) | Игнорирование EV при сотворении может превратиться в положительный бонус |
 
-Уточнены прежние: [issue-00003](../../issues/potential/issue-00003.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00009](../../issues/potential/issue-00009.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00044](../../issues/potential/issue-00044.md), [issue-00064](../../issues/potential/issue-00064.md), [issue-00128](../../issues/potential/issue-00128.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00135](../../issues/potential/issue-00135.md), [issue-00137](../../issues/closed/issue-00137.md), [issue-00138](../../issues/potential/issue-00138.md), [issue-00139](../../issues/potential/issue-00139.md), [issue-00142](../../issues/potential/issue-00142.md), [issue-00146](../../issues/potential/issue-00146.md), [issue-00186](../../issues/closed/issue-00186.md), [issue-00192](../../issues/potential/issue-00192.md). Ни один статус не переводился в open/closed. Регистрация разрешена общим пунктом 9 TASK-0003; исправлений и решений по игровым правилам нет.
+Уточнены прежние: [issue-00003](../../issues/potential/issue-00003.md), [issue-00008](../../issues/potential/issue-00008.md), [issue-00009](../../issues/potential/issue-00009.md), [issue-00033](../../issues/closed/issue-00033.md), [issue-00044](../../issues/closed/issue-00044.md), [issue-00064](../../issues/potential/issue-00064.md), [issue-00128](../../issues/potential/issue-00128.md), [issue-00133](../../issues/potential/issue-00133.md), [issue-00134](../../issues/potential/issue-00134.md), [issue-00135](../../issues/potential/issue-00135.md), [issue-00137](../../issues/closed/issue-00137.md), [issue-00138](../../issues/potential/issue-00138.md), [issue-00139](../../issues/potential/issue-00139.md), [issue-00142](../../issues/potential/issue-00142.md), [issue-00146](../../issues/potential/issue-00146.md), [issue-00186](../../issues/closed/issue-00186.md), [issue-00192](../../issues/closed/issue-00192.md). Ни один статус не переводился в open/closed. Регистрация разрешена общим пунктом 9 TASK-0003; исправлений и решений по игровым правилам нет.
 
 ### Формальная проверка
 
@@ -4024,7 +4024,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | Issue | Наблюдение | Статус |
 | --- | --- | --- |
 | [issue-00236](../../issues/potential/issue-00236.md) | Бросок профессии выбирает отправителя через отсутствующий Actor.actor | potential |
-| [issue-00237](../../issues/potential/issue-00237.md) | Профессиональные атаки обходят модификаторы навыка и общие модификаторы атаки | potential |
+| [issue-00237](../../issues/closed/issue-00237.md) | Профессиональные атаки обходят модификаторы навыка и общие модификаторы атаки | potential |
 | [issue-00238](../../issues/potential/issue-00238.md) | Дополнительная профессиональная атака без оружия не списывает STA | potential |
 | [issue-00239](../../issues/potential/issue-00239.md) | Кнопка урона профессиональной атаки не получает UUID предмета | potential |
 | [issue-00240](../../issues/potential/issue-00240.md) | Формула временного здоровья без кубов попадает в JSON без вычисления | potential |
@@ -4033,7 +4033,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | [issue-00243](../../issues/potential/issue-00243.md) | Временное здоровье передаёт изображение эффекта в устаревшем поле icon | potential |
 | [issue-00244](../../issues/potential/issue-00244.md) | Диалог атаки монстра показывает неиспользуемый бонус ближнего боя | potential |
 
-Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00069](../../issues/potential/issue-00069.md), [issue-00071](../../issues/potential/issue-00071.md), [issue-00072](../../issues/potential/issue-00072.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00110](../../issues/potential/issue-00110.md), [issue-00113](../../issues/potential/issue-00113.md), [issue-00114](../../issues/potential/issue-00114.md), [issue-00115](../../issues/potential/issue-00115.md), [issue-00117](../../issues/potential/issue-00117.md), [issue-00118](../../issues/potential/issue-00118.md), [issue-00119](../../issues/closed/issue-00119.md), [issue-00153](../../issues/potential/issue-00153.md). Основание регистрации — пункт 9 TASK-0003. Подтверждение/перевод статуса/исправление не выполнялись. Отсутствие ветвей в Monster UI и действие уровня 0 описаны как поведение, не как автоматически ошибочные правила.
+Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00069](../../issues/potential/issue-00069.md), [issue-00071](../../issues/potential/issue-00071.md), [issue-00072](../../issues/potential/issue-00072.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00110](../../issues/closed/issue-00110.md), [issue-00113](../../issues/potential/issue-00113.md), [issue-00114](../../issues/potential/issue-00114.md), [issue-00115](../../issues/potential/issue-00115.md), [issue-00117](../../issues/potential/issue-00117.md), [issue-00118](../../issues/potential/issue-00118.md), [issue-00119](../../issues/closed/issue-00119.md), [issue-00153](../../issues/potential/issue-00153.md). Основание регистрации — пункт 9 TASK-0003. Подтверждение/перевод статуса/исправление не выполнялись. Отсутствие ветвей в Monster UI и действие уровня 0 описаны как поведение, не как автоматически ошибочные правила.
 
 ### Формальная проверка документов и сохранности
 
@@ -4149,7 +4149,7 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | [issue-00234](../../issues/closed/issue-00234.md) | Денежная награда обращается к отсутствующим ключам перевода количества | potential |
 | [issue-00235](../../issues/potential/issue-00235.md) | Неизвестный тип денежной награды доходит до журнала и некорректного баланса | potential |
 
-Дополнены [issue-00017](../../issues/potential/issue-00017.md), [issue-00028](../../issues/potential/issue-00028.md), [issue-00030](../../issues/potential/issue-00030.md). Регистрация разрешена пунктом9 родительской TASK-0003; подтверждение, изменение статуса и исправление не выполнялись. Отрицательная/дробная награда, отсутствие редактора/дат и неразличение magic в чате описаны как факты/ограничения; новые требования к правилам из них не выведены.
+Дополнены [issue-00017](../../issues/closed/issue-00017.md), [issue-00028](../../issues/potential/issue-00028.md), [issue-00030](../../issues/potential/issue-00030.md). Регистрация разрешена пунктом9 родительской TASK-0003; подтверждение, изменение статуса и исправление не выполнялись. Отрицательная/дробная награда, отсутствие редактора/дат и неразличение magic в чате описаны как факты/ограничения; новые требования к правилам из них не выведены.
 
 ### Формальная проверка документов и сохранности
 
@@ -4614,7 +4614,7 @@ Application/Document-оболочки и состав базового document-
 | [issue-00209](../../issues/potential/issue-00209.md) | Текущий лист монстра не предлагает редактировать категорию и оценку угрозы |
 | [issue-00210](../../issues/potential/issue-00210.md) | Старый шаблон монстра ссылается на отсутствующие изображения категорий |
 
-Новые пять карточек зарегистрированы по пункту 9 TASK-0003; все potential. Дополнены 16 прежних: [issue-00004](../../issues/closed/issue-00004.md), [issue-00013](../../issues/potential/issue-00013.md), [issue-00015](../../issues/potential/issue-00015.md), [issue-00018](../../issues/potential/issue-00018.md), [issue-00030](../../issues/potential/issue-00030.md), [issue-00031](../../issues/potential/issue-00031.md), [issue-00032](../../issues/potential/issue-00032.md), [issue-00039](../../issues/closed/issue-00039.md), [issue-00040](../../issues/closed/issue-00040.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00177](../../issues/potential/issue-00177.md), [issue-00180](../../issues/potential/issue-00180.md), [issue-00192](../../issues/potential/issue-00192.md), [issue-00199](../../issues/potential/issue-00199.md), [issue-00203](../../issues/potential/issue-00203.md), [issue-00205](../../issues/closed/issue-00205.md). Наблюдения sidebar HP/переводов дополнены в существующих issue-00203/00205, дубликаты не создавались. Всего **210 potential issues**, подтверждений пользователя, исправлений и закрытий нет.
+Новые пять карточек зарегистрированы по пункту 9 TASK-0003; все potential. Дополнены 16 прежних: [issue-00004](../../issues/closed/issue-00004.md), [issue-00013](../../issues/potential/issue-00013.md), [issue-00015](../../issues/closed/issue-00015.md), [issue-00018](../../issues/potential/issue-00018.md), [issue-00030](../../issues/potential/issue-00030.md), [issue-00031](../../issues/potential/issue-00031.md), [issue-00032](../../issues/potential/issue-00032.md), [issue-00039](../../issues/closed/issue-00039.md), [issue-00040](../../issues/closed/issue-00040.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00177](../../issues/potential/issue-00177.md), [issue-00180](../../issues/potential/issue-00180.md), [issue-00192](../../issues/closed/issue-00192.md), [issue-00199](../../issues/potential/issue-00199.md), [issue-00203](../../issues/potential/issue-00203.md), [issue-00205](../../issues/closed/issue-00205.md). Наблюдения sidebar HP/переводов дополнены в существующих issue-00203/00205, дубликаты не создавались. Всего **210 potential issues**, подтверждений пользователя, исправлений и закрытий нет.
 
 ### Формальная проверка и сохранность
 
@@ -4708,10 +4708,10 @@ Node v24.16.0, локальная Foundry VTT 14.367.0 в /opt/foundryvtt. Ко�
 | [issue-00201](../../issues/potential/issue-00201.md) | Уведомление о нехватке компонентов падает без связанного результата рецепта |
 | [issue-00202](../../issues/potential/issue-00202.md) | Незакрытая ссылка наград создаёт лишние ссылки в заголовке |
 | [issue-00203](../../issues/potential/issue-00203.md) | Индикатор здоровья использует исходный максимум вместо текущего |
-| [issue-00204](../../issues/potential/issue-00204.md) | Пустая подпись модификатора делает формулу броска некорректной |
+| [issue-00204](../../issues/closed/issue-00204.md) | Пустая подпись модификатора делает формулу броска некорректной |
 | [issue-00205](../../issues/closed/issue-00205.md) | Флаги игнорирования состояний здоровья не имеют русского перевода |
 
-Регистрация разрешена пунктом9 родительской задачи; все новые карточки potential. Дополнены [issue-00015](../../issues/potential/issue-00015.md), [issue-00024](../../issues/potential/issue-00024.md), [issue-00028](../../issues/potential/issue-00028.md), [issue-00037](../../issues/potential/issue-00037.md), [issue-00038](../../issues/potential/issue-00038.md), [issue-00041](../../issues/potential/issue-00041.md), [issue-00101](../../issues/potential/issue-00101.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00176](../../issues/potential/issue-00176.md). Прежние репродукции не названы повторно выполненными, если запускался только соседний контракт. Языковая корректировка issue-00193 из .030 сохранена; новые четыре пропуска ru выделены в issue-00205. Подтверждений пользователя, исправлений и закрытий нет; всего **205 potential issues**.
+Регистрация разрешена пунктом9 родительской задачи; все новые карточки potential. Дополнены [issue-00015](../../issues/closed/issue-00015.md), [issue-00024](../../issues/potential/issue-00024.md), [issue-00028](../../issues/potential/issue-00028.md), [issue-00037](../../issues/potential/issue-00037.md), [issue-00038](../../issues/potential/issue-00038.md), [issue-00041](../../issues/potential/issue-00041.md), [issue-00101](../../issues/potential/issue-00101.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00167](../../issues/potential/issue-00167.md), [issue-00176](../../issues/potential/issue-00176.md). Прежние репродукции не названы повторно выполненными, если запускался только соседний контракт. Языковая корректировка issue-00193 из .030 сохранена; новые четыре пропуска ru выделены в issue-00205. Подтверждений пользователя, исправлений и закрытий нет; всего **205 potential issues**.
 
 ### Формальная проверка документов и сохранности
 
@@ -4864,9 +4864,9 @@ Node v24.16.0, локальная Foundry VTT 14.367.0 в /opt/foundryvtt. Ко�
 
 | Проблема | Наблюдение |
 | --- | --- |
-| [issue-00194](../../issues/potential/issue-00194.md) | Редактор сохраняет изменённый максимум характеристики как исходную базу |
-| [issue-00195](../../issues/potential/issue-00195.md) | Редактор предлагает ввод производных параметров, который перезаписывается расчётом |
-| [issue-00196](../../issues/potential/issue-00196.md) | Отрицательный порог спасброска отключает определение успеха и провала |
+| [issue-00194](../../issues/closed/issue-00194.md) | Редактор сохраняет изменённый максимум характеристики как исходную базу |
+| [issue-00195](../../issues/closed/issue-00195.md) | Редактор предлагает ввод производных параметров, который перезаписывается расчётом |
+| [issue-00196](../../issues/closed/issue-00196.md) | Отрицательный порог спасброска отключает определение успеха и провала |
 | [issue-00197](../../issues/potential/issue-00197.md) | Действия адреналина и счётчика смерти завершаются до записи Actor |
 | [issue-00198](../../issues/potential/issue-00198.md) | Строка репутации показывает текущее значение на месте максимума |
 | [issue-00199](../../issues/potential/issue-00199.md) | Вкладка характеристик монстра не получает сумму totalStats |
@@ -4957,12 +4957,12 @@ Node v24.16.0, локальная Foundry VTT 14.367.0 в /opt/foundryvtt. Ко�
 
 | Проблема | Наблюдение |
 | --- | --- |
-| [issue-00187](../../issues/potential/issue-00187.md) | Текущая строка собственного навыка использует контекст и бросок встроенного навыка |
+| [issue-00187](../../issues/closed/issue-00187.md) | Текущая строка собственного навыка использует контекст и бросок встроенного навыка |
 | [issue-00188](../../issues/potential/issue-00188.md) | Собственные навыки со СКОР и УДАЧЕЙ не попадают на текущую вкладку навыков |
 | [issue-00189](../../issues/potential/issue-00189.md) | Обработчики модификаторов собственного навыка не согласованы со схемой Item |
-| [issue-00190](../../issues/potential/issue-00190.md) | Бросок собственного навыка игнорирует его активную добавку и зависит от имени встроенного навыка |
-| [issue-00191](../../issues/potential/issue-00191.md) | Повышение навыка списывает обычные IP при недостаточном балансе |
-| [issue-00192](../../issues/potential/issue-00192.md) | Редактор навыков монстра предлагает повышение без необходимых данных развития |
+| [issue-00190](../../issues/closed/issue-00190.md) | Бросок собственного навыка игнорирует его активную добавку и зависит от имени встроенного навыка |
+| [issue-00191](../../issues/closed/issue-00191.md) | Повышение навыка списывает обычные IP при недостаточном балансе |
+| [issue-00192](../../issues/closed/issue-00192.md) | Редактор навыков монстра предлагает повышение без необходимых данных развития |
 | [issue-00193](../../issues/closed/issue-00193.md) | В шаблонах навыков отсутствуют отдельные ключи локализации |
 
 Старый CRUD не представлен текущими кнопками; issue-00189 описывает несогласованные методы и схему, а не действующий сценарий кликов. issue-00192 касается кнопки автоматического повышения в отдельной конфигурации; прежняя issue-00030 — общей IP-вкладки. Ни один issue не переведён в open/closed. Предложения решений не считаются согласованными.
@@ -5038,7 +5038,7 @@ DialogV2.input/prompt представлены фасадами; обработ�
 
 ### Проблемы и ограничения
 
-Зарегистрированы [issue-00181](../../issues/potential/issue-00181.md) — границы таблиц провала пропускают и сдвигают отдельные результаты; [issue-00182](../../issues/potential/issue-00182.md) — результат провала передаёт UUID вместо Actor при выборе отправителя; [issue-00183](../../issues/potential/issue-00183.md) — пункт результата провала виден у сообщений без поддерживаемого обработчика; [issue-00184](../../issues/potential/issue-00184.md) — общий бросок завершается до сохранения дополнительных флагов сообщения; [issue-00185](../../issues/potential/issue-00185.md) — делегирование действия не обрабатывает отсутствие активного владельца или GM; [issue-00186](../../issues/closed/issue-00186.md) — подпись модификатора отсутствует в русском словаре. Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00033](../../issues/potential/issue-00033.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00149](../../issues/potential/issue-00149.md), [issue-00175](../../issues/potential/issue-00175.md). Все 186 карточек остаются potential; воспроизведение агентом не заменяет подтверждение пользователя и не разрешает исправления.
+Зарегистрированы [issue-00181](../../issues/potential/issue-00181.md) — границы таблиц провала пропускают и сдвигают отдельные результаты; [issue-00182](../../issues/potential/issue-00182.md) — результат провала передаёт UUID вместо Actor при выборе отправителя; [issue-00183](../../issues/potential/issue-00183.md) — пункт результата провала виден у сообщений без поддерживаемого обработчика; [issue-00184](../../issues/potential/issue-00184.md) — общий бросок завершается до сохранения дополнительных флагов сообщения; [issue-00185](../../issues/potential/issue-00185.md) — делегирование действия не обрабатывает отсутствие активного владельца или GM; [issue-00186](../../issues/closed/issue-00186.md) — подпись модификатора отсутствует в русском словаре. Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00033](../../issues/closed/issue-00033.md), [issue-00103](../../issues/closed/issue-00103.md), [issue-00126](../../issues/potential/issue-00126.md), [issue-00149](../../issues/potential/issue-00149.md), [issue-00175](../../issues/potential/issue-00175.md). Все 186 карточек остаются potential; воспроизведение агентом не заменяет подтверждение пользователя и не разрешает исправления.
 
 Полный разбор skillMixin и остальных примесей/схем не завершался за рамками пяти файлов. Мир, браузер, службы и сетевые клиенты не запускались; игровые документы и БД не читались и не менялись. Не утверждаются соответствие рулбуку, качество случайного распределения, продолжительность гонки setFlag или доступ службы к ресурсам. Итоговые ограничения перенесены в карточки и задачу.
 
@@ -5575,7 +5575,7 @@ Hidden-строки не вырезаются из HTML. .hidden-from-view ск�
 | [issue-00154](../../issues/potential/issue-00154.md) | Число столбцов заголовка и строки улики различается |
 | [issue-00155](../../issues/closed/issue-00155.md) | Основные подписи тайны обходят локализацию |
 
-Дополнены [issue-00005](../../issues/potential/issue-00005.md) и [issue-00016](../../issues/closed/issue-00016.md). Все карточки остаются potential; подтверждение пользователя, изменение статусов и исправление не выполнялись. Строки реестра проблем собраны в одну таблицу, включая прежние строки, оказавшиеся после завершающего текста.
+Дополнены [issue-00005](../../issues/closed/issue-00005.md) и [issue-00016](../../issues/closed/issue-00016.md). Все карточки остаются potential; подтверждение пользователя, изменение статусов и исправление не выполнялись. Строки реестра проблем собраны в одну таблицу, включая прежние строки, оказавшиеся после завершающего текста.
 
 ### Техническая сверка и сохранность
 
@@ -6145,7 +6145,7 @@ Handlebars 4.7.9 и parse5 настоящие. Вызваны исходные f
 
 Зарегистрирована одна новая [issue-00109](../../issues/potential/issue-00109.md) в potential: лист персонажа не использует приготовленный HTML расовых особенностей. Исполненный стандартный editor-helper не обогащает его сам; реальные UUID не разрешались. Сохранение target=race.system.perkN.description отдельно не проверялось и не объявлено сломанным.
 
-Дополнены [issue-00005](../../issues/potential/issue-00005.md) (оба типа согласованы), [issue-00013](../../issues/potential/issue-00013.md) (другой consumer HTML) и [issue-00034](../../issues/potential/issue-00034.md) (уточнён Drop расы/родины). Унаследованные ограничения листа из issue-00058/00059 обозначены в карточках без нового воспроизведения или дублей.
+Дополнены [issue-00005](../../issues/closed/issue-00005.md) (оба типа согласованы), [issue-00013](../../issues/potential/issue-00013.md) (другой consumer HTML) и [issue-00034](../../issues/potential/issue-00034.md) (уточнён Drop расы/родины). Унаследованные ограничения листа из issue-00058/00059 обозначены в карточках без нового воспроизведения или дублей.
 
 Фиксированные четыре perk, отсутствие общего description в рассмотренной форме, произвольные значения без choices и отсутствие автопереноса социального положения записаны как фактические границы, без навязывания новой механики. Игровые правила и числовые расовые бонусы не проектировались. Потенциальные проблемы не подтверждены пользователем и не исправлены.
 
@@ -6241,7 +6241,7 @@ Handlebars 4.7.9 и parse5 настоящие; использованы оба H
 
 ### Issues и ограничения
 
-Зарегистрированы [issue-00102](../../issues/potential/issue-00102.md), [issue-00103](../../issues/potential/issue-00103.md), [issue-00104](../../issues/potential/issue-00104.md), [issue-00105](../../issues/closed/issue-00105.md), [issue-00106](../../issues/potential/issue-00106.md), [issue-00107](../../issues/potential/issue-00107.md), [issue-00108](../../issues/potential/issue-00108.md). Дополнены issue-00008/00010/00081/00100; issue-00034 сопоставлена без нового воспроизведения её собственных ветвей. Всего **108 issue, все potential**. Воспроизведение агентом не заменяет подтверждения пользователя; исправления не выполнялись.
+Зарегистрированы [issue-00102](../../issues/potential/issue-00102.md), [issue-00103](../../issues/closed/issue-00103.md), [issue-00104](../../issues/potential/issue-00104.md), [issue-00105](../../issues/closed/issue-00105.md), [issue-00106](../../issues/potential/issue-00106.md), [issue-00107](../../issues/potential/issue-00107.md), [issue-00108](../../issues/potential/issue-00108.md). Дополнены issue-00008/00010/00081/00100; issue-00034 сопоставлена без нового воспроизведения её собственных ветвей. Всего **108 issue, все potential**. Воспроизведение агентом не заменяет подтверждения пользователя; исправления не выполнялись.
 
 Ремонт не объявлен работающим по итогам изолированных ветвей: штатный путь содержит issue-00102/00103. Ветвь zero-quantity проверена с вручную добавленным damagedLocations; симуляция — после подмены отсутствующей настройки; _doRepair — отдельным вызовом. Эти условия явно записаны в карточках. Для issue-00106 установлена глобальная область DOM, но достижимость нескольких modal окон в обычном UI не проверялась.
 
@@ -7977,7 +7977,7 @@ PY
 
 ### Наблюдения и пределы
 
-Новые [issue-00019](../../issues/potential/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/closed/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/potential/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/closed/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/closed/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
+Новые [issue-00019](../../issues/closed/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/closed/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/potential/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/closed/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/closed/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
 
 Проверки не включают запуск мира/браузера, запись документов, сетевые запросы, импорт компедиумов, полный боевой цикл, экономику и соответствие рулбуку. Исходники и игровые данные не изменялись. Карточки фиксируют реальные обращения и пределы их изучения; это основание для дальнейших порций, а не доказательство исправности всей системы.
 
@@ -8235,7 +8235,7 @@ PY
 
 ### Наблюдения и пределы
 
-Зарегистрированы [issue-00015](../../issues/potential/issue-00015.md), [issue-00016](../../issues/closed/issue-00016.md), [issue-00017](../../issues/potential/issue-00017.md), [issue-00018](../../issues/potential/issue-00018.md); дополнена [issue-00004](../../issues/closed/issue-00004.md). Все остаются potential, подтверждение пользователем и исправления не выполнялись.
+Зарегистрированы [issue-00015](../../issues/closed/issue-00015.md), [issue-00016](../../issues/closed/issue-00016.md), [issue-00017](../../issues/closed/issue-00017.md), [issue-00018](../../issues/potential/issue-00018.md); дополнена [issue-00004](../../issues/closed/issue-00004.md). Все остаются potential, подтверждение пользователем и исправления не выполнялись.
 
 Мир, браузерные клики, сохранение документов/компедиумов и полный процесс применения ActiveEffect не проверялись. Наблюдение new CommonActorData({}) не доказывает окончательное состояние Actor после клиентского/серверного цикла создания. Совпадение строковых JSON-путей не доказывает исполнение эффектов или корректность механик по рулбуку. Полный анализ соседних файлов остаётся следующим порциям.
 
@@ -8267,7 +8267,7 @@ PY
 Зарегистрированы только в `potential`:
 
 - [issue-00011](../../issues/potential/issue-00011.md): отсутствие unmodifiedMax не обрабатывается переносом max; в реальной CommonActorData входные int.max=7 и vigor.max=7 без базы после подготовки дали 0.
-- [issue-00012](../../issues/potential/issue-00012.md): два прохода calculateStats дали luck.max=14 при базе 10/+2 и toxicity.max=110 при базе 100/+5. Проверены исходные prepareDerivedData/calculateStats, соседние методы подменены.
+- [issue-00012](../../issues/closed/issue-00012.md): два прохода calculateStats дали luck.max=14 при базе 10/+2 и toxicity.max=110 при базе 100/+5. Проверены исходные prepareDerivedData/calculateStats, соседние методы подменены.
 - [issue-00013](../../issues/potential/issue-00013.md): в аргумент enriched формы знаний монстра попал исходный текст, несмотря на подготовленный результат модели.
 - [issue-00014](../../issues/closed/issue-00014.md): отсутствующий ключ подписи числовой репутации передаётся в метаданные поля, которые использует автодополнение ActiveEffect.
 
@@ -8718,7 +8718,7 @@ PY
 
 В Node vm выполнены исходные функции с подменой классов и регистрационных API: 4 модели Actor, 22 Item с base, 2 ActiveEffect, 4 ChatMessage; отдельный класс WitcherChatMessage. Листы: 21 Item, 4 Actor, unregister/register ActiveEffect. Настройки: 9 ключей; callback choices на фиктивных Item/Actor pack вернул только Item.
 
-Actor.mystery и Item.clue/obstacle/skill отсутствуют в documentTypes — [issue-00005](../../issues/potential/issue-00005.md). По ядру проверено: Document.TYPES читает game.model; DocumentTypeField проверяет этот список; DocumentSheetConfig допускает отдельную запись sheetClasses[type]. Падение регистрации листов не утверждается. Создание документов в действующем мире не проверено.
+Actor.mystery и Item.clue/obstacle/skill отсутствуют в documentTypes — [issue-00005](../../issues/closed/issue-00005.md). По ядру проверено: Document.TYPES читает game.model; DocumentTypeField проверяет этот список; DocumentSheetConfig допускает отдельную запись sheetClasses[type]. Падение регистрации листов не утверждается. Создание документов в действующем мире не проверено.
 
 Буквальные чтения девяти настроек сверены с module/templates, включая helper getSetting. Наличие чтений в V1-файле не выдано за используемый интерфейс. Карточки разделяют регистрацию, создание модели и рендер. Результат: три карточки и их связи сверены; реальные Foundry-классы и UI не запускались.
 

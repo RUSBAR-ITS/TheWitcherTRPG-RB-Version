@@ -84,7 +84,7 @@
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../issues/closed/issue-00004.md) — commonsp/commonspeech; [issue-00019](../../../../../../issues/potential/issue-00019.md) — attacks без .value. Группа урона связана с [issue-00025](../../../../../../issues/potential/issue-00025.md), [issue-00026](../../../../../../issues/potential/issue-00026.md), [issue-00027](../../../../../../issues/potential/issue-00027.md); это ошибки потребителей, не новые проблемы этого каталога.
+[issue-00004](../../../../../../issues/closed/issue-00004.md) — commonsp/commonspeech; [issue-00019](../../../../../../issues/closed/issue-00019.md) — attacks без .value. Группа урона связана с [issue-00025](../../../../../../issues/potential/issue-00025.md), [issue-00026](../../../../../../issues/potential/issue-00026.md), [issue-00027](../../../../../../issues/potential/issue-00027.md); это ошибки потребителей, не новые проблемы этого каталога.
 
 ## История актуализации
 

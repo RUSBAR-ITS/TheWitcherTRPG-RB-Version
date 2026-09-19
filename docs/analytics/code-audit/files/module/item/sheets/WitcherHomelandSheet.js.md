@@ -76,7 +76,7 @@ HomelandData не имеет enrichedText; общий лист использу�
 
 ## Связанные проблемы
 
-[issue-00005](../../../../../../issues/potential/issue-00005.md), [issue-00058](../../../../../../issues/potential/issue-00058.md), [issue-00059](../../../../../../issues/potential/issue-00059.md). 5 сопоставлена: тип homeland объявлен. 58/59 — ранее описанные ограничения унаследованного drop в WitcherItemSheet; новых ID для наследования не создаётся.
+[issue-00005](../../../../../../issues/closed/issue-00005.md), [issue-00058](../../../../../../issues/potential/issue-00058.md), [issue-00059](../../../../../../issues/potential/issue-00059.md). 5 сопоставлена: тип homeland объявлен. 58/59 — ранее описанные ограничения унаследованного drop в WitcherItemSheet; новых ID для наследования не создаётся.
 
 ## История актуализации
 

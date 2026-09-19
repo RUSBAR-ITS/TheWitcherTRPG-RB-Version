@@ -126,7 +126,7 @@
 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
-Повторно исполнен настоящий registerSettings с настоящим ClientSettings Foundry 14.367 и storage/Setting-фасадами: зарегистрированы 9 прежних ключей, displayRollsDetails по умолчанию false. [RepairSystem](../../../../../../module/item/systems/repair.js) обращается к отсутствующей woundsAffectSkillBase; реальный get выбросил ошибку неизвестной настройки. Это [issue-00103](../../../../../issues/potential/issue-00103.md), а не молчаливое значение false. Проверка дополнительной регистрации внешними модулями не выполнялась.
+Повторно исполнен настоящий registerSettings с настоящим ClientSettings Foundry 14.367 и storage/Setting-фасадами: зарегистрированы 9 прежних ключей, displayRollsDetails по умолчанию false. [RepairSystem](../../../../../../module/item/systems/repair.js) обращается к отсутствующей woundsAffectSkillBase; реальный get выбросил ошибку неизвестной настройки. Это [issue-00103](../../../../../issues/closed/issue-00103.md), а не молчаливое значение false. Проверка дополнительной регистрации внешними модулями не выполнялась.
 
 ## Уточнение TASK-0003.020
 
@@ -151,7 +151,7 @@ clickableImageItemTypes (CSV, defaultvaluable) и clickableImageCheckboxForGMOnl
 
 ## Уточнение TASK-0003.028
 
-2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: displayRollsDetails:46–53 — world Boolean с default=false. Полный helper.addPart читает настройку до проверки hideZero; при true добавляет локализованную подпись в квадратных скобках. getCustomModifier с нулём возвращает пустую строку, с -2 — '+-2' с опциональной подписью. Реальный parser Foundry принимает такие последовательности знаков; [issue-00033](../../../../../issues/potential/issue-00033.md) относится к отсутствующему оператору в другом сборщике.
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: displayRollsDetails:46–53 — world Boolean с default=false. Полный helper.addPart читает настройку до проверки hideZero; при true добавляет локализованную подпись в квадратных скобках. getCustomModifier с нулём возвращает пустую строку, с -2 — '+-2' с опциональной подписью. Реальный parser Foundry принимает такие последовательности знаков; [issue-00033](../../../../../issues/closed/issue-00033.md) относится к отсутствующему оператору в другом сборщике.
 
 Полные карточки зависимости: [module/scripts/helper.js](../scripts/helper.js.md). [Перекрёстная сверка](../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
 

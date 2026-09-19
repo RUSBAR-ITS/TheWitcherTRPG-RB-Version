@@ -84,7 +84,7 @@ EnhancementData extends CommonItemData, default export, CONFIG.Item.dataModels.e
 
 ## Связанные проблемы
 
-[issue-00042](../../../../../../issues/potential/issue-00042.md), [issue-00060](../../../../../../issues/potential/issue-00060.md), [issue-00068](../../../../../../issues/potential/issue-00068.md), [issue-00078](../../../../../../issues/potential/issue-00078.md), [issue-00088](../../../../../../issues/potential/issue-00088.md). issue-00042 относится к отдельному временному ActiveEffect, не к этой модели. Корректная миграция здесь служит контролем для issue-00068; остальные связи относятся к редактору и использованию улучшений.
+[issue-00042](../../../../../../issues/closed/issue-00042.md), [issue-00060](../../../../../../issues/potential/issue-00060.md), [issue-00068](../../../../../../issues/potential/issue-00068.md), [issue-00078](../../../../../../issues/potential/issue-00078.md), [issue-00088](../../../../../../issues/potential/issue-00088.md). issue-00042 относится к отдельному временному ActiveEffect, не к этой модели. Корректная миграция здесь служит контролем для issue-00068; остальные связи относятся к редактору и использованию улучшений.
 
 ## История актуализации
 

@@ -6,7 +6,7 @@
 | Создана | 2026-09-18, 14.3.1.00059 |
 | Основание | Прямое поручение пользователя создать отдельную задачу на рефакторинг критов |
 | Срез | `dev`, HEAD `0537500936de736ce898b0173670c82714b72f23`; текущие рабочие исходники; Foundry 14.367 |
-| Связи | [TASK-0010](task-0010-parameter-limits.md#automatic-failure), [issue-00196](../issues/potential/issue-00196.md); завершённый жизненный цикл травм [TASK-0009](task-0009-critical-wound-behavior.md#closure) |
+| Связи | [TASK-0010](task-0010-parameter-limits.md#automatic-failure), [issue-00196](../issues/closed/issue-00196.md); завершённый жизненный цикл травм [TASK-0009](task-0009-critical-wound-behavior.md#closure) |
 
 ## Цель
 

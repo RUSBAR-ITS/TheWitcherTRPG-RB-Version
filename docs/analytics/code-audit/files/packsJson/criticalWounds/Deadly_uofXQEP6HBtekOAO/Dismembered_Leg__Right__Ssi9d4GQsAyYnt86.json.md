@@ -223,7 +223,7 @@ JSON не вводит собственных функций или обрабо
 
 JSON-строка объекта успешно мигрирует; ADD применяется к SchemaField и не создаёт запись. Реальный applyCombatEffects не вызвал урон от этого Item — [issue-00328](../../../../../../issues/closed/issue-00328.md). Диагностические копии исходной левой руки и Spetic Shock с override вместо ADD создавали bleed/poison и передавали amount=2/3 в перехваченный Actor.applyDamage. ignoreArmor очищался в boolean true, spDamage — 0. Следующий этап не сохранил type — прежняя [issue-00021](../../../../../../issues/closed/issue-00021.md); исходные записи ADD до этого пути не доходят. Экспорт не менялся.
 
-Множитель адресует max, а calculateStat читает unmodifiedMax+totalModifiers: SPD.value/BODY.value не вычисляются из изменённого max. Целочисленный NumberField округляет 5×0.25 до 1, 5×0.5 до 3. RUN и LEAP.value используют value, LEAP.max — max; последствия различаются — [issue-00036](../../../../../../issues/potential/issue-00036.md). Выключенное изменение сюда не применяется.
+Множитель адресует max, а calculateStat читает unmodifiedMax+totalModifiers: SPD.value/BODY.value не вычисляются из изменённого max. Целочисленный NumberField округляет 5×0.25 до 1, 5×0.5 до 3. RUN и LEAP.value используют value, LEAP.max — max; последствия различаются — [issue-00036](../../../../../../issues/closed/issue-00036.md). Выключенное изменение сюда не применяется.
 
 None/stabilized задают SPD.max, dodge.value, athletics.value ×0.25; у none отдельно есть bleed. Treated не содержит эффектов и описывает протезирование. Поля location всех состояний правильные и сохраняются при переходах. У правого none имя первого bleed-эффекта относится к левой ноге; это не изменение dodge.activeEffectModifiers.
 
@@ -241,7 +241,7 @@ None/stabilized задают SPD.max, dodge.value, athletics.value ×0.25; у no
 
 ## Связанные проблемы
 
-[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00328](../../../../../../issues/closed/issue-00328.md) — ADD объекта периодического урона; [issue-00021](../../../../../../issues/closed/issue-00021.md) — потеря типа в отдельном положительном контроле. [issue-00036](../../../../../../issues/potential/issue-00036.md) — max/value и перезапись производного максимума. [issue-00329](../../../../../../issues/closed/issue-00329.md) — выключенный эффект исходной правой ноги. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
+[issue-00121](../../../../../../issues/closed/issue-00121.md) — ожидание замены, [issue-00127](../../../../../../issues/closed/issue-00127.md) — граница завершения лечения, [issue-00288](../../../../../../issues/closed/issue-00288.md) — повтор name/type. [issue-00328](../../../../../../issues/closed/issue-00328.md) — ADD объекта периодического урона; [issue-00021](../../../../../../issues/closed/issue-00021.md) — потеря типа в отдельном положительном контроле. [issue-00036](../../../../../../issues/closed/issue-00036.md) — max/value и перезапись производного максимума. [issue-00329](../../../../../../issues/closed/issue-00329.md) — выключенный эффект исходной правой ноги. Статусы potential сохранены, подтверждения/исправления не выполнялись. Наличие этих общих проблем не объявляет дефектом каждое поле или папку.
 
 ## История актуализации
 

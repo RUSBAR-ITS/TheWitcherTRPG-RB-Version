@@ -84,7 +84,7 @@ JavaScript-функций нет. if/unless разделяют наличие It
 
 ## Связанные проблемы
 
-[issue-00109](../../../../../../issues/potential/issue-00109.md), [issue-00110](../../../../../../issues/potential/issue-00110.md), [issue-00118](../../../../../../issues/potential/issue-00118.md), [issue-00153](../../../../../../issues/potential/issue-00153.md). 109 — потеря enriched;110 — бросок по совпадающему имени;118 — пустая характеристика;153 — общий inline callback преобразует текстовые true/false, не локальная проблема этой формы.
+[issue-00109](../../../../../../issues/potential/issue-00109.md), [issue-00110](../../../../../../issues/closed/issue-00110.md), [issue-00118](../../../../../../issues/potential/issue-00118.md), [issue-00153](../../../../../../issues/potential/issue-00153.md). 109 — потеря enriched;110 — бросок по совпадающему имени;118 — пустая характеристика;153 — общий inline callback преобразует текстовые true/false, не локальная проблема этой формы.
 
 ## История актуализации
 

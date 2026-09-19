@@ -127,7 +127,7 @@ isItemEffect предоставляется ядром при подготовк
 
 ## Связанные проблемы
 
-[issue-00051](../../../../../issues/potential/issue-00051.md), [issue-00052](../../../../../issues/potential/issue-00052.md), [issue-00053](../../../../../issues/closed/issue-00053.md), [issue-00055](../../../../../issues/closed/issue-00055.md) — схема получателя, несохранённая форма, отсутствующее поле, повторный рендер. [issue-00043](../../../../../issues/potential/issue-00043.md) дополнена реальным путём wizard → cleanData → _preUpdate.
+[issue-00051](../../../../../issues/closed/issue-00051.md), [issue-00052](../../../../../issues/closed/issue-00052.md), [issue-00053](../../../../../issues/closed/issue-00053.md), [issue-00055](../../../../../issues/closed/issue-00055.md) — схема получателя, несохранённая форма, отсутствующее поле, повторный рендер. [issue-00043](../../../../../issues/closed/issue-00043.md) дополнена реальным путём wizard → cleanData → _preUpdate.
 
 ## История актуализации
 

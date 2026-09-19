@@ -213,7 +213,7 @@
 - [issue-00039](../../../../../issues/closed/issue-00039.md) — Генератор добычи предполагает единственный непустой результат таблицы.
 - [issue-00040](../../../../../issues/closed/issue-00040.md) — Повторная генерация существующей стопки может терять количество.
 - [issue-00041](../../../../../issues/potential/issue-00041.md) — Успешное сообщение изготовления сохраняется после обнаружения нехватки компонентов.
-- [issue-00042](../../../../../issues/potential/issue-00042.md) — Передатчик временного улучшения теряет system.changes.
+- [issue-00042](../../../../../issues/closed/issue-00042.md) — Передатчик временного улучшения теряет system.changes.
 
 Все наблюдения остаются potential; их воспроизведение не заменяет подтверждения пользователя и не разрешает исправление.
 
@@ -273,7 +273,7 @@
 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
-Полностью разобраны [repairMixin](../../../../../../module/item/mixins/repairMixin.js) и [RepairSystem](../../../../../../module/item/systems/repair.js). Object.assign:373 даёт документу repair/restoreReliability: первый ждёт process(this.actor,this), второй сразу делегирует system.repair. Это методы Item, отличные от методов его модели. Штатный обычный процесс блокируют [issue-00102](../../../../../issues/potential/issue-00102.md) и [issue-00103](../../../../../issues/potential/issue-00103.md). Прямой GM/socket путь восстанавливает через модели. Ожидание update теряется на нескольких уровнях ([issue-00081](../../../../../issues/potential/issue-00081.md)). Настоящая примесь проверена с Item-фасадом/моделями, client WitcherItem не создавался.
+Полностью разобраны [repairMixin](../../../../../../module/item/mixins/repairMixin.js) и [RepairSystem](../../../../../../module/item/systems/repair.js). Object.assign:373 даёт документу repair/restoreReliability: первый ждёт process(this.actor,this), второй сразу делегирует system.repair. Это методы Item, отличные от методов его модели. Штатный обычный процесс блокируют [issue-00102](../../../../../issues/potential/issue-00102.md) и [issue-00103](../../../../../issues/closed/issue-00103.md). Прямой GM/socket путь восстанавливает через модели. Ожидание update теряется на нескольких уровнях ([issue-00081](../../../../../issues/potential/issue-00081.md)). Настоящая примесь проверена с Item-фасадом/моделями, client WitcherItem не создавался.
 
 ## Уточнение TASK-0003.018
 

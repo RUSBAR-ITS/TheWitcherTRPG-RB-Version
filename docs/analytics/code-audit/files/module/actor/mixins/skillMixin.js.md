@@ -100,7 +100,7 @@
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../issues/closed/issue-00004.md), [issue-00017](../../../../../../issues/potential/issue-00017.md), [issue-00028](../../../../../../issues/potential/issue-00028.md), [issue-00186](../../../../../../issues/closed/issue-00186.md), [issue-00190](../../../../../../issues/potential/issue-00190.md), [issue-00191](../../../../../../issues/potential/issue-00191.md), [issue-00192](../../../../../../issues/potential/issue-00192.md). Прежние наблюдения о ключах и IP уточнены; новые находятся в potential. Исправления и выбор решения не входят в порцию.
+[issue-00004](../../../../../../issues/closed/issue-00004.md), [issue-00017](../../../../../../issues/closed/issue-00017.md), [issue-00028](../../../../../../issues/potential/issue-00028.md), [issue-00186](../../../../../../issues/closed/issue-00186.md), [issue-00190](../../../../../../issues/closed/issue-00190.md), [issue-00191](../../../../../../issues/closed/issue-00191.md), [issue-00192](../../../../../../issues/closed/issue-00192.md). Прежние наблюдения о ключах и IP уточнены; новые находятся в potential. Исправления и выбор решения не входят в порцию.
 
 ## История актуализации
 

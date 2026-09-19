@@ -62,7 +62,7 @@ Item-конфигурация берёт effect из this.document.effects и р
 
 Сообщение об улучшениях получает payload temps, не результат создания. getSpeaker вызывается с this.actor, хотя метод примешан Actor; успешное создание/истечение не следует из наличия сообщения.
 
-[Распределение и копирование R005-07](../code-audit/cross-check-0002.md#r005-07), [улучшения R005-08](../code-audit/cross-check-0002.md#r005-08), [длительность R005-09](../code-audit/cross-check-0002.md#r005-09), [позднее уточнение issue-00042](../../issues/potential/issue-00042.md#уточнение-task-0003009), [issue-00044](../../issues/potential/issue-00044.md), [issue-00045](../../issues/potential/issue-00045.md), [issue-00046](../../issues/potential/issue-00046.md), [issue-00050](../../issues/potential/issue-00050.md).
+[Распределение и копирование R005-07](../code-audit/cross-check-0002.md#r005-07), [улучшения R005-08](../code-audit/cross-check-0002.md#r005-08), [длительность R005-09](../code-audit/cross-check-0002.md#r005-09), [позднее уточнение issue-00042](../../issues/closed/issue-00042.md#уточнение-task-0003009), [issue-00044](../../issues/closed/issue-00044.md), [issue-00045](../../issues/potential/issue-00045.md), [issue-00046](../../issues/potential/issue-00046.md), [issue-00050](../../issues/closed/issue-00050.md).
 
 ## Статусы, запросы и временные HP
 

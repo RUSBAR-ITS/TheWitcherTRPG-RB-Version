@@ -34,7 +34,7 @@
 | getActiveEffectsItemImprovementPaths — ent-000647 | Один вызов getItemDamageSuggestions, отдельный каталог для type=temporaryItemImprovement. |
 | getItemDamageSuggestions — ent-000648 | system.damage, system.damageProperties.oilEffect/silverDamage — StringField формул в WeaponData/DamageProperties. Наличие этих полей у любого Item не предполагается. |
 
-Основание — [R005-02](../code-audit/cross-check-0002.md#r005-02), поздние уточнения [issue-00004](../../issues/closed/issue-00004.md#уточнение-task-0003010), [issue-00051](../../issues/potential/issue-00051.md), [issue-00052](../../issues/potential/issue-00052.md). Исторические числовые пробы аудита не запускались заново; здесь сопоставлены объявления и пути по коду.
+Основание — [R005-02](../code-audit/cross-check-0002.md#r005-02), поздние уточнения [issue-00004](../../issues/closed/issue-00004.md#уточнение-task-0003010), [issue-00051](../../issues/closed/issue-00051.md), [issue-00052](../../issues/closed/issue-00052.md). Исторические числовые пробы аудита не запускались заново; здесь сопоставлены объявления и пути по коду.
 
 ## Форма, prepared, _source и запрос обновления
 
@@ -45,7 +45,7 @@
 | Создание с @skill — ent-000318 / callback ent-000736 | _preCreate перебирает _source.system.changes; при includes('@skill') ждёт chooseSkill. Тот заменяет change.key целиком строкой выбора. | render и prompt ожидаются; rejectClose=true отклоняет закрытие без OK. Перезаписывается переданная source-строка, без prepared push. |
 | _preUpdate — прежние ent-000319 / proc-000007 | После super определяет phase только по data.system?.applyAfterCalculations и обходит data.system?.changes. | Корневой changes заранее переносится ядром в system.changes. Отсутствующий флаг не подставляется из сохранённого документа; system без changes может привести к ошибке обхода. Сохранение в БД не подтверждено. |
 
-Переход callback → _preUpdate — отношение **refers** с явным внешним Document.update/cleanData; прямого локального calls нет. Позднее [уточнение issue-00043](../../issues/potential/issue-00043.md#уточнение-task-0003010) и [R005-03](../code-audit/cross-check-0002.md#r005-03) сохранены. Вход подтверждения отделён от регистрации prompt: чтения и push callback не прикреплены к шагу открытия диалога.
+Переход callback → _preUpdate — отношение **refers** с явным внешним Document.update/cleanData; прямого локального calls нет. Позднее [уточнение issue-00043](../../issues/closed/issue-00043.md#уточнение-task-0003010) и [R005-03](../code-audit/cross-check-0002.md#r005-03) сохранены. Вход подтверждения отделён от регистрации prompt: чтения и push callback не прикреплены к шагу открытия диалога.
 
 ## Автодополнение, системная вкладка и CSS
 

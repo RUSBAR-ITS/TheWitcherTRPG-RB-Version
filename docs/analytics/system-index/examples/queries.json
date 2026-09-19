@@ -221,7 +221,7 @@
       "expected": {
         "ref_paths": [
           "docs/analytics/code-audit/files/module/data/actor/templates/common/skills/skillData.js.md",
-          "docs/issues/potential/issue-00015.md"
+          "docs/issues/closed/issue-00015.md"
         ],
         "coverage": "partial"
       }

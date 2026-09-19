@@ -524,7 +524,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00257.md"
+          "docs/issues/closed/issue-00257.md"
         ]
       },
       "basis": "Cast raw166/170, схема100 безduration, consumers14:29/32 и16:403."

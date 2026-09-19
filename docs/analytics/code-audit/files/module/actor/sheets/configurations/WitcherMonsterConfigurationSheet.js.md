@@ -84,7 +84,7 @@
 
 ## Связанные проблемы
 
-[issue-00004](../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../issues/potential/issue-00015.md), [issue-00018](../../../../../../../issues/potential/issue-00018.md), [issue-00032](../../../../../../../issues/potential/issue-00032.md), [issue-00192](../../../../../../../issues/potential/issue-00192.md), [issue-00209](../../../../../../../issues/potential/issue-00209.md). Это конфигурация видимости/общих полей, отличная от WitcherModifiersConfiguration. Новых исправлений нет.
+[issue-00004](../../../../../../../issues/closed/issue-00004.md), [issue-00015](../../../../../../../issues/closed/issue-00015.md), [issue-00018](../../../../../../../issues/potential/issue-00018.md), [issue-00032](../../../../../../../issues/potential/issue-00032.md), [issue-00192](../../../../../../../issues/closed/issue-00192.md), [issue-00209](../../../../../../../issues/potential/issue-00209.md). Это конфигурация видимости/общих полей, отличная от WitcherModifiersConfiguration. Новых исправлений нет.
 
 ## История актуализации
 

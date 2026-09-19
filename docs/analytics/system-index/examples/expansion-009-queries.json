@@ -415,7 +415,7 @@
           "r004-07"
         ],
         "includes_refs": [
-          "docs/issues/potential/issue-00187.md"
+          "docs/issues/closed/issue-00187.md"
         ]
       }
     },
@@ -460,7 +460,7 @@
           "r004-07"
         ],
         "includes_refs": [
-          "docs/issues/potential/issue-00190.md",
+          "docs/issues/closed/issue-00190.md",
           "docs/analytics/system-index/coverage-009.md"
         ]
       }

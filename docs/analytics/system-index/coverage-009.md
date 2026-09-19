@@ -47,7 +47,7 @@ WitcherActorSheet._onRender ожидает super, затем вызывает vi
 
 Отсутствующий hash — граница ent-000923; неподготовленный skill.* — ent-000928. Они не подменяются полями SkillItemData. Для неизвестного имени builtin-метод отклоняет Promise при чтении skillMapEntry.attribute; вызов из DOM не ждёт результата. Совпадение Item.name со встроенным ключом не является выбором Item по ID.
 
-Прямой rollCustomSkillCheck — другое наблюдение: читает Item.system.value и attribute, но addActiveEffects получает Item.name. Его собственный activeEffectModifiers не читается. Эта формула уже раскрыта в пилоте; наличие старого readonly вывода не доказывает включения добавки в бросок. Подробности: [R004-07](../code-audit/cross-check-0002.md#r004-07), [issue-00187](../../issues/potential/issue-00187.md), [issue-00190](../../issues/potential/issue-00190.md).
+Прямой rollCustomSkillCheck — другое наблюдение: читает Item.system.value и attribute, но addActiveEffects получает Item.name. Его собственный activeEffectModifiers не читается. Эта формула уже раскрыта в пилоте; наличие старого readonly вывода не доказывает включения добавки в бросок. Подробности: [R004-07](../code-audit/cross-check-0002.md#r004-07), [issue-00187](../../issues/closed/issue-00187.md), [issue-00190](../../issues/closed/issue-00190.md).
 
 skillListener присваивает jQuery без локального объявления; customSkillListener локально заменяет параметр html. Это прежнее наблюдение [R004-10](../code-audit/cross-check-0002.md#r004-10); порядок вызовов сохранён. Полный браузерный эффект повторной регистрации не воспроизводился.
 
@@ -59,7 +59,7 @@ SkillItemData содержит восемь полей: attribute, value, label,
 
 DEFAULT_OPTIONS включает submitOnChange=true и closeOnSubmit=false. Своего handler, кнопки submit и локального вызова Item.update нет. Установленный DocumentSheetV2 проверяет isEditable, разворачивает formData.object, валидирует и ожидает _processSubmitData. Существующий документ обновляется; для несохранённого действует ветка canCreate/ошибки. Это внешний контракт, не подтверждение сохранения из одного HBS/input.
 
-openModifiers, повышение, собственные модификаторы и IP/training остаются следующими областями. Readonly totalSkills/totalProfSkills и старый activeEffectModifiers не записывают значения при рендере. [R004-08](../code-audit/cross-check-0002.md#r004-08), [issue-00189](../../issues/potential/issue-00189.md), [issue-00192](../../issues/potential/issue-00192.md#дополнительная-сверка-task-0003032). Семь переводов WITCHER.Actor.Skill.* не объявлены отсутствующими; позднее исправление [issue-00193](../../issues/closed/issue-00193.md) прочитано, en/ru подробно остаются .011.
+openModifiers, повышение, собственные модификаторы и IP/training остаются следующими областями. Readonly totalSkills/totalProfSkills и старый activeEffectModifiers не записывают значения при рендере. [R004-08](../code-audit/cross-check-0002.md#r004-08), [issue-00189](../../issues/potential/issue-00189.md), [issue-00192](../../issues/closed/issue-00192.md#дополнительная-сверка-task-0003032). Семь переводов WITCHER.Actor.Skill.* не объявлены отсутствующими; позднее исправление [issue-00193](../../issues/closed/issue-00193.md) прочитано, en/ru подробно остаются .011.
 
 ## Процессы и границы
 

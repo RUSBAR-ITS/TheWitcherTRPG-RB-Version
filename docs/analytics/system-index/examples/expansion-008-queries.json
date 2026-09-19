@@ -426,8 +426,8 @@
           "уточнение-task-0003009"
         ],
         "includes_refs": [
-          "docs/issues/potential/issue-00042.md",
-          "docs/issues/potential/issue-00050.md"
+          "docs/issues/closed/issue-00042.md",
+          "docs/issues/closed/issue-00050.md"
         ]
       }
     },

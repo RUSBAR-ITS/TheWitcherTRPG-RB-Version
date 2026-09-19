@@ -92,7 +92,7 @@ Default function professionSkill создаёт поля для definingSkill и
 
 ## Связанные проблемы
 
-[issue-00110](../../../../../../../issues/potential/issue-00110.md), [issue-00112](../../../../../../../issues/potential/issue-00112.md), [issue-00118](../../../../../../../issues/potential/issue-00118.md). Речь об адресации, доступности конфигурации и предусловии броска.
+[issue-00110](../../../../../../../issues/closed/issue-00110.md), [issue-00112](../../../../../../../issues/potential/issue-00112.md), [issue-00118](../../../../../../../issues/potential/issue-00118.md). Речь об адресации, доступности конфигурации и предусловии броска.
 
 ## История актуализации
 

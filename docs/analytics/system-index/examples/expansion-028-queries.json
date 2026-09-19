@@ -527,7 +527,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00111.md"
+          "docs/issues/closed/issue-00111.md"
         ]
       },
       "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."
@@ -541,7 +541,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00110.md"
+          "docs/issues/closed/issue-00110.md"
         ]
       },
       "basis": "Связано с прежним наблюдением; новая регистрация/игровой опыт отсутствует."

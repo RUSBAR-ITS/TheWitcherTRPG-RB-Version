@@ -71,7 +71,7 @@ damage.itemUuid/formula/crit/strike/type/originalLocation/location наслед�
 
 ## Связанные проблемы
 
-[issue-00025](../../../../../../issues/potential/issue-00025.md), [issue-00257](../../../../../../issues/potential/issue-00257.md). Неверное чтение damage.damageProperties в одном потребителе остаётся issue-00025. Потеря duration выделена; намеренность остальных отличий схем не объявлена ошибкой.
+[issue-00025](../../../../../../issues/potential/issue-00025.md), [issue-00257](../../../../../../issues/closed/issue-00257.md). Неверное чтение damage.damageProperties в одном потребителе остаётся issue-00025. Потеря duration выделена; намеренность остальных отличий схем не объявлена ошибкой.
 
 ## История актуализации
 

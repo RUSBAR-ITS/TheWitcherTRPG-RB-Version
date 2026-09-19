@@ -83,7 +83,7 @@ TheWitcherTRPG.js импортирует namespace Fumble и регистрир�
 
 ## Связанные проблемы
 
-[issue-00005](../../../../../../issues/potential/issue-00005.md), [issue-00181](../../../../../../issues/potential/issue-00181.md), [issue-00182](../../../../../../issues/potential/issue-00182.md), [issue-00183](../../../../../../issues/potential/issue-00183.md). Три новых наблюдения: диапазоны таблиц, UUID вместо Actor у speaker и видимый пункт без обработчика для других типов сообщений. Все остаются potential.
+[issue-00005](../../../../../../issues/closed/issue-00005.md), [issue-00181](../../../../../../issues/potential/issue-00181.md), [issue-00182](../../../../../../issues/potential/issue-00182.md), [issue-00183](../../../../../../issues/potential/issue-00183.md). Три новых наблюдения: диапазоны таблиц, UUID вместо Actor у speaker и видимый пункт без обработчика для других типов сообщений. Все остаются potential.
 
 ## История актуализации
 

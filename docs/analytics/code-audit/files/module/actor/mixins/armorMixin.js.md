@@ -144,7 +144,7 @@ damageMulti вычисляется по общему damage.type; без соп�
 ## Связанные проблемы
 
 Новые: [277](../../../../../../issues/potential/issue-00277.md) (stored EV), [278](../../../../../../issues/potential/issue-00278.md) (дубли класса), [279](../../../../../../issues/potential/issue-00279.md) (уменьшение SP добавленным слоем), [280](../../../../../../issues/potential/issue-00280.md) (тип Natural resistance), [281](../../../../../../issues/potential/issue-00281.md) (bypass и естественный износ), [282](../../../../../../issues/potential/issue-00282.md) (раннее завершение/старый SP), [283](../../../../../../issues/potential/issue-00283.md) (NaN пояснения).
-Прежние [25](../../../../../../issues/potential/issue-00025.md), [26](../../../../../../issues/potential/issue-00026.md), [35](../../../../../../issues/potential/issue-00035.md), [83](../../../../../../issues/potential/issue-00083.md), [254](../../../../../../issues/potential/issue-00254.md) уточнены; все остаются potential.
+Прежние [25](../../../../../../issues/potential/issue-00025.md), [26](../../../../../../issues/potential/issue-00026.md), [35](../../../../../../issues/closed/issue-00035.md), [83](../../../../../../issues/potential/issue-00083.md), [254](../../../../../../issues/potential/issue-00254.md) уточнены; все остаются potential.
 
 ## История актуализации
 

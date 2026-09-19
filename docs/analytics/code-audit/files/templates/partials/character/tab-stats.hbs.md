@@ -77,7 +77,7 @@ JavaScript-функций, partial-вызовов и именованных inpu
 
 ## Связанные проблемы
 
-[issue-00012](../../../../../../issues/potential/issue-00012.md), [issue-00035](../../../../../../issues/potential/issue-00035.md), [issue-00036](../../../../../../issues/potential/issue-00036.md), [issue-00198](../../../../../../issues/potential/issue-00198.md), [issue-00199](../../../../../../issues/potential/issue-00199.md). Расчётные проблемы отделены от двух подтверждённых несогласованностей вывода.
+[issue-00012](../../../../../../issues/closed/issue-00012.md), [issue-00035](../../../../../../issues/closed/issue-00035.md), [issue-00036](../../../../../../issues/closed/issue-00036.md), [issue-00198](../../../../../../issues/potential/issue-00198.md), [issue-00199](../../../../../../issues/potential/issue-00199.md). Расчётные проблемы отделены от двух подтверждённых несогласованностей вывода.
 
 ## История актуализации
 

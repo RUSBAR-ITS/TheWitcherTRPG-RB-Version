@@ -98,7 +98,7 @@ defineSchema собирает определения; значения созд�
 
 ## Связанные проблемы
 
-- [issue-00017](../../../../../../issues/potential/issue-00017.md) — списание магического опыта в levelUpSkill и Log.
+- [issue-00017](../../../../../../issues/closed/issue-00017.md) — списание магического опыта в levelUpSkill и Log.
 - [issue-00024](../../../../../../issues/potential/issue-00024.md) — изменение формы lifeEvents при подготовке листа.
 - [issue-00028](../../../../../../issues/potential/issue-00028.md) — потерянный Promise операций Log.
 - [issue-00029](../../../../../../issues/potential/issue-00029.md) — отрицательный строковый ручной расход IP.
