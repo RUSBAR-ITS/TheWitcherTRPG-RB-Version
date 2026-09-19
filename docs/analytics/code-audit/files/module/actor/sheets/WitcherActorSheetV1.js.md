@@ -132,7 +132,7 @@ context.system — сериализованная копия actor.toObject(fals
 
 ## Связанные проблемы
 
-[issue-00024](../../../../../../issues/potential/issue-00024.md), [issue-00054](../../../../../../issues/closed/issue-00054.md), [issue-00127](../../../../../../issues/closed/issue-00127.md), [issue-00164](../../../../../../issues/potential/issue-00164.md), [issue-00165](../../../../../../issues/closed/issue-00165.md), [issue-00166](../../../../../../issues/potential/issue-00166.md), [issue-00167](../../../../../../issues/potential/issue-00167.md). Наблюдения общих тел применимы при подключении V1; не заявлены как доказанная неисправность действующего V1 UI. issue-00024 относится к активной V2-ветви: здесь lifeEvents ожидается объектом. V1 не производит criticalWounds для современного tab-effects.hbs; сам этот HBS назначен наследникам V2.
+[issue-00024](../../../../../../issues/potential/issue-00024.md), [issue-00054](../../../../../../issues/closed/issue-00054.md), [issue-00127](../../../../../../issues/closed/issue-00127.md), [issue-00164](../../../../../../issues/closed/issue-00164.md), [issue-00165](../../../../../../issues/closed/issue-00165.md), [issue-00166](../../../../../../issues/potential/issue-00166.md), [issue-00167](../../../../../../issues/closed/issue-00167.md). Наблюдения общих тел применимы при подключении V1; не заявлены как доказанная неисправность действующего V1 UI. issue-00024 относится к активной V2-ветви: здесь lifeEvents ожидается объектом. V1 не производит criticalWounds для современного tab-effects.hbs; сам этот HBS назначен наследникам V2.
 
 ## История актуализации
 

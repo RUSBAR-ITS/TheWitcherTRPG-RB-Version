@@ -105,7 +105,7 @@
 
 ## Связанные проблемы
 
-[issue-00044](../../../../../../issues/closed/issue-00044.md) — длительность копии; [issue-00045](../../../../../../issues/potential/issue-00045.md) — повторная пересылка отсутствующего Item; [issue-00008](../../../../../../issues/potential/issue-00008.md) — завершение Queries и вложенных операций. Ветвь оружия: [issue-00042](../../../../../../issues/closed/issue-00042.md), [issue-00046](../../../../../../issues/potential/issue-00046.md), [issue-00050](../../../../../../issues/closed/issue-00050.md).
+[issue-00044](../../../../../../issues/closed/issue-00044.md) — длительность копии; [issue-00045](../../../../../../issues/closed/issue-00045.md) — повторная пересылка отсутствующего Item; [issue-00008](../../../../../../issues/potential/issue-00008.md) — завершение Queries и вложенных операций. Ветвь оружия: [issue-00042](../../../../../../issues/closed/issue-00042.md), [issue-00046](../../../../../../issues/potential/issue-00046.md), [issue-00050](../../../../../../issues/closed/issue-00050.md).
 
 ## История актуализации
 
@@ -119,7 +119,7 @@
 
 ## Уточнение TASK-0003.028
 
-2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getActorOwner выбирает первого активного не-GM с OWNER при hasPlayerOwner, иначе activeGM; результат может отсутствовать. Вызовы query:41/72 не имеют guard получателя — смежные места [issue-00185](../../../../../../issues/potential/issue-00185.md). В .028 непосредственно исполнен аналогичный маршрут applyStatusEffectToActor; создание/клонирование ActiveEffect и удалённые запросы здесь повторно не исполнялись.
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: getActorOwner выбирает первого активного не-GM с OWNER при hasPlayerOwner, иначе activeGM; результат может отсутствовать. Вызовы query:41/72 не имеют guard получателя — смежные места [issue-00185](../../../../../../issues/closed/issue-00185.md). В .028 непосредственно исполнен аналогичный маршрут applyStatusEffectToActor; создание/клонирование ActiveEffect и удалённые запросы здесь повторно не исполнялись.
 
 Полные карточки зависимости: [module/scripts/helper.js](../helper.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
 

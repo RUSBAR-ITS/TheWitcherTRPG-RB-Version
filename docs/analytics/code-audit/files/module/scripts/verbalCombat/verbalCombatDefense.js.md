@@ -105,7 +105,7 @@ extendedRoll с defense=true принимает равенство threshold з�
 
 ## Связанные проблемы
 
-[302](../../../../../../issues/potential/issue-00302.md) — menu DOM; [303](../../../../../../issues/potential/issue-00303.md) — чужое radio; [305](../../../../../../issues/potential/issue-00305.md) — числовой skill вместо label; [184](../../../../../../issues/potential/issue-00184.md) — flags. [149](../../../../../../issues/potential/issue-00149.md) — отсутствие Actor до guarded executeDefense; [304](../../../../../../issues/potential/issue-00304.md) — ожидание Actor.verbalCombat в Counterargue не гарантируется.
+[302](../../../../../../issues/closed/issue-00302.md) — menu DOM; [303](../../../../../../issues/closed/issue-00303.md) — чужое radio; [305](../../../../../../issues/potential/issue-00305.md) — числовой skill вместо label; [184](../../../../../../issues/potential/issue-00184.md) — flags. [149](../../../../../../issues/potential/issue-00149.md) — отсутствие Actor до guarded executeDefense; [304](../../../../../../issues/potential/issue-00304.md) — ожидание Actor.verbalCombat в Counterargue не гарантируется.
 
 ## История актуализации
 

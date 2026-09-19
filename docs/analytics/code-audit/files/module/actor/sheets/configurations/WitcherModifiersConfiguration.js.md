@@ -103,7 +103,7 @@ Default export extends HandlebarsApplicationMixin(ActorSheetV2). CharacterSheet 
 
 ## Связанные проблемы
 
-[issue-00167](../../../../../../../issues/potential/issue-00167.md), [issue-00192](../../../../../../../issues/closed/issue-00192.md), [issue-00194](../../../../../../../issues/closed/issue-00194.md), [issue-00195](../../../../../../../issues/closed/issue-00195.md). Полный разбор закрывает прежнюю границу .029 по этому классу, но не подтверждает и не исправляет issues.
+[issue-00167](../../../../../../../issues/closed/issue-00167.md), [issue-00192](../../../../../../../issues/closed/issue-00192.md), [issue-00194](../../../../../../../issues/closed/issue-00194.md), [issue-00195](../../../../../../../issues/closed/issue-00195.md). Полный разбор закрывает прежнюю границу .029 по этому классу, но не подтверждает и не исправляет issues.
 
 ## История актуализации
 

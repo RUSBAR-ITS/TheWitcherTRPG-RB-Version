@@ -25,7 +25,7 @@ Character/Monster регистрируют openModifiers, читают target.da
 
 PARTS содержит одновременно stats и skills. Локального фильтра частей нет; обычный внешний render без выбора частей берёт все descriptors. type выбирает только содержимое edit-stats; skillKey независимо выбирает группу edit-skills. Вызов с type=skill и заданным ключом не превращает его в отдельный класс формы.
 
-_prepareContext ждёт super, затем context.config=CONFIG.WITCHER; присваивание context.config.statLabels меняет общий объект. Reduce использует все записи statMap и label ?? labelShort. Такое же присваивание есть в отдельной Monster configuration. context.system ссылается на подготовленную модель document.system; это не копия исходных данных. _onRender ожидает super, затем statListener/skillListener. Первый использует локальный html=$(html); второй сохраняет прежнее глобальное присваивание jQuery. [R003-10](../code-audit/cross-check-0002.md#r003-10), [R004-10](../code-audit/cross-check-0002.md#r004-10), [issue-00167](../../issues/potential/issue-00167.md).
+_prepareContext ждёт super, затем context.config=CONFIG.WITCHER; присваивание context.config.statLabels меняет общий объект. Reduce использует все записи statMap и label ?? labelShort. Такое же присваивание есть в отдельной Monster configuration. context.system ссылается на подготовленную модель document.system; это не копия исходных данных. _onRender ожидает super, затем statListener/skillListener. Первый использует локальный html=$(html); второй сохраняет прежнее глобальное присваивание jQuery. [R003-10](../code-audit/cross-check-0002.md#r003-10), [R004-10](../code-audit/cross-check-0002.md#r004-10), [issue-00167](../../issues/closed/issue-00167.md).
 
 ## Поля формы и последующие читатели
 

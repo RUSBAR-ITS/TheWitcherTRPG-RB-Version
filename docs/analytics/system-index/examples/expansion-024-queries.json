@@ -500,7 +500,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00164.md"
+          "docs/issues/closed/issue-00164.md"
         ]
       },
       "basis": "Существующее наблюдение с датой/фасадом; не новый runtime."

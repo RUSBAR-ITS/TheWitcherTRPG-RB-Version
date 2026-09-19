@@ -106,7 +106,7 @@ applyStatusEffectToActor нормализует строковый duration из
 
 ## Уточнение TASK-0003.028
 
-2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: onApplyStatus использует getCurrentCharacter без диалога выбора; applyStatusEffectToActor при !actor.isOwner вызывает getActorOwner(actor).query. Полный helper и настоящий метод потребителя с фасадами показали TypeError при отсутствии активного OWNER и activeGM. Это [issue-00185](../../../../../../issues/potential/issue-00185.md), отдельная от [issue-00008](../../../../../../issues/potential/issue-00008.md) о результате уже отправленного query. Источники текущего Actor и получатель запроса — разные операции.
+2026-09-11, `9f16a7ae4bc942df85a105fd37d9a3cb3ef99f4b`: onApplyStatus использует getCurrentCharacter без диалога выбора; applyStatusEffectToActor при !actor.isOwner вызывает getActorOwner(actor).query. Полный helper и настоящий метод потребителя с фасадами показали TypeError при отсутствии активного OWNER и activeGM. Это [issue-00185](../../../../../../issues/closed/issue-00185.md), отдельная от [issue-00008](../../../../../../issues/potential/issue-00008.md) о результате уже отправленного query. Источники текущего Actor и получатель запроса — разные операции.
 
 Полные карточки зависимости: [module/scripts/helper.js](../helper.js.md). [Перекрёстная сверка](../../../../review-log.md#task-0003028). Это уточнение связи; исходный файл не изменён.
 

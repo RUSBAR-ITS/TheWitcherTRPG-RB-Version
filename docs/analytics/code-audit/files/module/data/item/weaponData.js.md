@@ -125,7 +125,7 @@ repair посылает update родительскому документу, н
 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
-Полностью разобран [ремонт](../../../../../../../module/item/systems/repair.js). RepairData.enchantsCount считает все truthy enhancementItemIds, включая повтор одного ID: [a,'',a] дал 2 и добавил 4 к DC. Рецепт DC20 дал итог 19. Прямые gmRepair/restoreReliability вызывают WeaponData.repair→parent.update({'system.reliable':10}); update в опыте оставался pending. Обычный путь не использует этот метод в ветке update: там отсутствуют damagedLocations/getRestoreReliabilityData ([issue-00102](../../../../../../issues/potential/issue-00102.md)). Прежняя [issue-00081](../../../../../../issues/potential/issue-00081.md) дополнена всеми уровнями ожидания.
+Полностью разобран [ремонт](../../../../../../../module/item/systems/repair.js). RepairData.enchantsCount считает все truthy enhancementItemIds, включая повтор одного ID: [a,'',a] дал 2 и добавил 4 к DC. Рецепт DC20 дал итог 19. Прямые gmRepair/restoreReliability вызывают WeaponData.repair→parent.update({'system.reliable':10}); update в опыте оставался pending. Обычный путь не использует этот метод в ветке update: там отсутствуют damagedLocations/getRestoreReliabilityData ([issue-00102](../../../../../../issues/closed/issue-00102.md)). Прежняя [issue-00081](../../../../../../issues/potential/issue-00081.md) дополнена всеми уровнями ожидания.
 
 ## Уточнение TASK-0003.025
 

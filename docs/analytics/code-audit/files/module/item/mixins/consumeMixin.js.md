@@ -95,7 +95,7 @@ consume запрашивает изменение system.derivedStats.hp.value, 
 
 ## Связанные проблемы
 
-[issue-00008](../../../../../../issues/potential/issue-00008.md), [issue-00031](../../../../../../issues/potential/issue-00031.md), [issue-00034](../../../../../../issues/potential/issue-00034.md), [issue-00045](../../../../../../issues/potential/issue-00045.md), [issue-00049](../../../../../../issues/potential/issue-00049.md). Уточнены существующие границы статусов, Promise и UUID-поиска; отдельных дубликатов нет.
+[issue-00008](../../../../../../issues/potential/issue-00008.md), [issue-00031](../../../../../../issues/potential/issue-00031.md), [issue-00034](../../../../../../issues/potential/issue-00034.md), [issue-00045](../../../../../../issues/closed/issue-00045.md), [issue-00049](../../../../../../issues/potential/issue-00049.md). Уточнены существующие границы статусов, Promise и UUID-поиска; отдельных дубликатов нет.
 
 ## История актуализации
 

@@ -128,7 +128,7 @@ Default export ArmorData extends CommonItemData; зарегистрирован 
 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../../review-log.md#task-0003017).
 
-Уточнён [RepairSystem](../../../../../../../module/item/systems/repair.js) как потребитель system.repair. Прямой вызов настоящей модели через restoreReliability дал payload reliability8 и stoppingPower шести зон: head6,torso7,остальные 0; ожидание update не передаётся наружу. _doRepair при праве update ссылается на отсутствующий собственный getRestoreReliabilityData, а не на ArmorData.repair. Структура текущей модели не создаёт data.damagedLocations автоматически ([issue-00102](../../../../../../issues/potential/issue-00102.md)). Числа — входы диагностического сценария, не изменения правил.
+Уточнён [RepairSystem](../../../../../../../module/item/systems/repair.js) как потребитель system.repair. Прямой вызов настоящей модели через restoreReliability дал payload reliability8 и stoppingPower шести зон: head6,torso7,остальные 0; ожидание update не передаётся наружу. _doRepair при праве update ссылается на отсутствующий собственный getRestoreReliabilityData, а не на ArmorData.repair. Структура текущей модели не создаёт data.damagedLocations автоматически ([issue-00102](../../../../../../issues/closed/issue-00102.md)). Числа — входы диагностического сценария, не изменения правил.
 
 ## Уточнение TASK-0003.025
 

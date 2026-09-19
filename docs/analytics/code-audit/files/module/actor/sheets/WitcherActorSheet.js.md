@@ -158,7 +158,7 @@
 
 ## Связанные проблемы
 
-[issue-00024](../../../../../../issues/potential/issue-00024.md), [issue-00054](../../../../../../issues/closed/issue-00054.md), [issue-00084](../../../../../../issues/potential/issue-00084.md), [issue-00109](../../../../../../issues/potential/issue-00109.md), [issue-00127](../../../../../../issues/closed/issue-00127.md), [issue-00164](../../../../../../issues/potential/issue-00164.md), [issue-00165](../../../../../../issues/closed/issue-00165.md), [issue-00166](../../../../../../issues/potential/issue-00166.md), [issue-00167](../../../../../../issues/potential/issue-00167.md). Новые наблюдения: STA, дубли эффектов, обрезка улучшений, глобальный jQuery. Прежние карточки отделяют изменение lifeEvents, повтор травм в HBS, сбор воздействий брони, enrichedText расы/профессии и ожидание лечения. Категоризация листа не устраняет ни один из этих разрывов.
+[issue-00024](../../../../../../issues/potential/issue-00024.md), [issue-00054](../../../../../../issues/closed/issue-00054.md), [issue-00084](../../../../../../issues/potential/issue-00084.md), [issue-00109](../../../../../../issues/potential/issue-00109.md), [issue-00127](../../../../../../issues/closed/issue-00127.md), [issue-00164](../../../../../../issues/closed/issue-00164.md), [issue-00165](../../../../../../issues/closed/issue-00165.md), [issue-00166](../../../../../../issues/potential/issue-00166.md), [issue-00167](../../../../../../issues/closed/issue-00167.md). Новые наблюдения: STA, дубли эффектов, обрезка улучшений, глобальный jQuery. Прежние карточки отделяют изменение lifeEvents, повтор травм в HBS, сбор воздействий брони, enrichedText расы/профессии и ожидание лечения. Категоризация листа не устраняет ни один из этих разрывов.
 
 ## История актуализации
 

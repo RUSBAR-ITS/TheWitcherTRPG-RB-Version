@@ -92,7 +92,7 @@ CONFIG.Item.dataModels.diagrams регистрируется registerDataModels.
 
 ## Связанные проблемы
 
-[issue-00095](../../../../../../issues/closed/issue-00095.md), [issue-00097](../../../../../../issues/potential/issue-00097.md), [issue-00101](../../../../../../issues/potential/issue-00101.md), [issue-00037](../../../../../../issues/potential/issue-00037.md), [issue-00038](../../../../../../issues/potential/issue-00038.md), [issue-00041](../../../../../../issues/potential/issue-00041.md). 95 — потеря данных листом; 97 — миграция; 101 — разные признаки режима. Остальные — ранее описанные границы изготовления.
+[issue-00095](../../../../../../issues/closed/issue-00095.md), [issue-00097](../../../../../../issues/potential/issue-00097.md), [issue-00101](../../../../../../issues/potential/issue-00101.md), [issue-00037](../../../../../../issues/closed/issue-00037.md), [issue-00038](../../../../../../issues/potential/issue-00038.md), [issue-00041](../../../../../../issues/potential/issue-00041.md). 95 — потеря данных листом; 97 — миграция; 101 — разные признаки режима. Остальные — ранее описанные границы изготовления.
 
 ## История актуализации
 

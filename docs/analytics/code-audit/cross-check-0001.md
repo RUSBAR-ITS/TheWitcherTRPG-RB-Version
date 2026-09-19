@@ -444,7 +444,7 @@
 | [issue-00034](../../issues/potential/issue-00034.md) | Основание сохранено | B04: E06: consumable-ветвь не ожидает операции; removeItemsOfType также без return/await, addItem/removeItem ожидают. |
 | [issue-00035](../../issues/closed/issue-00035.md) | Основание сохранено | B04: E03: REF8→6 при P1/нулевой броне за один calculateStat; правило не устанавливалось. |
 | [issue-00036](../../issues/closed/issue-00036.md) | Основание сохранено | B04: E03: BODY.max2 не влияет на value8 при unmodifiedMax8; перезапись STA и initial/final сверены отдельно. |
-| [issue-00037](../../issues/potential/issue-00037.md) | Основание сохранено | B04: Вызов populateAlchemyCraftComponentsList отсутствует среди класса/примесей; существует getter. |
+| [issue-00037](../../issues/closed/issue-00037.md) | Основание сохранено | B04: Вызов populateAlchemyCraftComponentsList отсутствует среди класса/примесей; существует getter. |
 | [issue-00038](../../issues/potential/issue-00038.md) | Основание сохранено | B04: removeItem/addItem/toMessage не ожидаются в realCraft; успешный бросок не подтверждает запись. |
 | [issue-00039](../../issues/closed/issue-00039.md) | Основание сохранено | B04: Прямое results[0], отсутствие проверки []; ядро допускает несколько результатов. Legacy getters поддержаны, не отдельная ошибка API. |
 | [issue-00040](../../issues/closed/issue-00040.md) | Основание сохранено | B04: Цикл генерации ожидает roll, но не quantity.update; ++ локальной переменной не обновляет system синхронно. |
@@ -452,7 +452,7 @@
 | [issue-00042](../../issues/closed/issue-00042.md) | Основание сохранено | B04: E04: созданный payload теряет system.changes при полной замене system. |
 | [issue-00043](../../issues/closed/issue-00043.md) | Основание сохранено | B04: E01: system без changes падает; changes без флага получают initial. Позднее уточнение .010 связывает это с payload мастера. |
 | [issue-00044](../../issues/closed/issue-00044.md) | Основание сохранено | B04: Присваивание prepared duration.rounds перед clone не меняет _source; контракт нового duration/core migration сверён, сетевой итог неизвестен. |
-| [issue-00045](../../issues/potential/issue-00045.md) | Основание сохранено | B04: Ветка отсутствующего Item повторяет тот же запрос activeGM; нет локальной остановки. Реальная петля не запускалась. |
+| [issue-00045](../../issues/closed/issue-00045.md) | Основание сохранено | B04: Ветка отсутствующего Item повторяет тот же запрос activeGM; нет локальной остановки. Реальная петля не запускалась. |
 | [issue-00046](../../issues/potential/issue-00046.md) | Основание сохранено | B04: E04: отсутствие выбранного weapon приводит к TypeError на name; не маскируется типом улучшения. |
 | [issue-00047](../../issues/potential/issue-00047.md) | Основание сохранено | B04: getCurrentCharacter может вернуть undefined; onApplyStatus читает uuid без проверки. |
 | [issue-00048](../../issues/potential/issue-00048.md) | Основание сохранено | B04: DOM.querySelector(...).each и передача jQuery в DOM-listener несовместимы; внутренний штатный вызов другого export. |
@@ -501,7 +501,7 @@
 | [issue-00091](../../issues/potential/issue-00091.md) | Основание сохранено | B06: R01: модель без id и пустой data-id дают findIndex=-1 и TypeError; удаление также сравнивает несовместимые ID. |
 | [issue-00092](../../issues/potential/issue-00092.md) | Основание сохранено | B06: R01: addsTempHp отсутствует в четырёхполевой схеме, HBS запрашивает его при isConsumable. |
 | [issue-00093](../../issues/potential/issue-00093.md) | Основание сохранено | B06: MutagenSheet не переопределяет configuration, в отличие от Alchemical/Valuable; данные расхода в модели есть. |
-| [issue-00094](../../issues/potential/issue-00094.md) | Основание сохранено | B06: R03 повторил рендер настоящего component-sheet и Missing helper select; selectOptions существует отдельно. |
+| [issue-00094](../../issues/closed/issue-00094.md) | Основание сохранено | B06: R03 повторил рендер настоящего component-sheet и Missing helper select; selectOptions существует отдельно. |
 | [issue-00095](../../issues/closed/issue-00095.md) | Основание сохранено | B06: R02: неразрешённый UUID сохраняет Saved в модели, но knownCraftingComponents теряет name; источник ошибки —лист. |
 | [issue-00096](../../issues/closed/issue-00096.md) | Основание сохранено | B06: Оба partial читают верхний description, модель хранит system.description; не путать с обогащением текста. |
 | [issue-00097](../../issues/potential/issue-00097.md) | Основание сохранено | B06: R02: старый associatedItem и alchemyDC перезаписывают новые UUID/craftingDC при isFormulae=false. |
@@ -509,7 +509,7 @@
 | [issue-00099](../../issues/closed/issue-00099.md) | Основание сохранено | B06: remove-ссылка имеет actions.add, пустая add-ссылка —actions.remove; действие удаления определяется классом. |
 | [issue-00100](../../issues/potential/issue-00100.md) | Основание сохранено | B06: R05: parseInt пустой строки остаётся NaN после ??0 и портит сумму. |
 | [issue-00101](../../issues/potential/issue-00101.md) | Основание сохранено | B06: R02: isFormulae=true/alchemyDC0 не выбирает алхимию в Item; форма использует отдельный флаг. |
-| [issue-00102](../../issues/potential/issue-00102.md) | Основание сохранено | B06: R04: настоящий RepairData не имеет damagedLocations, обычный repairItem падает; getRestoreReliabilityData также отсутствует ниже. |
+| [issue-00102](../../issues/closed/issue-00102.md) | Основание сохранено | B06: R04: настоящий RepairData не имеет damagedLocations, обычный repairItem падает; getRestoreReliabilityData также отсутствует ниже. |
 | [issue-00103](../../issues/closed/issue-00103.md) | Основание сохранено | B06: Незарегистрированная woundsAffectSkillBase читается до Roll; дополнительная незакрытая скобка только при внешнем true. Полный ремонт не заявлен. |
 | [issue-00104](../../issues/potential/issue-00104.md) | Основание сохранено | B06: R04: owned quantity0 отмечается нехваткой, но допуск проходит только после диагностической подстановки damagedLocations; раньше мешает issue102. |
 | [issue-00105](../../issues/closed/issue-00105.md) | Основание сохранено | B06: R04: missingComponents=[null] приводит к TypeError oc.img; prepareData добавляет неразрешённый результат без проверки. |
@@ -571,10 +571,10 @@
 | [issue-00161](../../issues/closed/issue-00161.md) | Основание сохраняется | B09: Исходный UUID сохраняется и update вызывается у источника; серверные права не обходились. |
 | [issue-00162](../../issues/closed/issue-00162.md) | Основание сохраняется | B09: Нет очистки в модели/документе; ссылки не являются embedded-владением контейнера. |
 | [issue-00163](../../issues/potential/issue-00163.md) | Основание сохраняется | B09: carry отсутствует в Drop/calcWeight; Q03 допускает self даже при carry0. |
-| [issue-00164](../../issues/potential/issue-00164.md) | Основание сохраняется | B10: J01:9/10+REC3 отправляет12, Full10; обе версии, правило рулбука не утверждается. |
+| [issue-00164](../../issues/closed/issue-00164.md) | Основание сохраняется | B10: J01:9/10+REC3 отправляет12, Full10; обе версии, правило рулбука не утверждается. |
 | [issue-00165](../../issues/closed/issue-00165.md) | Основание сохраняется | B10: allApplicableEffects + дополнительная выборка допускают один объект дважды; условный фасад прежнего теста соответствует геттерам. |
 | [issue-00166](../../issues/potential/issue-00166.md) | Основание сохраняется | B10: J02: prepared enhancementItems обрезается, source IDs не изменяются; не дубль Armor RangeError82. |
-| [issue-00167](../../issues/potential/issue-00167.md) | Основание сохраняется | B10: J05: imported ES module перезаписывает global jQuery; реальная библиотека браузера не запускалась. |
+| [issue-00167](../../issues/closed/issue-00167.md) | Основание сохраняется | B10: J05: imported ES module перезаписывает global jQuery; реальная библиотека браузера не запускалась. |
 | [issue-00168](../../issues/potential/issue-00168.md) | Основание сохраняется | B10: J03 + core617–621: три legacy callback имеют переставленные аргументы; delete callback корректен. |
 | [issue-00169](../../issues/potential/issue-00169.md) | Основание сохраняется | B10: giftItem не ждёт addItem/emit перед remove; барьер входа168 отделён от тела. |
 | [issue-00170](../../issues/potential/issue-00170.md) | Основание сохраняется | B10: Пустой chooser оставляет OK, который читает отсутствующее поле. |
@@ -592,7 +592,7 @@
 | [issue-00182](../../issues/potential/issue-00182.md) | Основание сохраняется | B11: K02: UUID передаётся без fromUuid; core getSpeaker контракт проверен ранее. |
 | [issue-00183](../../issues/potential/issue-00183.md) | Основание сохраняется | B11: visible не фильтрует constructor; base/damage могут иметь fumble без apply-ветки. |
 | [issue-00184](../../issues/potential/issue-00184.md) | Основание сохраняется | B11: K01: toMessage завершён, setFlag pending; не утверждается потеря данных на сервере. |
-| [issue-00185](../../issues/potential/issue-00185.md) | Основание сохраняется | B11: helper возвращает отсутствующий activeGM; consumers вызывают query без guard. |
+| [issue-00185](../../issues/closed/issue-00185.md) | Основание сохраняется | B11: helper возвращает отсутствующий activeGM; consumers вызывают query без guard. |
 | [issue-00186](../../issues/closed/issue-00186.md) | Основание сохраняется | B11: ru key отсутствует, en fallback есть; нельзя утверждать полностью пустую подпись. |
 | [issue-00187](../../issues/closed/issue-00187.md) | Основание сохраняется | B11: K03: data-skill содержит Item.name, нет ID, поля skill пусты. |
 | [issue-00188](../../issues/potential/issue-00188.md) | Основание сохраняется | B11: Семь system.skills-групп исключают spd/luck, хотя подготовлены девять. |
@@ -610,7 +610,7 @@
 | [issue-00200](../../issues/potential/issue-00200.md) | Дублирует issue-00029 | B12: D05: дубль29; тот же запрос 10-3, не сохранённый строковый баланс. |
 | [issue-00201](../../issues/potential/issue-00201.md) | Основание сохраняется | B12: Оба callback читают associatedItem.name при нехватке; более ранний алхимический барьер37 сохранён. |
 | [issue-00202](../../issues/potential/issue-00202.md) | Основание сохраняется | B12: L04: parse5 создаёт три anchors; видимые последствия в браузере не утверждаются. |
-| [issue-00203](../../issues/potential/issue-00203.md) | Основание сохраняется | B12: HP/base и HP/max выбирают разные состояния; обе боковые панели сопоставлены. |
+| [issue-00203](../../issues/closed/issue-00203.md) | Основание сохраняется | B12: HP/base и HP/max выбирают разные состояния; обе боковые панели сопоставлены. |
 | [issue-00204](../../issues/closed/issue-00204.md) | Основание сохраняется | B12: L01: исходный addActiveEffects выдаёт +1[], настоящий Roll отвергает. |
 | [issue-00205](../../issues/closed/issue-00205.md) | Основание сохраняется | B12: Четыре ru keys отсутствуют, en fallback есть; связь с обоими sidebar. |
 | [issue-00206](../../issues/closed/issue-00206.md) | Основание сохраняется | B12: L02: реальная CONST[0] ActiveEffect, Folder.create payload; сервер Actor.create не запускался. |
@@ -661,7 +661,7 @@
 | [issue-00251](../../issues/potential/issue-00251.md) | Основание сохраняется | B14: T04: STA update уже pending при heal failure; успешный Roll тоже не ждёт эффекты/область. |
 | [issue-00252](../../issues/potential/issue-00252.md) | Основание сохраняется | B14: Ritual DC только выводится; new RollConfig({showResult:false}) оставляет threshold−1. |
 | [issue-00253](../../issues/potential/issue-00253.md) | Основание сохраняется | B14: HBSдоextendedRoll, эффекты gated !fumble, heal/shield callback не читают Roll. |
-| [issue-00254](../../issues/potential/issue-00254.md) | Основание сохраняется | B14: cast при armorEnc>0 добавляет весь ignoredEv, возможен положительный остаток. |
+| [issue-00254](../../issues/closed/issue-00254.md) | Основание сохраняется | B14: cast при armorEnc>0 добавляет весь ignoredEv, возможен положительный остаток. |
 | [issue-00255](../../issues/potential/issue-00255.md) | Основание сохраняется | B14: T02: missing source вызывает TypeError после target.update; onShield name guard также отсутствует. |
 | [issue-00256](../../issues/potential/issue-00256.md) | Основание сохраняется | B14: T02:−8 даёт HP−3, bad→NaN; это запросы, не доказанное сохранение. |
 | [issue-00257](../../issues/closed/issue-00257.md) | Основание сохраняется | B14: T01: настоящий BaseChatMessage очищает duration attack/damage; onHit/onDamage читают позже. |

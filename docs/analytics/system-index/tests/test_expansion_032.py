@@ -71,7 +71,7 @@ class MagicCastExpansion(unittest.TestCase):
         self.assertIn('rollFormula = check.formula + rollFormula',b)
         self.assertIn('attack: spellItem.getItemAttack()',b)
         self.assertIn(self.q['actor.armorMixin.getArmorEcumbrance'],self.targets('actor.castSpellMixin.castSpell','calls'))
-        refs=self.data.entities[self.q['magic-cast/ev-compensation']]['refs'];self.assertIn('docs/issues/potential/issue-00254.md',{r['path']for r in refs})
+        refs=self.data.entities[self.q['magic-cast/ev-compensation']]['refs'];self.assertIn('docs/issues/closed/issue-00254.md',{r['path']for r in refs})
     def test_cost_guard_and_awaited_update(self):
         b=self.body(11)
         self.assertLess(b.index('let origStaCost = staCostTotal'),b.index('staCostTotal -= Number(focusValue)'))

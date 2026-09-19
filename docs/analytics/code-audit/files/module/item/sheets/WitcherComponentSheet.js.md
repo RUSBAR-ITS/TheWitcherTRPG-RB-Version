@@ -67,7 +67,7 @@ registerSheets регистрирует WitcherComponentSheet с makeDefault:tru
 
 ## Связанные проблемы
 
-[issue-00094](../../../../../../issues/potential/issue-00094.md). Ошибка вызвана подключаемым HBS на штатном наборе helpers Foundry 14.
+[issue-00094](../../../../../../issues/closed/issue-00094.md). Ошибка вызвана подключаемым HBS на штатном наборе helpers Foundry 14.
 
 ## История актуализации
 

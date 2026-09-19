@@ -640,7 +640,7 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00254.md"
+          "docs/issues/closed/issue-00254.md"
         ]
       },
       "basis": "Ссылка на конкретную существующую issue, содержание сопоставлено с локальным кодом."

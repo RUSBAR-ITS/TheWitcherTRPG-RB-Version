@@ -94,7 +94,7 @@ getRandomInt не создаёт Roll/ChatMessage; влияет на downstream 
 
 ## Связанные проблемы
 
-[issue-00008](../../../../../issues/potential/issue-00008.md), [issue-00149](../../../../../issues/potential/issue-00149.md), [issue-00185](../../../../../issues/potential/issue-00185.md). issue-00149 дополнена общим выбором Actor и потребителями. issue-00185 — отсутствие доступного получателя query; issue-00008 касается уже другого этапа, подтверждения выполнения обработчиком.
+[issue-00008](../../../../../issues/potential/issue-00008.md), [issue-00149](../../../../../issues/potential/issue-00149.md), [issue-00185](../../../../../issues/closed/issue-00185.md). issue-00149 дополнена общим выбором Actor и потребителями. issue-00185 — отсутствие доступного получателя query; issue-00008 касается уже другого этапа, подтверждения выполнения обработчиком.
 
 Дополнительно [issue-00186](../../../../../issues/closed/issue-00186.md): отсутствует русская подпись пользовательского модификатора. Ключи проверены структурным чтением en/ru; стандартный английский fallback сверён по коду Localization ядра. Сторонние переводы и браузер не проверялись.
 
@@ -164,7 +164,7 @@ getActorOwner вызывается из effect/status helpers после castSpe
 
 2026-09-12, rusbar-main, a69f11d2e4c4318cfbf635dabad97b0062c63c20; исходники не изменены.
 
-Полностью разобраны [общий словесный бросок](../actor/mixins/verbalCombatMixin.js.md) и [применение урона](verbalCombat/verbalCombat.js.md). Настоящий addPart принимает 0/−2/+2/2+3 и truthy строку 'hide'; формулы распарсены настоящим Roll (группа 02). Defense самостоятельно сравнивает текстовый customModifiers с 0 и пропускает 2+3, не вызывает addPart для него. applyVerbalCombatDamage:52–55 без Actor выбрасывает TypeError, executeDefense:19–20 имеет guard (группы 15/17); меню блокируется раньше по [302](../../../../../issues/potential/issue-00302.md). Это уточнение [149](../../../../../issues/potential/issue-00149.md), сам выбор getInteractActor/input повторно не запускался.
+Полностью разобраны [общий словесный бросок](../actor/mixins/verbalCombatMixin.js.md) и [применение урона](verbalCombat/verbalCombat.js.md). Настоящий addPart принимает 0/−2/+2/2+3 и truthy строку 'hide'; формулы распарсены настоящим Roll (группа 02). Defense самостоятельно сравнивает текстовый customModifiers с 0 и пропускает 2+3, не вызывает addPart для него. applyVerbalCombatDamage:52–55 без Actor выбрасывает TypeError, executeDefense:19–20 имеет guard (группы 15/17); меню блокируется раньше по [302](../../../../../issues/closed/issue-00302.md). Это уточнение [149](../../../../../issues/potential/issue-00149.md), сам выбор getInteractActor/input повторно не запускался.
 
 [Сценарии, результаты и ограничения](../../../review-log.md#task-0003046). Связанные файлы повторно не засчитываются в покрытие.
 

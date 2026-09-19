@@ -93,7 +93,7 @@ rollDamage не задаёт speaker/type/system: создаёт объект т
 
 ## Связанные проблемы
 
-[302](../../../../../../issues/potential/issue-00302.md) — меню DOM/jQuery; [304](../../../../../../issues/potential/issue-00304.md) — возврат до Resolve-update; [184](../../../../../../issues/potential/issue-00184.md) — flag после сообщения; [293](../../../../../../issues/potential/issue-00293.md) — malformed flavor, расширенная существующая issue. [149](../../../../../../issues/potential/issue-00149.md) — отсутствие выбранного Actor; ранний барьер 302 отдельно.
+[302](../../../../../../issues/closed/issue-00302.md) — меню DOM/jQuery; [304](../../../../../../issues/potential/issue-00304.md) — возврат до Resolve-update; [184](../../../../../../issues/potential/issue-00184.md) — flag после сообщения; [293](../../../../../../issues/potential/issue-00293.md) — malformed flavor, расширенная существующая issue. [149](../../../../../../issues/potential/issue-00149.md) — отсутствие выбранного Actor; ранний барьер 302 отдельно.
 
 ## История актуализации
 

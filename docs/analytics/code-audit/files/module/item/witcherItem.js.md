@@ -214,7 +214,7 @@ checkIfItemHasRollTable принимает целое количество по�
 
 - [issue-00008](../../../../../issues/potential/issue-00008.md) — Queries не ожидает операцию, в том числе restoreReliability.
 - [issue-00034](../../../../../issues/potential/issue-00034.md) — Actor.useItem не ожидает расходник; методы Actor.addItem/removeItem сами ожидают запись.
-- [issue-00037](../../../../../issues/potential/issue-00037.md) — Интерфейс алхимии вызывает отсутствующий метод списка компонентов.
+- [issue-00037](../../../../../issues/closed/issue-00037.md) — Интерфейс алхимии вызывает отсутствующий метод списка компонентов.
 - [issue-00038](../../../../../issues/potential/issue-00038.md) — realCraft завершается до изменений инвентаря и отправки сообщения.
 - [issue-00039](../../../../../issues/closed/issue-00039.md) — Генератор добычи предполагает единственный непустой результат таблицы.
 - [issue-00040](../../../../../issues/closed/issue-00040.md) — Повторная генерация существующей стопки может терять количество.
@@ -279,7 +279,7 @@ checkIfItemHasRollTable принимает целое количество по�
 
 2026-09-10, `c7cd9d71dcb1714cdccb175aee351a3f1df95c5b`; исходники неизменны. [Сверка](../../../review-log.md#task-0003017).
 
-Полностью разобраны [repairMixin](../../../../../../module/item/mixins/repairMixin.js) и [RepairSystem](../../../../../../module/item/systems/repair.js). Object.assign:373 даёт документу repair/restoreReliability: первый ждёт process(this.actor,this), второй сразу делегирует system.repair. Это методы Item, отличные от методов его модели. Штатный обычный процесс блокируют [issue-00102](../../../../../issues/potential/issue-00102.md) и [issue-00103](../../../../../issues/closed/issue-00103.md). Прямой GM/socket путь восстанавливает через модели. Ожидание update теряется на нескольких уровнях ([issue-00081](../../../../../issues/potential/issue-00081.md)). Настоящая примесь проверена с Item-фасадом/моделями, client WitcherItem не создавался.
+Полностью разобраны [repairMixin](../../../../../../module/item/mixins/repairMixin.js) и [RepairSystem](../../../../../../module/item/systems/repair.js). Object.assign:373 даёт документу repair/restoreReliability: первый ждёт process(this.actor,this), второй сразу делегирует system.repair. Это методы Item, отличные от методов его модели. Штатный обычный процесс блокируют [issue-00102](../../../../../issues/closed/issue-00102.md) и [issue-00103](../../../../../issues/closed/issue-00103.md). Прямой GM/socket путь восстанавливает через модели. Ожидание update теряется на нескольких уровнях ([issue-00081](../../../../../issues/potential/issue-00081.md)). Настоящая примесь проверена с Item-фасадом/моделями, client WitcherItem не создавался.
 
 ## Уточнение TASK-0003.018
 

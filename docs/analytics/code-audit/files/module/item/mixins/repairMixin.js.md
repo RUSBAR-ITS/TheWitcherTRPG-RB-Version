@@ -81,7 +81,7 @@
 
 ## Связанные проблемы
 
-[issue-00081](../../../../../../issues/potential/issue-00081.md), [issue-00102](../../../../../../issues/potential/issue-00102.md), [issue-00103](../../../../../../issues/closed/issue-00103.md), [issue-00008](../../../../../../issues/potential/issue-00008.md), [issue-00010](../../../../../../issues/potential/issue-00010.md). 81 — раннее завершение нижних операций;102/103 блокируют обычный процесс. 8 — отдельный query,10 — общий receiver; это не дубликаты ошибок примеси.
+[issue-00081](../../../../../../issues/potential/issue-00081.md), [issue-00102](../../../../../../issues/closed/issue-00102.md), [issue-00103](../../../../../../issues/closed/issue-00103.md), [issue-00008](../../../../../../issues/potential/issue-00008.md), [issue-00010](../../../../../../issues/potential/issue-00010.md). 81 — раннее завершение нижних операций;102/103 блокируют обычный процесс. 8 — отдельный query,10 — общий receiver; это не дубликаты ошибок примеси.
 
 ## История актуализации
 

@@ -79,7 +79,7 @@ getSubstance исключает isStored; findNeededComponent ищет Item.name
 
 ## Связанные проблемы
 
-[issue-00094](../../../../../../issues/potential/issue-00094.md). Неподключённый helper относится к форме, не к defineSchema.
+[issue-00094](../../../../../../issues/closed/issue-00094.md). Неподключённый helper относится к форме, не к defineSchema.
 
 ## История актуализации
 
