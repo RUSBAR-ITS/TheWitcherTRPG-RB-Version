@@ -1,5 +1,11 @@
 # module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js
 
+## Актуальное изменение — 14.3.1.00142
+
+DEFAULT_OPTIONS задаёт только этому редактору класс profession-configuration и800×700. _prepareTabs всегда оставляет названия веток (данные либо локализованный fallback), general — основной навык. _prepareContext строит professionSkillLabels для10 путей; _preparePartContext передаёт карту в ветки. Это только представление; ID/имена/структура данных и адреса действий прежние.
+
+[Исходник](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) · [Проверки и границы](../../../../../../task-0012-checks.md#fixes-00142). Локальная приёмка выполнена; игровой повтор впереди. Более ранние датированные описания ниже — история.
+
 ## Актуальное изменение TASK-0012 — 14.3.1.00139
 
 2026-09-20, dev. temporaryHpParameters строит список из стандартных параметров, текущей способности, каталога Items и предметов владельца; дубли копий убираются по kind/skillId. _prepareContext передаёт расшифровки aliases в части. _onInsertTemporaryHpParameter сохраняет формулу и descriptor одним item.update, учитывает курсор/отмену и sourceOnly. _onGenerateSkillId явно заполняет ID выбранного слота.

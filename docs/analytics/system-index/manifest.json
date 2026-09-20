@@ -6,8 +6,8 @@
   "snapshot": {
     "date": "2026-09-20",
     "branch": "dev",
-    "head": "bc84c57504850d07506d8a486c0a628806417ab5",
-    "source_hash": "e0eb91068ccd438a8646458fcdabfd18d3ba0932e1142f8ae676143d41790e56"
+    "head": "e278c68313409fccac1374cf148ce31e2fa62c0d",
+    "source_hash": "1cef72674c8064a860ba22f23f62bbee75c22862921de52723a38f36157a0346"
   },
   "scope": {
     "registry": "docs/analytics/code-audit/registry.md",
@@ -339,7 +339,8 @@
       "data/entities/task-0011-007.jsonl",
       "data/entities/task-0011-008.jsonl",
       "data/entities/task-0011-quantity.jsonl",
-      "data/entities/task-0012.jsonl"
+      "data/entities/task-0012.jsonl",
+      "data/entities/task-0012-fixes.jsonl"
     ],
     "relations": [
       "examples/relations.jsonl",
@@ -391,7 +392,8 @@
       "data/relations/task-0011-007.jsonl",
       "data/relations/task-0011-008.jsonl",
       "data/relations/task-0011-quantity.jsonl",
-      "data/relations/task-0012.jsonl"
+      "data/relations/task-0012.jsonl",
+      "data/relations/task-0012-fixes.jsonl"
     ],
     "processes": [
       "examples/processes.jsonl",
@@ -496,7 +498,7 @@
     "docs/analytics/task-0010-010-content-matrix.md": "5140978723933cd3040b4218fada212bdda7ee2247af2174e848fc374ee31200",
     "docs/analytics/task-0010-011-pack-installation.md": "7cf08a0b0d706f9691414334672da8deb5a603d4b988929fd4f053c02d770172",
     "docs/analytics/task-0010-012-static-acceptance.md": "28ea8b299c05134f5c395494652462e586911af414bddaa00cdea7199a483173",
-    "docs/documentation/known-limitations.md": "66730c5d7665645adefb0591712572912d03e1fbd95b3c03af23eafd87020cc7",
+    "docs/documentation/known-limitations.md": "5c91753f86e3dc6c5adc242ccf851800400c80195bd3654bd1758eb0735a5c35",
     "docs/issues/closed/issue-00001.md": "10a547c5bb1778d15270c4d6eaebc0746c2436418a870d0badf614946b0823c0",
     "docs/issues/closed/issue-00002.md": "5e56c1dd7007624a66ba8265e7049489fd328120829c1b3f97abf00e01c50d9a",
     "docs/issues/closed/issue-00004.md": "9ec3384effc5cbfe1e9f0b37359e824509224da0531004af3ae31b2a92a1c6df",
@@ -742,12 +744,12 @@
     "docs/analytics/task-0010-regression-2026-09-19.md": "d1f8c22a7fe463143b7d3379e263814f3345d118a7df74d756a8ecc4466595e0",
     "docs/analytics/task-0011-static-checks.md": "43f41d0e0eb3ab9f14fb624e08199c470b85f96d0aa43f399ada1670ba1a7e6a",
     "docs/analytics/task-0011-browser-checks.md": "a73e537d6d31e4ac2d6ba8ca5f9eebb1278596d05b8e5a64b2f80963da36ea1d",
-    "docs/analytics/task-0012-checks.md": "047dc0e5b4e4c5cacc023659b62e4bfdb14ef88a93b2188aa2ccda913a2c4832"
+    "docs/analytics/task-0012-checks.md": "faa43dbc7135748fb6ada3033f732e5beb940d9a41b2f4e167a1b185ed3c456e"
   },
   "next_ids": {
     "source": 652,
-    "entity": 5989,
-    "relation": 16788,
+    "entity": 5992,
+    "relation": 16803,
     "process": 495
   },
   "retired_ids": [

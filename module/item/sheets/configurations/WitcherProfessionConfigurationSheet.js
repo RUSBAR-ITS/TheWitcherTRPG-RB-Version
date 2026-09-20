@@ -4,6 +4,8 @@ import WitcherConfigurationSheet from './WitcherConfigurationSheet.js';
 export default class WitcherProfessionConfigurationSheet extends WitcherConfigurationSheet {
     /** @override */
     static DEFAULT_OPTIONS = {
+        classes: ['witcher', 'sheet', 'item', 'profession-configuration'],
+        position: { width: 800, height: 700 },
         actions: {
             insertTemporaryHpParameter: WitcherProfessionConfigurationSheet._onInsertTemporaryHpParameter,
             generateSkillId: WitcherProfessionConfigurationSheet._onGenerateSkillId,
@@ -51,10 +53,12 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
     _prepareTabs(group) {
         const tabs = super._prepareTabs(group);
         if (group === 'primary') {
-            const system = this.item.system;
-            tabs.skillPath1.label = this.item.system.skillPath1.pathName;
-            tabs.skillPath2.label = this.item.system.skillPath2.pathName;
-            tabs.skillPath3.label = this.item.system.skillPath3.pathName;
+            tabs.general.label = game.i18n.localize('WITCHER.ProfessionConfiguration.mainSkill');
+            for (let number = 1; number <= 3; number++) {
+                const path = `skillPath${number}`;
+                tabs[path].label = this.item.system[path].pathName.trim() ||
+                    game.i18n.format('WITCHER.ProfessionConfiguration.branch', { number });
+            }
         }
 
         return tabs;
@@ -84,7 +88,15 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
         const context = await super._prepareContext(options);
         const entries = this.temporaryHpParameters();
         context.temporaryHpViews = {};
+        context.professionSkillLabels = {};
         for (const path of PROFESSION_SKILL_PATHS) {
+            const skill = foundry.utils.getProperty(this.item.system, path);
+            const slot = path === 'definingSkill'
+                ? game.i18n.localize('WITCHER.ProfessionConfiguration.mainSkill')
+                : game.i18n.format('WITCHER.ProfessionConfiguration.skill', { number: path.at(-1) });
+            context.professionSkillLabels[path] = skill.skillName.trim()
+                ? game.i18n.format('WITCHER.ProfessionConfiguration.namedSkill', { slot, name: skill.skillName })
+                : slot;
             const config = foundry.utils.getProperty(this.item.system, `${path}.skillUsage.temporaryHealth`);
             context.temporaryHpViews[path] = Object.entries(config?.references ?? {}).map(([alias, ref]) => {
                 const entry = entries.find(entry => entry.target.kind === ref.target.kind &&
@@ -156,6 +168,7 @@ export default class WitcherProfessionConfigurationSheet extends WitcherConfigur
         let partContext = {
             item: context.item,
             temporaryHpViews: context.temporaryHpViews,
+            professionSkillLabels: context.professionSkillLabels,
             config: CONFIG.WITCHER,
             tab: context.tabs[partId],
             partId: partId

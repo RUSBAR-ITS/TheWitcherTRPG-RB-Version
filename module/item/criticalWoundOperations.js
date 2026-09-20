@@ -1,3 +1,5 @@
+import { initializeEffectStart } from '../activeEffect/effectApplication.js';
+
 /** Validate the small, deterministic language used by wound healing durations. */
 export function validateHealingDuration(expression) {
     if (typeof expression !== 'string' || !expression.trim()) throw new Error('invalidFormula');
@@ -182,6 +184,9 @@ async function writeStage(actor, source, existing, create) {
     }
     delete expected.ownership;
     delete expected._stats;
+    // Compare the same clock we send. An explicit start prevents _preCreate
+    // from applying the first-turn duration correction a second time.
+    for (const effect of expected.effects) initializeEffectStart(effect, actor);
     let created;
     try {
         created = await create([expected], { parent: actor, keepId: true, [WOUND_INTERNAL]: true });

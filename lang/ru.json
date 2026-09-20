@@ -1765,6 +1765,13 @@
             "removeBrokenLink": "Удалить ссылку на недоступный предмет",
             "extractItem": "Извлечь предмет"
         },
+        "ProfessionConfiguration": {
+            "mainSkill": "Основной навык",
+            "branch": "Ветка {number}",
+            "skill": "Навык {number}",
+            "namedSkill": "{slot}: {name}",
+            "skillIdHint": "Идентификатор этого навыка для ссылок в формулах. Копии навыка сохраняют этот ID; UUID экземпляров предмета различаются."
+        },
         "TemporaryHP": {
             "skillId": "Идентификатор навыка",
             "generateId": "Создать идентификатор",

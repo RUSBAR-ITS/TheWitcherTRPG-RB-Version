@@ -1,5 +1,5 @@
 <div class="tab {{tab.cssClass}} scrollable standard-form" data-group="primary" data-tab="{{partId}}">
-    {{>"systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs" skillFields=skillPathFields.fields.skill1 skill=skillPath.skill1 skillPath=(concat partId ".skill1")}}
-    {{>"systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs" skillFields=skillPathFields.fields.skill2 skill=skillPath.skill2 skillPath=(concat partId ".skill2")}}
-    {{>"systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs" skillFields=skillPathFields.fields.skill3 skill=skillPath.skill3 skillPath=(concat partId ".skill3")}}
+    {{>"systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs" skillFields=skillPathFields.fields.skill1 skill=skillPath.skill1 skillPath=(concat partId ".skill1") skillHeading=(lookup professionSkillLabels (concat partId ".skill1"))}}
+    {{>"systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs" skillFields=skillPathFields.fields.skill2 skill=skillPath.skill2 skillPath=(concat partId ".skill2") skillHeading=(lookup professionSkillLabels (concat partId ".skill2"))}}
+    {{>"systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs" skillFields=skillPathFields.fields.skill3 skill=skillPath.skill3 skillPath=(concat partId ".skill3") skillHeading=(lookup professionSkillLabels (concat partId ".skill3"))}}
 </div>

@@ -1,7 +1,7 @@
 <div>
     <div class="profession-card">
-        <h3>{{ skill.skillName }}</h3>
-        {{formGroup skillFields.fields.skillId value=skill.skillId localize=true}}
+        <h3>{{#if skillHeading}}{{skillHeading}}{{else}}{{skill.skillName}}{{/if}}</h3>
+        {{formGroup skillFields.fields.skillId value=skill.skillId localize=true hint=(localize "WITCHER.ProfessionConfiguration.skillIdHint")}}
         {{#unless skill.skillId}}<button type="button" data-action="generateSkillId" data-skill-path="{{skillPath}}">{{localize "WITCHER.TemporaryHP.generateId"}}</button>{{/unless}}
         <div>
             {{formGroup skillFields.fields.skillAttack.fields.isAttack value=skill.skillAttack.isAttack localize=true}}

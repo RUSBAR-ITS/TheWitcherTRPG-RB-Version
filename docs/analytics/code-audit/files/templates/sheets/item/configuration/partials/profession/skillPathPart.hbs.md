@@ -1,5 +1,11 @@
 # templates/sheets/item/configuration/partials/profession/skillPathPart.hbs
 
+## Актуальное изменение — 14.3.1.00142
+
+Каждый из3 include получает skillHeading по своему пути из professionSkillLabels. Поля и действия по-прежнему адресуют partId.skill1–3, а не название.
+
+[Исходник](../../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathPart.hbs) · [Проверки и границы](../../../../../../../../task-0012-checks.md#fixes-00142). Локальная приёмка выполнена; игровой повтор впереди. Более ранние датированные описания ниже — история.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** Вызовы skillPathSkillPart передают skillPath=(concat partId .skillN), а не имя навыка; Item доступен через context.

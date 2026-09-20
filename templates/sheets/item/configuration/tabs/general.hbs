@@ -44,6 +44,7 @@
     {{/if}}
     {{#if systemFields.definingSkill}}
         {{> "systems/TheWitcherTRPG-RB-Version/templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs"
-            skillFields=systemFields.definingSkill skill=item.system.definingSkill skillPath="definingSkill"}}
+            skillFields=systemFields.definingSkill skill=item.system.definingSkill skillPath="definingSkill"
+            skillHeading=(lookup professionSkillLabels "definingSkill")}}
     {{/if}}
 </section>

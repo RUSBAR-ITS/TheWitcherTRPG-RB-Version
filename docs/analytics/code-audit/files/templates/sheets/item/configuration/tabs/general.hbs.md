@@ -1,5 +1,11 @@
 # templates/sheets/item/configuration/tabs/general.hbs
 
+## Актуальное изменение — 14.3.1.00142
+
+Включение definingSkill передаёт skillHeading из professionSkillLabels. Заголовок основного навыка доступен и без имени; остальные типы Item используют прежние ветви шаблона.
+
+[Исходник](../../../../../../../../../templates/sheets/item/configuration/tabs/general.hbs) · [Проверки и границы](../../../../../../../task-0012-checks.md#fixes-00142). Локальная приёмка выполнена; игровой повтор впереди. Более ранние датированные описания ниже — история.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** При наличии systemFields.definingSkill включает общий skillPathSkillPart с item/systemFields/skillPath=definingSkill. Другие типы Item остаются на прежнем общем шаблоне.

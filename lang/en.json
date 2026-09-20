@@ -1768,6 +1768,13 @@
             "removeBrokenLink": "Remove unavailable item reference",
             "extractItem": "Extract item"
         },
+        "ProfessionConfiguration": {
+            "mainSkill": "Defining skill",
+            "branch": "Branch {number}",
+            "skill": "Skill {number}",
+            "namedSkill": "{slot}: {name}",
+            "skillIdHint": "Identifies this skill in formula references. Copies of the skill keep this ID; individual Item documents have different UUIDs."
+        },
         "TemporaryHP": {
             "skillId": "Skill identifier",
             "generateId": "Create identifier",

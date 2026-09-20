@@ -1,0 +1,15 @@
+{"id":"rel-016788","kind":"defines","from":"ent-005982","to":"ent-005989","location":{"source":"src-000185","symbol":"context.professionSkillLabels = {}","line_start":91,"line_end":91},"basis":"source_read"}
+{"id":"rel-016789","kind":"writes","from":"ent-005982","to":"ent-005989","location":{"source":"src-000185","symbol":"context.professionSkillLabels[path] =","line_start":97,"line_end":97},"basis":"source_read"}
+{"id":"rel-016790","kind":"reads","from":"ent-004850","to":"ent-005989","location":{"source":"src-000185","symbol":"professionSkillLabels: context.professionSkillLabels","line_start":171,"line_end":171},"basis":"source_read"}
+{"id":"rel-016791","kind":"defines","from":"src-000003","to":"ent-005990","location":{"source":"src-000003","symbol":"\"ProfessionConfiguration\":","line_start":1768,"line_end":1768},"basis":"source_read"}
+{"id":"rel-016792","kind":"reads","from":"ent-004849","to":"ent-005990","location":{"source":"src-000185","symbol":"tabs.general.label =","line_start":56,"line_end":56},"basis":"source_read"}
+{"id":"rel-016793","kind":"reads","from":"ent-005982","to":"ent-005990","location":{"source":"src-000185","symbol":"game.i18n.format('WITCHER.ProfessionConfiguration.namedSkill'","line_start":98,"line_end":98},"basis":"source_read"}
+{"id":"rel-016794","kind":"reads","from":"ent-004865","to":"ent-005990","location":{"source":"src-000588","symbol":"skillIdHint","line_start":4,"line_end":4},"basis":"source_read"}
+{"id":"rel-016795","kind":"defines","from":"src-000002","to":"ent-005991","location":{"source":"src-000002","symbol":"\"ProfessionConfiguration\":","line_start":1771,"line_end":1771},"basis":"source_read"}
+{"id":"rel-016796","kind":"reads","from":"ent-004849","to":"ent-005991","location":{"source":"src-000185","symbol":"tabs.general.label =","line_start":56,"line_end":56},"basis":"source_read"}
+{"id":"rel-016797","kind":"reads","from":"ent-005982","to":"ent-005991","location":{"source":"src-000185","symbol":"game.i18n.format('WITCHER.ProfessionConfiguration.namedSkill'","line_start":98,"line_end":98},"basis":"source_read"}
+{"id":"rel-016798","kind":"reads","from":"ent-004865","to":"ent-005991","location":{"source":"src-000588","symbol":"skillIdHint","line_start":4,"line_end":4},"basis":"source_read"}
+{"id":"rel-016799","kind":"reads","from":"ent-003823","to":"ent-005989","location":{"source":"src-000594","symbol":"skillHeading=(lookup professionSkillLabels","line_start":48,"line_end":48},"basis":"source_read"}
+{"id":"rel-016800","kind":"reads","from":"ent-004864","to":"ent-005989","location":{"source":"src-000587","symbol":"skillHeading=(lookup professionSkillLabels","line_start":2,"line_end":2},"basis":"source_read"}
+{"id":"rel-016801","kind":"imports","from":"src-000622","to":"src-000639","location":{"source":"src-000622","symbol":"import { initializeEffectStart }","line_start":1,"line_end":1},"basis":"source_read"}
+{"id":"rel-016802","kind":"calls","from":"ent-005607","to":"ent-005833","location":{"source":"src-000622","symbol":"initializeEffectStart(effect, actor)","line_start":189,"line_end":189},"basis":"source_read"}

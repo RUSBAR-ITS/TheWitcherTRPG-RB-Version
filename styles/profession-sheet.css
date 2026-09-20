@@ -238,3 +238,78 @@ input.profession-skill-input {
         }
     }
 }
+
+/* The configuration uses full-width forms; cards on the main sheet keep their layout. */
+.application.witcher.profession-configuration {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100dvh - 2rem);
+}
+
+.witcher.profession-configuration .window-content {
+    min-height: 0;
+    overflow: hidden;
+    container: profession-configuration / inline-size;
+}
+
+.witcher.profession-configuration .window-content > section:not(.tab),
+.witcher.profession-configuration .window-content > .tabs {
+    flex: 0 0 auto;
+}
+
+.witcher.profession-configuration .window-content > section:not(.tab) h1 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.witcher.profession-configuration .window-content > .tabs {
+    flex-wrap: wrap;
+    gap: 4px 12px;
+}
+
+.witcher.profession-configuration .tab.active {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.witcher.profession-configuration .profession-card {
+    min-width: 0;
+    max-width: none;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+}
+
+.witcher.profession-configuration .profession-card h3 {
+    font-size: 18px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.witcher.profession-configuration .form-group {
+    display: grid;
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    gap: 4px 16px;
+    align-items: center;
+}
+
+.witcher.profession-configuration .form-group > label {
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.witcher.profession-configuration .form-group > .form-fields {
+    min-width: 0;
+}
+
+.witcher.profession-configuration .form-group > .hint {
+    grid-column: 1 / -1;
+}
+
+@container profession-configuration (max-width: 640px) {
+    .witcher.profession-configuration .form-group {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
