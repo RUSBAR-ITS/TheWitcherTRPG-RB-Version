@@ -1,3 +1,5 @@
+import { temporaryHpEffectData } from '../../activeEffect/temporaryHp.js';
+import { temporaryHpFormulaData, validateTemporaryHpFormulas, calculateTemporaryHp } from '../../scripts/temporaryHpCalculation.js';
 import { prepareCheck } from '../../scripts/rolls/prepareCheck.js';
 import { resolveRollTarget } from '../rollContext.js';
 import { extendedRoll } from '../../scripts/rolls/extendedRoll.js';
@@ -269,55 +271,58 @@ export let professionMixin = {
             target = this;
         }
 
-        if (skill.skillUsage.temporaryHealth.addTemporaryHealth) {
-            let temporaryHealth = skill.skillUsage.temporaryHealth;
-            let targetStat = target.system.stats[temporaryHealth.difficultyCheck.stat];
-            let threshold = targetStat.max * temporaryHealth.difficultyCheck.multiplier;
-            let roll = await this.doProfessionSkillRoll(skillTarget, {
-                threshold,
-                showResult: false
-            });
-            if (!roll) return null;
-            const message = await roll.toMessage(roll.messageData);
-
-            if (roll.options.rollOver > 0) {
-                let duration = eval(
-                    temporaryHealth.temporaryHp.duration.replace('@level', skill.level).match(/\d+\*?\d+/g)[0]
-                );
-                let value =
-                    '' +
-                    Math.min(roll.options.rollOver, temporaryHealth.difficultyCheck.maxRollOver) +
-                    temporaryHealth.temporaryHp.value;
-                if (value.includes('d')) {
-                    value = (await new Roll(value).evaluate()).total;
-                }
-
-                let newEffect = new ActiveEffect({
-                    name: skill.skillName,
-                    icon: this.getList('profession')[0].img,
-                    description: skill.definition,
-                    origin: this.uuid,
-                    changes: [
-                        {
-                            key: `system.combatEffects.temporaryEffects.temporaryHp.${skill.skillName}`,
-                            mode: foundry.CONST.ACTIVE_EFFECT_MODES.ADD,
-                            value: `{"name": "${skill.skillName}", "value": ${value}}`
-                        }
-                    ],
-                    duration: { rounds: duration }
-                });
-
-                try {
-                    await createEffectDelivery({ actor: this, item: this.items.get(skillTarget.itemId), message,
-                        targets: [{ actorUuid: target.uuid, name: target.name,
-                            entries: [{ kind: 'activeEffects', effects: [newEffect] }] }] });
-                } catch (error) {
-                    console.error('Witcher profession consequence failed', error);
-                    await reportDeliveryConsequence({ actor: target, message,
-                        itemUuid: this.items.get(skillTarget.itemId).uuid, applyWhen: 'profession',
-                        result: { state: 'unknown', reason: 'responseUnconfirmed' } });
-                }
+        if (!skill.skillUsage.temporaryHealth.addTemporaryHealth) return;
+        const config = skill.skillUsage.temporaryHealth;
+        const item = this.items.get(skillTarget.itemId);
+        let data;
+        try {
+            validateTemporaryHpFormulas(config);
+            data = temporaryHpFormulaData(config, { source: this, target, ability: skillTarget });
+        } catch (error) {
+            ui.notifications.error(error.message);
+            return;
+        }
+        let rollOver = 0;
+        if (config.mode === 'perPoint' || config.requiresCheck) {
+            const threshold = target.system.stats[config.difficultyCheck.stat]?.max * config.difficultyCheck.multiplier;
+            if (!Number.isFinite(threshold)) {
+                ui.notifications.error(game.i18n.localize('WITCHER.TemporaryHP.errors.configuration'));
+                return;
             }
+            const check = await this.doProfessionSkillRoll(skillTarget, { threshold, showResult: false });
+            if (!check) return null;
+            await check.toMessage(check.messageData);
+            if (!(check.options.rollOver > 0)) return;
+            rollOver = check.options.rollOver;
+        }
+        let calculated;
+        try {
+            calculated = await calculateTemporaryHp(config, data, rollOver);
+        } catch (error) {
+            ui.notifications.error(error.message);
+            return;
+        }
+        const { value, duration, unit, rolls } = calculated;
+        const source = temporaryHpEffectData({ item, name: skill.skillName,
+            description: skill.definition, value, duration, unit });
+        const content = await foundry.applications.handlebars.renderTemplate(
+            'systems/TheWitcherTRPG-RB-Version/templates/chat/temporary-hp.hbs', {
+                name: skill.skillName, actor: this.name, target: target.name, value, duration,
+                unit: game.i18n.localize(`WITCHER.TemporaryHP.${unit}`), manual: unit !== 'rounds'
+            });
+        const chatData = { content, speaker: ChatMessage.getSpeaker({ actor: this }),
+            rolls, style: rolls.length ? CONST.CHAT_MESSAGE_STYLES.ROLL : CONST.CHAT_MESSAGE_STYLES.OTHER };
+        ChatMessage.applyMode(chatData, game.settings.get('core', 'rollMode'));
+        const message = await ChatMessage.create(chatData);
+        if (!message) return;
+        try {
+            await createEffectDelivery({ actor: this, item, message,
+                targets: [{ actorUuid: target.uuid, name: target.name,
+                    entries: [{ kind: 'activeEffects', effects: [source] }] }] });
+        } catch (error) {
+            console.error('Witcher profession consequence failed', error);
+            await reportDeliveryConsequence({ actor: target, message, itemUuid: item.uuid, applyWhen: 'profession',
+                result: { state: 'unknown', reason: 'responseUnconfirmed' } });
         }
     },
 

@@ -1,5 +1,13 @@
 # module/data/activeEffects/witcherActiveEffectData.js
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. Добавлено nullable system.temporaryHpDuration: value, unit, combatId, combatantId, startRound. Не дублирует остаток ПЗ. Native AnyField строк сохраняет объект {name,value}; параметры обычных числовых модификаторов прежние.
+
+Связанные потребители/границы: temporaryHp, temporaryHpDuration. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../module/data/activeEffects/witcherActiveEffectData.js) · [TASK-0012](../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Текущее состояние — 14.3.1.00061
 
 2026-09-18, TASK-0010.003. **Назначение:** Модель base AE и валидация новых настроек.

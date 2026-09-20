@@ -1,3 +1,4 @@
+import { temporaryHpTotal } from '../../activeEffect/temporaryHp.js';
 import { deathsaveMixin } from './mixins/deathSaveMixin.js';
 import { criticalWoundMixin } from './mixins/criticalWoundMixin.js';
 import { noteMixin } from './mixins/noteMixin.js';
@@ -36,9 +37,7 @@ export default class WitcherActorSheetV1 extends foundry.appv1.sheets.ActorSheet
         context.system = actorData.system;
         context.items = context.actor.items.filter(i => !i.system.isStored).sort((a, b) => a.sort - b.sort);
 
-        context.system.combatEffects.temporaryEffects.temporaryHpSum = Object.values(
-            context.system.combatEffects.temporaryEffects.temporaryHp
-        ).reduce((acc, temp) => acc + temp.value, 0);
+        context.system.combatEffects.temporaryEffects.temporaryHpSum = temporaryHpTotal(this.actor);
 
         this._prepareGeneralInformation(context);
         this._prepareCustomSkills(context);

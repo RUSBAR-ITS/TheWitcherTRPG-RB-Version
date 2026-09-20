@@ -1,3 +1,4 @@
+import { assignedSkillIds } from './skillIdentity.js';
 import { assignedItemData } from '../activeEffect/effectFamilies.js';
 import { parameterActor, withParameterChanges } from '../actor/parameterPersistence.js';
 import { WOUND_INTERNAL, createWoundDocuments, validateWoundUpdates, withWoundQueue } from './criticalWoundOperations.js';
@@ -16,7 +17,7 @@ export default class WitcherItem extends Item {
     /** Native entry points also cover directory imports and Actor embedded creation. */
     static async createDocuments(data = [], operation = {}) {
         return withParameterChanges(parameterActor(operation.parent), async () => {
-            data = assignedItemData(data, operation.parent);
+            data = assignedItemData(assignedSkillIds(data), operation.parent);
             const create = (rows, options) => options[CONTAINER_INTERNAL]
                 ? super.createDocuments(rows, options)
                 : createContainerDocuments(rows, options,

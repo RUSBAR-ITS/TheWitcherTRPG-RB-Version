@@ -1,5 +1,13 @@
 # lang/ru.json
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. Добавлена группа WITCHER.TemporaryHP: режимы, поля помощника, виды навыков/участники, округление/единицы, подпись срока и ошибки. Прежние ключи и их значения сохранены.
+
+Связанные потребители/границы: Новые модели, формы, вычислитель и боевой срок. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../lang/ru.json) · [TASK-0012](../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Актуализация 2026-09-19 — 14.3.1.00115
 
 Добавлены4 ключа: WITCHER.Item.LootQuantityFormula, WITCHER.Item.LootQuantityFormulaHint, WITCHER.Item.InvalidQuantity и WITCHER.Monster.lootInvalidFormula. Подпись/подсказка используются item-header.hbs и monster-веткой tab-inventory-valuables.hbs; ошибки — parseItemQuantity/parseLootQuantityFormula в CommonItemData, через формы и экспорт. Соответствующие ru/en ключи парные; прежние ключи не удалялись.

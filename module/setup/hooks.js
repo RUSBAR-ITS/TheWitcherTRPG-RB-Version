@@ -1,7 +1,9 @@
+import { registerTemporaryHpHooks } from '../activeEffect/temporaryHpDuration.js';
 import { applyGeneralCombatHooks } from '../scripts/combat/generalCombatHook.js';
 import { countdownDurationOfRegions } from '../scripts/regions/regionHooks.js';
 
 export function registerHooks() {
+    registerTemporaryHpHooks();
     Hooks.on('updateCombat', (combat, update, options, userId) => {
         combatHooks(combat, update, options, userId);
     });

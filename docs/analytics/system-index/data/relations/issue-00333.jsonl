@@ -43,11 +43,11 @@
 {"id":"rel-015383","kind":"defines","from":"src-000620","to":"ent-005477","location":{"source":"src-000620","symbol":"WitcherItems","line_start":4,"line_end":4},"basis":"source_read"}
 {"id":"rel-015384","kind":"defines","from":"ent-005477","to":"ent-005478","location":{"source":"src-000620","symbol":"WitcherItems._prepareImportDocument","line_start":5,"line_end":5},"basis":"source_read"}
 {"id":"rel-015385","kind":"defines","from":"ent-005477","to":"ent-005479","location":{"source":"src-000620","symbol":"WitcherItems.fromCompendium","line_start":10,"line_end":10},"basis":"source_read"}
-{"id":"rel-015386","kind":"defines","from":"ent-000612","to":"ent-005480","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":17,"line_end":17},"basis":"source_read"}
-{"id":"rel-015387","kind":"defines","from":"ent-000612","to":"ent-005481","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":48,"line_end":48},"basis":"source_read"}
-{"id":"rel-015388","kind":"defines","from":"ent-000612","to":"ent-005482","location":{"source":"src-000192","symbol":"WitcherItem.toCompendium","line_start":55,"line_end":55},"basis":"source_read"}
-{"id":"rel-015389","kind":"defines","from":"ent-000612","to":"ent-005483","location":{"source":"src-000192","symbol":"WitcherItem.clone","line_start":66,"line_end":66},"basis":"source_read"}
-{"id":"rel-015390","kind":"defines","from":"ent-000612","to":"ent-005484","location":{"source":"src-000192","symbol":"WitcherItem.deleteDialog","line_start":80,"line_end":80},"basis":"source_read"}
+{"id":"rel-015386","kind":"defines","from":"ent-000612","to":"ent-005480","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":18,"line_end":18},"basis":"source_read"}
+{"id":"rel-015387","kind":"defines","from":"ent-000612","to":"ent-005481","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":49,"line_end":49},"basis":"source_read"}
+{"id":"rel-015388","kind":"defines","from":"ent-000612","to":"ent-005482","location":{"source":"src-000192","symbol":"WitcherItem.toCompendium","line_start":56,"line_end":56},"basis":"source_read"}
+{"id":"rel-015389","kind":"defines","from":"ent-000612","to":"ent-005483","location":{"source":"src-000192","symbol":"WitcherItem.clone","line_start":67,"line_end":67},"basis":"source_read"}
+{"id":"rel-015390","kind":"defines","from":"ent-000612","to":"ent-005484","location":{"source":"src-000192","symbol":"WitcherItem.deleteDialog","line_start":81,"line_end":81},"basis":"source_read"}
 {"id":"rel-015391","kind":"defines","from":"ent-000437","to":"ent-005485","location":{"source":"src-000166","symbol":"WitcherContainerSheet._prepareContext","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015392","kind":"defines","from":"ent-000402","to":"ent-005486","location":{"source":"src-000111","symbol":"ContainerData.templateContent","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015393","kind":"defines","from":"ent-000402","to":"ent-005487","location":{"source":"src-000111","symbol":"ContainerData.contentIncomplete","line_start":39,"line_end":39},"basis":"source_read"}
@@ -161,10 +161,10 @@
 {"id":"rel-015501","kind":"calls","from":"ent-004651","to":"ent-005460","location":{"source":"src-000166","symbol":"WitcherContainerSheet._onDropItem","line_start":60,"line_end":60},"basis":"source_read"}
 {"id":"rel-015502","kind":"calls","from":"ent-004652","to":"ent-005459","location":{"source":"src-000166","symbol":"WitcherContainerSheet._onRemoveItem","line_start":66,"line_end":66},"basis":"source_read"}
 {"id":"rel-015503","kind":"calls","from":"ent-004652","to":"ent-005460","location":{"source":"src-000166","symbol":"WitcherContainerSheet._onRemoveItem","line_start":66,"line_end":66},"basis":"source_read"}
-{"id":"rel-015504","kind":"calls","from":"ent-005480","to":"ent-005450","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":20,"line_end":20},"basis":"source_read"}
-{"id":"rel-015505","kind":"calls","from":"ent-005481","to":"ent-005455","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":50,"line_end":50},"basis":"source_read"}
-{"id":"rel-015506","kind":"calls","from":"ent-005482","to":"ent-005470","location":{"source":"src-000192","symbol":"WitcherItem.toCompendium","line_start":58,"line_end":58},"basis":"source_read"}
-{"id":"rel-015507","kind":"calls","from":"ent-005483","to":"ent-005470","location":{"source":"src-000192","symbol":"WitcherItem.clone","line_start":73,"line_end":73},"basis":"source_read"}
+{"id":"rel-015504","kind":"calls","from":"ent-005480","to":"ent-005450","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":21,"line_end":21},"basis":"source_read"}
+{"id":"rel-015505","kind":"calls","from":"ent-005481","to":"ent-005455","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":51,"line_end":51},"basis":"source_read"}
+{"id":"rel-015506","kind":"calls","from":"ent-005482","to":"ent-005470","location":{"source":"src-000192","symbol":"WitcherItem.toCompendium","line_start":59,"line_end":59},"basis":"source_read"}
+{"id":"rel-015507","kind":"calls","from":"ent-005483","to":"ent-005470","location":{"source":"src-000192","symbol":"WitcherItem.clone","line_start":74,"line_end":74},"basis":"source_read"}
 {"id":"rel-015508","kind":"calls","from":"ent-005479","to":"ent-005470","location":{"source":"src-000620","symbol":"WitcherItems.fromCompendium","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015509","kind":"calls","from":"ent-003559","to":"ent-005458","location":{"source":"src-000043","symbol":"sheet.itemMixin._onDropItem","line_start":26,"line_end":26},"basis":"source_read"}
 {"id":"rel-015510","kind":"calls","from":"ent-003568","to":"ent-005460","location":{"source":"src-000043","symbol":"sheet.itemMixin._onItemDelete","line_start":207,"line_end":207},"basis":"source_read"}
@@ -185,8 +185,8 @@
 {"id":"rel-015525","kind":"calls","from":"ent-005448","to":"ent-005489","location":{"source":"src-000618","symbol":"containerOperations.writePatches","line_start":72,"line_end":72},"basis":"source_read"}
 {"id":"rel-015526","kind":"calls","from":"ent-005454","to":"ent-005490","location":{"source":"src-000618","symbol":"containerOperations.deleteTrees","line_start":284,"line_end":284},"basis":"source_read"}
 {"id":"rel-015527","kind":"calls","from":"ent-005454","to":"ent-005491","location":{"source":"src-000618","symbol":"containerOperations.deleteTrees","line_start":266,"line_end":266},"basis":"source_read"}
-{"id":"rel-015528","kind":"calls","from":"ent-005480","to":"ent-005488","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":18,"line_end":18},"basis":"source_read"}
-{"id":"rel-015529","kind":"calls","from":"ent-005481","to":"ent-005490","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":24,"line_end":24},"basis":"source_read"}
+{"id":"rel-015528","kind":"calls","from":"ent-005480","to":"ent-005488","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":19,"line_end":19},"basis":"source_read"}
+{"id":"rel-015529","kind":"calls","from":"ent-005481","to":"ent-005490","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":25,"line_end":25},"basis":"source_read"}
 {"id":"rel-015530","kind":"calls","from":"ent-005478","to":"ent-005492","location":{"source":"src-000620","symbol":"WitcherItems._prepareImportDocument","line_start":7,"line_end":7},"basis":"source_read"}
 {"id":"rel-015531","kind":"defines","from":"ent-000436","to":"ent-005493","location":{"source":"src-000168","symbol":"WitcherDiagramSheet._prepareContext","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015532","kind":"defines","from":"ent-000436","to":"ent-005494","location":{"source":"src-000168","symbol":"WitcherDiagramSheet._onEditComponent","line_start":85,"line_end":85},"basis":"source_read"}
@@ -208,16 +208,16 @@
 {"id":"rel-015549","kind":"imports","from":"src-000111","to":"src-000619","location":{"source":"src-000111","symbol":"import ../../item/containerTemplates.js","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-015550","kind":"imports","from":"src-000166","to":"src-000619","location":{"source":"src-000166","symbol":"import ../containerTemplates.js","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-015551","kind":"imports","from":"src-000166","to":"src-000618","location":{"source":"src-000166","symbol":"import ../containerOperations.js","line_start":3,"line_end":3},"basis":"source_read"}
-{"id":"rel-015552","kind":"imports","from":"src-000192","to":"src-000619","location":{"source":"src-000192","symbol":"import ./containerTemplates.js","line_start":4,"line_end":4},"basis":"source_read"}
-{"id":"rel-015553","kind":"imports","from":"src-000192","to":"src-000618","location":{"source":"src-000192","symbol":"import ./containerOperations.js","line_start":5,"line_end":5},"basis":"source_read"}
-{"id":"rel-015554","kind":"imports","from":"src-000192","to":"src-000202","location":{"source":"src-000192","symbol":"import ../scripts/rolls/extendedRoll.js","line_start":6,"line_end":6},"basis":"source_read"}
-{"id":"rel-015555","kind":"imports","from":"src-000192","to":"src-000201","location":{"source":"src-000192","symbol":"import ../scripts/rollConfig.js","line_start":7,"line_end":7},"basis":"source_read"}
-{"id":"rel-015556","kind":"imports","from":"src-000192","to":"src-000209","location":{"source":"src-000192","symbol":"import ../setup/config.js","line_start":8,"line_end":8},"basis":"source_read"}
-{"id":"rel-015557","kind":"imports","from":"src-000192","to":"src-000159","location":{"source":"src-000192","symbol":"import ./mixins/damageUtilMixin.js","line_start":9,"line_end":9},"basis":"source_read"}
-{"id":"rel-015558","kind":"imports","from":"src-000192","to":"src-000157","location":{"source":"src-000192","symbol":"import ./mixins/consumeMixin.js","line_start":10,"line_end":10},"basis":"source_read"}
-{"id":"rel-015559","kind":"imports","from":"src-000192","to":"src-000162","location":{"source":"src-000192","symbol":"import ./mixins/repairMixin.js","line_start":11,"line_end":11},"basis":"source_read"}
-{"id":"rel-015560","kind":"imports","from":"src-000192","to":"src-000161","location":{"source":"src-000192","symbol":"import ./mixins/dismantlingMixin.js","line_start":12,"line_end":12},"basis":"source_read"}
-{"id":"rel-015561","kind":"imports","from":"src-000192","to":"src-000160","location":{"source":"src-000192","symbol":"import ./mixins/defenseOptionMixin.js","line_start":13,"line_end":13},"basis":"source_read"}
+{"id":"rel-015552","kind":"imports","from":"src-000192","to":"src-000619","location":{"source":"src-000192","symbol":"import ./containerTemplates.js","line_start":5,"line_end":5},"basis":"source_read"}
+{"id":"rel-015553","kind":"imports","from":"src-000192","to":"src-000618","location":{"source":"src-000192","symbol":"import ./containerOperations.js","line_start":6,"line_end":6},"basis":"source_read"}
+{"id":"rel-015554","kind":"imports","from":"src-000192","to":"src-000202","location":{"source":"src-000192","symbol":"import ../scripts/rolls/extendedRoll.js","line_start":7,"line_end":7},"basis":"source_read"}
+{"id":"rel-015555","kind":"imports","from":"src-000192","to":"src-000201","location":{"source":"src-000192","symbol":"import ../scripts/rollConfig.js","line_start":8,"line_end":8},"basis":"source_read"}
+{"id":"rel-015556","kind":"imports","from":"src-000192","to":"src-000209","location":{"source":"src-000192","symbol":"import ../setup/config.js","line_start":9,"line_end":9},"basis":"source_read"}
+{"id":"rel-015557","kind":"imports","from":"src-000192","to":"src-000159","location":{"source":"src-000192","symbol":"import ./mixins/damageUtilMixin.js","line_start":10,"line_end":10},"basis":"source_read"}
+{"id":"rel-015558","kind":"imports","from":"src-000192","to":"src-000157","location":{"source":"src-000192","symbol":"import ./mixins/consumeMixin.js","line_start":11,"line_end":11},"basis":"source_read"}
+{"id":"rel-015559","kind":"imports","from":"src-000192","to":"src-000162","location":{"source":"src-000192","symbol":"import ./mixins/repairMixin.js","line_start":12,"line_end":12},"basis":"source_read"}
+{"id":"rel-015560","kind":"imports","from":"src-000192","to":"src-000161","location":{"source":"src-000192","symbol":"import ./mixins/dismantlingMixin.js","line_start":13,"line_end":13},"basis":"source_read"}
+{"id":"rel-015561","kind":"imports","from":"src-000192","to":"src-000160","location":{"source":"src-000192","symbol":"import ./mixins/defenseOptionMixin.js","line_start":14,"line_end":14},"basis":"source_read"}
 {"id":"rel-015562","kind":"imports","from":"src-000043","to":"src-000618","location":{"source":"src-000043","symbol":"import ../../../item/containerOperations.js","line_start":2,"line_end":2},"basis":"source_read"}
 {"id":"rel-015563","kind":"imports","from":"src-000004","to":"src-000620","location":{"source":"src-000004","symbol":"import ./item/collections/WitcherItems.js","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015564","kind":"registers","from":"src-000004","to":"ent-005477","location":{"source":"src-000004","symbol":"CONFIG.Item.collection","line_start":36,"line_end":36},"basis":"source_read"}

@@ -1,5 +1,13 @@
 # module/actor/mixins/professionMixin.js
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. doProfessionSkillUsage теперь предварительно проверяет формулы и численные ссылки. В Fix проверка отключается настройкой; за пункт обязательна, сравнение строго >. calculateTemporaryHp возвращает независимые результаты; temporaryHpEffectData создаёт объектные строки и img конкретного Item. Создаются локализованная карточка и прежний сохранённый createEffectDelivery. Legacy JSON-конкатенация, regex/eval длительности и проверка includes(d) удалены.
+
+Связанные потребители/границы: temporaryHpCalculation, temporaryHp, templates/chat/temporary-hp.hbs, effectDelivery. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../module/actor/mixins/professionMixin.js) · [TASK-0012](../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Текущее состояние — 14.3.1.00108 / TASK-0011.008
 
 2026-09-19. doProfessionSkillUsage сохраняет исходный ChatMessage и передаёт createEffectDelivery из scripts/effectDelivery.js готовый newEffect, выбранного Actor и Item профессии. Удалены неиспользуемый queryData и прямой getActorOwner.query. Ошибка карточки идёт в reportDeliveryConsequence; повтор не вызывает doProfessionSkillRoll и не пересчитывает duration/value. Формула temporaryHP, eval, legacy root changes/icon/duration.rounds сохранены, это отдельная TASK-0012: успешная доставка не означает исправления механики временных ПЗ.

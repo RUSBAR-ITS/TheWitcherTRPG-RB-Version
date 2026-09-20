@@ -1,5 +1,13 @@
 # templates/sheets/item/skill-item-sheet.hbs
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. Добавлены редактируемое поле system.skillId и кнопка назначения при пустом ID; имя навыка не используется в роли идентичности.
+
+Связанные потребители/границы: SkillItemData, WitcherSkillItemSheet, ru/en. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../templates/sheets/item/skill-item-sheet.hbs) · [TASK-0012](../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [templates/sheets/item/skill-item-sheet.hbs](../../../../../../../templates/sheets/item/skill-item-sheet.hbs) |

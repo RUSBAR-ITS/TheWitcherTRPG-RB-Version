@@ -1,5 +1,13 @@
 # templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. Поле/создание skillId; режим и условная проверка, поле полной формулы количества/срока с отдельным помощником, округление и единицы; расшифровка aliases. Пути definingSkill/skillPathN.skillN сохраняются, строки локализованы.
+
+Связанные потребители/границы: TemporaryHealth, WitcherProfessionConfigurationSheet, ru/en. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../../../../templates/sheets/item/configuration/partials/profession/skillPathSkillPart.hbs) · [TASK-0012](../../../../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Текущее состояние
 
 **14.3.1.00067, issue-00111.** Шаблон не изменён в .00067. Его removeEffectDamageProperties теперь зарегистрирован в конфигурации профессии; button и вложенная иконка приводят к выбранным slot/ID. Локально проверены definingSkill и два path-слота, имена не адрес. Другие data-target/data-item-id и формы из .008 сохранены.

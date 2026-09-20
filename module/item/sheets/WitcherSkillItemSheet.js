@@ -9,6 +9,12 @@ export default class WitcherSkillItemSheet extends HandlebarsApplicationMixin(It
             height: 480
         },
         classes: ['witcher', 'sheet', 'item'],
+        actions: {
+            generateSkillId: async function (event) {
+                event.preventDefault();
+                return this.item.update({ 'system.skillId': foundry.utils.randomID() });
+            }
+        },
         form: {
             submitOnChange: true,
             closeOnSubmit: false

@@ -15,7 +15,7 @@
 {"id":"rel-015843","kind":"defines","from":"src-000052","to":"ent-005672","location":{"source":"src-000052","symbol":"effectIdentityFields","line_start":23,"line_end":23},"basis":"source_read"}
 {"id":"rel-015844","kind":"defines","from":"src-000052","to":"ent-005673","location":{"source":"src-000052","symbol":"validateEffectIdentity","line_start":30,"line_end":30},"basis":"source_read"}
 {"id":"rel-015845","kind":"defines","from":"src-000052","to":"ent-005674","location":{"source":"src-000052","symbol":"validateModifierChange","line_start":36,"line_end":36},"basis":"source_read"}
-{"id":"rel-015846","kind":"defines","from":"ent-000170","to":"ent-005675","location":{"source":"src-000052","symbol":"WitcherActiveEffectData.validateJoint","line_start":90,"line_end":90},"basis":"source_read"}
+{"id":"rel-015846","kind":"defines","from":"ent-000170","to":"ent-005675","location":{"source":"src-000052","symbol":"WitcherActiveEffectData.validateJoint","line_start":97,"line_end":97},"basis":"source_read"}
 {"id":"rel-015847","kind":"defines","from":"ent-000170","to":"ent-005676","location":{"source":"src-000052","symbol":"WitcherActiveEffectData.changes.affectsParameter","line_start":53,"line_end":53},"basis":"source_read"}
 {"id":"rel-015848","kind":"defines","from":"ent-000170","to":"ent-005677","location":{"source":"src-000052","symbol":"WitcherActiveEffectData.changes.affectsRoll","line_start":53,"line_end":53},"basis":"source_read"}
 {"id":"rel-015849","kind":"defines","from":"ent-000170","to":"ent-005678","location":{"source":"src-000052","symbol":"WitcherActiveEffectData.changes.fullEffect","line_start":53,"line_end":53},"basis":"source_read"}
@@ -65,8 +65,8 @@
 {"id":"rel-015894","kind":"calls","from":"ent-005692","to":"ent-005693","location":{"source":"src-000005","symbol":"WitcherActiveEffectConfig.addChangeAction","line_start":205,"line_end":205},"basis":"source_read"}
 {"id":"rel-015895","kind":"defines","from":"src-000090","to":"ent-005694","location":{"source":"src-000090","symbol":"stat.baseCap","line_start":5,"line_end":5},"basis":"source_read"}
 {"id":"rel-015896","kind":"defines","from":"ent-000007","to":"ent-005695","location":{"source":"src-000086","symbol":"Skill.baseCap","line_start":7,"line_end":7},"basis":"source_read"}
-{"id":"rel-015897","kind":"defines","from":"ent-000182","to":"ent-005696","location":{"source":"src-000124","symbol":"SkillItemData.baseCap","line_start":12,"line_end":12},"basis":"source_read"}
-{"id":"rel-015898","kind":"defines","from":"ent-003894","to":"ent-005697","location":{"source":"src-000148","symbol":"professionSkill().baseCap","line_start":15,"line_end":15},"basis":"source_read"}
+{"id":"rel-015897","kind":"defines","from":"ent-000182","to":"ent-005696","location":{"source":"src-000124","symbol":"SkillItemData.baseCap","line_start":13,"line_end":13},"basis":"source_read"}
+{"id":"rel-015898","kind":"defines","from":"ent-003894","to":"ent-005697","location":{"source":"src-000148","symbol":"professionSkill().baseCap","line_start":16,"line_end":16},"basis":"source_read"}
 {"id":"rel-015899","kind":"defines","from":"src-000002","to":"ent-005698","location":{"source":"src-000002","symbol":"/WITCHER/Effect/Modifier/settings","line_start":1489,"line_end":1489},"basis":"source_read"}
 {"id":"rel-015900","kind":"defines","from":"src-000002","to":"ent-005699","location":{"source":"src-000002","symbol":"/WITCHER/Effect/Modifier/affectsParameter","line_start":1490,"line_end":1490},"basis":"source_read"}
 {"id":"rel-015901","kind":"defines","from":"src-000002","to":"ent-005700","location":{"source":"src-000002","symbol":"/WITCHER/Effect/Modifier/affectsParameterHint","line_start":1491,"line_end":1491},"basis":"source_read"}

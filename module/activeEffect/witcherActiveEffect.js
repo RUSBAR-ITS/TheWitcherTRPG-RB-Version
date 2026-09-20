@@ -1,3 +1,4 @@
+import { initialTemporaryHpClock, temporaryHpDuration } from './temporaryHpDuration.js';
 import { createEffectDocuments, updateEffectDocuments, isFamilySuppressed } from './effectFamilies.js';
 import { initializeEffectStart } from './effectApplication.js';
 import { parameterActor, withParameterChanges } from '../actor/parameterPersistence.js';
@@ -46,7 +47,16 @@ export default class WitcherActiveEffect extends ActiveEffect {
     }
 
     // A superseded source keeps aging; suppression must not pause its clock.
+    get isTemporary() {
+        return !!this.system?.temporaryHpDuration || super.isTemporary;
+    }
+
+    _prepareDuration(duration, context) {
+        return temporaryHpDuration(this, duration) ?? super._prepareDuration(duration, context);
+    }
+
     get isExpiryTrackable() {
+        if (this.system?.temporaryHpDuration) return false;
         return this.persisted && !this.inCompendium && this.isEmbedded &&
             !this.disabled && !this.isSourceSuppressed && !!this.start && this.isTemporary;
     }
@@ -74,6 +84,11 @@ export default class WitcherActiveEffect extends ActiveEffect {
     /** @inheritDoc */
     async _preCreate(data, options, user) {
         const actor = parameterActor(this.parent);
+        if (this.system.temporaryHpDuration) {
+            const clock = initialTemporaryHpClock(this.system.temporaryHpDuration, actor);
+            this.updateSource({ 'system.temporaryHpDuration': clock });
+            foundry.utils.setProperty(data, 'system.temporaryHpDuration', clock);
+        }
         if (actor && data.start == null) {
             const source = this.toObject();
             source.start = null;

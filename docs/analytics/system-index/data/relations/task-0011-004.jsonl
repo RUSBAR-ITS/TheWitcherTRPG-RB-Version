@@ -7,7 +7,7 @@
 {"id":"rel-016492","kind":"defines","from":"ent-000405","to":"ent-005913","location":{"source":"src-000155","symbol":"get damagedLocations() {","line_start":65,"line_end":65},"basis":"source_read"}
 {"id":"rel-016493","kind":"defines","from":"ent-000405","to":"ent-005914","location":{"source":"src-000155","symbol":"async repair() {","line_start":75,"line_end":75},"basis":"source_read"}
 {"id":"rel-016494","kind":"defines","from":"ent-000416","to":"ent-005915","location":{"source":"src-000108","symbol":"get damagedLocations() {","line_start":96,"line_end":96},"basis":"source_read"}
-{"id":"rel-016495","kind":"defines","from":"ent-000612","to":"ent-005916","location":{"source":"src-000192","symbol":"get alchemyCraftComponentsList() {","line_start":157,"line_end":157},"basis":"source_read"}
+{"id":"rel-016495","kind":"defines","from":"ent-000612","to":"ent-005916","location":{"source":"src-000192","symbol":"get alchemyCraftComponentsList() {","line_start":158,"line_end":158},"basis":"source_read"}
 {"id":"rel-016496","kind":"calls","from":"ent-005907","to":"ent-005909","location":{"source":"src-000191","symbol":"!this._canRepair(data, !options.gmRepair)","line_start":187,"line_end":187},"basis":"source_read"}
 {"id":"rel-016497","kind":"calls","from":"ent-005907","to":"ent-005908","location":{"source":"src-000191","symbol":"return this.gmRepair(data)","line_start":190,"line_end":190},"basis":"source_read"}
 {"id":"rel-016498","kind":"calls","from":"ent-005907","to":"ent-005823","location":{"source":"src-000191","symbol":"return this.commonRepair(data","line_start":192,"line_end":192},"basis":"source_read"}

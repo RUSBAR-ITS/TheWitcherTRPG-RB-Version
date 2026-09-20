@@ -1,6 +1,8 @@
 <div>
     <div class="profession-card">
         <h3>{{ skill.skillName }}</h3>
+        {{formGroup skillFields.fields.skillId value=skill.skillId localize=true}}
+        {{#unless skill.skillId}}<button type="button" data-action="generateSkillId" data-skill-path="{{skillPath}}">{{localize "WITCHER.TemporaryHP.generateId"}}</button>{{/unless}}
         <div>
             {{formGroup skillFields.fields.skillAttack.fields.isAttack value=skill.skillAttack.isAttack localize=true}}
             {{#if skill.skillAttack.isAttack}}
@@ -78,12 +80,32 @@
 
                 {{formGroup skillFields.fields.skillUsage.fields.temporaryHealth.fields.addTemporaryHealth value=skill.skillUsage.temporaryHealth.addTemporaryHealth localize=true}}
                 {{#if skill.skillUsage.temporaryHealth.addTemporaryHealth}}
-                    {{formGroup skillFields.fields.skillUsage.fields.temporaryHealth.fields.difficultyCheck.fields.multiplier value=skill.skillUsage.temporaryHealth.difficultyCheck.multiplier localize=true}}
-                    {{formGroup skillFields.fields.skillUsage.fields.temporaryHealth.fields.difficultyCheck.fields.stat value=skill.skillUsage.temporaryHealth.difficultyCheck.stat options=config.statOptions blank=false  localize=true}}
-                    {{formGroup skillFields.fields.skillUsage.fields.temporaryHealth.fields.difficultyCheck.fields.maxRollOver value=skill.skillUsage.temporaryHealth.difficultyCheck.maxRollOver localize=true}}
-
-                    {{formGroup skillFields.fields.skillUsage.fields.temporaryHealth.fields.temporaryHp.fields.value value=skill.skillUsage.temporaryHealth.temporaryHp.value localize=true}}
-                    {{formGroup skillFields.fields.skillUsage.fields.temporaryHealth.fields.temporaryHp.fields.duration value=skill.skillUsage.temporaryHealth.temporaryHp.duration localize=true}}
+                    {{#with skill.skillUsage.temporaryHealth as |hp|}}
+                        {{#with ../skillFields.fields.skillUsage.fields.temporaryHealth.fields as |hpFields|}}
+                            {{formGroup hpFields.mode value=hp.mode localize=true}}
+                            {{#if (eq hp.mode "fixed")}}{{formGroup hpFields.requiresCheck value=hp.requiresCheck localize=true}}{{/if}}
+                            {{#if (or (eq hp.mode "perPoint") hp.requiresCheck)}}
+                                <fieldset><legend>{{localize "WITCHER.TemporaryHP.check"}}</legend>
+                                    {{formGroup hpFields.difficultyCheck.fields.stat value=hp.difficultyCheck.stat options=@root.config.statOptions blank=false localize=true}}
+                                    {{formGroup hpFields.difficultyCheck.fields.multiplier value=hp.difficultyCheck.multiplier localize=true}}
+                                    {{#if (eq hp.mode "perPoint")}}{{formGroup hpFields.difficultyCheck.fields.maxRollOver value=hp.difficultyCheck.maxRollOver localize=true}}{{/if}}
+                                </fieldset>
+                            {{/if}}
+                            <fieldset><legend>{{localize "WITCHER.TemporaryHP.amount"}}</legend>
+                                {{formGroup hpFields.temporaryHp.fields.value value=hp.temporaryHp.value localize=true}}
+                                <button type="button" data-action="insertTemporaryHpParameter" data-skill-path="{{../../skillPath}}" data-formula-field="value">{{localize "WITCHER.TemporaryHP.insertParameter"}}</button>
+                                {{formGroup hpFields.rounding value=hp.rounding localize=true}}
+                            </fieldset>
+                            <fieldset><legend>{{localize "WITCHER.TemporaryHP.duration"}}</legend>
+                                {{formGroup hpFields.temporaryHp.fields.duration value=hp.temporaryHp.duration localize=true}}
+                                <button type="button" data-action="insertTemporaryHpParameter" data-skill-path="{{../../skillPath}}" data-formula-field="duration">{{localize "WITCHER.TemporaryHP.insertParameter"}}</button>
+                                {{formGroup hpFields.durationUnit value=hp.durationUnit localize=true}}
+                            </fieldset>
+                        {{/with}}
+                    {{/with}}
+                    <ul class="hint">
+                        {{#each (lookup temporaryHpViews skillPath)}}<li>@{{alias}}: {{role}} — {{label}} — {{value}}</li>{{/each}}
+                    </ul>
                 {{/if}}
             {{/if}}
         </div>

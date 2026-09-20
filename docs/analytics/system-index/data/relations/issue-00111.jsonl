@@ -1,1 +1,1 @@
-{"id":"rel-016298","kind":"passes","from":"ent-004874","to":"ent-004871","location":{"source":"src-000588","symbol":"WitcherProfessionConfigurationSheet/removeEffectDamageProperties-action","line_start":40,"line_end":40},"basis":"source_read"}
+{"id":"rel-016298","kind":"passes","from":"ent-004874","to":"ent-004871","location":{"source":"src-000588","symbol":"WitcherProfessionConfigurationSheet/removeEffectDamageProperties-action","line_start":42,"line_end":42},"basis":"source_read"}

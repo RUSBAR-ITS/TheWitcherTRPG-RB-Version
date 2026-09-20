@@ -7,6 +7,7 @@ export default class SkillItemData extends foundry.abstract.TypeDataModel {
 
     static defineSchema() {
         return {
+            skillId: new fields.StringField({ initial: '', label: 'WITCHER.TemporaryHP.skillId' }),
             attribute: new fields.StringField({ initial: '' }),
             value: new fields.NumberField({ initial: 0 }),
             baseCap: new fields.NumberField({ initial: 10, required: true, nullable: false, label: 'WITCHER.Effect.Modifier.baseCap' }),

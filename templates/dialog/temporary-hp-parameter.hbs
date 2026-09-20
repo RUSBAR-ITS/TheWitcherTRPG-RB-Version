@@ -1,0 +1,29 @@
+<div class="standard-form">
+    <div class="form-group">
+        <label>{{localize "WITCHER.TemporaryHP.participant"}}</label>
+        <select name="role">
+            <option value="source">{{localize "WITCHER.TemporaryHP.source"}}</option>
+            <option value="target">{{localize "WITCHER.TemporaryHP.target"}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{localize "WITCHER.TemporaryHP.parameter"}}</label>
+        <select name="parameter">
+            {{#each groups}}
+                <optgroup label="{{label}}">
+                    {{#each entries}}
+                        <option value="{{index}}" {{#if sourceOnly}}data-source-only="true"{{/if}}>{{label}}</option>
+                    {{/each}}
+                </optgroup>
+            {{/each}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{localize "WITCHER.TemporaryHP.valueKind"}}</label>
+        <select name="valueKind">
+            <option value="base">{{localize "WITCHER.TemporaryHP.base"}}</option>
+            <option value="effective">{{localize "WITCHER.TemporaryHP.effective"}}</option>
+        </select>
+    </div>
+    <p class="hint">{{localize "WITCHER.TemporaryHP.identityHint"}}</p>
+</div>

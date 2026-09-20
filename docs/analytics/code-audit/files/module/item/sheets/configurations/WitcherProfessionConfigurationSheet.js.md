@@ -1,5 +1,13 @@
 # module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. temporaryHpParameters строит список из стандартных параметров, текущей способности, каталога Items и предметов владельца; дубли копий убираются по kind/skillId. _prepareContext передаёт расшифровки aliases в части. _onInsertTemporaryHpParameter сохраняет формулу и descriptor одним item.update, учитывает курсор/отмену и sourceOnly. _onGenerateSkillId явно заполняет ID выбранного слота.
+
+Связанные потребители/границы: skillIdentity, temporary-hp-parameter.hbs, skillPathSkillPart.hbs. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../../module/item/sheets/configurations/WitcherProfessionConfigurationSheet.js) · [TASK-0012](../../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Текущее состояние
 
 **14.3.1.00067, issue-00111.** Регистрация removeEffectDamageProperties соответствует HBS; _oRemoveEffectDamageProperties(event,element) получает ближайшую строку от element. Путь слота/ID/return Item.update из .008 сохранены. Все шесть CRUD используют findSkillByPath; имя не адрес. Подключение удаления проверено локально через тела core dispatcher; браузерная приёмка впереди.

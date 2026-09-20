@@ -1,5 +1,16 @@
 # Реестр файлов системы
 
+**Актуализация .00139:** текущий состав651 файл; TASK-0012 добавляет четыре модуля и два шаблона.
+
+| Файл | Назначение | Подробное описание |
+| --- | --- | --- |
+| [module/item/skillIdentity.js](../../../module/item/skillIdentity.js) | Идентичность навыков | [Карточка](files/module/item/skillIdentity.js.md) |
+| [module/scripts/temporaryHpCalculation.js](../../../module/scripts/temporaryHpCalculation.js) | Расчёт временных ПЗ | [Карточка](files/module/scripts/temporaryHpCalculation.js.md) |
+| [module/activeEffect/temporaryHp.js](../../../module/activeEffect/temporaryHp.js) | Источники и расход временных ПЗ | [Карточка](files/module/activeEffect/temporaryHp.js.md) |
+| [module/activeEffect/temporaryHpDuration.js](../../../module/activeEffect/temporaryHpDuration.js) | Боевой срок временных ПЗ | [Карточка](files/module/activeEffect/temporaryHpDuration.js.md) |
+| [templates/chat/temporary-hp.hbs](../../../templates/chat/temporary-hp.hbs) | Карточка рассчитанных временных ПЗ | [Карточка](files/templates/chat/temporary-hp.hbs.md) |
+| [templates/dialog/temporary-hp-parameter.hbs](../../../templates/dialog/temporary-hp-parameter.hbs) | Помощник ссылки формулы | [Карточка](files/templates/dialog/temporary-hp-parameter.hbs.md) |
+
 **Актуализация .00108:** текущий состав645 файлов. Добавлен шаблон предупреждения о недоставленном последствии.
 
 | Файл | Назначение | Подробное описание |

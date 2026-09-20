@@ -1,5 +1,13 @@
 # module/data/item/templates/profession/temporaryHealthData.js
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. TemporaryHealth содержит addTemporaryHealth, mode perPoint/fixed, requiresCheck, rounding up/down, durationUnit и references. Старые difficultyCheck и строки temporaryHp сохранены; начальные value=1d6, duration=2*@p1, p1=source/ability/base. Формулы вычисляет отдельный модуль; настройка не вводит gameplay-минимум результата.
+
+Связанные потребители/границы: skillUsageData, temporaryHpCalculation, конфигурация профессии. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../../../module/data/item/templates/profession/temporaryHealthData.js) · [TASK-0012](../../../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 | Поле | Значение |
 | --- | --- |
 | Исходный файл | [module/data/item/templates/profession/temporaryHealthData.js](../../../../../../../../../module/data/item/templates/profession/temporaryHealthData.js) |

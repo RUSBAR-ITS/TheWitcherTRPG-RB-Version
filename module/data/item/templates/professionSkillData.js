@@ -7,6 +7,7 @@ const fields = foundry.data.fields;
 
 export default function professionSkill() {
     return {
+        skillId: new fields.StringField({ initial: '', label: 'WITCHER.TemporaryHP.skillId' }),
         skillName: new fields.StringField({ initial: '' }),
         stat: new fields.StringField({ initial: '' }),
         definition: new fields.HTMLField({ initial: '' }),

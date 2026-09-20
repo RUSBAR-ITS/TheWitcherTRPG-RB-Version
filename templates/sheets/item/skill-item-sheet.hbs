@@ -4,6 +4,11 @@
             <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'WITCHER.Name'}}" /></h1>
         </div>
     </header>
+    <div class="form-group">
+        <label>{{localize "WITCHER.TemporaryHP.skillId"}}</label>
+        <input name="system.skillId" type="text" value="{{item.system.skillId}}" />
+        {{#unless item.system.skillId}}<button type="button" data-action="generateSkillId">{{localize "WITCHER.TemporaryHP.generateId"}}</button>{{/unless}}
+    </div>
     <div>
         <select name="system.attribute">
             {{selectOptions stats selected=item.system.attribute localize=true}}

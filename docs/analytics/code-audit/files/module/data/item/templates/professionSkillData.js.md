@@ -1,5 +1,13 @@
 # module/data/item/templates/professionSkillData.js
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. Добавлено поле skillId для каждого слота, включая definingSkill. Копия профессии сохраняет идентичность десяти навыков. Старые значения уровня/атаки и их расчёт не меняются.
+
+Связанные потребители/границы: skillIdentity, WitcherProfessionConfigurationSheet. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../../../module/data/item/templates/professionSkillData.js) · [TASK-0012](../../../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Текущее состояние
 
 **14.3.1.00066, TASK-0010.008.** Добавлен activeEffectModifiers:Number initial0 к каждому professionSkill; level/baseCap и вложенные attack/defense/usage/thresholds сохранены. Собственный бонус читает rollContext через явный адрес слота.

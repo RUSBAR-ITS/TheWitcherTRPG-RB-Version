@@ -1,3 +1,5 @@
+import { spendTemporaryHp } from '../../activeEffect/temporaryHp.js';
+import { withParameterChanges } from '../parameterPersistence.js';
 import { installWound, selectInitialWound, reportWoundResult } from '../../item/criticalWoundOperations.js';
 import { getRandomInt } from '../../scripts/helper.js';
 import { createItemEffectDelivery } from '../../scripts/effectDelivery.js';
@@ -122,29 +124,12 @@ export let damageMixin = {
 
     async updateDerivedStat(damage, derivedStat) {
         damage = Math.floor(damage);
-        //first subtract from temp health
-        if (derivedStat == 'hp') {
-            let tempHpArray = this.temporaryEffects.filter(ae =>
-                ae.system.changes.find(change => change.key.includes('temporaryHp'))
-            );
-            for (let tempHp of tempHpArray) {
-                for (let change of tempHp.system.changes) {
-                    let changeContent = JSON.parse(change.value);
-                    if (changeContent.value < damage) {
-                        damage -= changeContent.value;
-                        changeContent.value = 0;
-                    } else {
-                        changeContent.value -= damage;
-                        damage = 0;
-                    }
-                    change.value = JSON.stringify(changeContent);
-                }
-                await tempHp.update({ changes: tempHp.system.changes });
+        return withParameterChanges(this, async () => {
+            const current = this.system.derivedStats[derivedStat].value;
+            const remaining = derivedStat === 'hp' ? await spendTemporaryHp(this, damage) : damage;
+            if (remaining !== 0) {
+                return this.update({ [`system.derivedStats.${derivedStat}.value`]: current - remaining });
             }
-        }
-
-        await this.update({
-            [`system.derivedStats.${derivedStat}.value`]: this.system.derivedStats[derivedStat].value - damage
         });
     },
 

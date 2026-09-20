@@ -1,5 +1,13 @@
 # module/activeEffect/witcherActiveEffect.js
 
+## Актуальное изменение TASK-0012 — 14.3.1.00139
+
+2026-09-20, dev. isTemporary включает отмеченные temporaryHpDuration эффекты; _prepareDuration делегирует специальную подпись; isExpiryTrackable исключает их из native мирового таймера. _preCreate задаёт локальный боевой старт через initialTemporaryHpClock. Семейства и общий parameter-wrapper сохранены.
+
+Связанные потребители/границы: temporaryHpDuration, parameterPersistence. Статические проверки выполнены; браузер и БД не запускались. [Исходник](../../../../../../module/activeEffect/witcherActiveEffect.js) · [TASK-0012](../../../../../tasks/task-0012-temporary-hp.md) · [Проверки](../../../../task-0012-checks.md).
+
+Ниже сохранены предыдущие срезы анализа с их датами; изменённый контракт определяется разделом выше.
+
 ## Текущее состояние — 14.3.1.00068 (TASK-0010.009)
 
 2026-09-18. **Назначение:** Документ эффекта: семейства, активность, запись и часы.

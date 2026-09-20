@@ -64,6 +64,13 @@ export default class WitcherActiveEffectData extends foundry.data.ActiveEffectTy
                 })
             }, { validate: validateModifierChange })),
             ...effectIdentityFields(),
+            temporaryHpDuration: new fields.SchemaField({
+                value: new fields.NumberField({ required: true, nullable: false }),
+                unit: new fields.StringField({ choices: ['rounds', 'minutes', 'hours', 'days'], initial: 'rounds' }),
+                combatId: new fields.StringField({ nullable: true, initial: null }),
+                combatantId: new fields.StringField({ nullable: true, initial: null }),
+                startRound: new fields.NumberField({ nullable: true, initial: null })
+            }, { nullable: true, initial: null }),
             applySelf: new fields.BooleanField({
                 initial: false,
                 label: 'WITCHER.Effect.applySelf'
