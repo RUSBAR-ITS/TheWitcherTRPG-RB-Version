@@ -16,7 +16,7 @@
 {"id":"rel-015734","kind":"defines","from":"src-000622","to":"ent-005615","location":{"source":"src-000622","symbol":"criticalWoundOperations.validateWoundUpdates","line_start":338,"line_end":338},"basis":"source_read"}
 {"id":"rel-015735","kind":"defines","from":"src-000622","to":"ent-005616","location":{"source":"src-000622","symbol":"criticalWoundOperations.selectInitialWound","line_start":359,"line_end":359},"basis":"source_read"}
 {"id":"rel-015736","kind":"defines","from":"ent-000428","to":"ent-005617","location":{"source":"src-000112","symbol":"CriticalWoundData.stabilize","line_start":103,"line_end":103},"basis":"source_read"}
-{"id":"rel-015737","kind":"defines","from":"ent-000612","to":"ent-005618","location":{"source":"src-000192","symbol":"WitcherItem.updateDocuments","line_start":34,"line_end":34},"basis":"source_read"}
+{"id": "rel-015737", "kind": "defines", "from": "ent-000612", "to": "ent-005618", "location": {"source": "src-000192", "symbol": "WitcherItem.updateDocuments", "line_start": 36, "line_end": 36}, "basis": "source_read"}
 {"id":"rel-015738","kind":"calls","from":"ent-005601","to":"ent-005600","location":{"source":"src-000622","symbol":"criticalWoundOperations.withWoundQueue","line_start":89,"line_end":89},"basis":"source_read"}
 {"id":"rel-015739","kind":"calls","from":"ent-005602","to":"ent-005600","location":{"source":"src-000622","symbol":"criticalWoundOperations.woundKey","line_start":104,"line_end":104},"basis":"source_read"}
 {"id":"rel-015740","kind":"calls","from":"ent-005605","to":"ent-005602","location":{"source":"src-000622","symbol":"criticalWoundOperations.prepareWoundStage","line_start":124,"line_end":124},"basis":"source_read"}
@@ -39,8 +39,8 @@
 {"id":"rel-015757","kind":"calls","from":"ent-004481","to":"ent-005611","location":{"source":"src-000112","symbol":"CriticalWoundData.treat","line_start":100,"line_end":100},"basis":"source_read"}
 {"id":"rel-015758","kind":"calls","from":"ent-005617","to":"ent-005611","location":{"source":"src-000112","symbol":"CriticalWoundData.stabilize","line_start":104,"line_end":104},"basis":"source_read"}
 {"id":"rel-015759","kind":"calls","from":"ent-003556","to":"ent-005609","location":{"source":"src-000047","symbol":"WitcherActor.addItem","line_start":218,"line_end":218},"basis":"source_read"}
-{"id":"rel-015760","kind":"calls","from":"ent-005480","to":"ent-005614","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":27,"line_end":27},"basis":"source_read"}
-{"id":"rel-015761","kind":"calls","from":"ent-005618","to":"ent-005615","location":{"source":"src-000192","symbol":"WitcherItem.updateDocuments","line_start":40,"line_end":40},"basis":"source_read"}
+{"id": "rel-015760", "kind": "calls", "from": "ent-005480", "to": "ent-005614", "location": {"source": "src-000192", "symbol": "WitcherItem.createDocuments", "line_start": 29, "line_end": 29}, "basis": "source_read"}
+{"id": "rel-015761", "kind": "calls", "from": "ent-005618", "to": "ent-005615", "location": {"source": "src-000192", "symbol": "WitcherItem.updateDocuments", "line_start": 42, "line_end": 42}, "basis": "source_read"}
 {"id":"rel-015762","kind":"calls","from":"ent-004120","to":"ent-005616","location":{"source":"src-000014","symbol":"actor.damageMixin.applyCritWound","line_start":302,"line_end":302},"basis":"source_read"}
 {"id":"rel-015763","kind":"calls","from":"ent-004120","to":"ent-005609","location":{"source":"src-000014","symbol":"actor.damageMixin.applyCritWound","line_start":307,"line_end":307},"basis":"source_read"}
 {"id":"rel-015764","kind":"calls","from":"ent-004501","to":"ent-005613","location":{"source":"src-000042","symbol":"sheet.healMixin.recoverActor","line_start":92,"line_end":92},"basis":"source_read"}

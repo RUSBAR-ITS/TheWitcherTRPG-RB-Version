@@ -44,10 +44,10 @@
 {"id":"rel-015384","kind":"defines","from":"ent-005477","to":"ent-005478","location":{"source":"src-000620","symbol":"WitcherItems._prepareImportDocument","line_start":5,"line_end":5},"basis":"source_read"}
 {"id":"rel-015385","kind":"defines","from":"ent-005477","to":"ent-005479","location":{"source":"src-000620","symbol":"WitcherItems.fromCompendium","line_start":10,"line_end":10},"basis":"source_read"}
 {"id":"rel-015386","kind":"defines","from":"ent-000612","to":"ent-005480","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":18,"line_end":18},"basis":"source_read"}
-{"id":"rel-015387","kind":"defines","from":"ent-000612","to":"ent-005481","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":49,"line_end":49},"basis":"source_read"}
-{"id":"rel-015388","kind":"defines","from":"ent-000612","to":"ent-005482","location":{"source":"src-000192","symbol":"WitcherItem.toCompendium","line_start":56,"line_end":56},"basis":"source_read"}
-{"id":"rel-015389","kind":"defines","from":"ent-000612","to":"ent-005483","location":{"source":"src-000192","symbol":"WitcherItem.clone","line_start":67,"line_end":67},"basis":"source_read"}
-{"id":"rel-015390","kind":"defines","from":"ent-000612","to":"ent-005484","location":{"source":"src-000192","symbol":"WitcherItem.deleteDialog","line_start":81,"line_end":81},"basis":"source_read"}
+{"id": "rel-015387", "kind": "defines", "from": "ent-000612", "to": "ent-005481", "location": {"source": "src-000192", "symbol": "WitcherItem.deleteDocuments", "line_start": 51, "line_end": 51}, "basis": "source_read"}
+{"id": "rel-015388", "kind": "defines", "from": "ent-000612", "to": "ent-005482", "location": {"source": "src-000192", "symbol": "WitcherItem.toCompendium", "line_start": 58, "line_end": 58}, "basis": "source_read"}
+{"id": "rel-015389", "kind": "defines", "from": "ent-000612", "to": "ent-005483", "location": {"source": "src-000192", "symbol": "WitcherItem.clone", "line_start": 69, "line_end": 69}, "basis": "source_read"}
+{"id": "rel-015390", "kind": "defines", "from": "ent-000612", "to": "ent-005484", "location": {"source": "src-000192", "symbol": "WitcherItem.deleteDialog", "line_start": 83, "line_end": 83}, "basis": "source_read"}
 {"id":"rel-015391","kind":"defines","from":"ent-000437","to":"ent-005485","location":{"source":"src-000166","symbol":"WitcherContainerSheet._prepareContext","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015392","kind":"defines","from":"ent-000402","to":"ent-005486","location":{"source":"src-000111","symbol":"ContainerData.templateContent","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015393","kind":"defines","from":"ent-000402","to":"ent-005487","location":{"source":"src-000111","symbol":"ContainerData.contentIncomplete","line_start":39,"line_end":39},"basis":"source_read"}
@@ -161,10 +161,10 @@
 {"id":"rel-015501","kind":"calls","from":"ent-004651","to":"ent-005460","location":{"source":"src-000166","symbol":"WitcherContainerSheet._onDropItem","line_start":60,"line_end":60},"basis":"source_read"}
 {"id":"rel-015502","kind":"calls","from":"ent-004652","to":"ent-005459","location":{"source":"src-000166","symbol":"WitcherContainerSheet._onRemoveItem","line_start":66,"line_end":66},"basis":"source_read"}
 {"id":"rel-015503","kind":"calls","from":"ent-004652","to":"ent-005460","location":{"source":"src-000166","symbol":"WitcherContainerSheet._onRemoveItem","line_start":66,"line_end":66},"basis":"source_read"}
-{"id":"rel-015504","kind":"calls","from":"ent-005480","to":"ent-005450","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":21,"line_end":21},"basis":"source_read"}
-{"id":"rel-015505","kind":"calls","from":"ent-005481","to":"ent-005455","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":51,"line_end":51},"basis":"source_read"}
-{"id":"rel-015506","kind":"calls","from":"ent-005482","to":"ent-005470","location":{"source":"src-000192","symbol":"WitcherItem.toCompendium","line_start":59,"line_end":59},"basis":"source_read"}
-{"id":"rel-015507","kind":"calls","from":"ent-005483","to":"ent-005470","location":{"source":"src-000192","symbol":"WitcherItem.clone","line_start":74,"line_end":74},"basis":"source_read"}
+{"id": "rel-015504", "kind": "calls", "from": "ent-005480", "to": "ent-005450", "location": {"source": "src-000192", "symbol": "WitcherItem.createDocuments", "line_start": 23, "line_end": 23}, "basis": "source_read"}
+{"id": "rel-015505", "kind": "calls", "from": "ent-005481", "to": "ent-005455", "location": {"source": "src-000192", "symbol": "WitcherItem.deleteDocuments", "line_start": 53, "line_end": 53}, "basis": "source_read"}
+{"id": "rel-015506", "kind": "calls", "from": "ent-005482", "to": "ent-005470", "location": {"source": "src-000192", "symbol": "WitcherItem.toCompendium", "line_start": 61, "line_end": 61}, "basis": "source_read"}
+{"id": "rel-015507", "kind": "calls", "from": "ent-005483", "to": "ent-005470", "location": {"source": "src-000192", "symbol": "WitcherItem.clone", "line_start": 76, "line_end": 76}, "basis": "source_read"}
 {"id":"rel-015508","kind":"calls","from":"ent-005479","to":"ent-005470","location":{"source":"src-000620","symbol":"WitcherItems.fromCompendium","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015509","kind":"calls","from":"ent-003559","to":"ent-005458","location":{"source":"src-000043","symbol":"sheet.itemMixin._onDropItem","line_start":26,"line_end":26},"basis":"source_read"}
 {"id":"rel-015510","kind":"calls","from":"ent-003568","to":"ent-005460","location":{"source":"src-000043","symbol":"sheet.itemMixin._onItemDelete","line_start":207,"line_end":207},"basis":"source_read"}
@@ -186,7 +186,7 @@
 {"id":"rel-015526","kind":"calls","from":"ent-005454","to":"ent-005490","location":{"source":"src-000618","symbol":"containerOperations.deleteTrees","line_start":284,"line_end":284},"basis":"source_read"}
 {"id":"rel-015527","kind":"calls","from":"ent-005454","to":"ent-005491","location":{"source":"src-000618","symbol":"containerOperations.deleteTrees","line_start":266,"line_end":266},"basis":"source_read"}
 {"id":"rel-015528","kind":"calls","from":"ent-005480","to":"ent-005488","location":{"source":"src-000192","symbol":"WitcherItem.createDocuments","line_start":19,"line_end":19},"basis":"source_read"}
-{"id":"rel-015529","kind":"calls","from":"ent-005481","to":"ent-005490","location":{"source":"src-000192","symbol":"WitcherItem.deleteDocuments","line_start":25,"line_end":25},"basis":"source_read"}
+{"id": "rel-015529", "kind": "calls", "from": "ent-005481", "to": "ent-005490", "location": {"source": "src-000192", "symbol": "WitcherItem.deleteDocuments", "line_start": 27, "line_end": 27}, "basis": "source_read"}
 {"id":"rel-015530","kind":"calls","from":"ent-005478","to":"ent-005492","location":{"source":"src-000620","symbol":"WitcherItems._prepareImportDocument","line_start":7,"line_end":7},"basis":"source_read"}
 {"id":"rel-015531","kind":"defines","from":"ent-000436","to":"ent-005493","location":{"source":"src-000168","symbol":"WitcherDiagramSheet._prepareContext","line_start":13,"line_end":13},"basis":"source_read"}
 {"id":"rel-015532","kind":"defines","from":"ent-000436","to":"ent-005494","location":{"source":"src-000168","symbol":"WitcherDiagramSheet._onEditComponent","line_start":85,"line_end":85},"basis":"source_read"}

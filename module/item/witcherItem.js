@@ -17,7 +17,9 @@ export default class WitcherItem extends Item {
     /** Native entry points also cover directory imports and Actor embedded creation. */
     static async createDocuments(data = [], operation = {}) {
         return withParameterChanges(parameterActor(operation.parent), async () => {
-            data = assignedItemData(assignedSkillIds(data), operation.parent);
+            data = assignedItemData(assignedSkillIds(data), operation.parent, {
+                preserveEffectStart: operation[WOUND_INTERNAL] === true
+            });
             const create = (rows, options) => options[CONTAINER_INTERNAL]
                 ? super.createDocuments(rows, options)
                 : createContainerDocuments(rows, options,

@@ -1,5 +1,13 @@
 # module/item/criticalWoundOperations.js
 
+## Актуальное уточнение — 14.3.1.00144
+
+writeStage перед первым create готовит часы ожидаемой стадии через initializeEffectStart. WOUND_INTERNAL сохраняет их в WitcherItem.createDocuments → assignedItemData. Вложенный AE._preCreate при создании Item не вызывается. stageMatches и ветка обновления ForcedReplacement прежние; в этом файле уточнён только комментарий.
+
+[Проверки и границы](../../../../task-0012-checks.md#clock-fix-00144): 38/38 локально, игровой повтор впереди. Более ранние датированные записи ниже — история.
+
+**Проверка .00142, отчёт .00143:** реальная цепочка создания травмы проходит `writeStage → WitcherItem.createDocuments → assignedItemData`. Предварительная коррекция раундового срока в writeStage повторяется после безусловного сброса start в assignedItemData. При сроке3 получено1 вместо2;00336/.010 не завершены. Вложенный AE._preCreate в этом пути не вызывается. [Доказательства и границы](../../../../task-0012-checks.md#browser-00142). Код здесь не изменён.
+
 ## Актуальное изменение — 14.3.1.00142
 
 writeStage перед первым create вызывает импортированный initializeEffectStart для каждой подготовленной копии AE. Ожидаемый и отправляемый start/duration совпадают; штатный _preCreate не корректирует их повторно. stageMatches остаётся строгим; ветка замены через ForcedReplacement и настоящий отказ записи сохранены.

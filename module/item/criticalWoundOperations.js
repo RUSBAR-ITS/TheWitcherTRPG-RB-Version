@@ -184,8 +184,8 @@ async function writeStage(actor, source, existing, create) {
     }
     delete expected.ownership;
     delete expected._stats;
-    // Compare the same clock we send. An explicit start prevents _preCreate
-    // from applying the first-turn duration correction a second time.
+    // Compare the same clock we send. WOUND_INTERNAL preserves this start in
+    // assignedItemData so the first-turn duration correction is not repeated.
     for (const effect of expected.effects) initializeEffectStart(effect, actor);
     let created;
     try {

@@ -122,7 +122,7 @@ export async function updateEffectDocuments(changes, operation, update) {
 }
 
 /** Nested effects do not get their own _preCreate when an Item is imported. */
-export function assignedItemData(data, actor, { update = false } = {}) {
+export function assignedItemData(data, actor, { update = false, preserveEffectStart = false } = {}) {
     if (actor?.documentName !== 'Actor') return data;
     const next = assignmentCounter(actor);
     return data.map(original => {
@@ -135,7 +135,8 @@ export function assignedItemData(data, actor, { update = false } = {}) {
         row.effects ??= previous?.effects.map(e => e.toObject()) ?? [];
         for (const effect of row.effects) {
             assign(effect, next);
-            if (!update) {
+            // The wound service already initialized these clocks before checking the write.
+            if (!update && !(preserveEffectStart && effect.start != null)) {
                 effect.start = null;
                 if (effect.duration) effect.duration.expired = false;
                 initializeEffectStart(effect, actor);

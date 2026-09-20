@@ -47,8 +47,8 @@
 {"id":"rel-007954","kind":"defines","from":"ent-000277","to":"ent-003591","location":{"source":"src-000047","symbol":"WitcherActor.removeStatus","line_start":173,"line_end":181},"basis":"source_read"}
 {"id":"rel-007955","kind":"defines","from":"ent-003426","to":"ent-003592","location":{"source":"src-000157","symbol":"item.consumeMixin.createConsumeMessage","line_start":19,"line_end":41},"basis":"source_read"}
 {"id":"rel-007956","kind":"defines","from":"ent-003419","to":"ent-003593","location":{"source":"src-000017","symbol":"actor.healMixin.calculateHealValue","line_start":2,"line_end":10},"basis":"source_read"}
-{"id":"rel-007957","kind":"defines","from":"ent-000612","to":"ent-003594","location":{"source":"src-000192","symbol":"WitcherItem.isConsumable","line_start":150,"line_end":152},"basis":"source_read"}
-{"id":"rel-007958","kind":"reads","from":"ent-003594","to":"ent-003581","location":{"source":"src-000192","symbol":"WitcherItem.isConsumable","line_start":151,"line_end":151},"basis":"source_read"}
+{"id": "rel-007957", "kind": "defines", "from": "ent-000612", "to": "ent-003594", "location": {"source": "src-000192", "symbol": "WitcherItem.isConsumable", "line_start": 152, "line_end": 154}, "basis": "source_read"}
+{"id": "rel-007958", "kind": "reads", "from": "ent-003594", "to": "ent-003581", "location": {"source": "src-000192", "symbol": "WitcherItem.isConsumable", "line_start": 153, "line_end": 153}, "basis": "source_read"}
 {"id":"rel-007959","kind":"calls","from":"ent-000867","to":"ent-003593","location":{"source":"src-000157","symbol":"item.consumeMixin.consume","line_start":8,"line_end":8},"basis":"source_read","condition":"consumeProperties.doesHeal","context":"await до parseInt; единственное ожидание в consume."}
 {"id":"rel-007960","kind":"reads","from":"ent-000867","to":"ent-003583","location":{"source":"src-000157","symbol":"item.consumeMixin.consume","line_start":7,"line_end":7},"basis":"source_read"}
 {"id":"rel-007961","kind":"reads","from":"ent-000867","to":"ent-003584","location":{"source":"src-000157","symbol":"item.consumeMixin.consume","line_start":8,"line_end":8},"basis":"source_read"}
