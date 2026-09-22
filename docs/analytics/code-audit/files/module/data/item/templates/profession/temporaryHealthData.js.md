@@ -81,7 +81,7 @@ TemporaryHealth extends DataModel; используется только как 
 
 ## Связанные проблемы
 
-[issue-00023](../../../../../../../../issues/potential/issue-00023.md), [issue-00113](../../../../../../../../issues/potential/issue-00113.md), [issue-00114](../../../../../../../../issues/potential/issue-00114.md), [issue-00117](../../../../../../../../issues/potential/issue-00117.md). issue-00023 — отдельная прежняя проблема расхода нескольких changes; здесь производитель создаёт один change.
+[issue-00023](../../../../../../../../issues/closed/issue-00023.md), [issue-00113](../../../../../../../../issues/potential/issue-00113.md), [issue-00114](../../../../../../../../issues/closed/issue-00114.md), [issue-00117](../../../../../../../../issues/closed/issue-00117.md). issue-00023 — отдельная прежняя проблема расхода нескольких changes; здесь производитель создаёт один change.
 
 ## История актуализации
 

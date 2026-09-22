@@ -124,7 +124,7 @@ applyGeneralCombatHooks вызывает асинхронные регенера
 
 ## Связанные проблемы
 
-[issue-00006](../../../../../../../../issues/closed/issue-00006.md) — момент запуска; [issue-00021](../../../../../../../../issues/closed/issue-00021.md) — потеря damage.type; [issue-00022](../../../../../../../../issues/potential/issue-00022.md) — heal.modifier не учитывается; [issue-00023](../../../../../../../../issues/potential/issue-00023.md) — расход смешанного эффекта временных HP.
+[issue-00006](../../../../../../../../issues/closed/issue-00006.md) — момент запуска; [issue-00021](../../../../../../../../issues/closed/issue-00021.md) — потеря damage.type; [issue-00022](../../../../../../../../issues/potential/issue-00022.md) — heal.modifier не учитывается; [issue-00023](../../../../../../../../issues/closed/issue-00023.md) — расход смешанного эффекта временных HP.
 
 ## История актуализации
 

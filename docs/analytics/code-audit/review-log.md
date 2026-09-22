@@ -596,10 +596,10 @@ Character показывает десять кнопок навыков, Monster
 | [issue-00111](../../issues/closed/issue-00111.md) | HBS action removeEffectDamageProperties не совпадает с зарегистрированным removeEffect; прямой нижний remove использует currentTarget. Старое выполнение core-dispatcher на фасаде не является браузерным кликом. |
 | [issue-00112](../../issues/potential/issue-00112.md) | Схема имеет механические поля definingSkill, однако конфигурация строит только три пути по три навыка; general/activeEffects не дают эти поля. Проблема UI отделена от алгоритма защиты72. |
 | [issue-00113](../../issues/potential/issue-00113.md) | applySelf присутствует в SkillUsage и форме, но цель выбирается только по applyOnTarget; иначе используется this. Нет цели при applyOnTarget → сообщение ошибки/возврат; это не lifecycle ActiveEffect. |
-| [issue-00114](../../issues/potential/issue-00114.md) | Duration заменяет первое @level и берёт match(/\d+\*?\d+/g)[0]. Одиночное2 не совпадает; 10 и2*@level при уровне2 обрабатываются. Новый синтаксис выражений не вводился. |
+| [issue-00114](../../issues/closed/issue-00114.md) | Duration заменяет первое @level и берёт match(/\d+\*?\d+/g)[0]. Одиночное2 не совпадает; 10 и2*@level при уровне2 обрабатываются. Новый синтаксис выражений не вводился. |
 | [issue-00115](../../issues/potential/issue-00115.md) | Пустой TypedObject thresholds допускается схемой и приводит к chooser без варианта; дальше читается undefined.value. Одиночный порог0 допустим; доступ select по id не является отдельной ошибкой. |
 | [issue-00116](../../issues/potential/issue-00116.md) | Drop профессии сбрасывает флаги базовых навыков и по строкам Set ищет CONFIG.skillMap; неизвестное имя строит undefined-путь. Отсутствие choices у Set и набор52 вариантов в UI различены; родственная Loot-проблема225 сохраняется отдельно. |
-| [issue-00117](../../issues/potential/issue-00117.md) | Имя вставляется в JSON временных HP без escaping. Кавычка даёт malformed JSON; это не ошибка арифметики240 и не миграция корректного JSON в объект294. Поздний consumer updateDerivedStat прочитан, его полная проверка остаётся .011. |
+| [issue-00117](../../issues/closed/issue-00117.md) | Имя вставляется в JSON временных HP без escaping. Кавычка даёт malformed JSON; это не ошибка арифметики240 и не миграция корректного JSON в объект294. Поздний consumer updateDerivedStat прочитан, его полная проверка остаётся .011. |
 | [issue-00118](../../issues/potential/issue-00118.md) | none скрывает кнопку профессии, пустой/неизвестный stat и level0 её не скрывают; doProfessionSkillRoll читает stats/statMap до prompt. Схема свободной строки не гарантирует подходящий runtime ключ. |
 | [issue-00119](../../issues/closed/issue-00119.md) | Три ключа thresholds есть в en и отсутствуют в ru: label hasThresholds в модели, name/thresholdValue в HBS. Поздняя .038 проверяла настоящий Localization с EN fallback. Полный свод двух языков остаётся .016. |
 | [issue-00120](../../issues/potential/issue-00120.md) | Все шесть CRUD вызывают item.update без await/return, _onChangeForm вызывает super и дополнительную ветвь. Датированный pending-update фасад подтвердил раннее завершение; реальная гонка записей не запускалась. |
@@ -607,10 +607,10 @@ Character показывает десять кнопок навыков, Monster
 | [issue-00237](../../issues/closed/issue-00237.md) | Прямая атака передаёт отсутствующий attack.name в addActiveEffects и не вызывает addAttackModifiers; weapon skillReplacement обходит constructBaseAttackFormula. Уже вошедшие в stat.value эффекты сохраняются. Контракт оружия продолжает .010. |
 | [issue-00238](../../issues/potential/issue-00238.md) | Прямая extra-атака штрафует−3 без проверки/списания STA. В weaponAttack имеется guard STA−3, но update не ожидается (отдельная262). Прежние STA2/3/10 не повторялись, норму по рулбуку аудит не выбирает. |
 | [issue-00239](../../issues/potential/issue-00239.md) | Producer не передаёт itemUuid, AttackMessageData не восстанавливает его из damage.item; onDamage без guard вызывает разрешённый Item.rollDamage. Отсутствующий/удалённый Item имеет ту же границу, .045 не доказывает полный игровой урон. |
-| [issue-00240](../../issues/potential/issue-00240.md) | min(rollOver,cap)+строковое значение вычисляется Roll только при наличии d; +2 даёт value:5+2 в JSON. Эта причина отделена от кавычек117 и object value после миграции294. |
+| [issue-00240](../../issues/closed/issue-00240.md) | min(rollOver,cap)+строковое значение вычисляется Roll только при наличии d; +2 даёт value:5+2 в JSON. Эта причина отделена от кавычек117 и object value после миграции294. |
 | [issue-00241](../../issues/potential/issue-00241.md) | Dispatcher, weapon chooser и threshold не связывают вложенный Promise; HP не ждёт toMessage/query. Прямые prompt rejectClose могут отклоняться. Ранний true в query dispatcher8 и CRUD120 — отдельные уровни. |
 | [issue-00242](../../issues/potential/issue-00242.md) | Фильтр использует только первый attackOption; пустой chooser делегирует undefined. Поздняя .041 исполнила первое падение weaponAttack.system.damage; браузерная обработка пустого select не доказана. |
-| [issue-00243](../../issues/potential/issue-00243.md) | Producer временных HP задаёт icon; schema/migrateData ядра14 используют img и не переносят icon. Прежняя миграция выполнена отдельно, конечный вид эффекта в клиенте не проверен. |
+| [issue-00243](../../issues/closed/issue-00243.md) | Producer временных HP задаёт icon; schema/migrateData ядра14 используют img и не переносят icon. Прежняя миграция выполнена отдельно, конечный вид эффекта в клиенте не проверен. |
 | [issue-00244](../../issues/potential/issue-00244.md) | И прямая, и оружейная формула исключают meleeBonus при monster.addMeleeBonus=false, а context проверяет только applyMeleeBonus. Поздняя .041 добавила оружейный producer той же причины, без нового issue. |
 
 ### Формальная проверка и сохранность
@@ -3244,7 +3244,7 @@ modifier-configuration.css имеет более специфичный селе
 | Перечисление локаций | [32](../../issues/potential/issue-00032.md): getAllLocations теряет контекст. Корректный единичный tailWing в dialog/location не опровергает дефект списка. |
 | Масло/локация сообщения | Новая[300](../../issues/potential/issue-00300.md): воспроизведены два последовательных применения DamageMessageData. Прежняя .042 описывала изменение location в критической защите без повторного consumer; это иной участок, не новый вывод о правилах крита. |
 | HTML и итог броска | [287](../../issues/potential/issue-00287.md) — поля detail; [293](../../issues/potential/issue-00293.md) — malformed flavor; новая[301](../../issues/potential/issue-00301.md) — отсутствие/нечисловой DOM total. parseInt первого итога не объявлен ошибкой обычной составной формулы. |
-| Травма и временные HP | [288](../../issues/closed/issue-00288.md), [289](../../issues/closed/issue-00289.md), [294](../../issues/potential/issue-00294.md): quantity/выбор Item/миграция AE — самостоятельные причины. Передача crit menu не доказывает успешность этих downstream операций. |
+| Травма и временные HP | [288](../../issues/closed/issue-00288.md), [289](../../issues/closed/issue-00289.md), [294](../../issues/closed/issue-00294.md): quantity/выбор Item/миграция AE — самостоятельные причины. Передача crit menu не доказывает успешность этих downstream операций. |
 | Сокет и ремонт/передача | [10](../../issues/potential/issue-00010.md), [169](../../issues/potential/issue-00169.md) дополнены guards/receiver/буфером. Это другой протокол, чем User.query и [8](../../issues/potential/issue-00008.md). |
 | Сохранённый дубль | [200](../../issues/potential/issue-00200.md) и[29](../../issues/potential/issue-00029.md) остаются potential, как в [протоколе 1](cross-check-0001.md). В новой порции аналогичные уже зарегистрированным наблюдения 149/145/239/21/22 не размножались. |
 
@@ -3365,7 +3365,7 @@ Actor/Item-владельцы, game/ui/settings, окно DialogV2, UUID/Compend
 | [issue-00291](../../issues/potential/issue-00291.md) | Отрицательный входящий урон увеличивает запас щита |
 | [issue-00292](../../issues/potential/issue-00292.md) | Повторное поглощение щитом может использовать прежний незаписанный запас |
 | [issue-00293](../../issues/potential/issue-00293.md) | Начальный HTML сообщения урона превращает h1 в атрибут div |
-| [issue-00294](../../issues/potential/issue-00294.md) | Расход временных HP повторно разбирает объект value после миграции Foundry 14 |
+| [issue-00294](../../issues/closed/issue-00294.md) | Расход временных HP повторно разбирает объект value после миграции Foundry 14 |
 | [issue-00295](../../issues/potential/issue-00295.md) | Неизвестный ID статусного воздействия прерывает бросок урона |
 | [issue-00296](../../issues/closed/issue-00296.md) | Заголовок окна переменного урона запрашивает отсутствующий ключ перевода |
 | [issue-00297](../../issues/potential/issue-00297.md) | Режим только урона передаёт сериализованные свойства без getPreprocessedEffects |
@@ -4068,13 +4068,13 @@ TASK-0003.040 закрыта по критериям анализа; все .001
 | [issue-00237](../../issues/closed/issue-00237.md) | Профессиональные атаки обходят модификаторы навыка и общие модификаторы атаки | potential |
 | [issue-00238](../../issues/potential/issue-00238.md) | Дополнительная профессиональная атака без оружия не списывает STA | potential |
 | [issue-00239](../../issues/potential/issue-00239.md) | Кнопка урона профессиональной атаки не получает UUID предмета | potential |
-| [issue-00240](../../issues/potential/issue-00240.md) | Формула временного здоровья без кубов попадает в JSON без вычисления | potential |
+| [issue-00240](../../issues/closed/issue-00240.md) | Формула временного здоровья без кубов попадает в JSON без вычисления | potential |
 | [issue-00241](../../issues/potential/issue-00241.md) | Обработчики профессии завершаются до вызванных бросков и применения эффекта | potential |
 | [issue-00242](../../issues/potential/issue-00242.md) | Выбор оружия способности продолжает выполнение при пустом списке | potential |
-| [issue-00243](../../issues/potential/issue-00243.md) | Временное здоровье передаёт изображение эффекта в устаревшем поле icon | potential |
+| [issue-00243](../../issues/closed/issue-00243.md) | Временное здоровье передаёт изображение эффекта в устаревшем поле icon | potential |
 | [issue-00244](../../issues/potential/issue-00244.md) | Диалог атаки монстра показывает неиспользуемый бонус ближнего боя | potential |
 
-Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00069](../../issues/potential/issue-00069.md), [issue-00071](../../issues/potential/issue-00071.md), [issue-00072](../../issues/potential/issue-00072.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00110](../../issues/closed/issue-00110.md), [issue-00113](../../issues/potential/issue-00113.md), [issue-00114](../../issues/potential/issue-00114.md), [issue-00115](../../issues/potential/issue-00115.md), [issue-00117](../../issues/potential/issue-00117.md), [issue-00118](../../issues/potential/issue-00118.md), [issue-00119](../../issues/closed/issue-00119.md), [issue-00153](../../issues/potential/issue-00153.md). Основание регистрации — пункт 9 TASK-0003. Подтверждение/перевод статуса/исправление не выполнялись. Отсутствие ветвей в Monster UI и действие уровня 0 описаны как поведение, не как автоматически ошибочные правила.
+Дополнены [issue-00008](../../issues/potential/issue-00008.md), [issue-00069](../../issues/potential/issue-00069.md), [issue-00071](../../issues/potential/issue-00071.md), [issue-00072](../../issues/potential/issue-00072.md), [issue-00109](../../issues/potential/issue-00109.md), [issue-00110](../../issues/closed/issue-00110.md), [issue-00113](../../issues/potential/issue-00113.md), [issue-00114](../../issues/closed/issue-00114.md), [issue-00115](../../issues/potential/issue-00115.md), [issue-00117](../../issues/closed/issue-00117.md), [issue-00118](../../issues/potential/issue-00118.md), [issue-00119](../../issues/closed/issue-00119.md), [issue-00153](../../issues/potential/issue-00153.md). Основание регистрации — пункт 9 TASK-0003. Подтверждение/перевод статуса/исправление не выполнялись. Отсутствие ветвей в Monster UI и действие уровня 0 описаны как поведение, не как автоматически ошибочные правила.
 
 ### Формальная проверка документов и сохранности
 
@@ -8018,7 +8018,7 @@ PY
 
 ### Наблюдения и пределы
 
-Новые [issue-00019](../../issues/closed/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/closed/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/potential/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/closed/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/closed/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
+Новые [issue-00019](../../issues/closed/issue-00019.md), [issue-00020](../../issues/potential/issue-00020.md), [issue-00021](../../issues/closed/issue-00021.md), [issue-00022](../../issues/potential/issue-00022.md), [issue-00023](../../issues/closed/issue-00023.md) находятся в potential. Дополнены [issue-00006](../../issues/closed/issue-00006.md), [issue-00011](../../issues/potential/issue-00011.md) и [issue-00014](../../issues/closed/issue-00014.md). Подтверждения пользователем и исправления не выполнялись.
 
 Проверки не включают запуск мира/браузера, запись документов, сетевые запросы, импорт компедиумов, полный боевой цикл, экономику и соответствие рулбуку. Исходники и игровые данные не изменялись. Карточки фиксируют реальные обращения и пределы их изучения; это основание для дальнейших порций, а не доказательство исправности всей системы.
 

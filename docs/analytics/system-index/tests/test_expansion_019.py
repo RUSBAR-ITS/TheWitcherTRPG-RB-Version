@@ -108,7 +108,7 @@ class DamageApplicationExpansion(unittest.TestCase):
         self.assertNotIn('this.system.combatEffects.temporaryEffects.temporaryHp',body)
         writes={r['to']for r in self.edges('actor.damageMixin.updateDerivedStat','writes')};self.assertEqual(writes,{self.q['DerivedStats.hp'],self.q['DerivedStats.sta'],self.q['stat().value']})
         p=next(p for p in self.new['processes']if p['name']=='Урон: временные HP и конечный ресурс');last=p['steps'][-1];self.assertEqual(last['id'],'actor-update');self.assertEqual(last['next'][0]['flow'],'await')
-        b=self.data.entities[self.q['updateDerivedStat/change-value-json']];self.assertEqual({r['path']for r in b['refs']if r['relation']=='related_issue'},{'docs/issues/potential/issue-00117.md','docs/issues/potential/issue-00294.md'})
+        b=self.data.entities[self.q['updateDerivedStat/change-value-json']];self.assertEqual({r['path']for r in b['refs']if r['relation']=='related_issue'},{'docs/issues/closed/issue-00117.md','docs/issues/closed/issue-00294.md'})
 
     def test_report_contexts_and_partial_have_different_shapes(self):
         a=self.source(14);single='\n'.join(self.source(491));allview=self.source(490)

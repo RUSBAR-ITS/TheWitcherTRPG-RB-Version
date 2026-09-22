@@ -430,7 +430,7 @@
 | [issue-00020](../../issues/potential/issue-00020.md) | Основание сохранено | B03: C06: 100 crown→обмен 10 crown в crown отправляет 110; это коллизия computed key. |
 | [issue-00021](../../issues/closed/issue-00021.md) | Основание сохранено | B03: generalCombatHook не переносит damage.type; applyDamageFromStatus читает отсутствующее поле. Не тождественно issue-00006. |
 | [issue-00022](../../issues/potential/issue-00022.md) | Основание сохранено | B03: В лечение передаётся heal.amount, modifier не читается; назначение ожидаемой добавки не подменяет правило. |
-| [issue-00023](../../issues/potential/issue-00023.md) | Основание сохранено | B03: Фильтрация по наличию temporaryHp выбирает эффект целиком; внутренний цикл расходует все changes. Полный жизненный цикл AE отдельно. |
+| [issue-00023](../../issues/closed/issue-00023.md) | Основание сохранено | B03: Фильтрация по наличию temporaryHp выбирает эффект целиком; внутренний цикл расходует все changes. Полный жизненный цикл AE отдельно. |
 | [issue-00024](../../issues/potential/issue-00024.md) | Основание сохранено | B03: C02: настоящий _prepareContext и CharacterData дают ключу 10 запись 110 в toObject(false); _source остался прежним. |
 | [issue-00025](../../issues/potential/issue-00025.md) | Основание сохранено | B03: C03: applyAP=true при штатном properties вызывает TypeError до проверки брони; AP-ветка возвращается раньше. |
 | [issue-00026](../../issues/potential/issue-00026.md) | Основание сохранено | B03: C03: damage20,multiplier3 →20 без сопротивления,30 с одним,45 с двумя. Назначение коэффициента требует решения. |
@@ -521,10 +521,10 @@
 | [issue-00111](../../issues/closed/issue-00111.md) | Основание сохранено | B07: P02: data-action removeEffectDamageProperties отсутствует в actions; handler также использует event.currentTarget. |
 | [issue-00112](../../issues/potential/issue-00112.md) | Основание сохранено | B07: PARTS/контекст редактора включают только три пути; definingSkill имеет ту же полную модель. |
 | [issue-00113](../../issues/potential/issue-00113.md) | Основание сохранено | B07: P03: applySelf=false/applyOnTarget=false всё равно выбирает себя; флаг target имеет приоритет. |
-| [issue-00114](../../issues/potential/issue-00114.md) | Основание сохранено | B07: P03: duration='1' даёт null match/TypeError; формула обрабатывается regexp+eval, не общим Roll-парсером. |
+| [issue-00114](../../issues/closed/issue-00114.md) | Основание сохранено | B07: P03: duration='1' даёт null match/TypeError; формула обрабатывается regexp+eval, не общим Roll-парсером. |
 | [issue-00115](../../issues/potential/issue-00115.md) | Основание сохранено | B07: P03: пустой thresholds открывает пустой select, затем чтение выбранной value падает. |
 | [issue-00116](../../issues/potential/issue-00116.md) | Основание сохранено | B07: Drop itemMixin ищет attr по ключу без проверки; unknown формирует system.skills.undefined.*; StringSet не ограничен картой. |
-| [issue-00117](../../issues/potential/issue-00117.md) | Основание сохранено | B07: Исходник вручную интерполирует skillName в JSON value; кавычки не экранируются. Полная передача AE/ядровая очистка не повторялась. |
+| [issue-00117](../../issues/closed/issue-00117.md) | Основание сохранено | B07: Исходник вручную интерполирует skillName в JSON value; кавычки не экранируются. Полная передача AE/ядровая очистка не повторялась. |
 | [issue-00118](../../issues/potential/issue-00118.md) | Основание сохранено | B07: P03: stat='' приводит к TypeError до броска; HBS скрывает только точное none. |
 | [issue-00119](../../issues/closed/issue-00119.md) | Основание сохранено | B07: Три ключа ru отсутствуют при en-наличии; это локализация с fallback, не доказанная поломка порогов. |
 | [issue-00120](../../issues/potential/issue-00120.md) | Основание сохранено | B07: Шесть CRUD-методов вызывают update без return/await, в отличие от завершённой записи; причины отдельно от имени/action. |
@@ -647,10 +647,10 @@
 | [issue-00237](../../issues/closed/issue-00237.md) | Основание сохраняется | B14: T03: addActiveEffects(undefined), addAttackModifiers0; weapon skillReplacement обходит общий конструктор. |
 | [issue-00238](../../issues/potential/issue-00238.md) | Основание сохраняется | B14: T03: extra−3 в формуле, Actor.update0; оружейная оплата отдельная. |
 | [issue-00239](../../issues/potential/issue-00239.md) | Основание сохраняется | B14: T03: кнопка damage есть, attack.itemUuid нет; combat.onDamage требует разрешённый Item. |
-| [issue-00240](../../issues/potential/issue-00240.md) | Основание сохраняется | B14: Строка 5+2 вставляется в JSON без Roll при отсутствии d; ошибка отделена от duration121. |
+| [issue-00240](../../issues/closed/issue-00240.md) | Основание сохраняется | B14: Строка 5+2 вставляется в JSON без Roll при отсутствии d; ошибка отделена от duration121. |
 | [issue-00241](../../issues/potential/issue-00241.md) | Основание сохраняется | B14: Обёртки/threshold/weapon/toMessage/query не возвращают операции; B07/T03 не заявляют сетевой цикл. |
 | [issue-00242](../../issues/potential/issue-00242.md) | Основание сохраняется | B14: Фильтр первого attackOption и пустой chooser; weaponAttack(undefined) возможен. |
-| [issue-00243](../../issues/potential/issue-00243.md) | Основание сохраняется | B14: Payload ActiveEffect использует icon; настоящая схема img, перенос icon отсутствует в исследованном core. |
+| [issue-00243](../../issues/closed/issue-00243.md) | Основание сохраняется | B14: Payload ActiveEffect использует icon; настоящая схема img, перенос icon отсутствует в исследованном core. |
 | [issue-00244](../../issues/potential/issue-00244.md) | Основание сохраняется | B14: У monster.addMeleeBonusfalse preview meleeBonus может быть ненулевой, формула его пропускает. |
 | [issue-00245](../../issues/potential/issue-00245.md) | Основание сохраняется | B14: Стоимость NaN обходит обе проверки; отрицательный origStaCost сохраняется при плате1; исходный textinput. |
 | [issue-00246](../../issues/potential/issue-00246.md) | Основание сохраняется | B14: T04:3×2d6+1→6d6+1,2.9×2→4,арифметическая строка→NaN. |

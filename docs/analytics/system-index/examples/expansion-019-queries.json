@@ -576,8 +576,8 @@
       ],
       "expected": {
         "includes_refs": [
-          "docs/issues/potential/issue-00117.md",
-          "docs/issues/potential/issue-00294.md"
+          "docs/issues/closed/issue-00117.md",
+          "docs/issues/closed/issue-00294.md"
         ]
       },
       "basis": "14:130 JSON.parse; некорректная строка и object после миграции — разные условия."
